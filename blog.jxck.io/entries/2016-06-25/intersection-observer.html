@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-06-25/intersection-observer.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Intersection Observer を用いた要素出現検出の最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -216,32 +214,32 @@
           <h3 id="絶対位置offsettop"><a href="#絶対位置offsettop">絶対位置(offsetTop)</a></h3>
           <p>body を親要素とすれば、そこからの offset 位置はドキュメント上の絶対位置と考えることができる。
           <p>これは、要素自体が持っている。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=js data-code=js><code translate=no class=language-js>let target = document.querySelector(&apos;.target&apos;);
-// target.offsetTop;
-// target.offsetHeight;
-// target.offsetWidth;
-// target.offsetLeft;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> target </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'.target'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// target.offsetTop;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// target.offsetHeight;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// target.offsetWidth;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// target.offsetLeft;</span></span></code></pre>
         </section>
         <section>
           <h3 id="相対位置getboundingclientrect"><a href="#相対位置getboundingclientrect">相対位置(getBoundingClientRect)</a></h3>
           <p>対象の DOM が、現在画面表示(viewport)上どの位置にあるか。
           <p>スクロールするたびに変わる値で、常に表示領域の中の位置になる。
           <p>これは、対象 DOM の <code translate=no>getBoundingClientRect()</code> で取れる。
-          <pre class=js data-code=js><code translate=no class=language-js>let rect = target.getBoundingClientRect();
-// rect.top;
-// rect.bottom;
-// rect.height;
-// rect.left;
-// rect.right;
-// rect.width;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getBoundingClientRect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.top;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.bottom;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.height;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.left;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.right;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// rect.width;</span></span></code></pre>
         </section>
         <section>
           <h3 id="表示判定"><a href="#表示判定">表示判定</a></h3>
           <p>ここまでを踏まえると、画面をスクロールし、画面の中に対象の DOM が入っていることは、以下のように判定できる。
-          <pre class=js data-code=js><code translate=no class=language-js>   (0 &lt; rect.top &amp;&amp; rect.top &lt; clientHeight)       // 対象の上端は表示領域に入っている
-|| (0 &lt; rect.bottom &amp;&amp; rect.bottom &lt; clientHeight) // 対象の下端は表示領域に入っている
-|| (rect.top &lt; 0 &amp;&amp; clientHeight &lt; rect.bottom)    // 上端下端も表示されてないがその間が表示されている</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect.top </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect.top </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> clientHeight)       </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 対象の上端は表示領域に入っている</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect.bottom </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect.bottom </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> clientHeight) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 対象の下端は表示領域に入っている</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (rect.top </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> clientHeight </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rect.bottom)    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 上端下端も表示されてないがその間が表示されている</span></span></code></pre>
           <p>この三つの論理和が満たされれば、どこかが表示されている。
           <p>もちろん、計算基準の親要素を変えれば、viewport 以外の要素でのスクロールによる出現にも対応できる。
         </section>
@@ -293,12 +291,12 @@
         <p>コールバックとオプションを指定し、Intersection Observer Class のインスタンスを生成する。
         <p>生成した Observer に対して、任意の DOM 要素を <code translate=no>observe()</code> メソッドで指定することにより、対象を監視する。
         <p>複数要素を同じように監視する場合は、同じ Intersection Observer インスタンスで、observe を複数回呼ぶことができる。
-        <pre class=js data-code=js><code translate=no class=language-js>let observer = new IntersectionObserver((changes) =&gt; {
-  for (let change of changes) {
-    console.log(change);
-  }
-}, option);
-observer.observe(target);</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> observer </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> IntersectionObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">changes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> change </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">of</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> changes) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(change);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, option);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">observer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target);</span></span></code></pre>
         <section>
           <h3 id="callback"><a href="#callback">callback</a></h3>
           <p>複数の DOM を監視した場合は、一つのイベントで複数の変更が取得されるため、コールバックの引数は監視した DOM の数だけ入ってくる。
@@ -346,20 +344,20 @@ observer.observe(target);</code></pre>
           </p>
           <p>特に <code translate=no>change.intersectionRect</code> および <code translate=no>change.intersectionRatio</code> は、自分で計算するとボトルネックになりがちである。
           <p>第二引数には、オプションとして三つのプロパティを設定したオブジェクトを指定できる。
-          <pre class=js data-code=js><code translate=no class=language-js>let observer = new IntersectionObserver((changes) =&gt; {
-  // callback
-}, {
-  root: document.querySelector(&apos;.target&apos;),
-  threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-  rootMargin: &apos;10px&apos;,
-});
-observer.observe(target);</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> observer </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> IntersectionObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">changes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // callback</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  root: document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'.target'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  threshold: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  rootMargin: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'10px'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">observer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target);</span></span></code></pre>
         </section>
         <section>
           <h3 id="root"><a href="#root">root</a></h3>
           <p>デフォルトでは、viewport を対象にした交差検出を行うことができるが、これはデフォルトの root が document 自身になっているからである。
           <p>root オプションを用いることで、任意の親要素内を指定できるため、例えば <code translate=no>overflow: scroll</code> になった div の中の交差を判定することができる。
-          <pre class=js data-code=js><code translate=no class=language-js>{ root: document.querySelector(&apos;.target&apos;) }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'.target'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) }</span></span></code></pre>
         </section>
         <section>
           <h3 id="threshold"><a href="#threshold">threshold</a></h3>
@@ -367,7 +365,7 @@ observer.observe(target);</code></pre>
           <p>これは、表示が 0 (表示されてない), 100 (全て表示されている) のどちらかしかないためである。
           <p>イベント発生頻度を増やすには、threshold オプションを使うことができる。
           <p>例えば、以下のように引数を設定すれば、交差領域が 20% 変化する毎にコールバックを呼ぶことができる。
-          <pre class=js data-code=js><code translate=no class=language-js>{ threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0] }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">threshold</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] }</span></span></code></pre>
           <p>これにより、表示領域の変化に合わせたインタラクションも実装が可能になる。
         </section>
         <section>
@@ -377,7 +375,7 @@ observer.observe(target);</code></pre>
           <p>しかし、viewport 上に表示されてから取得するより、表示される少し前に取得を開始できれば、小さい画像なら空の <code translate=no>&lt;img&gt;</code> すら出さずに済む可能性がある。
           <p>こうした場合は rootMargin オプションを指定することができる。
           <p>値は CSS の margin への指定と同じだ、例えば以下のように設定すれば、上下左右が交差する 10px 手前でイベントが発火する。
-          <pre class=js data-code=js><code translate=no class=language-js>{ rootMargin: &apos;10px&apos; }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">rootMargin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'10px'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span></code></pre>
         </section>
         <section>
           <h3 id="intersection-observe-demo"><a href="#intersection-observe-demo">Intersection Observe DEMO</a></h3>

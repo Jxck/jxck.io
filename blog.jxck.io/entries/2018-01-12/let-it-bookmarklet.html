@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Bookmarklet という一番身近な自動化技術 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -194,12 +192,12 @@
           <h3 id="github-pdf"><a href="#github-pdf">github pdf</a></h3>
           <p>その後輩は、github の markdown を PDF にして協力会社に送る(!!?)のに、ページごとに開発者ツールから周りの DOM をポチポチ消して整形していた。
           <p>例えば、以下の README.md だった場合は、雑にやるとこんな感じでできそうだ。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=js data-code=js><code translate=no class=language-js>javascript: (() =&gt; {
-  const readme = document.querySelector(&apos;#readme&apos;);
-  document.body.innerHTML = &quot;&quot;;
-  document.body.appendChild(readme);
-})()</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: (() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> readme</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'#readme'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  document.body.innerHTML </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  document.body.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">appendChild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(readme);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})()</span></span></code></pre>
           <p>整形したら印刷で PDF に保存すれば良い。
           <p>ただ、そもそもの解決策が本当にこれなのかは疑問もあるが。
         </section>
@@ -207,25 +205,25 @@
           <h3 id="header-id-link"><a href="#header-id-link">header id link</a></h3>
           <p>ヘッダ要素が ID を持ってるので、ヘッダに対してリンクを貼りたいが、リンクになってないのでソースを見ないといけない場合。
           <p>それをリンクに直して、遷移できるようにする。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript: (() =&gt; {
-  let url = new URL(location.href);
-  for (let $h of document.querySelectorAll(&apos;h1, h2, h3, h4&apos;)) {
-    let $a = document.createElement(&apos;a&apos;);
-    $a.textContent = $h.textContent;
-    $h.textContent = &apos;&apos;;
-    url.hash = $h.id;
-    $a.href = url.toString();
-    $a.style.color = getComputedStyle($h).color;
-    $h.appendChild($a);
-  };
-})();</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: (() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> url </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(location.href);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">of</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelectorAll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'h1, h2, h3, h4'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createElement</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'a'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $a.textContent </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $h.textContent;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $h.textContent </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ''</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    url.hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $h.id;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $a.href </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> url.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $a.style.color </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> getComputedStyle</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">($h).color;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $h.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">appendChild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">($a);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  };</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})();</span></span></code></pre>
           <p>共有したい場合なども便利。
         </section>
         <section>
           <h3 id="twitter-colored-link"><a href="#twitter-colored-link">Twitter Colored Link</a></h3>
           <p>Twitter のリンクが色も Underline も付かなくなって以降、URL がどこにあるのかパッとわかりにくくなった。
           <p>そこで、対象の <code translate=no>&lt;a&gt;</code> に色をつける。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript:Array.from(document.querySelectorAll(&apos;.js-display-url&apos;)).forEach((a) =&gt; a.style.color=&quot;red&quot;)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelectorAll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'.js-display-url'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forEach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> a.style.color</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"red"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>それっぽい Class をなんとか探すのがポイント。
         </section>
         <section>
@@ -236,36 +234,36 @@
           <p>例えば 1 ヶ月を選ぶと以下が付与される。
           <pre><code translate=no>&amp;tbs=qdr:m</code></pre>
           <p>この <code translate=no>m</code> を <code translate=no>m3</code> にすると 3 ヶ月になる。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href += &apos;&amp;tbs=qdr:m3&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:location.href </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '&#x26;tbs=qdr:m3'</span></span></code></pre>
         </section>
         <section>
           <h3 id="canonical"><a href="#canonical">canonical</a></h3>
           <p>綺麗な URL を取得したいのに、遷移元などの影響で不要なゴミクエリが付いているといった場合にそれを除去する。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:location.href </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'link[rel="canonical"]'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).href</span></span></code></pre>
           <p>ところで、Amazon の URL の canonical は以下のようになっている。
-          <pre class=url data-code=url><code translate=no class=language-url>https://www.amazon.co.jp/商品名/dp/XXXXXXXX</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="url"><code translate="no"><span class="line"><span>https://www.amazon.co.jp/商品名/dp/XXXXXXXX</span></span></code></pre>
           <p>ただ、商品名が長いとブログなどに貼る時に URL が見づらくなる。
           <p>実際は dp 以降だけで良いので、商品名を削除してしまった方が使いやすかったりする。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript:location.href = document.querySelector(&apos;link[rel=&quot;canonical&quot;]&apos;).href.replace(/amazon.co.jp\/.*\/dp/, &apos;amazon.co.jp/dp&apos;);</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:location.href </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'link[rel="canonical"]'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).href.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">replace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">amazon</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">co</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">jp</span><span style="--shiki-light:#22863A;--shiki-light-font-weight:bold;--shiki-dark:#85E89D;--shiki-dark-font-weight:bold">\/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#22863A;--shiki-light-font-weight:bold;--shiki-dark:#85E89D;--shiki-dark-font-weight:bold">\/</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">dp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'amazon.co.jp/dp'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
         </section>
         <section>
           <h3 id="preslide"><a href="#preslide">preslide</a></h3>
           <p>ネットワークが重いところで slideshare を見ると、ページを進めるたびにローディングでストレスだったので書いたもの。
           <p>一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
           <p>最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript: function loop(n) {
-  if (n == 0) {return;}
-  setTimeout(function() {
-    document.querySelector(&quot;#svPlayerId &gt; div.stage &gt; div.rightpoint.pointly&quot;).click();
-    loop(n-1);
-  }, 100);
-}; loop(parseInt(document.querySelector(&apos;#total-slides&apos;).textContent)-2);</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> loop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">n</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;}</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  setTimeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#svPlayerId > div.stage > div.rightpoint.pointly"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">click</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    loop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(n</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">loop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">parseInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'#total-slides'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).textContent)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
         </section>
         <section>
           <h3 id="safari-picture-in-picture"><a href="#safari-picture-in-picture">safari picture-in-picture</a></h3>
           <p>今の Safari は PinP に対応している。
           <p><code translate=no>&lt;video&gt;</code> タグで再生されていれば基本的に表示が可能だが、UI がない場合は以下で再生中のビデオを PinP できる。
-          <pre class=js data-code=js><code translate=no class=language-js>javascript: document.querySelector(&apos;video&apos;).webkitSetPresentationMode(&apos;picture-in-picture&apos;)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">javascript</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'video'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">webkitSetPresentationMode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'picture-in-picture'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>新しい Mac は touch bar に UI があるので、無い機種で使ってる。
         </section>
         <section>

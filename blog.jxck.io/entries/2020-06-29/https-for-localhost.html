@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-29T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>ローカル開発環境の https 化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-29>2020-06-29</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -191,7 +189,7 @@
           <h3 id="localhost-の実態"><a href="#localhost-の実態">localhost の実態</a></h3>
           <p>ちなみに、localhost の実態はただの hosts ファイルのエントリなので、そこを別の IP に書き換えれば、リモートのサーバを localhost で参照するといったこともできる。
           <p>(これは Windows IE 上で localhost でサーバを見たいが、サーバは Mac で動いてるなど、ブラウザを起動するマシンとコードを書くマシンを分けたい時などにやむを得ず使ったりする)
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
           <pre><code translate=no>127.0.0.1  localhost # default
 203.0.113.0  localhost # localhost を別のアドレスにする
 127.0.0.1  example.com # 別のドメインを loopback にする</code></pre>
@@ -274,7 +272,7 @@
           <li><a href="https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66" target=_blank>https://chromium.googlesource.com/chromium/src/+/master/components/network_session_configurator/common/network_switch_list.h#66</a>
         </ul>
         <p>ためしに以下のように開いてみると、確かにマッピングが指定できる。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ google-chrome --host-rules=&quot;MAP example.com 127.0.0.1&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ google-chrome --host-rules</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"MAP example.com 127.0.0.1"</span></span></code></pre>
         <p>他にも色々な指定ができるようだ。
         <pre><code translate=no>// For example:
 //    &quot;MAP * 127.0.0.1&quot; --&gt; Forces all hostnames to be mapped to 127.0.0.1

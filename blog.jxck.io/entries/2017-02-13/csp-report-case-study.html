@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>CSP Report 収集と実レポートの考察 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -195,16 +193,16 @@
         <p><code translate=no>labs.jxck.io</code> だけは(CSP に違反するデモを含む)、脆弱性デモを含む様々なデモを置いているため、対象外として扱う。
         <p>CSP は全て Report-Only で HTTP ヘッダから適応しており、CSP レポートを収集している。
         <p>現状は以下である。(まだ改善点はある)
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http><code translate=no class=language-http>content-security-policy-report-only:
-  default-src &apos;self&apos;
-              https://jxck.io
-              https://*.jxck.io
-              https://www.google-analytics.com;
-  child-src   https://blog.jxck.io
-              https://www.youtube.com;
-  connect-src wss://ws.jxck.io;
-  report-uri https://jxck.report-uri.io/r/default/csp/reportOnly</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">content-security-policy-report-only</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  default-src 'self'</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">              https://jxck.io</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">              https://*.jxck.io</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">              https://www.google-analytics.com;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  child-src   https://blog.jxck.io</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">              https://www.youtube.com;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  connect-src wss://ws.jxck.io;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  report-uri https://jxck.report-uri.io/r/default/csp/reportOnly</span></span></code></pre>
         <p>ポリシーは <code translate=no>default-src &apos;self&apos;</code> の設定を基本として、レポートを集めながら try &amp; error で更新した。
         <p>レポート送信のエンドポイントは <code translate=no>report-uri.io</code> を使っていたが、後述するように今は自前で立てたサーバに移行している。
       </section>
@@ -229,36 +227,36 @@
           <h3 id="dom-change-by-user"><a href="#dom-change-by-user">DOM Change by User</a></h3>
           <p>Bookmarklet などから DOM を変更することで、ページそのものをカスタマイズしたりするユーザや、Devtools からこのサイト上で色々試したりするユーザもいるだろう。
           <p>一例として、以下のレポートは、CSP の指定範囲外オリジンから jQuery を埋め込んだことによるレポートと思われる。
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  &quot;csp-report&quot;: {
-    &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
-    &quot;referrer&quot;:            &quot;https://blog.jxck.io/&quot;,
-    &quot;violated-directive&quot;:  &quot;script-src&quot;,
-    &quot;effective-directive&quot;: &quot;script-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
-    &quot;disposition&quot;:         &quot;report&quot;,
-    &quot;blocked-uri&quot;:         &quot;https://code.jquery.com/jquery-3.0.0.min.js&quot;,
-    &quot;line-number&quot;:         1,
-    &quot;column-number&quot;:       108,
-    &quot;status-code&quot;:         0
-  }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "csp-report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "document-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "referrer"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:            </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "violated-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"script-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "effective-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"script-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "original-policy"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://jxck.io..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "disposition"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "blocked-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://code.jquery.com/jquery-3.0.0.min.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "line-number"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "column-number"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:       </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">108</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "status-code"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>こうしたレポートは非常に多い。
         </section>
         <section>
           <h3 id="extension"><a href="#extension">Extension</a></h3>
           <p>以下のレポートは、ブラウザ拡張がブロックされたであろうと想像される。
           <p>画像について何か改変をしているようだが、詳細はわからない。
-          <pre class=js data-code=js><code translate=no class=language-js>{
-  &quot;csp-report&quot;: {
-    &quot;document-uri&quot;:        &quot;https://blog.jxck.io/entries/...&quot;,
-    &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io ...&quot;,
-    &quot;effective-directive&quot;: &quot;img-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io ...&quot;,
-    &quot;blocked-uri&quot;:         &quot;ms-browser-extension&quot;,
-    &quot;status-code&quot;:         0
-  }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "csp-report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "document-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "violated-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://jxck.io ..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "effective-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "original-policy"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://jxck.io ..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "blocked-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ms-browser-extension"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "status-code"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>こうした拡張を通じた DOM の改変が起こる可能性として、以下のような場面があるだろう。
           <ul>
             <li>Reader View Mode
@@ -280,19 +278,19 @@
               <img loading=lazy decoding=async src=chrome-inline-style-violation.png?200901_002432 alt="Chrome でテキストを表示すると、整形のために埋め込まれた HTML が CSP 違反を起こす" title="inline style violation for RSS feed in chrome" width=1667 height=656>
             </picture>
           </p>
-          <pre class=js data-code=js><code translate=no class=language-js>{
-  &quot;csp-report&quot;: {
-  &quot;document-uri&quot;:        &quot;https://jxck.io/humans.txt&quot;,
-  &quot;referrer&quot;:            &quot;&quot;,
-  &quot;violated-directive&quot;:  &quot;style-src&quot;,
-  &quot;effective-directive&quot;: &quot;style-src&quot;,
-  &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://*.jxck.io...&quot;,
-  &quot;disposition&quot;:         &quot;report&quot;,
-  &quot;blocked-uri&quot;:         &quot;inline&quot;,
-  &quot;line-number&quot;:         1,
-  &quot;status-code&quot;:         0
-  }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "csp-report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "document-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://jxck.io/humans.txt"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "referrer"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:            </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "violated-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"style-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "effective-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"style-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "original-policy"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://*.jxck.io..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "disposition"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "blocked-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"inline"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "line-number"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "status-code"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>これはもちろん悪意のあるポリシー違反でないため、本サイトではこの種のコンテントタイプのページへは CSP を適用しないこととした。
         </section>
         <section>
@@ -312,16 +310,16 @@
         <section>
           <h3 id="aboutblank_"><a href="#aboutblank_">about:blank_</a></h3>
           <p>なんらかの操作によって、コンテキストが <code translate=no>about://blank</code> になりオリジンの違反としてレポートがちょくちょく来る。
-          <pre class=js data-code=js><code translate=no class=language-js>{
-  &quot;csp-report&quot;: {
-    &quot;document-uri&quot;:        &quot;about://blank&quot;,
-    &quot;violated-directive&quot;:  &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
-    &quot;effective-directive&quot;: &quot;img-src&quot;,
-    &quot;original-policy&quot;:     &quot;default-src &apos;self&apos; https://jxck.io...&quot;,
-    &quot;blocked-uri&quot;:         &quot;data&quot;,
-    &quot;status-code&quot;:         0
-  }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "csp-report"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "document-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"about://blank"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "violated-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://jxck.io..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "effective-directive"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-src"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "original-policy"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"default-src 'self' https://jxck.io..."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "blocked-uri"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"data"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "status-code"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>おそらく <code translate=no>&lt;a&gt;</code> のリンク先をいじる何かなどで発生しているのではないかと考えてはいるが、これも無害として無視している。
         </section>
       </section>

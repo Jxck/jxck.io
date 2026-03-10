@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-01-18/reporting.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -228,32 +226,32 @@
         <p>筆者の観測では発端は CSP からだ。
         <p>CSP で定義したポリシーに違反があった場合、その原因をブロックすると同時に、違反があったことを知りたいという要望があった。でなければその問題に対して認識/対応ができないからだ。
         <p>そこで、CSP ヘッダに指定するためのディレクティブとして、Report を送信する先を指定する <code translate=no>report-uri</code> が定義された。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http data-path=./1.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-uri https://report-uri.example.com</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http" data-path="./1.http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default-src 'self' report-uri https://report-uri.example.com</span></span></code></pre>
         <p>CSP は JS の実行をブロックする場合があるので、その Report は JS で収集するより、ブラウザが直接送信する方が理にかなっている。
         <p>その後、他にも Report 送信を伴う API が提案された。
         <p>すると、個々のヘッダに report-uri を書くより、Reporting エンドポイントをまとめて記述できる Report-To ヘッダを定義し、各 Policy がそれを参照する形に整理するという方向になった。
         <p>(<a href="https://github.com/WICG/feature-policy/issues/142" target=_blank>Feature-Policy の report-to 対応は議論中</a>)
-        <pre class=http data-code=http data-path=./2.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-to=default-endpoint
-Feature-Policy: syncxhr &apos;none&apos; report-to=default-endpoint
-NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
-Report-To: {
-             &quot;group&quot;: &quot;default-endpoint&quot;,
-             &quot;max-age&quot;: &quot;36000&quot;,
-             &quot;endpoints&quot;: [
-               {&quot;url&quot;: &quot;https://report-uri.example.com&quot;},
-               {&quot;url&quot;: &quot;https://report-uri2.example.com&quot;}
-             ]
-           }</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http" data-path="./2.http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default-src 'self' report-to=default-endpoint</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> syncxhr 'none' report-to=default-endpoint</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">NEL</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {"report-to": "default-endpoint", "max-age": 2592000}</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Report-To</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "group": "default-endpoint",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "max-age": "36000",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "endpoints": [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">},</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri2.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           }</span></span></code></pre>
         <p>一方、他にも取得したい情報は増え、Policy Header + Report-To よりも、JS でハンドリングするほうが望ましいケースも現れ、JS API も Export することになった。
         <p>互換性の面でも、セマンティクスの面でも、Report は Error ではないため、Error を throw するようなモデルは使えない。代わりに Interface は昨今の流れに則り Observer で提供され、opt-in で取得する設計が採用された。
         <p>Report は JSON シリアライズ可能な形式で提供されるため、Beacon API や Keep-Alive Fetch で送ることになるだろう。
-        <pre class=js data-code=js data-path=./3.js><code translate=no class=language-js>const observer = new ReportingObserver((reports, observer) =&gt; {
-  const message = JSON.stringify(reports)
-  navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
-});
-
-observer.observe();</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js" data-path="./3.js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> observer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ReportingObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">reports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">observer</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> message</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> JSON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">stringify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(reports)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  navigator.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">sendBeacon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, message)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">observer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span></code></pre>
         <p>こうして、Report-To ヘッダ、および Reporting Observer は Reporting API という仕様にまとめられ、Report を送る他の API から参照される形に整理され、今に至る。
         <p>report-to や report-uri, Reporting Observer など複数の仕様があるのはこのような理由による。
       </section>
@@ -262,35 +260,35 @@ observer.observe();</code></pre>
         <p>Report-To ヘッダは、Reporting エンドポイントの情報を一括して定義する HTTP Header だ。
         <section>
           <h3 id="report-to-header"><a href="#report-to-header">Report-To header</a></h3>
-          <pre class=http data-code=http data-path=./4.http><code translate=no class=language-http>Report-To: {
-             &quot;max_age&quot;: 36000,
-             &quot;endpoints&quot;: [
-               {
-                 &quot;url&quot;: &quot;https://reports.example.com/default-endpoint&quot;
-               }
-             ]
-           },
-           {
-             &quot;group&quot;: &quot;csp-endpoint&quot;,
-             &quot;include_subdomains&quot;: true,
-             &quot;max_age&quot;: 36000,
-             &quot;endpoints&quot;: [
-               {
-                 &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint1&quot;,
-                 &quot;priority&quot;: 1,
-                 &quot;weight&quot;: 50
-               },
-               {
-                 &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint2&quot;,
-                 &quot;priority&quot;: 1,
-                 &quot;weight&quot;: 50
-               },
-               {
-                 &quot;url&quot;: &quot;https://failover.example.com/csp-endpoint&quot;,
-                 &quot;priority&quot;: 2
-               }
-             ]
-           }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http" data-path="./4.http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Report-To</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "max_age": 36000,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "endpoints": [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://reports.example.com/default-endpoint"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "group"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"csp-endpoint"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "include_subdomains"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "max_age"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">36000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "endpoints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://reports.example.com/csp-endpoint1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "priority"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "weight"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">50</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://reports.example.com/csp-endpoint2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "priority"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "weight"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">50</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://failover.example.com/csp-endpoint"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">                 "priority"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           }</span></span></code></pre>
           <p>このヘッダの値は、JSON 形式(<a href="https://tools.ietf.org/html/draft-reschke-http-jfv" target=_blank>JFV</a>)が採用されている。
           <p>1 つのグループは以下のメンバーを持つ
           <ul>
@@ -344,18 +342,18 @@ observer.observe();</code></pre>
           <p>一方、Deprecation/Intervention/Crash などは、API を持たずにブラウザが自動で生成するため、Report-To に default group があれば自動で送信される。
           <p>(仕様上はそうだが、実装されているブラウザはまだない)
           <p>したがって、Report-To だけを設定しておくということも考えられる。
-          <pre class=http data-code=http data-path=./5.http><code translate=no class=language-http>Content-Security-Policy: default-src &apos;self&apos; report-to=csp-endpoint
-Feature-Policy: syncxhr &apos;none&apos; report-to=default
-NEL: {&quot;report-to&quot;: &quot;default&quot;, &quot;max-age&quot;: 2592000}
-Report-To: {
-             &quot;group&quot;: &quot;default&quot;,
-             &quot;max_age&quot;: 36000,
-             &quot;endpoints&quot;: [{ &quot;url&quot;: &quot;https://reports.example.com/default-endpoint&quot; }]
-           },
-           {
-             &quot;group&quot;: &quot;csp-endpoint&quot;,
-             &quot;endpoints&quot;: [{ &quot;url&quot;: &quot;https://reports.example.com/csp-endpoint&quot; }]
-           }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http" data-path="./5.http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default-src 'self' report-to=csp-endpoint</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> syncxhr 'none' report-to=default</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">NEL</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {"report-to": "default", "max-age": 2592000}</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Report-To</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "group": "default",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "max_age": 36000,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "endpoints": [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://reports.example.com/default-endpoint"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "group"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"csp-endpoint"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             "endpoints"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://reports.example.com/csp-endpoint"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           }</span></span></code></pre>
         </section>
         <section>
           <h3 id="reporting-request"><a href="#reporting-request">Reporting Request</a></h3>
@@ -363,28 +361,28 @@ Report-To: {
           <ul>
             <li><a href="https://w3c.github.io/reporting/#try-delivery" target=_blank>4.5. Attempt to deliver reports to endpoint</a>
           </ul>
-          <pre class=http data-code=http data-path=./6.http><code translate=no class=language-http>POST /default-endpoint HTTP/1.1
-Host: reports.example.com
-Content-Type: application/reports+json
-Content-Length: 999
-
-[
-  {
-    &quot;type&quot;: &quot;csp&quot;,
-    &quot;url&quot;: &quot;https://example.com/csp.html/&quot;,
-    &quot;body&quot;: {...}
-  },
-  {
-    &quot;type&quot;: &quot;nel&quot;,
-    &quot;url&quot;: &quot;https://example.com/nel.html/&quot;,
-    &quot;body&quot;: {...}
-  },
-  {
-    &quot;type&quot;: &quot;hpkp&quot;,
-    &quot;url&quot;: &quot;https://example.com/hpkp.html/&quot;,
-    &quot;body&quot;: {...}
-  },
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http" data-path="./6.http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /default-endpoint </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> reports.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/reports+json</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 999</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"csp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/csp.html/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "body"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"nel"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/nel.html/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "body"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hpkp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/hpkp.html/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "body"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>受信するエンドポイントは以下を想定する必要がある。
           <ul>
             <li>HTTP メソッドは POST
@@ -408,12 +406,12 @@ Content-Length: 999
           <li><a href="https://w3c.github.io/reporting/#observers" target=_blank>https://w3c.github.io/reporting/#observers</a>
         </ul>
         <p>サンプルを再掲する。
-        <pre class=js data-code=js data-path=./3.js><code translate=no class=language-js>const observer = new ReportingObserver((reports, observer) =&gt; {
-  const message = JSON.stringify(reports)
-  navigator.sendBeacon(&quot;https://report-uri.example.com&quot;, message)
-});
-
-observer.observe();</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js" data-path="./3.js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> observer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ReportingObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">reports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">observer</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> message</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> JSON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">stringify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(reports)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  navigator.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">sendBeacon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, message)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">observer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span></code></pre>
         <p>(この JSON.stringify ができなかったために、修正前は自分で Serialize するロジックを <a href="https://github.com/Jxck/jxck.io/commit/4a0cdc168a73e40fcb88a1fe74f6ae62b40750fa" target=_blank>ワークアラウンド</a> として入れて収集していた)
         <p>JS で取得するため、JS が動いていることが前提だ。
         <p>つまり、CSP や Crash ではなく deprecation/intervention など軽微な Report を取得する。
@@ -430,33 +428,33 @@ observer.observe();</code></pre>
           <p>特に古い API の deprecate/remove は段階ごとにアナウンスされるが、それが自身のサービス内でどの程度の影響があるかなどを正確にするのは難しい。
           <p>この report を収集すれば、サービス内のどのソースファイルの何行目でそれが使われているかまでわかるため、非常に有益な情報となる。
           <p>なお、本サイトでは Chrome の拡張である <a href="https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin/related" target=_blank>HTTP/2 and SPDY indicator</a> から <code translate=no>chrome.loadTimes()</code> を呼んでいるという Report が最も多く送られてきている。
-          <pre class=js data-code=js data-path=./7.js><code translate=no class=language-js>{
-  &quot;type&quot;: &quot;deprecation&quot;,
-    &quot;url&quot;: &quot;https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html&quot;,
-    &quot;body&quot;: {
-      &quot;id&quot;: &quot;ChromeLoadTimesWasAlternateProtocolAvailable&quot;,
-      &quot;anticipatedRemoval&quot;: null,
-      &quot;message&quot;: &quot;chrome.loadTimes() is deprecated, instead use standardized API: nextHopProtocol in Navigation Timing 2. https://www.chromestatus.com/features/5637885046816768.&quot;,
-      &quot;sourceFile&quot;: &quot;chrome-extension://mpbpobfflnpcgagjijhmgnchggcjblin/content.js&quot;,
-      &quot;lineNumber&quot;: 5,
-      &quot;columnNumber&quot;: 19
-    }
-}
-
-{
-  &quot;type&quot;: &quot;deprecation&quot;,
-    &quot;age&quot;: 27,
-    &quot;url&quot;: &quot;https://example.com/&quot;,
-    &quot;user_agent&quot;: &quot;Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0&quot;,
-    &quot;body&quot;: {
-      &quot;id&quot;: &quot;websql&quot;,
-      &quot;anticipatedRemoval&quot;: &quot;1/1/2020&quot;,
-      &quot;message&quot;: &quot;WebSQL is deprecated and will be removed in Chrome 97 around January 2020&quot;,
-      &quot;sourceFile&quot;: &quot;https://example.com/index.js&quot;,
-      &quot;lineNumber&quot;: 1234,
-      &quot;columnNumber&quot;: 42
-    }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js" data-path="./7.js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"deprecation"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "body"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ChromeLoadTimesWasAlternateProtocolAvailable"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "anticipatedRemoval"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "message"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"chrome.loadTimes() is deprecated, instead use standardized API: nextHopProtocol in Navigation Timing 2. https://www.chromestatus.com/features/5637885046816768."</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "sourceFile"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"chrome-extension://mpbpobfflnpcgagjijhmgnchggcjblin/content.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "lineNumber"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "columnNumber"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">19</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"deprecation"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "age"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">27</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "user_agent"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "body"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"websql"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "anticipatedRemoval"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"1/1/2020"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "message"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"WebSQL is deprecated and will be removed in Chrome 97 around January 2020"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "sourceFile"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/index.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "lineNumber"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1234</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "columnNumber"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">42</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
         <section>
           <h3 id="intervention-report"><a href="#intervention-report">Intervention Report</a></h3>

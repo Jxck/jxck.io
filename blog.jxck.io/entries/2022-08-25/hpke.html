@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2022-08-25/hpke.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>HPKE とは何か | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -228,18 +226,18 @@
         </ul>
         <p>基本的には、送信者が固定長乱数を受信者の公開鍵で暗号化し、受信者が秘密鍵で復号する流れだ。その固定長乱数を元に秘密鍵を生成した暗号化コンテキストを共有し、そのコンテキストを用いてメッセージの交換を行う。
         <p>(以降の擬似コードは、RFC のものではなく説明用にわかりやすくしたものである)
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>// 送信側
-// 受信者の公開鍵で暗号化
-{ shared_secret, enc } = Encap(receiver_public_key)
-// 暗号化コンテキストを生成
-ctx = KeySchedule(shared_secret)
-
-// 受信側
-// 自分の秘密鍵で復号
-shared_secret = Decap(enc, receiver_secret_key)
-// 暗号化コンテキストを生成
-ctx = KeySchedule(shared_secret)</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 送信側</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 受信者の公開鍵で暗号化</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ shared_secret, enc } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Encap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(receiver_public_key)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 暗号化コンテキストを生成</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 受信側</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 自分の秘密鍵で復号</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">shared_secret </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Decap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(enc, receiver_secret_key)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 暗号化コンテキストを生成</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span></code></pre>
         <p>しかし、この公開鍵のやりとりに TLS のような証明書は含まれない。代わりに、受信者が送信者を認証する方法が必要になるため、KEM には 4 つのモードが用意されている。
         <ul>
           <li>mode_base
@@ -250,13 +248,13 @@ ctx = KeySchedule(shared_secret)</code></pre>
         <section>
           <h3 id="base"><a href="#base">Base</a></h3>
           <p>通常の公開鍵暗号方式のみ行い、送信者の認証は行わない。
-          <pre class=js data-code=js><code translate=no class=language-js>// sender
-{ shared_secret, enc } = Encap(receiver_public_key)
-ctx = KeySchedule(shared_secret)
-
-// receiver
-shared_secret = Decap(enc, receiver_secret_key)
-ctx = KeySchedule(shared_secret)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// sender</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ shared_secret, enc } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Encap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(receiver_public_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// receiver</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">shared_secret </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Decap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(enc, receiver_secret_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span></code></pre>
           <p>ここで保証できるのは、「受信者は送信時に利用した公開鍵と対になる秘密鍵を保有している」という点だ。
           <p>受信者から見て、送信者が誰であるかを確証することはできない。つまり、別の攻撃者が同様に受信者の公開鍵で暗号化したものにメッセージを置き換えても、受信者は自分の秘密鍵で復号するだけなので、その事実を検証することができない。
           <p>別の経路によって確証できる場合は問題ないが、受信者が送信者を認証したい場合は別のモードを使うことができる。
@@ -265,26 +263,26 @@ ctx = KeySchedule(shared_secret)</code></pre>
           <h3 id="auth"><a href="#auth">Auth</a></h3>
           <p>Base モードでは、送信者は「受信者の公開鍵」でカプセル化したが、Auth モードではそこに「送信者の秘密鍵」を追加する。
           <p>受信者は、自身の秘密鍵と送信者の公開鍵を用いて復号するため、そこから正しいコンテキストが生成できなければ、メッセージの復号に失敗することになる。これにより、受信者は送信者が「意図した鍵のペアを持った相手かどうか」を確証することができるため、認証として機能する。
-          <pre class=js data-code=js><code translate=no class=language-js>// sender
-{ shared_secret, enc } = Encap(receiver_public_key, sender_secret_key)
-ctx = KeySchedule(shared_secret)
-
-// receiver
-shared_secret = Decap(enc, receiver_secret_key, sender_public_key)
-ctx = KeySchedule(shared_secret)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// sender</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ shared_secret, enc } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Encap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(receiver_public_key, sender_secret_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// receiver</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">shared_secret </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Decap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(enc, receiver_secret_key, sender_public_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret)</span></span></code></pre>
           <p>これを用いれば、仮に中間者によってメッセージが置き換えられたとしても、受信者が想定した送信者の公開鍵で復号しようとするとエラーになるため、改ざんに気づくことができる。もちろん、そのためには受信者は送信者の公開鍵を別の手段で取得しておく必要がある。
         </section>
         <section>
           <h3 id="psk"><a href="#psk">PSK</a></h3>
           <p>事前に鍵を共有することが可能な場合は、それを PSK (Pre Shared Key) として利用する PSK モードを利用することができる。
           <p>PSK Mode では、shared_secret の交換のあと、コンテキストの生成時に PSK を引数に追加する。
-          <pre class=js data-code=js><code translate=no class=language-js>// sender
-{ shared_secret, enc } = Encap(receiver_public_key)
-ctx = KeySchedule(shared_secret, psk)
-
-// receiver
-shared_secret = Decap(enc, receiver_secret_key)
-ctx = KeySchedule(shared_secret, psk)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// sender</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{ shared_secret, enc } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Encap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(receiver_public_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret, psk)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// receiver</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">shared_secret </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Decap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(enc, receiver_secret_key)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ctx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> KeySchedule</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(shared_secret, psk)</span></span></code></pre>
           <p>もし、両者が同じ PSK を持っていない場合は同じコンテキストが生成できないため、相手からのメッセージの復号に失敗することになる。これにより、受信者は送信者が「意図した PSK を持っているかどうか」を確証することができるため、認証として機能する。
         </section>
         <section>

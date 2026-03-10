@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2022-02-05/http3.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>サイトの HTTP3 化と DNS HTTPS RR および Alt-Svc Header によるアドバタイズ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -177,123 +175,123 @@
             <li><a href="https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14" target=_blank>https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14</a>
           </ul>
           <p>まず、<code translate=no>listen</code> directive の中で <code translate=no>type: quic</code> を指定するとそれだけで QUIC が有効になり、HTTP3 が動くようだ。そして、そのとおり実際に動く。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml># The following three lines enable HTTP3
-listen:
-  &lt;&lt;: *ssl_listen
-  type: quic
-header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># The following three lines enable HTTP3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  &#x3C;&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ssl_listen</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">  type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">header.set</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alt-Svc: h3-25=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:8081</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span></code></pre>
           <p>ここで注意が必要なのは、ブラウザの挙動とディレクティブの順番だ。
           <p>例えば、本サイトではテスト用に <code translate=no>http3.jxck.io</code> を切り、そこで以下のように検証を試みた。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;jxck.io:443&quot;:
-      listen: 443
-      ...
-  &quot;jxck.io:80&quot;:
-      listen: 80
-      ...
-
-  &quot;http3.jxck.io:80&quot;:
-    listen:
-      port: 80
-      pathes:
-        &quot;/&quot;:
-      redirect:
-        status: 308
-        url: https://http3.jxck.io:443/
-
-  &quot;http3.jxck.io:443&quot;:
-    listen:
-      port: 443
-      type: quic # for http3
-      ssl:
-        key-file: /keys/jxck.io/privkey.pem
-        certificate-file: /keys/jxck.io/fullchain.pem
-        minimum-version: TLSv1.2
-        cipher-suite: &quot;ECDHE-ECDSA-AES256-GCM-SHA384:...&quot;
-        cipher-preference: server
-    header.add: &quot;Alt-Svc: h3=\&quot;:443\&quot;;ma=60,quic=\&quot;:443\&quot;;ma=60&quot;
-    paths:
-      &quot;/&quot;:
-        mruby.handler: |
-          Proc.new do |env|
-            [200, {}, [&quot;http3&quot;]]
-          end</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "jxck.io:80"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:80"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      pathes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        "/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      redirect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">308</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://http3.jxck.io:443/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> # for http3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      ssl</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        key-file</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/keys/jxck.io/privkey.pem</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        certificate-file</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/keys/jxck.io/fullchain.pem</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        minimum-version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">TLSv1.2</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        cipher-suite</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ECDHE-ECDSA-AES256-GCM-SHA384:..."</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        cipher-preference</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">server</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    header.add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alt-Svc: h3=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60,quic=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        mruby.handler</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          Proc.new do |env|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">            [200, {}, ["http3"]]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          end</span></span></code></pre>
           <p>しかし、これではデプロイできない。mruby ハンドラ内の <code translate=no>&quot;http3&quot;</code> とだけ表示されるのを期待したが、実際には jxck.io の内容が表示される。
           <p>これは、ブラウザが <code translate=no>Alt-Svc</code> を見てから初めて QUIC 対応を知るため、1 回目のアクセスは通常通り HTTP1 or 2 で行い、UDP しか待ち受けてない <code translate=no>http3.jxck.io</code> では接続が確立できず、フォールバックとして TCP での接続を受け取れる <code translate=no>jxck.io</code> の内容が表示されているようだ。
           <p>つまり <code translate=no>type: quic</code> を指定した listener は、HTTP2 と HTTP3 を同時に受けるわけではなく、完全に HTTP3 のみを listen するフラグとなっていることがわかる。
           <p>したがって、HTTP3 だけではなく HTTP2 も並行して待ち受け、HTTP2 側で <code translate=no>Alt-Svc</code> を返し、2 回目の接続から HTTP3 にアクセスするように構成する必要がある。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;http3.jxck.io:443&quot;: # http2
-    listen:
-      port: 443
-      ...
-  &quot;http3.jxck.io:443&quot;: # http3
-    listen:
-      port: 443
-        type: quic
-        ...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http2</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">        ...</span></span></code></pre>
           <p>ところが、これでは <code translate=no>http3.jxck.io:443</code> という Map のキーがかぶってエラーになる。ただし、今までサンプル通りに書いていたここの Port 番号は無くてもよいようなので、リダイレクト用の 80 も含めて以下のようにした。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;http3.jxck.io:80&quot;: # http1
-    listen:
-      port: 80
-      ... # https へのリダイレクト
-  &quot;http3.jxck.io:443&quot;: # http2
-    listen:
-      port: 443
-      ... # Alt-Svc の提供
-  &quot;http3.jxck.io&quot;: # http3
-    listen:
-      port: 443
-        type: quic
-        ...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:80"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> # https へのリダイレクト</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http2</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> # Alt-Svc の提供</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">        ...</span></span></code></pre>
           <p>これだとパス部分を 3 回コピーする必要がある。Yaml のエイリアスが使えるとは言え、ちょっと微妙だ。
           <p>と思ってドキュメントを眺めていたら以下の書き方でもいけることがわかった。Yaml 的にはアウトな気がするが <code translate=no>listen</code> は重複しても良いらしい。
           <ul>
             <li><a href="https://github.com/h2o/h2o/wiki/Listening-to-both-HTTP-and-HTTPS" target=_blank>Listening to both HTTP and HTTPS · h2o/h2o Wiki (github.com)</a>
           </ul>
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;http3.jxck.io&quot;:
-    listen:
-      port: 443
-      type: quic
-      ...
-    listen:
-      port: 443
-        ...
-    listen:
-      port: 80
-    header.add: &quot;Alt-Svc: h3=\&quot;:443\&quot;;ma=60,quic=\&quot;:443\&quot;;ma=60&quot;
-    paths:
-      mruby.handler-file: .mruby.handler/hsts.rb
-      ...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">        ...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    header.add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alt-Svc: h3=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60,quic=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      mruby.handler-file</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.mruby.handler/hsts.rb</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span></code></pre>
           <p>結果、H3 -&gt; H2 -&gt; H1 の順で <code translate=no>listen</code> を記述し、全体で <code translate=no>Alt-Svc</code> を付与すると、意図したデプロイができることがわかった。
           <p>とはいえもう 80 はリダイレクトのためだけに listen しているのでそこは分けると以下のようになる。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;http3.jxck.io:80&quot;:
-    listen:
-      port: 80
-    paths:
-      &quot;/&quot;:
-        mruby.handler: |
-          Proc.new do |env|
-            location = &quot;https://http3.jxck.io:443&quot;
-            [308, {location: location}, []]
-          end
-  &quot;http3.jxck.io&quot;:
-    listen:
-      port: 443
-      type: quic
-      ...
-    listen:
-      port: 443
-        ...
-    header.add: &quot;Alt-Svc: h3=\&quot;:443\&quot;;ma=60,quic=\&quot;:443\&quot;;ma=60&quot;
-    header.add: &quot;Strict-Transport-Security: max-age=31536000&quot;
-    paths:
-      mruby.handler-file: .mruby.handler/hsts.rb
-      ...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:80"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        mruby.handler</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          Proc.new do |env|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">            location = "https://http3.jxck.io:443"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">            [308, {location: location}, []]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          end</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">        ...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    header.add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alt-Svc: h3=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60,quic=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    header.add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Strict-Transport-Security: max-age=31536000"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      mruby.handler-file</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.mruby.handler/hsts.rb</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span></code></pre>
         </section>
         <section>
           <h3 id="cipher-suite"><a href="#cipher-suite">Cipher Suite</a></h3>
@@ -350,22 +348,22 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
             </li>
           </ul>
           <p>今回はこれを HTTP3 のアドバタイズにのみ使用している。
-          <pre class=http data-code=http><code translate=no class=language-http>Alt-Svc: h3=&quot;:443&quot;;ma=60,quic=&quot;:443&quot;;ma=60&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Alt-Svc</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> h3=":443";ma=60,quic=":443";ma=60"</span></span></code></pre>
           <p>実装中は <code translate=no>h3-25</code> などのように Draft のバージョンを付与したネゴシエーションも行われていたが、現状の Chrome Stable (M97)では <code translate=no>h3</code> のみで動作することを確認している。本来後ろの <code translate=no>quic</code> もいらないように思うが、なんとなく残している。
           <p><code translate=no>ma</code> は Max-Age であり、本来はもっと長い時間にするべきだが、デバッグ中なので短くしている。
           <p>他にも <code translate=no>persist</code> や <code translate=no>clear</code> があるが、今回は使ってないため挙動は確認してない。
           <p>指定する Port だが、例えばこれを <code translate=no>h3=:4433</code> などとして TCP-TLS 用の 443 とは別に QUIC のサーバを建てることもできるという仕様になっている。したがって、最初は以下のようにしていた。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>hosts:
-  &quot;http3.jxck.io:443&quot;: # http2
-    listen:
-      port: 443
-      header.add: &quot;Alt-Svc: h3=\&quot;:4433\&quot;;ma=60&quot;
-      ...
-  &quot;http3.jxck.io:4433&quot;: # http3
-    listen:
-      port: 4433
-        type: quic
-        ...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">hosts</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:443"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http2</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      header.add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Alt-Svc: h3=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">:4433</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">;ma=60"</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:4433"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># http3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">4433</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">quic</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">        ...</span></span></code></pre>
           <p>しかし、これでは動かない。
           <p>どうやら Chrome は特権 Port からの <code translate=no>Alt-Svc</code> は特権ポートでないと許可しないようだ。つまり <code translate=no>8080</code> -&gt; <code translate=no>4433</code> はできるが <code translate=no>443</code> -&gt; <code translate=no>4433</code> はできない。<code translate=no>8080</code> -&gt; <code translate=no>443</code> もできない。
           <p>結果 UDP-QUIC と TCP+TLS は、実質どちらも <code translate=no>443</code> を使う必要があるため、前述のような構成になった。
@@ -385,10 +383,10 @@ header.set: &quot;Alt-Svc: h3-25=\&quot;:8081\&quot;&quot;</code></pre>
           </li>
         </ul>
         <p>HTTPS の RR は全部解説すると長くなるので、HTTP3 に対応する部分にフォーカスすると以下のように <code translate=no>Alt-Svc</code> 相当の情報を提供すれば良い。
-        <pre class=dns data-code=dns><code translate=no class=language-dns>http3.jxck.io IN HTTPS 1 . alpn=&quot;h3&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="dns"><code translate="no"><span class="line"><span>http3.jxck.io IN HTTPS 1 . alpn="h3"</span></span></code></pre>
         <p>なお、このレコードも HTTP3 のためのものではなく、HTTPS に関する情報が提供できるため、例えば HSTS のように「サイトが HTTPS に対応している」ことをアドバタイズする用途にも使える。これまでは <code translate=no>Strict-Transport-Security</code> ヘッダか、ブラウザに登録する Preload HSTS を利用するしかなかったが、HTTPS RR を用いれば DNS レベルで <code translate=no>http://</code> アクセスを防ぐことができる。
         <p>ついでに、A や AAAA を別途引かないでも済むように、アドレスをヒントとして提供できるようになっている。
-        <pre class=dns data-code=dns><code translate=no class=language-dns>http3.jxck.io IN HTTPS 1 . (alpn=&quot;h3&quot; ipv4hint=&quot;160.16.91.134&quot; ipv6hint=&quot;2001:e42:102:1521:160:16:91:134&quot;)</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="dns"><code translate="no"><span class="line"><span>http3.jxck.io IN HTTPS 1 . (alpn="h3" ipv4hint="160.16.91.134" ipv6hint="2001:e42:102:1521:160:16:91:134")</span></span></code></pre>
         <section>
           <h3 id="対応している-dns"><a href="#対応している-dns">対応している DNS</a></h3>
           <p>ドメインを持っていれば、どこかしらに DNS の設定を書いていると思うが、DNS によっては選択できるレコードタイプが限定されているものがある。

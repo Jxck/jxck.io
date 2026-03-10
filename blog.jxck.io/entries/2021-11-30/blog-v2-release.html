@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>自作 Markdown プロセッサベースの blog.jxck.io v2 リリース | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -199,44 +197,44 @@
         <section>
           <h3 id="heading--sectioning"><a href="#heading--sectioning">Heading / Sectioning</a></h3>
           <p>大抵の Markdown 実装は <code translate=no>#</code>, <code translate=no>##</code> は <code translate=no>&lt;h1&gt;</code>, <code translate=no>&lt;h2&gt;</code> にそのままシリアライズされる。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=md data-code=md><code translate=no class=language-md># h1
-
-## h2
-
-### h3
-
-### h3</code></pre>
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;h1&gt;h1&lt;/h1&gt;
-&lt;h2&gt;h2&lt;/h2&gt;
-&lt;h3&gt;h3&lt;/h3&gt;
-&lt;h3&gt;h3&lt;/h3&gt;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold"># h1</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">## h2</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">### h3</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">### h3</span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h1&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h2&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>これを <code translate=no>&lt;section&gt;</code> で階層化し、<code translate=no>&lt;h1&gt;</code> だけは <code translate=no>&lt;article&gt;</code> にする。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;article&gt;
-  &lt;h1&gt;h1&lt;/h1&gt;
-  &lt;section&gt;
-    &lt;h2&gt;h2&lt;/h2&gt;
-    &lt;section&gt;
-      &lt;h3&gt;h3&lt;/h3&gt;
-    &lt;/section&gt;
-    &lt;section&gt;
-      &lt;h3&gt;h3&lt;/h3&gt;
-    &lt;/section&gt;
-  &lt;/section&gt;
-&lt;/article&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h1&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h2&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>さらに、見出しジャンプを入れる。その際、ID を振るが、もし被った場合は後ろに連番を振る。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;article&gt;
-  &lt;h1 id=&quot;h1&quot;&gt;&lt;a href=&quot;#h1&quot;&gt;h1&lt;/a&gt;&lt;/h1&gt;
-  &lt;section&gt;
-    &lt;h2 id=&quot;h2&quot;&gt;&lt;a href=&quot;#h2&quot;&gt;h2&lt;/a&gt;&lt;/h2&gt;
-    &lt;section&gt;
-      &lt;h3 id=&quot;h3&quot;&gt;&lt;a href=&quot;#h3&quot;&gt;h3&lt;/a&gt;&lt;/h3&gt;
-    &lt;/section&gt;
-    &lt;section&gt;
-      &lt;h3 id=&quot;h3_1&quot;&gt;&lt;a href=&quot;#h3_1&quot;&gt;h3&lt;/a&gt;&lt;/h3&gt;
-    &lt;/section&gt;
-  &lt;/section&gt;
-&lt;/article&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"h1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#h1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h1&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"h2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#h2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h2&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"h3"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#h3"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"h3_1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#h3_1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>h3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">section</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>もともと Kramdown をカスタマイズしはじめたのも、これを行いたかったからだった。
         </section>
         <section>
@@ -266,23 +264,23 @@
           <h3 id="blockquote-の-cite"><a href="#blockquote-の-cite">blockquote の cite</a></h3>
           <p>blockquote 記法の最後に書いた URL を <code translate=no>cite</code> として埋め込む。
           <p>例えばこれは
-          <pre class=md data-code=md><code translate=no class=language-md>&gt; example page
-&gt; --- https://example.com</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">> example page</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">> --- https://example.com</span></span></code></pre>
           <p>以下のようになる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;blockquote cite=&quot;https://example.com&quot;&gt;
-  &lt;p&gt;example page&lt;/p&gt;
-  &lt;p&gt;
-    &amp;mdash; &lt;cite&gt;&lt;a href=&quot;https://example.com&quot;&gt;example.com&lt;/a&gt;&lt;/cite&gt;
-  &lt;/p&gt;
-&lt;/blockquote&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">blockquote</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> cite</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>example page&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    &#x26;mdash;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">cite</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>example.com&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">cite</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">blockquote</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>本来は <code translate=no>cite</code> 属性の方だけで良いが、以前は <code translate=no>&lt;cite&gt;</code> だったため今は互換を保つよう両方に入れている。
         </section>
         <section>
           <h3 id="外部-script-の読み込み"><a href="#外部-script-の読み込み">外部 script の読み込み</a></h3>
           <p>ブログを書く上で、コードブロックにサンプルコードを書くことは多く、その中身が多いと外部ファイルに出し、ビルド時に読み込めると便利だ。
           <p>そこで、本サイトは初期から以下の記法をサポートしていた。
-          <pre class=md data-code=md><code translate=no class=language-md>```js:script.js
-```</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">```js:script.js</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">```</span></span></code></pre>
           <p>このようにすると、HTML ビルド時にカレントディレクトリの script.js を読み込んで HTML の <code translate=no>&lt;code&gt;</code> 内に展開してくれる。
         </section>
         <section>
@@ -291,26 +289,26 @@
           <p>これを出し分けるために、画像記法は <code translate=no>&lt;picture&gt;</code> になるようにカスタマイズしている。(SVG は単に <code translate=no>&lt;img&gt;</code> になる)
           <p>また width/height を明示できるよう、URL の最後に fragment を <code translate=no>#300x300</code> のように指定すると width, height として解釈する。
           <p>さらに、画像を読み込んで <code translate=no>mtime</code> から最終更新時を算出し、それをクエリに付与して Cache Busting する。
-          <pre class=md data-code=md><code translate=no class=language-md>![alt text](image.png#300x300 &quot;title test&quot;)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">![</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">alt text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">](</span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline">image.png#300x300</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#9ECBFF;--shiki-dark-text-decoration:underline"> "</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">title test</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#9ECBFF;--shiki-dark-text-decoration:underline">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>これは以下のように展開される。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
-  &lt;source type=image/webp srcset=image.webp?211010_101010&gt;
-  &lt;img
-    loading=&quot;lazy&quot;
-    decoding=&quot;async&quot;
-    src=&quot;image.png?211010_101010&quot;
-    alt=&quot;jxck&quot;
-    title=&quot;jxck logo&quot;
-    width=&quot;256&quot;
-    height=&quot;256&quot;
-  /&gt;
-&lt;/picture&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">picture</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">source</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">image/webp</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">image.webp?211010_101010</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    loading</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"lazy"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    decoding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"async"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"image.png?211010_101010"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    alt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"jxck"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"jxck logo"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"256"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"256"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  /></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">picture</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>そして、動画を埋め込む記法が Markdown にはないが、これまで gif アニメにしていたものは mp4 に移行しつつあるので、拡張子が mp4 だった場合は <code translate=no>&lt;video&gt;</code> になるようにしている。こちらは、webm のフォールバックを入れている。
-          <pre class=md data-code=md><code translate=no class=language-md>![dummy video](dummy_video.mp4#1000x2000)</code></pre>
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;video title=&quot;dummy video&quot; width=&quot;1000&quot; height=&quot;2000&quot; controls playsinline&gt;
-  &lt;source type=video/mp4 src=dummy_video.mp4?211010_101010&gt; &lt;source
-  type=video/webm src=dummy_video.webm?211010_101010&gt;
-&lt;/video&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">![</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">dummy video</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">](</span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline">dummy_video.mp4#1000x2000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">video</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dummy video"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"1000"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"2000"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> controls</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> playsinline</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">source</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">video/mp4</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">dummy_video.mp4?211010_101010</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">source</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">video/webm</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">dummy_video.webm?211010_101010</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">video</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>そろそろ avif 対応も入れたい。
         </section>
         <section>
@@ -324,7 +322,7 @@
           <h3 id="table"><a href="#table"><code translate=no>&lt;table&gt;</code></a></h3>
           <p>Kramdown は、文の途中で <code translate=no>|</code> が来ると <code translate=no>&lt;table&gt;</code> が始まったと解釈する。
           <p>しかし、以下のようなリンクのタイトルは <code translate=no>|</code> を含むことが多く、エスケープが必要だった。
-          <pre class=md data-code=md><code translate=no class=language-md>- [HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io](https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">](</span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline">https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>mozaic.fm の Monthly Web では、Show Note に大量のリンクを貼るため、そこに出てくる <code translate=no>|</code> を全てエスケープするのは面倒だった。
           <p>一方、文の途中で <code translate=no>&lt;table&gt;</code> を始めることなどないため、<code translate=no>|</code> は行頭にきた場合のみ <code translate=no>&lt;table&gt;</code> と解釈することに限定し、エスケープしないで良いようにした。
           <p>また、<code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、CSS で align するために <code translate=no>class</code> をつけるようにしている。
@@ -338,49 +336,49 @@
         <section>
           <h3 id="h1"><a href="#h1">h1</a></h3>
           <p>h1 には以下のようにタグが書けるようにしている。
-          <pre class=md data-code=md><code translate=no class=language-md># [tag] hello world</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold"># [</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">tag</span><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">] hello world</span></span></code></pre>
           <p>これも、blog のタイトル上に埋め込んでいる。
         </section>
         <section>
           <h3 id="front-matter"><a href="#front-matter">Front Matter</a></h3>
           <p>特に mozaic.fm のエピソードページでは、mp3 ファイルの場所や guest 一覧など、いくつかのメタデータを Markdown 内に独自ルールで書いて、それを雑に正規表現で処理していた。
           <p>しかし、Markdown の先頭に YAML でメタデータを記述する Front Matter のサポートを入れることで、そうしたメタデータをそちらに移した。
-          <pre class=md data-code=md><code translate=no class=language-md>---
-type: podcast
-tags: [&quot;monthly web&quot;]
-audio: https://files.mozaic.fm/mozaic-ep89.mp3
-published_at: 2021-10-26
-guest: [@myakura](https://twitter.com/myakura)
----
-
-# ep89 Monthly Web 202110
-
-## Theme
-
-第 89 回のテーマは 2021 年 10 月の Monthly Web です。</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">podcast</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tags</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"monthly web"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">audio</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://files.mozaic.fm/mozaic-ep89.mp3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">published_at</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2021-10-26</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">guest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [@</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">myakura</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">(https://twitter.com/myakura)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold"># ep89 Monthly Web 202110</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold">## Theme</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">第 89 回のテーマは 2021 年 10 月の Monthly Web です。</span></span></code></pre>
           <p>YAML は YAML パーサを入れるほど複雑なものを書いてないので、YAML パーサを自作するのをぐっとこらえて雑に処理している。
         </section>
         <section>
           <h3 id="dl"><a href="#dl"><code translate=no>&lt;dl&gt;</code></a></h3>
           <p>定義リスト記法もサポートしている。
           <p>さらに <code translate=no>&lt;dl&gt;</code> の下の <code translate=no>&lt;dt&gt;</code> <code translate=no>&lt;dd&gt;</code> は <code translate=no>&lt;div&gt;</code> で囲むことが許されており、これがあるとスタイルがちょっと楽になる。
-          <pre class=md data-code=md><code translate=no class=language-md>key1
-: val1
-key2
-: val2
-: val3</code></pre>
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;dl&gt;
-  &lt;div&gt;
-    &lt;dt&gt;key1&lt;/dt&gt;
-    &lt;dd&gt;val1&lt;/dd&gt;
-  &lt;/div&gt;
-
-  &lt;div&gt;
-    &lt;dt&gt;key2&lt;/dt&gt;
-    &lt;dd&gt;val2&lt;/dd&gt;
-    &lt;dd&gt;val3&lt;/dd&gt;
-  &lt;/div&gt;
-&lt;/dl&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">key1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: val1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">key2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: val2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: val3</span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dl</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>key1&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>val1&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>key2&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>val2&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>val3&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dl</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>個人的には Markdown のこの定義リスト記法はあまり気に入ってない。
           <p>特に、dd が来ないとその手前が dt だったことがわからないというパースのしにくさもある。
           <p>いっそ以下のような独自記法を入れてしまってもよいかと考えている。
@@ -394,23 +392,23 @@ key2
           <h3 id="余計な空白はエラー"><a href="#余計な空白はエラー">余計な空白はエラー</a></h3>
           <p>以前はビルドとは別に linter のようなものを雑に作ってフォーマットを確認していた。
           <p>しかし、せっかくパーサを書いたので、パースの際に気に食わないところは、すべてエラーにすることにした。
-          <pre class=md data-code=md><code translate=no class=language-md>以下全部エラー
-
-a **b** c
-a **b** c
-a ** b** c
-a **b ** c
-
-- aaa
-- bbb</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">以下全部エラー</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">a </span><span style="--shiki-light:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**b**</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> c</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">a </span><span style="--shiki-light:#24292E;--shiki-light-font-weight:bold;--shiki-dark:#E1E4E8;--shiki-dark-font-weight:bold">**b**</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> c</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">a ** b** c</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">a **b ** c</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> aaa</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> bbb</span></span></code></pre>
           <p>これを formatter にしてもよいかもしれないが、ビルド時エラーで間に合っているのでしてない。
         </section>
         <section>
           <h3 id="url-link"><a href="#url-link">URL link</a></h3>
           <p>Kramdown ではサポートされてなかった URL Like String を含めて、リンク記法は以下の 3 つを全てサポートしている。
-          <pre class=md data-code=md><code translate=no class=language-md>[title](https://example.com)
-&lt;https://example.com&gt;
-https://example.com</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">](</span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline">https://example.com</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline">https://example.com</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">https://example.com</span></span></code></pre>
           <p>最後の何も記法がないものは、とりあえず <code translate=no>http://</code> と <code translate=no>https://</code> で始まるものだけに絞ることで誤発動を防いでいる。
           <p><code translate=no>about:</code>, <code translate=no>chrome:</code>, <code translate=no>file:</code> をサポートするかは考え中。
         </section>

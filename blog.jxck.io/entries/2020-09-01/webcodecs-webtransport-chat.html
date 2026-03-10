@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-09-01/webcodecs-webtransport-chat.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>WebCodecs と WebTransport でビデオチャット | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -196,17 +194,17 @@
       <section>
         <h2 id="webcodecs"><a href="#webcodecs">WebCodecs</a></h2>
         <p>WebRTC の場合は、取得した MediaStream を RTCPeerConnection に addStream/addTrack すると、そのメディアに合わせてシグナリングを行い、自動でエンコード/デコードし、そのバイナリを自動的に送受信してくれるという、抽象度の高い設計になっていた。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>// 接続されたカメラを抽象化した MediaStream を取得
-const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
-
-// WebRTC の通信を抽象化した RTCPeerConnection を取得
-const connection = new RTCPeerConnection(config)
-
-// 両者を繋ぐ
-stream.getTracks().forEach((track) =&gt; {
-  connection.addTrack(track, stream)
-})</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 接続されたカメラを抽象化した MediaStream を取得</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> stream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.mediaDevices.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getUserMedia</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({video:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, audio:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// WebRTC の通信を抽象化した RTCPeerConnection を取得</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> connection</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> RTCPeerConnection</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(config)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 両者を繋ぐ</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">stream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getTracks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">().</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forEach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">track</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  connection.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addTrack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(track, stream)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>この流れを見てもわかるように、従来の <code translate=no>getUserMedia()</code> で取得した MediaStream は、そこから直接カメラの映像をバイナリで取得できるような作りにはなってない。
         <p><code translate=no>&lt;video&gt;</code> や RTCPeerConnection などの対応した API に繋ぐことで、あとは中で <em>やってくれる/やってしまう</em> 、ため、外からそこに手を加えることができないのだ。
         <p>もし手を加えたい場合は、一旦 Canvas に描画する、Insertable Stream で横取りするなどのワークアラウンドが必要だった。
@@ -219,56 +217,56 @@ stream.getTracks().forEach((track) =&gt; {
             <img loading=lazy decoding=async src=webcodecs-webtransport-chat.svg?200831_235611 alt="WebCodecs と WebTransport を用いたビデオ会議の概要図" title="overview of webcodecs & webtransport video chat" width=500 height=190>
           </p>
           <p>ビデオの場合は VideoStreamTrack を取得するところから始まる。
-          <pre class=js data-code=js><code translate=no class=language-js>const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
-const [videoTrack] = mediaStream.getVideoTracks()</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> stream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.mediaDevices.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getUserMedia</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({video:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, audio:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">videoTrack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> mediaStream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getVideoTracks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
           <p>ここには、カメラからの生のストリームがあるようなイメージだ。そのままでは大きいため、多くの場合は圧縮を行う。その方式が VP8 や H.264 のようなコーデックになる。
           <p>VideoTrack をエンコードするには VideoEncoder を用いる。
           <p>初期化時に output コールバックを指定し、初期化後に <code translate=no>configure()</code> でエンコードの仕様を設定する。
           <p>後から動的にエンコードパラメータを変えられるようにするために、このような API になっていると思われる。
           <p>(将来 Simulcast などに対応する場合はここが拡張されるだろう)
-          <pre class=js data-code=js><code translate=no class=language-js>// Encoder
-const videoEncoder = new VideoEncoder({
-  output: function(chunk) {
-    console.log(chunk)
-  },
-  error: function() {
-    console.error(arguments)
-  }
-})
-await videoEncoder.configure({
-  codec:     &apos;vp8&apos;
-  width:     640
-  height:    480
-  framerate: 30
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Encoder</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoEncoder</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoEncoder</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  output</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">chunk</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(chunk)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">arguments</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> videoEncoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">configure</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  codec:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'vp8'</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  width:     </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">640</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  height:    </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">480</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  framerate: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">30</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。
           <p>ここでの単位はフレームで、この VideoFrame を VideoEncoder の <code translate=no>encode()</code> に渡すとエンコードされる。
-          <pre class=js data-code=js><code translate=no class=language-js>const videoReader = new VideoTrackReader(videoTrack)
-videoReader.start((videoFrame) =&gt; {
-  videoEncoder.encode(videoFrame)
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoReader</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoTrackReader</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(videoTrack)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">videoReader.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">start</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">videoFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  videoEncoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">encode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(videoFrame)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>結果は VideoEncoder の初期化時に指定した output コールバックに渡り、これが vp8 でエンコードした結果の ArrayBuffer だ。
           <p>デコードもほぼ同じ、まずは初期化し <code translate=no>configure()</code> を呼ぶ。
           <p><code translate=no>encode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
           <p><code translate=no>createImageBitmap()</code> でビットマップに変換すれば Canvas に描画できる。
-          <pre class=js data-code=js><code translate=no class=language-js>const ctx = $canvas.getContext(&apos;2d&apos;)
-
-// Decoder
-const videoDecoder = new VideoDecoder({
-  output: async function(frame) {
-    const imageBitmap = await frame.createImageBitmap()
-    // canvas に描画
-    ctx.drawImage(imageBitmap, 0, 0)
-  },
-  error: function() {
-    console.error(arguments)
-  }
-})
-videoDecoder.configure({ codec: &apos;vp8&apos; })
-
-
-// encoder で作った vp8 の chunk
-videoDecoder.decode(chunk)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> ctx</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $canvas.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getContext</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'2d'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Decoder</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoDecoder</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoDecoder</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  output</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">frame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> imageBitmap</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> frame.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createImageBitmap</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // canvas に描画</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ctx.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">drawImage</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(imageBitmap, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">arguments</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">videoDecoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">configure</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ codec: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'vp8'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> })</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// encoder で作った vp8 の chunk</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">videoDecoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">decode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(chunk)</span></span></code></pre>
           <p>ちなみに VideoTrackWriter は無いため、戻した結果を <code translate=no>&lt;video&gt;</code> に流すことはできない(と思われる)。
           <p>音声も基本的に WebAudio を用いるため、音声も映像も自分で表示し、コントローラも自分で作ることになるだろう。
           <p>(現状の WebRTC でもそうしていることは多いので、あまり変わらない)
@@ -290,13 +288,13 @@ videoDecoder.decode(chunk)</code></pre>
         <section>
           <h3 id="シリアライズ"><a href="#シリアライズ">シリアライズ</a></h3>
           <p>エンコードした Chunk は以下のような形をしている。
-          <pre class=js data-code=js><code translate=no class=language-js>interface EncodedVideoChunk {
-  constructor(EncodedVideoChunkInit init);
-  readonly attribute EncodedVideoChunkType type;
-  readonly attribute unsigned long long timestamp;  // microseconds
-  readonly attribute unsigned long long? duration;  // microseconds
-  readonly attribute ArrayBuffer data;
-};</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">interface</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> EncodedVideoChunk</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  constructor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">EncodedVideoChunkInit</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> init</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  readonly</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> attribute EncodedVideoChunkType </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  readonly</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> attribute unsigned long long </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">timestamp</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// microseconds</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  readonly</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> attribute unsigned long long</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> duration;  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// microseconds</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  readonly attribute ArrayBuffer data;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">};</span></span></code></pre>
           <p>したがって、<code translate=no>{type, timestamp, duration, data}</code> のようなオブジェクトをシリアライズして送り、復元する必要がある。
           <p>転送は基本的に Uint8Array 単位で行うため、今回は CBOR を採用した。しかし後述のサイズの問題があるため、少し工夫している。
         </section>

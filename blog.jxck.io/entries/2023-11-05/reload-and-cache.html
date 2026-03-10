@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-11-05/reload-and-cache.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>ブラウザでリロードしながらキャッシュの挙動を確認してる全ての開発者へ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -218,11 +216,11 @@
           <p>Navigation とは、要するにリンクをクリックした場合に発生する画面遷移のリクエストだ。
           <p>このリクエストに対し、Fresh なレスポンスが Store されていれば Reuse される(意訳: ブラウザにキャッシュがあればヒットする)。
           <p>もし、<code translate=no>ETag</code> や <code translate=no>Last-Modified</code> が付与されていた場合は、Validation が発生する(意訳: <code translate=no>If-None-Match</code> や <code translate=no>If-Modified-Since</code> が付与されたリクエストが送られ、304 が返ってくれば再利用される)。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-If-None-Match: &quot;deadbeef&quot;
-If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-None-Match</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "deadbeef"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-Modified-Since</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Thu, 20 Feb 2020 20:20:20 GMT</span></span></code></pre>
           <p>これが RFC に書かれており、勘違いしている人が再現してほしい挙動だ。
         </section>
         <section>
@@ -231,11 +229,11 @@ If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT</code></pre>
           <p>Reload はそもそも、何らかの理由で壊れた画面の修復や、最新情報への更新のために実装されている。したがって、「キャッシュが再利用されてほしくない」というのがユーザの要求であるため、当然のように、ブラウザが Fresh なレスポンスを Store していようがいまいが、バイパスして Origin にリクエストする。(意訳: サーバに最新の HTML を取りに行く)
           <p>つまり、いくら <code translate=no>max-age</code> が切れてなくても、Reload しながら DevTools でキャッシュがヒットする様子を見ることはできないのだ。
           <p>なお、リクエストは以下のようになる。
-          <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-Cache-Control: max-age=0
-If-None-Match: &quot;deadbeef&quot;
-If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=0</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-None-Match</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "deadbeef"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-Modified-Since</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Thu, 20 Feb 2020 20:20:20 GMT</span></span></code></pre>
           <p>Conditional Request は行われているため、厳密にはブラウザに Response が保存されているが、Validation を強制していることになる(意訳: 304 が返ることはある)。
           <p><em>普段、結果の表示を Reload でデバッグしている癖でやってしまいがちではあるが、「Reload の挙動は Navigation とは違う」という点は、Cache 周りをいじっているなら念頭におきたい</em>。
           <p><code translate=no>max-age=0</code> を使っている理由は後述する。
@@ -246,9 +244,9 @@ If-Modified-Since: Thu, 20 Feb 2020 20:20:20 GMT</code></pre>
         <p>Force Reload は Super Reload などとも呼ばれ、Shift + Reload や DevTools の &quot;Disable Cache&quot; 相当の機能を有効にすると発生するものだ。
         <p>したがって、一般ユーザによる実行ではなく、開発者が実行するという意図で実装されている。
         <p>リクエストは以下のようになる。
-        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-Cache-Control: no-cache</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> no-cache</span></span></code></pre>
         <p><code translate=no>no-cache</code> を用いているため、「Origin に Validation を強制」していることがわかるだろう。しかし、<code translate=no>If-Modified-Since</code> や <code translate=no>Last-Modified</code> が消えていることから、Conditional Request ではない。つまり、Validation ではなく「Origin から最新の Response を取得する」という挙動になることがわかる。
         <p>意訳: ブラウザに <code translate=no>max-age</code> の切れていないキャッシュがあってもヒットしないし、サーバからは 304 が返ることもなく、必ず 200 が返る。
         <p>これこそが、「画面を最新の情報にする挙動」だろう、実際仕様的にもこれが最もそれに相応しい Request と言える。
@@ -260,21 +258,21 @@ Cache-Control: no-cache</code></pre>
         <p>では、「キャッシュの挙動」、正確には「ユーザが体験するキャッシュの挙動」はどのように検証すれば良いのだろうか?
         <p>答えは、最初に言ったように Navigation を用いることだ。
         <p>よくあるユースケースとして、例えば <code translate=no>/home.html</code> のレスポンスが以下だったとする。
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-...
-Cache-Control: max-age=100
-ETag: deadbeef
-If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
-
-&lt;!doctype html&gt;
-...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=100</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ETag</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-Modified-Since</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Sat, 11 Nov 2023 11:11:11 GMT</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;!doctype html></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span></code></pre>
         <p>このキャッシュがヒットするところが見たい場合は、以下のようなリンクをクリックし、そこに遷移すれば良い。もちろん、&quot;Disable Cache&quot; は無効にする。
-        <pre class=css data-code=css><code translate=no class=language-css>&lt;a href=&quot;/home.html&quot;&gt;Home&lt;/a&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> href="/home.html"</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Home&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span></span></code></pre>
         <p>もし、100s 以内ならキャッシュがヒットするだろうし、100s すぎたら以下のようなリクエストが飛ぶだろう。
-        <pre class=http data-code=http><code translate=no class=language-http>GET /home.html HTTP/1.1
-...
-If-None-Match: deadbeef
-If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /home.html </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-None-Match</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-Modified-Since</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Sat, 11 Nov 2023 11:11:11 GMT</span></span></code></pre>
         <p>これで、仕様に記載されたリクエストを見ることができる。
         <section>
           <h3 id="サブリソースの-revalidate"><a href="#サブリソースの-revalidate">サブリソースの Revalidate</a></h3>

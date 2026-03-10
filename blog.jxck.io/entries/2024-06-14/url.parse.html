@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-06-14/url.parse.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>URL.parse を Chromium で Ship するまで | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -163,21 +161,21 @@
         <h2 id="invalid-url-の処理"><a href="#invalid-url-の処理">invalid URL の処理</a></h2>
         <p><code translate=no>new URL()</code> によって、文字列の URL をパースすることができるようになって久しいが、この API は invalid な場合に例外を投げる。
         <p>例外処理をするよりも、先に URL としてパース可能かどうかを知るための <code translate=no>URL.canParse()</code> が提案され、先に実装が進んだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>URL.canParse(str) // boolean</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">canParse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// boolean</span></span></code></pre>
         <p>しかし、これでは二回パースが必要になるため無駄が多い。
-        <pre class=js data-code=js><code translate=no class=language-js>if (URL.canParse(str)) { // 1 回目のパース
-  return new URL(str) // 2 回目のパース
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">canParse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str)) { </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 1 回目のパース</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 2 回目のパース</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>そこで、失敗したら null にし、成功したら URL を返せば良いという発想が、<code translate=no>URL.parse()</code> だ。
         <p>そもそも、リアルワールドでは以下のように例外を握りつぶすコードがよく使われていることも知られていたため、賛同が多かった。
-        <pre class=js data-code=js><code translate=no class=language-js>function URLparse(str) {
-  try {
-    return new URL(str)
-  } catch (err) {
-    return null
-  }
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URLparse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">catch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (err) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> null</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
       </section>
       <section>
         <h2 id="url.parse"><a href="#url.parse">URL.parse</a></h2>
@@ -206,7 +204,7 @@
           </li>
         </ul>
         <p>使い方もそのままだ。
-        <pre class=js data-code=js><code translate=no class=language-js>URL.parse(str) // null or URL</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">parse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// null or URL</span></span></code></pre>
         <p>機能としては小さく、Firefox や Safari は比較的早く実装を進めていた。
         <ul>
           <li>

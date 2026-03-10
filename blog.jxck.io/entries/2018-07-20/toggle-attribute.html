@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Element.toggleAttribute | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -165,24 +163,24 @@
         </ul>
         <p>例えば button の disabled を例にとるとこうなる。
         <p>button を disabled にする場合は、仕様上は以下の 3 つの書き方がある。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 属性のみを書く --&gt;
-&lt;button id=target disabled&gt;toggle target&lt;/button&gt;
-
-&lt;!-- 値を empty string にする --&gt;
-&lt;button id=target disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
-
-&lt;!-- 属性名と同じにする --&gt;
-&lt;button id=target disabled=disabled&gt;toggle target&lt;/button&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 属性のみを書く --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">target</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> disabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>toggle target&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 値を empty string にする --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">target</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> disabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>toggle target&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 属性名と同じにする --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">target</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> disabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">disabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>toggle target&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>値に <code translate=no>true</code>, <code translate=no>false</code> などを設定することで有効無効が切り替わるわけではなく、仕様上は許可されていない点に注意したい。
         <p>disabled 属性自体は JS から真偽値で操作できる。
-        <pre class=js data-code=js><code translate=no class=language-js>target.disabled = true
-target.disabled = false</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.disabled </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.disabled </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span></span></code></pre>
         <p>しかし、他の boolean attribute も含め、属性自体を汎用的に操作する場合は以下のようになる。
-        <pre class=js data-code=js><code translate=no class=language-js>target.setAttribute(&quot;disabled&quot;, &quot;&quot;);
-target.removeAttribute(&quot;disabled&quot;);
-
-target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけではない</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">setAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">removeAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">setAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 無効になるわけではない</span></span></code></pre>
         <p>無効にする場合は、属性自体を消す(omit)という点は、直感に反するところもあるかもしれない。
         <p>これをもう少し直感的にするために、引数を boolean にできる API があっても良いのではとして提案されたのが始まりだ。
       </section>
@@ -191,24 +189,24 @@ target.setAttribute(&quot;disabled&quot;, false); // 無効になるわけでは
         <p>結果的には以下のような API に落ち着いた。
         <p>属性名を指定して toggleAttribute を呼べば、true/false を切り替えられる。
         <p>(値は empty string が採用された)
-        <pre class=js data-code=js><code translate=no class=language-js>// target = &lt;button id=target&gt;toggle target&lt;/button&gt;
-
-target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
-console.log(target.disabled) // true
-
-target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot;&gt;toggle target&lt;/button&gt;
-console.log(target.disabled) // false
-
-target.toggleAttribute(&quot;disabled&quot;) // =&gt; &lt;button id=&quot;target&quot; disabled=&quot;&quot;&gt;toggle target&lt;/button&gt;
-console.log(target.disabled) // true</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// target = &#x3C;button id=target>toggle target&#x3C;/button></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toggleAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => &#x3C;button id="target" disabled="">toggle target&#x3C;/button></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target.disabled) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// true</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toggleAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => &#x3C;button id="target">toggle target&#x3C;/button></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target.disabled) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// false</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toggleAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => &#x3C;button id="target" disabled="">toggle target&#x3C;/button></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target.disabled) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// true</span></span></code></pre>
         <p>第二引数を指定すると、現在の値に関わらず、第二引数の値に変更する。
-        <pre class=js data-code=js><code translate=no class=language-js>// 今が true であれ false であれ true にする
-target.toggleAttribute(&quot;disabled&quot;, true)
-console.log(target.disabled) // true
-
-// 今が true であれ false であれ false にする
-target.toggleAttribute(&quot;disabled&quot;, false)
-console.log(target.disabled) // false</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 今が true であれ false であれ true にする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toggleAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target.disabled) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// true</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 今が true であれ false であれ false にする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toggleAttribute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"disabled"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target.disabled) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// false</span></span></code></pre>
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>h2o で https/2 のデプロイと設定 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -187,25 +185,25 @@
         <p>h2o の設定でちょっとハマったのがパスとファイルの紐付けができないところ。
         <p>例えば、<code translate=no>favicon.ico</code> だとか <code translate=no>robots.txt</code> は、特定の URL に対して特定のファイルを割り当てる。
         <p>これがこう書けると嬉しい。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=yaml data-code=yaml><code translate=no class=language-yaml>paths:
-  &quot;/favicon.ico&quot;:
-     file.dir: /some/path/to/favicon.ico
-  &quot;/&quot;:
-     file.dir: /path/to/doc-root</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "/favicon.ico"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">     file.dir</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/some/path/to/favicon.ico</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">     file.dir</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/path/to/doc-root</span></span></code></pre>
         <p>しかし、実際は paths へはディレクトリしか紐づけられない。
         <p>やるなら mruby.handler を使うしかない。
         <p>(399 は、fallthrough の独自ルールになっているらしい)
-        <pre class=yaml data-code=yaml><code translate=no class=language-yaml>&quot;/&quot;:
-  mruby.handler: |
-    Proc.new do |env|
-      if env[&quot;PATH_INFO&quot;] == &quot;/favicon.ico&quot;
-        [200, {&quot;content-type&quot; =&gt; &quot;image/x-icon&quot;}, File::open(&quot;/path/to/favicon.ico&quot;)]
-      else
-        [399, {}, []]
-      end
-    end
-  file.dir: /path/to/dir</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">  mruby.handler</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    Proc.new do |env|</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      if env["PATH_INFO"] == "/favicon.ico"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        [200, {"content-type" => "image/x-icon"}, File::open("/path/to/favicon.ico")]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      else</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        [399, {}, []]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      end</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    end</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">  file.dir</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/path/to/dir</span></span></code></pre>
         <p>しかしこれを毎回書くのはちょっと面倒。
         <p>kazuho さんとは、ファイルを割り当てられるようにするか、もはや h2o.conf を自動生成するか、ruby で書けるようにしたらいいか、みたいな話をした。
       </section>

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-08-05T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>SQL でファイル検索するコマンド selects を書いた話 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-08-05>2016-08-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -168,18 +166,18 @@
       <section>
         <h2 id="selects"><a href="#selects">selects</a></h2>
         <p>結論からいうとこういうコマンドだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects mtime, size, basename from &apos;./entries/**/*&apos; where extname &apos;==&apos; &apos;.md&apos; and size &apos;&gt;&apos; 1000 order by mtime
-
-2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md
-2016-07-07 23:54:19 +0900	11236	amp-html.md
-2016-07-07 23:54:19 +0900	10906	loading-css-over-http2.md
-2016-07-07 23:54:19 +0900	14171	preload.md
-2016-07-07 23:54:19 +0900	10279	svg-font-base-ui.md
-2016-07-07 23:54:19 +0900	14168	public-key-pinning.md
-2016-07-07 23:54:19 +0900	12291	service-worker-tutorial.md
-2016-07-07 23:54:19 +0900	17377	stale-while-revalidate.md
-2016-08-02 13:46:38 +0900	12564	intersection-observer.md</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects mtime, size, basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where extname </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'=='</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '.md'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> and size </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'>'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 1000 order by mtime</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-06 22:45:44 +0900	18437	web-font-noto-sans.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	11236	amp-html.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	10906	loading-css-over-http2.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	14171	preload.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	10279	svg-font-base-ui.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	14168	public-key-pinning.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	12291	service-worker-tutorial.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-07-07 23:54:19 +0900	17377	stale-while-revalidate.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-02 13:46:38 +0900	12564	intersection-observer.md</span></span></code></pre>
         <p>同じことをいわゆるシェル芸で行うことはできるが、こう書いた方が後で読んだ時、他人が読んだ時に、意図を含めてわかりやすく無いだろうか?
         <p>そう思って確か三ヶ月くらい前から暇を見て書いてるが、まあ遊びのようなものなので、まだ dotfiles の便利コマンドディレクトリに入っている。
         <p>依存ライブラリは無く、1 ファイルで完結しているので、パスの通った所に置いてもらえればすぐ使える。
@@ -192,86 +190,86 @@
         <p>まず例をいくつか示す。
         <section>
           <h3 id="ディレクトリ以下をごっそり"><a href="#ディレクトリ以下をごっそり">ディレクトリ以下をごっそり</a></h3>
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects &apos;*&apos; from &apos;./entries/**/*&apos;
-2016-08-05 22:42:14 +0900	4096	2016-01-27
-2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html
-2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz
-2016-08-05 22:40:44 +0900	6813	new-blog-start.html
-2016-08-05 22:41:30 +0900	2117	new-blog-start.html.gz
-2016-08-05 22:40:20 +0900	1102	new-blog-start.md
-2016-08-05 22:41:30 +0900	671	new-blog-start.md.gz
-....</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900	4096	2016-01-27</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:40:44 +0900	12499	new-blog-start.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:41:32 +0900	3756	new-blog-start.amp.html.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:40:44 +0900	6813	new-blog-start.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:41:30 +0900	2117	new-blog-start.html.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:40:20 +0900	1102	new-blog-start.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:41:30 +0900	671	new-blog-start.md.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">....</span></span></code></pre>
         </section>
         <section>
           <h3 id=".html-だけ"><a href="#.html-だけ">.html だけ</a></h3>
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects basename from &apos;./entries/**/*&apos; where extname == &apos;.html&apos;
-new-blog-start.amp.html
-new-blog-start.html
-html-compression.amp.html
-html-compression.html
-amp-html.amp.html
-amp-html.html
-h2o-http2-deploy.amp.html
-...</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where extname == </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'.html'</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">new-blog-start.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">new-blog-start.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">html-compression.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">html-compression.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">amp-html.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">amp-html.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">h2o-http2-deploy.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">...</span></span></code></pre>
         </section>
         <section>
           <h3 id="like-的な"><a href="#like-的な">like 的な</a></h3>
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects basename from &apos;./entries/**/*&apos; where basename &apos;=~&apos; &apos;mozaic&apos;
-mozaicfm-v2.amp.html
-mozaicfm-v2.amp.html.gz
-mozaicfm-v2.html
-mozaicfm-v2.html.gz
-mozaicfm-v2.md
-mozaicfm-v2.md.gz</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where basename </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'=~'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'mozaic'</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.amp.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.amp.html.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.html.gz</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.md</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">mozaicfm-v2.md.gz</span></span></code></pre>
         </section>
         <section>
           <h3 id="属性で絞る"><a href="#属性で絞る">属性で絞る</a></h3>
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects atime, basename from &apos;./entries/**/*&apos; where atime &apos;&gt;&apos; 2016-08-01 and directory? == true
-2016-08-05 22:42:14 +0900       2016-01-27
-2016-08-05 22:42:14 +0900       2016-01-28
-2016-08-05 22:42:14 +0900       2016-02-01
-2016-08-05 22:42:14 +0900       2016-02-08
-2016-08-05 22:42:14 +0900       2016-02-09
-2016-08-05 22:42:14 +0900       2016-02-11</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects atime, basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where atime </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'>'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 2016-08-01 and directory</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> == true</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-01-27</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-01-28</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-02-01</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-02-08</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-02-09</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2016-08-05 22:42:14 +0900       2016-02-11</span></span></code></pre>
         </section>
         <section>
           <h3 id="dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で"><a href="#dev-以下で-pipe-か-socket-か-symlink-だけを-ctime-atime-の順で">/dev 以下で pipe か socket か symlink だけを ctime, atime の順で</a></h3>
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects socket?, pipe?, symlink? basename from &apos;/dev/*&apos; where pipe? == true or socket? == true or symlink? == true order by atime, ctime
-false   true    true    initctl
-false   false   true    dvd
-false   false   true    cdrom
-false   false   true    rtc
-true    false   true    log
-false   false   true    stderr
-false   false   true    stdout
-false   false   true    stdin
-false   false   true    fd
-false   false   true    core</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects socket</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, pipe</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, symlink</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'/dev/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where pipe</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> == true or socket</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> == true or symlink</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> == true order by atime, ctime</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   true    true    initctl</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    dvd</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    cdrom</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    rtc</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true    false   true    log</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    stderr</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    stdout</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    stdin</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    fd</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false   false   true    core</span></span></code></pre>
         </section>
       </section>
       <section>
         <h2 id="からくり"><a href="#からくり">からくり</a></h2>
         <p>なんとなく気づいた方がいるかもしれないが、これは全部 Ruby に変換している。
         <p>つまりこんな感じだ。
-        <pre class=ruby data-code=ruby><code translate=no class=language-ruby>Dir.glob(&apos;from 句にあたる */** 的なの&apos;)
-   .select(&apos;where 句にあたる filter の proc&apos;)
-   .sort(&apos;order by 句にあたる sort の proc&apos;)
-   .map(&apos;抽出したファイルから select 句にあたる属性を取り出す&apos;)</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Dir</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">glob</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'from 句にあたる */** 的なの'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   .</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">select</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'where 句にあたる filter の proc'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">sort</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'order by 句にあたる sort の proc'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">map</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'抽出したファイルから select 句にあたる属性を取り出す'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
         <p>各 Proc は引数として受け取ったトークンを元に Ruby のメソッドチェインを組み立てている。
         <p>例えば
-        <pre class=sql data-code=sql><code translate=no class=language-sql>where size &gt; 1000</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sql"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">where</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> size</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1000</span></span></code></pre>
         <p>は
-        <pre class=ruby data-code=ruby><code translate=no class=language-ruby>File.size(file) &gt; 100</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">File</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(file) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 100</span></span></code></pre>
         <p>になれば良い。
         <p>これを文字として得ている <code translate=no>&apos;size&apos;</code>, <code translate=no>&apos;&gt;&apos;</code>, <code translate=no>&apos;100&apos;</code> を使って動的に組み立てると以下になる。
-        <pre class=ruby data-code=ruby><code translate=no class=language-ruby>File
-  .method(&apos;size&apos;)
-  .call(file)
-  .method(&apos;&gt;&apos;)
-  .call(100)</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">File</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'size'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">call</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(file)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'>'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">call</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
         <p>この仕組みを踏まえた上でもう一度クエリを見てみて欲しい。
         <p>もはや Ruby のメソッドチェインにしか見えないのではないだろうか?
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ selects atime, basename from &apos;./entries/**/*&apos; where atime &apos;&gt;&apos; 2016-08-01 and directory? == true</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ selects atime, basename from </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'./entries/**/*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> where atime </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'>'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 2016-08-01 and directory</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">?</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> == true</span></span></code></pre>
         <p><code translate=no>select</code>, <code translate=no>where</code>, <code translate=no>order by</code> に使える属性なども、ruby の File クラスのドキュメントを見てくれれば良い。
         <ul>
           <li><a href="https://docs.ruby-lang.org/ja/2.3.0/class/File.html" target=_blank>https://docs.ruby-lang.org/ja/2.3.0/class/File.html</a>

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-05-10/web-share.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Web Share API | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -172,26 +170,26 @@
         <h2 id="api"><a href="#api">API</a></h2>
         <p>API は非常に簡素だ。
         <p>現状設定可能なパラメータは、<code translate=no>title</code>, <code translate=no>text</code>, <code translate=no>url</code> のみである。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>if (navigator.share !== undefined) {
-  document.getElementById(&quot;support&quot;).textContent = &quot;supported&quot;;
-}
-
-const shareButton = document.getElementById(&quot;share&quot;);
-navigator
-  .share({
-    title: &quot;Web Share DEMO&quot;,
-    text: &quot;DEMO of Web Share API enabled by Origin Trials&quot;,
-    url: window.location.href
-  })
-  .then(console.log.bind(console))
-  .catch(console.log.bind(console));</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigator.share </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> undefined</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getElementById</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"support"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).textContent </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "supported"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> shareButton</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getElementById</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"share"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigator</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">share</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    title: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Web Share DEMO"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    text: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"DEMO of Web Share API enabled by Origin Trials"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    url: window.location.href</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">then</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(console.log.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">bind</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(console))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">catch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(console.log.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">bind</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(console));</span></span></code></pre>
         <p>こうした API であるため、<code translate=no>navigator.share</code> を見ることで、サポートの有無を判別できる。
         <p>結果は Promise を返し、Share の成功可否によって変わる。
         <p>また、Web Share は Share の発信だけで無く、受信についても視野に入れいている。
         <p>現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
         <p>簡素な Share の送信だけであれば、以下のような URI Scheme の策定も可能かもしれない。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=&quot;share:?title=Example%20Page&amp;amp;url=https://example.com/page&quot;&gt;Share this&lt;/a&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"share:?title=Example%20Page</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x26;amp;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">url=https://example.com/page"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Share this&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>しかし、上述のような サポート判別/成功判別/受信側の拡張 などを考えると JS API としての策定が妥当であるとし、今回の API が策定された。
         <p>Web Share を標準化する上での方針などについては以下にまとまっている。
         <p><a href="https://github.com/WICG/web-share/blob/master/docs/explainer.md" target=_blank>Web Share API Explained</a>

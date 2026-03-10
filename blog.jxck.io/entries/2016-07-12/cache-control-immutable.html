@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-07-12T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-07-12>2016-07-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -204,8 +202,8 @@
         <h2 id="immutable-extension"><a href="#immutable-extension">Immutable Extension</a></h2>
         <p>Cache-Control Immutable Extension は、Cache-Control の拡張の一つである。
         <p>以下のように指定することで、キャッシュを Immutable と指定することができ、ブラウザはキャッシュが fresh であればリロード時でもヒットさせるようになる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=10000, immutable</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=10000, immutable</span></span></code></pre>
         <p>これによって、なんらかの原因でユーザがリロードを行う場面においても、無駄なリクエストを防ぐことができる。
         <p>特に、画像、動画、フォントといったサイズが大きくも表示において重要なリソースについては、キャッシュの再利用がサーバの負荷という面でも、UX の面でも有利に働く。
         <p>執筆時点では、Firefox Nightly(version 50.0a1) が https 通信限定で、この拡張をサポートしている。
@@ -252,37 +250,37 @@
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
         <p>本サイトでは、サイトへのアクセスログから 304 レスポンスの頻度が多いリソースを抽出し解析を試みた。
         <p>その結果が以下である。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
-43468 /feeds/atom.xml
-31113 /
-11341 /assets/js/ga.js
-10831 /assets/img/jxck.svg
-10432 /assets/css/footer.css
-10404 /assets/css/main.css
-10368 /assets/css/body.css
-10367 /assets/css/header.css
- 8880 /assets/img/rss.svg
- 8485 /assets/img/blog.svg
- 7898 /mozaic.png
- 7778 /assets/css/article.css
- 7760 /assets/js/main.js
- 7433 /assets/css/info.css
- 7063 /assets/js/highlight.min.js
- 6283 /assets/img/up.svg
- 5985 /assets/img/humans.svg
- 5885 /assets/img/amp.svg
- 5590 /assets/css/pre.css
- 4612 /assets/img/jxck.png
- 3582 /assets/css/markdown.css
- 2656 /assets/js/stale-while-revalidate.js
- 2303 /assets/js/master.js
- 2198 /assets/js/sw.js
- 2162 /assets/js/sw.js?ver=2
- 1864 /assets/img/mozaic.svg
- 1789 /manifest.json
- 1481 /assets/img/podcast.svg
- 1478 /entries/2016-06-09/passive-event-listeners.html
- 1462 /assets/img/twitter.svg</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cat access_log.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 304</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> cut</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -f7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sort</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> uniq</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -c</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sort</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -nr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> head</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -n</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 30</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">43468 /feeds/atom.xml</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">31113 /</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">11341 /assets/js/ga.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10831 /assets/img/jxck.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10432 /assets/css/footer.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10404 /assets/css/main.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10368 /assets/css/body.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10367 /assets/css/header.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 8880 /assets/img/rss.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 8485 /assets/img/blog.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 7898 /mozaic.png</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 7778 /assets/css/article.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 7760 /assets/js/main.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 7433 /assets/css/info.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 7063 /assets/js/highlight.min.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 6283 /assets/img/up.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 5985 /assets/img/humans.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 5885 /assets/img/amp.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 5590 /assets/css/pre.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 4612 /assets/img/jxck.png</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 3582 /assets/css/markdown.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2656 /assets/js/stale-while-revalidate.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2303 /assets/js/master.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2198 /assets/js/sw.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2162 /assets/js/sw.js?ver=2</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1864 /assets/img/mozaic.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1789 /manifest.json</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1481 /assets/img/podcast.svg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1478 /entries/2016-06-09/passive-event-listeners.html</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1462 /assets/img/twitter.svg</span></span></code></pre>
         <p>RSS はブラウザのリロードとは関係がなく、また <code translate=no>/</code> (root)へのアクセスは更新頻度が高いため対象外とした。
         <p>以降はアセット系が続くが、JS や CSS についてはまだ更新の可能性が高く、SVG についても手書きのものが多数含まれるため、今後も最適化のための描き直しをする可能性がある。
         <p>したがって、最も変更の可能性が低い <code translate=no>/assets/img/jxck.png</code> のみ実験的に対応することとした。

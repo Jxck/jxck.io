@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-12-26/retargeting.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>3PCA 24 日目: Retargeting | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -190,11 +188,11 @@
           <h3 id="protected-audience-api"><a href="#protected-audience-api">Protected Audience API</a></h3>
           <p>まず、ユーザが商品を見ると、その商品を見たという情報を保存する必要がある。
           <p>これを &quot;Interest Group&quot; といい、JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=js data-code=js><code translate=no class=language-js>await navigator.joinAdInterestGroup(interestGroup)</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">joinAdInterestGroup</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(interestGroup)</span></span></code></pre>
           <p>ユーザが商品を探している間に、この Interest Group が登録されていくわけだ。
           <p>次に、媒体側で広告枠を売る場合は、オークションを走らせる。
-          <pre class=js data-code=js><code translate=no class=language-js>await navigator.runAdAuction(auctionConfig)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">runAdAuction</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(auctionConfig)</span></span></code></pre>
           <p>このオークションに勝った広告が、晴れて画面に表示されるという仕組みだ。
           <p>ここで重要なのは、どんな Interest Group に Join しているのか、どの広告がオークションに勝ったのか、などの情報を漏洩しないことだ。
           <p>余計な情報が外に漏れれば、それが新たなトラッキングベクタになり得る。
@@ -221,7 +219,7 @@
           </ul>
           <p>通常使える JS API が使えないどころか、Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
           <p>そして、<code translate=no>&lt;iframe&gt;</code> ではなく <code translate=no>&lt;fencedframe&gt;</code> の利用を強制するために、<code translate=no>runAdAuction</code> の結果は URL ではなく URN を返す。これで <code translate=no>&lt;fencedframe&gt;</code> を使わなければ表示ができなくしているのだ。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;fencedframe src=&quot;urn:uuid:c36973b5-e5d9-de59-e4c4-364f137b3c7a&quot; mode=&quot;opaque-ads&quot;&gt;&lt;/fencedframe&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">fencedframe</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"urn:uuid:c36973b5-e5d9-de59-e4c4-364f137b3c7a"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> mode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"opaque-ads"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">fencedframe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p><code translate=no>&lt;fencedframe&gt;</code> は、<code translate=no>&lt;iframe&gt;</code> の Sandboxed などと異なり、新しい HTML として定義されているのは、もはや目的が <code translate=no>&lt;iframe&gt;</code> のような汎用埋め込みとは異なるからだ。
         </section>
         <section>

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-04-16/link-visited-history.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>閲覧履歴があってもリンクの色が変わらないケースについて | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -207,7 +205,7 @@
         <h2 id="閲覧履歴とプライバシー"><a href="#閲覧履歴とプライバシー">閲覧履歴とプライバシー</a></h2>
         <p>例えば、攻撃者がある動画サイトを運営していたとしよう。メールアドレスでログインしたら、無料で動画が楽しめるページだ。
         <p>攻撃者は、そのページの隅っこに、小さく「トランプ大統領の Twitter アカウント」を埋め込んでいたとする。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
         <pre><code translate=no>&lt;a style=&quot;font-size: 1px&quot; href=&quot;https://x.com/realdonaldtrump&quot;&gt;🤫&lt;/a&gt;</code></pre>
         <p>ユーザはそんなことに気づかず、動画を楽しんでいる。
         <p>しかし攻撃者は、このリンクの色がどちらかを調べれば、「このユーザはトランプ大統領のアカウントを閲覧したことがあるか」がわかってしまうのだ。
@@ -311,38 +309,38 @@
         <h2 id="技術的説明"><a href="#技術的説明">技術的説明</a></h2>
         <p>エンジニア向けに今回の変更を解説するならば、「<em>閲覧履歴が複合キーで管理されるようになる</em>」ということになる(Partitioning)。
         <p>これまで閲覧履歴は URL の単一キーで、閲覧した事実だけ入っているハッシュのようなイメージだ。
-        <pre class=js data-code=js><code translate=no class=language-js>history = {
-  &quot;https://example.com&quot;: 1,
-  &quot;https://example.jp&quot;: 1
-  // ...
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "https://example.jp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>リンクをレンダリングする際は、<code translate=no>href</code> に指定された URL がこの中にあるかを探索し、あれば <code translate=no>:visited</code> にする。
         <p>ブラウザデフォルトのスタイルでは <code translate=no>:visited</code> は色が変わり、CSS で色を指定することも可能だ。
-        <pre class=css data-code=css><code translate=no class=language-css>:visited {
-  color: pink;
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:visited</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">pink</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>履歴はブラウザのグローバルな値なので、どのページに行ってもこの履歴が参照される。それがサイドチャネルアタックの原因となっていた。
         <p>そこで、今後は「<em>どのサイトの</em>」「<em>どの URL か</em>」という、複合キーに変更したのだ。
         <p>例えば、同じ <code translate=no>https://example.com</code> でもそれを Google 検索から見たのか、Wikipedia から見たのかでキーが変わることになる。
-        <pre class=js data-code=js><code translate=no class=language-js>// JS に Tuple があったら...
-history = {
-  #[&quot;https://google.com&quot;,    &quot;https://example.com&quot;]: 1,
-  #[&quot;https://wikipedia.org&quot;, &quot;https://example.com&quot;]: 1,
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// JS に Tuple があったら...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  #[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://google.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,    </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  #[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://wikipedia.org"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>これにより、全く異なる <code translate=no>https://x.com</code> に <code translate=no>https://example.com</code> のリンクがあっても、これまで二回閲覧しているにもかかわらず、リンクの色が変わらない。
         <p>そして、もっというと <code translate=no>&lt;iframe&gt;</code> で埋め込んだ場合を考えないといけない。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- https://wikipedia.org --&gt;
-&lt;iframe src=&quot;https://example.co.jp&quot;&gt;
-  &lt;a href=&quot;https://example.com&quot;&gt;Link&lt;/a&gt;
-&lt;/iframe&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- https://wikipedia.org --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.co.jp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Link&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この場合、複合キーの最初を <code translate=no>https://wikipedia.org</code> にすると、この <code translate=no>&lt;iframe&gt;</code> の <code translate=no>src</code> がなんであっても履歴が共有されてしまう。
         <p>逆に、複合キーの最初を <code translate=no>&lt;iframe&gt;</code> の <code translate=no>src</code> にすれば、この <code translate=no>&lt;iframe&gt;</code> が埋め込まれたサイトであれば、どこでも履歴が共有されてしまう。
         <p>そこで、実際には「<em>どのサイトの</em>」「<em>どの <code translate=no>&lt;iframe&gt;</code> に埋め込まれた</em>」「<em>どの URL か</em>」という 3 つのキーで管理されている。(Triple Keying)
-        <pre class=js data-code=js><code translate=no class=language-js>// JS に Tuple があったら...
-history = {
-  #[&quot;https://google.com&quot;,    &quot;https://example.co.jp&quot;, &quot;https://example.com&quot;]: 1,
-  #[&quot;https://wikipedia.org&quot;, &quot;https://example.co.jp&quot;, &quot;https://example.com&quot;]: 1,
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// JS に Tuple があったら...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  #[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://google.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,    </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.co.jp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  #[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://wikipedia.org"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.co.jp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>もちろん、フレームがなければそこは <code translate=no>null</code> だ。
         <p>このキーがすべて一致して初めて、リンクに閲覧履歴が反映されることとなった。
         <p>単一の Key だった頃と比べて、色が変わる範囲が減ることが分かるだろう。

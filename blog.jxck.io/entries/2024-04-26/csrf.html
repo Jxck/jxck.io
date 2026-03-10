@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-04-26/csrf.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -165,38 +163,38 @@
       <section>
         <h2 id="csrf-成立の条件"><a href="#csrf-成立の条件">CSRF 成立の条件</a></h2>
         <p>例えば、攻撃者が用意した attack.example に以下のような form が仕込まれていたとする。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- attack.example に仕込まれた攻撃用 form --&gt;
-&lt;form method=post action=https://sns.example/post&gt;
-  &lt;input type=hidden name=body value=&quot;こんにちはこんにちは&quot;&gt;
-  &lt;button type=submit&gt;いますぐここをクリック&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- attack.example に仕込まれた攻撃用 form --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://sns.example/post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hidden</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">body</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"こんにちはこんにちは"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>いますぐここをクリック&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この form は、どのサイトに埋め込まれていても、ボタンをクリックすることで form の submit によるリクエストが対象のドメインに飛ぶ。
         <p>もしこのボタンをクリックしたユーザが、sns.example のユーザであり、ログイン済みの Cookie を持っていた場合、発生するリクエストが以下のようになったとする。
-        <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
-Host: sns.example
-Content-Type: application/x-www-form-urlencoded
-Cookie: deadbeef
-
-body=こんにちはこんにちは</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /post </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/x-www-form-urlencoded</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">body=こんにちはこんにちは</span></span></code></pre>
         <p>このリクエストが sns.example の持つ投稿の API に準拠している場合、ログイン済みの Cookie が付与されたことを理由に投稿が受理されれば、そのユーザのアカウントで body が投稿される。
         <p>無作為な攻撃なら誰かしらにボタンをクリックさせるのは容易であり、狙いすまして攻撃する場合も JS などを組み合わせて方法はいくらでもある。
         <p>この攻撃の手軽さと影響の大きさによって、CSRF 攻撃は XSS や SQL Injection などと並ぶ有名な攻撃手法として認知されるまでになった。
         <p>対策としては、sns.example そのものが設置する投稿のフォームに One Time Token (以下 CSRF Token)を仕込み、その Token の一致によって投稿を受理することで、「それ以外の form からの投稿を無視する」という方法が一般的だった。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;form method=post action=https://sns.example/post&gt;
-  &lt;textarea name=body&gt;&lt;/textarea&gt;
-  &lt;input type=hidden name=csrf_token value=facefeedbadcoffee&gt;
-  &lt;button type=submit&gt;post&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://sns.example/post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hidden</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">csrf_token</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">facefeedbadcoffee</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>post&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>さて、ではそもそも「CSRF が成立するのはプラットフォームに何が足りないから」だったのだろうか?
       </section>
       <section>
         <h2 id="csrf-が成立する問題点"><a href="#csrf-が成立する問題点">CSRF が成立する問題点</a></h2>
         <p>CSRF Token が無い状態で CSRF が成立するのは、以下のようなサーバの実装が想定される。
-        <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), async (req, res) =&gt; {
-  await createPost(req.body)
-  // ...
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">app.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/post"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">session</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(), </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">req</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">res</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> createPost</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(req.body)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>この実装では、Cookie による Session がミドルウェアで実現され、Cookie を持ったユーザのアカウントで body を投稿に採用している。
         <p>つまり、攻撃者が用意した別の form からの投稿が成立するのは、「攻撃者の form からのリクエストにも SNS の Cookie が付与されるから」という点を問題とみなすことができる。
         <p>すると、SameSite Cookie という概念を導入し、「別の Site からのリクエストには Cookie が付与されないようにする」という変更は、対策として成立していると考えられるだろう。
@@ -207,20 +205,20 @@ body=こんにちはこんにちは</code></pre>
         <h2 id="origin-ヘッダの付与"><a href="#origin-ヘッダの付与">Origin ヘッダの付与</a></h2>
         <p>この問題に対するプラットフォームの回答は、「リクエストに Origin ヘッダを付与する」というものだ。
         <p>現在のブラウザで先ほどの攻撃 form を submit すると、送られるリクエストは以下のように Origin ヘッダが付与されている。
-        <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
-Host: sns.example
-Content-Type: application/x-www-form-urlencoded
-Origin: attack.example
-Cookie: deadbeef
-
-body=こんにちはこんにちは</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /post </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/x-www-form-urlencoded</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> attack.example</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">body=こんにちはこんにちは</span></span></code></pre>
         <p>Origin ヘッダの値に着目すれば、これが少なくとも sns.example からではないことは容易に判別できる。つまり、Cookie があろうとなかろうと、sns.example は以下のような実装によって「意図しない Origin からのリクエスト」を弾くことができるのだ。
-        <pre class=js data-code=js><code translate=no class=language-js>app.post(&quot;/post&quot;, session(), (req, res) =&gt; {
-  if (req.headers.origin !== &quot;https://sns.example&quot;) {
-    return res.sendStatus(400);
-  }
-  // ...
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">app.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/post"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">session</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(), (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">req</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">res</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (req.headers.origin </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!==</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "https://sns.example"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">sendStatus</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">400</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>このヘッダの必要性は少なくとも 16 年前くらいから言われており、7 年前に Firefox が実装することで、全てのブラウザが form からの submit に Origin ヘッダを付与するようになっている。
         <ul>
           <li>
@@ -293,17 +291,17 @@ body=こんにちはこんにちは</code></pre>
           <h3 id="令和時代の対策"><a href="#令和時代の対策">令和時代の対策</a></h3>
           <p>本来なら、GET も含めた全てのリクエストに Origin をつければ良いのだが、「Origin ヘッダのあるリクエストは XHR からのものだ」という前提の実装が世に蔓延った後なので、そこまでドラスティックな変更ができずにいた。
           <p>そこで、Origin ヘッダとは別に定義されたのが Fetch Metadata だ。今のブラウザで先ほどのリクエストを見れば、実際にはこうなっているだろう。
-          <pre class=http data-code=http><code translate=no class=language-http>POST /post HTTP/1.1
-Host: sns.example
-Content-Type: application/x-www-form-urlencoded
-Origin: attack.example
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: same-origin
-Sec-Fetch-User: ?1
-Cookie:deadbeef
-
-body=こんにちはこんにちは</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /post </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/x-www-form-urlencoded</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> attack.example</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Fetch-Dest</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> document</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Fetch-Mode</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> navigate</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Fetch-Site</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> same-origin</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Fetch-User</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ?1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">deadbeef</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">body=こんにちはこんにちは</span></span></code></pre>
           <p>このように、リクエストの出自を確認する手法はかなり整備されてきた。これらを見ずに捨てるのは、プラットフォームが差し伸べている手を振り払っているのと同じだ。
           <p>これを踏まえて、現代において「<em>副作用があるエンドポイントをどう実装すべきか</em>」をまとめると、優先順位としては以下のようになる。
           <ol>
@@ -314,30 +312,30 @@ body=こんにちはこんにちは</code></pre>
           </ol>
           <p>もし Fetch Metadata のサポートに不安がある場合「存在したら値をチェックする」という実装でも良いだろう。<code translate=no>Sec-</code> は JS から弄れないヘッダであるため、値がある場合だけのチェックでも意味がある。
           <p>実装に落とすとミドルウェアとエンドポイントは、以下のようなものになる。
-          <pre class=js data-code=js><code translate=no class=language-js>app.use((req, res, next) =&gt; {
-  // post である場合は origin と sec-fetch-site をチェック
-  if (req.method === &quot;post&quot;) {
-    // origin は必ずチェック
-    if (req.headers.origin !== &quot;https://sns.example&quot;) {
-      return res.send(400)
-    }
-    // sec-fetch-site は、存在した場合だけチェック
-    if (req.headers.secFetchSite &amp;&amp; req.headers.secFetchSite !== &quot;same-origin&quot;) {
-      return res.send(400)
-    }
-  }
-  return next()
-})
-
-// デフォルトに頼らず Cookie に Lax を明示
-// 理想は read と write に cookie を分け write を Strict にする
-app.use(session(&quot;Lax&quot;))
-
-// 副作用のある API は必ず POST にする
-app.post(&quot;/post&quot;, async (req, res) =&gt; {
-  await createPost(req.body)
-  // ...
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">app.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">use</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">req</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">res</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // post である場合は origin と sec-fetch-site をチェック</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (req.method </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "post"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // origin は必ずチェック</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (req.headers.origin </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!==</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "https://sns.example"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">400</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // sec-fetch-site は、存在した場合だけチェック</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (req.headers.secFetchSite </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> req.headers.secFetchSite </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!==</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "same-origin"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">400</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// デフォルトに頼らず Cookie に Lax を明示</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 理想は read と write に cookie を分け write を Strict にする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">app.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">use</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">session</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Lax"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 副作用のある API は必ず POST にする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">app.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/post"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">req</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">res</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> createPost</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(req.body)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>実際のところこれは「CSRF 対策のベストプラクティス」というよりは、今アプリを実装する上でのベースであるべき実装だ。7 年前からそうで、今は令和 6 年なので、ちょうど令和のプラクティスと言って良いだろう。
           <p>追加のストレージコストなども不要で、コードだけで実装できるためレイテンシーも最小だ。もし今からフレームワークを実装するなら、これがそのレールの基盤として存在するのが望ましい。
           <p>そして、これを逸脱するコードが必要になって初めて、そこに「自分は今のプラットフォームが推奨するレールから外れている」ということを認識した上で、CORS などの適切な対策をしながら拡張していくのが、サイト間の連携をしていく正しいあり方と言えるだろう。

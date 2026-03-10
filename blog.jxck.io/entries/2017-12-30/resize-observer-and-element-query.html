@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>ResizeObserver による変更検知と Element Query | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -162,24 +160,24 @@
         <h2 id="resizeobserver"><a href="#resizeobserver">ResizeObserver</a></h2>
         <p>ResizeObserver は、最近増えつつある ObserverFamily の 1 つであり、要素のリサイズを検知するインタフェースである。
         <p>リサイズを検知したい要素をターゲットに <code translate=no>observe()</code> すると、ターゲットと矩形情報が取得できる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>const resizeObserver = new ResizeObserver((entries) =&gt; {
-  entries.forEach(({target, contentRect}) =&gt; {
-    console.log(target)
-    const {x, y, width, height, top, right, bottom, left} = contentRect
-    console.log(x)
-    console.log(y)
-    console.log(width)
-    console.log(height)
-    console.log(top)
-    console.log(right)
-    console.log(bottom)
-    console.log(left)
-  })
-})
-resizeObserver.observe(element)    // 検知開始
-resizeObserver.unobserve(element)  // 検知終了
-resizeObserver.disconnect(element) // 解放</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> resizeObserver</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ResizeObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">entries</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  entries.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forEach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(({</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">target</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">contentRect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(target)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">y</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> contentRect</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(x)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(y)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(width)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(height)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(top)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(right)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(bottom)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(left)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element)    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 検知開始</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">unobserve</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element)  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 検知終了</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">disconnect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 解放</span></span></code></pre>
         <p>基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
         <ul>
           <li>DEMO: <a href="https://labs.jxck.io/resize-observer/basic.html" target=_blank>https://labs.jxck.io/resize-observer/basic.html</a>
@@ -196,11 +194,11 @@ resizeObserver.disconnect(element) // 解放</code></pre>
         <p><code translate=no>resize</code> イベントは、そもそも view-port に対して定義されており、さらに <em>変更したこと</em> だけを伝える仕様になっている。
         <p><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports" target=_blank>12.1. Resizing viewports | CSSOM View Module</a>
         <p>つまり、resize された結果を取得するためには、<code translate=no>target</code> を辿りサイズを取得する必要が出る。
-        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;resize&apos;, (e) =&gt; {
-  const width  = e.target.outerWidth
-  const height = e.target.outerHeight
-  console.log({width, height})
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'resize'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> width</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.target.outerWidth</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> height</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.target.outerHeight</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({width, height})</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <ul>
           <li>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize.html" target=_blank>https://labs.jxck.io/resize-observer/onresize.html</a>
         </ul>
@@ -214,18 +212,18 @@ resizeObserver.disconnect(element) // 解放</code></pre>
         <h2 id="resize-event-polyfill"><a href="#resize-event-polyfill">resize event polyfill</a></h2>
         <p>仮に、Observer のインタフェースを Event 側に寄せたいというのであれば、以下のように CustomEvent を定義することもできるだろう。
         <p>必要に応じて <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html">Passive Event Listener</a> を検討する必要がある。
-        <pre class=js data-code=js><code translate=no class=language-js>const $target = document.querySelector(&apos;textarea&apos;)
-const resizeObserver = new ResizeObserver((entries) =&gt; {
-  for (const entry of entries) {
-    const resize = new CustomEvent(&apos;resize&apos;, { detail: entry });
-    $target.dispatchEvent(resize)
-  }
-})
-resizeObserver.observe($target)
-
-$target.addEventListener(&apos;resize&apos;, ({detail: entries}) =&gt; {
-  console.log(entries.contentRect)
-}, {passive: true})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> $target</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'textarea'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> resizeObserver</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ResizeObserver</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">entries</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> entry</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> of</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> entries) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> resize</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> CustomEvent</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'resize'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { detail: entry });</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dispatchEvent</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(resize)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">($target)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'resize'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, ({</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">detail</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">entries</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(entries.contentRect)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, {passive: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <ul>
           <li>DEMO: <a href="https://labs.jxck.io/resize-observer/onresize-polyfill.html" target=_blank>https://labs.jxck.io/resize-observer/onresize-polyfill.html</a>
         </ul>
@@ -234,11 +232,11 @@ $target.addEventListener(&apos;resize&apos;, ({detail: entries}) =&gt; {
         <h2 id="element-query"><a href="#element-query">Element Query</a></h2>
         <p><a href="http://elementqueries.com/" target=_blank>ElementQuery</a> は MediaQuery の要素版といったコンセプトで作られたライブラリである。
         <p>例えば以下のように、<code translate=no>min-width</code> を境に色を変えるといったことが可能になる。
-        <pre class=css data-code=css><code translate=no class=language-css>@element .minwidthpixels and (min-width: 500px) {
-  .minwidthpixels {
-    background: gold;
-  }
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> .minwidthpixels and (min-width: 500px) {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  .minwidthpixels</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    background</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">gold</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <ul>
           <li>DEMO: <a href="http://elementqueries.com/#min-width-in-pixels" target=_blank>http://elementqueries.com/#min-width-in-pixels</a>
         </ul>
@@ -257,23 +255,23 @@ $target.addEventListener(&apos;resize&apos;, ({detail: entries}) =&gt; {
         <h2 id="container-query"><a href="#container-query">Container Query</a></h2>
         <p><a href="https://au.si/css-container-element-queries" target=_blank>Container Query</a> は Element Query と似ているが、文字通り対象を親要素に置いている。
         <p>例えば、親要素のサイズに応じて子要素のレイアウトを変えたい場合は、Element Query のスコープで以下のように定義ができる。
-        <pre class=css data-code=css><code translate=no class=language-css>@element &apos;#sidebar&apos; and (max-width: 300px) {
-  #sidebar .widget {
-    font-size: 10pt;
-  }
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> '#sidebar' and (max-width: 300px) {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  #sidebar</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> .widget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    font-size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">pt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>一方これを Pseudo Element で定義する提案もある。
-        <pre class=css data-code=css><code translate=no class=language-css>.element:container(width &gt;= 100px) {
-  /* If its container is at least 100px wide */
-}
-
-.element:container(height &gt; 100px &lt; 200px) {
-  /* If its container is between 100px and 200px high */
-}
-
-.element:container(text-align = right) {
-  /* If its container has a right text-align */
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:container(width </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">= 100px) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* If its container is at least 100px wide */</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:container(height </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 100px &#x3C; 200px) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* If its container is between 100px and 200px high */</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:container(</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">text-align</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = right) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* If its container has a right text-align */</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>擬似要素で行う場合にも、同じように Houdini の API が揃うと、別途自前でパースする必要もなく実装が可能になるだろう。
         <p>いずれも提案自体はかなり前からあるが、実装の改善がかのうになりそうだ。
       </section>

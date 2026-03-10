@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -211,11 +209,11 @@
           <p>そこで、現実的には期間を長く、推奨される最大値の <em>1 年</em> などを指定し、更新があったらそのリソースの URL を変更するという運用がよく行われる。
           <p>例えば <code translate=no>production.min.js</code> を 1 年間ブラウザにキャッシュさせる。
           <p>この JS を <code translate=no>index.html</code> に指定する際は、以下のようにバージョンを含める。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=&quot;production.min.js?ver=1&quot;&gt;&lt;/script&gt;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"production.min.js?ver=1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>これで <code translate=no>ver=1</code> を参照している間はキャッシュが使われる。
           <p>もし JS が更新されたらバージョンを変えることで、URL を以下のように変更する。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src=&quot;production.min.js?ver=2&quot;&gt;&lt;/script&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"production.min.js?ver=2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>ブラウザのキャッシュは基本的に URL 単位で行われるため、この URL を毎回変えてやれば、古いキャッシュが使われるのを避けることができる。
           <p>あくまで URL を変えることが目的なので、実際にサーバ側でこの値をハンドルする必要は必ずしもない。バージョンの代わりにタイムスタンプやハッシュを使っても良い。
           <p>ただし、この <code translate=no>&lt;script&gt;</code> を含む、<code translate=no>index.html</code> 自体が長期間キャッシュされてしまうと、<code translate=no>production.min.js</code> の URL も更新できない。
@@ -260,7 +258,7 @@
         <section>
           <h3 id="max-age"><a href="#max-age">max-age</a></h3>
           <p>まず、従来の方法で以下のヘッダがあった場合を考える。
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=3600;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=3600;</span></span></code></pre>
           <p>すると、fetch したレスポンスは 3600s の間は <em>fresh</em> とみなされ、その期間はキャッシュヒットする。
           <p>しかし、3600s をすぎるとキャッシュは <em>stale</em> とみなされ破棄し、次のリクエストで fetch が走る。
           <p>
@@ -270,7 +268,7 @@
         <section>
           <h3 id="stale-while-revalidate_1"><a href="#stale-while-revalidate_1">stale-while-revalidate</a></h3>
           <p><code translate=no>Cache-Control</code> に <code translate=no>stale-while-revalidate</code> を指定する。
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=3600, stale-while-revalidate=360</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=3600, stale-while-revalidate=360</span></span></code></pre>
           <p>すると、fetch から 3600s 経過したキャッシュは <em>stale</em> となるが、そこから 360s は、その <em>stale</em> なキャッシュを引き続き使用する。
           <p>しかし、一度 <em>stale</em> なキャッシュを使用したら、裏で非同期に fetch を行い、サーバにキャッシュの鮮度を問い合わせる(validate)。
           <p>もしサーバから新しいリソースを fetch したなら、そこに付与された新しいヘッダにしたがってキャッシュを更新する。
@@ -285,7 +283,7 @@
           <h3 id="stale-if-error"><a href="#stale-if-error">stale-if-error</a></h3>
           <p>仕様にはもう一つ、<code translate=no>stale-if-error</code> という拡張もある。
           <p>同じく <code translate=no>Cache-Control</code> に指定する。
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=3600, stale-if-error=360</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=3600, stale-if-error=360</span></span></code></pre>
           <p>すると、3600s でキャッシュは <em>stale</em> になり、次のリクエストで fetch が走る。
           <p>しかし、もしその fetch がサーバの 500 やネットワークエラーにより失敗した場合は、360s 間は stale cache を使用しても良い。
           <p>これにより、ブラウザのエラー画面が表示されるのを防ぐことができる。
@@ -306,7 +304,7 @@
         <p>サーバは、アクセスの度に異なるシーケンス番号、タイムスタンプ、ランダムな文字列を返すようになっている。
         <p>そして、レスポンスに以下のヘッダを追加しているため、アクセスを繰り返せば挙動が確認できるだろう。
         <p>(Chrome はリロードではキャッシュを無視する場合があるため、画面に用意したリンクを踏むこと)
-        <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=5, stale-while-revalidate=10, stale-if-error=15</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=5, stale-while-revalidate=10, stale-if-error=15</span></span></code></pre>
         <p>以下にデモのキャプチャを用意した。Chrome の dev tools とサーバ側のアクセスログを表示している。
         <p>サーバへのアクセスが発生し表示が更新されているが、全てキャッシュがヒットしていることが分かるだろう。
         <p>
@@ -323,7 +321,7 @@
         <p>まず、SwR を用いると何が変わるのかを確認するため、極端な設定例を用いて考察する。
         <section>
           <h3 id="1-year-fresh-cache"><a href="#1-year-fresh-cache">1 year fresh cache</a></h3>
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=31536000</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000</span></span></code></pre>
           <p>この設定では、キャッシュは 1 年間 <em>fresh</em> となる。
           <p>例えば、<code translate=no>favicon.ico</code> や <code translate=no>jquery.min.js</code> などといった更新が少ない、もしくは更新が無い(ある場合はファイル名が変わる) といった場合に設定が可能になる。
           <p>キャッシュが途中で消されない理想状態においては、そのブラウザからサーバへのリクエストは 1 年間無いことになる。
@@ -331,7 +329,7 @@
         </section>
         <section>
           <h3 id="1-year-stale-cache"><a href="#1-year-stale-cache">1 year stale cache</a></h3>
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=1, stale-while-revalidate=3153600</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=1, stale-while-revalidate=3153600</span></span></code></pre>
           <p>この設定は、キャッシュはすぐに <em>stale</em> となる。
           <p>しかし、1 年間はこの <em>stale cache</em> を使用することが許可されているため、次のリクエストはキャッシュヒットする。
           <p>そして、その裏で <em>validate</em> として fetch が走る。もしレスポンスが同じヘッダを持てば、そこからまた 1 年キャッシュが <em>stale</em> になる。
@@ -341,7 +339,7 @@
         </section>
         <section>
           <h3 id="1-year-freshstale-cache"><a href="#1-year-freshstale-cache">1 year fresh/stale cache</a></h3>
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=15768000, stale-while-revalidate=15768000</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=15768000, stale-while-revalidate=15768000</span></span></code></pre>
           <p>両方を半年ずつ設定した場合、半年ずつ <em>fresh</em> / <em>stale</em> になる。
           <p>この場合 <code translate=no>stale-while-revalidate</code> に <em>対応していないブラウザ</em> でも、半年はキャッシュが効く。
           <p>まだ <code translate=no>stale-while-revalidate</code> の実装が行き渡らないうちは、こうした両方での指定も考慮すべきだろう。
@@ -380,7 +378,7 @@
             <li>SwR=10min : そのとき滞在しているセッションの中ではキャッシュを使用
             <li>SiE=1day : その日のうちは、エラーの代替表示として stale cache を利用
           </ul>
-          <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=1, stale-while-revalidate=600, stale-if-error=864000</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=1, stale-while-revalidate=600, stale-if-error=864000</span></span></code></pre>
           <p>非常に短期のセッションでキャッシュを有効にする設定である。
           <p>一方、長期のキャッシュは、どうしてもアクセスしてない期間に行われた更新を、バックグラウンドで反映したくなる。
           <p>そうした場合は、Service-Worker を使ったキャッシュ機構を適用するため、別途対応する。

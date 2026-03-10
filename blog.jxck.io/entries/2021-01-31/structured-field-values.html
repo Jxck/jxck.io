@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-01-31/structured-field-values.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Structured Field Values による Header Field の構造化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -200,11 +198,11 @@
         <section>
           <h3 id="http-ヘッダの構造"><a href="#http-ヘッダの構造">HTTP ヘッダの構造</a></h3>
           <p>HTTP のヘッダは以下のようになっている。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>Host: example.com
-Set-Cookie: session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly
-Content-Security-Policy:content-security-policy: default-src &apos;self&apos; https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;
-Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">content-security-policy: default-src 'self' https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Permission-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> syncxhr 'none' report-to=default-endpoint</span></span></code></pre>
           <p>HTTP の仕様では、この Header Name と Header Value をパースする部分が標準化されている。
           <p>しかし、Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
           <p>それぞれのヘッダごとに仕様を定義するのも、それぞれパーサを書くのもあまりヘルシーではない。特にブラウザは新しいパーサを実装するとセキュリティ的なリスクがあるため、積極的には入れにくい。
@@ -231,15 +229,15 @@ Permission-Policy: syncxhr &apos;none&apos; report-to=default-endpoint</code></p
             <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12" target=_blank>draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
           </ul>
           <p>これは、ドラフト段階からいくつかの新しい Field 定義によって使われている。例えば Network Error Logging や Reporting API だ。
-          <pre class=http data-code=http><code translate=no class=language-http>NEL: {&quot;report-to&quot;: &quot;default-endpoint&quot;, &quot;max-age&quot;: 2592000}
-Report-To: {
-             &quot;group&quot;: &quot;default-endpoint&quot;,
-             &quot;max-age&quot;: &quot;36000&quot;,
-             &quot;endpoints&quot;: [
-               {&quot;url&quot;: &quot;https://report-uri.example.com&quot;},
-               {&quot;url&quot;: &quot;https://report-uri2.example.com&quot;}
-             ]
-           }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">NEL</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {"report-to": "default-endpoint", "max-age": 2592000}</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Report-To</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "group": "default-endpoint",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "max-age": "36000",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             "endpoints": [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">},</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">               {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">"url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://report-uri2.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">             ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">           }</span></span></code></pre>
           <p>しかし、これでは問題があることが指摘され、代替として提案されたのが Structured Field Values だ。
           <p>なぜ JSON じゃだめなのかは、Structured Field Values の中に書かれている。
           <ul>
@@ -317,78 +315,78 @@ Report-To: {
           <h3 id="parameter"><a href="#parameter">Parameter</a></h3>
           <p>Parameter は Item に付与できるメタデータだ。
           <p>例えば以下は String の &quot;abc&quot; に対してパラメータを 2 つ付与している。
-          <pre class=js data-code=js><code translate=no class=language-js>// &quot;abc&quot;;a=1;b=2
-{
- &quot;value&quot;: &quot;abc&quot;,
- &quot;params&quot;: {
-  &quot;a&quot;: 1,
-  &quot;b&quot;: 2
- }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "abc";a=1;b=2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"abc"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "a"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "b"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>データ表現には基本的に Key/Value/Metadata の 3 つがあることが望ましい。
           <p>例えば XML/HTML のようなフォーマットは Attribute がメタデータを担うが、これを再現可能になる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;p id=&quot;foo&quot; class=&quot;bar&quot;&gt;hello&lt;/p&gt;</code></pre>
-          <pre class=js data-code=js><code translate=no class=language-js>// p=&quot;hello world&quot;;id=&quot;foo&quot;;class=&quot;bar&quot;
-{
- &quot;p&quot;: {
-  &quot;value&quot;: &quot;hello world&quot;,
-  &quot;params&quot;: {
-   &quot;id&quot;: &quot;foo&quot;,
-   &quot;class&quot;: &quot;bar&quot;
-  }
- }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"bar"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>hello&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// p="hello world";id="foo";class="bar"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "p"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello world"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "class"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"bar"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>これは、Key/Value だけしかない JSON では表現しにくかった部分でもある。
         </section>
         <section>
           <h3 id="list"><a href="#list">List</a></h3>
           <p>Item の配列。
-          <pre class=js data-code=js><code translate=no class=language-js>// 1,2,3,4
-[
- { &quot;value&quot;: 1, &quot;params&quot;: {} },
- { &quot;value&quot;: 2, &quot;params&quot;: {} },
- { &quot;value&quot;: 3, &quot;params&quot;: {} },
- { &quot;value&quot;: 4, &quot;params&quot;: {} }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 1,2,3,4</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="dict"><a href="#dict">Dict</a></h3>
           <p>Key に紐付けた Item の辞書。
           <p>Key は Item ほど柔軟ではなく、文字列で使える文字種も限られている。
-          <pre class=js data-code=js><code translate=no class=language-js>// a=10,b=20,c=30
-{
- &quot;a&quot;: { &quot;value&quot;: 10, &quot;params&quot;: {} },
- &quot;b&quot;: { &quot;value&quot;: 20, &quot;params&quot;: {} },
- &quot;c&quot;: { &quot;value&quot;: 30, &quot;params&quot;: {} }
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// a=10,b=20,c=30</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "a"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "b"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "c"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
         <section>
           <h3 id="inner-list"><a href="#inner-list">Inner List</a></h3>
           <p>List や Dict の値として配列を使いたい場合は、Inner List を使う。(List そのものは Top Level でしか使えない)
-          <pre class=js data-code=js><code translate=no class=language-js>// a=&quot;x&quot;, d=(1 2)
-{
- &quot;a&quot;: { &quot;value&quot;: &quot;x&quot;, &quot;params&quot;: {} },
- &quot;d&quot;: {
-  &quot;value&quot;: [
-   { &quot;value&quot;: 1, &quot;params&quot;: {} },
-   { &quot;value&quot;: 2, &quot;params&quot;: {} }
-  ],
-  &quot;params&quot;: {}
- }
-}
-
-// &quot;a&quot;, &quot;b&quot;, (1 2)
-[
- { &quot;value&quot;: &quot;a&quot;, &quot;params&quot;: {} },
- { &quot;value&quot;: &quot;b&quot;, &quot;params&quot;: {} },
- {
-  &quot;value&quot;: [
-   { &quot;value&quot;: 1, &quot;params&quot;: {} },
-   { &quot;value&quot;: 2, &quot;params&quot;: {} }
-  ],
-  &quot;params&quot;: {}
- }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// a="x", d=(1 2)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "a"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"x"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "d"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "a", "b", (1 2)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"a"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"b"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   { </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {} }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="注意"><a href="#注意">注意</a></h3>
@@ -417,90 +415,90 @@ Report-To: {
         <p>特に httpbis の新しい仕様は基本的に SFV を使っていくことになるため、今後触れる機会も増えるだろう。
         <section>
           <h3 id="client-hints"><a href="#client-hints">Client Hints</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>// Accept-CH: Sec-CH-Example, Sec-CH-Example-2
-[
- {
-  &quot;value&quot;: &quot;Symbol(Sec-CH-Example)&quot;,
-  &quot;params&quot;: {}
- },
- {
-  &quot;value&quot;: &quot;Symbol(Sec-CH-Example-2)&quot;,
-  &quot;params&quot;: {}
- }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Accept-CH: Sec-CH-Example, Sec-CH-Example-2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(Sec-CH-Example)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(Sec-CH-Example-2)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="cache-status"><a href="#cache-status">Cache-Status</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>// Cache-Status: OriginCache; hit; ttl=1100; collapsed, &quot;CDN Company Here&quot;; hit; ttl=545
-[
- {
-  &quot;value&quot;: &quot;Symbol(OriginCache)&quot;,
-  &quot;params&quot;: {
-   &quot;hit&quot;: true,
-   &quot;ttl&quot;: 1100,
-   &quot;collapsed&quot;: true
-  }
- },
- {
-  &quot;value&quot;: &quot;CDN Company Here&quot;,
-  &quot;params&quot;: {
-   &quot;hit&quot;: true,
-   &quot;ttl&quot;: 545
-  }
- }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Cache-Status: OriginCache; hit; ttl=1100; collapsed, "CDN Company Here"; hit; ttl=545</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(OriginCache)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "hit"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "ttl"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "collapsed"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"CDN Company Here"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "hit"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "ttl"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">545</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="digest-headers"><a href="#digest-headers">Digest Headers</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>//  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
-(TODO: パースできないので報告)
-
-// Want-Digest: sha-256;q=0.3, sha;q=1
-[
- {
-  &quot;value&quot;: &quot;Symbol(sha-256)&quot;,
-  &quot;params&quot;: {
-   &quot;q&quot;: 0.3
-  }
- },
- {
-  &quot;value&quot;: &quot;Symbol(sha)&quot;,
-  &quot;params&quot;: {
-   &quot;q&quot;: 1
-  }
- }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//  Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=, id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">TODO</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> パースできないので報告</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Want-Digest: sha-256;q=0.3, sha;q=1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(sha-256)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "q"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.3</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(sha)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "q"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="proxy-status"><a href="#proxy-status">Proxy Status</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>// Proxy-Status: ExampleProxy; error=&quot;http_protocol_error&quot;; details=&quot;Malformed response header - space before colon&quot;
-[
- {
-  &quot;value&quot;: &quot;Symbol(ExampleProxy)&quot;,
-  &quot;params&quot;: {
-   &quot;error&quot;: &quot;http_protocol_error&quot;,
-   &quot;details&quot;: &quot;Malformed response header - space before colon&quot;
-  }
- }
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Proxy-Status: ExampleProxy; error="http_protocol_error"; details="Malformed response header - space before colon"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Symbol(ExampleProxy)"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "error"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http_protocol_error"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "details"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Malformed response header - space before colon"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id="http-variants"><a href="#http-variants">HTTP Variants</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>// Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
-// (TODO: パースできないので報告)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// (TODO: パースできないので報告)</span></span></code></pre>
         </section>
         <section>
           <h3 id="http-signature"><a href="#http-signature">HTTP Signature</a></h3>
-          <pre class=js data-code=js><code translate=no class=language-js>// Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId=&quot;test-key-a&quot;; alg=hs2019; created=1402170695; expires=1402170695.25
-// (TODO: パースできないので報告)
-
-// Signature: reverse_proxy_sig=:ON3HsnvuoTlX41xfcGWaOEVo1M3bJDRBOp0Pc/OjAOWKQn0VMY0SvMMWXS7xG+xYVa152rRVAo6nMV7FS3rv0rR5MzXL8FCQ2A35DCENLOhEgj/S1IstEAEFsKmE9Bs7McBsCtJwQ3hMqdtFenkDffSoHOZOInkTYGafkoy78l1VZvmb3Y4yf7McJwAvk2R3gwKRWiiRCw448Nt7JTWzhvEwbh7bN2swc/v3NJbg/wJYyYVbelZx4IywuZnYFxgPl/qvqbAjeEVvaLKLgSMr11y+uzxCHoMnDUnTYhMrmOT4O8lBLfRFOcoJPKBdoKg9U0a96U2mUug1bFOozEVYFg==:
-{
- &quot;reverse_proxy_sig&quot;: {
-  &quot;value&quot;: Uint8Array[],
-  &quot;params&quot;: {}
- }
- }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Signature-Input: reverse_proxy_sig=(*created, host, date, signature:sig1, x-forwarded-for); keyId="test-key-a"; alg=hs2019; created=1402170695; expires=1402170695.25</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// (TODO: パースできないので報告)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Signature: reverse_proxy_sig=:ON3HsnvuoTlX41xfcGWaOEVo1M3bJDRBOp0Pc/OjAOWKQn0VMY0SvMMWXS7xG+xYVa152rRVAo6nMV7FS3rv0rR5MzXL8FCQ2A35DCENLOhEgj/S1IstEAEFsKmE9Bs7McBsCtJwQ3hMqdtFenkDffSoHOZOInkTYGafkoy78l1VZvmb3Y4yf7McJwAvk2R3gwKRWiiRCw448Nt7JTWzhvEwbh7bN2swc/v3NJbg/wJYyYVbelZx4IywuZnYFxgPl/qvqbAjeEVvaLKLgSMr11y+uzxCHoMnDUnTYhMrmOT4O8lBLfRFOcoJPKBdoKg9U0a96U2mUug1bFOozEVYFg==:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "reverse_proxy_sig"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: Uint8Array[],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span></code></pre>
         </section>
       </section>
       <section>

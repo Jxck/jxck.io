@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2022-04-22/navigation-api.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Navigation API による「JS での画面遷移」と SPA の改善 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -222,18 +220,18 @@
           <h3 id="spa-第二期-history-api-による-pjax"><a href="#spa-第二期-history-api-による-pjax">SPA 第二期: History API による Pjax</a></h3>
           <p>実際にリンクのクリックや Form の Submit を全て <code translate=no>preventDefault</code> して fragment に状態をエンコードする実装は、Navigation が発生せずブラウザに History が積まれない。そこで JS から実際に Navigation をせずに URL を History に積むために作られたのが History API だ。
           <p>実際には、擬似遷移に URL を付与し、その遷移を復元するための状態を紐づけて <code translate=no>history.pushState</code> で保存するというものだ。画面が遷移した場合は、<code translate=no>popstate</code> イベントでその状態が取得できるため、それを画面に反映することで遷移が再現される。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=js data-code=js><code translate=no class=language-js>// 画面表示に必要な状態を state として保存
-history.pushState(state, null, &quot;foo.html&quot;)
-
-window.on(&apos;popstate&apos;, (e) =&gt; {
-  const { state } = e
-  // state を用いて画面を復元
-})</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 画面表示に必要な状態を state として保存</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">pushState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(state, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'popstate'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">state</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // state を用いて画面を復元</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p><code translate=no>history</code> は実際に履歴のリストを持っているが、ここにアクセスできるとプライバシー上の問題があるため、直接リストにアクセスすることはできない。代わりに、遷移するための方法が提供されている。
-          <pre class=js data-code=js><code translate=no class=language-js>history.back() // 戻る
-history.forward() // 進む
-history.go(-2) // ページを引数で指定し遷移</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">back</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 戻る</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forward</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 進む</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">go</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ページを引数で指定し遷移</span></span></code></pre>
           <p>大きなところでは、Twitter が 2012 年に対応をアナウンスしている。これはそれなりに早い方の移行だったと思う。
           <ul>
             <li>
@@ -312,13 +310,13 @@ after
           <h3 id="navigationhistoryentry"><a href="#navigationhistoryentry">NavigationHistoryEntry</a></h3>
           <p>まず、これまで History API の中に隠されていた履歴に関する情報が、NavigationHistoryEntry として Interface 化されたことが、この API の有意な点の 1 つだろう。
           <p>これは、履歴内での Index や URL の他に、ブラウザが生成する Key と ID という 2 つの UUID を持つ。
-          <pre class=js data-code=js><code translate=no class=language-js>console.log(navigation.currentEntry)
-// id: &quot;bb1bfee7-be94-45e7-9c0f-bc4b3be15901&quot;
-// index: 5
-// key: &quot;6b73c48f-591a-4b13-8634-598fd640754a&quot;
-// ondispose: null
-// sameDocument: true
-// url: &quot;https://labs.jxck.io/navigation/2.html&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(navigation.currentEntry)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// id: "bb1bfee7-be94-45e7-9c0f-bc4b3be15901"</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// index: 5</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// key: "6b73c48f-591a-4b13-8634-598fd640754a"</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ondispose: null</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// sameDocument: true</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// url: "https://labs.jxck.io/navigation/2.html"</span></span></code></pre>
           <p><code translate=no>id</code> はエントリの内容が更新されると変更するが、<code translate=no>key</code> は変更しない。
           <p>History API にはこうした値がなく、複雑な状態の同期は URL か Index で行うしかなかった。しかし、URL が同じでも状態が同じとは限らず、Index はキーにするほど安定してない。<code translate=no>id</code> か <code translate=no>key</code> を用途に応じて選択すれば、複雑な状態をシリアライズし Storage に保存するような場面でキーとして使うことができる。
           <p>この Entry が、以降の API を用いる上での基準となる。
@@ -327,132 +325,132 @@ after
           <h3 id="navigation.entries"><a href="#navigation.entries">navigation.entries()</a></h3>
           <p>History API では、履歴は <code translate=no>iframe</code> の中での遷移も含めた Joint Session になっており、かつプライバシーの理由から履歴そのものにはアクセスできない。見られるのは <code translate=no>history.length</code> 程度で、その情報だけから <code translate=no>history.go()</code> などをしないといけなかった。
           <p>Navigation API では、Entry List を取得することができる。内容は Current Origin に制限されるためプライバシーの問題はなく、<code translate=no>iframe</code> 内での遷移に影響されないため、アプリケーションで管理しやすい。
-          <pre class=js data-code=js><code translate=no class=language-js>navigation.entries()</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">entries</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
           <p>これを用いれば、いわゆる「戻る」「進む」的な UI を DOM 上に作ることもできる。その場合、選択した Entry への遷移も、後述の API を使って行うことが可能だ。
         </section>
         <section>
           <h3 id="navigation.navigate"><a href="#navigation.navigate">navigation.navigate()</a></h3>
           <p>History API でいう <code translate=no>history.pushState()</code> に相当するのが <code translate=no>navigation.navigate()</code> だ。URL に紐づけて State を保存し、Entry List を操作する。
-          <pre class=js data-code=js><code translate=no class=language-js>await navigation.navigate(&quot;/foo&quot;, { state: {count: 1}, info: &quot;shortcut&quot;, history: &quot;push&quot; }).finish</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, info: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"shortcut"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finish</span></span></code></pre>
           <p><code translate=no>state</code> は any だが、シリアライズ可能なものに限る。<code translate=no>history</code> は <code translate=no>&quot;push&quot;</code> なら追記、<code translate=no>&quot;replace&quot;</code> なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は <code translate=no>info</code> で送ることができる。
           <p>戻り値は <code translate=no>{ committed, finished }</code> という 2 つの Promise だ。<code translate=no>committed</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、<code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
         </section>
         <section>
           <h3 id="currententry.getstate"><a href="#currententry.getstate">currentEntry.getState()</a></h3>
           <p><code translate=no>navigation.navigate()</code> で Entry に保存した State は <code translate=no>entry.getState()</code> で取得できる。
-          <pre class=js data-code=js><code translate=no class=language-js>navigation.currentEntry.getState() // {count: 1}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// {count: 1}</span></span></code></pre>
           <p><code translate=no>entry.getState()</code> は <code translate=no>history.state</code> と類似するが、既存の問題をいくつか解決している。
           <p>まず、<code translate=no>history.state</code> はセッション上ではプロパティアクセスにより更新できたように見えるが、永続化はされていないため誤解を招くような挙動に見える。
-          <pre class=js data-code=js><code translate=no class=language-js>// https://github.com/WICG/navigation-api/issues/36
-
-history.pushState({ count: 2 }, null, &apos;&apos;);
-console.log(history.state.count); // 2
-history.state.count = 3;
-// 内容が更新できたように見える
-console.log(history.state.count); // 3
-
-// リロード
-
-// 実際には pushState してない場合は永続化されない
-console.log(history.state.count); // 2</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// https://github.com/WICG/navigation-api/issues/36</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">pushState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">''</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(history.state.count); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">history.state.count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 内容が更新できたように見える</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(history.state.count); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 3</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// リロード</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 実際には pushState してない場合は永続化されない</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(history.state.count); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 2</span></span></code></pre>
           <p><code translate=no>getState()</code> は、常に Entry の Clone を返すため、そこを変更してもブラウザには反映されない。
-          <pre class=js data-code=js><code translate=no class=language-js>await navigation.navigate(&quot;/foo&quot;, { state: {count: 2}, history: &quot;push&quot; }).finish
-
-// 取得した値はクローンなので直感に反した更新はされない
-navigation.currentEntry.getState().count = 3;
-console.assert(navigation.currentEntry.getState().count === 2);</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finish</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 取得した値はクローンなので直感に反した更新はされない</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">().count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">assert</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">().count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
           <p>先ほどの <code translate=no>navigation.entries()</code> がメソッドなのも、常にコピーを返すことで、その戻り値の変更がブラウザには反映されていないことを明確にする意図もある。
         </section>
         <section>
           <h3 id="navigation.traversetokey"><a href="#navigation.traversetokey">navigation.traverseTo(key)</a></h3>
           <p>History API では、任意の履歴への遷移は <code translate=no>history.go()</code> にインデックスを指定する方法しかなかった。遷移したい先の Index がなんであるかを把握し、<code translate=no>iframe</code> 内での履歴変更などがあっても Index が履歴リストの変更と同期していることを保証する必要がある。
           <p>Navigation API では、Entry List から選んだ特定の Entry への遷移は、Entry が生成されてから変わらない <code translate=no>entry.key</code> で行う。
-          <pre class=js data-code=js><code translate=no class=language-js>await navigation.traverseTo(key).finished;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">traverseTo</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(key).finished;</span></span></code></pre>
         </section>
         <section>
           <h3 id="backforwardreload"><a href="#backforwardreload">back()/forward()/reload()</a></h3>
           <p><code translate=no>history.back()</code> / <code translate=no>history.forward()</code> / <code translate=no>location.reload()</code> 相当のメソッドもある。
           <p><code translate=no>navigation.back()</code> / <code translate=no>navigation.forward()</code> は <code translate=no>info</code> を渡すことができ、back/forward が可能かどうかを知るためのフラグが <code translate=no>navigation.canGoBack</code> および <code translate=no>navigation.canGoForward</code> で提供されている。
-          <pre class=js data-code=js><code translate=no class=language-js>if (navigation.canGoBack) {
-  await navigation.back({info: &quot;click-prev&quot;}).finished
-}
-
-if (navigation.canGoForward) {
-  await navigation.forward({info: &quot;click-next&quot;}).finished
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigation.canGoBack) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">back</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({info: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"click-prev"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}).finished</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigation.canGoForward) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forward</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({info: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"click-next"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}).finished</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p><code translate=no>navigation.reload()</code> は <code translate=no>info</code> に追加して State の更新も可能だ。
-          <pre class=js data-code=js><code translate=no class=language-js>// 状態を更新
-await navigation.reload({ state: { ...navigation.currentEntry.getState(), count: 3 } }).finished</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 状態を更新</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">reload</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ state: { </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(), count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } }).finished</span></span></code></pre>
         </section>
         <section>
           <h3 id="navigate-イベント"><a href="#navigate-イベント">navigate イベント</a></h3>
           <p>Navigation API の最重要イベントは <code translate=no>navigate</code> だ。このイベントは、ブラウザが Navigate をする際に発火するため、従来のように <code translate=no>&lt;a&gt;</code> の click をフックするといったことをする必要がなくなる上に、あらゆる方法で発生した Navigate を残さずフックすることができる。
-          <pre class=js data-code=js><code translate=no class=language-js>navigation.on(&quot;navigate&quot;, async (e) =&gt; {
-  console.log(e)
-  // canTransition: true
-  // cancelable: true
-  // destination: NavigationDestination {key: null, id: null, url: &apos;https://labs.jxck.io/navigation/1.html&apos;, index: -1, sameDocument: false}
-  // downloadRequest: null
-  // formData: null
-  // hashChange: false
-  // info: undefined
-  // navigationType: &quot;push&quot;
-  // returnValue: true
-  // signal: AbortSignal {aborted: false, reason: undefined, onabort: null}
-  // userInitiated: true
-
-  e.transitionWhile(/*
-    transition のために必要な Promise
-  */)
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // canTransition: true</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // cancelable: true</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // destination: NavigationDestination {key: null, id: null, url: 'https://labs.jxck.io/navigation/1.html', index: -1, sameDocument: false}</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // downloadRequest: null</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // formData: null</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // hashChange: false</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // info: undefined</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // navigationType: "push"</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // returnValue: true</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // signal: AbortSignal {aborted: false, reason: undefined, onabort: null}</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // userInitiated: true</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/*</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    transition のために必要な Promise</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  */</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>このイベントオブジェクトには、誰のどういう操作によって発生したかといった情報が、全て込められていることがわかる。特に Form Submit によって生成された FormData や、途中で UI からキャンセルされた場合に発火する AbortSignal などが含まれているあたりは、新しい API ならではだ。
         </section>
         <section>
           <h3 id="transitionwhile"><a href="#transitionwhile">transitionWhile()</a></h3>
           <p>navigate イベントにある <code translate=no>transitionWhile()</code> は、画面の遷移処理を記述するのに用いることができる。
           <p>具体例として、かつて Pjax と呼ばれていたような、「<code translate=no>fetch()</code> した HTML をパースし、現在の DOM に適用することで、擬似的な遷移とする」という処理を書くと以下のようになる。
-          <pre class=js data-code=js><code translate=no class=language-js>&quot;use strict&quot;
-EventTarget.prototype.on = EventTarget.prototype.addEventListener
-
-async function getPage(url, option) {
-  const res    = await fetch(url, option)
-  const html   = await res.text()
-  const parser = new DOMParser()
-  const doc    = parser.parseFromString(html, &quot;text/html&quot;)
-  const title  = doc.title
-  const body   = doc.body
-  return { title, body }
-}
-
-window?.navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
-  if (e.canTransition === false) return
-  if (e.hashChange === true) return
-  if (e.downloadRequest !== null) return
-
-  e.transitionWhile((async () =&gt; {
-    const url    = e.destination.url
-    const signal = e.signal
-
-    signal.on(&quot;abort&quot;, () =&gt; {
-      console.log(&quot;navigation aborted&quot;)
-      location.reload()
-    })
-
-    const cache   = &quot;no-cache&quot;
-    const { title, body } = await getPage(url, { cache, signal })
-
-    document.title = title
-    document.body  = body
-  })())
-})
-
-window?.navigation?.on(&quot;navigatesuccess&quot;, (e) =&gt; {
-  console.log(e)
-})
-
-window?.navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
-  console.log(e)
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"use strict"</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">EventTarget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">prototype</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.on </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> EventTarget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">prototype</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.addEventListener</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> getPage</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">option</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url, option)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> html</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">   =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> parser</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> DOMParser</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> doc</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> parser.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">parseFromString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(html, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text/html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> title</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> doc.title</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> body</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">   =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> doc.body</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { title, body }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window?.navigation?.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (e.canTransition </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">return</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (e.hashChange </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">return</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (e.downloadRequest </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">return</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> url</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.destination.url</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> signal</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.signal</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    signal.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"abort"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigation aborted"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      location.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">reload</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> cache</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">   =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "no-cache"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> getPage</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url, { cache, signal })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.title </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> title</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.body  </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> body</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })())</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window?.navigation?.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigatesuccess"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window?.navigation?.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigateerror"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>(実装の雰囲気は Service Worker の <code translate=no>fetch</code> イベントのハンドラに近い)
           <p>途中の処理が全て成功(Resolve)すれば <code translate=no>navigatesuccess</code> イベントを発火し、失敗(Reject)すれば <code translate=no>navigateerror</code> が発火することで、結果を取得することもできる。
           <p>見た目上、同様のことを実現すること自体は従来でもできた。それを踏まえて、この API の何が凄いのかを細かく見ていこう。
@@ -461,8 +459,8 @@ window?.navigation?.on(&quot;navigateerror&quot;, (e) =&gt; {
           <h3 id="遷移の開始と完了"><a href="#遷移の開始と完了">遷移の「開始」と「完了」</a></h3>
           <p>まず、<code translate=no>transitionWhile()</code> は、呼び出した瞬間が「<em>遷移の開始</em>」で、全て終わったら「<em>遷移の完了</em>」であることがわかる。ここが <code translate=no>await</code> なので、<code translate=no>transitionWhile()</code> は渡された Promise が Resolve されるまでを「遷移」と定義していることになる。
           <p>この遷移(navigation event)が <code translate=no>navigation.navigate()</code> によって発火していた場合は、「開始」と「完了」が先ほどの <code translate=no>{ committed, finished }</code> Promise に対応することになる。
-          <pre class=js data-code=js><code translate=no class=language-js>// transitionWhile() による画面遷移が終わるのを待つ
-await navigation.navigate(url, state).finished</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// transitionWhile() による画面遷移が終わるのを待つ</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url, state).finished</span></span></code></pre>
           <p>この「開始」と「完了」というセマンティクスは、JS 上だけではなくブラウザ、支援技術、計測ツール、開発者ツールなど、あらゆる実装に対して有益な情報だ。
           <p>例えば、支援技術は MPA の画面が遷移したことを利用者に伝えることができるが、SPA の場合はそこをヒューリスティクスに頼らざるをえない部分があった。しかし、Navigation API によって明示的に知ることができるため、これを監視すれば SPA でも「今遷移が起こったこと」を伝えるといった応用が可能だ。
           <p>そして、「開始」と「完了」の間は「遷移中」なので、それを知ったブラウザはローディングインジケータ(DOM に開発者が表示するものではなく、タブに表示されるネイティブのもの)の表示に使えるし、「遷移中」にバツボタンに変わったそれをユーザがクリックしたら、渡されてきた AbortSignal を abort することで、<code translate=no>transitionWhile()</code> 内に中断処理を実現できる。
@@ -478,39 +476,39 @@ await navigation.navigate(url, state).finished</code></pre>
         <p>SPA におけるフォーカスやスクロールの管理は、軽視されがちなポイントの 1 つだ。
         <p>例えばボタンクリックによって擬似的な遷移が発生し画面が更新されても、ボタンの DOM 自体が残った場合、フォーカスもそこに残る。これは、画面が遷移したらフォーカスがページの先頭(<code translate=no>&lt;body&gt;</code>)や、<code translate=no>autofocus</code> 属性のある要素へリセットされる MPA と比べて直感的ではない場合がある。
         <p>これも <code translate=no>transitionWhile()</code> で遷移された場合は、ブラウザは「完了」を知ることによって、そのタイミングでフォーカスを <code translate=no>&lt;body&gt;</code> や <code translate=no>autofocus</code> にリセットすることができる。もし、特定の要素がフォーカス中だったページに「戻る」「進む」した場合に、その位置が復元されてほしいのであれば、<code translate=no>focusReset: &quot;manual&quot;</code> にしてリセットを無効化し、Entry に保存しておいた状態を <code translate=no>&quot;traverse&quot;</code> 時に復元すればよい。
-        <pre class=js data-code=js><code translate=no class=language-js>navigation.addEventListener(&quot;navigate&quot;, e =&gt; {
-  // 現在の focus を保存
-  const focused = document.activeElement.id
-  navigation.updateCurrentEntry({state: {focused}})
-
-  e.transitionWhile((async () =&gt; {
-    // 遷移
-  })(), { focusReset: &quot;manual&quot; })
-})
-
-navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
-  // 戻るだったら
-  if (navigation.transition.navigationType === &quot;traverse&quot;) {
-    const { focused } = navigation.currentEntry.getState()
-    document.getElementById(focused).focus()
-  }
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 現在の focus を保存</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> focused</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> document.activeElement.id</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">updateCurrentEntry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({state: {focused}})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // 遷移</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })(), { focusReset: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"manual"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigatesuccess"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 戻るだったら</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigation.transition.navigationType </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "traverse"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">focused</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getElementById</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(focused).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">focus</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
       </section>
       <section>
         <h2 id="スクロールの管理"><a href="#スクロールの管理">スクロールの管理</a></h2>
         <p>MPA では、「戻る」「進む」の場合に元いたスクロール位置が復元される。これはブラウザが自動で行っているが、SPA ではうまくいくとは限らない。
         <p>SPA でもブラウザはスクロール位置を復元しようとするが、そもそもいつ戻った画面が表示し終わったのかがわからないため、画面構築中にスクロールしてしまったりということが起こる。また、スクロールしようとしても、戻った時に該当の DOM がある保証もない。制御する方法も、History API では <code translate=no>history.scrollRestoration</code> に <code translate=no>&quot;auto&quot;</code> を指定してブラウザに任せるか、<code translate=no>&quot;manual&quot;</code> を指定して Opt-Out するしかなかった。
         <p>こちらも、<code translate=no>transitionWhile()</code> によって「完了」がわかるため、ブラウザはそのタイミングでスクロールの復元を試みる。もし、全ての Promise を待つ必要がない場合は、<code translate=no>scrollRestoration</code> を <code translate=no>&quot;manual&quot;</code> で Opt-Out しつつ、任意のタイミングで <code translate=no>e.restoreScroll()</code> を呼べば、そのタイミングで復元が行われる。
-        <pre class=js data-code=js><code translate=no class=language-js>navigation.addEventListener(&quot;navigate&quot;, e =&gt; {
-  e.transitionWhile((async () =&gt; {
-    const data = await fetchData()
-    await render(data)
-    // ここで復元したい
-    e.restoreScroll()
-    await sendMeasurement()
-    await sendReporting()
-  })(), { focusReset: &quot;manual&quot; })
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> data</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetchData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> render</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(data)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // ここで復元したい</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">restoreScroll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sendMeasurement</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sendReporting</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })(), { focusReset: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"manual"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>もちろん、<code translate=no>e.restoreScroll()</code> を呼ばずに、自分で State に保存した要素に <code translate=no>window.scrollTo()</code> しても良い。
       </section>
       <section>
@@ -529,34 +527,34 @@ navigation.addEventListener(&quot;navigatesuccess&quot;, () =&gt; {
             </li>
           </ul>
           <p>以下のように、POST の Entry を GET で <code translate=no>&quot;replace&quot;</code> してしまえば、POST の Entry は消えるため、「戻る」による問題がなくなる。この実装も、Navigation API がないブラウザでは通常の MPA として遷移するだけなので、Progressive な導入が可能だ。
-          <pre class=js data-code=js><code translate=no class=language-js>window?.navigation?.on(&quot;navigate&quot;, async (e) =&gt; {
-  console.log(e.type, e)
-  const pathname = new URL(e.destination.url).pathname
-  console.log({pathname})
-
-  if (pathname === &quot;/navigation/login&quot; &amp;&amp; e.formData) {
-    e.transitionWhile((async () =&gt; {
-      const res = await fetch(pathname, {
-        method: &quot;POST&quot;,
-        body: e.formData
-      })
-      const html  = await res.text()
-      const url   = new URL(res.url)
-      const state = { html }
-      await navigation.navigate(url.pathname, { history: &quot;replace&quot;, state }).finished
-    })())
-  }
-
-  if (pathname === &quot;/navigation/main.html&quot;) {
-    e.transitionWhile((async () =&gt; {
-      const { html }      = e.destination.getState()
-      const parser        = new DOMParser()
-      const {title, body} = parser.parseFromString(html, &quot;text/html&quot;)
-      document.title      = title
-      document.body       = body
-    })())
-  }
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window?.navigation?.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"navigate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e.type, e)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> pathname</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e.destination.url).pathname</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({pathname})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (pathname </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "/navigation/login"</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.formData) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(pathname, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        method: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"POST"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        body: e.formData</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      })</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> html</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> url</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">   =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(res.url)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> state</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { html }</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url.pathname, { history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"replace"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, state }).finished</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    })())</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (pathname </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "/navigation/main.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    e.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">transitionWhile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">html</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }      </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.destination.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> parser</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">        =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> DOMParser</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> parser.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">parseFromString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(html, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text/html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      document.title      </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> title</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      document.body       </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> body</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    })())</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         </section>
         <section>
           <h3 id="メディアの再生"><a href="#メディアの再生">メディアの再生</a></h3>

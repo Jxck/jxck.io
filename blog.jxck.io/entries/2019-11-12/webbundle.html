@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2019-11-12/webbundle.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>WebBundle によるコンテンツの結合と WebPackaging | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -225,38 +223,38 @@
           <h3 id="cddl"><a href="#cddl">CDDL</a></h3>
           <p>WebBundle のフォーマットは、CBOR のスキーマ定義である CDDL で表現されている。
           <p>特に仕様を読まなくても、見れば雰囲気でわかるだろう。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=cddl data-code=cddl><code translate=no class=language-cddl>webbundle = [
-  ; 🌐📦 in UTF-8.
-  magic: h&apos;F0 9F 8C 90 F0 9F 93 A6&apos;,
-  version: bytes .size 4,
-  primary-url: whatwg-url,
-  section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],
-  sections: [* any ],
-  length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
-]
-
-$section-name /= &quot;index&quot; / &quot;manifest&quot; / &quot;signatures&quot; / &quot;critical&quot; / &quot;responses&quot;
-
-$section /= index / manifest / signatures / critical / responses
-
-index = {* whatwg-url =&gt; [ variants-value, +location-in-responses ] }
-
-variants-value = bstr
-
-location-in-responses = (offset: uint, length: uint)
-
-manifest = whatwg-url
-
-responses = [*response]
-
-response = [headers: bstr .cbor headers, payload: bstr]
-
-headers = {* bstr =&gt; bstr}
-
-critical = [*tstr]
-
-whatwg-url = tstr</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cddl"><code translate="no"><span class="line"><span>webbundle = [</span></span>
+<span class="line"><span>  ; 🌐📦 in UTF-8.</span></span>
+<span class="line"><span>  magic: h'F0 9F 8C 90 F0 9F 93 A6',</span></span>
+<span class="line"><span>  version: bytes .size 4,</span></span>
+<span class="line"><span>  primary-url: whatwg-url,</span></span>
+<span class="line"><span>  section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],</span></span>
+<span class="line"><span>  sections: [* any ],</span></span>
+<span class="line"><span>  length: bytes .size 8,  ; Big-endian number of bytes in the bundle.</span></span>
+<span class="line"><span>]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$section-name /= "index" / "manifest" / "signatures" / "critical" / "responses"</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$section /= index / manifest / signatures / critical / responses</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>index = {* whatwg-url => [ variants-value, +location-in-responses ] }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>variants-value = bstr</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>location-in-responses = (offset: uint, length: uint)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>manifest = whatwg-url</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>responses = [*response]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>response = [headers: bstr .cbor headers, payload: bstr]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>headers = {* bstr => bstr}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>critical = [*tstr]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>whatwg-url = tstr</span></span></code></pre>
         </section>
         <section>
           <h3 id="magic"><a href="#magic">magic</a></h3>
@@ -295,30 +293,30 @@ whatwg-url = tstr</code></pre>
           <h3 id="section-length"><a href="#section-length">section-length</a></h3>
           <p>section-length には、それぞれの section 長さが書かれているため、特定の section にアクセスしたい場合、そこまでジャンプすることができるようになっている。
           <p>今回は、&quot;index&quot; と &quot;response&quot; しか使わないため、以下のようになる。
-          <pre class=json data-code=json><code translate=no class=language-json>[&quot;index&quot;,188,&quot;responses&quot;,1268]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"index"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">188</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"responses"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1268</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>ページ全体をまとめる場合、ファイル全体が大きくなることが容易に想像できるため、先頭からのシーケンシャルアクセスではなく、必要な部分へのインデックスアクセスを可能にしている。
         </section>
         <section>
           <h3 id="index"><a href="#index">index</a></h3>
           <p>responses section には、複数の Response が含まれる。その個々の Response の場所を示すのが index だ。
           <p>今回の場合、具体的には以下のようになる。
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
-  &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
-  &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
-  &quot;http://localhost.jxck.io:3000/favicon.ico&quot;: [[], 939, 329]
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:            [[],   </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">396</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/script.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">397</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">267</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/style.css"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">664</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">275</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/favicon.ico"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">939</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">329</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>各 URL に対応する Response が、responses セクションのどこ(offset)からどこ(length)までに入っているかを示している。
           <p>また、最初の <code translate=no>[]</code> にはヘッダで示されるバリエーションが含まれる。
           <p>例えば、多言語対応しており Content-Language が &quot;en&quot; と &quot;ja&quot; で、中身が変わる HTML がある場合、それらを区別でき、クライアントは展開時に必要なものを選ぶことができる。
           <p>さらに Content-Encoding が &quot;gz&quot; &quot;br&quot; とあった場合には、そこで 4 通りの組み合わせがあるため、ここにその組み合わせが入ることになる。
           <p>(仕様には、それを見る側のクライアントの挙動は書かれているが、サーバでどう生成するかといった部分は特に書かれてないため、雰囲気で入れる。)
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;gz&quot;],   1, 100],
-  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;ja;br&quot;], 101, 100],
-  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;gz&quot;], 201, 100],
-  &quot;http://localhost.jxck.io:3000/&quot;: [[&quot;en;br&quot;], 301, 100],
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ja;gz"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],   </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ja;br"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">101</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"en;gz"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">201</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"en;br"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">301</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>ただ、WebBundle のなかに gz や br といった同じコンテンツの圧縮タイプ違いを同居させるメリットはあまり無いように思う。
           <p>すると、多言語対応の Content-Language ベースのものになるが、Content-Language ヘッダを付けているサービスはあまり多くないのでコンテンツの中を見ないと作るのが難しい気がする。
         </section>
@@ -326,11 +324,11 @@ whatwg-url = tstr</code></pre>
           <h3 id="responses"><a href="#responses">responses</a></h3>
           <p>index で示された位置個々の Response が入る。
           <p>Response は Header と Body の配列からなる。
-          <pre class=json data-code=json><code translate=no class=language-json>[ [header1, body1],
-  [header2, body2],
-  [header3, body3]
-  //..
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[ [</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">header</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">body</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">header</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">body</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">header</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">body</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  //..</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>Header は CBOR でデシリアライズすると Map になる、つまり必要になってからパースすれば良い仕様だ。
           <p>Body はそのまま byte string で入っている。
           <p>このあたりも、Web Bundle を構成する response が増えても効率よく特定の response にアクセスできるように作られている。
@@ -345,75 +343,75 @@ whatwg-url = tstr</code></pre>
         <section>
           <h3 id="全体"><a href="#全体">全体</a></h3>
           <p>結果としては、だいたいこんな感じで組み立てた構造体を、CBOR の実装でエンコードすれば WebBundle になる。
-          <pre class=js data-code=js><code translate=no class=language-js>[
-  &quot;🌐📦&quot;,
-  [&quot;b&quot;,&quot;1&quot;,0,0],
-  &quot;http://localhost.jxck.io:3000/&quot;,
-  [&quot;index&quot;,188,&quot;responses&quot;,1268]
-  [
-    {
-      &quot;http://localhost.jxck.io:3000/&quot;:            [[],   1, 396],
-      &quot;http://localhost.jxck.io:3000/script.js&quot;:   [[], 397, 267],
-      &quot;http://localhost.jxck.io:3000/style.css&quot;:   [[], 664, 275],
-      &quot;http://localhost.jxck.io:3000/favicon.ico&quot;: [[], 939, 329]
-    }
-    [
-      [
-        {
-          &quot;:status&quot;:        &quot;200&quot;,
-          &quot;content-length&quot;: &quot;154&quot;,
-          &quot;content-type&quot;:   &quot;text/html&quot;,
-          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
-          &quot;etag&quot;:           &quot;401301-9a-5dc8f6aa&quot;,
-          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:50:34 GMT&quot;,
-          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
-          &quot;x-protocol&quot;:     &quot;http&quot;
-        }
-        &quot;&lt;!DOCTYPE html&gt;&lt;meta charset=utf-8&gt;&lt;title&gt;DEMO&lt;/title&gt;&lt;script src=script.js&gt;&lt;/script&gt;&lt;link rel=stylesheet type=text/css href=style.css&gt;&lt;h1&gt;Test&lt;/h1&gt;&quot;
-      ],
-      [
-        {
-          &quot;:status&quot;:        &quot;200&quot;,
-          &quot;content-length&quot;: &quot;21&quot;,
-          &quot;content-type&quot;:   &quot;text/javascript&quot;,
-          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
-          &quot;etag&quot;:           &quot;401302-15-5dc8f615&quot;,
-          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:48:05 GMT&quot;,
-          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
-          &quot;x-protocol&quot;:     &quot;http&quot;
-        },
-        &quot;console.log(\&quot;hello\&quot;)&quot;
-      ],
-      [
-        {
-          &quot;:status&quot;:        &quot;200&quot;,
-          &quot;content-length&quot;: &quot;35&quot;,
-          &quot;content-type&quot;:   &quot;text/css&quot;,
-          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
-          &quot;etag&quot;:           &quot;401303-23-5dc8f6a2&quot;,
-          &quot;last-modified&quot;:  &quot;Mon, 11 Nov 2019 05:50:26 GMT&quot;,
-          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
-          &quot;x-protocol&quot;:     &quot;http&quot;
-        },
-        &quot;body {background-color: #ccc;}&quot;
-      ],
-      [
-        {
-          &quot;:status&quot;:        &quot;200&quot;,
-          &quot;content-length&quot;: &quot;73&quot;,
-          &quot;content-type&quot;:   &quot;application/octet-stream&quot;,
-          &quot;date&quot;:           &quot;Mon, 11 Nov 2019 05:50:46 GMT&quot;,
-          &quot;etag&quot;:           &quot;8094f-49-5dbb97f5&quot;,
-          &quot;last-modified&quot;:  &quot;Fri, 01 Nov 2019 02:27:01 GMT&quot;,
-          &quot;server&quot;:         &quot;WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c&quot;,
-          &quot;x-protocol&quot;:     &quot;http&quot;
-        },
-        [/*bin of favicon*/]
-      ]
-    ]
-  ],
-  &lt;&lt;0,0,0,0,0,0,6,0&gt;&gt;
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "🌐📦"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"b"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"index"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">188</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"responses"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1268</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "http://localhost.jxck.io:3000/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:            [[],   </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">396</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "http://localhost.jxck.io:3000/script.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">397</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">267</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "http://localhost.jxck.io:3000/style.css"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">664</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">275</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">],</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "http://localhost.jxck.io:3000/favicon.ico"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [[], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">939</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">329</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          ":status"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"200"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-length"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"154"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text/html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "date"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:46 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "etag"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"401301-9a-5dc8f6aa"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "last-modified"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:34 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "server"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "x-protocol"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        }</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        "&#x3C;!DOCTYPE html>&#x3C;meta charset=utf-8>&#x3C;title>DEMO&#x3C;/title>&#x3C;script src=script.js>&#x3C;/script>&#x3C;link rel=stylesheet type=text/css href=style.css>&#x3C;h1>Test&#x3C;/h1>"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          ":status"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"200"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-length"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"21"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text/javascript"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "date"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:46 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "etag"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"401302-15-5dc8f615"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "last-modified"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:48:05 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "server"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "x-protocol"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        "console.log(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hello</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">)"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          ":status"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"200"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-length"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"35"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text/css"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "date"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:46 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "etag"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"401303-23-5dc8f6a2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "last-modified"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:26 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "server"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "x-protocol"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        },</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        "body {background-color: #ccc;}"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          ":status"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"200"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-length"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"73"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "content-type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"application/octet-stream"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "date"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mon, 11 Nov 2019 05:50:46 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "etag"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:           </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"8094f-49-5dbb97f5"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "last-modified"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Fri, 01 Nov 2019 02:27:01 GMT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "server"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"WEBrick/1.4.2 (Ruby/2.6.5/2019-10-01) OpenSSL/1.1.1c"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">          "x-protocol"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        [</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/*bin of favicon*/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ],</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  &#x3C;&#x3C;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">>></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         </section>
         <section>
           <h3 id=".wbn"><a href="#.wbn">.wbn</a></h3>
@@ -426,8 +424,8 @@ whatwg-url = tstr</code></pre>
         <p>MIME は <code translate=no>application/webbundle</code> が登録される予定になっている。
         <p>HTTP でサーブする場合は、Content-Type にこれを付与する。
         <p>また、sniff による脆弱性を防ぐために、最初から nosniff の設定が MUST となっている点も面白い。
-        <pre class=http data-code=http><code translate=no class=language-http>Content-Type: application/webbundle
-X-Content-Type-Options: nosniff</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/webbundle</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">X-Content-Type-Options</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> nosniff</span></span></code></pre>
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

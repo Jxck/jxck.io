@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-05-28T08:00:00+08:00",
-    "dateModified": "2026-03-07T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-05-28>2021-05-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -206,39 +204,39 @@
         <section>
           <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
           <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、README にある通りソースからビルドした。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=shell data-code=shell><code translate=no class=language-shell>git clone --depth 1 https://github.com/google/webpackager
-cd webpackager/cmd/webpkgserver
-go build .</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --depth</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://github.com/google/webpackager</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> webpackager/cmd/webpkgserver</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">go</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> build</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> .</span></span></code></pre>
           <p>これで <code translate=no>webpkgserver</code> コマンドが生成される。
           <p>実行には設定ファイルの toml を引数に渡す。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ webpkgserver --config webpkgserver.toml</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ webpkgserver --config webpkgserver.toml</span></span></code></pre>
         </section>
         <section>
           <h3 id="webpkgserver.toml"><a href="#webpkgserver.toml">webpkgserver.toml</a></h3>
           <p>設定ファイルは、同梱されている <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/webpkgserver.example.toml" target=_blank>webpkgserver.example.toml</a> を修正する。
           <p>ほとんどデフォルトが使えるため、Port と SXG 用の証明書、Domain あたりを気をつければ良いだろう。
-          <pre class=yaml data-code=yaml><code translate=no class=language-yaml>[Listen]
-  Port = 11000
-
-[Server]
-  DocPath = &apos;/priv/doc&apos;
-
-[SXG.Cert]
-  PEMFile = &apos;/keys/sxg/blog_jxck_io_full.crt&apos;
-  KeyFile = &apos;/keys/sxg/blog_jxck_io.key&apos;
-  CacheDir = &apos;/tmp/webpkg&apos;
-
-[SXG.ACME]
-  Enable = false
-
-[[Sign]]
-  Domain = &apos;blog.jxck.io&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  Port = 11000</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Server</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  DocPath = '/priv/doc'</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SXG.Cert</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  PEMFile = '/keys/sxg/blog_jxck_io_full.crt'</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  KeyFile = '/keys/sxg/blog_jxck_io.key'</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  CacheDir = '/tmp/webpkg'</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SXG.ACME</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  Enable = false</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Sign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  Domain = 'blog.jxck.io'</span></span></code></pre>
           <p>これを引数にするだけでサーバは起動する。
           <p>ローカルで起動した時点で、動作の確認は以下のように行うことができる。
-          <pre class=shell data-code=shell><code translate=no class=language-shell>export URL=&quot;https://blog.jxck.io/&quot;
-curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; http://127.0.0.1:11000/priv/doc/$URL &gt; dump.sxg
-dump-signedexchange -i dump.sxg</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> URL</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -s</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -H</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'accept: application/signed-exchange;v=b3,*/*;q=0.1'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> http://127.0.0.1:11000/priv/doc/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$URL </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dump.sxg</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dump-signedexchange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dump.sxg</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -257,35 +255,35 @@ dump-signedexchange -i dump.sxg</code></pre>
         <p>しかし、Google の Bot だけでなく、Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
         <p>これについては Q value を参照するように <a href="https://github.com/google/webpackager/blob/master/cmd/webpkgserver/README.md#content-negotiation" target=_blank>ドキュメント</a> に書かれている。
         <p>具体的には Chrome と Google Bot の付与する Accept は以下のように異なる。
-        <pre class=http data-code=http><code translate=no class=language-http># Google Bot
-Accept: text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8
-
-# Chrome 90
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Google Bot</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html,application/xhtml+xml,application/signed-exchange;v=b3,application/xml;q=0.9,*/*;q=0.8</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Chrome 90</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span></span></code></pre>
         <p>SXG に注目すると Chrome は Q value を HTML などよりも下げているが、Google Bot は Q value を下げずに HTML と同等にしていることがわかる。
         <p>ドキュメントでは、Google Bot は Q value を付与しないことで優先度を下げないため、Q value の有無が判断材料になると書かれており、それを Nginx で実現する正規表現の例が書かれている。
         <p>しかしドキュメントの正規表現が気に入らず、また本サイトでは h2o の mruby handler で対応するため、以下のように否定先読みで実現することとした。
-        <pre class=ruby data-code=ruby><code translate=no class=language-ruby>if /application\/signed-exchange;v=b3(?!;q=)/.match(env[&quot;HTTP_ACCEPT&quot;])
-  # reproxy to backend webpkgserver
-  next [307, {&quot;x-reproxy-url&quot; =&gt; &quot;http://127.0.0.1:11000/priv/doc/https://blog.jxck.io#{path}&quot;}, []]
-else
-  # fallthrough
-  next [399, {}, []]
-end</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF"> /application</span><span style="--shiki-light:#22863A;--shiki-light-font-weight:bold;--shiki-dark:#85E89D;--shiki-dark-font-weight:bold">\/</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">signed-exchange;v=b3(?!;q=)/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(env[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"HTTP_ACCEPT"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">])</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  # reproxy to backend webpkgserver</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">307</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"x-reproxy-url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> => </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http://127.0.0.1:11000/priv/doc/https://blog.jxck.io</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">#{path}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, []]</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  # fallthrough</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">399</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {}, []]</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span></span></code></pre>
         <p>ここまでが成功しているかは、以下のようにテストをすることができる。
-        <pre class=shell data-code=shell><code translate=no class=language-shell>export URL=&quot;https://blog.jxck.io/&quot;
-curl -s --output - -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; $URL &gt; dump.sxg
-dump-signedexchange -i dump.sxg -signature</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> URL</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -s</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -H</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'accept: application/signed-exchange;v=b3,*/*;q=0.1'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $URL </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dump.sxg</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dump-signedexchange</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dump.sxg</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -signature</span></span></code></pre>
         <section>
           <h3 id="webpkg"><a href="#webpkg"><code translate=no>/webpkg</code></a></h3>
           <p>webpkgserver は SXG に必要な Certificate URL を自動で提供してくれる。
           <p>そのパスは <code translate=no>/webpkg/cert/#{base64}</code> となっているため、ここへのリクエストはそのまま転送すれば良い。
-          <pre class=h2o data-code=h2o><code translate=no class=language-h2o>&quot;/webpkg&quot;:
-  proxy.reverse.url: &quot;http://127.0.0.1:11000/webpkg&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="h2o"><code translate="no"><span class="line"><span>"/webpkg":</span></span>
+<span class="line"><span>  proxy.reverse.url: "http://127.0.0.1:11000/webpkg"</span></span></code></pre>
           <p>dump した sxg の中に cert url があるためそこから URL を取得すると以下のようにテストできる。
-          <pre class=shell data-code=shell><code translate=no class=language-shell># dump certurl
-curl -s --output - https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE &gt; cert.cbor
-dump-certurl -i cert.cbor</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># dump certurl</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -s</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> -</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://blog.jxck.io/webpkg/cert/g8zY1NBH4DQt9qIWOWBqLWvs6jAnJmURAtNRc2WChDE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cert.cbor</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dump-certurl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cert.cbor</span></span></code></pre>
         </section>
       </section>
       <section>

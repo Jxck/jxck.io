@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>JSON-LD と Open Graph で構造化メタデータ対応 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -171,12 +169,12 @@
           <li><a href="https://dev.w3.org/html5/spec-preview/the-meta-element.html" target=_blank>https://dev.w3.org/html5/spec-preview/the-meta-element.html</a>
         </ul>
         <p>各要素は、テンプレート生成時に利用した値を埋め込んでいるため、<a href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html">本サイトの Atom RSS-feed</a> などと同じ値である。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;meta name=author content=Jxck&gt;
-&lt;meta name=description content=${this.description}&gt;
-&lt;meta name=keywords content=&quot;${this.tags}&quot;&gt;
-
-&lt;title&gt;${this.title} | blog.jxck.io&lt;/title&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">author</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">Jxck</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">description</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">${this.description}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">keywords</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"${this.tags}"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>${this.title} | blog.jxck.io&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>これで、<a href="https://support.google.com/webmasters/answer/79812?hl=ja" target=_blank>Google がサポートしているメタタグ</a> についてもカバーされている。
       </section>
       <section>
@@ -193,41 +191,41 @@
         <section>
           <h3 id="json-ld"><a href="#json-ld">JSON-LD</a></h3>
           <p>結果、以下のような <code translate=no>&lt;script&gt;</code> を埋め込んでいる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=&quot;application/ld+json&quot;&gt;
-{
-  &quot;@context&quot;: &quot;http://schema.org&quot;,
-  &quot;@type&quot;: &quot;BlogPosting&quot;,
-  &quot;mainEntityOfPage&quot;:{
-    &quot;@type&quot;:&quot;WebPage&quot;,
-    &quot;@id&quot;:&quot;https://blog.jxck.io&quot;
-  },
-  &quot;headline&quot;: &quot;${this.title} | blog.jxck.io&quot;,
-  &quot;image&quot;: {
-    &quot;@type&quot;: &quot;ImageObject&quot;,
-    &quot;url&quot;: &quot;https://jxck.io/assets/img/jxck.png&quot;,
-    &quot;height&quot;: 700,
-    &quot;width&quot;: 700
-  },
-  &quot;datePublished&quot;: &quot;${this.created_at}&quot;,
-  &quot;dateModified&quot;: &quot;${this.updated_at}&quot;,
-  &quot;author&quot;: {
-    &quot;@type&quot;: &quot;Person&quot;,
-    &quot;name&quot;: &quot;Jxck&quot;,
-    &quot;image&quot;: &quot;https://jxck.io/assets/img/jxck.png&quot;
-  },
-   &quot;publisher&quot;: {
-    &quot;@type&quot;: &quot;Organization&quot;,
-    &quot;name&quot;: &quot;Jxck&quot;,
-    &quot;logo&quot;: {
-      &quot;@type&quot;: &quot;ImageObject&quot;,
-      &quot;url&quot;: &quot;https://jxck.io/assets/img/jxck.png&quot;,
-      &quot;height&quot;: 60,
-      &quot;width&quot;: 257
-    }
-  },
-  &quot;description&quot;: &quot;${this.description}&quot;
-}
-&lt;/script&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"application/ld+json"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "@context": "http://schema.org",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "@type": "BlogPosting",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "mainEntityOfPage":{</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "@type":"WebPage",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "@id":"https://blog.jxck.io"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "headline": "${this.title} | blog.jxck.io",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "image": {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "@type": "ImageObject",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "url": "https://jxck.io/assets/img/jxck.png",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "height": 700,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "width": 700</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "datePublished": "${this.created_at}",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "dateModified": "${this.updated_at}",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "author": {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "@type": "Person",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "name": "Jxck",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "image": "https://jxck.io/assets/img/jxck.png"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">   "publisher": {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "@type": "Organization",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "name": "Jxck",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    "logo": {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      "@type": "ImageObject",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      "url": "https://jxck.io/assets/img/jxck.png",</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      "height": 60,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      "width": 257</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  "description": "${this.description}"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>フォーマットは Google の検証ツールを用いてチェックしながら作成した。
           <p><a href="https://developers.google.com/structured-data/testing-tool/" target=_blank>Structured Data Testing Tool</a>
           <p>悩んだ点として、Google の Validator では <code translate=no>publisher</code> が必須なのだが、<code translate=no>publisher</code> の <code translate=no>@type</code> は <code translate=no>Person</code> だと怒られる。
@@ -251,12 +249,12 @@
             <li><a href="https://dev.twitter.com/ja/cards/types/summary" target=_blank>twitter cards</a>
             <li><a href="https://cards-dev.twitter.com/validator" target=_blank>Card validator</a>
           </ul>
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;meta name=twitter:card        content=summary&gt;
-&lt;meta name=twitter:site        content=@jxck_&gt;
-&lt;meta name=twitter:url         content=${this.canonical}&gt;
-&lt;meta name=twitter:title       content=&quot;${this.title} | blog.jxck.io&quot;&gt;
-&lt;meta name=twitter:description content=&quot;${this.description}&quot;&gt;
-&lt;meta name=twitter:image       content=https://jxck.io/assets/img/jxck.png&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:card</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:site</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">@jxck_</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:url</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">         content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">${this.canonical}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:title</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">       content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"${this.title} | blog.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:description</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"${this.description}"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">twitter:image</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">       content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://jxck.io/assets/img/jxck.png</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         </section>
         <section>
           <h3 id="facebook"><a href="#facebook">Facebook</a></h3>
@@ -264,12 +262,12 @@
             <li><a href="https://developers.facebook.com/docs/sharing/webmasters" target=_blank>facebook open graph</a>
             <li><a href="https://developers.facebook.com/tools/debug/" target=_blank>facebook URL Debugger</a>
           </ul>
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;meta property=og:type        content=&quot;article&quot;&gt;
-&lt;meta property=og:url         content=${this.canonical}&gt;
-&lt;meta property=og:title       content=&quot;${this.title} | blog.jxck.io&quot;&gt;
-&lt;meta property=og:site_name   content=blog.jxck.io&gt;
-&lt;meta property=og:description content=&quot;${this.description}&quot;&gt;
-&lt;meta property=og:image       content=https://jxck.io/assets/img/jxck.png&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:type</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"article"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:url</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">         content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">${this.canonical}</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:title</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">       content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"${this.title} | blog.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:site_name</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">   content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">blog.jxck.io</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:description</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"${this.description}"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> property</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">og:image</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">       content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://jxck.io/assets/img/jxck.png</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         </section>
       </section>
       <section>

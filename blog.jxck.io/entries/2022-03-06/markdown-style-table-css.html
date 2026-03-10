@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Markdown の Table 記法を CSS で実現する | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -176,12 +174,12 @@
       <section>
         <h2 id="before"><a href="#before">Before</a></h2>
         <p>実現したいのは以下のような記法だ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=md data-code=md><code translate=no class=language-md>| file type | size | ratio |
-|:----------|-----:|------:|
-| .webp     | 9474 |  100% |
-| .webp.gz  | 2609 |   28% |
-| .webp.br  | 2544 |   27% |</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| file type | size | ratio |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">|:----------|-----:|------:|</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp     | 9474 |  100% |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp.gz  | 2609 |   28% |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp.br  | 2544 |   27% |</span></span></code></pre>
         <p>特に <code translate=no>&lt;thead&gt;</code>, <code translate=no>&lt;tbody&gt;</code> の間に入るセパレータ (<code translate=no>|:---|---:|---:|</code>) の部分の長さを内容に合わせるためには <code translate=no>&lt;td&gt;</code> 内の文字数を CSS 内で取得する必要がある。これは JS 無しには難しそうだった。JS は使いたくないし、もし使うしかないなら Houdini の Paint API などで実装したい。しかし、Paint API も当時は Text Rendering がサポートされてなかったため、それも諦めていた。
         <p>などと考えている間に飽きて、適当に border を dash にしただけのお粗末な実装で誤魔化していた。
         <p>
@@ -206,32 +204,32 @@
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
           <p>まず、自作のパーサでは以下のような HTML が生成される。Align は HTML の <code translate=no>align</code> 要素が <a href="https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align" target=_blank>Deprecated</a> だったため、<code translate=no>class</code> で実装している。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th class=align-left&gt;file type&lt;/th&gt;
-      &lt;th class=align-right&gt;size&lt;/th&gt;
-      &lt;th class=align-right&gt;ratio&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td class=align-left&gt;.webp&lt;/td&gt;
-      &lt;td class=align-right&gt;9474&lt;/td&gt;
-      &lt;td class=align-right&gt;100%&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td class=align-left&gt;.webp.gz&lt;/td&gt;
-      &lt;td class=align-right&gt;2609&lt;/td&gt;
-      &lt;td class=align-right&gt;28%&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td class=align-left&gt;.webp.br&lt;/td&gt;
-      &lt;td class=align-right&gt;2544&lt;/td&gt;
-      &lt;td class=align-right&gt;27%&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">thead</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>file type&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>size&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>ratio&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">thead</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tbody</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>.webp&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>9474&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>100%&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>.webp.gz&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2609&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>28%&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>.webp.br&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2544&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">align-right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>27%&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">tbody</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         </section>
         <section>
           <h3 id="css"><a href="#css">CSS</a></h3>
@@ -267,23 +265,23 @@
         <section>
           <h3 id="alternative-text"><a href="#alternative-text">Alternative Text</a></h3>
           <p>そこで、<a href="https://drafts.csswg.org/css-content-3/#alt" target=_blank>1.2. Alternative Text for Accessibility</a> に定義されているように Alternative Text を以下のように指定した。
-          <pre class=css data-code=css><code translate=no class=language-css>th::before,
-td::before {
-  content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
-  float: left;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">::before</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">::before</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"|"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 読み上げ等に対しては空文字として認識させる */</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>これで Chrome などのブラウザでは、Voice Over での読み上げにスタイル部分が無視されるようになった。
         </section>
         <section>
           <h3 id="fallback"><a href="#fallback">Fallback</a></h3>
           <p>しかし、Safari や Firefox は <code translate=no>content</code> の Alternative Text に対応してないため、このままでは <code translate=no>content</code> そのものが無視される。
           <p>通常、フォールバックとして Alternative Text 無しのものを先に指定することで見た目上は回避できる。
-          <pre class=css data-code=css><code translate=no class=language-css>th::before,
-td::before {
-  content: &quot;|&quot;; /* Safari 用のフォールバック */
-  content: &quot;|&quot; / &quot;&quot;; /* 読み上げ等に対しては空文字として認識させる */
-  float: left;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">th</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">::before</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">td</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">::before</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"|"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* Safari 用のフォールバック */</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"|"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 読み上げ等に対しては空文字として認識させる */</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>しかし、これでは Safari/Firefox を Voice Over で読み上げるような場合に、<code translate=no>content</code> 部分が認識される。もし先頭に 1 文字つく程度ならまだ許容できるかもしれないが、今回は文字が多いため、煩わしさは他の記法とも異なるだろう。
           <p>せっかく表としてマークアップしているのに、スタイルのために読みにくい状況になるのは不本意なため、Fallback の指定は辞め、Alternative Text 未対応のブラウザには Table の Markdown Style を適用するのをやめることにした。
         </section>
@@ -291,11 +289,11 @@ td::before {
           <h3 id="support-query"><a href="#support-query">Support query</a></h3>
           <p>Markdown Style を Table に提供しない場合は、<code translate=no>|</code> や <code translate=no>-</code> がなくなって罫線の無い Table になることを避けるため、以前自分が実装した border での実装をベースに提供することにした。
           <p>そして、<code translate=no>@supports</code> を用いて、以下のように Alternative Text に対応している場合のみ、Markdown Style CSS を適用している。
-          <pre class=css data-code=css><code translate=no class=language-css>/** default implementation */
-
-@supports (content: &quot;a&quot; / &quot;b&quot;) {
-  /** Markdown Style **/
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/** default implementation */</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@supports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"a"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"b"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /** Markdown Style **/</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -306,12 +304,12 @@ td::before {
           <h3 id="caption-記法"><a href="#caption-記法">Caption 記法</a></h3>
           <p>パーサとジェネレータは自作しているため、<code translate=no>&lt;figure&gt;</code> で囲むのは簡単だが、問題は <code translate=no>&lt;figcaption&gt;</code> の内容を Markdown 上どう表現するかだ。
           <p>Markdown は Caption の記法を標準で持たないため、様々な実装が独自の拡張として実装している。<code translate=no>[caption]</code> のように括弧で囲うタイプのものが多いが、<code translate=no>[]</code> に独自の意味を持つ実装は割と多いため、未対応の場合は単なる <code translate=no>&lt;p&gt;</code> として扱われるよう、<code translate=no>Caption: caption</code> という記法で Table の直前に置くことにした。
-          <pre class=md data-code=md><code translate=no class=language-md>Caption: Webp を gz/br 圧縮した結果
-| file type | size | ratio |
-|:----------|-----:|------:|
-| .webp     | 9474 |  100% |
-| .webp.gz  | 2609 |   28% |
-| .webp.br  | 2544 |   27% |</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="md"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Caption: Webp を gz/br 圧縮した結果</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| file type | size | ratio |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">|:----------|-----:|------:|</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp     | 9474 |  100% |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp.gz  | 2609 |   28% |</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">| .webp.br  | 2544 |   27% |</span></span></code></pre>
           <p>せっかくなので、論文のようにキャプションの前に &quot;表 1:&quot; のようなプレフィックスを CSS Counter を用いて付与し、以下のように表示するようにした。
           <p>
             <picture>

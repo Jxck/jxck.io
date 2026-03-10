@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-12-02/3pca-cookie.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>3PCA 2 日目: Cookie による区別と識別 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -163,41 +161,41 @@
       <section>
         <h2 id="cookie-とは"><a href="#cookie-とは">Cookie とは</a></h2>
         <p>例として、<a href="https://example.com" target=_blank>https://example.com</a> が以下のようなレスポンスを返すとする。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-Content-Type: text/html
-Content-Length: 1024
-Set-Cookie: deadbeef
-
-&lt;!doctype html&gt;
-
-...</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1024</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;!doctype html></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span></code></pre>
         <p>ブラウザは次に <a href="https://example.com" target=_blank>https://example.com</a> にアクセスするとき、必ずこの <code translate=no>Set-Cookie</code> の値を <code translate=no>Cookie</code> に載せて送信する。
-        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-Accept: text/html
-Cookie: deadbeef</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span></code></pre>
         <p>なお、この値は任意の文字列を指定可能だ。
       </section>
       <section>
         <h2 id="cookie-による区別"><a href="#cookie-による区別">Cookie による区別</a></h2>
         <p>さて、このように「送ったら次から送り返してくる」というシンプルな仕組みで、いったい何ができるのだろうか?そもそも何が嬉しいのか? これが重要だ。
         <p>例えば、ユーザが最初にアクセスしてくるときは <code translate=no>Cookie</code> を送ってこないため、「<code translate=no>Cookie</code> のないユーザは新しくアクセスしてきたユーザだ」ということがわかる。
-        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-Accept: text/html
-
-# Cookie が無いので新規訪問</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Cookie が無いので新規訪問</span></span></code></pre>
         <p>このレスポンスで、そのユーザに一意な ID を <code translate=no>Set-Cookie</code> する。
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-Content-Type: text/html
-Content-Length: 1024
-Set-Cookie: 31d4d96e407aad42 # 一意な ID を付与</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1024</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 31d4d96e407aad42 # 一意な ID を付与</span></span></code></pre>
         <p>以降、このユーザは Cookie の期限が切れるまで、これを返し続ける。
-        <pre class=http data-code=http><code translate=no class=language-http>GET / HTTP/1.1
-Host: example.com
-Accept: text/html
-Cookie: 31d4d96e407aad42 # 付与された ID を送ってくる</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 31d4d96e407aad42 # 付与された ID を送ってくる</span></span></code></pre>
         <p>これをアクセスしてくるユーザそれぞれに行えば、それぞれを ID で <em>区別</em> することが可能だ。
         <p>本来 HTTP とは、こうした識別子のようなものを持っておらず、デフォルトでは全員がまったく <em>区別</em> のつかないリクエストを送ってくるような作りになっている。もちろん、誰がアクセスしてきても同じコンテンツを返せばよい &quot;ブログ&quot; や &quot;Wiki&quot; のようなサービスなら良いが、これだけでは実現できないユースケースがある。
         <p>例えばショッピングカートだ。「商品をカゴに追加する」というリクエストが来ても、それをどのカゴに追加したらよいかわからなければ、実装ができない。

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-02-11/resource-hints.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Resource Hints API でリソースの投機的取得 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -193,17 +191,17 @@
         <h2 id="resource-hints"><a href="#resource-hints">Resource Hints</a></h2>
         <p>Resource Hints はそうしたリソース取得のヒントをブラウザに伝える API 群であり、基本的には前のページ(上記ならログインページ)の中で、次のページ(上記ならメインページ)で使うリソースのヒントを HTML の Link タグで記述する。
         <p>現在は四種類ある
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;
-&lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;
-&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
-&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dns-prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"preconnect"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"preconnect"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//cdn.example.com"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com/next-page.html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"use-credentials"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/library.js"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"script"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prerender"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com/next-page.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <section>
           <h3 id="dns-prefetch"><a href="#dns-prefetch">dns-prefetch</a></h3>
           <p>DNS の問い合わせを事前に行い、キャッシュしておくことで、名前解決コストを下げる方法である。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//example.com&quot;&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dns-prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>例えば、メインページで接続する API サーバや、CDN のエッジへの名前解決を行うなどが予想されるだろう。
           <p>以下のようなケースで使用できる。
           <ul>
@@ -215,8 +213,8 @@
           <h3 id="preconnect"><a href="#preconnect">preconnect</a></h3>
           <p>DNS の解決に加えて TCP の接続まで確立しておくことで、リクエストをすぐにでも発行できるようにする方法である。
           <p>仕様では、クロスオリジンも張ることができる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;preconnect&quot; href=&quot;//example.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;//cdn.example.com&quot; crossorigin&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"preconnect"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"preconnect"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//cdn.example.com"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>例えば API エンドポイントは決まっており、そこに対して連続したリクエストが発生すると分かっているような場合が予想される。
           <p>以下のようなケースで使用できる。
           <ul>
@@ -227,8 +225,8 @@
         <section>
           <h3 id="prefetch"><a href="#prefetch">prefetch</a></h3>
           <p>もはや取得するリソースが分かっており、それが投機的に取得しても内容が変わらないもの、要するに静的リソースである場合に、事前に取得してブラウザにキャッシュする方法である。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;prefetch&quot; href=&quot;/library.js&quot; as=&quot;script&quot;&gt;
-&lt;link rel=&quot;prefetch&quot; href=&quot;//example.com/next-page.html&quot; as=&quot;html&quot; crossorigin=&quot;use-credentials&quot;&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/library.js"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"script"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prefetch"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com/next-page.html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"use-credentials"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>以下のようなケースで使用できる。
           <ul>
             <li>既に URI が分かっている
@@ -239,7 +237,7 @@
           <h3 id="prerender"><a href="#prerender">prerender</a></h3>
           <p>prefetch 可能なリソースのみからなるページならば、ページ全体を事前に取得することが可能な筈である。
           <p>そこで、そのページ全体を取得し、バックグラウンドに起こしたタブの中で、描画まで行ってしまうという方法である。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;prerender&quot; href=&quot;//example.com/next-page.html&quot;&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"prerender"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"//example.com/next-page.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>描画が完了しているため、実際の遷移が発生したら、そのタブを切り替えるだけでよくなる。理論上は最速表示となるだろう。
           <p>以下のようなケースで使用できる。
           <ul>

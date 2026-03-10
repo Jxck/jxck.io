@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2026-02-25/sptth.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>ローカル HTTPS 開発専用ツール SPTTH を公開した | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -211,36 +209,36 @@
       <section>
         <h2 id="sptth"><a href="#sptth">SPTTH</a></h2>
         <p>以下のような設定を TOML に記述する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=toml data-code=toml><code translate=no class=language-toml>[dns]
-listen = &quot;127.0.0.1:53&quot;
-upstream = [&quot;1.1.1.1:53&quot;, &quot;8.8.8.8:53&quot;]
-
-[[record]]
-domain = &quot;example.com&quot;
-A = [&quot;127.0.0.1&quot;]
-AAAA = [&quot;::1&quot;]
-
-[[record]]
-domain = &quot;example.net&quot;
-A = [&quot;127.0.0.1&quot;]
-AAAA = [&quot;::1&quot;]
-
-[tls]
-ca_dir = &quot;~/.config/sptth/ca&quot;
-cert_dir = &quot;~/.config/sptth/certs&quot;
-
-[[proxy]]
-domain = &quot;example.com&quot;
-listen = &quot;127.0.0.1:443&quot;
-upstream = &quot;localhost:3000&quot;
-
-[[proxy]]
-domain = &quot;example.net&quot;
-listen = &quot;127.0.0.1:443&quot;
-upstream = &quot;localhost:4000&quot;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="toml"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dns</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">listen = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1:53"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">upstream = [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"1.1.1.1:53"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"8.8.8.8:53"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">record</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">domain = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.com"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">A = [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">AAAA = [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"::1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">record</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">domain = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.net"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">A = [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">AAAA = [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"::1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">tls</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ca_dir = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"~/.config/sptth/ca"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">cert_dir = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"~/.config/sptth/certs"</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">proxy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">domain = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.com"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">listen = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1:443"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">upstream = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"localhost:3000"</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">proxy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">domain = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.net"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">listen = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1:443"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">upstream = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"localhost:4000"</span></span></code></pre>
         <p>そして、以下のように実行する。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ sudo sptth config.toml</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sptth</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> config.toml</span></span></code></pre>
         <p>初回起動時にローカル CA を立ち上げるので、それを許可する。
         <p>あとは、OS の DNS 設定を 127.0.0.1 に変えるだけだ。
         <p>ブラウザから <a href="https://example.com" target=_blank>https://example.com</a> にアクセスすれば <a href="http://localhost:3000" target=_blank>http://localhost:3000</a> に、<a href="https://example.net" target=_blank>https://example.net</a> にアクセスすれば <a href="http://localhost:4000" target=_blank>http://localhost:4000</a> にアクセスできる。ローカル CA で署名した正しい証明書なので、URL バーも赤くならない。

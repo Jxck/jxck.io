@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-11-11/cli.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>1Password AC #8: 1Password CLI | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -180,10 +178,10 @@
       <section>
         <h2 id="1password-cli"><a href="#1password-cli">1Password CLI</a></h2>
         <p>1Password の CLI は、brew などのパッケージマネージャでインストールすることができる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ brew install 1password-cli</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> brew</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1password-cli</span></span></code></pre>
         <p>インストールされた <code translate=no>op</code> コマンドで、1Password にログインすれば、コマンドラインで 1Password のアイテムにアクセスできるようになる。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ op signin</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> op</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> signin</span></span></code></pre>
       </section>
       <section>
         <h2 id="環境変数のトークンアクセス"><a href="#環境変数のトークンアクセス">環境変数のトークンアクセス</a></h2>
@@ -201,8 +199,8 @@
           <p>次に、保存したアイテムの Secret Reference を取得する。これは以下のような値だ。
           <pre><code translate=no>op://Private/NPM_Access_Token/credential</code></pre>
           <p>この値は <code translate=no>op</code> コマンドで以下のように取得することができる。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ op read op://Private/NPM_Access_Token/credential
-test_npm_access_token</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> op</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> read</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> op://Private/NPM_Access_Token/credential</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">test_npm_access_token</span></span></code></pre>
         </section>
         <section>
           <h3 id="環境変数への埋め込み"><a href="#環境変数への埋め込み">環境変数への埋め込み</a></h3>
@@ -223,7 +221,7 @@ NPM_ACCESS_TOKEN=&quot;test_npm_access_token&quot;</code></pre>
           <p>昨今のマルウェアに感染すると、ローカルにあるこうしたファイルが窃取されることが知られている。これは、Infostealer と呼ばれ、窃取した NPM のトークンなどは、さらなるサプライチェーンアタックに転用されるといった事例が発覚している。
           <p>こうした攻撃に対策するには、ローカルから環境変数が直接書き込まれた <code translate=no>.env</code> ファイルをなくし、常に 1Password から値を取得して使うのが理想だ。環境変数であれ、パスワードと同じように常に隠しておいて、必要に応じて取得する方法だ。
           <p>1Password では、<code translate=no>op run</code> を用いると、以下のように実行することができる。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ op run --env-file=&quot;./.env_template&quot; -- npm start</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> op</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --env-file=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"./.env_template"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> start</span></span></code></pre>
           <p>これは、<code translate=no>.env_template</code> に値を埋め込み、それを環境変数に展開した状態で、後続の <code translate=no>npm start</code> を実行している。
           <p>後続のコマンドにだけ環境変数の値が見える状態になるため、今までどおりに実行できるうえに、環境変数が 1Password 以外のファイルに保存されない状態を作ることができる。
           <p>こうすれば、Infostealer に感染しても、被害を最小限に抑えることができるため、非常に効果的だ。

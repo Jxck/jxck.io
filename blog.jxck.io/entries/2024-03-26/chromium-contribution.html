@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T08:00:00+08:00",
-    "dateModified": "2026-03-06T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Chromium にコントリビュートするための周辺知識 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -255,7 +253,7 @@
             </li>
           </ul>
           <p>例えば「ファイルパスじゃなくて中身に、全部小文字の &quot;fetch&quot; が出てくる <code translate=no>.cc</code> でテストじゃないやつを blink 以下で探す」はこんな感じ。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
           <pre><code translate=no>content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test</code></pre>
           <p><code translate=no>lang:cpp</code> だと <code translate=no>.h</code> も入るので拡張子の方が絞れる。
           <p>よく使うもののおおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
@@ -549,18 +547,18 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
         <section>
           <h3 id="実行"><a href="#実行">実行</a></h3>
           <p>ビルド結果の実行は以下。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ out/Default/chrome</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ out/Default/chrome</span></span></code></pre>
           <p>オプションは色々ある。(TODO: まとめる)
         </section>
         <section>
           <h3 id="デバッグ"><a href="#デバッグ">デバッグ</a></h3>
           <p>開発者のほとんどがプリントデバッグだけで開発しているらしい。
           <p>基本はこれ。
-          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>LOG(ERROR) &lt;&lt; &quot;Foo&quot;;
-LOG(ERROR) &lt;&lt; __FILE__ &lt;&lt; &quot;Foo&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">LOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(ERROR) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">LOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(ERROR) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> __FILE__</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo"</span></span></code></pre>
           <p>レベルを分けることもできる
-          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>// --enable-logging=stderr --v=1
-DVLOG(1) &lt;&lt; __FILE__  &lt;&lt; &quot;Foo</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// --enable-logging=stderr --v=1</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">DVLOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> __FILE__</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  &#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo</span></span></code></pre>
           <p>他にも色々用意されている。よく使う型なら良い感じに変換されるようになってる。
           <ul>
             <li>
@@ -571,11 +569,11 @@ DVLOG(1) &lt;&lt; __FILE__  &lt;&lt; &quot;Foo</code></pre>
             </li>
           </ul>
           <p>stack trace の取り方はこう。
-          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>#include &quot;base/debug/stack_trace.h&quot;
-
-base::debug::StackTrace().Print();
-// or
-LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "base/debug/stack_trace.h"</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">base</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">debug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">StackTrace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">().</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// or</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">LOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(ERROR) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> base</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">debug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">StackTrace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span></code></pre>
           <p>詳細は以下。
           <ul>
             <li>
@@ -635,8 +633,8 @@ LOG(ERROR) &lt;&lt; base::debug::StackTrace();</code></pre>
         <section>
           <h3 id="unittest"><a href="#unittest">Unittest</a></h3>
           <p>unittest そのものをビルドして実行
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default unit_tests
-$ ./out/Debug/base_unittests</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ autoninja -C out/Default unit_tests</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./out/Debug/base_unittests</span></span></code></pre>
         </section>
         <section>
           <h3 id="web-tests-layout-tests"><a href="#web-tests-layout-tests">Web Tests (Layout Tests)</a></h3>
@@ -649,15 +647,15 @@ $ ./out/Debug/base_unittests</code></pre>
             </li>
           </ul>
           <p>blink_tests をビルドして run_web_tests.py で実行
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default blink_tests
-$ ./third_party/blink/tools/run_web_tests.py
-$ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ autoninja -C out/Default blink_tests</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./third_party/blink/tools/run_web_tests.py</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker/webexposed/global-interface-listing-service-worker.html</span></span></code></pre>
         </section>
         <section>
           <h3 id="flag"><a href="#flag">Flag</a></h3>
           <p>新しく入れた機能は、最初フラグの裏に隠されることが多い。
           <p>その場合は、以下のように有効にする。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ chrome --enable-features=SubresourceWebBundle</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ chrome --enable-features</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SubresourceWebBundle</span></span></code></pre>
           <p>この値は <code translate=no>*_features.json5</code> というファイルがいくつかあり、そこに書かれている。
           <ul>
             <li>
@@ -686,15 +684,15 @@ $ ./third_party/blink/tools/run_web_tests.py -t Default http/tests/serviceworker
               </ul>
             </li>
           </ul>
-          <pre class=cpp data-code=cpp><code translate=no class=language-cpp>// インラインならこう
-if (RuntimeEnabledFeatures::ResourceTimingContentEncodingEnabled()) {
-  builder.AddString(&quot;contentEncoding&quot;, contentEncoding());
-}
-
-// 定義ならこう
-interface URL {
-  [RuntimeEnabled=URLParse] static URL? parse(USVString url, optional USVString base);
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// インラインならこう</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">RuntimeEnabledFeatures</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ResourceTimingContentEncodingEnabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  builder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">AddString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"contentEncoding"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">contentEncoding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">());</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 定義ならこう</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">interface URL {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">RuntimeEnabled</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">URLParse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] static URL? parse(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">USVString</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">optional</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> USVString</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> base</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>blink の runtime_enabled_features.json5 に Status を Experimental で入れた機能は、そのまま Experimental Web Platform Feature に入る。
           <ul>
             <li>
@@ -705,10 +703,10 @@ interface URL {
             </li>
           </ul>
           <p>つまり
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  name: &quot;URLParse&quot;,
-  status: &quot;experimental&quot;,
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"URLParse"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"experimental"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>status は 3 種類
           <ul>
             <li>stable: 全プラットフォームで有効(通常 stable になったらこのエントリは消される)
@@ -718,13 +716,13 @@ interface URL {
           <p>experimental の場合に用いるフラグが、よく新機能を試すときに使うこれだ。
           <pre><code translate=no>chrome://flags/#enable-experimental-web-platform-features</code></pre>
           <p>Experimental で Origin Trials が始まると、それも features.json5 で管理される。
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  name: &quot;CompressionDictionaryTransport&quot;,
-  base_feature: &quot;none&quot;,
-  origin_trial_feature_name: &quot;CompressionDictionaryTransportV2&quot;,
-  origin_trial_allows_third_party: true,
-  public: true,
-},</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"CompressionDictionaryTransport"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  base_feature</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"none"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  origin_trial_feature_name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"CompressionDictionaryTransportV2"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  origin_trial_allows_third_party</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">  public</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">},</span></span></code></pre>
           <p>このフラグが外れる前は、A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
           <p>runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
           <p>もし、ロールアウトして問題があったりした場合に、Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
@@ -750,55 +748,55 @@ interface URL {
               </ul>
             </li>
           </ul>
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># まず新規作業用ブランチを作る
-$ git new-branch fix_typo
-
-# コードを書き普通にコミットを重ねる
-
-# branch
-$ git map-branches
-origin/main
-  chap2 *
-  fix_typo
-
-# 構成を見る
-$ git map
-615ffa720f	(HEAD -&gt; fix_typo) 2014-04-10
-beec6f4746	(origin/main, origin/HEAD) 2014-04-10
-41290e02b7	2014-04-10
-a76fde7b7b	2014-04-10
-9de7a713b3	2014-04-10
-073b0c203a	2014-04-10
-2250f532d7	2014-04-10
-33a7a742b7	2014-04-10
-
-# 書いたコードを gerrit にアップする
-$ git cl upload
-
-# またしばらくコードを書く
-
-# コードを更新する
-$ git rebase-update
-$ gclient sync
-$ git map
-* 93fe917ad1	(HEAD -&gt; fix-typo) 2014-04-10
-* 5d26fec369	(origin/main, origin/HEAD) 2014-04-10</code></pre>
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># Issue 番号で紐づける
-$ git cl issue 123456
-
-# 書いたコードを gerrit にアップする
-$ git cl upload</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># まず新規作業用ブランチを作る</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git new-branch fix_typo</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># コードを書き普通にコミットを重ねる</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># branch</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git map-branches</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">origin/main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  chap2 *</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  fix_typo</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 構成を見る</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git map</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">615ffa720f	(HEAD -> fix_typo) 2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">beec6f4746	(origin/main, origin/HEAD) 2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">41290e02b7	2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">a76fde7b7b	2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">9de7a713b3	2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">073b0c203a	2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2250f532d7	2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">33a7a742b7	2014-04-10</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 書いたコードを gerrit にアップする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git cl upload</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># またしばらくコードを書く</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># コードを更新する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git rebase-update</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ gclient sync</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git map</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">* 93fe917ad1	(HEAD -> fix-typo) 2014-04-10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">* 5d26fec369	(origin/main, origin/HEAD) 2014-04-10</span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># Issue 番号で紐づける</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git cl issue 123456</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 書いたコードを gerrit にアップする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git cl upload</span></span></code></pre>
           <p>なお、差分のサイズが大きいと <code translate=no>git cl upload</code> を実行した際に下記のエラーが出ることがある。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ git cl upload
-error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500
-send-pack: unexpected disconnect while reading sideband packet</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git cl upload</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">send-pack: unexpected disconnect while reading sideband packet</span></span></code></pre>
           <p>これは、git クライアントのバッファサイズの設定に起因している場合がある。
           <p>その際は、下記のようにして解消できる。ただし、この設定変更は git の公式ドキュメントで推奨されているわけではないようなので自己責任で行う。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session># git クライアントのバッファサイズを変更する
-# https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer
-$ git config --global http.postBuffer 157286400
-# 再び実行する
-$ git cl upload</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># git クライアントのバッファサイズを変更する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># https://git-scm.com/docs/git-config#Documentation/git-config.txt-httppostBuffer</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git config --global http.postBuffer 157286400</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 再び実行する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ git cl upload</span></span></code></pre>
         </section>
         <section>
           <h3 id="vscode"><a href="#vscode">VSCode</a></h3>
@@ -830,7 +828,7 @@ $ git cl upload</code></pre>
             </li>
           </ul>
           <p>これを作るコマンドがあるので、<code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ tools/clang/scripts/generate_compdb.py -p out/Default &gt; compile_commands.json</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tools/clang/scripts/generate_compdb.py -p out/Default </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> compile_commands.json</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -904,22 +902,22 @@ sqlite&gt; select * from table</code></pre>
           </ul>
           <p>しかし、Chromium の中では、この代わりに <code translate=no>/third_party/blink/tools</code> 以下のコマンドを使用するっぽい。
           <p>自分がビルドした Chromium のインスタンスで、特定の WPT を実行する。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ third_party/blink/tools/run_wpt_tests.py -t Default -p chrome third_party/blink/web_tests/external/wpt/resource-timing/content-encoding.https.html -vv</span></span></code></pre>
           <p>これで、該当の HTML がブラウザ上で実行され、テストが走るイメージ。
           <p>手動で実行して試したい場合は、サーバだけ起動してアクセスする。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ ./third_party/blink/tools/run_blink_wptserve.py
-Server running on http://localhost:8001
-Server running on http://localhost:8081
-Server running on http://localhost:8082
-Server running on http://localhost:8093
-Server running on https://localhost:8444
-Server running on https://localhost:8445
-Server running on https://localhost:8446
-Server running on https://localhost:8447
-Server running on https://localhost:9000
-Server running on ws://localhost:9001
-Server running on wss://localhost:9444
-WebTransportH3 server running on https://localhost:11000</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./third_party/blink/tools/run_blink_wptserve.py</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on http://localhost:8001</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on http://localhost:8081</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on http://localhost:8082</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on http://localhost:8093</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on https://localhost:8444</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on https://localhost:8445</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on https://localhost:8446</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on https://localhost:8447</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on https://localhost:9000</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on ws://localhost:9001</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on wss://localhost:9444</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">WebTransportH3 server running on https://localhost:11000</span></span></code></pre>
           <p>とりあえず 8001 ポートにアクセスすれば試せる。
           <p>テスト用のドメインとしては <code translate=no>web-platform.test</code> などのドメインが使われる。
           <p>これを解決できないと実行できないテストがある場合は、<code translate=no>/etc/hosts</code> に追加する必要があるが、その自動構成スクリプトは以下にある。
@@ -947,7 +945,7 @@ WebTransportH3 server running on https://localhost:11000</code></pre>
           </ul>
           <p>実装するとこのファイルの結果も変更し、全部通るとこのファイルを消すことができる。
           <p><code translate=no>--reset-results</code> をつけると、実行結果で expected ファイルを更新してくれる。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./third_party/blink/tools/run_web_tests.py -t Default --reset-results path-to-test.js</span></span></code></pre>
         </section>
         <section>
           <h3 id="content_shell"><a href="#content_shell">content_shell</a></h3>
@@ -962,7 +960,7 @@ content_shell took too long to startup.
 [2/2] external/wpt/url/url-statics-parse.any.html failed unexpectedly (content_shell crashed [pid=1287194])</code></pre>
           <p>content_shell はよくわかってないが、テストを流す前に対象がビルドできてないっぽい。
           <p>他のも含めてだいたい以下をビルドしてからテストを流すと良さそう。
-          <pre class=shell-session data-code=shell-session><code translate=no class=language-shell-session>$ autoninja -C out/Default blink_tests all_blink content_shell</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ autoninja -C out/Default blink_tests all_blink content_shell</span></span></code></pre>
         </section>
         <section>
           <h3 id="テストサーバ"><a href="#テストサーバ">テストサーバ</a></h3>
@@ -977,18 +975,18 @@ content_shell took too long to startup.
           </ul>
           <p>まず、普通にファイル (<code translate=no>/example/text.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
           <p>これにヘッダをつけたい場合は、.headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
-          <pre class=http data-code=http><code translate=no class=language-http>Access-Control-Allow-Origin: *</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Access-Control-Allow-Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> *</span></span></code></pre>
           <p>.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apache As-Is という仕様らしい)
-          <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-Content-Type: text/plain
-Content-Length: 5
-
-hello</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/plain</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 5</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">hello</span></span></code></pre>
           <p>動的にレスポンスを生成したい場合は wptserve という Python のサーバを書く。
-          <pre class=python data-code=python><code translate=no class=language-python>def main(request, response):
-    content_type = request.GET.first(&apos;content-type&apos;)
-    response.headers.set(b&apos;content-type&apos;, content_type)
-    response.content = b&apos;hello&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="python"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> main</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(request, response):</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    content_type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> request.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.first(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'content-type'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    response.headers.set(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">b</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'content-type'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, content_type)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    response.content </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> b</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'hello'</span></span></code></pre>
           <p>書き方は色々あるが、だいたい見ればわかるので、近くのファイルを参考にする。
         </section>
         <section>

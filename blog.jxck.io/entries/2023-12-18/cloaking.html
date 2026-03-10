@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-12-18/cloaking.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>3PCA 18 日目: Cloaking | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -176,7 +174,7 @@
           <h3 id="cname-cloaking"><a href="#cname-cloaking">CNAME Cloaking</a></h3>
           <p>まず最初に用いられたのは、CNAME を用いる方法だ。
           <p>例えば、ads.example が提供しているトラッカーを、<code translate=no>analytics.example.com</code> にデプロイし、<code translate=no>example.com</code> と SameSite にしたい場合、DNS を以下のように設定する。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
           <pre><code translate=no>analytics.example.com.    IN    CNAME    deadbeef.ads.example.</code></pre>
           <p>CNAME で事業者のレコードを参照すれば、そのサブドメインを事業者が運用できるのだ。このように CNAME を預ける方法を CNAME Cloaking (コートを預けるクロークのこと)と言う。
           <p>これは ITP 迂回の筆頭として問題になったので、Safari ではもちろん対策がされている。CNAME の先を辿って、最終的に 3rd Party だったら付与された Cookie を短命にするといったものだ。

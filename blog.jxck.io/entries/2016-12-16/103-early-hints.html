@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-12-16/103-early-hints.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -190,14 +188,14 @@
       <section>
         <h2 id="ステータスコードとヘッダ"><a href="#ステータスコードとヘッダ">ステータスコードとヘッダ</a></h2>
         <p>テキストベースプロトコルである HTTP/1.1 のレスポンスはこうなっている。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-Content-Length: 100
-Content-Type: text/html
-Link: &lt;/style.css&gt;; rel=preload
-Link: &lt;/script.js&gt;; rel=preload
-
-{response body}</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 100</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/style.css>; rel=preload</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/script.js>; rel=preload</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">response</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic"> body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>このバイト列を順にソケットに書いていく限り、Push のために送りたい Link ヘッダは、ステータスコードが決まってからでないと書き込むことができない。
         <p>そしてこのステータスコードが 200 なのか 404 なのか 500 なのかは、DB を叩いて見ないとわからないのだ。DB を引いている間に Link ヘッダだけを送るということは、従来の H1.1 の範囲では実現できない。
         <p>この制限のため、H1.1 に翻訳する形で H2 を使う場合、Push のポテンシャルを引き出すことができなかったのだ。
@@ -208,16 +206,16 @@ Link: &lt;/script.js&gt;; rel=preload
         <p><a href="https://tools.ietf.org/html/draft-kazuho-early-hints-status-code" target=_blank>An HTTP Status Code for Indicating Hints</a>
         <p>103 は、ヘッダだけを送る目的で使われ、実際のレスポンスは後から来るというセマンティクスになっている。
         <p>先の例の場合、DB を引いてる最中に Link だけを 103 で送り、残りは後から送る。
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 103 Early Hints
-Link: &lt;/style.css&gt;; rel=preload
-Link: &lt;/script.js&gt;; rel=preload
-
-
-HTTP/1.1 200 OK
-Content-Length: 100
-Content-Type: text/html
-
-{response body}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 103</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Early Hints</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/style.css>; rel=preload</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/script.js>; rel=preload</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 100</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">response</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic"> body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>Origin Server はリクエストを受信したのち、ステータスコードが決まる前に、サブリソースの存在を 103 でレスポンスする。
         <p>Reverse Proxy はこの 103 消費し、H2 Push に読み替えてクライアントに Push する。
         <p>Origin Server は User を DB から引いて、レスポンスコードが決まってから body とともにレスポンスを返す。

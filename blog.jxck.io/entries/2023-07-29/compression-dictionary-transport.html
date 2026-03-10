@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -179,7 +177,7 @@
       <section>
         <h2 id="brotli-の-dictionary"><a href="#brotli-の-dictionary">brotli の Dictionary</a></h2>
         <p>圧縮方式は、基本的に「同じ値が出てきたら、それらをまとめて小さく表現する」という方式が中心となる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
         <pre><code translate=no># 繰り返しを数値で表現する場合
 from: aaaabbbbb
 to:   a4b5</code></pre>
@@ -269,19 +267,19 @@ body, tr, input, textmeta name=&quot;robots&quot; conmethod=&quot;post&quot; act
           <p>例えば、テンプレートエンジンに値を埋め込んで作るタイプのページでは、埋め込む値のバリエーションは数あっても、テンプレートエンジン部分は共通している。
           <p>そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは圧縮率を上げられるといったものだ。
           <p>Shared Dictionary の場合は、辞書の元にしたいサンプルを指定し、そこから辞書を生成する。
-          <pre class=sh data-code=sh><code translate=no class=language-sh>$ ./dictionary_generator ./shared.dict ./*.template.html</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./dictionary_generator</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./shared.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.template.html</span></span></code></pre>
           <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、HTML に <code translate=no>&lt;link&gt;</code> で指定する。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/shared.dict&quot;&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dictionary"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/shared.dict"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>この HTML を表示した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの圧縮に利用できる。つまり Prefetch 方式であるため、例えばメインページのための辞書をログインページで落としておくといった、投機的な提供を行う必要がある。
           <p><code translate=no>/shared.dict</code> のレスポンスヘッダには、辞書が対象とするパスを以下のように指定する。
-          <pre class=http data-code=http><code translate=no class=language-http>Use-As-Dictionary: match=&quot;/path/to/target/*&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/path/to/target/*"</span></span></code></pre>
           <p>クライアントが <code translate=no>Use-As-Dictionary</code> に指定されたパスに遷移した際は、Brotli での CDT に対応していること(<code translate=no>sbr</code>)、そこで適用可能な辞書を持っていることを以下のようにリクエストヘッダに付与する。
-          <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
-Sec-Available-Dictionary: &lt;SHA-256 of Dictionary&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sbr</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;SHA-256 of Dictionary></span></span></code></pre>
           <p>サーバは、クライアントが指定してきた辞書を使用し、コンテンツを圧縮して返すことができる。
           <p>辞書を用いた圧縮を行った場合は、レスポンスは以下のようになる。辞書によって同一コンテンツのエンコーディング結果が変わるため、Cache のキーに辞書のハッシュを追加するように、<code translate=no>Sec-Available-Dictionary</code> を <code translate=no>Vary</code> に追加する。
-          <pre class=http data-code=http><code translate=no class=language-http>Content-Encoding: sbr
-Vary: Accept-Encoding, Sec-Available-Dictionary</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sbr</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Vary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Accept-Encoding, Sec-Available-Dictionary</span></span></code></pre>
           <p>辞書を事前に生成する方式であるため、静的サイトジェネレータなどと相性の良い方式と言えるだろう。
         </section>
       </section>
@@ -289,10 +287,10 @@ Vary: Accept-Encoding, Sec-Available-Dictionary</code></pre>
         <h2 id="delta-compression"><a href="#delta-compression">Delta Compression</a></h2>
         <p>ちょっとだけ違うリソースを連続して取得するような場面では、前回取得したものを辞書に圧縮を行えば、圧縮率を上げられる。そこで、既に取得したリソースを辞書とし、次に取得するリソースを差分圧縮するのが、Delta Compression だ。
         <p>例えばページごとにビルドされた JS は、フレームワーク部分など共通箇所が多いだろう。そこで、全てのページで JS のレスポンスに以下のヘッダを付与する。
-        <pre class=http data-code=http><code translate=no class=language-http>Use-As-Dictionary: match=&quot;/js/*&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/js/*"</span></span></code></pre>
         <p>この設定で、まず <code translate=no>a.js</code> を取得したブラウザは、次に <code translate=no>b.js</code> を取得する際に以下のようにリクエストを行う。
-        <pre class=http data-code=http><code translate=no class=language-http>Accept-Encoding: sbr
-Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sbr</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;SHA-256 of a.js></span></span></code></pre>
         <p>提示されたハッシュから、クライアントが <code translate=no>a.js</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>b.js</code> を <code translate=no>a.js</code> で圧縮して返すことで、差分圧縮が可能になる。Diff だけ送っているようなイメージだ。
         <p>辞書は特別なフォーマットではなく、どんなコンテンツでも利用することができることがわかるだろう。ほとんど同じでちょっとだけ異なる画像などであっても、同様に辞書として差分圧縮ができる。
         <p>以降の <code translate=no>b.js</code> にも <code translate=no>Use-As-Dictionary</code> を付与することで、それを更に <code translate=no>c.js</code> を圧縮する辞書として使うことができる。
@@ -349,54 +347,54 @@ Sec-Available-Dictionary: &lt;SHA-256 of a.js&gt;</code></pre>
           </li>
         </ul>
         <p>bazel を使ってこれをビルドする。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ git clone https://github.com/google/brotli.git
-$ cd brotli
-$ bazel build brotli
-$ cd research
-$ bazel build dictionary_generator
-$ ./dictionary_generator -h
-Usage: dictionary_generator [OPTION]... DICTIONARY [SAMPLE]...
-Options:
-  --dm       use &apos;deorummolae&apos; engine
-  --distill  rewrite samples; unique text parts are removed
-  --dsh      use &apos;durchschlag&apos; engine (default)
-  --purify   rewrite samples; unique text parts are zeroed out
-  --sieve    use &apos;sieve&apos; engine
-  -b#, --block_len=#
-             set block length for &apos;durchschlag&apos;; default: 1024
-  -s#, --slice_len=#
-             set slice length for &apos;distill&apos;, &apos;durchschlag&apos;, &apos;purify&apos;
-             and &apos;sieve&apos;; default: 16
-  -t#, --target_dict_len=#
-             set target dictionary length (limit); default: 16K
-  -u#, --min_slice_pop=#
-             set minimum slice population (for rewrites); default: 2
-  -c#, --chunk_len=#
-             if positive, samples are cut into chunks of this length;
-             default: 0; cannot mix with &apos;rewrite samples&apos;
-  -o#, --overlap_len=#
-             set chunk overlap length; default 0
-# is a decimal number with optional k/K/m/M suffix.
-WARNING: &apos;distill&apos; and &apos;purify&apos; will overwrite original samples!
-         Completely unique samples might become empty files.
-
-Unrecognized option &apos;-h&apos;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://github.com/google/brotli.git</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> brotli</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> bazel</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> build</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> brotli</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> research</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> bazel</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> build</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary_generator</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./dictionary_generator</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -h</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Usage:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary_generator</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [OPTION]... DICTIONARY [SAMPLE]...</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Options:</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  --dm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">       use</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'deorummolae'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> engine</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  --distill</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  rewrite</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> samples</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">unique</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> parts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> are</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> removed</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  --dsh</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      use</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'durchschlag'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> engine</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (default)</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  --purify</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   rewrite</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> samples</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">unique</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> parts</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> are</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zeroed</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> out</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  --sieve</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    use</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'sieve'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> engine</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -b#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --block_len=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> block</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> length</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> for</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'durchschlag'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">default:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1024</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -s#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --slice_len=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> slice</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> length</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> for</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'distill',</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'durchschlag',</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'purify'</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">             and</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'sieve'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">default:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 16</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -t#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --target_dict_len=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> target</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> length</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (limit); </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">default:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 16K</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -u#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --min_slice_pop=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> minimum</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> slice</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> population</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (for </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">rewrites</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">default:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -c#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --chunk_len=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">             if</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> positive,</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> samples</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> are</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cut</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> into</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> chunks</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> of</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> this</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> length</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">             default:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cannot</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> mix</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> with</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'rewrite samples'</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -o#,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --overlap_len=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">#</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">             set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> chunk</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> overlap</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> length</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">default</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># is a decimal number with optional k/K/m/M suffix.</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">WARNING:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'distill'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> and</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'purify'</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> will</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> overwrite</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> original</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> samples!</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">         Completely</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> unique</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> samples</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> might</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> become</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> empty</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> files.</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Unrecognized</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> option</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '-h'</span></span></code></pre>
         <p>これを用いてソースとなるファイルから辞書を生成する。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ dictionary_generator ./shared.dict ./template/*.ejs</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary_generator</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./shared.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./template/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.ejs</span></span></code></pre>
         <p>基本的に静的ファイルは Cache Busting しておきたいので、<code translate=no>Sec-Available-Dictionary</code> に利用される SHA256 の値でファイルをリネームしておく。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ sha256sum ./shared.dict
-91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2
-$ mv shared.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sha256sum</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./shared.dict</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> mv</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> shared.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict</span></span></code></pre>
         <p>この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、辞書に用いたコンテンツに応じて任意のものを使ってよいとされている。
         <p>つまり、HTML をソースにしたら辞書も <code translate=no>text/html</code> となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 <code translate=no>text/plain</code> としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
         <p>この辞書を index.html の HTML でアドバタイズする。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=&quot;dictionary&quot; href=&quot;/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict&quot;&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dictionary"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>次に、先程ビルドした brotli リポジトリのバイナリを使って、テンプレートを使って生成した各 HTML を、辞書を使って圧縮する。
-        <pre class=sh data-code=sh><code translate=no class=language-sh>$ brotli \
-  -f \
-  --dictionary=91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict \
-  --suffix=.sbr \
-  /path/to/entry.html</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> brotli</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -f</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --dictionary=91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --suffix=.sbr</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  /path/to/entry.html</span></span></code></pre>
         <p>最後に、サーバが <code translate=no>Accept-Encoding: sbr</code> に対して、指定されたハッシュと同じ辞書で圧縮した <code translate=no>.sbr</code> ファイルを返すようにデプロイすれば完了だ。
       </section>
       <section>

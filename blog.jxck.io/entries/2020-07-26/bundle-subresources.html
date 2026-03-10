@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-07-26T08:00:00+08:00",
-    "dateModified": "2026-03-07T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Webbundle によるサブリソース取得の最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -184,136 +182,136 @@
           <h3 id="gen-bundle"><a href="#gen-bundle">gen-bundle</a></h3>
           <p>実際に <a href="https://github.com/WICG/webpackage/tree/master/go/bundle/cmd/gen-bundle" target=_blank>gen-bundle</a> を用いてサブリソースのみを Bundle する。
           <p>サブリソースを以下のように subresource ディレクトリにまとめたとする。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ls subresource
-  a.js
-  b.js
-  c.css
-  d.css
-  e.png
-  favicon.ico</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ls subresource</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  a.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  b.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  c.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  d.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  e.png</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  favicon.ico</span></span></code></pre>
           <p>なお、<code translate=no>a.js</code> は <code translate=no>b.js</code> を import し、<code translate=no>c.css</code> は <code translate=no>d.css</code> を import している。
           <p>gen-bundle は <code translate=no>-dir</code> を指定するとディレクトリ以下をまるっと bundle してくれる。
           <p>CLI の仕様上 <code translate=no>-primaryURL</code> (HTML を頂点とする Bundle での HTML の URL)が必須だが、Subresource の場合は特定の Primary が存在しない。Chrome の実装もこれを無視しているようなので、適当に指定している。
           <p><code translate=no>-headerOverride</code> でヘッダを追加することもできる。フォーマットの仕様上は個々のリソースごとに別々にヘッダを追加可能だが、この CLI は全てのリソースに追加される。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ gen-bundle \
-    -version b1 \
-    -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \
-    -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \
-    -dir subresource/ \
-    -headerOverride &quot;Cache-Control: max-age=60&quot; \
-    -o bundle.wbn</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ gen-bundle \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -version b1 \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -baseURL    https://labs.jxck.io/webpackaging/subresource-webbundle/ \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -primaryURL https://labs.jxck.io/webpackaging/subresource-webbundle/a.js \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -dir subresource/ \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -headerOverride "Cache-Control: max-age=60" \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -o bundle.wbn</span></span></code></pre>
           <p>dump-bundle すると以下のようになる。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ dump-bundle -i bundle.wbn
-
-Version: b1
-Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
-&lt; :status: 200
-&lt; Content-Type: [application/javascript]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]
-&lt; Content-Length: [54]
-&lt; [len(Body)]: 54
-import {data} from &apos;./b.js&apos;
-console.log(&apos;a.js&apos;, data)
-
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
-&lt; :status: 200
-&lt; Content-Length: [43]
-&lt; Content-Type: [application/javascript]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]
-&lt; [len(Body)]: 43
-export const data = 10
-console.log(&apos;b.js&apos;)
-
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
-&lt; :status: 200
-&lt; Content-Type: [text/css; charset=utf-8]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; Last-Modified: [Fri, 24 Jul 2020 08:35:13 GMT]
-&lt; Content-Length: [17]
-&lt; [len(Body)]: 17
-@import &apos;d.css&apos;;
-
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/d.css
-&lt; :status: 200
-&lt; Last-Modified: [Fri, 24 Jul 2020 08:34:57 GMT]
-&lt; Content-Length: [57]
-&lt; Content-Type: [text/css; charset=utf-8]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; [len(Body)]: 57
-h1 {
-  color: red;
-}
-
-img {
-  border: solid 1px black;
-}
-
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/e.png
-&lt; :status: 200
-&lt; Content-Type: [image/png]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]
-&lt; Content-Length: [1993]
-&lt; [len(Body)]: 1993
-[non-text body]
-
-&gt; :url: https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico
-&lt; :status: 200
-&lt; Content-Type: [image/vnd.microsoft.icon]
-&lt; Accept-Ranges: [bytes]
-&lt; Cache-Control: [max-age=60]
-&lt; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]
-&lt; Content-Length: [5686]
-&lt; [len(Body)]: 5686
-[non-text body]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ dump-bundle -i bundle.wbn</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Version: b1</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Primary URL: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/a.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [application/javascript]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [54]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 54</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">import {data} from './b.js'</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">console.log('a.js', data)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/b.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [43]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [application/javascript]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Sat, 13 Jun 2020 10:56:18 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 43</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">export const data = 10</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">console.log('b.js')</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/c.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [text/css; charset=utf-8]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Fri, 24 Jul 2020 08:35:13 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [17]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 17</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">@import 'd.css';</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/d.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Fri, 24 Jul 2020 08:34:57 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [57]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [text/css; charset=utf-8]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 57</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">h1 {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  color: red;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">img {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  border: solid 1px black;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/e.png</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [image/png]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [1993]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 1993</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">[non-text body]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">> :url: https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; :status: 200</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Type: [image/vnd.microsoft.icon]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Accept-Ranges: [bytes]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Cache-Control: [max-age=60]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Last-Modified: [Sat, 06 Jun 2020 10:56:17 GMT]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; Content-Length: [5686]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">&#x3C; [len(Body)]: 5686</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">[non-text body]</span></span></code></pre>
         </section>
         <section>
           <h3 id="link-rel-bundle"><a href="#link-rel-bundle">link rel bundle</a></h3>
           <p>この Bundle を読み込む HTML は以下のようになる。
           <p>普通にサブリソースを読む HTML に加え、<code translate=no>&lt;link&gt;</code> で web bundle の読み込みを指定する。
           <p>この resources 属性に、bundle 側で解決する URL を absolute URL で明示する必要がある。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;!DOCTYPE html&gt;
-&lt;meta charset=utf-8&gt;
-&lt;meta name=viewport content=&quot;width=device-width,initial-scale=1&quot;&gt;
-&lt;title&gt;Subresource Web Bundle DEMO&lt;/title&gt;
-
-&lt;link href=favicon.ico rel=&quot;shortcut icon&quot; type=image/x-icon&gt;
-
-&lt;link rel=webbundle
-      href=bundle.wbn
-      resources=&quot;
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/a.js
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/b.js
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/c.css
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/d.css
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/e.png
-                 https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico
-                 &quot;/&gt;
-
-&lt;h1&gt;Subresource Web Bundle DEMO&lt;/h1&gt;
-
-&lt;script  src=a.js  type=module&gt;&lt;/script&gt;
-&lt;link   href=c.css rel=stylesheet&gt;
-&lt;img     src=e.png width=100&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;!</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DOCTYPE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> html</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> charset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">utf-8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">meta</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">viewport</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> content</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"width=device-width,initial-scale=1"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Subresource Web Bundle DEMO&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">favicon.ico</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"shortcut icon"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">image/x-icon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">webbundle</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">      href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">bundle.wbn</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">      resources</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/a.js</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/b.js</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/c.css</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/d.css</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/e.png</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://labs.jxck.io/webpackaging/subresource-webbundle/favicon.ico</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 "</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Subresource Web Bundle DEMO&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">a.js</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">module</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">   href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">c.css</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">stylesheet</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">     src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">e.png</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         </section>
         <section>
           <h3 id="挙動"><a href="#挙動">挙動</a></h3>
           <p>Chrome Canary を flag 付きで起動する。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ open -a /Applications/Google\ Chrome\ Canary.app --args --enable-features=SubresourceWebBundles</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ open -a /Applications/Google</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\ </span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Chrome</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\ </span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Canary.app --args --enable-features</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SubresourceWebBundles</span></span></code></pre>
           <p>HTML にアクセスすると、以下の様にサブリソースが bundle から解決されていることがわかる。
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/bundle.html</a>
@@ -329,27 +327,27 @@ img {
           <p>もし、ブラウザが Subresource Bundling に対応していなければ、<code translate=no>&lt;link rel=webbundle&gt;</code> が無視され個別にリクエストが走ることになる。
           <p>ここでは wbn は no-store としているが、展開されたサブリソースは wbn 内で設定された Cache-Control が効いているため、個別にキャッシュが行われている。
           <p>また、ここでは一切署名を用いてないため、リソースの URL を別のものにすることも可能だ。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ gen-bundle \
-    -version b1 \
-    -baseURL    https://example.com/webpackaging/subresource-webbundle/ \
-    -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \
-    -dir subresource/ \
-    -headerOverride &quot;Cache-Control: max-age=60&quot; \
-    -o bundle-3p.wbn</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ gen-bundle \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -version b1 \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -baseURL    https://example.com/webpackaging/subresource-webbundle/ \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -primaryURL https://example.com/webpackaging/subresource-webbundle/a.js \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -dir subresource/ \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -headerOverride "Cache-Control: max-age=60" \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -o bundle-3p.wbn</span></span></code></pre>
           <p>html はこうなる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=webbundle
-      href=bundle-3p.wbn
-      resources=&quot;
-                 https://example.com/webpackaging/subresource-webbundle/a.js
-                 https://example.com/webpackaging/subresource-webbundle/b.js
-                 https://example.com/webpackaging/subresource-webbundle/c.css
-                 https://example.com/webpackaging/subresource-webbundle/d.css
-                 https://example.com/webpackaging/subresource-webbundle/e.png
-                 https://example.com/webpackaging/subresource-webbundle/favicon.ico
-                 &quot;/&gt;
-&lt;script  src=https://example.com/webpackaging/subresource-webbundle/a.js  type=module&gt;&lt;/script&gt;
-&lt;link   href=https://example.com/webpackaging/subresource-webbundle/c.css rel=stylesheet&gt;
-&lt;img     src=https://example.com/webpackaging/subresource-webbundle/e.png width=100&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">webbundle</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">      href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">bundle-3p.wbn</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">      resources</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/a.js</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/b.js</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/c.css</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/d.css</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/e.png</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 https://example.com/webpackaging/subresource-webbundle/favicon.ico</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                 "</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://example.com/webpackaging/subresource-webbundle/a.js</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">module</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">   href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://example.com/webpackaging/subresource-webbundle/c.css</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">stylesheet</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">     src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://example.com/webpackaging/subresource-webbundle/e.png</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">100</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>つまり、3rd Party のサブリソースを読み込む際に、その配信元が webbundle に対応していなくとも、1st Party 側が Bundle を生成して配信することが可能ということになる。それで良いのかは仕様がきちんと出てから議論されるのではないだろうか。
         </section>
         <section>
@@ -357,11 +355,11 @@ img {
           <p>JS だけではなくあらゆる Subresource を対象に bundle できるということは、Web の開発を Component 単位で扱うようになり始めた今日のワークフローにもマッチするようになるだろう。
           <p>HTML, CSS, JS, Img などをまとめて、いわゆる WebComponent の単位で bundle を生成するといったことも可能だ。
           <p>以下の DEMO は、<code translate=no>&lt;profile-card&gt;</code> を Custom Element として実装し、そこに必要なリソースを bundle している。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ls profile-card
-  jxck.png
-  profile-card.js
-  style.css
-  template.html</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ls profile-card</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  jxck.png</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  profile-card.js</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  style.css</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  template.html</span></span></code></pre>
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html" target=_blank>https://labs.jxck.io/webpackaging/subresource-webbundle/webcomponents.html</a>
           </ul>

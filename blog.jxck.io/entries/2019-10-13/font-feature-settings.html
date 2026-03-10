@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-10-13T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Noto Sans Hinted と font-feature-settings: &apos;palt&apos; | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -186,8 +184,8 @@
         <p>しかし、そういった文字はほぼサンプルコードとしてコードブロック(<code translate=no>&lt;code&gt;</code>)に含まれており、かつそこには MONO font が当たっている。
         <p>そこで、コードブロックに含まれてない特殊な文字を全てコードブロックに含むように記事を修正し、HTML から <code translate=no>&lt;code&gt;</code> を全て除いた文字群をサブセットの対象とした。
         <p>対象を subset.txt に保存し、変換は以下のようにした。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features=&apos;*&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">../subset.txt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --layout-features</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'*'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --flavor</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">woff2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --output-file</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">NotoSansCJKjp-Regular-Jxck-20191011.woff2</span></span></code></pre>
       </section>
       <section>
         <h2 id="layout-features"><a href="#layout-features">layout features</a></h2>
@@ -197,7 +195,7 @@
           <li>606.6K: 更新後
         </ul>
         <p>コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>--layout-features=&apos;*&apos;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">--layout-features='*'</span></span></code></pre>
         <p>この layout features は、Open Type のフォントが含む、ヒント情報を含めるという指定だ。
         <p>Open Type がいくつかの情報を持っていることは薄々知っていたが、以下の理由から特に考えずにきた。
         <ul>
@@ -253,7 +251,7 @@
         <p>DEMO でみた halt は割と良さそうに見えたが、ブログ全体に適用したところあまり良くなかったため不採用とした。
         <p>palt とは別に、字体を置き換える pwid があるが、そちらは Chrome か Noto Sans CJK JP が対応してないようだ。
         <p>そこで結果として <code translate=no>palt</code> のみを指定してフォントをビルドすることにした。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features=&apos;palt&apos; --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ pyftsubset NotoSansCJKjp-Regular.otf --text-file</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">../All.txt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --layout-features</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'palt'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --flavor</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">woff2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --output-file</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">NotoSansCJKjp-Regular-Jxck-20191011.woff2</span></span></code></pre>
         <p>結果は以下である。
         <ul>
           <li>353.1K: 従来
@@ -262,9 +260,9 @@
         </ul>
         <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
         <p>またこのヒントを有効にするため、CSS に以下を追加した。
-        <pre class=css data-code=css><code translate=no class=language-css>body {
-  font-feature-settings: &quot;palt&quot;
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-feature-settings</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"palt"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>before/after は以下のようになる。
         <p>
           <picture>

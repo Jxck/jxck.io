@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-05-01/layered-apis.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Layered APIs と High Level API の標準化指針 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -213,26 +211,26 @@
         <h2 id="layered-apis-fallback-syntax"><a href="#layered-apis-fallback-syntax">Layered APIs fallback syntax</a></h2>
         <p>これまで Polyfill へのフォールバックは、様々な方法で行われてきた。
         <p>例えば以下のような例を考える。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>if (window.AsyncLocalStorage=== undefined) {
-  // polyfill for async local storage
-}
-
-window.AsyncLocalStorage // native or polyfill</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (window.AsyncLocalStorage</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> undefined</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // polyfill for async local storage</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.AsyncLocalStorage </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// native or polyfill</span></span></code></pre>
         <p>この例では、あらかじめ polyfill のコードを読み込んでおき、Global における関数の有無を用いてどちらの実装を使うかを切り分けている。
         <p>この場合、もしブラウザが API を実装していても、使われない Polyfill のコードは依然として読み込まれることになる。
         <p>また、新しい API を global に追加していくことは、影響もメンテナンスコストも大きい。
         <p>そこで、ES Module の API を用いて、以下のように読み込む構文拡張が提案されている。
-        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage&quot;;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { storage } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "std:async-local-storage"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
         <p>現行の仕様では <code translate=no>from</code> の後ろには module への URL が書かれるが、ここに <code translate=no>std:</code> で始まるラベルを書くと、ブラウザの実装する標準 API を読み込むことができる。
         <p>これは Opt-In で読み込むことになるため、Global を汚染せずに新しい API を Ship できるというメリットがある。
         <p>また以下のように書くと、もしブラウザが実装していなかった場合に、後半に書いた polyfill へフォールバックすることができる。
-        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { storage } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "std:async-local-storage|https://cdn.example.com/async-local-storage.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
         <p>これにより、もしブラウザに実装があれば、polyfill のコードは読み込む必要がなくなり、ネットワークコストが削減される。
         <p>また、最初からこの形で書いておけば、ブラウザの実装の差を低いコストで埋め、そのまま放置されてもネイティブのコードで置き換わるため、移行コストを低く抑えることができる。
         <p>同じことは、HTML Element の実装においても利用が想定されている。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;script type=module src=&quot;std:infinite-list|https://some.cdn.com/infinite-list.js&quot;&gt;&lt;/script&gt;
-&lt;infinite-list&gt;&lt;/infinite-list&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">module</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"std:infinite-list|https://some.cdn.com/infinite-list.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">infinite-list</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">infinite-list</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>いずれも、まだ提案段階の仕様である。
         <ul>
           <li><a href="https://docs.google.com/document/d/1jRQjQP8DmV7RL75u_67ps3SB1sjfa1bFZmbCMfJCvrM" target=_blank>Layered web APIs fallback syntax</a>
@@ -273,7 +271,7 @@ window.AsyncLocalStorage // native or polyfill</code></pre>
           <li><a href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html">Polyfill のあり方と Web の進化と協調するためのガイドライン | blog.jxck.io</a>
         </ul>
         <p>例えば、以下の場合 polyfill とブラウザの実装で API が異なる場合は、ブラウザアップデートでアプリが壊れることになる。
-        <pre class=js data-code=js><code translate=no class=language-js>import { storage } from &quot;std:async-local-storage|https://cdn.example.com/async-local-storage.js&quot;;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { storage } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "std:async-local-storage|https://cdn.example.com/async-local-storage.js"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
         <p>もし十分に API が議論される前に「先走った Polyfill」が作られるとその問題は必ず起こる。
         <p>また、経験上 <code translate=no>std:xxx</code> のタグは取り合いになるだろう。同じタグを記述するサイトでも、全然別の API を元に作られている状態も容易に想像できる。
         <p>現時点でおこなわれている polyfilling でも同じことは起こっているため、何も変わってないと言えば変わってないし、Module を使うことでマシにはなっている。

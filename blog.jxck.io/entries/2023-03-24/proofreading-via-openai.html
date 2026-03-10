@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-03-24/proofreading-via-openai.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>OpenAI API を用いた文書校正(誤字脱字検出) | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -170,11 +168,11 @@
         <p>ChatGPT の Proofreading プロンプトは、頻出ユースケースの一つだ。そして、これは日本語でも動作する。
         <p>筆者が求めているのは、ヒントから文章を書き上げて欲しいわけでも、丸っと書き直して欲しいわけでもなく、「誤字脱字だけ見つけて直してほしい」だけなので、指令はごくシンプルだ。
         <p>むしろ、細かく条件を加えた方が、ChatGPT が余計なことをしだすので、さまざまなプロンプトを試しながら、結局このシンプルなものに戻ってきた。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=diff data-code=diff><code translate=no class=language-diff>次の文章の誤字、脱字、スペルミスを修正してください。
-
-- 執筆を補助するツールは多々開発されいるが、基本は携帯素解析を用いた品詞分析の延長で行うものが多かった。
-+ 執筆を補助するツールは多々開発されているが、基本は形態素解析を用いた品詞分析の延長で行うものが多かった。</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="diff"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">次の文章の誤字、脱字、スペルミスを修正してください。</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- 執筆を補助するツールは多々開発されいるが、基本は携帯素解析を用いた品詞分析の延長で行うものが多かった。</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ 執筆を補助するツールは多々開発されているが、基本は形態素解析を用いた品詞分析の延長で行うものが多かった。</span></span></code></pre>
         <p>
           <picture>
             <source type=image/avif srcset=./gpt4-proofreading.avif?240313_215035>
@@ -194,29 +192,29 @@
           <li><a href="https://platform.openai.com/docs/api-reference/edits" target=_blank>https://platform.openai.com/docs/api-reference/edits</a>
         </ul>
         <p>VSCode の Extension は node v16 ベースなので <code translate=no>fetch()</code> は使えないが、もし使えるとしたら大体こんな感じのコードになる(疑似コードである点に注意)。
-        <pre class=js data-code=js><code translate=no class=language-js>async function openai_edit(input) {
-  const url = &quot;https://api.openai.com/v1/edits&quot;
-  const model = &quot;text-davinci-edit-001&quot;
-  const instruction = &quot;文章の誤字、脱字、スペルミスを修正してください。&quot;
-  const body = {
-    model,
-    input,
-    instruction,
-    temperature: 0.2
-  }
-
-  const res = await fetch(url, {
-    method: &quot;POST&quot;,
-    headers: {
-      &quot;Content-Type&quot;: &quot;application/json&quot;,
-      Authorization: `Bearer ${process.env.api_key}`
-    },
-    body: JSON.stringify(body)
-  })
-
-  const result = await res.json()
-  console.log(result)
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openai_edit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">input</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> url</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "https://api.openai.com/v1/edits"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> model</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "text-davinci-edit-001"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> instruction</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "文章の誤字、脱字、スペルミスを修正してください。"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> body</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    model,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    input,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    instruction,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    temperature: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    method: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"POST"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    headers: {</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "Content-Type"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"application/json"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      Authorization: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">`Bearer ${</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">process</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">env</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">api_key</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}`</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    body: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">JSON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">stringify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(body)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> result</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">json</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(result)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>あとは、選択範囲を取得したり、API Key を Config から取ったり、<code translate=no>fetch()</code> を HTTP Module で書き直したりなどをすれば、拡張自体を作るのは難しくない。
         <p>長いと落ちるが、行ごとだと API コールが増えるので、セクションごとくらいで呼び出しつつ、意図しない修正は Git で revert していく運用を想定している。
       </section>
@@ -224,20 +222,20 @@
         <h2 id="精度"><a href="#精度">精度</a></h2>
         <p>試しに <a href="https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html">前回のブログ</a> の原稿を校正した(月一回は書きたいという個人的な目標を達成するために、月末に大急ぎで書いたため、誤字脱字だらけだった)。
         <p>検出した Diff が以下だ。
-        <pre class=diff data-code=diff><code translate=no class=language-diff>- ブラウザがバースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで
-+ ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで
-
-- `:has(:contains(div))` のようなセレクタがエラーにならいのは
-+ `:has(:contains(div))` のようなセレクタがエラーにならないのは
-
-- そして jQuery こそが `:has()` の有用性証明の一旦を担っていたため、それがなければ標準化されることもなかったかもしれない。
-+ そして jQuery こそが `:has()` の有用性証明の一端を担っていたため、それがなければ標準化されることもなかったかもしれない。
-
-- 「古い実装が足をひっぱてる」
-+ 「古い実装が足を引っ張ってる」
-
-- 解決をみたことでもう話題にはならないだろうが
-+ 解決を見たことでもう話題にはならないだろうが</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="diff"><code translate="no"><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- ブラウザがバースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- `:has(:contains(div))` のようなセレクタがエラーにならいのは</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ `:has(:contains(div))` のようなセレクタがエラーにならないのは</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- そして jQuery こそが `:has()` の有用性証明の一旦を担っていたため、それがなければ標準化されることもなかったかもしれない。</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ そして jQuery こそが `:has()` の有用性証明の一端を担っていたため、それがなければ標準化されることもなかったかもしれない。</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- 「古い実装が足をひっぱてる」</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ 「古い実装が足を引っ張ってる」</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- 解決をみたことでもう話題にはならないだろうが</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ 解決を見たことでもう話題にはならないだろうが</span></span></code></pre>
         <p>これこそが、筆者が長年追い求めていた、紛れも無い「誤字脱字修正」の自動化だと言える。
       </section>
       <section>

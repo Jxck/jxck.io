@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Certificate Transparency の仕組みと HPKP から Expect-CT への移行 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -216,7 +214,7 @@
         <p>Eve は MITM を成立させたら、<code translate=no>https://google.com</code> のレスポンスを改ざんし、取得した証明書で暗号化することができる。
         <p>ブラウザはそのレスポンスが信頼された <code translate=no>google.com</code> からのものであると表示し、URL バーも緑になってしまう。
         <p>Eve の持つ秘密鍵は Google のそれとは違うが、証明書には「本物」と同等の効力があることが原因だ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
         <pre><code translate=no>+------------+                       +-----------+
 |            |  valid        valid   |           |
 |   Google   |---------&gt;| |---------&gt;|  Browser  |
@@ -508,7 +506,7 @@
                    +-----------+</code></pre>
           <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct" target=_blank>Expect-CT Extension for HTTP</a>
           <p>Expect-CT のディレクティブは、基本的に CSP と同じような設計になっている。
-          <pre class=http data-code=http><code translate=no class=language-http>Expect-CT: max-age=86400, enforce, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Expect-CT</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=86400, enforce, report-uri="https://foo.example/report"</span></span></code></pre>
           <ul>
             <li><code translate=no>enforce</code>:  SCT のチェックをブラウザに強制させる
             <li><code translate=no>report-uri</code>: CSP レポートの送信先
@@ -517,7 +515,7 @@
           <p>なお <em>Expect-CT 自体が SCT の値を含むわけではない</em> 点に注意したい。
           <p>これにより、証明書が変わってもヘッダの値は変わらないため、HPKP と比べて運用負荷が大きく下がる。
           <p>また、他の CSP のように <code translate=no>Expect-CT-Report-Only</code> は定義されておらず、<code translate=no>enforce</code> を付けずに <code translate=no>report-uri</code> のみとすれば、レポートだけが飛ぶ。
-          <pre class=http data-code=http><code translate=no class=language-http>Expect-CT: max-age=86400, report-uri=&quot;https://foo.example/report&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Expect-CT</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=86400, report-uri="https://foo.example/report"</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -625,133 +623,133 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
           <p>証明書チェインを登録し、SCT の値を取得する。
           <p>今回は、CT Log Server として <a href="https://ct.googleapis.com/pilot" target=_blank>https://ct.googleapis.com/pilot</a> を対象とする。
           <p>本サイトの証明書は Let&apos;s Encrypt で発行しており、fullchain.pem の証明書チェインは 2 つから成り立っている。
-          <pre class=bash data-code=bash><code translate=no class=language-bash>$ cat /etc/letsencrypt/live/jxck.io/fullchain.pem
------BEGIN CERTIFICATE-----
-MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA
-MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD
-ExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0x
-ODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEB
-AQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXX
-JRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPl
-m2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInz
-OxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6u
-OgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4
-SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAO
-BgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG
-A1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1Ud
-IwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggr
-BgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggr
-BgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0G
-A1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhj
-ay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJz
-Lmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVy
-aS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNr
-Lmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeB
-DAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMu
-bGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNh
-dGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFu
-ZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5
-IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0G
-CSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnv
-uAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRh
-pjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+
-8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8O
-ycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO2
-47WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/
-MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT
-DkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0Nlow
-SjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMT
-GkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EF
-q6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8
-SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0
-Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWA
-a6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj
-/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0T
-AQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIG
-CCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNv
-bTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9k
-c3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAw
-VAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcC
-ARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAz
-MDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwu
-Y3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsF
-AAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJo
-uM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/
-wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwu
-X4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlG
-PfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6
-KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
------END CERTIFICATE-----</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="bash"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /etc/letsencrypt/live/jxck.io/fullchain.pem</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">-----BEGIN</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CERTIFICATE-----</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUA</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0x</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEB</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">AQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXX</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">JRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPl</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">m2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInz</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">OxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6u</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">OgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAO</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">BgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">A1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1Ud</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">IwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggr</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">BgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggr</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">BgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0G</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">A1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhj</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJz</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Lmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVy</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">aS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNr</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Lmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeB</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">DAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMu</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">bGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNh</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">dGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFu</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0G</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">CSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnv</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">uAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRh</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">pjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8O</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO2</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">47WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">-----END</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CERTIFICATE-----</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">-----BEGIN</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CERTIFICATE-----</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">DkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0Nlow</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMT</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">GkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOC</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">AQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EF</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">q6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWA</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">a6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0T</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">AQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIG</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">CCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNv</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">bTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9k</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">c3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAw</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">VAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcC</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAz</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">MDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwu</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Y3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsF</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">AAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJo</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">uM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwu</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">X4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlG</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">PfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">==</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">-----END</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CERTIFICATE-----</span></span></code></pre>
           <p>これを登録するリクエストは以下のようになる。
-          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl -H &apos;Content-Type:application/json&apos; \
-       -d &apos;{
-         &quot;chain&quot;: [
-           &quot;MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD&quot;,
-           &quot;MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==&quot;
-         ] }&apos; \
-     https://ct.googleapis.com/pilot/ct/v1/add-chain | jq .</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="bash"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -H</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'Content-Type:application/json'</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">       -d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '{</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">         "chain": [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">           "MIIFvTCCBKWgAwIBAgISA6/EsoaosazyV8VTiLTZMzBzMA0GCSqGSIb3DQEBCwUAMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQDExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xODAzMDYwNjA5MDZaFw0xODA2MDQwNjA5MDZaMBIxEDAOBgNVBAMTB2p4Y2suaW8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7UnbgMfyQOVAqOp9oNjcoHZ2p0H0sUkFERYzZ2VXXJRkg7QzFrZTAP7jdxw/HEhkMJTMNlX59cvEyxiEbgNqTLYQjwSP1Ibgtkjzq2EPlm2SsFkq6vwbuydZA31HQa2vEYqZzo9RUG69T4URUotmtZBTWqW5w8m9l9xwCuInzOxS8990rVW27FiWtSF+4HI/mBTzHAX/w1dJRaT9ESrWJnmKYcYCBayCswEfp9b6uOgNWASZBd67lKE2AfE0FDdgKclElttBbvK8Kl2TNpCzwRwwzt54Bt9AFt8MZr4p4SKUjuj5GkcFrlnvyESbXJuyZwnnUCNkbxxYP0LfsgfmnAgMBAAGjggLTMIICzzAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMnlleIsgD60xDmW8Pz/yWKKPjk4MB8GA1UdIwQYMBaAFKhKamMEfd265tE5t6ZFZe/zqOyhMG8GCCsGAQUFBwEBBGMwYTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AuaW50LXgzLmxldHNlbmNyeXB0Lm9yZzAvBggrBgEFBQcwAoYjaHR0cDovL2NlcnQuaW50LXgzLmxldHNlbmNyeXB0Lm9yZy8wgd0GA1UdEQSB1TCB0oINYWRtaW4uanhjay5pb4ILYXBpLmp4Y2suaW+CDGJsb2cuanhjay5pb4INZmlsZXMuanhjay5pb4IHanhjay5pb4IMbGFiMi5qeGNrLmlvggxsYWJzLmp4Y2suaW+CDGxvZ28uanhjay5pb4INcmFpbHMuanhjay5pb4IScmVwb3J0LXVyaS5qeGNrLmlvggtzZnUuanhjay5pb4INc2xpZGUuanhjay5pb4IMc3BlYy5qeGNrLmlvggp3cy5qeGNrLmlvggt3d3cuanhjay5pbzCB/gYDVR0gBIH2MIHzMAgGBmeBDAECATCB5gYLKwYBBAGC3xMBAQEwgdYwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIGrBggrBgEFBQcCAjCBngyBm1RoaXMgQ2VydGlmaWNhdGUgbWF5IG9ubHkgYmUgcmVsaWVkIHVwb24gYnkgUmVseWluZyBQYXJ0aWVzIGFuZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgQ2VydGlmaWNhdGUgUG9saWN5IGZvdW5kIGF0IGh0dHBzOi8vbGV0c2VuY3J5cHQub3JnL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQA6Tnb6wxUgQE7mnf8N+5PgIzC5ebxjGps/I2ppEqnvuAECdrkWySdqPDG8e7lyuyxzzav6FTFUb3y8EwDrdT+UDquewpv6TxoP1NcnuMRhpjV41Y/otxRW53+Fz+g+Ub4XTnrJmK98aq8vzyMpvkWhHPMfs2xRsIkNH6L/T0h+8AL7MpKLiuqiy9SA4COVjNLX5Z2ZyK/xPaNhfJ1jv7vs/fvIGNLtJ7sCwVa54r8OycNVd1nj9zVFmtJ554S3fRBNFI5vZNJJw4npN1/q1bQ1B7oo8U1pLunDxqhvNHO247WDRVBeCvJLuZGZJc4g35W97iUTVVbwPLVfK4o82MOD",</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">           "MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMTDkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0NlowSjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMTGkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EFq6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWAa6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIGCCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNvbTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9kc3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAwVAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcCARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAzMDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwuY3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsFAAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJouM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwuX4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlGPfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg=="</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">         ] }'</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">     https://ct.googleapis.com/pilot/ct/v1/add-chain</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> jq</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> .</span></span></code></pre>
           <p>すると SCT(timestamp) を含む JSON が返る。
-          <pre class=json data-code=json><code translate=no class=language-json>{
-  &quot;sct_version&quot;: 0,
-  &quot;id&quot;: &quot;pLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BA=&quot;,
-  &quot;timestamp&quot;: 1520466748750,
-  &quot;extensions&quot;: &quot;&quot;,
-  &quot;signature&quot;: &quot;BAMASDBGAiEAwQMZSobyRhrwBToeThpDc13WFsv+6SVeW4biQqtgd/ACIQCa3Gx9TCY47YYfGnqOnNKugJhIjHGAYJX1Py5dBJTbCA==&quot;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "sct_version"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"pLkJkLQYWBSHuxOizGdwCjw1mAT5G9+443fNDsgN3BA="</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "timestamp"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1520466748750</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "extensions"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "signature"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"BAMASDBGAiEAwQMZSobyRhrwBToeThpDc13WFsv+6SVeW4biQqtgd/ACIQCa3Gx9TCY47YYfGnqOnNKugJhIjHGAYJX1Py5dBJTbCA=="</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>なお、この処理は冪等なので、複数回登録しても同じ結果が返る。
         </section>
         <section>
           <h3 id="証明書の存在確認"><a href="#証明書の存在確認">証明書の存在確認</a></h3>
           <p>次にこの証明書が登録されていることを確認してみる。
           <p>まず、現時点での tree_size を取得する。
-          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-sth&apos; | jq .
-{
-  &quot;tree_size&quot;: 237390491,
-  &quot;timestamp&quot;: 1521715637642,
-  &quot;sha256_root_hash&quot;: &quot;WisB+1AbBn/gjrVa+YY6UEguquQ3EmMTiC2jyvJE5+U=&quot;,
-  &quot;tree_head_signature&quot;: &quot;BAMARjBEAiBlYg2NpfsX/dDs2iP8RKGhr0t7YwaUjFPyiFpxbhdZ/wIgMDCaTD9D3l1BqTOlHNz8b73mcy4z1Z3MW9TA7wIH3nE=&quot;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="bash"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> curl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'https://ct.googleapis.com/pilot/ct/v1/get-sth'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> jq</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> .</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "tree_size"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 237390491,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "timestamp"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1521715637642,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "sha256_root_hash"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "WisB+1AbBn/gjrVa+YY6UEguquQ3EmMTiC2jyvJE5+U=",</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "tree_head_signature"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "BAMARjBEAiBlYg2NpfsX/dDs2iP8RKGhr0t7YwaUjFPyiFpxbhdZ/wIgMDCaTD9D3l1BqTOlHNz8b73mcy4z1Z3MW9TA7wIH3nE="</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>SCT から計算した Hash と、tree_size をパラメータにし、リクエストを投げると結果が返る。
           <p>Hash はバイナリ演算が必要なため、書き捨てのスクリプトで行ったものを参考までに貼っておく。
           <p><a href="./ct.rb">ct.rb</a>
-          <pre class=bash data-code=bash><code translate=no class=language-bash>$ curl &apos;https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&amp;tree_size=237363285&apos; | jq .
-{
-  &quot;leaf_index&quot;: 229437452,
-  &quot;audit_path&quot;: [
-    &quot;2xUbY5agJFehVi5L7KtIV+mRwd1+rYieiCIBBp6UXDQ=&quot;,
-    &quot;91GXiqhEmxUIPg8hPwbWibXPaekBEnhW+7cVxK1FpQM=&quot;,
-    &quot;4pabyq3YU5f62aoefELfNApIZNVokB6yessopuHbPYI=&quot;,
-    &quot;ZD8fsedLUhczZr6WKtI/vji/2iKaG6RQGnytNB/PJY8=&quot;,
-    &quot;2jkd2xQhHXS72n9zGOCrHYE+Ht2yIURU+HOj7SWtufU=&quot;,
-    &quot;OBeUVB7Hv8O+rwgNJFhdaIGLpKRrE6EbIhzD+zsp06g=&quot;,
-    &quot;mBoWTCjVoXRAn9K2zyLTT6Sf/dsCVfsge8of0CgQe/I=&quot;,
-    &quot;MIlP+tI7xF0G+NaQZwKmVQdhS/aY+lnSOdP/gp2i0PM=&quot;,
-    &quot;D/MSqG8qqkUzx31JPAbZUM8g5xKX7TfMplagvd42nUg=&quot;,
-    &quot;iknuTLvhj/2cm8zgvlE3/1RRq5oMIOm1PEIJJ4eL8ls=&quot;,
-    &quot;W4yMvWpCnmAL6gu7pl/0qZ0hqzOXootez7bpzFVnOFY=&quot;,
-    &quot;ei3UbQISzkCICkvtHSVcKRKfNHNuWxJyXsfXboktalA=&quot;,
-    &quot;qJnyxJ5MlX0FYhuqiZwUyTYzXTbOuFRwYDJYtZEAwjo=&quot;,
-    &quot;TYTjVzT8G2m3d7lvmKzoa8eofKI+ups08PQlGapxL6Y=&quot;,
-    &quot;qVeePLvKGvPrup2FHDPHhDgftgl+OMgBo2FwNgOTdwo=&quot;,
-    &quot;akCVDSoK9hL7IMS7M1XO524maXzYG38ptyjEzoEnPKA=&quot;,
-    &quot;LBe/RmYMD3omnA6W1KZCXVJ33zPte8sHZEiSnPZoFJg=&quot;,
-    &quot;2cxo2JHOCy+j9yUbyYdUHPU5xYuujjsBPqqblRFTTbE=&quot;,
-    &quot;QiQ2yYX156czbaDGp4QFkpa+Mz0KTx42yYwPATNtgRA=&quot;,
-    &quot;AQr9voHxUpOItbvcX9HHaScD4wN3Rl9KbCj2IwWT4G0=&quot;,
-    &quot;plPKVwkkF4PbmEuQhpXSzeim0C4ynNRltOk4rfzEGrY=&quot;,
-    &quot;GukxoDW1k7sojrdzQgOogXEmgYrT3HU/+NVYXJZ2ylM=&quot;,
-    &quot;zxZzji4AXCgTDoHZyowFDvy7sicOdWULhhefdFzLKOk=&quot;,
-    &quot;2q93unLYp50M4yIiGJPHqGSws4/uoEfpkofKqBLAy/k=&quot;,
-    &quot;DeXVzqk2ord24jn9JP+QBQBETHZpEP2RaPJuMD7R5LU=&quot;,
-    &quot;L14MCk6onUpZ/nqcQtsYy2vSoAVYk1F+DQ7YqJpxgwc=&quot;,
-    &quot;IHKYNe+u73+T/7cKMZX4YW7nfLKBWL5l8L7uJUOoIwM=&quot;,
-    &quot;8E8n1s9obojfAiyCIsRRnaoYi5geOjT8Pi2Dka2Wg+I=&quot;
-  ]
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="bash"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> curl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'https://ct.googleapis.com/pilot/ct/v1/get-proof-by-hash?hash=odRjuexWzJ36zh8XavhDEZaUhoAv9yxRF4zEyKZiVVg%3D&#x26;tree_size=237363285'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> jq</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> .</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "leaf_index"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 229437452,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  "audit_path"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "2xUbY5agJFehVi5L7KtIV+mRwd1+rYieiCIBBp6UXDQ="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "91GXiqhEmxUIPg8hPwbWibXPaekBEnhW+7cVxK1FpQM="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "4pabyq3YU5f62aoefELfNApIZNVokB6yessopuHbPYI="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "ZD8fsedLUhczZr6WKtI/vji/2iKaG6RQGnytNB/PJY8="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "2jkd2xQhHXS72n9zGOCrHYE+Ht2yIURU+HOj7SWtufU="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "OBeUVB7Hv8O+rwgNJFhdaIGLpKRrE6EbIhzD+zsp06g="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "mBoWTCjVoXRAn9K2zyLTT6Sf/dsCVfsge8of0CgQe/I="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "MIlP+tI7xF0G+NaQZwKmVQdhS/aY+lnSOdP/gp2i0PM="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "D/MSqG8qqkUzx31JPAbZUM8g5xKX7TfMplagvd42nUg="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "iknuTLvhj/2cm8zgvlE3/1RRq5oMIOm1PEIJJ4eL8ls="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "W4yMvWpCnmAL6gu7pl/0qZ0hqzOXootez7bpzFVnOFY="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "ei3UbQISzkCICkvtHSVcKRKfNHNuWxJyXsfXboktalA="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "qJnyxJ5MlX0FYhuqiZwUyTYzXTbOuFRwYDJYtZEAwjo="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "TYTjVzT8G2m3d7lvmKzoa8eofKI+ups08PQlGapxL6Y="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "qVeePLvKGvPrup2FHDPHhDgftgl+OMgBo2FwNgOTdwo="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "akCVDSoK9hL7IMS7M1XO524maXzYG38ptyjEzoEnPKA="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "LBe/RmYMD3omnA6W1KZCXVJ33zPte8sHZEiSnPZoFJg="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "2cxo2JHOCy+j9yUbyYdUHPU5xYuujjsBPqqblRFTTbE="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "QiQ2yYX156czbaDGp4QFkpa+Mz0KTx42yYwPATNtgRA="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "AQr9voHxUpOItbvcX9HHaScD4wN3Rl9KbCj2IwWT4G0="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "plPKVwkkF4PbmEuQhpXSzeim0C4ynNRltOk4rfzEGrY="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "GukxoDW1k7sojrdzQgOogXEmgYrT3HU/+NVYXJZ2ylM="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "zxZzji4AXCgTDoHZyowFDvy7sicOdWULhhefdFzLKOk="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "2q93unLYp50M4yIiGJPHqGSws4/uoEfpkofKqBLAy/k="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "DeXVzqk2ord24jn9JP+QBQBETHZpEP2RaPJuMD7R5LU="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "L14MCk6onUpZ/nqcQtsYy2vSoAVYk1F+DQ7YqJpxgwc="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "IHKYNe+u73+T/7cKMZX4YW7nfLKBWL5l8L7uJUOoIwM="</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">,</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    "8E8n1s9obojfAiyCIsRRnaoYi5geOjT8Pi2Dka2Wg+I="</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>この <code translate=no>leaf_index</code> は、証明書が Leaf のどこにあるかを示し、<code translate=no>audit_path</code> は Leaf から Root までに通る Node Hash だ。
           <p>Hash が合っていなければ、エラーが返る。つまり、CT Log を信用するならこのレスポンスをもって、証明書は存在すると言えるだろう。
           <p>自身で検証を行う場合は、自分の証明書に対して <code translate=no>audit_path</code> の順に Root まで計算し、STH と一致することを確認すれば良い。
@@ -780,7 +778,7 @@ KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==
           </picture>
         </p>
         <p>また、<code translate=no>jxck.io</code> および <code translate=no>blog.jxck.io</code> に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
-        <pre class=http data-code=http><code translate=no class=language-http>Expect-Ct: max-age=31536000, report-uri https://report-uri.example.com</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Expect-Ct</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000, report-uri https://report-uri.example.com</span></span></code></pre>
         <p>HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
         <p>Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
       </section>

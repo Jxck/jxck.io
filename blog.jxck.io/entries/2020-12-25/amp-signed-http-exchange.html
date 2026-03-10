@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-12-25T08:00:00+08:00",
-    "dateModified": "2026-03-07T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>AMP SXG 対応 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-12-25>2020-12-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -201,18 +199,18 @@
           <li>通常の HTTPS 用の証明書にはない CanSignedHTTPExchange 拡張が必須
         </ul>
         <p>openssl を使うと以下のように確認できる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session># key type が EC prime256v1
-$ openssl x509 -in blog_jxck_io.crt -text | grep &apos;ASN1 OID: prime256v1&apos;
-# CanSignHttpExchanges 拡張がある
-$ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># key type が EC prime256v1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ openssl x509 -in blog_jxck_io.crt -text </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'ASN1 OID: prime256v1'</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># CanSignHttpExchanges 拡張がある</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ openssl x509 -in blog_jxck_io.crt -text </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1.3.6.1.4.1.11129.2.1.22:</span></span></code></pre>
         <p>(おそらく将来的にはこの拡張がついた証明書で HTTPS がサーブされている場合、ブラウザはそれを拒否するようになったりするのかもしれない。)
         <p>鍵は openssl などで普通に作れるが、CanSignedHTTPExchange 拡張のついた証明書は現状 Digicert しか発行していない。また、発行した証明書は、今回は AMP SXG に使用するが、通常の SXG にも利用できるため、それはまた別途解説する。
       </section>
       <section>
         <h2 id="amppackager"><a href="#amppackager">amppackager</a></h2>
         <p>AMP SXG は、前述の通り SXG にする前に変換が必要となる。これを行うのが amppackager だ。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ go get -u github.com/ampproject/amppackager/cmd/amppkg</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ go get -u github.com/ampproject/amppackager/cmd/amppkg</span></span></code></pre>
         <p>デフォルトだと <code translate=no>$HOME/go/bin</code> に入るのでパスを通す。
         <section>
           <h3 id="amppkg.toml"><a href="#amppkg.toml">amppkg.toml</a></h3>
@@ -226,62 +224,62 @@ $ openssl x509 -in blog_jxck_io.crt -text | grep 1.3.6.1.4.1.11129.2.1.22:</code
         <section>
           <h3 id="amppkg"><a href="#amppkg">amppkg</a></h3>
           <p>起動してみたが、エラーが出たので残しておく。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ amppkg
-2020/12/23 20:04:15 Updating cert if necessary
-2020/12/23 20:04:15 Certfetcher is not set, skipping cert updates. Checking cert on disk if updated.
-2020/12/23 20:04:15 Updating OCSP; none cached yet.
-2020/12/23 20:04:15 Updating OCSP; none cached yet.
-2020/12/23 20:04:15 Updating OCSP; none cached yet.
-2020/12/23 20:04:15 Updating OCSP; none cached yet.
-2020/12/23 20:04:15 Cannot find issuer certificate in CertFile.
-2020/12/23 20:04:15 Missing OCSP response.
-github.com/ampproject/amppackager/packager/certcache.(*CertCache).readOCSPHelper
-	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:374
-github.com/ampproject/amppackager/packager/certcache.(*CertCache).readOCSP
-	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:406
-github.com/ampproject/amppackager/packager/certcache.(*CertCache).Init
-	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:176
-main.main
-	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:103
-runtime.main
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203
-runtime.goexit
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373
-initializing CertCache
-github.com/ampproject/amppackager/packager/certcache.(*CertCache).Init
-	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:178
-main.main
-	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:103
-runtime.main
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203
-runtime.goexit
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373
-initializing cert cache
-main.main
-	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:107
-runtime.main
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203
-runtime.goexit
-	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ amppkg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Updating cert if necessary</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Certfetcher is not set, skipping cert updates. Checking cert on disk if updated.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Updating OCSP; none cached yet.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Updating OCSP; none cached yet.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Updating OCSP; none cached yet.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Updating OCSP; none cached yet.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Cannot find issuer certificate in CertFile.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2020/12/23 20:04:15 Missing OCSP response.</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">github.com/ampproject/amppackager/packager/certcache.(*CertCache).readOCSPHelper</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:374</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">github.com/ampproject/amppackager/packager/certcache.(*CertCache).readOCSP</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:406</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">github.com/ampproject/amppackager/packager/certcache.(*CertCache).Init</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:176</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">main.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:103</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.goexit</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">initializing CertCache</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">github.com/ampproject/amppackager/packager/certcache.(*CertCache).Init</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/packager/certcache/certcache.go:178</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">main.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:103</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.goexit</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">initializing cert cache</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">main.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/go/src/github.com/ampproject/amppackager/cmd/amppkg/main.go:107</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.main</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/proc.go:203</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">runtime.goexit</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">	/home/jxck/dotfiles/pkg/go/current/src/runtime/asm_amd64.s:1373</span></span></code></pre>
           <p>OCSP の情報が無いようだ。Digicert で発行した証明書は自分のドメインのものと DigiCertCA.crt の 2 つがあったので連結したらいけた。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cat blog_jxck_io.crt DigiCertCA.crt &gt; blog_jxck_io_full.crt</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cat blog_jxck_io.crt DigiCertCA.crt </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> blog_jxck_io_full.crt</span></span></code></pre>
           <p>toml を更新して起動し直すと成功。
           <p>これを systemd に登録して完了。
-          <pre class=service data-code=service data-path=amppkg.service><code translate=no class=language-service>[Unit]
-Description=amppkg.jxck.io
-After=network.target nss-lookup.target
-
-[Service]
-Type=simple
-Restart=always
-PIDFile=/home/jxck/server/jxck.io/.pid/amppkg.pid
-WorkingDirectory=/home/jxck/server/jxck.io/.script/amppkger
-ExecStart=/home/jxck/go/bin/amppkg -config /home/jxck/server/jxck.io/.script/amppkger/amppkg.toml
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s TERM $MAINPID
-
-[Install]
-WantedBy=multi-user.target</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="service" data-path="amppkg.service"><code translate="no"><span class="line"><span>[Unit]</span></span>
+<span class="line"><span>Description=amppkg.jxck.io</span></span>
+<span class="line"><span>After=network.target nss-lookup.target</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[Service]</span></span>
+<span class="line"><span>Type=simple</span></span>
+<span class="line"><span>Restart=always</span></span>
+<span class="line"><span>PIDFile=/home/jxck/server/jxck.io/.pid/amppkg.pid</span></span>
+<span class="line"><span>WorkingDirectory=/home/jxck/server/jxck.io/.script/amppkger</span></span>
+<span class="line"><span>ExecStart=/home/jxck/go/bin/amppkg -config /home/jxck/server/jxck.io/.script/amppkger/amppkg.toml</span></span>
+<span class="line"><span>ExecReload=/bin/kill -s HUP $MAINPID</span></span>
+<span class="line"><span>ExecStop=/bin/kill -s TERM $MAINPID</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[Install]</span></span>
+<span class="line"><span>WantedBy=multi-user.target</span></span></code></pre>
           <p>(最初、検証時に作られた <code translate=no>/tmp/amppkg-ocsp</code> の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
           <p>なお、amppkg から ACME で証明書の更新ができるようで、Digicert も ACME 対応しているので、後ほどそちらもやりたい。
         </section>
@@ -311,24 +309,24 @@ WantedBy=multi-user.target</code></pre>
           <p>h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分岐するには mruby handler 内で proxy する必要があり、その方法がよくわからず最初は <code translate=no>http_request</code> でリクエストを再構築して書いていた。
           <p>後から、<a href="https://h2o.examp1e.net/configure/reproxy_directives.html#reproxy" target=_blank>reproxy</a> という機能がそのまま使えることを教えてもらい、一瞬で解決した。
           <p>(機能は知っていたが、Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
-          <pre class=ruby data-code=ruby data-path=amppkg.rb><code translate=no class=language-ruby>Proc.new do |env|
-  path = env[&quot;PATH_INFO&quot;]
-  amp_cache_transform = env[&quot;HTTP_AMP_CACHE_TRANSFORM&quot;]
-
-  # amp page request
-  if /\.amp.html\z/.match(path)
-    if amp_cache_transform.nil?
-      # delegate as normal access with vary header
-      next [399, {&quot;vary&quot; =&gt; &quot;amp-cache-transform, accept&quot;}, []]
-    else
-      # reproxy to backend amppackager
-      next [307, {&quot;x-reproxy-url&quot; =&gt; &quot;http://127.0.0.1:10000/priv/doc/https://blog.jxck.io#{path}&quot;}, []]
-    end
-  end
-
-  # do nothing, delegate as normal access
-  [399, {}, []]
-end</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby" data-path="amppkg.rb"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Proc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> do</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> |env|</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  path</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> env[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"PATH_INFO"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  amp_cache_transform</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> env[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"HTTP_AMP_CACHE_TRANSFORM"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  # amp page request</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF"> /</span><span style="--shiki-light:#22863A;--shiki-light-font-weight:bold;--shiki-dark:#85E89D;--shiki-dark-font-weight:bold">\.</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">amp.html</span><span style="--shiki-light:#22863A;--shiki-light-font-weight:bold;--shiki-dark:#85E89D;--shiki-dark-font-weight:bold">\z</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(path)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> amp_cache_transform.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">nil?</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">      # delegate as normal access with vary header</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">399</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"vary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> => </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"amp-cache-transform, accept"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, []]</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    else</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">      # reproxy to backend amppackager</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      next</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">307</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"x-reproxy-url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> => </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http://127.0.0.1:10000/priv/doc/https://blog.jxck.io</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">#{path}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, []]</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    end</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  end</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  # do nothing, delegate as normal access</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">399</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {}, []]</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span></span></code></pre>
         </section>
         <section>
           <h3 id="vary-header"><a href="#vary-header">Vary Header</a></h3>
@@ -336,7 +334,7 @@ end</code></pre>
           <p>SXG のサポートは <code translate=no>Accept: application/signed-exchange;v=b3</code> などが追加されるため、それで判別することができる。
           <p>加えて AMP のクローラは <code translate=no>AMP-Cache-Transform</code> を追加するため、これも判断材料になる。
           <p>このため、Response は <code translate=no>Vary</code> にこのヘッダを指定し、これら Request ヘッダに応じてキャッシュが別になるようにする必要がある。
-          <pre class=http data-code=http><code translate=no class=language-http>Vary: AMP-Cache-Transform, Accept</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Vary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> AMP-Cache-Transform, Accept</span></span></code></pre>
           <p>amppackager はこれを自動で付与しているようなので問題ないが、それは Response が SXG のときしかカバーしてない。
           <p>自分のサーバの AMP HTML を返す部分で、同じくこのヘッダを追加してやる必要がある。(前述の mruby handler で実施した)
         </section>
@@ -359,17 +357,17 @@ end</code></pre>
         <section>
           <h3 id="cli"><a href="#cli">CLI</a></h3>
           <p>CLI の場合は <code translate=no>dump-signedexchange</code> で行うのが手軽だろう。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version=1b3 -headers=false -payload=false -verify
-The exchange has a valid signature</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ dump-signedexchange -uri $URL -requestHeader AMP-Cache-Transform:any -version</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">1b3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> -headers</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> -payload</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">false</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> -verify</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">The exchange has a valid signature</span></span></code></pre>
           <p>これは cert-url から証明書チェインを取得してくれているらしいので、これが通れば一通り通ってると思われる。
           <p>個々のステップを細かく見たい場合は curl で取得してから順番に解くなどすると良いかもしれない。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ curl -s --output - -H &apos;amp-cache-transform: google;v=&quot;3&quot;&apos; -H &apos;accept: application/signed-exchange;v=b3,*/*;q=0.1&apos; https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html &gt; dump.sxg
-$ dump-signedexchange -i dump.sxg
-format version: 1b3
-...
-
-$ curl -s --output - https://blog.jxck.io/amppkg/cert/KmG8nFDyIBqjUzFBg9YYDEcfu20CkBaNIl4m9sFJ9yM &gt; cert.cbor
-$ dump-certurl -i cert.cbor</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ curl -s --output - -H </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'amp-cache-transform: google;v="3"'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> -H </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'accept: application/signed-exchange;v=b3,*/*;q=0.1'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> https://blog.jxck.io/entries/2020-12-03/masonry-layout.amp.html </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> dump.sxg</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ dump-signedexchange -i dump.sxg</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">format version: 1b3</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ curl -s --output - https://blog.jxck.io/amppkg/cert/KmG8nFDyIBqjUzFBg9YYDEcfu20CkBaNIl4m9sFJ9yM </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> cert.cbor</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ dump-certurl -i cert.cbor</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -378,16 +376,16 @@ $ dump-certurl -i cert.cbor</code></pre>
         <p>本ブログでは、躊躇なく Production でこういう作業をゴリゴリ行うので、作業してる途中から Bot が来てちょっと邪魔だった。
         <p>デバッグなどが終わらないうちは Internet Access 可能なドメインではやらないほうが良いだろう。
         <p>なお、ログから復元した Bot のヘッダは以下のようなものだった。<code translate=no>AMP-Cache-Transform</code> と <code translate=no>Accept</code> 以外に変わったヘッダは無いようだ。
-        <pre class=http data-code=http><code translate=no class=language-http>GET /example.amp.html HTTP/1.1
-Host: blog.jxck.io
-From: googlebot(at)googlebot.com
-Accept: */*;q=0.8,application/signed-exchange;v=b3
-Connection: keep-alive
-User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.42 80.90 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-If-None-Match: &quot;5fd8a3e0-173f&quot;
-Accept-Encoding: gzip,deflate,br
-If-Modified-Since: Tue, 15 Dec 2020 11:54:08 GMT
-AMP-Cache-Transform: google;v=&quot;1..5&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /example.amp.html </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> blog.jxck.io</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">From</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> googlebot(at)googlebot.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> */*;q=0.8,application/signed-exchange;v=b3</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Connection</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> keep-alive</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">User-Agent</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.42 80.90 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-None-Match</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "5fd8a3e0-173f"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> gzip,deflate,br</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">If-Modified-Since</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Tue, 15 Dec 2020 11:54:08 GMT</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">AMP-Cache-Transform</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> google;v="1..5"</span></span></code></pre>
       </section>
       <section>
         <h2 id="search-result"><a href="#search-result">Search Result</a></h2>

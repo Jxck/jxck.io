@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-02-09/atom-feed.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Atom の RSS Feed 対応 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -176,40 +174,40 @@
         <p>このサイトの、ここまでのエントリのフィードは以下のようになった。
         <section>
           <h3 id="完成型"><a href="#完成型">完成型</a></h3>
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=xml data-code=xml><code translate=no class=language-xml>&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;
-&lt;feed xmlns=&apos;http://www.w3.org/2005/Atom&apos; xml:lang=&apos;ja&apos;&gt;
-&lt;title&gt;blog.jxck.io&lt;/title&gt;
-&lt;link rel=&quot;alternate&quot; href=&quot;https://blog.jxck.io/&quot;/&gt;
-&lt;link rel=&quot;self&quot; type=&quot;application/atom+xml&quot; href=&quot;https://blog.jxck.io/feeds/atom.xml&quot;/&gt;
-&lt;author&gt;&lt;name&gt;Jxck&lt;/name&gt;&lt;/author&gt;
-&lt;id&gt;tag:blog.jxck.io,2016:feed&lt;/id&gt;
-&lt;updated&gt;2016-01-28T18:30:02Z&lt;/updated&gt;
-&lt;entry&gt;
- &lt;title&gt;AMP HTML 対応&lt;/title&gt;
- &lt;link href=&quot;https://blog.jxck.io/entries/2016-02-01/amp-html.html&quot; rel=&quot;alternate&quot; /&gt;
- &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-02-01&lt;/id&gt;
- &lt;updated&gt;2016-02-01T00:00:00Z&lt;/updated&gt;
- &lt;summary&gt;Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。&lt;/summary&gt;
-&lt;/entry&gt;
-
-&lt;entry&gt;
- &lt;title&gt;HTML の省略によるサイズ最適化&lt;/title&gt;
- &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-28/html-compression.html&quot; rel=&quot;alternate&quot; /&gt;
- &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-28&lt;/id&gt;
- &lt;updated&gt;2016-01-28T00:00:00Z&lt;/updated&gt;
- &lt;summary&gt;とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。結局そういうことができるツールはなさそうなので、Markdown のパーサだけ借りてきて、AST から構築する過程で省略を施した。単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)&lt;/summary&gt;
-&lt;/entry&gt;
-
-&lt;entry&gt;
- &lt;title&gt;Blog を移転しました&lt;/title&gt;
- &lt;link href=&quot;https://blog.jxck.io/entries/2016-01-27/new-blog-start.html&quot; rel=&quot;alternate&quot; /&gt;
- &lt;id&gt;tag:blog.jxck.io,2016:entry://2016-01-27&lt;/id&gt;
- &lt;updated&gt;2016-01-27T00:00:00Z&lt;/updated&gt;
- &lt;summary&gt;長いこと [はてな](https://jxck.hatenablog.com/) をメインにし、他にも [Qiita](https://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。&lt;/summary&gt;
-&lt;/entry&gt;
-
-&lt;/feed&gt;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="xml"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;?</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">xml</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'1.0'</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> encoding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'UTF-8'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">?></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">feed</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> xmlns</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'http://www.w3.org/2005/Atom'</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> xml:lang</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'ja'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>blog.jxck.io&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"alternate"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"self"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"application/atom+xml"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/feeds/atom.xml"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">author</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Jxck&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">author</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>tag:blog.jxck.io,2016:feed&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2016-01-28T18:30:02Z&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>AMP HTML 対応&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/2016-02-01/amp-html.html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"alternate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>tag:blog.jxck.io,2016:entry://2016-02-01&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2016-02-01T00:00:00Z&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Google が推奨する仕様である [AMP HTML](https://www.ampproject.org/) に、このブログを対応した。言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>HTML の省略によるサイズ最適化&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/2016-01-28/html-compression.html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"alternate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>tag:blog.jxck.io,2016:entry://2016-01-28&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2016-01-28T00:00:00Z&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>とりあえず [blog.jxck.io](https://blog.jxck.io) 以下については、基本的には静的ファイルを生成するスタイルで作ろうと思っている。手元に書いた Markdown を HTML に変換するスタイルで、これを行うツールは星の数ほどあるが、この変換時に前から思っていた HTML の最適化をやってみようと思った。結局そういうことができるツールはなさそうなので、Markdown のパーサだけ借りてきて、AST から構築する過程で省略を施した。単なる実験としてその結果を書いておく。(なお、今はまだ CSS も圧縮していない)&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Blog を移転しました&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io/entries/2016-01-27/new-blog-start.html"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"alternate"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>tag:blog.jxck.io,2016:entry://2016-01-27&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>2016-01-27T00:00:00Z&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">updated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>長いこと [はてな](https://jxck.hatenablog.com/) をメインにし、他にも [Qiita](https://qiita.com/jxck_) や [Tumblr](http://jxck.tumblr.com/) を使って色々書いて来たけど、そろそろ自分のドメインに全部集約していこうかなと思います。&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">summary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">entry</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">feed</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>必須項目くらいしか書いていない、シンプルな形にしている。
           <p>悩んだ項目が ID だった。
         </section>
@@ -231,7 +229,7 @@
         <section>
           <h3 id="meta"><a href="#meta">meta</a></h3>
           <p>サイトの HTML に、Feed を持つことを <code translate=no>&lt;meta&gt;</code> タグで記述した。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=alternate type=application/atom+xml title=blog.jxck.io href=/feeds/atom.xml /&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">alternate</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">application/atom+xml</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">blog.jxck.io</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/feeds/atom.xml</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /></span></span></code></pre>
         </section>
       </section>
       <section>

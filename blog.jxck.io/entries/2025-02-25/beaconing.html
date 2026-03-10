@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-02-25/beaconing.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater()) | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -167,12 +165,12 @@
       <section>
         <h2 id="img-での送信"><a href="#img-での送信"><code translate=no>&lt;img&gt;</code> での送信</a></h2>
         <p>最もプリミティブな Beacon の送信は、<code translate=no>&lt;img&gt;</code> を用いたものだった。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
-  const beaconImage = new Image(1, 1);
-  beaconImage.src = &quot;https://telemetry.example/beacon?a=10&amp;b=20&quot;;
-  document.body.appendChild(beaconImage);
-});</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"unload"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> beaconImage</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  beaconImage.src </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "https://telemetry.example/beacon?a=10&#x26;b=20"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  document.body.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">appendChild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(beaconImage);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>このように、URL のクエリに情報を詰め込んだタグを body に追加すると、画像取得のために GET リクエストを送信できる。
         <p>この追加を <code translate=no>unload</code> 時に行うことで、画像の取得完了まで <code translate=no>unload</code> を遅延する実装が多くあったため、送信の確度も高かった。
         <p>また、この方法であれば CORS の制約なく任意のサーバに情報を送信できるため、XHR 以前からよく用いられていた。
@@ -183,11 +181,11 @@
       <section>
         <h2 id="sync-xhr"><a href="#sync-xhr">Sync XHR</a></h2>
         <p><code translate=no>fetch()</code> では禁止されているが、XHR ではブロックを伴う同期の送信が可能だ。<code translate=no>unload</code> の中で呼べば、そこでメインスレッドをブロックして送信できるし、POST により JSON も送れる。
-        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
-  const xhr = new XMLHttpRequest();
-  xhr.open(&quot;POST&quot;, &quot;https://telemetry.example/beacon&quot;, false /*sync*/);
-  xhr.send(data); // 送り終わるまでブロック
-});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"unload"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> xhr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> XMLHttpRequest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">open</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"POST"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://telemetry.example/beacon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> /*sync*/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(data); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 送り終わるまでブロック</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>API の自由度が高まったように思えるだろう。しかし、CORS で JSON を POST すると Preflight が発生し、リクエストが一回では終わらず、きちんと送信しきれない場合が出てくる。
         <p>なにより、同期 API の利用は、ブラウザとしては無くしていくべきものだ。<code translate=no>unload</code> をブロックすると画面遷移を阻害し、ユーザの体験が悪化する原因になる。こうした行儀の悪い実装がはびこった結果や、BFCache との相性の悪さもあり、後には <code translate=no>unload</code> 自体を限定的にしか発火しなくなる動きも出てきた。
         <p>ユースケースはあるのに API が無いばかりに、ワークアラウンドが負債になるのであれば、それを API として標準化するのがプラットフォームの役目だろう。
@@ -196,9 +194,9 @@
       <section>
         <h2 id="beacon-api"><a href="#beacon-api">Beacon API</a></h2>
         <p><code translate=no>navigator.sendBeacon()</code> は、メインスレッドをブロックせず、ページ遷移にも影響しないが、ページが閉じたあとでも非同期に Beacon を送信できる方法として 2014 年頃に提案された。
-        <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&quot;unload&quot;, () =&gt; {
-  navigator.sendBeacon(&quot;https://telemetry.example/beacon&quot;, data);
-});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"unload"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  navigator.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">sendBeacon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://telemetry.example/beacon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, data);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>非常にシンプルな API だが、要は渡したデータを URL に対して POST で送信する。その際、ページが閉じようが送信中のものは完了までハンドルされるため、取りこぼしを気にする必要が減るのだ。
         <p>一方、XHR と比べれば制限が非常に大きい API でもある。
         <p>例えば、Preflight や Redirect が挟まると送信に時間がかかるため、そのようなリクエストは最初からサポート外となっている。ヘッダには触れないし、<code translate=no>fetch()</code> に指定できるオプションも無い。
@@ -218,11 +216,11 @@
       <section>
         <h2 id="fetch-keepalive"><a href="#fetch-keepalive">Fetch KeepAlive</a></h2>
         <p><code translate=no>fetch()</code> に追加された <code translate=no>keepalive: true</code> オプションは、ページが閉じても送信を止めずに <code translate=no>fetch()</code> を完了できるようにするオプションとして、2017 年頃に提案された。
-        <pre class=js data-code=js><code translate=no class=language-js>fetch(&quot;https://telemetry.example/beacon&quot;, {
-  keepalive: true,
-  body: data,
-  // ...
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://telemetry.example/beacon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  keepalive: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  body: data,</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>これなら <code translate=no>fetch()</code> が持つ全ての API がそのまま利用できるため、POST もできるし <code translate=no>Content-Type</code> も変えられる。<code translate=no>sendBeacon()</code> に比べると格段に柔軟な API となったのだ。仕様的にも <code translate=no>sendBeacon()</code> が、内部的に KeepAlive Fetch で定義されるように更新されている。
         <p>これにより、「送信を始めたら終わるまで送ってくれる」点は改善した。
         <p>しかし、問題はそれを呼び出すタイミングの方に移っていく。
@@ -242,8 +240,8 @@
         <section>
           <h3 id="pending-beacon-api"><a href="#pending-beacon-api">Pending Beacon API</a></h3>
           <p>Pending Beacon は、「送信」ではなく「登録」のみを行う API として 2022 年頃に提案された。
-          <pre class=js data-code=js><code translate=no class=language-js>beacon = new PendingBeacon(url, {backgroundTimeout: 1000});
-beacon.setData(data);</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">beacon </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> PendingBeacon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(url, {backgroundTimeout: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">beacon.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">setData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(data);</span></span></code></pre>
           <p>このように送信したい情報を登録すると、それがブラウザの送信キューに保存され、「閉じる」に相当するとブラウザが判断したタイミングで、内部的に送信されることになる。逆を言うと、開発者にとってはいつ送信されるかはわからないため、コード上は「常に最新のデータを PendingBeacon に登録し続ける」といった使い方だ。
           <p>つまり開発者は、「送る情報」だけに集中し、「送られるタイミング」について気にする必要がなくなったのだ。
           <p>しかし、前述の通り Pending Beacon は Keep Alive Fetch よりも後の提案でありながら、「不自由な API」だった Beacon API の方をベースに策定されている。
@@ -267,18 +265,18 @@ beacon.setData(data);</code></pre>
               </ul>
             </li>
           </ul>
-          <pre class=js data-code=js><code translate=no class=language-js>pending = true;
-abort = new AbortController();
-let sentSignal = new SentSignal();
-fetch(data, {
-  deferSend: new DeferSend(),
-  signal: abortController.signal,
-  sentSignal: sentsentSignal
-});
-
-sentSignal.addEventListener(&quot;sent&quot;, () =&gt; {
-  pending = false;
-});</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">pending </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">abort </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> AbortController</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> sentSignal </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> SentSignal</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(data, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  deferSend: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> DeferSend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  signal: abortController.signal,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  sentSignal: sentsentSignal</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">sentSignal.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sent"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pending </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
           <p>見ての通り、<code translate=no>AbortSignal</code> の要領で、新しく <code translate=no>DeferSend</code> クラスを導入している。
           <p>この提案があった期間はとても短く、Intents も出ていなかったため、実装されたのかもよくわからない。
           <p>確かに <code translate=no>fetch()</code> ベースではあるが、この方針もそこまで上手く行かず、議論は長引いた。
@@ -305,25 +303,25 @@ sentSignal.addEventListener(&quot;sent&quot;, () =&gt; {
         </ul>
         <p><code translate=no>fetch()</code> の Request を受けるという設計は変えず、送信キューへの登録が完了したことだけを Resolve する API にしたものが <code translate=no>fetchLater()</code> となる。
         <p>追加されたのは <code translate=no>activateAfter</code> という、送信イベント発火後の遅延時間の指定だけだ。
-        <pre class=js data-code=js><code translate=no class=language-js>const fetchLaterResult = await fetchLater({
-  url,
-  method: &apos;POST&apos;,
-  body,
-}, {
-  activateAfter: 60000 // 1min
-});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> fetchLaterResult</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetchLater</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  url,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  method: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'POST'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  body,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  activateAfter: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">60000</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 1min</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>返すのは <code translate=no>FetchLaterResult</code> で、そこには <code translate=no>activated</code> という送信済みかどうかのフラグだけがある。
         <p>これを用いれば、送信前に Abort して登録し直すといったことも可能だ。
-        <pre class=js data-code=js><code translate=no class=language-js>const controller = new AbortController();
-const fetchLaterResult = await fetchLater({
-  url,
-  body,
-  signal: controller.signal
-});
-if (fetchLaterResult.activated === false) {
-  controller.abort();
-  // fetchLater しなおす
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> controller</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> AbortController</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> fetchLaterResult</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetchLater</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  url,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  body,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  signal: controller.signal</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (fetchLaterResult.activated </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  controller.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">abort</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // fetchLater しなおす</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>あとは Stream で送れないといった点を除けば、<code translate=no>keepalive: true</code> な <code translate=no>fetch()</code> とほぼそのまま同じ API となっている。
         <p>これにより、ここまでの全ての要件を満たし、<code translate=no>fetch()</code> の最小限のラッパーによって実装が可能な Beaconing API が完成したのだ。
       </section>

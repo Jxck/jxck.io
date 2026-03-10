@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Passive Event Listeners によるスクロールの改善 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -186,7 +184,7 @@
         <p>イベントリスナを実際に実行し、その処理が終わるまで <code translate=no>preventDefault()</code> が呼ばれるかどうかわからないため、Scroll Junk が起こる。
         <p>つまり、Scroll Event に登録されたイベントリスナの実行時間が長ければ長いほど、Scroll Junk の影響が大きくなる。
         <p>Chrome は現在、実行時間の長いリスナが登録された場合、以下のような警告を devtools に表示する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
         <pre><code translate=no>explainer.md#the-problem:1 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343.</code></pre>
         <p>ただし、イベントリスナの実行自体にも多少のオーバーヘッドがあるため、空のイベントリスナを登録しただけでも、ブラウザのスクロール最適化を邪魔するには十分であり、影響がでることも確認されている。
         <p>仕様には Scroll Event にイベントリスナを登録したサイトの中で、実際に <code translate=no>preventDefault()</code> を呼ぶのは 20% 程度という調査結果が記載されている。
@@ -198,7 +196,7 @@
         <p>この <code translate=no>preventDefault()</code> を呼ばないリスナを <em>Passive Listener</em> と表現する。
         <p>そして、登録したリスナが <em>Passive Listener</em> であることを明示するのが、今回追加された <code translate=no>passive</code> フラグである。
         <p>この値は、同じく今回追加された <code translate=no>addEventListener()</code> の第三引数に渡す <em>Event Listener Options</em> で指定する。
-        <pre class=js data-code=js><code translate=no class=language-js>document.addEventListener(&apos;touchstart&apos;, handler, {passive: true});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'touchstart'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, handler, {passive: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>開発者がこれを明示的に指定することで、ブラウザはリスナが <code translate=no>preventDefault()</code> を呼ばないことを前提とできるため、リスナの完了を待たずにスクロールすることができ、それを最適化できる余地が生まれる。
         <p>なお Passive Listener 内で <code translate=no>preventDefault()</code> を呼んだ場合は無視されるため、呼んだとしても <code translate=no>defaultPrevented=false</code> のままになる。
         <p>Listener 内で <code translate=no>preventDefault()</code> を呼べるかどうかは、<code translate=no>cancelable=true</code> となっているかどうかで分かる。
@@ -236,11 +234,11 @@
         <p><code translate=no>addEventListener</code> の第三引数は、既に <code translate=no>useCapture</code> として boolean が定義されている。
         <p>これが <code translate=no>true</code> の場合は、イベントはバブリングフェーズではなく、キャプチャリングフェーズで発火されることになる。
         <p>Event Listener Options 対応以降は、ここにオブジェクトを渡すことになるため、<code translate=no>useCapture</code> フラグ相当は、<code translate=no>{capture: true}</code> としてプロパティによる定義を行う。
-        <pre class=js data-code=js><code translate=no class=language-js>// before
-document.addEventListener(&apos;touchstart&apos;, handler, true);
-
-// after
-document.addEventListener(&apos;touchstart&apos;, handler, {capture: true});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// before</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'touchstart'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, handler, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// after</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'touchstart'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, handler, {capture: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>引数をオブジェクトにしたことにより、フラグの追加に対して開いた設計となるため、ここに Passive フラグを付け加えることができるわけである。
         <p>今後リスナに対する新たなオプション(ブラウザが実行前に知りたい内容)を追加する場合にも、同様に追加が可能となる。
       </section>
@@ -249,33 +247,33 @@ document.addEventListener(&apos;touchstart&apos;, handler, {capture: true});</co
         <p>引数をオブジェクトにした結果、Passive 用に引数を追加するよりも柔軟な設計となったが、互換性の問題が発生してしまう結果となった。
         <p>これは <code translate=no>{passive: true}</code> は JS としては truthy であるため、第三引数が Event Listener Option に対応してないブラウザにおいて単に <code translate=no>useCapture</code> を有効にしたと解釈されてしまうために起こる。
         <p>例えばキャプチャリングフェーズでの補足を <code translate=no>false</code> にする指定を Event Listener Options で指定した場合、古いブラウザでは意図に反して <code translate=no>useCapture</code> を <code translate=no>true</code> にしたと解釈されてしまうのである。
-        <pre class=js data-code=js><code translate=no class=language-js>document.addEventListener(&apos;touchstart&apos;, handler, {capture: false});</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'touchstart'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, handler, {capture: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span></code></pre>
         <p>これを避けるためには Feature Detection が必要となる。
         <p>スペックにサンプルが掲載されているので、引用しコメントで解説を追記する。
-        <pre class=js data-code=js><code translate=no class=language-js>var supportsPassive = false;
-try {
-  // getter として opts.passive を定義して、addEventListener 内で呼ばれたことがわかるようにする
-  var opts = Object.defineProperty({}, &apos;passive&apos;, {
-    get: function() {
-      // 内部で opts.passive が呼ばれたら対応ブラウザ
-      // 用意しておいたフラグを有効にする
-      supportsPassive = true;
-    }
-  });
-  // 試しに適当なイベントを補足し、opts.passive が呼ばれるか試す
-  window.addEventListener(&quot;test&quot;, null, opts);
-} catch (e) {}
-
-function addEventListenerWithOptions(target, type, handler, options) {
-  var optionsOrCapture = options;
-  if (!supportsPassive) {
-    // 非対応ブラウザでは、他のオプションは全て捨て
-    // { capture: bool } の値を useCapture の値として採用する
-    optionsOrCapture = options.capture;
-  }
-  //
-  target.addEventListener(type, handler, optionsOrCapture);
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> supportsPassive </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // getter として opts.passive を定義して、addEventListener 内で呼ばれたことがわかるようにする</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> opts </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> Object.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">defineProperty</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({}, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'passive'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">      // 内部で opts.passive が呼ばれたら対応ブラウザ</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">      // 用意しておいたフラグを有効にする</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      supportsPassive </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  });</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 試しに適当なイベントを補足し、opts.passive が呼ばれるか試す</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"test"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">null</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, opts);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">catch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (e) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> addEventListenerWithOptions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">target</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">handler</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">options</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> optionsOrCapture </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> options;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">supportsPassive) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // 非対応ブラウザでは、他のオプションは全て捨て</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // { capture: bool } の値を useCapture の値として採用する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    optionsOrCapture </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> options.capture;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  //</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  target.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(type, handler, optionsOrCapture);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <ul>
           <li><a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection" target=_blank>https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection</a>
         </ul>

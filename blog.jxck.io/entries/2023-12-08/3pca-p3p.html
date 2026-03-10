@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-12-08/3pca-p3p.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>3PCA 8 日目: P3P | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -175,51 +173,51 @@
         </ul>
         <p>この仕様の実態は何かというと、「機械可読な方法でプライバシーポリシーを公開できる」というものだ。当時の「機械可読」と言えば、そう、XML である。
         <p>例えば、サーバから以下のようなレスポンスが返ってきたとする。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-P3P: policyref=&quot;http://example.com/P3P/PolicyReferences.xml&quot;
-Content-Type: text/html
-Content-Length: 1024
-...</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">P3P</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> policyref="http://example.com/P3P/PolicyReferences.xml"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1024</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span></code></pre>
         <p>そのレスポンスは以下のようなものになる。
-        <pre class=xml data-code=xml><code translate=no class=language-xml>&lt;POLICY name=&quot;sample&quot;
-  discuri=&quot;http://www.example.com/cookiepolicy.html&quot;
-  opturi=&quot;http://www.example.com/opt.html&quot;&gt;
-  &lt;ENTITY&gt;
-    &lt;DATA-GROUP&gt;
-      &lt;DATA ref=&quot;#business.name&quot;&gt;Example, Corp.&lt;/DATA&gt;
-      &lt;DATA ref=&quot;#business.contact-info.online.email&quot;&gt;privacy@example.com&lt;/DATA&gt;
-    &lt;/DATA-GROUP&gt;
-  &lt;/ENTITY&gt;
-  &lt;ACCESS&gt;&lt;none/&gt;&lt;/ACCESS&gt;
-  &lt;DISPUTES-GROUP&gt;
-    &lt;DISPUTES resolution-type=&quot;service&quot;
-    service=&quot;http://www.example.com/privacy.html&quot;
-    short-description=&quot;Please contact our customer service desk with
-                        privacy concerns by emailing privacy@example.com&quot;/&gt;
-  &lt;/DISPUTES-GROUP&gt;
-  &lt;STATEMENT&gt;
-    &lt;PURPOSE&gt;&lt;admin/&gt;&lt;develop/&gt;&lt;pseudo-decision/&gt;&lt;/PURPOSE&gt;
-    &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
-    &lt;RETENTION&gt;&lt;indefinitely/&gt;&lt;/RETENTION&gt;
-    &lt;DATA-GROUP&gt;
-      &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
-        &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;navigation/&gt;&lt;/CATEGORIES&gt;
-      &lt;/DATA&gt;
-    &lt;/DATA-GROUP&gt;
-  &lt;/STATEMENT&gt;
-  &lt;STATEMENT&gt;
-    &lt;PURPOSE&gt;&lt;individual-decision required=&quot;opt-out&quot;/&gt;&lt;/PURPOSE&gt;
-    &lt;RECIPIENT&gt;&lt;ours/&gt;&lt;/RECIPIENT&gt;
-    &lt;RETENTION&gt;&lt;stated-purpose/&gt;&lt;/RETENTION&gt;
-    &lt;DATA-GROUP&gt;
-      &lt;DATA ref=&quot;#user.name.given&quot;/&gt;
-      &lt;DATA ref=&quot;#dynamic.cookies&quot;&gt;
-        &lt;CATEGORIES&gt;&lt;preference/&gt;&lt;uniqueid/&gt;&lt;/CATEGORIES&gt;
-      &lt;/DATA&gt;
-    &lt;/DATA-GROUP&gt;
-  &lt;/STATEMENT&gt;
-&lt;/POLICY&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="xml"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">POLICY</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sample"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  discuri</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http://www.example.com/cookiepolicy.html"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  opturi</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http://www.example.com/opt.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ENTITY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#business.name"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Example, Corp.&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#business.contact-info.online.email"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>privacy@example.com&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ENTITY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ACCESS</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">none</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ACCESS</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DISPUTES-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DISPUTES</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> resolution-type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"service"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    service</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"http://www.example.com/privacy.html"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">    short-description</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Please contact our customer service desk with</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">                        privacy concerns by emailing privacy@example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DISPUTES-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">STATEMENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">PURPOSE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">admin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">develop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">pseudo-decision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">PURPOSE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RECIPIENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ours</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RECIPIENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RETENTION</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">indefinitely</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RETENTION</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#dynamic.cookies"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">CATEGORIES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">preference</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">navigation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">CATEGORIES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">STATEMENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">STATEMENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">PURPOSE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">individual-decision</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> required</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"opt-out"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">PURPOSE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RECIPIENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">ours</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RECIPIENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RETENTION</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">stated-purpose</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">RETENTION</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#user.name.given"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ref</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"#dynamic.cookies"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">CATEGORIES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">preference</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">uniqueid</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">CATEGORIES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DATA-GROUP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">STATEMENT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">POLICY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>結果からは、以下のような情報を取得できる。
         <ul>
           <li>
@@ -244,11 +242,11 @@ Content-Length: 1024
         <p>そして、これを受け取ったクライアントは、ユーザがあらかじめ細かく設定しておいたポリシーと照らし合わせ、満たされていればそのまま閲覧し、満たされなければ警告を出すというものだ。
         <p>もちろん、非常に難解かつ長大なので、人間が直接やりとりすることは想定されていない。しかし、このままでは使いづらいので短縮記法が用意されている。
         <p>短縮記法は Compact Policy (CP) と呼ばれ、短いため直接 HTTP ヘッダに記述できる。前述の例であれば以下だ。
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 200 OK
-P3P: CP=&quot;NON DSP ADM DEV PSD IVDo OUR IND STP PHY PRE NAV UNI&quot;
-Content-Type: text/html
-Content-Length: 1024
-...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> OK</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">P3P</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CP="NON DSP ADM DEV PSD IVDo OUR IND STP PHY PRE NAV UNI"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/html</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1024</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">...</span></span></code></pre>
         <p>SOAP をはじめとした XML 全盛時代の、機械可読で自動ネゴシエーションなマナーをそのまま体現したような仕様であることがわかるだろう。
       </section>
       <section>
@@ -307,7 +305,7 @@ Content-Length: 1024
         <p>要するに、何かしら CP を送っておけば、3rd Party Cookie は使えたのだ。「P3P というコンセプト」は普及しなかったが、「形骸化した P3P ヘッダ」は、3rd Party Cookie を IE でも使いたいサービスには、広く普及していた。
         <p>一般開発者にも「よくわからないが <code translate=no>P3P: CP=&apos;UNI CUR OUR&apos;</code> って入れればいいらしい」程度のおまじないとして認識されていたようだ。(この CP はざっくり言うとトラッキングしてないよという意味らしい)。
         <p>有名なところで、Google は以下のような P3P を提供していた。当時の様子を象徴する実装だろう。
-        <pre class=http data-code=http><code translate=no class=language-http>P3P: CP=&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">P3P</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> CP="This is not a P3P policy! See g.co/p3phelp for more info."</span></span></code></pre>
       </section>
       <section>
         <h2 id="p3p-の終了"><a href="#p3p-の終了">P3P の終了</a></h2>

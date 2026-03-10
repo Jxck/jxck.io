@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-10-02/popover.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Dialog と Popover #5 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -238,20 +236,20 @@
         <section>
           <h3 id="roledialog"><a href="#roledialog">role=dialog</a></h3>
           <p>ARIA には Dialog という Role が以前から定義されており、もし(概念上の)Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=&quot;dialog&quot;&gt;
-  &lt;form&gt;
-    &lt;label&gt;Are you sure you want to continue?&lt;/label&gt;
-    &lt;button type=&quot;submit&quot;&gt;OK&lt;/button&gt;
-  &lt;/form&gt;
-&lt;/div&gt;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> role</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dialog"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">label</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Are you sure you want to continue?&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">label</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"submit"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>OK&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>動きとしては、ここまで散々解説してきたような、<code translate=no>inert</code>, <code translate=no>::backdrop</code>, フォーカス管理, Top Layer などをネイティブで対応した <code translate=no>showModal</code> などの利点はもちろんあるが、セマンティクスの面で言えば、「<code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=dialog</code> に対応するネイティブの要素」という点も重要だ。
         </section>
       </section>
       <section>
         <h2 id="popover"><a href="#popover">popover</a></h2>
         <p>一方、<code translate=no>popover</code> は属性であり、それゆえに任意の要素を Popover することができる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;div popover&gt;Hello Popover&lt;/div&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Hello Popover&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p><code translate=no>popover</code> 属性それ自体は、Role に関するセマンティクスを提供せず、付与した要素が持っている Role なりが、そのまま使用される。それを Top Layer に表示し、Light Dismiss できて、JS だけでなく <code translate=no>popovertarget</code> で操作でき、Anchor Positioning で配置できる。
         <p><code translate=no>popover</code> する要素のセマンティクスは別途考えないといけないわけだが、逆を言えば、どんなセマンティクスを付与された要素も、それを <code translate=no>popover</code> できるというメリットがある。今後「ポコっと浮かび上がる <code translate=no>&lt;selectmenu&gt;</code> のような要素の標準化」を考える時が来ても、「ポコっと浮かび上がる」の部分は丸っと Popover に移譲できるため、Open UI が考えている様々な提案仕様にも、応用して仕様を整理できることが期待される。
         <p>「動きを与えるだけ」といえばそれまでだが、それでも Declarative に「この要素は Popover できる」ことを宣言でき、その API が標準化されることで、ブラウザは「今なにかが Popover した」といった事実を知ることができる。
@@ -268,23 +266,23 @@
         <p><code translate=no>&lt;dialog&gt;</code> は <code translate=no>role=&quot;dialog&quot;</code> であることが重要だという話をした。
         <p>そこに対して、<code translate=no>show()</code>/<code translate=no>showModal()</code> で Modal として出すかどうかという使い分けをするのだが、実際には「 <code translate=no>role=dialog</code> を Popover で出したい」というユースケースもある。
         <p>この場合は「<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> する」という合わせ技も使える。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog popover&gt;
-  &lt;!-- ... --&gt;
-  &lt;p&gt;Ask me anything if you need help&lt;/p&gt;
-  &lt;input type=&quot;text&quot;&gt;
-  &lt;button id=&quot;ask&quot;&gt;ask&lt;/button&gt;
-  &lt;!-- ... --&gt;
-  &lt;button id=&quot;close&quot;&gt;x&lt;/button&gt;
-&lt;/dialog&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  &#x3C;!-- ... --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Ask me anything if you need help&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"text"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ask"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>ask&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  &#x3C;!-- ... --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"close"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>x&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>これにより、特に Light Dismiss の恩恵で、カジュアルに閉じる <code translate=no>&lt;dialog&gt;</code> が出せるため、non-Modal Dialog で応用できる。
         <p>一方で、Modal Dialog を Light Dismiss したいがために、<code translate=no>popover</code> で実装し、<code translate=no>::backdrop</code> を暗くすることで Modal っぽく実装するというのは、あまり良い実装ではないとされている。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot;&gt;Click me&lt;/button&gt;
-&lt;dialog popover id=&quot;foo&quot;&gt;I&apos;m a dialog!&lt;/dialog&gt;
-&lt;style&gt;
-dialog[popover]::backdrop {
-  background-color: black;
-}
-&lt;/style&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popovertarget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Click me&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>I'm a dialog!&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">::backdrop</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">black</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>ちなみに、<code translate=no>showModal</code> したものも Light Dismiss したいというユースケースを <code translate=no>&lt;dialog&gt;</code> 側でサポートすべきかという議論はまだ進行中だ。
         <ul>
           <li>
@@ -325,13 +323,13 @@ dialog[popover]::backdrop {
             </ul>
           </li>
         </ul>
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button popovertarget=&quot;foo&quot; popovertargetaction=&quot;show&quot;&gt;
-  Show a popover
-&lt;/button&gt;
-&lt;article popover=&quot;auto&quot; id=&quot;foo&quot;&gt;
-  This is a popover article!
-  &lt;button popovertarget=&quot;foo&quot; popovertargetaction=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/article&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popovertarget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popovertargetaction</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show a popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"auto"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a popover article!</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popovertarget</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popovertargetaction</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">article</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>基本的に Popover は明示的に閉じられるようにするのがプラクティスなので、<code translate=no>x</code> アイコンを button として <code translate=no>popover</code> の右上に表示し、それを <code translate=no>action=hide</code> にするのがプラクティスだろう。
       </section>
       <section>
@@ -364,33 +362,33 @@ dialog[popover]::backdrop {
           </li>
         </ul>
         <p>ややこしいが、仕様(概念)名は Invoker で、属性名が Command という解釈だ。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
-  Show dialog
-&lt;/button&gt;
-&lt;dialog id=&quot;foo&quot;&gt;
-  This is a dialog
-  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/dialog&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show dialog</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a dialog</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この仕様は <code translate=no>popover</code> にも逆輸入され、現在は <code translate=no>popover</code> も <code translate=no>command</code> で開けるようにしていく方針になっている。(つまり、いずれ <code translate=no>popovertarget</code> は消えるかもしれないので、これから実装する場合は最新の議論に注意したい)
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
-  Show Popover
-&lt;/button&gt;
-&lt;div id=&quot;foo&quot; popover&gt;
-  This is a Popover
-  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
       </section>
       <section>
         <h2 id="anchor-positioning"><a href="#anchor-positioning">Anchor Positioning</a></h2>
         <p>Anchoring は <code translate=no>popover</code> と同時に策定されていた、今後かなり重要になる仕様の 1 つだ。
         <p>まず、先ほどの例を考えてみる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;button commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
-  Show Popover
-&lt;/button&gt;
-&lt;div id=&quot;foo&quot; popover&gt;
-  This is a Popover
-  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>このとき、Popover した <code translate=no>&lt;div&gt;</code> を <code translate=no>&lt;button&gt;</code> の右下に表示したいとしよう。
         <p>通常の DOM であれば、<code translate=no>&lt;button&gt;</code> を基準にし、<code translate=no>&lt;div&gt;</code> を相対的に配置すれば良いが、今 <code translate=no>&lt;div popover&gt;</code> は Top Layer に、<code translate=no>&lt;button&gt;</code> はその backdrop に表示されているため、2 つを相対的に配置することができないのだ。
         <p><code translate=no>&lt;div popover&gt;</code> が表示されている Top Layer には、他の DOM が何もない状態なので、何らかの方法で <code translate=no>&lt;div popover&gt;</code> の座標などを渡されない限りは、「画面の真ん中」や「四隅」といった、絶対値指定できる場所くらいしか、配置のしようがない。
@@ -404,19 +402,19 @@ dialog[popover]::backdrop {
         <section>
           <h3 id="anchor-attributes"><a href="#anchor-attributes">Anchor Attributes</a></h3>
           <p>当初、Anchor は HTML 属性で指定する提案がされていた。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;button id=&quot;button&quot; commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
-  Show Popover
-&lt;/button&gt;
-&lt;div id=&quot;foo&quot; anchor=&quot;button&quot; popover&gt;
-  This is a Popover
-  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/div&gt;
-&lt;style&gt;
-[popover] {
-  top: anchor(bottom);
-  left: anchor(right);
-}
-&lt;/style&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"button"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"button"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>この場合、<code translate=no>&lt;div popover&gt;</code> の Anchor を <code translate=no>&lt;button&gt;</code> としている。
           <p><code translate=no>top: anchor(bottom)</code> は、自分の上端が Anchor の下端になるという指定だ。<code translate=no>left: anchor(right)</code> は自身の左端を Anchor の右端にしているため、結果、<code translate=no>&lt;button&gt;</code> に対して右下に表示されるというものだ。
           <p>
@@ -434,10 +432,10 @@ dialog[popover]::backdrop {
         </p>
         <p><code translate=no>position-anchor</code> を指定した要素に <code translate=no>position-area</code> で、表示したい位置を指定する。(もともとは <code translate=no>inset-area</code> という名前だったが、指定する側からすれば Position なのでこの名前に変更された。)
         <p>先ほどの「右下」を <code translate=no>position-anchor</code> を使い、ロジカルプロパティで指定するなら、以下のようになる。
-        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
-  position-anchor: --anchor;
-  position-area: inline-end block-end;
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --anchor;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-area</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">inline-end</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> block-end</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
       </section>
       <section>
         <h2 id="anchor-position-の-fallback"><a href="#anchor-position-の-fallback">Anchor Position の fallback</a></h2>
@@ -447,28 +445,28 @@ dialog[popover]::backdrop {
         </p>
         <p>これを避けるために、フォールバックという仕組みを導入し、「はみ出る場合は、別のスタイルに切り替える」という指定をするための <code translate=no>position-try-options</code> が提案された。
         <p>これは後に <code translate=no>position-try-fallbacks</code> と名前を変え、例えば <code translate=no>flip-inline</code> を指定すれば Inline 方向(つまり左右)を逆にするようフォールバックできる。
-        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
-  top: anchor(end);
-  left: anchor(right);
-  position-try-fallbacks: flip-inline;
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">end</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-try-fallbacks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: flip-inline;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>
           <img loading=lazy decoding=async src=./anchor-fallback.drawio.svg?241002_223502 alt="左でははみ出す popover を anchor の右にフォールバック表示" width=411 height=331>
         </p>
         <p>Block 方向(つまり上下)であれば <code translate=no>flip-block</code> でフォールバックできる。
         <p>より細かくスタイルを指定したい場合は、フォールバックの先を <code translate=no>@position-try</code> に複数指定し、それを並べて順に試行させることができる。複数適用できる場合の優先順位は <code translate=no>position-try-order</code> に指定可能だ。
-        <pre class=css data-code=css><code translate=no class=language-css>[popover] {
-  ...
-  position-try-fallbacks: --first, --second, flip-inline, flip-block;
-  position-try-order: most-height;
-}
-@position-try --first {
-  top: anchor(end);
-  right: anchor(self-start);
-}
-@position-try --end {
-  /* .... */
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ...</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-try-fallbacks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --first, --second, flip-inline, flip-block;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-try-order</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: most-height;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@position-try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --first {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  top: anchor(end);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  right: anchor(</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">self-start</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@position-try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --end {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* .... */</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>これで、どんな要素に Invoke されても、Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような <code translate=no>popover</code> が表示できるのだ。
         <p>特に縦長になりがちな Menu 系の UI を、適切に表示する上で重宝する。
         <section>
@@ -476,21 +474,21 @@ dialog[popover]::backdrop {
           <p>このように、要素の配置に革新をもたらすであろう Anchor だが、HTML 属性であるにも関わらず、明らかにスタイルマターなユースケースであるために、「セマンティクスは何か」という議論がされることになった。
           <p>そこで、HTML の Anchor 属性は一旦保留し、同様の機能を CSS 側で定義したのが、<code translate=no>anchor-name</code> と <code translate=no>position-anchor</code> だ。
           <p>指定は以下のように、HTML で定義していた関係を CSS Variable で定義した名前を用いて紐づける仕様になっている。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
-button {
-  anchor-name: --anchor;
-}
-[popover] {
-  position-anchor: --anchor;
-  position: absolute;
-  top: anchor(bottom);
-  left: anchor(center);
-}
-&lt;/style&gt;
-&lt;button&gt;button&lt;/button&gt;
-&lt;div id=&quot;message&quot; popover&gt;
-  popover
-&lt;/div&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  anchor-name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --anchor;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --anchor;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">absolute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">center</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>button&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"message"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>まず <code translate=no>&lt;button&gt;</code> 側で <code translate=no>anchor-name</code> に CSS Variable で名前をつけ、<code translate=no>popover</code> 側は <code translate=no>position-anchor</code> でその名前を指定し、<code translate=no>anchor()</code> で相対位置を指定する。
           <p>ここから、さらに余白を広げたいといった場合は、<code translate=no>translate</code> などで位置を調整することになるだろう。
         </section>
@@ -501,19 +499,19 @@ button {
         <p>特に動的に関連付けを変更したいような場合には、<code translate=no>&lt;div style=&quot;position-anchor: --anchor&quot;&gt;</code> などと HTML 側でいじる必要が出るため、あまり使いやすい API ではない。
         <p>議論を進めた結果、「少なくとも Invoker と Popover の間には、暗黙的な Anchor の関係を見出しても良いだろう」ということになり、先のように <code translate=no>&lt;button commandfor&gt;</code> で開いた <code translate=no>&lt;div popover&gt;</code> との間には、暗黙的に Anchor の関係がある、ということになったのだ。これを Invoker Relationship と呼ぶ。
         <p>つまり、以下の例は HTML の <code translate=no>anchor</code> 属性も、CSS の <code translate=no>anchor-name</code> もないが、<code translate=no>anchor()</code> を使った配置ができていることに注目したい。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
-[popover] {
-  top: anchor(bottom);
-  left: anchor(center);
-}
-&lt;/style&gt;
-&lt;button id=&quot;button&quot; commandfor=&quot;foo&quot; command=&quot;show&quot;&gt;
-  Show Popover
-&lt;/button&gt;
-&lt;div id=&quot;foo&quot; popover&gt;
-  This is a Popover
-  &lt;button commandfor=&quot;foo&quot; command=&quot;hide&quot;&gt;Close&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">center</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"button"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"show"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Show Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  This is a Popover</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> commandfor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> command</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hide"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Close&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
       </section>
       <section>
         <h2 id="html-anchor-attributes-の今後"><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後</a></h2>
@@ -529,38 +527,38 @@ button {
         <p>このような Popover は、画面中のすべてのアカウントごとに <code translate=no>&lt;div popover&gt;</code> を作っておくのではなく、1 つ用意してその内容を書き換えながら再利用する実装が多い。
         <p>つまり、Popover (プロフィール)側は変わらないが、Anchor (アイコン)側が動的に変わっていくわけだが、HTML の <code translate=no>command</code> で開いているわけではなく <code translate=no>onmouseover</code> などをフックして JS で開くため、暗黙的な Invoker Relationship も生成されない。
         <p>この実装として、<code translate=no>&lt;div popover&gt;</code> 側に <code translate=no>position-anchor: --user-icon</code> を指定しておいたとすると。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
-[popover] {
-  position-anchor: --user-icon;
-  position: absolute;
-  bottom: anchor(top);
-  left: anchor(right);
-}
-&lt;/style&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --user-icon;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">absolute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>JS で <code translate=no>mouseover</code> された要素を、動的に <code translate=no>anchor-name: --user-icon</code> に変えていく必要がある。以下のようなイメージだ。
-        <pre class=js data-code=js><code translate=no class=language-js>document.querySelectorAll(&quot;img.icon&quot;).forEach((img) =&gt; {
-  img.addEventListener(&quot;mouseover&quot;, (e) =&gt; {
-    e.target.style.anchorName = &quot;--user-icon&quot;
-    // 終わったら消す
-  })
-})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelectorAll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img.icon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forEach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">img</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  img.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"mouseover"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    e.target.style.anchorName </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "--user-icon"</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // 終わったら消す</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>対象のイベントで、動的に <code translate=no>anchor-name</code> を変更し、終わったら <code translate=no>anchor-name</code> を消す必要がある。消し忘れると、他とかぶって意図しない場所に表示される可能性もある。名前を変えても良いが、その場合は Popover 側の管理も必要になる。
         <p>もし HTML で Anchor 要素が使えるのであれば、<code translate=no>&lt;a&gt;</code> が持つ ID を指定して、<code translate=no>&lt;div popover&gt;</code> 側を変えればよくなる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
-[popover] {
-  position-anchor: --anchor;
-  position: absolute;
-  top: anchor(bottom);
-  left: anchor(center);
-}
-&lt;/style&gt;
-&lt;script&gt;
-document.querySelectorAll(&quot;img.icon&quot;).forEach((img) =&gt; {
-  img.addEventListener(&quot;mouseover&quot;, (e) =&gt; {
-    $popover.anchor = e.target.id
-  })
-})
-&lt;/script&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --anchor;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">absolute</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  top</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">bottom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  left</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: anchor(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">center</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelectorAll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img.icon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">forEach</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">img</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  img.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"mouseover"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    $popover.anchor </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> e.target.id</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>すでにある HTML に、Popover を後から追加する上でも、この方が実装は容易であり、管理しやすいため、筆者としてはこの機能が戻ってくることを心待ちにしている。
         <p>次回は Popover や Dialog につきものの、アニメーション関連の仕様について触れる。
       </section>

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Feature Policy による Permission Delegation | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -241,8 +239,8 @@
           <li>allow-top-navigation-by-user-activation
         </ul>
         <p>何も許可せず、全てブロックする場合は以下のようになる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;iframe sandbox=&quot;&quot; src=&quot;example.com&quot;&gt;&lt;/iframe&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sandbox</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <ul>
           <li>DEMO: <a href="http://labs.jxck.io/iframe" target=_blank>http://labs.jxck.io/iframe</a>
         </ul>
@@ -251,7 +249,7 @@
         <h2 id="csp"><a href="#csp">CSP</a></h2>
         <p>HTML に埋め込む sandbox 属性は、埋め込んだ iframe にしか適用されない。
         <p>これを HTTP ヘッダで適用できるように、CSP2 では sandbox ディレクティブが追加された。
-        <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sandbox</span></span></code></pre>
         <ul>
           <li><a href="https://w3c.github.io/webappsec-csp/#directive-sandbox" target=_blank>https://w3c.github.io/webappsec-csp/#directive-sandbox</a>
         </ul>
@@ -280,19 +278,19 @@
         <section>
           <h3 id="none"><a href="#none">&apos;none&apos;</a></h3>
           <p><code translate=no>none</code> は、全てのオリジンに対して制限を適用する。つまりこれでページ上全ての同期 XHR が制限される。
-          <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sync-xhr 'none'</span></span></code></pre>
         </section>
         <section>
           <h3 id="self"><a href="#self">&apos;self&apos;</a></h3>
           <p><code translate=no>self</code> は、同一オリジン上は許可し、それ以外のオリジンでは制限する。
           <p>iframe があった場合も、同一オリジンなら許可されるが、クロスオリジンでは制限される。
-          <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: sync-xhr &apos;self&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sync-xhr 'self'</span></span></code></pre>
         </section>
         <section>
           <h3 id="allowlist"><a href="#allowlist">allowlist</a></h3>
           <p>機能を許可するオリジンをセーフリストで指定できる。
           <p>例えば以下のようにすれば、同一オリジンに加え、iframe 内の example.com では許可される。
-          <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: sync-xhr &apos;self&apos; https://example.com</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sync-xhr 'self' https://example.com</span></span></code></pre>
           <p>sync-xhr の場合は、もともとブラウザで有効になっている機能を Feature Policy によって機能を制限しつつ、セーフリストで例外を設ける形になる。
         </section>
         <section>
@@ -300,13 +298,13 @@
           <p>最近の強力な機能は、iframe からの呼び出しがデフォルトで制限されているものがある。
           <p>例えば、現在 Chrome では iframe から Geolocation API を呼び出すことはデフォルトで制限されている。
           <p>これを、特定のドメインにのみ許可したい場合は、以下のように指定する。
-          <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: geolocation &apos;self&apos; https://example.com</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> geolocation 'self' https://example.com</span></span></code></pre>
           <p>すると、この iframe で Geolocation API が呼び出された時、埋め込んだサイト上でプロンプトが表示される。
           <p>ユーザがこれを許可すると、サイトに対して権限が付与され、それが example.com にも移譲される。
           <p>これにより、iframe 内で Geolocation API が実行できることになる。
           <p>(執筆時点では、この Prompt はまだ「example.com が現在位置の取得を求めている」という表示になっているが、この表示はいずれ変更されるようだ)
           <p>もし Geolocation API の呼び出しを全オリジンに対して許可したい場合は以下のように指定することも可能だ。
-          <pre class=http data-code=http><code translate=no class=language-http>Feature-Policy: geolocation *</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> geolocation *</span></span></code></pre>
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/feature-policy/geolocation/basic.html" target=_blank>https://labs.jxck.io/feature-policy/geolocation/basic.html</a>
           </ul>
@@ -318,8 +316,8 @@
           <p>Feature Policy は <em>sandbox が制限する機能は重複して持たず</em> sandbox と組み合わせて利用することが想定されている。
           <p>設定する際は、CSP の sandbox を基準とし、許可したいものを <code translate=no>allow-*</code> で、追加で制限したいものを Feature Policy で行うことになるだろう。
           <p>例として、iframe Sandbox を有効にしつつ、script の実行を許可するが、それによって sync-xhr が行われるのは制限したいといった場合は以下のようになるだろう。
-          <pre class=http data-code=http><code translate=no class=language-http>Content-Security-Policy: sandbox allow-scripts;
-Feature-Policy: sync-xhr &apos;none&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sandbox allow-scripts;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Feature-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sync-xhr 'none'</span></span></code></pre>
           <ul>
             <li>DEMO: <a href="https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html" target=_blank>https://labs.jxck.io/feature-policy/sync-xhr/sandbox.html</a>
           </ul>

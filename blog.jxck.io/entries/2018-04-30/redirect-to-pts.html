@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-04-30T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Linux で出力を別の shell に pts 経由で表示する | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-04-30>2018-04-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,59 +157,59 @@
         <h2 id="stdoutstderr"><a href="#stdoutstderr">stdout/stderr</a></h2>
         <p>代表例として、tmux で pane を分割し、コマンドの出力を stdout/stderr で分けて pane ごとに表示するケースで解説する。
         <p>まず、以下のようにランダムにエラー出力を吐くプログラムを実行する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js data-path=hello_world><code translate=no class=language-js>#!/usr/bin/env ruby
-
-while true do
-  if rand(0..1) == 0 then
-    STDOUT.print &quot;hello\n&quot;
-  else
-    STDERR.puts &quot;world\n&quot;
-  end
-  sleep(1)
-end</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js" data-path="hello_world"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">#!/usr/bin/env ruby</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">while</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> do</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rand</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0..1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> then</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    STDOUT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.print </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  else</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    STDERR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.puts </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"world</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  end</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  sleep</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">end</span></span></code></pre>
         <p>ターミナル上では stdout/stderror の出力は同じ画面上に出る。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ./hello_world
-hello
-world
-hello
-world
-world
-world
-world
-hello
-world</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./hello_world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">hello</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">hello</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">hello</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">world</span></span></code></pre>
         <p>tmux で別のペインで表示したい場合に、例えば一旦別のファイルに追記し、ペインごとに <code translate=no>tail -f</code> することもできる。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ./hello_world 1&gt; ./success.log 2&gt; ./error.log</code></pre>
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session># pane1 for stdout
-$ tail -f access.log</code></pre>
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session># pane2 for stderr
-$ tail -f error.log</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./hello_world </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">1></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ./success.log </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">2></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ./error.log</span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># pane1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stdout</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tail -f access.log</span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># pane2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stderr</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tail -f error.log</span></span></code></pre>
         <p>この一時ファイルに相当するものとして pts を代用できる。
       </section>
       <section>
         <h2 id="devpts"><a href="#devpts">/dev/pts</a></h2>
         <p>tmux で pane を開いた状態で、<code translate=no>tty</code> コマンドで紐付いた pts を確認する。
         <p>(<code translate=no>ps</code> で確認することもできる)
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ tty
-/dev/pts/2
-...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tty</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">/dev/pts/2</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">...</span></span></code></pre>
         <p>紐付いている pts の実態は <code translate=no>/dev/pts/2</code> である。
         <p>試しに、別の pane からこの pts に対して書き込みをすると、結果が表示されることがわかるだろう。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>## 別の pane
-$ echo hello &gt; /dev/pts/2</code></pre>
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session># pane1 for stdout
-$ hello # 表示される</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">## 別の pane</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ echo hello </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /dev/pts/2</span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># pane1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stdout</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ hello </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># 表示される</span></span></code></pre>
         <p>逆に、別の pane から cat で読み出すと、入力された値を奪い取ることもできる。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>## 別の pane
-$ cat /dev/pts/2
-# 入力が表示される</code></pre>
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ # ここでの入力は奪われる</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">## 別の pane</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cat /dev/pts/2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 入力が表示される</span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ # ここでの入力は奪われる</span></span></code></pre>
         <p>つまり、pts への書き込みは pane に表示され、pane への入力は pts から読み出せる。
         <p>pts は疑似端末であり、tmux と shell に間に挟まった中継役のようなものだと思えば良い。
         <p>例えば、実行結果の stdout を pane1 に、stderr を pane2 に分岐して出力したい場合。
         <p>もし pane1 が <code translate=no>/dev/pts2/</code> に、pane2 が <code translate=no>/dev/pts5/</code> に紐づくとすると。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ ./hello_world 1&gt; /dev/pts2 2&gt; /dev/pts5</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./hello_world </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">1></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /dev/pts2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">2></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /dev/pts5</span></span></code></pre>
         <p>これで、結果を 2 つの pane に分けて出力することができる。
       </section>
       <section>
@@ -219,9 +217,9 @@ $ cat /dev/pts/2
         <p><code translate=no>tee</code> コマンドと、プロセス置換を使うと、出力を自由にフィルタし分岐することができる。
         <p>その分岐先を、複数の pane に分けて指定すれば、簡易ダッシュボードを作ることができる。
         <p>例えば access_log をステータスコードごとに出す場合は以下のようになる。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ tail -f access.log | tee &gt;(grep 404 &gt; /dev/pts/5) &gt;(grep 500 &gt; /dev/pts/6) &gt;(grep 451 &gt; /dev/pts/7)</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tail -f access.log </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> tee</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 404</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/5)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 500</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/6)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 451</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/7)</span></span></code></pre>
         <p>Logger のタグ (Info, Debug, Trace etc) を使った分岐なんかも地味に便利だったりする。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ tail -f debug.log | tee &gt;(grep Info &gt; /dev/pts/5) &gt;(grep Debug &gt; /dev/pts/6) &gt;(grep Trace &gt; /dev/pts/7)</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tail -f debug.log </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> tee</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Info </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/5)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Debug </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/6)</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> >(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Trace </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /dev/pts/7)</span></span></code></pre>
       </section>
     </article>
   </main>

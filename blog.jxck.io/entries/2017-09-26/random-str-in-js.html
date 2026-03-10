@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-09-26/random-str-in-js.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>ブラウザで適当なランダム文字列 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -155,40 +153,40 @@
       </section>
       <section>
         <h2 id="new-random-string-with-tobase64"><a href="#new-random-string-with-tobase64">[new] random string with toBase64</a></h2>
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>// Base64 URL without Padding
-crypto.getRandomValues(new Uint8Array(16)).toBase64({omitPadding: true, alphabet: &quot;base64url&quot;})</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Base64 URL without Padding</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getRandomValues</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Uint8Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toBase64</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({omitPadding: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, alphabet: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"base64url"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
       </section>
       <section>
         <h2 id="random-string-with-btoa"><a href="#random-string-with-btoa">random string with btoa</a></h2>
         <p><a href="https://labs.jxck.io/snippets/random.html" target=_blank>DEMO</a>
-        <pre class=js data-code=js><code translate=no class=language-js>// with random
-btoa(Math.random())
-// =&gt; MC44NzEwODQwMjA1NDA2MTE4
-
-// with crypto
-btoa(crypto.getRandomValues(new Uint8Array(16)))
-// =&gt; MjQ2LDE0NSwxNzAsMjQ0LDY4LDg3LDMzLDE0NiwxNzcsNjAsMTUyLDE3MSwxNTAsMTcsMTA4LDEwNA==
-
-// base64 has `=` remove them
-btoa(Math.random()).replace(/=/g, &quot;&quot;)
-// =&gt; MC45NTM0NTM2OTY3MTc5MDY0
-
-// lower case
-btoa(Math.random()).toLowerCase()
-// =&gt; mc43ndy1odizmjg5ndq4otm0
-
-// align length
-btoa(Math.random()).substring(0, 10)
-// =&gt; MC42NjgwND
-
-// letter only
-btoa(crypto.getRandomValues(new Uint8Array(16))).replace(/[0-9]/g, &quot;&quot;).replace(/=/g, &quot;&quot;)
-// =&gt; MTELDMLDksMTMwLDEMywxMzgsNzUsMjQzLDENCwyMDcsMjALDIMiwxNDEsMjILDYLDIMg
-
-// number only
-crypto.getRandomValues(new Uint8Array(16)).join(&quot;&quot;)
-// =&gt; 24066186112482432389420313011522520523361145</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// with random</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(Math.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">random</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">())</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => MC44NzEwODQwMjA1NDA2MTE4</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// with crypto</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getRandomValues</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Uint8Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)))</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => MjQ2LDE0NSwxNzAsMjQ0LDY4LDg3LDMzLDE0NiwxNzcsNjAsMTUyLDE3MSwxNTAsMTcsMTA4LDEwNA==</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// base64 has `=` remove them</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(Math.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">random</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">replace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">g</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => MC45NTM0NTM2OTY3MTc5MDY0</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// lower case</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(Math.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">random</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toLowerCase</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => mc43ndy1odizmjg5ndq4otm0</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// align length</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(Math.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">random</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">substring</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => MC42NjgwND</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// letter only</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">btoa</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getRandomValues</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Uint8Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">))).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">replace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">[0-9]</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">g</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">replace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#032F62;--shiki-dark:#DBEDFF">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">g</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => MTELDMLDksMTMwLDEMywxMzgsNzUsMjQzLDENCwyMDcsMjALDIMiwxNDEsMjILDYLDIMg</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// number only</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getRandomValues</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Uint8Array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">join</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// => 24066186112482432389420313011522520523361145</span></span></code></pre>
       </section>
     </article>
   </main>

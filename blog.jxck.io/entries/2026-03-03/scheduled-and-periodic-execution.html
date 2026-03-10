@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2026-03-03/scheduled-and-periodic-execution.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>「定時実行」と「定期実行」の実装ガイド | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -327,11 +325,11 @@
             <img loading=lazy decoding=async src=4-1.timeline.drawio.svg?260303_232503 alt="タスクの開始が 10 分間隔" width=640 height=117>
           </p>
           <p>では、それがざっくりこんな実装だったとしよう。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=ruby data-code=ruby><code translate=no class=language-ruby>loop do
-  task()
-  sleep(10 * 60)
-end</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">loop</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> do</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  task</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  sleep</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> *</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 60</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span></span></code></pre>
           <p>この場合、タイムラインはこうだ。
           <p>
             <img loading=lazy decoding=async src=4-2.timeline.drawio.svg?260303_232503 alt="タスクの終了から 10 分空ける" width=640 height=117>
@@ -398,10 +396,10 @@ end</code></pre>
           <h3 id="タスクにスケジューリングを実装しない"><a href="#タスクにスケジューリングを実装しない">タスクにスケジューリングを実装しない</a></h3>
           <p>最も避けるべきは、なんちゃってスケジューラの自前実装だ。
           <p>こういうやつだ。
-          <pre class=ruby data-code=ruby><code translate=no class=language-ruby>loop do
-  task()
-  sleep(10 * 60)
-end</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="ruby"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">loop</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> do</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  task</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  sleep</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> *</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 60</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">end</span></span></code></pre>
           <p>なぜか、「スケジューラを使うまでもない」などの意味不明な理由で、こういうものを常駐させたがる人がいる。「定期実行」や「定時実行」で痛い目を見たことがない、経験不足からくる失態だ。
           <p>タスクのテストもしづらく、スケジューラもどこまで考慮できているか怪しい。スケジューラなんて大したことがない、と思っている人がまともに実装できていることなんかありえないので、こういう実装を見たら、まずタスクを剥がして、スケジューラを導入しよう。
         </section>
@@ -409,7 +407,7 @@ end</code></pre>
           <h3 id="定期実行は定時実行に置き換える"><a href="#定期実行は定時実行に置き換える">「定期実行」は「定時実行」に置き換える</a></h3>
           <p>慣れている人には分かりきっていることだが、「<em>大抵の定期実行は定時実行に置き換えて実装した方が良い</em>」。
           <p>cron は最初からそうなっているため、以下のように書いておけば 10 分間隔の定時実行になっている。
-          <pre class=cron data-code=cron><code translate=no class=language-cron>*/10 * * * * command</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cron"><code translate="no"><span class="line"><span>*/10 * * * * command</span></span></code></pre>
           <p>また、それなりのスケジューラは基本的に cron 互換のスケジュールに対応しており、定時実行で設定ができる。
           <p>ところが cron はシンプルすぎて、ここまで書いたような細かい処理をカバーしきれない。
           <p>今ならスケジューラにも Systemd を用いる方が良い。

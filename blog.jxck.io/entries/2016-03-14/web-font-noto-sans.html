@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Noto Sans の Web Font 対応とサブセットによる最適化 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -248,83 +246,83 @@
         <p>(ちなみに、<code translate=no>pre &gt; code</code> 内のサンプルコードは別のフォントを使うので、コード用という訳ではない)
         <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni000.html" target=_blank>Unicode 基本ラテン文字 - Basic Latin -</a>
         <p>制御文字などを除いて、以下の範囲を全て収録。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=text data-code=text data-path=BasicLatin.txt><code translate=no class=language-text>! &quot; # $ % &amp; &apos; ( ) * + , - .  /
-0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
-@ A B C D E F G H I J K L M N O
-P Q R S T U V W X Y Z [ \ ] ^ _
-` a b c d e f g h i j k l m n o
-p q r s t u v w x y z { | } ~</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="BasicLatin.txt"><code translate="no"><span class="line"><span>! " # $ % &#x26; ' ( ) * + , - .  /</span></span>
+<span class="line"><span>0 1 2 3 4 5 6 7 8 9 : ; &#x3C; = > ?</span></span>
+<span class="line"><span>@ A B C D E F G H I J K L M N O</span></span>
+<span class="line"><span>P Q R S T U V W X Y Z [ \ ] ^ _</span></span>
+<span class="line"><span>` a b c d e f g h i j k l m n o</span></span>
+<span class="line"><span>p q r s t u v w x y z { | } ~</span></span></code></pre>
       </section>
       <section>
         <h2 id="cjk-記号と句読点3000-303f"><a href="#cjk-記号と句読点3000-303f">CJK 記号と句読点(3000-303F)</a></h2>
         <p>句読点やカッコなど。基本的に <code translate=no>[](){}</code> など半角のカッコを使うが、全角のカッコも必要になる。
         <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni090.html" target=_blank>Unicode CJK 記号と句読点 - CJK Symbols and Punctuation -</a>
         <p>以下が候補
-        <pre class=text data-code=text data-path=SymbolsAndPunctuationFull.txt><code translate=no class=language-text>、 。 〃 〄 々 〆 〇 〈 〉 《 》 「 」 『 』
-【 】 〒 〓 〔 〕 〖 〗 〘 〙 〚 〛 〜 〝 〞 〟
-〠 〡 〢 〣 〤 〥 〦 〧 〨 〩  〪  〫  〬  〭  〮  〯
-〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="SymbolsAndPunctuationFull.txt"><code translate="no"><span class="line"><span>、 。 〃 〄 々 〆 〇 〈 〉 《 》 「 」 『 』</span></span>
+<span class="line"><span>【 】 〒 〓 〔 〕 〖 〗 〘 〙 〚 〛 〜 〝 〞 〟</span></span>
+<span class="line"><span>〠 〡 〢 〣 〤 〥 〦 〧 〨 〩  〪  〫  〬  〭  〮  〯</span></span>
+<span class="line"><span>〰 〱 〲 〳 〴 〵 〶 〷 〸 〹 〺 〻 〼 〽 〾 〿</span></span></code></pre>
         <p>この中から、使わないものを除き、以下のみを収録。
-        <pre class=text data-code=text data-path=SymbolsAndPunctuation.txt><code translate=no class=language-text>、 。 々 〆 〇 「 」 『 』 〜</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="SymbolsAndPunctuation.txt"><code translate="no"><span class="line"><span>、 。 々 〆 〇 「 」 『 』 〜</span></span></code></pre>
       </section>
       <section>
         <h2 id="ひらがな3040-3090"><a href="#ひらがな3040-3090">ひらがな(3040-3090)</a></h2>
         <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni091.html" target=_blank>Unicode ひらがな - Hiragana -</a>
         <p>以下が候補
-        <pre class=text data-code=text data-path=HiraganaFull.txt><code translate=no class=language-text>   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
-ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た
-だ ち ぢ っ つ づ て で と ど な に ぬ ね の は
-ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み
-む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ
-ゐ ゑ を ん ゔ ゕ ゖ  	゙	゚ ゛ ゜ ゝ ゞ ゟ</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="HiraganaFull.txt"><code translate="no"><span class="line"><span>   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く</span></span>
+<span class="line"><span>ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た</span></span>
+<span class="line"><span>だ ち ぢ っ つ づ て で と ど な に ぬ ね の は</span></span>
+<span class="line"><span>ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み</span></span>
+<span class="line"><span>む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ</span></span>
+<span class="line"><span>ゐ ゑ を ん ゔ ゕ ゖ  	゙	゚ ゛ ゜ ゝ ゞ ゟ</span></span></code></pre>
         <p>以下を収録
-        <pre class=text data-code=text data-path=Hiragana.txt><code translate=no class=language-text>   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く
-ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た
-だ ち ぢ っ つ づ て で と ど な に ぬ ね の は
-ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み
-む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ
-   を ん</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="Hiragana.txt"><code translate="no"><span class="line"><span>   ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く</span></span>
+<span class="line"><span>ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た</span></span>
+<span class="line"><span>だ ち ぢ っ つ づ て で と ど な に ぬ ね の は</span></span>
+<span class="line"><span>ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み</span></span>
+<span class="line"><span>む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ</span></span>
+<span class="line"><span>   を ん</span></span></code></pre>
       </section>
       <section>
         <h2 id="カタカナ30a0-30f0"><a href="#カタカナ30a0-30f0">カタカナ(30A0-30F0)</a></h2>
         <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni092.html" target=_blank>Unicode カタカナ - Katakana -</a>
         <p>以下が候補
-        <pre class=text data-code=text data-path=KatakanaFull.txt><code translate=no class=language-text>゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
-グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ
-ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ
-バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ
-ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ
-ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="KatakanaFull.txt"><code translate="no"><span class="line"><span>゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク</span></span>
+<span class="line"><span>グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ</span></span>
+<span class="line"><span>ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ</span></span>
+<span class="line"><span>バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ</span></span>
+<span class="line"><span>ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ</span></span>
+<span class="line"><span>ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ</span></span></code></pre>
         <p>以下を収録
-        <pre class=text data-code=text data-path=Katakana.txt><code translate=no class=language-text>   ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク
-グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ
-ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ
-バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ
-ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ    ワ
-      ヲ ン ヴ ヵ ヶ</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="Katakana.txt"><code translate="no"><span class="line"><span>   ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク</span></span>
+<span class="line"><span>グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ</span></span>
+<span class="line"><span>ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ</span></span>
+<span class="line"><span>バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ</span></span>
+<span class="line"><span>ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ    ワ</span></span>
+<span class="line"><span>      ヲ ン ヴ ヵ ヶ</span></span></code></pre>
       </section>
       <section>
         <h2 id="半角形と全角形ff00-ffe0"><a href="#半角形と全角形ff00-ffe0">半角形と全角形(FF00-FFE0)</a></h2>
         <p>全角の英数や半角カタカナなど。しかし、このブログで <em>これらは使わない</em>。
         <p><a href="http://homepage2.nifty.com/k_maeda/code/uni/uni120.html" target=_blank>Unicode 半角形と全角形 - Halfwidth and Fullwidth Forms -</a>
         <p>以下が候補
-        <pre class=text data-code=text data-path=Halfwidth-and-Fullwidth-Forms.txt><code translate=no class=language-text>0 1 2 3 4 5 6 7 8 9 A B C D E F
-  ！  ＂  ＃  ＄  ％  ＆  ＇  （  ）  ＊  ＋  ，  －  ．  ／
-０  １  ２  ３  ４  ５  ６  ７  ８  ９  ：  ；  ＜  ＝  ＞  ？
-＠  Ａ  Ｂ  Ｃ  Ｄ  Ｅ  Ｆ  Ｇ  Ｈ  Ｉ  Ｊ  Ｋ  Ｌ  Ｍ  Ｎ  Ｏ
-Ｐ  Ｑ  Ｒ  Ｓ  Ｔ  Ｕ  Ｖ  Ｗ  Ｘ  Ｙ  Ｚ  ［  ＼  ］  ＾  ＿
-｀  ａ  ｂ  ｃ  ｄ  ｅ  ｆ  ｇ  ｈ  ｉ  ｊ  ｋ  ｌ  ｍ  ｎ  ｏ
-ｐ  ｑ  ｒ  ｓ  ｔ  ｕ  ｖ  ｗ  ｘ  ｙ  ｚ  ｛  ｜  ｝  〜  ｟
-｠  ｡ ｢ ｣ ､ ･ ｦ ｧ ｨ ｩ ｪ ｫ ｬ ｭ ｮ ｯ
-ｰ ｱ ｲ ｳ ｴ ｵ ｶ ｷ ｸ ｹ ｺ ｻ ｼ ｽ ｾ ｿ
-ﾀ ﾁ ﾂ ﾃ ﾄ ﾅ ﾆ ﾇ ﾈ ﾉ ﾊ ﾋ ﾌ ﾍ ﾎ ﾏ
-ﾐ ﾑ ﾒ ﾓ ﾔ ﾕ ﾖ ﾗ ﾘ ﾙ ﾚ ﾛ ﾜ ﾝ ﾞ ﾟ
-  ﾡ ﾢ ﾣ ﾤ ﾥ ﾦ ﾧ ﾨ ﾩ ﾪ ﾫ ﾬ ﾭ ﾮ ﾯ
-ﾰ ﾱ ﾲ ﾳ ﾴ ﾵ ﾶ ﾷ ﾸ ﾹ ﾺ ﾻ ﾼ ﾽ ﾾ
-    ￂ ￃ ￄ ￅ ￆ ￇ     ￊ ￋ ￌ ￍ ￎ ￏ
-    ￒ ￓ ￔ ￕ ￖ ￗ     ￚ ￛ ￜ
-￠  ￡  ￢  ￣  ￤  ￥  ￦    ￨ ￩ ￪ ￫ ￬ ￭ ￮</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="Halfwidth-and-Fullwidth-Forms.txt"><code translate="no"><span class="line"><span>0 1 2 3 4 5 6 7 8 9 A B C D E F</span></span>
+<span class="line"><span>  ！  ＂  ＃  ＄  ％  ＆  ＇  （  ）  ＊  ＋  ，  －  ．  ／</span></span>
+<span class="line"><span>０  １  ２  ３  ４  ５  ６  ７  ８  ９  ：  ；  ＜  ＝  ＞  ？</span></span>
+<span class="line"><span>＠  Ａ  Ｂ  Ｃ  Ｄ  Ｅ  Ｆ  Ｇ  Ｈ  Ｉ  Ｊ  Ｋ  Ｌ  Ｍ  Ｎ  Ｏ</span></span>
+<span class="line"><span>Ｐ  Ｑ  Ｒ  Ｓ  Ｔ  Ｕ  Ｖ  Ｗ  Ｘ  Ｙ  Ｚ  ［  ＼  ］  ＾  ＿</span></span>
+<span class="line"><span>｀  ａ  ｂ  ｃ  ｄ  ｅ  ｆ  ｇ  ｈ  ｉ  ｊ  ｋ  ｌ  ｍ  ｎ  ｏ</span></span>
+<span class="line"><span>ｐ  ｑ  ｒ  ｓ  ｔ  ｕ  ｖ  ｗ  ｘ  ｙ  ｚ  ｛  ｜  ｝  〜  ｟</span></span>
+<span class="line"><span>｠  ｡ ｢ ｣ ､ ･ ｦ ｧ ｨ ｩ ｪ ｫ ｬ ｭ ｮ ｯ</span></span>
+<span class="line"><span>ｰ ｱ ｲ ｳ ｴ ｵ ｶ ｷ ｸ ｹ ｺ ｻ ｼ ｽ ｾ ｿ</span></span>
+<span class="line"><span>ﾀ ﾁ ﾂ ﾃ ﾄ ﾅ ﾆ ﾇ ﾈ ﾉ ﾊ ﾋ ﾌ ﾍ ﾎ ﾏ</span></span>
+<span class="line"><span>ﾐ ﾑ ﾒ ﾓ ﾔ ﾕ ﾖ ﾗ ﾘ ﾙ ﾚ ﾛ ﾜ ﾝ ﾞ ﾟ</span></span>
+<span class="line"><span>  ﾡ ﾢ ﾣ ﾤ ﾥ ﾦ ﾧ ﾨ ﾩ ﾪ ﾫ ﾬ ﾭ ﾮ ﾯ</span></span>
+<span class="line"><span>ﾰ ﾱ ﾲ ﾳ ﾴ ﾵ ﾶ ﾷ ﾸ ﾹ ﾺ ﾻ ﾼ ﾽ ﾾ</span></span>
+<span class="line"><span>    ￂ ￃ ￄ ￅ ￆ ￇ     ￊ ￋ ￌ ￍ ￎ ￏ</span></span>
+<span class="line"><span>    ￒ ￓ ￔ ￕ ￖ ￗ     ￚ ￛ ￜ</span></span>
+<span class="line"><span>￠  ￡  ￢  ￣  ￤  ￥  ￦    ￨ ￩ ￪ ￫ ￬ ￭ ￮</span></span></code></pre>
         <p>収録はしない。
       </section>
       <section>
@@ -359,9 +357,9 @@ p q r s t u v w x y z { | } ~</code></pre>
           <p>「JIS 第一水準でだいたい OK」と言われている候補に無い文字が、常用漢字一覧にはある。
           <p>つまり、常用漢字一覧のなかでも、使われ無い可能性が高い漢字が含まれるということだ。
           <p>以下の 30 文字である。
-          <pre class=text data-code=text data-path=diff-jyouyou-jis.txt><code translate=no class=language-text>丼 傲 刹 哺 喩 嗅 嘲 彙 恣 惧 慄 憬 拉 摯 曖 楷 毀 璧 瘍 箋 籠 緻 羞 訃 諧 貪 踪 辣 錮 鬱</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="diff-jyouyou-jis.txt"><code translate="no"><span class="line"><span>丼 傲 刹 哺 喩 嗅 嘲 彙 恣 惧 慄 憬 拉 摯 曖 楷 毀 璧 瘍 箋 籠 緻 羞 訃 諧 貪 踪 辣 錮 鬱</span></span></code></pre>
           <p>ざっと見て、以下 6 文字はいらないだろうと判断した。
-          <pre class=text data-code=text data-path=jouyou-ignore.txt><code translate=no class=language-text>哺 惧 彙 楷 憬 錮</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="jouyou-ignore.txt"><code translate="no"><span class="line"><span>哺 惧 彙 楷 憬 錮</span></span></code></pre>
         </section>
         <section>
           <h3 id="不要な文字"><a href="#不要な文字">不要な文字</a></h3>
@@ -370,28 +368,28 @@ p q r s t u v w x y z { | } ~</code></pre>
           <p>どうしても必要ならフォントセットに追加すれば良いが、その頻度もそう高くはないだろう。
           <p>よって、いらない漢字を 1 つ 1 つ丁寧に手動で取り除いた。
           <p>先の 6 文字に 17 文字加えて、以下 23 文字が削除対象である。
-          <pre class=text data-code=text data-path=Kanji-ignore.txt><code translate=no class=language-text>畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="Kanji-ignore.txt"><code translate="no"><span class="line"><span>畝 租 朕 逓 哺 曹 惧 梗 痘 虞 嗣 塑 彙 楷 窟 嘱 畿 憬 璃 錮 嚇 濯 璽</span></span></code></pre>
           <p>これらを反映した結果が以下である。
         </section>
         <section>
           <h3 id="更新20160828"><a href="#更新20160828">更新(2016/08/28)</a></h3>
           <p>しばらく運用して、省かれていた以下の文字が記事中に必要になったため、文字セットに追加した。
           <p>(後述する結果にも反映していある)
-          <pre class=text data-code=text data-path=Kanji-update.txt><code translate=no class=language-text>✔
-ー (伸ばし棒)
-叩
-套
-嬉
-揃
-殆
-溜
-筈
-紐
-綺
-繋
-脆
-閾
-騙</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="Kanji-update.txt"><code translate="no"><span class="line"><span>✔</span></span>
+<span class="line"><span>ー (伸ばし棒)</span></span>
+<span class="line"><span>叩</span></span>
+<span class="line"><span>套</span></span>
+<span class="line"><span>嬉</span></span>
+<span class="line"><span>揃</span></span>
+<span class="line"><span>殆</span></span>
+<span class="line"><span>溜</span></span>
+<span class="line"><span>筈</span></span>
+<span class="line"><span>紐</span></span>
+<span class="line"><span>綺</span></span>
+<span class="line"><span>繋</span></span>
+<span class="line"><span>脆</span></span>
+<span class="line"><span>閾</span></span>
+<span class="line"><span>騙</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -546,23 +544,23 @@ p q r s t u v w x y z { | } ~</code></pre>
           <p>そうした場合、<code translate=no>local()</code> を用いてシステムフォントを優先すれば、ダウンロードが不要になる。
           <p>現在 NotoSans は &quot;NotoSansCJKjp-Bold.otf&quot; という名前で配布されている。
           <p>Android は <a href="https://toach.click/how-to-noto-sans-japanese/#Android_MarshmallowNoto_Sans_Japanese" target=_blank>&quot;NotoSansJP-Regular.otf&quot; という名前で入っているらしい</a> ため、それも含めて以下のように設定する。
-          <pre class=css data-code=css><code translate=no class=language-css>@font-face {
-  font-family: &quot;NotoSansCJKjp-Jxck&quot;;
-  font-style: normal;
-  font-weight: 400;
-  src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
-       local(&quot;NotoSansJP-Bold.otf&quot;),
-       url(&quot;https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff&quot;) format(&quot;woff&quot;);
-}
-
-@font-face {
-  font-family: &quot;NotoSansCJKjp-Jxck&quot;;
-  font-style: normal;
-  font-weight: 700;
-  src: local(&quot;NotoSansCJKjp-Bold.otf&quot;),
-       local(&quot;NotoSansJP-Bold.otf&quot;),
-       url(&quot;https://path-to-font/NotoSansCJKjp-Jxck-Bold.woff&quot;) format(&quot;woff&quot;);
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@font-face</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansCJKjp-Jxck"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">normal</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-weight</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">400</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansCJKjp-Bold.otf"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">       local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansJP-Bold.otf"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">       url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">format</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"woff"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@font-face</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansCJKjp-Jxck"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">normal</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-weight</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">700</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansCJKjp-Bold.otf"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">       local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansJP-Bold.otf"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">       url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://path-to-font/NotoSansCJKjp-Jxck-Bold.woff"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">format</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"woff"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
         <section>
           <h3 id="font-family-の指定"><a href="#font-family-の指定">font-family の指定</a></h3>
@@ -571,24 +569,24 @@ p q r s t u v w x y z { | } ~</code></pre>
           <p><a href="https://www.google.com/get/noto/help/guidelines/" target=_blank>Guidelines for Using Noto</a>
           <p>システムにある場合は正式名称で、こちらで提供したフォントがダウンロードされた場合は、それが使われるようにする。
           <p>基本的には、サイト全体に適用するため <code translate=no>body</code> へ指定し、<code translate=no>pre &gt; code</code> 内は別にしたいため、そこだけ上書きしている。
-          <pre class=css data-code=css><code translate=no class=language-css>body {
-  font-family: &quot;Noto Sans&quot;, &quot;Noto Sans CJK JP&quot;, &quot;NotoSansCJKjp-Jxck&quot;, sans-serif;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Noto Sans"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Noto Sans CJK JP"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NotoSansCJKjp-Jxck"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">sans-serif</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
       </section>
       <section>
         <h2 id="キャッシュ設定"><a href="#キャッシュ設定">キャッシュ設定</a></h2>
         <p>フォントは、基本的には変更が非常に少ないファイルであるため、積極的にキャッシュをしていきたい。
         <p>ただし、今回のような作り方の場合には、フォントの追加によるファイルの更新が皆無ではないため、URL にバージョンを忘れずに入れる。(font-face の指定参照)
-        <pre class=css data-code=css><code translate=no class=language-css>url(&quot;/path-to-font/NotoSansCJKjp-Jxck.Bold.woff?ver=201603014&quot;) format(&quot;woff&quot;);</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">url("/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">path-to-font</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/NotoSansCJKjp-Jxck</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.Bold</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.woff?ver=201603014") format("woff");</span></span></code></pre>
         <p>ここでは max-age を一年とし、フォントを作り直した場合はバージョンを変える
-        <pre class=http data-code=http><code translate=no class=language-http>Cache-Control: max-age=31536000</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000</span></span></code></pre>
       </section>
       <section>
         <h2 id="preload"><a href="#preload">Preload</a></h2>
         <p><a href="https://blog.jxck.io/entries/2016-03-04/preload.html">Preload を用いたリソースプリローディングの最適化</a> で解説した <code translate=no>&lt;link rel=preload&gt;</code> でフォントを適用した。
         <p>ただし、影響が大きい Regular のみにした。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;link rel=preload as=font type=font/woff href=&quot;https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014&quot; crossorigin&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">preload</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">font</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">font/woff</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://path-to-font/NotoSansCJKjp-Jxck-Regular.woff?ver=201603014"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>また、AMP 対応ページでは <code translate=no>rel=preload</code> は許可されてないため指定するとエラーになったため、AMP の方には指定していない。
       </section>
       <section>

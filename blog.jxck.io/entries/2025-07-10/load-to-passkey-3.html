@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Passkey への道 #3: 手入力の限界 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -158,7 +156,7 @@
       <section>
         <h2 id="フィッシング詐欺"><a href="#フィッシング詐欺">フィッシング詐欺</a></h2>
         <p>以下のような SMS を、多くの人が受け取ったことがあるだろう。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
         <pre><code translate=no>[XXXX 証券株式会社] 緊急連絡、重要なお知らせ。https://t.co/1X2Y3Z4</code></pre>
         <p>内容は様々だ。かつては雑な和訳で崩れた日本語も多かったが、最近は AI 生成の精巧な文面が送られてくる。「とにかくユーザを焦らせるような SMS とは?」という大喜利の回答が、定期的に送られてくるので楽しみにしている。
         <p>といっても、重要なのはリンクの方だ。クリックすれば、普段使っているのと全く同じ見た目の偽装サイトが開かれ、ログインを促される。うっかりログインすればパスワードが盗まれ、その後本物のサイトにリダイレクトされるため、攻撃されたことにすら気づかない場合も多い。
@@ -209,7 +207,7 @@
         <p>ユーザが認証をパスワードマネージャの Autofill に委ねるためには、サービスは Autofill 可能な作りになっていなくてはならない。
         <p>例えば、<code translate=no>&lt;input type=password&gt;</code> などはそのままでも Autofill されるが、<code translate=no>&lt;input type=text name=otp&gt;</code> では、TOTP が適切に Autofill されない場合がある。「ここには TOTP を入力する」というセマンティクスがブラウザに伝わらないからだ。
         <p>正しくはこうだ。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;input type=text name=otp autocomplete=one-time-code&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">text</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">otp</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> autocomplete</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">one-time-code</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>そして、もっと問題なのは「アカウント登録」のドメインと「ログインのドメイン」が異なるサイトだ。
         <p>パスワードマネージャは、登録時のドメインに紐づけて保存するため、ログインのドメインが違えば Autofill されない。もともと別サービスだったものを、強引にアカウント統合したサービスによくある構成だ。
         <p>勘違いしてほしくないのは、これらは「ユーザが使いやすいように」などという利便性でやるべきと言っているのではない。

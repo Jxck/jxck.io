@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-12-16/bounce-tracking.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>3PCA 16 日目: Bounce Tracking | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -169,17 +167,17 @@
         <p>このように、「一旦リダイレクトを挟む」のは、X からすれば、<code translate=no>t.co</code> のログを見ることで、誰がどのポストを見て、どのサイトに離脱していったかを知ることができるというのは、なんとなくわかるだろう。
         <p>ところで、一瞬であっても <code translate=no>t.co</code> に遷移していれば、それが Top Level Domain になる。つまり、そこで保存/取得する Cookie は 1st Party Cookie だ。たとえそのリンクをクリックしたユーザが X にログインしていなかったとしても、<code translate=no>t.co</code> の Cookie でトラッキングが可能ということになる。
         <p>例えば、X 上に投稿された <code translate=no>https://example.com</code> が、<code translate=no>https://t.co/deadbeef</code> に置き換えられていたとしよう。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- X 上のポストのリンク --&gt;
-&lt;a href=&quot;https://t.co/deadbeef&quot;&gt;example.com&lt;/a&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- X 上のポストのリンク --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://t.co/deadbeef"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>example.com&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この t.co へのリクエストは t.co の Cookie が付与される。つまり、過去に同様に t.co を経由していれば、その Cookie が送られるのだ。実際の挙動を見てみると以下のような Cookie が付与されている。
-        <pre class=http data-code=http><code translate=no class=language-http>GET /deadbeef HTTP/1.1
-Cookie: muc=54832623-...; muc_ads=548045683-...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /deadbeef </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> muc=54832623-...; muc_ads=548045683-...</span></span></code></pre>
         <p>このレスポンスで Cookie を更新しつつリダイレクトしている。
-        <pre class=http data-code=http><code translate=no class=language-http>HTTP/1.1 301 Moved Permanently
-Location: https://example.com/
-Set-Cookie: muc=9f9222787-...; Path=/; Domain=t.co; Secure; SameSite=None ...
-Set-Cookie: muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 301</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Moved Permanently</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Location</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://example.com/</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> muc=9f9222787-...; Path=/; Domain=t.co; Secure; SameSite=None ...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...</span></span></code></pre>
         <p>このように 3rd Party Context では送られない 3rd Party (<code translate=no>t.co</code> の) Cookie を、リダイレクトしてトラッカー(<code translate=no>t.co</code>)の 1st Party Context でやりとりすることでトラッキングを行うというこの手法を、<em>Bounce Tracking</em> と言う。
       </section>
       <section>
@@ -219,13 +217,13 @@ Set-Cookie: muc_ads=9f928101-...; Path=/; Domain=t.co; Secure; SameSite=None ...
         <h2 id="link-decoration"><a href="#link-decoration">Link Decoration</a></h2>
         <p>Facebook 内のリンクで外のサイトに行くと、遷移した先の URL に <code translate=no>fbclid=xxxxxxxxxxxxx...</code> というクエリが付与されていることに気づくだろう。
         <p>このように、プラットフォームからの遷移に URL クエリを付与することによって、その先に対応している JS (Facebook のボタンなど) があれば、クエリを取得しサイトの 1st Party Cookie として保存することで、トラッキングに使うという手法だ。
-        <pre class=js data-code=js><code translate=no class=language-js>// 遷移先の JS
-const url = new URL(location.href)
-const fbclid = url.searchParams.get(&quot;fbclid&quot;)
-if (fbclid) {
-  // クエリがあったら Cookie に保存
-  document.cookie = `fbclid=${fbclid}`
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 遷移先の JS</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> url</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(location.href)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> fbclid</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> url.searchParams.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"fbclid"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (fbclid) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // クエリがあったら Cookie に保存</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  document.cookie </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `fbclid=${</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">fbclid</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}`</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>この手法を <em>Link Decoration</em> と言う。
         <p>Google なら gclid、Yahoo なら yclid といった名前でこうした ID を付与することが多く、Google や Yahoo の提供するスクリプトを埋め込んでいるサイトが多ければ多いほど、この ID が広く共有されることになる。
         <p>Link Decoration は Bounce Tracking と組み合わせて使われることも多い。

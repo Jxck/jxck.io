@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-04-09T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-04-09>2016-04-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -227,8 +225,8 @@
         <section>
           <h3 id="public-key-pins-ヘッダ"><a href="#public-key-pins-ヘッダ">Public-Key-Pins ヘッダ</a></h3>
           <p>HPKP を有効化するには、Public-Key-Pins ヘッダを付与し、その引数にハッシュを指定する。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>Public-Key-Pins: pin-sha256=&quot;base64==&quot;; max-age=expireTime [; includeSubdomains][; report-uri=&quot;reportURI&quot;]</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Public-Key-Pins</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> pin-sha256="base64=="; max-age=expireTime [; includeSubdomains][; report-uri="reportURI"]</span></span></code></pre>
           <p>設定については、以下が参考になる。
           <p><a href="https://developer.mozilla.org/ja/docs/Web/Security/Public_Key_Pinning" target=_blank>Public Key Pinning - Web セキュリティ | MDN</a>
           <p>基本的には後述する方法で取得した証明書のハッシュである Subject Public Key Information(SPKI) の Base64 と、ブラウザに保持する期限、検証に失敗した場合のレポート送信先を指定する。
@@ -241,44 +239,44 @@
           <p>Pin の値は openssl コマンドを用いれば、公開鍵から SPKI の Base64 エンコードまで一括で行える。
           <p>手元に、Key, CSR, CRT のいずれかがあればそれを用いることができ、Web 経由で取得した公開鍵からも生成できる。
           <p>管理者がローカルで行うなら、何かあっても一番害のない CSR からの生成がよさそうと考える。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ openssl req -in my-signing-request.csr -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ openssl req -in my-signing-request.csr -pubkey -noout </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">|</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> rsa</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -pubin</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -outform</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> der</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dgst</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -sha256</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -binary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> enc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -base64</span></span></code></pre>
         </section>
       </section>
       <section>
         <h2 id="report-uri.io"><a href="#report-uri.io">report-uri.io</a></h2>
         <p>ブラウザは、Pin に一致しない証明書を検出した場合、違反レポートを生成し <code translate=no>report-uri</code> に指定した URI に対して自動的に送信する。
         <p>HPKP の違反レポートは以下のような JSON データである。
-        <pre class=json data-code=json><code translate=no class=language-json>{
-    &quot;date-time&quot;: &quot;2014-04-06T13:00:50Z&quot;,
-    &quot;hostname&quot;: &quot;www.example.com&quot;,
-    &quot;port&quot;: 443,
-    &quot;effective-expiration-date&quot;: &quot;2014-05-01T12:40:50Z&quot;,
-    &quot;include-subdomains&quot;: false,
-    &quot;served-certificate-chain&quot;: [
-      &quot;-----BEGIN CERTIFICATE-----\n
-      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT\n
-      ...
-      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto\n
-      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6\n
-      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx\n
-      -----END CERTIFICATE-----&quot;,
-      ...
-    ],
-    &quot;validated-certificate-chain&quot;: [
-      &quot;-----BEGIN CERTIFICATE-----\n
-      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT\n
-      ...
-      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto\n
-      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6\n
-      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx\n
-      -----END CERTIFICATE-----&quot;,
-      ...
-    ],
-    &quot;known-pins&quot;: [
-      &quot;pin-sha256=\&quot;d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=\&quot;&quot;,
-      &quot;pin-sha256=\&quot;E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\&quot;&quot;
-    ]
-  }</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "date-time"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"2014-04-06T13:00:50Z"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "hostname"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"www.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "port"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">443</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "effective-expiration-date"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"2014-05-01T12:40:50Z"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "include-subdomains"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "served-certificate-chain"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "-----BEGIN CERTIFICATE-----</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      -----END CERTIFICATE-----"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">      ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "validated-certificate-chain"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "-----BEGIN CERTIFICATE-----</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      MIIEBDCCAuygAwIBAgIDAjppMA0GCSqGSIb3DQEBBQUAMEIxCzAJBgNVBAYTAlVT</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      ...</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      HFa9llF7b1cq26KqltyMdMKVvvBulRP/F/A8rLIQjcxz++iPAsbw+zOzlTvjwsto</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      WHPbqCRiOwY1nQ2pM714A5AuTHhdUDqB1O6gyHA43LL5Z/qHQF1hwFGPa4NrzQU6</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      yuGnBXj8ytqU0CwIPX4WecigUCAkVDNx</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      -----END CERTIFICATE-----"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">      ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ],</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "known-pins"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "pin-sha256=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">      "pin-sha256=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\"</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span></code></pre>
       </section>
       <section>
         <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
@@ -301,21 +299,21 @@
           <p>GitHub では、Leaf (<code translate=no>github.com</code> 自体の証明書) ではなく、そこから Root CA までの証明書チェインに入っている、中間証明書を Pin として設定していた。
           <p>OpenSSL の <code translate=no>-showcerts</code> コマンドを用いて、GitHub の証明書を取得し Pin を計算してみる。
           <p>(証明書が二つ見あり、中間証明書にあたる二つ目だけ抜き出している)
-          <pre class=shell data-code=shell><code translate=no class=language-shell># github.com pins Intermediate Certificate
-# so add `-showcerts` option for first openssl
-# and extract second CERTIFICATE with ruby
-echo &apos;---- EXPECTED ----&apos;
-openssl s_client -servername github.com -connect github.com:443 -showcerts 2&gt;/dev/null \
-  | ruby -nle &apos;puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]&apos; \
-  | openssl x509 -pubkey -noout 2&gt;/dev/null \
-  | openssl rsa -pubin -outform der 2&gt;/dev/null \
-  | openssl dgst -sha256 -binary 2&gt;/dev/null \
-  | openssl enc -base64 2&gt;/dev/null</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># github.com pins Intermediate Certificate</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># so add `-showcerts` option for first openssl</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># and extract second CERTIFICATE with ruby</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '---- EXPECTED ----'</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> s_client</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -servername</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> github.com</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -connect</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> github.com:443</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -showcerts</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> 2></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ruby</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -nle</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'puts $_.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m)[1]'</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> x509</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -pubkey</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -noout</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> 2></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> rsa</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -pubin</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -outform</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> der</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> 2></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dgst</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -sha256</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -binary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> 2></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> openssl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> enc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -base64</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> 2></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/dev/null</span></span></code></pre>
           <p>実際に <code translate=no>Public-Key-Pins</code> ヘッダを見てみる。この中にはバックアップを含めいくつか登録されているが、その中に上で計算したものが入っている。
-          <pre class=shell data-code=shell><code translate=no class=language-shell># get the actual Public-Key-Pins header
-# this will include hash calculated above
-echo &apos;---- ACTUAL ----&apos;
-curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &apos;puts $_.gsub(&quot;;&quot;, &quot;\n&quot;)&apos;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># get the actual Public-Key-Pins header</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># this will include hash calculated above</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> '---- ACTUAL ----'</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -sI</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://github.com</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Public-Key-Pins</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ruby</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -nle</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'puts $_.gsub(";", "\n")'</span></span></code></pre>
           <p>Leaf の証明書を Pin 留めしてしまうと、前述の通り証明書の更新で Pin との不整合が起きた場合に、接続できなくなってしまう。
           <p>このリスクを減らすために、中間証明書を Pin 留めするという運用になっている模様である。
           <p>(<a href="https://twitter.com/jovi0608" target=_blank>@jovi0608</a> さんにアドバイス頂きました、ありがとうございます。)
@@ -340,16 +338,16 @@ curl -sI https://github.com | grep Public-Key-Pins | ruby -nle &apos;puts $_.gsu
           <h3 id="結果"><a href="#結果">結果</a></h3>
           <p>生成したヘッダは以下である。
           <p>max-age は、とりあえず 3600s と短い値から始めることにした。
-          <pre class=http data-code=http><code translate=no class=language-http>Public-Key-Pins:
-  max-age=3600;
-  pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
-  pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
-  report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Public-Key-Pins</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  max-age=3600;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/enforce"</span></span></code></pre>
           <p>Report-Only は、<code translate=no>max-age</code> が不要になる。また report-uri.io では、Report-Only 用に URI が変わるので、それを設定している。
-          <pre class=http data-code=http><code translate=no class=language-http>Public-Key-Pins-Report-Only:
-  pin-sha256=&quot;7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=&quot;;
-  pin-sha256=&quot;+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=&quot;;
-  report-uri=&quot;https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Public-Key-Pins-Report-Only</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pin-sha256="7JT7NhX2St/VBBkRi4BO427M7ytLy7p3CRYPtHpSm7c=";</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pin-sha256="+WpRHNpAId2FIOvVgwmS3HsG+eJtERKC4/qM1tQaeRk=";</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  report-uri="https://4887c342aec2b444c655987aa8b0d5cb.report-uri.io/r/default/hpkp/reportOnly"</span></span></code></pre>
           <p>意図的にレポートを上げて見てみたかったが、単に不正な証明書を用意するだけではだめだった。
           <p>どうやったら、正しく HPKP 違反ができるのか、自前で CA を立てるなどする必要があるのかもしれない。
           <p>ということで CSP と違い、よほどのことがない限りレポートは上がらないはずであると考える。

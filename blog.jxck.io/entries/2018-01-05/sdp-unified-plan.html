@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-01-05/sdp-unified-plan.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>SDP の Unified Plan と Plan B | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -186,11 +184,11 @@
         <p>多重化する場合は、トランスポートは 1 つで良い。
         <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
         <p>その中に、マイクごとの定義を、&quot;a=ssrc&quot; で記述する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sdp data-code=sdp><code translate=no class=language-sdp>m=audio 49170 RTP/AVP 101
-a=ssrc:1 msid:left-mic
-a=ssrc:2 msid:center-mic
-a=ssrc:3 msid:right-mic</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sdp"><code translate="no"><span class="line"><span>m=audio 49170 RTP/AVP 101</span></span>
+<span class="line"><span>a=ssrc:1 msid:left-mic</span></span>
+<span class="line"><span>a=ssrc:2 msid:center-mic</span></span>
+<span class="line"><span>a=ssrc:3 msid:right-mic</span></span></code></pre>
       </section>
       <section>
         <h2 id="plan-a---unified-plan"><a href="#plan-a---unified-plan">Plan A - Unified Plan</a></h2>
@@ -198,21 +196,21 @@ a=ssrc:3 msid:right-mic</code></pre>
         <p>Plan A は、&quot;m=&quot; line をメディアごとに書くというシンプルな方法である。
         <p>もし多重化したい場合は、対象の &quot;m=&quot; line に対して BUNDLE を指定する。
         <p>この方式が WebRTC の標準として合意され、現在は Unified Plan として策定が進んでいる。
-        <pre class=sdp data-code=sdp><code translate=no class=language-sdp>...
-a=group:BUNDLE m1 m2 m3
-...
-m=audio 56600 RTP/SAVPF 0 109
-a=msid:left-mic
-a=mid:m1
-...
-m=video 56601 RTP/SAVPF 99 120
-a=msid:center-mic
-a=mid:m2
-...
-m=video 56602 RTP/SAVPF 99 120
-a=msid:right-mic
-a=mid:m3
-...</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sdp"><code translate="no"><span class="line"><span>...</span></span>
+<span class="line"><span>a=group:BUNDLE m1 m2 m3</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>m=audio 56600 RTP/SAVPF 0 109</span></span>
+<span class="line"><span>a=msid:left-mic</span></span>
+<span class="line"><span>a=mid:m1</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>m=video 56601 RTP/SAVPF 99 120</span></span>
+<span class="line"><span>a=msid:center-mic</span></span>
+<span class="line"><span>a=mid:m2</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>m=video 56602 RTP/SAVPF 99 120</span></span>
+<span class="line"><span>a=msid:right-mic</span></span>
+<span class="line"><span>a=mid:m3</span></span>
+<span class="line"><span>...</span></span></code></pre>
       </section>
       <section>
         <h2 id="sdpsemantics"><a href="#sdpsemantics">SdpSemantics</a></h2>
@@ -220,7 +218,7 @@ a=mid:m3
         <p>このフラグを有効にすると、RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
         <p>デフォルトは <code translate=no>&quot;plan-b&quot;</code> であり、明示的に <code translate=no>&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
         <p>後にデフォルトを &quot;unified-plan&quot; に変更し、<code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
-        <pre class=js data-code=js><code translate=no class=language-js>new RTCPeerConnection({sdpSemantics: &quot;unified-plan&quot;})</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> RTCPeerConnection</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({sdpSemantics: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"unified-plan"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
       </section>
       <section>
         <h2 id="影響"><a href="#影響">影響</a></h2>

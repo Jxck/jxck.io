@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-01-10/mixed-contents.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>mixed contents 対応を促進する CSP ディレクティブ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -217,13 +215,13 @@
         <section>
           <h3 id="mixed-activescript-contents"><a href="#mixed-activescript-contents">Mixed Active(Script) Contents</a></h3>
           <p>以下のタグ、及びスクリプト等は、<em>Mixed Active Contents</em> と呼ばれる。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;script src&gt;
-&lt;link href&gt;
-&lt;iframe src&gt;
-&lt;object data&gt;
-XHR
-CSS 内の URL (@font-face, background-image etc)</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">object</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> data</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">XHR</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">CSS 内の URL (@font-face, background-image etc)</span></span></code></pre>
           <p>これら Mixed Active Contents は、HTTP で配信され MITM の攻撃によって改ざんされた場合、それを読み込む元コンテンツ自体を、DOM へのアクセスなどを通じて書き換えることができてしまう。
           <p>このため、Mixed Active Contents の読み込みはブラウザによりブロックされ、取得されずにエラーとなる。
           <p>特に iframe を埋め込むタイプの広告の場合、HTTP で配信される広告を HTTPS のページに埋め込むと、広告が表示されないことになる。
@@ -235,10 +233,10 @@ CSS 内の URL (@font-face, background-image etc)</code></pre>
         <section>
           <h3 id="mixed-passivedisplay-contents"><a href="#mixed-passivedisplay-contents">Mixed Passive(Display) Contents</a></h3>
           <p>以下のタグは、基本的にコンテンツを表示する目的で使われる。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;img&gt;
-&lt;audio&gt;
-&lt;video&gt;
-&lt;object&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">audio</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">video</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">object</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>もし、<code translate=no>&lt;img&gt;</code> で読まれるコンテンツが HTTP であり、MITM によって改ざんされた場合、別の画像を表示することで元コンテンツを改ざんすることが可能だ。
           <p>しかし、そこを経由して元コンテンツの他の DOM に変更を及ぼすことはできない。
           <p>そのため、これらコンテンツの読み込み自体は行われるが、ブラウザの URL バーは異常を検知したような表示になる。

@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Web Authentication API で FIDO U2F(YubiKey) 認証 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -221,38 +219,38 @@
           <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>クライアントはサーバに username を送り、登録に必要な以下のような情報を要求する。
           <p>(ここではそのまま <code translate=no>navigator.credentials.create()</code> に渡せる形でサーバから返している)
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=js data-code=js><code translate=no class=language-js>// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions
-const clientCredentialOption = {
-  rp: {
-    id:   &quot;labs.jxck.io&quot;,
-    name: &quot;labs.jxck.io&quot;,
-  },
-  user: {
-    id: crypto.randomBytes(32) // 一意な値、username を元に生成しても良い
-    name: username,
-    displayName: username,
-  },
-  challenge: crypto.randomBytes(32)
-  pubKeyCredParams: [
-    {type: &quot;public-key&quot;, alg: -7 /*ES256*/}
-  ],
-  attestation: &quot;direct&quot;,
-}</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// https://w3c.github.io/webauthn/#dictionary-makecredentialoptions</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> clientCredentialOption</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  rp: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    id:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"labs.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    name: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"labs.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  user: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    id: crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">randomBytes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 一意な値、username を元に生成しても良い</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    name: username,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    displayName: username,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  challenge: crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">randomBytes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  pubKeyCredParams: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    {type: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"public-key"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, alg: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">7</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> /*ES256*/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  attestation: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"direct"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>重要なのは challenge で、この乱数に対してブラウザが認証をし、それをあとで検証する。
           <p>従って、これはセッションなどに保存しておく必要がある。
-          <pre class=js data-code=js><code translate=no class=language-js>req.session.challenge = challenge
-req.session.username  = username // CAUTION!! this is only a sample</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">req.session.challenge </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> challenge</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">req.session.username  </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> username </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// CAUTION!! this is only a sample</span></span></code></pre>
         </section>
         <section>
           <h3 id="2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.create-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.create()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>create()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-          <pre class=js data-code=js><code translate=no class=language-js>// create() PublicKeyCredential
-const credential = await navigator.credentials.create({publicKey: option})
-
-const {id, rawID, response, type} = credential // type = &quot;public-key&quot;
-const {attestationObject, clientDataJSON} = response</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// create() PublicKeyCredential</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> credential</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.credentials.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">create</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({publicKey: option})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">rawID</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">response</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> credential </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// type = "public-key"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">attestationObject</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">clientDataJSON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> response</span></span></code></pre>
           <p>type は <code translate=no>&quot;public-key&quot;</code> になっており、生成した鍵ペアの公開鍵が入っていることがわかる。
           <p>response の中がそうした値になっており、attestationObject は CBOR でエンコードされている。
           <p>中身はサーバで解読するため、そちらで解説する。
@@ -270,13 +268,13 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           </ul>
           <p>次に attestationObject を CBOR パースする。
           <p>ここには以下のようなデータが入っている。
-          <pre class=js data-code=js><code translate=no class=language-js>{
-  fmt,      // attestation statement format
-  authData, // authenticator data
-  attStmt,  // attestation statement
-} = attestationObject</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  fmt,      </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// attestation statement format</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  authData, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// authenticator data</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  attStmt,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// attestation statement</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> attestationObject</span></span></code></pre>
           <p>ここまで確認したら、clientDataJSON (バイナリ) を元に SHA-256 を取得しておく。
-          <pre class=js data-code=js><code translate=no class=language-js>const clientDataHash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> clientDataHash</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createHash</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sha256"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">update</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(clientDataJSON).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">digest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
           <p>これはあとで署名の検証に使用する。
           <section>
             <h4 id="fmt"><a href="#fmt">fmt</a></h4>
@@ -321,13 +319,13 @@ const {attestationObject, clientDataJSON} = response</code></pre>
             <p>credentialPublicKey は、さらに COSE という形式でエンコードされている。
             <p>これは JOSE の CBOR 版といった位置づけである。
             <p>CBOR でパースすると以下のように数字がキーのオブジェクトが得られる。
-            <pre class=js data-code=js><code translate=no class=language-js>{
-  1: kty=2,  // EC2 key type
-  3: alg=-7, // ES256 signature algorithm
- -1: crv=1,  // P-256 curve
- -2: x,      // x-coordinate as byte string 32 bytes in length
- -3: y,      // y-coordinate as byte string 32 bytes in length
-}</code></pre>
+            <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: kty</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// EC2 key type</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: alg</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ES256 signature algorithm</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: crv</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// P-256 curve</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: x,      </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// x-coordinate as byte string 32 bytes in length</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: y,      </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// y-coordinate as byte string 32 bytes in length</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
             <p>これにより、YubiKey から受け取った PublicKey が、EC2 で P-256 を使い認証は ES256 (ECDSA with SHA-256) であることがわかる。
             <p>ExtensionDataIncluded は今回 0 なので拡張は無し。
           </section>
@@ -336,12 +334,12 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h3 id="attstmt"><a href="#attstmt">attStmt</a></h3>
           <p>今回の fmt では attStmt は以下の構造になる。
           <p><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation" target=_blank>8.6. FIDO U2F Attestation Statement Format</a>
-          <pre class=js data-code=js><code translate=no class=language-js>u2fStmtFormat = {
-                  x5c: [ attestnCert: bytes ],
-                  sig: bytes
-                }</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">u2fStmtFormat </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                  x5c: [ attestnCert: bytes ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                  sig: bytes</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                }</span></span></code></pre>
           <p>x5c には Attestation Certificate が仕様上、丁度 1 つだけ入っている。
-          <pre class=js data-code=js><code translate=no class=language-js>attCert = x5c[0]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">attCert </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> x5c[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>sig は Attestation Signature の値だ。
           <p>ここまでの情報を元に、実際に署名を検証していく。
         </section>
@@ -351,19 +349,19 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <ul>
             <li><a href="https://w3c.github.io/webauthn/#fido-u2f-attestation" target=_blank>https://w3c.github.io/webauthn/#fido-u2f-attestation</a>
           </ul>
-          <pre class=js data-code=js><code translate=no class=language-js>PublicKeyU2F = 0x04 || x || y</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">PublicKeyU2F </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0x04</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> y</span></span></code></pre>
           <p>これと、rpidHash, clientDataHash, credentialId を連結し、先頭に 0x00 を加えると、署名対象のデータが得られる。
-          <pre class=js data-code=js><code translate=no class=language-js>verificationData = 0x00 || rpIdHash || clientDataHash || credentialId || publicKeyU2F</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">verificationData </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0x00</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> rpIdHash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> clientDataHash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> credentialId </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> publicKeyU2F</span></span></code></pre>
           <p>これを x5c から取り出した attCert で署名した結果が sig と同じになるかを確認すれば良い。
           <p>x5c は ANSI X9.62 Public Key Format というバイナリ形式で、Node では PEM でないと扱いにくい。
           <p>これは base64 でシリアライズし 64 文字で改行し、ヘッダとフッタをつければ一応 PEM になる。
-          <pre class=js data-code=js><code translate=no class=language-js>const certificatePublicKeyPEM = [
-  &quot;-----BEGIN CERTIFICATE-----&quot;,
-  ...(attCert.toString(&quot;base64&quot;).match(/.{1,64}/g)),
-  &quot;-----END CERTIFICATE-----&quot;,
-].join(&quot;\n&quot;)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> certificatePublicKeyPEM</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "-----BEGIN CERTIFICATE-----"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  ...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(attCert.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"base64"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{1,64}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">g</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)),</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "-----END CERTIFICATE-----"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">].</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">join</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">\n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>これを用いて検証する。
-          <pre class=js data-code=js><code translate=no class=language-js>const verified = crypto.createVerify(&quot;sha256&quot;).update(verificationData).verify(certificatePublicKeyPEM, sig)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> verified</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createVerify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sha256"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">update</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(verificationData).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">verify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(certificatePublicKeyPEM, sig)</span></span></code></pre>
           <p>これが成功したら、証明書のチェインをルートまで確認する。(TODO)
           <p>ここまで成功すれば、ユーザが送ってきたデータが
           <ul>
@@ -381,12 +379,12 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <p>といったことが確認できる。
           <p>確認できたら、公開鍵の情報をユーザに紐付けて保存することで、パスワードの代わりに認証に使用する。
           <p>同じユーザが複数の認証デバイスを登録することも想定するなら、以下のようになる。
-          <pre class=js data-code=js><code translate=no class=language-js>storage[&quot;username&quot;] = {
-  id,
-  authenticators: [
-    {credentialID, credentialPublicKey, signCount}
-  ]
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">storage[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"username"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  id,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  authenticators: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    {credentialID, credentialPublicKey, signCount}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>なお、もし同じ credentialID が既に登録されていたら、基本的に拒否するが、上書きを選ぶこともできる。
         </section>
       </section>
@@ -396,26 +394,26 @@ const {attestationObject, clientDataJSON} = response</code></pre>
           <h3 id="1.-サービスに対して-challenge-乱数の発行を要求する_1"><a href="#1.-サービスに対して-challenge-乱数の発行を要求する_1">1. サービスに対して challenge (乱数)の発行を要求する</a></h3>
           <p>registration 同様、サーバに username を送り、認証に必要な以下の情報を要求する。
           <p>(ここではそのまま <code translate=no>navigator.credentials.get()</code> に渡せる形でサーバから返している)
-          <pre class=js data-code=js><code translate=no class=language-js>{
-  challenge: crypto.randomBytes(32),
-  allowCredentials: [
-    { type: &quot;public-key&quot;, id: &quot;xxxxxx&quot; }
-  ],
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  challenge</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">randomBytes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  allowCredentials</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    { type: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"public-key"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, id: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"xxxxxx"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>allowCredentials は、サーバに保存した、ログイン対象のユーザに紐付いた credential id だけを取り出し type をつけたもの。
           <p>challenge は登録時と同じくランダムな値。これもセッションなどに保存しておき、実際の認証で使う。
-          <pre class=js data-code=js><code translate=no class=language-js>req.session.challenge = challenge
-req.session.username  = username // CAUTION!! this is only a sample</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">req.session.challenge </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> challenge</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">req.session.username  </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> username </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// CAUTION!! this is only a sample</span></span></code></pre>
         </section>
         <section>
           <h3 id="2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ"><a href="#2.-この-challenge-を元に-navigator.credentials.get-を呼ぶ">2. この challenge を元に <code translate=no>navigator.credentials.get()</code> を呼ぶ</a></h3>
           <p>ブラウザは、取得した値を元に <code translate=no>get()</code> を呼びクレデンシャルを生成する。
           <p>YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
-          <pre class=js data-code=js><code translate=no class=language-js>// get() PublicKeyCredential
-const credential = await navigator.credentials.get({publicKey: option})
-
-const { id, rawId, response } = credential // id は rawId の base64url
-const { type, authenticatorData, signature, userHandle, clientDataJSON } // type = &quot;public-key&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// get() PublicKeyCredential</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> credential</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.credentials.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({publicKey: option})</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">rawId</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">response</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> credential </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// id は rawId の base64url</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">authenticatorData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">signature</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">userHandle</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">clientDataJSON</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> } </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// type = "public-key"</span></span></code></pre>
           <p>なお、credential.rawId は credential.id の base64url なので、id の方だけそのまま送れば良い。
         </section>
         <section>
@@ -452,32 +450,32 @@ const { type, authenticatorData, signature, userHandle, clientDataJSON } // type
           <p>rpidHash が、Registration 時にサーバの提示した RPID の SHA-256 と同じことを確認する。
           <p>flag も同じだが、今回は AttestedCredentialData も無いため、UserPresent 以外 0 となる。
           <p>次に ClientDataJSON の SHA-256 ハッシュを取得する。
-          <pre class=js data-code=js><code translate=no class=language-js>const hash = crypto.createHash(&quot;sha256&quot;).update(clientDataJSON).digest()</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> hash</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> crypto.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createHash</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sha256"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">update</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(clientDataJSON).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">digest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
           <p>これを、authenticatorData と連結したものを署名したものが signature と一致するかを確認すれば良い。
           <p>ここで使う PublicKey は、Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
           <p>結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
           <p>(ここが一番ハマった)
-          <pre class=js data-code=js><code translate=no class=language-js>// https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js
-// https://stackoverflow.com/questions/45131935/export-an-elliptic-curve-key-from-ios-to-work-with-openssl
-//
-// If needed, we encode rawpublic key to ASN structure, adding metadata:
-// SEQUENCE {
-//   SEQUENCE {
-//      OBJECTIDENTIFIER 1.2.840.10045.2.1 (ecPublicKey)
-//      OBJECTIDENTIFIER 1.2.840.10045.3.1.7 (P-256)
-//   }
-//   BITSTRING &lt;raw public key&gt;
-// }
-// Luckily, to do that, we just need to prefix it with constant 26 bytes (metadata is constant).
-const publicKeyPEM = Buffer.concat([
-  Buffer.from(&quot;3059301306072a8648ce3d020106082a8648ce3d030107034200&quot;, &quot;hex&quot;),
-  Buffer.from(publicKey),
-]).toString(&quot;base64&quot;).match(/.{1,64}/g)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// https://github.com/fido-alliance/webauthn-demo/blob/master/utils.js</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// https://stackoverflow.com/questions/45131935/export-an-elliptic-curve-key-from-ios-to-work-with-openssl</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// If needed, we encode rawpublic key to ASN structure, adding metadata:</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// SEQUENCE {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//   SEQUENCE {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//      OBJECTIDENTIFIER 1.2.840.10045.2.1 (ecPublicKey)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//      OBJECTIDENTIFIER 1.2.840.10045.3.1.7 (P-256)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//   }</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//   BITSTRING &#x3C;raw public key></span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// }</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// Luckily, to do that, we just need to prefix it with constant 26 bytes (metadata is constant).</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> publicKeyPEM</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> Buffer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">concat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">([</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Buffer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"3059301306072a8648ce3d020106082a8648ce3d030107034200"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hex"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Buffer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(publicKey),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">toString</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"base64"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{1,64}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">g</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
           <p>この鍵で署名を確認する。
-          <pre class=js data-code=js><code translate=no class=language-js>const verified = crypto
-                    .createVerify(&quot;sha256&quot;)
-                    .update(Buffer.concat([authenticatorData, hash]))
-                    .verify(publicKeyPEM, signature)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> verified</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> crypto</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                    .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createVerify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"sha256"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                    .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">update</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(Buffer.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">concat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">([authenticatorData, hash]))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                    .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">verify</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(publicKeyPEM, signature)</span></span></code></pre>
           <p>最後に、ここで取得した signCount が、保存しているものよりも大きいことを確認する。
           <p>ここまで成功すれば、認証が完了したとみなすことができる。
         </section>

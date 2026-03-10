@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>img の srcset 指定時に選択される画像 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -171,23 +169,23 @@
       <section>
         <h2 id="srcset-attribute"><a href="#srcset-attribute">srcset attribute</a></h2>
         <p>まず以下のようなコードを考える。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
-body {
-  margin: 0;
-}
-&lt;/style&gt;
-&lt;body&gt;
-&lt;img id=hero_image
-     src=320x240.png
-     srcset=&quot; 320x240.png   320w,
-              640x480.png   640w,
-              800x600.png   800w,
-             1024x768.png  1024w,
-             1280x960.png  1280w,
-             1600x1200.png 1600w&quot;
-&gt;
-&lt;/body&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  margin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hero_image</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">     src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">320x240.png</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">     srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">" 320x240.png   320w,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">              640x480.png   640w,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">              800x600.png   800w,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             1024x768.png  1024w,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             1280x960.png  1280w,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             1600x1200.png 1600w"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">body</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>ヒーローイメージを表示するが、そのサイズを複数用意し、デバイスに合わせて提供する、いわゆるレスポンシブイメージの一種だ。
         <p>ここでは後述のデモをわかりやすくするため sizes を省略している。img に CSS を当てておらず、body のマージンを消したので、画面いっぱいに表示されることになる。
         <p>つまり Viewport Width が Image Width となっている。
@@ -285,59 +283,59 @@ body {
             <li>Save Data が有効な場合は最も小さいものを選択して終わり
             <li>SelectionLogic に候補を渡して画像を選択
           </ul>
-          <pre class=cpp data-code=cpp data-path=pick-best-image-candidate.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
-// source_size = sizes attr value
-static ImageCandidate PickBestImageCandidate(float device_scale_factor, float source_size, Vector&lt;ImageCandidate&gt;&amp; image_candidates, Document* document = nullptr) {
-  const float kDefaultDensityValue = 1.0;
-  bool ignore_src = false;
-
-  // 画像がなければ無視
-  if (image_candidates.IsEmpty()) {
-    return ImageCandidate();
-  }
-
-  // 画像ごとに表示領域に対する密度を計算(1.0 だとフィット)
-  // http://picture.responsiveimages.org/#normalize-source-densities
-  for (ImageCandidate&amp; image : image_candidates) {
-    if (image.GetResourceWidth() &gt; 0) {
-      float gensity = (float)image.GetResourceWidth() / source_size;
-      image.SetDensity(gensity);
-      ignore_src = true;
-    } else if (image.Density() &lt; 0) {
-      image.SetDensity(kDefaultDensityValue);
-    }
-  }
-
-  // 密度でソート
-  std::stable_sort(image_candidates.begin(), image_candidates.end(), CompareByDensity);
-
-  Vector&lt;ImageCandidate*&gt; de_duped_image_candidates;
-  float prev_density = -1.0;
-
-  // 同じ密度を省く?
-  for (ImageCandidate&amp; image : image_candidates) {
-    if (image.Density() != prev_density &amp;&amp; (!ignore_src || !image.SrcOrigin())) {
-      de_duped_image_candidates.push_back(&amp;image);
-    }
-    prev_density = image.Density();
-  }
-
-  // SelectionLogic で画像を選択
-  // Save Data してる場合は一番小さいの、ここでは無視
-  // unsigned winner = blink::WebNetworkStateNotifier::SaveDataEnabled() &amp;&amp; base::FeatureList::IsEnabled(blink::features::kSaveDataImgSrcset) ? 0 : SelectionLogic(de_duped_image_candidates, device_scale_factor);
-  unsigned winner = SelectionLogic(de_duped_image_candidates, device_scale_factor);
-  DCHECK_LT(winner, de_duped_image_candidates.size());
-  winner = AvoidDownloadIfHigherDensityResourceIsInCache(de_duped_image_candidates, winner, document);
-
-  float winning_density = de_duped_image_candidates[winner]-&gt;Density();
-  // 16. If an entry b in candidates has the same associated ... pixel density
-  // as an earlier entry a in candidates,
-  // then remove entry b
-  while ((winner &gt; 0) &amp;&amp; (de_duped_image_candidates[winner - 1]-&gt;Density() == winning_density))
-    --winner;
-
-  return *de_duped_image_candidates[winner];
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp" data-path="pick-best-image-candidate.cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// device_scale_factor = DPR</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// source_size = sizes attr value</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">static</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ImageCandidate</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> PickBestImageCandidate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> device_scale_factor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> source_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Vector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ImageCandidate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> image_candidates</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Document</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> document</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> nullptr</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> kDefaultDensityValue </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  bool</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ignore_src </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 画像がなければ無視</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">IsEmpty</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ImageCandidate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 画像ごとに表示領域に対する密度を計算(1.0 だとフィット)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // http://picture.responsiveimages.org/#normalize-source-densities</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (ImageCandidate</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image : image_candidates) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">GetResourceWidth</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> gensity </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">GetResourceWidth</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> source_size;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SetDensity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(gensity);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      ignore_src </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SetDensity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(kDefaultDensityValue);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 密度でソート</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  std</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">::</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">stable_sort</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">begin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(), image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">end</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(), CompareByDensity);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  Vector</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ImageCandidate</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> de_duped_image_candidates;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> prev_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 同じ密度を省く?</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (ImageCandidate</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image : image_candidates) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> prev_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ignore_src </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> !</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">SrcOrigin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">())) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      de_duped_image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">push_back</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">image);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    prev_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // SelectionLogic で画像を選択</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // Save Data してる場合は一番小さいの、ここでは無視</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // unsigned winner = blink::WebNetworkStateNotifier::SaveDataEnabled() &#x26;&#x26; base::FeatureList::IsEnabled(blink::features::kSaveDataImgSrcset) ? 0 : SelectionLogic(de_duped_image_candidates, device_scale_factor);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> winner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> SelectionLogic</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(de_duped_image_candidates, device_scale_factor);</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  DCHECK_LT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(winner, de_duped_image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">());</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  winner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> AvoidDownloadIfHigherDensityResourceIsInCache</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(de_duped_image_candidates, winner, document);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> winning_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> de_duped_image_candidates[winner]-></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 16. If an entry b in candidates has the same associated ... pixel density</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // as an earlier entry a in candidates,</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // then remove entry b</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ((winner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (de_duped_image_candidates[winner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]-></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> winning_density))</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    --</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">winner;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">de_duped_image_candidates[winner];</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         </section>
         <section>
           <h3 id="selectionlogic"><a href="#selectionlogic">SelectionLogic</a></h3>
@@ -360,41 +358,41 @@ static ImageCandidate PickBestImageCandidate(float device_scale_factor, float so
             <li>そうでなければ curr
           </ul>
           <p>(DPR に 1 以下はあるのだろうか?)
-          <pre class=cpp data-code=cpp data-path=selection-logic.cpp><code translate=no class=language-cpp>// device_scale_factor = DPR
-static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidates, float device_scale_factor) {
-  unsigned i = 0;
-
-  for (; i &lt; image_candidates.size() - 1; ++i) {
-    unsigned next = i + 1;
-    float next_density;
-    float current_density;
-    float geometric_mean;
-
-    next_density = image_candidates[next]-&gt;Density();
-
-    // next の密度が DSF より小さいならまだ先をみる必要
-    if (next_density &lt; device_scale_factor) {
-      continue;
-    }
-
-    // next の密度が DSF より大きい、つまり表示に十分だとわかった
-    // そこで curr とのどっちを表示するかを考える
-    current_density = image_candidates[i]-&gt;Density();
-
-    // そのために幾何平均をまず取る
-    geometric_mean  = sqrt(current_density * next_density);
-
-    // curr が DPR より低くても、 DPR が 1 なら next を使う
-    // もしくは
-    // Geo が DSF より小さいなら next
-    // (そうでないなら curr)
-    if (((current_density &lt; device_scale_factor) &amp;&amp; (device_scale_factor &lt;= 1.0)) || (geometric_mean &lt;= device_scale_factor)) {
-      return next;
-    }
-    break;
-  }
-  return i;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp" data-path="selection-logic.cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// device_scale_factor = DPR</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">static</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> unsigned</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> SelectionLogic</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Vector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ImageCandidate</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> image_candidates</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> device_scale_factor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (; i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image_candidates.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">; </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">++</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">i) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> next </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> next_density;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> current_density;</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> geometric_mean;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    next_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image_candidates[next]-></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // next の密度が DSF より小さいならまだ先をみる必要</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (next_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> device_scale_factor) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      continue</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // next の密度が DSF より大きい、つまり表示に十分だとわかった</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // そこで curr とのどっちを表示するかを考える</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    current_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> image_candidates[i]-></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Density</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // そのために幾何平均をまず取る</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    geometric_mean  </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> sqrt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(current_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> next_density);</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // curr が DPR より低くても、 DPR が 1 なら next を使う</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // もしくは</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // Geo が DSF より小さいなら next</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // (そうでないなら curr)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (((current_density </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> device_scale_factor) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x26;&#x26;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (device_scale_factor </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (geometric_mean </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> device_scale_factor)) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> next;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    }</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    break</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> i;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>つまり挙動としてはこうなるだろう。
           <ul>
             <li>

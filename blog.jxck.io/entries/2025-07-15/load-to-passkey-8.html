@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Passkey への道 #8: サービスにとって「移行」のゴールは何か? | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -300,11 +298,11 @@
       <section>
         <h2 id=".well-knownpasskey-endpoints"><a href="#.well-knownpasskey-endpoints">/.well-known/passkey-endpoints</a></h2>
         <p>Passkey に対応したサービスは、<code translate=no>/.well-known/passkey-endpoints</code> に対応し、以下のような JSON を返す。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=json data-code=json><code translate=no class=language-json>{
-  &quot;enroll&quot;: &quot;https://example.com/sign-up&quot;,
-  &quot;manage&quot;: &quot;https://example.com/settings/passkeys&quot;
-}</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="json"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "enroll"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/sign-up"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "manage"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/settings/passkeys"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p><code translate=no>enroll</code> が Passkey 登録画面で、<code translate=no>manage</code> が管理画面だ。
         <p>これにより、パスワードマネージャがこの URL を使って、ユーザを登録画面や管理画面に誘導できる。
         <p>パスワード変更画面へのリダイレクトとして <code translate=no>/.well-known/change-password</code> という仕様もあり、パスワードが危殆化したときに、パスワードマネージャがユーザを変更画面に誘導するために使われてきた。その Passkey 版だ。

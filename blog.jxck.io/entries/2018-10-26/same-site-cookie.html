@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Cookie の性質を利用した攻撃と Same Site Cookie の効果 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -193,35 +191,35 @@
           <h3 id="csrf"><a href="#csrf">CSRF</a></h3>
           <p>CSRF は、この SNS の場合、別の罠サイトを用意し SNS への正規の投稿と同じリクエストを作り出すことで、ユーザに対して意図しない投稿を行わせるといった攻撃である。
           <p>例えば、正規の投稿はログイン状態で <code translate=no>https://sns.example.com/posts/new</code> にある以下の form から行うものであったとする。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=/posts method=post&gt;
-  &lt;textarea name=msg&gt;hello&lt;/textarea&gt;
-  &lt;button type=submit&gt;post&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/posts</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">msg</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>hello&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>post&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう
-          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
-Host: sns.example.com
-Cookie: deadbeef
-Origin: https://sns.example.com
-Referer: https://sns.example.com/posts/new
-
-msg=hello</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /posts </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://sns.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Referer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://sns.example.com/posts/new</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">msg=hello</span></span></code></pre>
           <p>サーバは、Cookie の正当性を確認し、正ければ投稿を受け付ける。
           <p>ここで、攻撃者は <code translate=no>https://darkside.jxck.io/csrf</code> に以下のような HTML を仕込んだ罠ページを用意する。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=https://sns.example.com/posts/new method=post&gt;
-  &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
-  &lt;button type=submit&gt;post&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://sns.example.com/posts/new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">msg</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>こんにちはこんにちは&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>post&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>Form の action に URL 全体を入れている点に注目したい。
           <p>そして、<code translate=no>https://sns.example.com</code> にログイン済みのユーザをこのページに誘導し、なんらかの方法で submit させる。もしくは Form を隠して JS で強制的に submit してもよい。
           <p>ここで生成される HTTP Request は以下のようになるだろう。
-          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
-Host: sns.example.com
-Cookie: deadbeef
-Origin: https://darkside.jxck.io/csrf
-Referer: https://darkside.jxck.io/
-
-msg=こんにちはこんにちは</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /posts </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://darkside.jxck.io/csrf</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Referer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://darkside.jxck.io/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">msg=こんにちはこんにちは</span></span></code></pre>
           <p>このとき Cookie は sns.example.com で取得したものが自動で付与される。
           <p>つまり、サービスが Cookie だけを検証しているならば、このリクエストは正しいものとして受け入れられ、ユーザが意図しない投稿が成功してしまうのである。
           <p>これが、商品の購入や送金、パスワードの変更だった場合は、さらに被害が大きくなるだろう。
@@ -233,18 +231,18 @@ msg=こんにちはこんにちは</code></pre>
           <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html" target=_blank>そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
           <p><a href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html">参考: Referrer-Policy によるリファラ制御 | blog.jxck.io</a>
           <p>結果として、暗号論的に安全な乱数を One Time Token として生成し、それを Form に hidden で隠して、<em>意図した Form からのリクエスト</em> かを検証する方法が主流となっている。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;form action=https://sns.example.com/posts/new method=post&gt;
-  &lt;textarea name=msg&gt;こんにちはこんにちは&lt;/textarea&gt;
-  &lt;input type=hidden name=csrf_token value=asdfqwerzxcv&gt;
-  &lt;button type=submit&gt;post&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-          <pre class=http data-code=http><code translate=no class=language-http>POST /posts HTTP/1.1
-Host: sns.example.com
-Cookie: deadbeef
-Origin: https://darkside.jxck.io/csrf
-Referer: https://darkside.jxck.io/
-
-msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://sns.example.com/posts/new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">msg</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>こんにちはこんにちは&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hidden</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">csrf_token</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">asdfqwerzxcv</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>post&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /posts </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://darkside.jxck.io/csrf</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Referer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://darkside.jxck.io/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">msg=こんにちはこんにちは&#x26;csrf_token=asdfqwerzxcv</span></span></code></pre>
           <p>ここまでの内容は POST で解説したが、現実には「足跡」や「既読」機能のように GET が副作用を持つ設計の場合も、同じように攻撃が可能だ。
           <p>その場合は、単にリンクを設置して踏ませるだけで良いので、攻撃はシンプルだが対策は難しい。
           <p>元をたどれば、罠サイトからの偽装されたリクエストに Cookie が付与されなければ、この攻撃は防ぐことができる。
@@ -255,20 +253,20 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
           <p>Web のコンテキストで共通するのは、罠サイトから対象のサービスに向けて XHR などでリクエストを投げさせるというものだろう。
           <p>この時、実際にレスポンスを取得することができなくてもよく、リクエストにかかる時間を計測し、リクエストを変化させた時のレスポンスタイムの変化から機密情報を推測するというシナリオだ。
           <p>例えば先の SNS でユーザのページへリクエストする場合、block していなければプロフィールページが表示されるが、block していれば定型文が返るためレスポンスが速いとする。
-          <pre class=js data-code=js><code translate=no class=language-js>function timing_attack() {
-  img = new Image()
-  t1 = performance.now()
-
-  img.onerror = () =&gt; {
-    t2 = performance.now()
-
-    // block していれば速く
-    // block していなければ遅い
-    console.log(t2-t1)
-  }
-
-  img.src = &quot;https://sns.example.com/jxck&quot;
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> timing_attack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  img </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Image</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  t1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> performance.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">now</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  img.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">onerror</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    t2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> performance.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">now</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // block していれば速く</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">    // block していなければ遅い</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(t2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">t1)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  img.src </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "https://sns.example.com/jxck"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>これを利用して、対象者が誰を block しているか推測するといった攻撃が考えられる。
           <p>直近では Twitter に報告された Silhouette (シルエット攻撃)が、まさしくこれにあたる。
           <p><a href="https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html" target=_blank>Protecting user identity against Silhouette</a>
@@ -281,12 +279,12 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
           <p>こうした攻撃は TLS のプロトコルレベルでの解決(暗号方式の変更や圧縮の無効など)によって防ぐことが基本となるうえ、攻撃が成立した場合 Cookie 以外の情報も抜くことは可能である。
           <p>しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生し、自動で付与される Cookie を推測するというものが多い。
           <p>例えば CRIME の場合は、Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
-          <pre class=js data-code=js><code translate=no class=language-js>for(...) {
-  word = `ここを変えて行く`
-  await fetch(&quot;https://sns.example.com/&quot;, {
-    body: `Cookie: ${word}`
-  })
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  word </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `ここを変えて行く`</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://sns.example.com/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    body: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">`Cookie: ${</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">word</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">}`</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>今後、類似する未知の攻撃があったとしても、そもそも Cookie が付与されていなければ推測できない場合は、攻撃を未然に防げる可能性もある。
         </section>
         <section>
@@ -300,8 +298,8 @@ msg=こんにちはこんにちは&amp;csrf_token=asdfqwerzxcv</code></pre>
         <p>そもそも「<em>他のドメインからのリクエストでも、Cookie が自動で付与される</em>」という挙動を制御できれば、多くの脆弱性に有効な対策になることがわかっただろう。
         <p>そこで、「この Cookie は他のサイトからのリクエストには <em>付与してはならない</em>」ということを明示的にブラウザに知らせるのが SameSite Cookie である。
         <p>SameSite Cookie は、Set-Cookie ヘッダに付与する新しい属性であり、現状 2 つの値を取る。
-        <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: key=value; SameSite=Strict
-Set-Cookie: key=value; SameSite=Lax</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> key=value; SameSite=Strict</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> key=value; SameSite=Lax</span></span></code></pre>
         <ul>
           <li><a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7" target=_blank>https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-02#section-5.3.7</a>
         </ul>
@@ -404,8 +402,8 @@ Set-Cookie: key=value; SameSite=Lax</code></pre>
           </dl>
           <p>この 2 つに Cookie を分離し、Write Cookie に Strict を適用すれば、より堅牢な設計となる。
           <p>Read Cookie は、副作用を起こす能力がなくなっているのであれば、Lax でも SameSite 無しでも良い。
-          <pre class=http data-code=http><code translate=no class=language-http>Set-Cookie: read=zxcv; Path=/; Secure; HttpOnly;
-Set-Cookie: write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> read=zxcv; Path=/; Secure; HttpOnly;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</span></span></code></pre>
           <p>もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しだろう。
           <p>また、HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。
           <p>例えば、既読を write cookie にしか許さない場合、ユーザページのリンクを別のサイトで踏んで遷移してきたユーザの既読がつかない。

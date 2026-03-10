@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2023-05-17/abnf-or-algorithm-in-rfc.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>IETF RFC における ABNF と Parsing Algorithm の関係 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -301,8 +299,8 @@
             <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0147.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2022JanMar/0147.html</a>
           </ul>
           <p>要するに、SFV を参照する仕様は以下のように ABNF の仕様を参照するものがあるという点だ。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>Foo: sf-list</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Foo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sf-list</span></span></code></pre>
           <p>これは、ABNF ではなく SFV で定義されているデータ型(この場合 &quot;List&quot;)で書く方が望ましいことになる。
           <p>HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、Style Guide で定義されている。今回の変更も Style Guide に明記され、その基づいて先の例を書き直すと以下のようになる。
           <blockquote>

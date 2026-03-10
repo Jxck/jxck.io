@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Web における技術の解釈とエコシステムによる合意形成プロセスについて | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -174,16 +172,16 @@
       <section>
         <h2 id="リンクの-ping-属性"><a href="#リンクの-ping-属性">リンクの ping 属性</a></h2>
         <p><code translate=no>&lt;a&gt;</code> には ping という属性があり、以下のように URL を指定する。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https:example.com ping=/path/to/report&gt;example.com&lt;/a&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https:example.com</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> ping</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/path/to/report</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>example.com&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p><a href="https://html.spec.whatwg.org/#ping" target=_blank>HTML Standard - ping Attribute</a>
         <p>このリンクは、クリックすると <a href="https://example.com" target=_blank>https://example.com</a> に遷移するが、ブラウザは遷移すると同時に <code translate=no>/path/to/report</code> に対して、おおよそ以下のようなリクエストを投げる。
-        <pre class=http data-code=http><code translate=no class=language-http>POST /path/to/report HTTP/1.1
-Content-Type: text/ping
-Ping-From: http://labs.jxck.io/ping/
-Ping-To: http://labs.jxck.io/ping/
-
-PING</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /path/to/report </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/ping</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Ping-From</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> http://labs.jxck.io/ping/</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Ping-To</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> http://labs.jxck.io/ping/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">PING</span></span></code></pre>
         <p><a href="https://html.spec.whatwg.org/#hyperlink-auditing" target=_blank>HTML Standard - 4.6.5.1 Hyperlink auditing</a>
         <p>このリクエストには <code translate=no>Ping-From</code> / <code translate=no>Ping-To</code> ヘッダが含まれ、それぞれの値は遷移元/遷移先の URL となる。
         <p>したがって ping リクエストを収集することにより、ユーザが「<em>どのページからどのページに遷移したか</em>」を取得することができるのだ。
@@ -237,26 +235,26 @@ PING</code></pre>
           <p>最も想像しやすい手法は、JS を用いた実装だろう。
           <p><code translate=no>onclick</code>, <code translate=no>onunload</code>, などをフックし、遷移の前に必要な情報を載せたリクエストをサーバに飛ばす方法だ。
           <p>XHR で飛ばすこともできるが、非同期だと送り終わる前にページが遷移してしまうなどの理由により、あえて同期の XHR でリクエストを投げ、終わるまで処理を止めているという場合もある。
-          <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
-  const xhr = new XMLHttpRequest()
-  xhr.open(&apos;post&apos;, &apos;https://beacon.example/&apos;, false) // sync xhr
-  xhr.send(data) // 必要な情報を収集する
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'unload'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> xhr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> XMLHttpRequest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">open</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'post'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'https://beacon.example/'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// sync xhr</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(data) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 必要な情報を収集する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>最近は Off The Main Thread の流れもあり、同期の XHR は徐々に無くしていく方向になっているため、標準化されている Beacon API や Keep Alive Fetch などを利用するのが理想的だ。
-          <pre class=js data-code=js><code translate=no class=language-js>window.addEventListener(&apos;unload&apos;, (e) =&gt; {
-  fetch(&apos;https://beacon.example/&apos;, {
-    keepalive: true,
-    method: &apos;post&apos;,
-    body: data // 必要な情報を収集する
-  })
-})</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">window.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'unload'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'https://beacon.example/'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    keepalive: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    method: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'post'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    body: data </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 必要な情報を収集する</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>JS で行えば、収集する情報もタイミングも、柔軟に設定できることは容易に想像できるだろう。
         </section>
         <section>
           <h3 id="リダイレクト"><a href="#リダイレクト">リダイレクト</a></h3>
           <p>もう一つ、広く採用されている方法にリダイレクトがある。
           <p>例えば SNS や Chat などで URL を共有すると、以下のように URL が表示されるが、href は別の URL に差し替えられている、という場合がある。
-          <pre class=html data-code=html><code translate=no class=language-html>&lt;a href=https://redirect.example?to=https://hello.example.com/world.html&gt;https://hello.example.com/world.html&lt;/a&gt;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://redirect.example?to</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://hello.example.com/world.html</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>https://hello.example.com/world.html&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>この場合、実際の遷移先のパラメータを入れておくことで、リダイレクト先で流出先を収集し、その後すぐリダイレクトをかけるというものだ。
           <p>Referer をとるか、from をクエリに追加すれば、<code translate=no>Ping-From</code>, <code translate=no>Ping-To</code> 同等の情報が得られる。
         </section>

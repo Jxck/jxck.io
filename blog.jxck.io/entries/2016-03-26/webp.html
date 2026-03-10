@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-03-26/webp.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-03-26T08:00:00+08:00",
-    "dateModified": "2024-11-15T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>画像最適化戦略 WebP 編 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-03-26>2016-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -200,23 +198,23 @@
         <p>cacoo で作成した画像は SVG で書き出すため、主にスクリーンショットかフリー素材 が WebP 変換の対象となる。
         <p>WebP への変換ツールは、Google が公式に提供しているバイナリか、Linux/Mac ならパッケージで提供されているものを使うことができる。
         <p><a href="https://developers.google.com/speed/webp/download" target=_blank>Downloading and Installing WebP</a>
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ brew install webp    # mac
-$ apt-get install webp # linux</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ brew install webp    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># mac</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ apt-get install webp </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># linux</span></span></code></pre>
         <p>他にも、gulp などのプラグインや、GUI ツールなどもある。
       </section>
       <section>
         <h2 id="cwebp"><a href="#cwebp">cwebp</a></h2>
         <p>PNG からの変換は cwebp コマンドで行う。
-        <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ cwebp
-Usage:
-
-   cwebp [options] -q quality input.png -o output.webp
-
-   where quality is between 0 (poor) to 100 (very good).
-   Typical value is around 80.
-
-   Try -longhelp for an exhaustive list of advanced options.</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cwebp</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Usage:</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">   cwebp [options] -q quality input.png -o output.webp</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">   where quality is between 0 (poor) to 100 (very good).</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">   Typical value is around 80.</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">   Try -longhelp for an exhaustive list of advanced options.</span></span></code></pre>
         <p>基本的には <code translate=no>-q</code> の調整になるが、これは画像ごとに結果をみながらやるしかない。
         <p>まずは、デフォルトの 80 で比較していく。
         <dl>
@@ -237,10 +235,10 @@ Usage:
         <p>しかし、別途 JS を利用する場合はイニシャルレンダリングへの影響を免れず、User-Agent での分岐は保守性の問題から避けるべきパターンの一つといえる。
         <p>現時点では、HTML の <code translate=no>&lt;picture&gt;</code> を用いることで、ブラウザ自体にそれを判断させることができるため、本サイトではこの方法を採用することとした。
         <p>画像を以下のように指定することで、対応ブラウザが自ら WebP をリクエストするようになり、WebP や <code translate=no>&lt;picture&gt;</code> に対応していない場合は <code translate=no>&lt;img&gt;</code> に指定した画像にフォールバックする。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;picture&gt;
-  &lt;source type=image/webp srcset=hero-image.webp&gt;
-  &lt;img src=hero-image.png alt=&quot;hero image&quot;&gt;
-&lt;/picture&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">picture</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">source</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">image/webp</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hero-image.webp</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">hero-image.png</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> alt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hero image"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">picture</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この場合、WebP に対応しているが <code translate=no>&lt;picture&gt;</code> に対応していないブラウザがあるのかが気になるところだが、現状 <a href="https://caniuse.com/#search=picture" target=_blank>picture</a> に対応し <a href="https://caniuse.com/#search=webp" target=_blank>webp</a> に対応していないブラウザは無い。
         <p>したがって <code translate=no>&lt;picture&gt;</code> に対応していない(= WebP も非対応)ブラウザに向けたフォールバックとして、<code translate=no>&lt;img&gt;</code> には PNG を指定する。
         <p>この指定は、現在 WebP に対応していないブラウザが将来対応した場合に、サイトに何も手を加える必要がない。

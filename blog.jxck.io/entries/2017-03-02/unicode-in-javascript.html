@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -187,24 +185,24 @@
         <p>例えば <code translate=no>😭</code> (loudly crying face) なら <code translate=no>0x1F62D</code> だ。
         <p>1 つの文字に 1 つの ID が割り当てられているのだから、文字の数を数える場合は、この ID の数を数えれば良いと考えることができるだろう。おおよその場合はそれで良い。
         <p>例えば <code translate=no>𠮷野屋で𩸽頼んで𠮟られる😭</code> という文字列を、それぞれ ID の配列に変換するとこうなる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=js data-code=js><code translate=no class=language-js>str = &quot;𠮷野屋で𩸽頼んで𠮟られる😭&quot;;
-
-[
-  0x20BB7, // 𠮷
-  0x91CE,  // 野
-  0x5C4B,  // 屋
-  0x3067,  // で
-  0x29E3D, // 𩸽
-  0x983C,  // 頼
-  0x3093,  // ん
-  0x3067,  // で
-  0x20B9F, // 𠮟
-  0x3089,  // ら
-  0x308C,  // れ
-  0x308B,  // る
-  0x1F62D  // 😭
-]</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "𠮷野屋で𩸽頼んで𠮟られる😭"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x20BB7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𠮷</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x91CE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 野</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x5C4B</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 屋</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3067</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// で</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x29E3D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𩸽</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x983C</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 頼</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3093</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ん</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3067</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// で</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x20B9F</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𠮟</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3089</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ら</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x308C</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// れ</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x308B</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// る</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x1F62D</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 😭</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         <p>ID が 13 個あるので、この文字列は 13 文字だと考えることができる。
         <p><em>この ID のことを Unicode では Code Point という</em>
       </section>
@@ -217,8 +215,8 @@
           <h3 id="utf-32"><a href="#utf-32">UTF-32</a></h3>
           <p>単純に考えれば、この Code Point をバイナリデータとしてそのまま送れば良いだろう。
           <p>Code Point はおおよそ 4byte あれば収まるので、32bit のデータとして送ることができる。
-          <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x01, 0xF6, 0x2D] // 😭
-// 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit ずつ区切った配列</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x01</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xF6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x2D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 😭</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x1F62D を二進数にし 32 bit になるまで先頭に 0 を追加してから 8 bit ずつ区切った配列</span></span></code></pre>
           <p>受け取った側は、データを 32bit ずつ Code Point とみなして文字に置き換えていけば良いし、受け取ったバイト数を 4 で割れば文字の数もわかる。
           <p>このように 1 Code Point を 32bit データとして表すという発想が、UTF-32 と呼ばれる方式の中核である。
         </section>
@@ -226,19 +224,19 @@
           <h3 id="utf-16"><a href="#utf-16">UTF-16</a></h3>
           <p>UTF-32 なら Code Point がそのまま入ってるので非常にシンプルだが、よく使う文字はそこまで大きな Code Point が振られてないため、ほとんどが 0 になる。
           <p>先の文字列では「野」や「で」という文字は Code Point が <code translate=no>0x91CE</code>、<code translate=no>0x3067</code> なので、32 bit だと先頭 2byte が 0 になる。
-          <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x00, 0x91, 0xCE] // 野
-[0x00, 0x00, 0x30, 0x67] // で</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x91</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xCE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 野</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x67</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// で</span></span></code></pre>
           <p>そこで、Code Point を 32bit ではなく、半分の 16bit で表せば、半分のサイズで送ることができる。
-          <pre class=js data-code=js><code translate=no class=language-js>[0x91, 0xCE] // 野
-[0x30, 0x67] // で</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x91</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xCE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 野</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x67</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// で</span></span></code></pre>
           <p>このように 1 Code Point を 16bit データとして表すという発想が、UTF-16 と呼ばれる方式の中核である。
           <p>ところが、<code translate=no>𠮷</code> (0x20BB7), <code translate=no>𩸽</code> (0x29E3D), <code translate=no>𠮟</code> (0x20B9F), <code translate=no>😭</code> (0x1F62D) の 4 文字は 2byte では収まらない。
           <p>そこで、UTF-16 では、こうした 2byte では収まらない文字について、倍の 32bit で表す。
           <p>この 16bit x2 で表される文字を <em>サロゲートペア</em> と呼ぶ。
-          <pre class=js data-code=js><code translate=no class=language-js>[0xD8, 0x67, 0xDE, 0x3D] // 𠮷
-[0xD8, 0x42, 0xDF, 0xB7] // 𩸽
-[0xD8, 0x42, 0xDF, 0x9F] // 𠮟
-[0xD8, 0x3D, 0xDE, 0x2D] // 😭</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xD8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x67</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x3D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𠮷</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xD8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x42</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDF</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xB7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𩸽</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xD8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x42</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDF</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x9F</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𠮟</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xD8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x3D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x2D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 😭</span></span></code></pre>
           <p>逆を言えば、サロゲートペアになるのは Code Point が大きい、Unicode に後から追加された文字が多い。
           <p><code translate=no>𩸽</code> は後から追加された文字であり、<code translate=no>𠮷</code> は <code translate=no>吉</code> の、<code translate=no>𠮟</code> は <code translate=no>𠮟</code> の <em>異体字</em> と呼ばれるものだ。絵文字も最近追加されたため Code Point が大きい。
           <p>こうして、サロゲートペアが導入されたことにより、UTF-16 のデータは可変長、つまり、文字数がバイト列の長さだけではわからなくなってしまったのである。
@@ -248,19 +246,19 @@
           <h3 id="utf-8"><a href="#utf-8">UTF-8</a></h3>
           <p>英数字(a-zA-Z0-9) など、いわゆるアスキー文字と呼ばれるものは、Code Point の中でも小さい値が割り当てられている。
           <p>これら Code Point は 8bit の範囲に収まっているので、16 bit で表すと無駄が出てくる。
-          <pre class=js data-code=js><code translate=no class=language-js>[0x00, 0x61] // a</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x00</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x61</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// a</span></span></code></pre>
           <p>そこで、8bit で表せる Code Point は 8bit で、足らないものは 16bit で、さらに足らないものは 24bit で、、と「小さい Code Point はより小さく」表せば、英語のみのテキストなどはさらに小さく表すことができる。
-          <pre class=js data-code=js><code translate=no class=language-js>[0x61]                   // a
-[0xC2, 0xA9]             // ©
-[0xE3, 0x81, 0x82]       // あ
-[0xF0, 0xA0, 0xAE, 0xB7] // 𠮷</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x61</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]                   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// a</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xC2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xA9</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]             </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ©</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xE3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x81</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0x82</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]       </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// あ</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xF0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xA0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xAE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xB7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𠮷</span></span></code></pre>
           <p>この 8bit を最小とし、それ以外を必要に応じて 2, 3, 4...byte と可変長で表す発想が UTF-8 と呼ばれる方式の中核だ。
         </section>
       </section>
       <section>
         <h2 id="js-の内部表現"><a href="#js-の内部表現">JS の内部表現</a></h2>
         <p>さて、JS で以下の処理を実行した場合、代入した文字列データがメモリ上に保存されるわけだが、このデータは Code Point がそのまま保存されているわけではない。
-        <pre class=js data-code=js><code translate=no class=language-js>char = &quot;😭&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">char </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "😭"</span></span></code></pre>
         <p>JS の内部表現は UTF-16 であるため、メモリに保存された値は絵文字 <code translate=no>😭</code> の Code Point である <code translate=no>0x1F62D</code> ではなく、それを UTF-16 にした <code translate=no>[0xD8, 0x3D, 0xDE, 0x2D]</code> だ。
         <p>ここで注意したいのは、ここで UTF-16 が選ばれるのは JS の仕様であって、JS ファイルのエンコーディングとは関係ない点だ。
         <p>HTML/CSS/JS ファイルは UTF-8 を使うのがデファクトとなっているが、それによって JS の内部の表現が UTF-8 になったりはしない。
@@ -273,25 +271,25 @@
         <p>length は文字数ではなく、単にこの UTF-16 配列の長さだ。
         <p>だから、1 文字に 16bit が 2 つ必要なサロゲートペアは length が 2 となってしまう。
         <p>つまり、内部で保持されているデータはこうなっている。
-        <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
-[
-  0xD842, 0xDFB7 // 𠮷
-  0x91CE         // 野
-  0x5C4B         // 屋
-  0x3067         // で
-  0xD867, 0xDE3D // 𩸽
-  0x983C         // 頼
-  0x3093         // ん
-  0x3067         // で
-  0xD842, 0xDF9F // 𠮟
-  0x3089         // ら
-  0x308C         // れ
-  0x308B         // る
-  0xD83D, 0xDE2D // 😭
-]</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `𠮷野屋で𩸽頼んで𠮟られる😭`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0xD842</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDFB7</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 𠮷</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x91CE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // 野</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x5C4B</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // 屋</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3067</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // で</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0xD867</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDE3D</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 𩸽</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x983C</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // 頼</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3093</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // ん</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3067</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // で</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0xD842</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDF9F</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 𠮟</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x3089</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // ら</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x308C</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // れ</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x308B</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">         // る</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0xD83D</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0xDE2D</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 😭</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
         <p>この文字列は 13 文字と考えられるが、<code translate=no>length</code> はこの配列の長さである 17 を返す。
-        <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
-str.length // =&gt; 17</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `𠮷野屋で𩸽頼んで𠮟られる😭`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">length</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // => 17</span></span></code></pre>
         <p>これが、文字数を数える処理に length が使えない場合があることの原因だ。
         <p>(逆を言えば、16bit で収まる文字の範囲のみであると <em>保証</em> できるならば length を使うこともできなくはない)
         <p>そもそも、Code Point の数を数えたいのに、内部で保持している UTF-16 の配列を操作しているから問題なのだ。
@@ -316,11 +314,11 @@ str.length // =&gt; 17</code></pre>
           </li>
         </ul>
         <p>Code Point の配列にしてしまえば、文字の数 (=== Code Point の数)を数える処理はそのまま length で行える。
-        <pre class=js data-code=js><code translate=no class=language-js>str = `𠮷野屋で𩸽頼んで𠮟られる😭`;
-codePoints = obtainUnicode(str);
-// [134071, 37326, 23627, 12391, 171581, 38972, 12435, 12391, 134047, 12425, 12428, 12427, 128557]
-
-codePoints.length // =&gt; 13</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `𠮷野屋で𩸽頼んで𠮟られる😭`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">codePoints </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> obtainUnicode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str);</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// [134071, 37326, 23627, 12391, 171581, 38972, 12435, 12391, 134047, 12425, 12428, 12427, 128557]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">codePoints.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">length</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // => 13</span></span></code></pre>
         <p>しかし、最近はこうした処理を改善する API がブラウザ自体にあるため、使えるならそれらを使うのが良いだろう。
         <p>自前で Code Point 列にするのは、それらで間に合わない場合にとる手段だ。
       </section>
@@ -328,62 +326,62 @@ codePoints.length // =&gt; 13</code></pre>
         <h2 id="charcodecodepoint"><a href="#charcodecodepoint">charCode/codePoint</a></h2>
         <p><code translate=no>charCodeAt()</code> は文字コードを取り、<code translate=no>fromCharCode()</code> はその逆を行う。
         <p><code translate=no>𩸽</code> の方は前半のバイトしかないため、元に戻らない。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;鯖定食&quot;.charCodeAt(0) === 0x9BD6
-&quot;𩸽定食&quot;.charCodeAt(0) === 0xD867
-
-String.fromCharCode(&quot;鯖&quot;.charCodeAt(0)) //&quot;鯖&quot;
-String.fromCharCode(&quot;𩸽&quot;.charCodeAt(0)) // &quot;�&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charCodeAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0x9BD6</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charCodeAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0xD867</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">String.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fromCharCode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charCodeAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">//"鯖"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">String.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fromCharCode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charCodeAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "�"</span></span></code></pre>
         <p>一方、<code translate=no>codePointAt()</code> と <code translate=no>fromCodePoint()</code> は、その名の通り Code Point に対応している。
         <p>これならサロゲートペアもうまく扱う事ができる。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;𩸽定食&quot;.codePointAt(0) // 0x29E3D
-&quot;鯖定食&quot;.codePointAt(0) // 0x9BD6
-
-String.fromCodePoint(&quot;鯖&quot;.codePointAt(0)) // &quot;鯖&quot;
-String.fromCodePoint(&quot;𩸽&quot;.codePointAt(0)) // &quot;𩸽&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">codePointAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x29E3D</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">codePointAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x9BD6</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">String.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fromCodePoint</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">codePointAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "鯖"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">String.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fromCodePoint</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">codePointAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "𩸽"</span></span></code></pre>
       </section>
       <section>
         <h2 id="正規表現"><a href="#正規表現">正規表現</a></h2>
         <p>正規表現における <code translate=no>.</code> も 1 文字ではなく、UTF-16 の 16bit データ 1 つを意味する。
         <p>したがって、サロゲートペアがあると 1 文字にマッチせず、途中で切れる。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;吉野家&quot;.match(/./) // [&quot;吉&quot;]
-&quot;𠮷野家&quot;.match(/./) // [&quot;�&quot;]
-
-&quot;吉野家&quot;.match(/.{3}/) // [&quot;吉野家&quot;]
-&quot;𠮷野家&quot;.match(/.{3}/) // [&quot;𠮷野&quot;] 変なところで切れる</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"吉野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["吉"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮷野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["�"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"吉野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{3}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["吉野家"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮷野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{3}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["𠮷野"] 変なところで切れる</span></span></code></pre>
         <p>そこで、ES2015 では Unicode Flag というフラグが入った。これで Code Point の単位でマッチさせることができるようになる。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;吉野家&quot;.match(/./u) // [&quot;吉&quot;]
-&quot;𠮷野家&quot;.match(/./u) // [&quot;𠮷&quot;]
-
-&quot;吉野家&quot;.match(/.{3}/u) // [&quot;吉野家&quot;]
-&quot;𠮷野家&quot;.match(/.{3}/u) // [&quot;𠮷野家&quot;]</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"吉野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["吉"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮷野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["𠮷"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"吉野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{3}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["吉野家"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮷野家"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">{3}</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["𠮷野家"]</span></span></code></pre>
         <p>文字列を文字の配列に分解するのに使われる <code translate=no>split(&quot;&quot;)</code> も、サロゲートペアがあると崩れてしまう。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;叱られる&quot;.split(&quot;&quot;) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
-&quot;𠮟られる&quot;.split(&quot;&quot;) // [&quot;�&quot;, &quot;�&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"叱られる"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">split</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["叱", "ら", "れ", "る"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮟られる"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">split</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">""</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["�", "�", "ら", "れ", "る"]</span></span></code></pre>
         <p>代わりに、Unicode フラグを使った正規表現を使うと、正しく文字の配列に分解できる。
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;叱られる&quot;.match(/./ug) // [&quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]
-&quot;𠮟られる&quot;.match(/./ug) // [&quot;𠮟&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;る&quot;]</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"叱られる"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">ug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["叱", "ら", "れ", "る"]</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𠮟られる"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">match</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">.</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">ug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ["𠮟", "ら", "れ", "る"]</span></span></code></pre>
       </section>
       <section>
         <h2 id="string-iterator"><a href="#string-iterator">String Iterator</a></h2>
         <p>繰り返し処理も注意が必要だ。特に文字列に対する添え字アクセスは、UTF-16 配列に対するアクセスだとイメージするとわかりやすい。(ちなみに <code translate=no>charAt()</code> も同じだ)
-        <pre class=js data-code=js><code translate=no class=language-js>&quot;鯖定食&quot;[0] === &quot;鯖&quot;
-&quot;鯖定食&quot;.charAt(0) === &quot;鯖&quot;
-
-&quot;𩸽定食&quot;[0] === &quot;�&quot;
-&quot;𩸽定食&quot;.charAt(0) === &quot;�&quot;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "鯖"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"鯖定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "鯖"</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "�"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">charAt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "�"</span></span></code></pre>
         <p>よって 1 文字ずつ処理をするという処理に for を使う場合は、添え字を基準にすることができない。
-        <pre class=js data-code=js><code translate=no class=language-js>const str = &quot;鯖定食&quot;
-for (const i in str) console.log(str[i])
-// 鯖
-// 定
-// 食
-
-const str = &quot;𩸽定食&quot;
-for (const i in str) console.log(str[i])
-// �
-// �
-// 定
-// 食</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> str</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "鯖定食"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> i</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> str) console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str[i])</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 鯖</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 定</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 食</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> str</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "𩸽定食"</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> i</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> str) console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str[i])</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// �</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// �</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 定</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 食</span></span></code></pre>
         <p><code translate=no>for (i = 0; i &lt; str.length; i ++)</code> と書いても同じだ。
         <p>しかし String は <em>Iterator</em> に対応した Iterable Object であり、その処理は Code Point をベースとしている。
         <p>(正確に言うと、String はネイティブに実装している Symbol.Iterator の処理が Code Point ベースで反復処理するようになっている)
@@ -391,30 +389,30 @@ for (const i in str) console.log(str[i])
         <section>
           <h3 id="for-of"><a href="#for-of">for of</a></h3>
           <p>例えば ES2015 で追加された <code translate=no>for of</code> は Iterator に対応しているため、Code Point 単位の繰り返し処理が可能だ。
-          <pre class=js data-code=js><code translate=no class=language-js>for (let c of &quot;𩸽定食&quot;) console.log(c)
-// 𩸽
-// 定
-// 食</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">let</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> c </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">of</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(c)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𩸽</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 定</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 食</span></span></code></pre>
         </section>
         <section>
           <h3 id="spread-operator"><a href="#spread-operator">Spread Operator</a></h3>
           <p>Spread Operator を用いた分割も Iterator で行われる。
-          <pre class=js data-code=js><code translate=no class=language-js>[...&quot;𩸽定食&quot;]  // 𩸽 定 食
-Array.of(...&quot;𩸽定食&quot;)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 𩸽 定 食</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">of</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"𩸽定食"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
         </section>
         <section>
           <h3 id="destructuring"><a href="#destructuring">Destructuring</a></h3>
           <p>分割代入時の分割も Iterator で行われる。
-          <pre class=js data-code=js><code translate=no class=language-js>[a, b, c] = &quot;𩸽定食&quot;
-a // &quot;𩸽&quot;
-b // &quot;定&quot;
-c // &quot;食&quot;</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[a, b, c] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "𩸽定食"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">a </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "𩸽"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">b </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "定"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">c </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "食"</span></span></code></pre>
         </section>
         <section>
           <h3 id="array.from"><a href="#array.from">Array.from</a></h3>
           <p>Array.from は Iterator をもとに配列を作る。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;叱られた😭&quot;)
-[ &quot;叱&quot;, &quot;ら&quot;, &quot;れ&quot;, &quot;た&quot;, &quot;😭&quot; ]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"叱られた😭"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[ </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"叱"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ら"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"れ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"た"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"😭"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ]</span></span></code></pre>
         </section>
       </section>
       <section>
@@ -439,34 +437,34 @@ c // &quot;食&quot;</code></pre>
           <p>ところがこの二つは <code translate=no>𠮟</code> と <code translate=no>𠮟</code> のように別の文字コードを振るわけではなく、どちらも同じ文字であり、書き方のバリエーションが違うという扱いになっている。
           <p>そこで、基本となる文字コードを定義し、そこに対してバリエーションがあるものはその番号を組み合わせるという考え方が <em>異体字セレクタ</em> だ。
           <p><code translate=no>葛</code> の文字コードは 0x845B であり、異体字の 1 番目である <code translate=no>葛󠄀</code> には、後ろに 0xE0101 をつける。
-          <pre class=js data-code=js><code translate=no class=language-js>str = &quot;葛飾区&quot;
-[
-  0x845B // 葛
-  0x98FE // 飾
-  0x533A // 区
-]
-
-
-str = &quot;葛󠄀城市&quot;
-[
-  0x845B  // 葛
-  0xE0100 // (異体字セレクタ)
-  0x57CE  // 城
-  0x5E02  // 市
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "葛飾区"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x845B</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 葛</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x98FE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 飾</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x533A</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // 区</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">str </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "葛󠄀城市"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x845B</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 葛</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0xE0100</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> // (異体字セレクタ)</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x57CE</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 城</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  0x5E02</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 市</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>これは、もし異体字セレクタで選択したフォントが入ってなかった場合、セレクタ抜きのフォントを選ぶというフォールバックが可能となる。
           <p>この異体字セレクタは、絵文字でも利用される。
           <p>例えば <code translate=no>👍</code> という絵文字は <code translate=no>👍🏻 👍🏼 👍🏽 👍🏾 👍🏿</code> のように肌の色を変えることができる。
           <p>これは、元となる絵文字に対して、Emoji Modifier Sequence という変更を加えるための異体字セレクタを組みわせている。
           <p>肌の色を変える skin tone は 5 種類定義されており、これを直後に置くことで表示上肌の色を変えられるのである。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;👍🏻👍🏼👍🏽👍🏾👍🏿&quot;)
-[
-  &quot;👍&quot;, &quot;🏻&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FB&quot;
-  &quot;👍&quot;, &quot;🏼&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FC&quot;
-  &quot;👍&quot;, &quot;🏽&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FD&quot;
-  &quot;👍&quot;, &quot;🏾&quot;, // &quot;0x1F44D&quot;, &quot;0x1F3FE&quot;
-  &quot;👍&quot;, &quot;🏿&quot;  // &quot;0x1F44D&quot;, &quot;0x1F3FF&quot;
-]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👍🏻👍🏼👍🏽👍🏾👍🏿"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "👍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"🏻"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "0x1F44D", "0x1F3FB"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "👍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"🏼"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "0x1F44D", "0x1F3FC"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "👍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"🏽"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "0x1F44D", "0x1F3FD"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "👍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"🏾"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "0x1F44D", "0x1F3FE"</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "👍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"🏿"</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // "0x1F44D", "0x1F3FF"</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>これも、元となる文字に対して、異体字セレクタを付与する方式である。
           <p>ともあれ、セレクタ自体に Code Point が割り当てられているため、文字数を数える場合には考える必要がある。
           <p>異体字セレクタ自体も、漢字などに使われる IVS 、絵文字などに使われる SVS があるため、そのあたりを踏まえて処理することになるだろう。
@@ -474,18 +472,18 @@ str = &quot;葛󠄀城市&quot;
         <section>
           <h3 id="結合文字"><a href="#結合文字">結合文字</a></h3>
           <p>よく例に上がるのが <code translate=no>パ</code> と <code translate=no>パ</code> だ。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;パ&quot;) // 0x30d1
-[&quot;パ&quot;]
-Array.from(&quot;パ&quot;) // 0x30cf, 0x309a
-[&quot;ハ&quot;, &quot;゚&quot;]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x30d1</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x30cf, 0x309a</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ハ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"゚"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>このように、見た目上どちらも 1 文字だが、前者は 1 つの CodePoint 、後者は「ハ」と「半濁点」の 2 つの CodePoint から成り立っている。
           <p>ウムラウトやマクロンのような記号でも同じことが起こる。以下の文字は 3 つの方法で表すことができる。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;ǖ&quot;) // 0x1d6
-[&quot;ǖ&quot;]
-Array.from(&quot;ǖ&quot;) // 0xfc, 0x304
-[&quot;ü&quot;, &quot;̄&quot;]
-Array.from(&quot;ǖ&quot;) // 0x75, 0x308, 0x304
-[&quot;u&quot;, &quot;̈&quot;, &quot;̄&quot;]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ǖ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x1d6</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ǖ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ǖ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0xfc, 0x304</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ü"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"̄"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ǖ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 0x75, 0x308, 0x304</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"u"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"̈"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"̄"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>濁点やウムラウトのような、前にある文字(基底文字)に結合される図形文字を結合文字という。
           <p>結合して表せる文字そのものに CodePoint が割り当てられているために、複数の表現方法が可能になる。
           <p>CodePoint の数が変わるため、文字数も表現方法によって結果がブレてしまう。
@@ -502,21 +500,21 @@ Array.from(&quot;ǖ&quot;) // 0x75, 0x308, 0x304
             </div>
           </dl>
           <p>JavaScript では、<code translate=no>String.prototype.normalize()</code> を用いるとこれを変換することが可能だ。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;パ&quot;.normalize(&quot;NFC&quot;))
-[&quot;パ&quot;]
-Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
-[&quot;ハ&quot;, &quot;゚&quot; ]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFC"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"パ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFD"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">))</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ハ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"゚"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> ]</span></span></code></pre>
           <p>NFC, NFD は単純に結合かどうかを変更するが、この派生として NFKC, NFKD もある。
           <p>K は Compatibility のことであり、C だと Composition と被るのであえて K で表している。これは「互換等価」であるものへの変換も同時に行うオプションだ。
           <p>「互換等価」とは、要するに「意味的に同じ」ということであり、例を見るとわかりやすいだろう。
-          <pre class=js data-code=js><code translate=no class=language-js>&quot;Ａ１&quot;.normalize(&quot;NFKC&quot;)
-// &quot;A1&quot; (全角英数を半角に)
-&quot;ｱ&quot;.normalize(&quot;NFKC&quot;)
-// &quot;ア&quot; (半角カナを全角に)
-&quot;①&quot;.normalize(&quot;NFKC&quot;)
-// &quot;1&quot; (囲み文字を数字に)
-&quot;㌶&quot;.normalize(&quot;NFKC&quot;)
-// &quot;ヘクタール&quot; (互換用文字をカタカナに)</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Ａ１"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFKC"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "A1" (全角英数を半角に)</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ｱ"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFKC"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "ア" (半角カナを全角に)</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"①"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFKC"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "1" (囲み文字を数字に)</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"㌶"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">normalize</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"NFKC"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// "ヘクタール" (互換用文字をカタカナに)</span></span></code></pre>
           <p>特に全角半角文字の正規化は、入力文字列のクレンジングなどにも使うことができる。
           <p>CodePoint によって文字数を数える観点からは、NFC または文脈によっては NFKC によって最小の CodePoint を数える方が一般的だろう。
           <p>しかし、注意点もあり、例えば <code translate=no>Ⅲ</code> (ローマ数字 3)は <code translate=no>III</code> (I が三つ)になったりなどが、入力者によって意図しない変換である場合もあるため、安易な変換には注意が必要だ。
@@ -538,8 +536,8 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
             </section>
           </details>
           <p>他にも <code translate=no>👨‍👩‍👧‍👦</code> も合字を利用している。
-          <pre class=js data-code=js><code translate=no class=language-js>Array.from(&quot;👨‍👩‍👧‍👦&quot;)
-[&quot;👨&quot;, &quot;‍&quot;, &quot;👩&quot;, &quot;‍&quot;, &quot;👧&quot;, &quot;‍&quot;, &quot;👦&quot;]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Array.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👨‍👩‍👧‍👦"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👨"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"‍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👩"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"‍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👧"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"‍"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👦"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
           <p>この絵文字は &quot;family with mother father son daughter&quot; という名前の文字で、4 つの絵文字が合成されてできている。
           <p>家族は多様なので別の組み合わせもある。
           <p>いずれにせよ、先ほどの方法で分解すると、個々の顔の間に空の文字が見える。
@@ -571,9 +569,9 @@ Array.from(&quot;パ&quot;.normalize(&quot;NFD&quot;))
             </li>
           </ul>
           <p>これを用いると以下のように実現できる。
-          <pre class=js data-code=js><code translate=no class=language-js>const segmenter = new Intl.Segmenter(&quot;ja-JP&quot;, { granularity: &quot;grapheme&quot; })
-const segments = [...segmenter.segment(&quot;👪&quot;)]
-// [{ &quot;segment&quot;: &quot;👪&quot;, &quot;index&quot;: 0, &quot;input&quot;: &quot;👪&quot; }]</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> segmenter</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> Intl.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">Segmenter</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"ja-JP"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { granularity: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"grapheme"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> })</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> segments</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">segmenter.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">segment</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"👪"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)]</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// [{ "segment": "👪", "index": 0, "input": "👪" }]</span></span></code></pre>
         </section>
       </section>
       <section>

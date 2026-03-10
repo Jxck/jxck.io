@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2021-12-08/web-semantics-push-and-pull.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Web のセマンティクスにおける Push と Pull | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -171,8 +169,8 @@
         <h2 id="title-タグとサイト名"><a href="#title-タグとサイト名">title タグとサイト名</a></h2>
         <p>身近な例として HTML の <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-title-element" target=_blank><code translate=no>&lt;title&gt;</code></a> を考えてみよう。
         <p><code translate=no>&lt;title&gt;</code> にはその文書のタイトルが入る。これは仕様にも明らかだ。例えばこのエントリだとタイトルタグは以下のような実装が考えられる。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Web のセマンティクスにおける Push と Pull&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>同じく HTML を理解する各実装は、これを以下のように扱う。
         <ul>
           <li>ブラウザがタイトルバーやブックマークに表示する
@@ -188,7 +186,7 @@
           <img loading=lazy decoding=async src=pull.svg?211208_021838 alt="あらゆるクライアントに対してコンテンツを提供する" title="pull semantics" width=744 height=537>
         </p>
         <p>しかし、見ればわかるが筆者が実際に本サイトで行っている実装はこうだ。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull | blog.jxck.io&lt;/title&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Web のセマンティクスにおける Push と Pull | blog.jxck.io&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>後ろにサイト名を補足している。本来の「独立した文書の表題」という観点でいえば、そこにサイト名は入らないだろう。しかし周知の通り、このように後ろにサイト名を入れる実装は、非常に一般的に行われている。
         <p>それはなぜだろうか?
         <p>理由の 1 つには、「純粋にタイトルだけが流通した場合に、どのサイトのものなのかがわかりにくい」という問題への対策があるだろう。特に SNS などでの流通を意識すると、それがどのサイトであるかを示した方がわかりやすい場合がある。他にも、サーチャビリティ/エゴサビリティの観点で、一意なサフィックスが共通して付与されていると便利な場面も想像できる。
@@ -199,8 +197,8 @@
           <img loading=lazy decoding=async src=push.svg?211208_021838 alt="特定のクライアントに対して最適化したコンテンツを提供する" title="push semantics" width=744 height=537>
         </p>
         <p>本来 <code translate=no>&lt;title&gt;</code> だけの流通で不便があり、サイト名などを補完する方が良いというユースケースがあるのならば、それを仕様にすることで解決するのが標準化だ。この例では、サイト名を含めるための <code translate=no>&lt;site&gt;</code> タグを標準化し、提供側は以下のようにそれを導入するといった方法が考えられる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;title&gt;Web のセマンティクスにおける Push と Pull&lt;/title&gt;
-&lt;site&gt;blog.jxck.io&lt;/site&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>Web のセマンティクスにおける Push と Pull&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">site</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>blog.jxck.io&#x3C;/</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">site</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>消費側は、&quot;タイトル&quot; と &quot;サイト名&quot; をそれぞれ取得できるため、<code translate=no>${title} | ${site}</code> などのように組み合わせて消費/流通してもよい。もちろん一行の文字列にせずとも、カード型の UI を作って表示しても良い。選択肢に対して何を選択するかは自由だ。
         <p>この <code translate=no>&lt;site&gt;</code> の標準化は、特定の実装に寄せる <em>Push 型の実装</em> が必要だったユースケースを、標準化によって <em>Pull 型の実装</em> に引き戻すことを意味する。
         <p>実際に <code translate=no>&lt;site&gt;</code> は標準化されておらず、JSON-LD や OpenGraph などの仕様がある程度それらをカバーしている。しかし、それらを適切に提供しても、消費側での流通において <code translate=no>&lt;title&gt;</code> の利用が支配的であるために、多くのサイトが前述のように <code translate=no>&lt;title&gt;</code> の中にサイト名の補足を行っている。
@@ -214,50 +212,50 @@
         <h2 id="srcset-と-client-hints"><a href="#srcset-と-client-hints">srcset と Client-Hints</a></h2>
         <p>画像を表示する際に、デバイスの DPR を意識して出し分けを行う場合を考えてみよう。ここでは DPR が x1, x2, x4 のサポートを想定する。
         <p>まず <code translate=no>&lt;img&gt;</code> の <code translate=no>srcset</code> 属性を使えば、両方の画像を以下のように出し分けられる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;img srcset=&quot;img-300w.jpeg,
-             img-600w.jpeg  2x,
-             img-1200w.jpeg 4x&quot;
-        src=&quot;img-300w.jpeg&quot;&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpeg,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-600w.jpeg  2x,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-1200w.jpeg 4x"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpeg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>一方、昨今 <code translate=no>User-Agent</code> ヘッダで話題になっている Client Hints の仕様は、もともとこの DPR の情報などを HTTP のリクエストヘッダで送りたいというモチベーションから始まった。
-        <pre class=http data-code=http><code translate=no class=language-http># response
-Accept-CH: DPR
-
-# request
-DPR: 2</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># response</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-CH</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> DPR</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># request</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DPR</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 2</span></span></code></pre>
         <p>このヘッダを用いれば、ブラウザが送ってくる DPR に応じてサーバ側で画像を出し分けることができる。
-        <pre class=js data-code=js><code translate=no class=language-js>// DPR ヘッダによって x1, x2, x3 が送られる
-const dpr = req.headers.get(&quot;dpr&quot;);
-if (dpr === 1) {
-  res.send(&quot;img-300w.jpg&quot;);
-} else if (dpr === 2) {
-  res.send(&quot;img-600w.jpg&quot;);
-} else if (dpr === 4) {
-  res.send(&quot;img-1200w.jpg&quot;);
-} else {
-  // ??
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DPR ヘッダによって x1, x2, x3 が送られる</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> dpr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> req.headers.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dpr"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (dpr </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (dpr </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-600w.jpg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (dpr </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-1200w.jpg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ??</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>すると、HTML は以下のままで良い。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- img タグ自体は 1 つだが、解像度に応じて画像は変わる --&gt;
-&lt;img src=&quot;img.jpg&quot;&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- img タグ自体は 1 つだが、解像度に応じて画像は変わる --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img.jpg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>さて、読者はどちらが好みだろうか?
         <p>サイト全体の <code translate=no>&lt;img&gt;</code> タグ実装を余すところなく直すのは一般的に大変なので、サーバ設定一発で対応できそうなヘッダ方式の実装は、導入が楽で好まれがちだ。実際に、そうした機能を提供する画像系 CDN サービスは複数存在し、パフォーマンス改善の文脈で導入されている。
         <p>ところで、<em>デバイス自体の DPR が 2 であることは、サーバが x2 の画像を返すべきことを本当に意味するだろうか?</em>
         <p>仕様上はそのまま「DPR が 2 である」ことを意味する以上の定義はない。それを踏まえてどの画像を返すかをサーバが決めているだけだ、これも Push 型の実装ととらえることができる。
         <p>例えば、DPR が 4 の端末だが、月末で既にパケ死していて、帯域が制限されていたら、それでも x4 画像が表示されることをユーザは望むだろうか? これを明示的に示すために、同じく Client Hints に提案された <code translate=no>Save-Data</code> が一緒に送られてきたら、どっちをとるべきだろうか?
-        <pre class=http data-code=http><code translate=no class=language-http># 何を返す?
-DPR: 4
-Save-Data: on</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># 何を返す?</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DPR</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 4</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Save-Data</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> on</span></span></code></pre>
         <p>他にも、仮に DPR が 4 だが実際は Width 300 程度の超高精細時計型ディスプレイがあった場合、そこに表示される DPR 2 と 4 の差は人間に認識できるだろうか? それでも x4 を返すべきだろうか?
-        <pre class=http data-code=http><code translate=no class=language-http># 何を返す?
-DPR: 4
-Width: 300</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># 何を返す?</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DPR</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 4</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Width</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 300</span></span></code></pre>
         <p>クライアントからありとあらゆる情報を収集し、それを条件に分岐を書くことで「クライアントが求める適切なものはこれだ」と思うものを想像で返す実装は可能だ。しかし、それはどこまでいっても提供側の「思い込み」の可能性がある。もっと酷く言えば、この画像を表示させたいという「提供側の都合を押し付けている」だけとも言えるかもしれない。
         <p>クライアントは多様な実装があり、それを使っているユーザにも多様な「条件」や「状態」や「都合」があるため、その全てのケースをカバーする実装がサーバ側でできるとは限らない。正確に言えば <em>どこまでやっても開発者の想像の域を出ない</em>。
         <p>一方 <code translate=no>&lt;img&gt;</code> での実装を見てみよう。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;img srcset=&quot;img-300w.jpeg,
-             img-600w.jpeg 2x,
-             img-1200w.jpeg 4x&quot;
-        src=&quot;img-300w.jpeg&quot;&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpeg,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-600w.jpeg 2x,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-1200w.jpeg 4x"</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpeg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この実装は「サーバには x1, x2, x4 の画像の用意がある」以上のことは何も言ってない。クライアントは自分の DPR や Device Width にあわせて適切な画像を選んでもよいし、データセーバーが有効だからとにかく一番小さい画像を取得しても良いし、サーチのためにクロールしているから一番高精細な画像を取得しても良い。アーカイブのために全部取得しても良い。
         <p>OS やブラウザは、今クライアントがどういう状況に置かれているかを、サーバとは比較にならないくらい高い解像度で理解している。OS やブラウザは、時代の要望が変わればそれを取り込んで更新されていき、クライアントはニーズに応じてカスタマイズもできる。取得すべき最適な画像は、サーバよりもクライアントの方が適切に選択できる場合が多いだろう。
         <p>この実装も、提供側はあくまで自分たちが提供できる選択肢を明示し、消費する方法は消費側にゆだねているのだ。これは Pull 型の実装と捉えることができる。
@@ -279,13 +277,13 @@ Width: 300</code></pre>
         <p>この後、Microsoft が IE をリリースするにあたって、本来ならば以下のようにできただろう。
         <pre><code translate=no>MSIE/1.0 (Windows 3.1)</code></pre>
         <p>ところが当時非常に重宝されていた <code translate=no>&lt;frame&gt;</code> タグは、Mozilla Netscape は対応していたが、Mosaic は対応していなかった。そこで Web 開発者は、<code translate=no>Mozilla</code> か <code translate=no>Mosaic</code> かで分岐し <code translate=no>&lt;frame&gt;</code> の出し分けをしていた。当時はメジャーなブラウザが 2 つしかなかったので、結果以下のような実装が横行した。
-        <pre class=js data-code=js><code translate=no class=language-js>function frame_supported(user_agent) {
-  if (user_agent.includes(&quot;Mozilla&quot;)) {
-    return true
-  } else {
-    return false
-  }
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> frame_supported</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">user_agent</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (user_agent.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">includes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Mozilla"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>後発の IE は <code translate=no>&lt;frame&gt;</code> をサポートしているにもかかわらず、UA に <code translate=no>Mozilla</code> が含まれないために、このような実装で弾かれてしまう。そこで、この分岐に入るように嘘をつくしかなかった。結果、以下のような UA 文字列を実装することになる。
         <pre><code translate=no>Mozilla/1.22 (compatible; MSIE 2.0; Windows 95)</code></pre>
         <p>以降同じような歴史が積み重なって、今の長い UA ができ上がっていく。
@@ -298,11 +296,11 @@ Width: 300</code></pre>
       <section>
         <h2 id="wi-fi-かどうか"><a href="#wi-fi-かどうか">Wi-Fi かどうか</a></h2>
         <p><a href="https://wicg.github.io/netinfo/" target=_blank>Network Information API</a> は、接続しているネットワークが Wi-Fi なのか Cellular なのかを取れるようにしようとしているが、この仕様を見て「<em>Wi-Fi だったら大きいデータを送り、Cellular だったら小さいデータを送る</em>」というユースケースが紹介されることがある。
-        <pre class=js data-code=js><code translate=no class=language-js>if (navigator.connection.type === &quot;wifi&quot;) {
-  // 大きなデータをダウンロード
-} else {
-  // 小さいデータをダウンロード
-}</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigator.connection.type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "wifi"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 大きなデータをダウンロード</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 小さいデータをダウンロード</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>さて、<em>回線が Wi-Fi であることはネットワークが潤沢であることを、未来永劫意味するだろうか?</em>
         <p>確かに今はキャリアの回線よりも Wi-Fi の方が太く、速く、定額な場合が多いかもしれない。しかし、それが将来でも同じと保証できるだろうか? 5G 以降は速度やプランの状況も変わりつつあり、キャリア回線が太くて固定で常用され、Wi-Fi はたまに駅で拾って勝手につながるくせに遅いだけのものになるような将来に、絶対にならないという保証はあるだろうか?上記のコードはそうした未来を想像してない。
         <p>仮に、そんな未来が来たときに、何が起こるか考えてみよう。

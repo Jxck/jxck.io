@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Foreign Fetch が削除されそうな理由と Cookie の double keying | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -193,13 +191,13 @@
           <p>まず、3rd Party Cookie による行動追跡について簡単に解説する。
           <p>例えば、本サイト (jxck.io) が EC サイト(ec.example.com) の Ad などを埋め込んでいたとする。
           <p>すると、jxck.io の閲覧者には ec.example.com からの <code translate=no>Set-Cookie</code> が送られ、保存される。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>// response-from: ec.example.com
-Set-Cookie: history=jxck.io</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// response-from: ec.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> history=jxck.io</span></span></code></pre>
           <p>同じく、筆者が保有する別のサイト (mozaic.fm) にも同じ Ad が含まれていたとした場合。
           <p>ユーザが mozaic.fm を閲覧すると、Ad を取得する時に以下のように Cookie が送られる。
-          <pre class=http data-code=http><code translate=no class=language-http>// request-for: ec.example.com
-Cookie: history=jxck.io</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// request-for: ec.example.com</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> history=jxck.io</span></span></code></pre>
           <p>すると Ad プロバイダは、このユーザが過去に jxck.io を閲覧したということがわかる。
           <p>おおよそこのように行われるのが、3rd Party Cookie によるユーザの行動追跡となる。
         </section>

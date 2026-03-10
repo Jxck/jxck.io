@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-05-22/site-isolation.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -92,7 +90,7 @@
   </script>
 
   <title>Site Isolation 及び Web のセキュリティモデルの更新 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -214,19 +212,19 @@
         <p>アクセスを試みて、早ければキャッシュにあり、遅ければキャッシュにない、この時間を正確に計測して繰り返せば、徐々にキャッシュに載っている情報を推測できる。
         <p>これを利用して、ユーザを攻撃ページに誘導し、そのユーザの Cookie が無いと取得できないデータを <code translate=no>&lt;iframe&gt;</code> に読み、時間をかければ中身を推測できるという攻撃だ。
         <p>本来アクセスできない情報を外から推測することをサイドチャネル攻撃と呼び、その中でも特に時間という要素を利用する攻撃をタイミング攻撃と呼ぶ。今回の場合はそのどちらでもある。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
-&lt;title&gt;attacker site&lt;/title&gt;
-
-&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
-&lt;h1&gt;dummy contents&lt;/h1&gt;
-
-&lt;!--
-  ユーザの Cookie が送られるため、ユーザのメールボックスが読み込まれる
-  JS で直接アクセスはできないが、内容は同じメモリに展開される
-  この iframe を隠しておき、時間をかけて中身を推測する
---&gt;
-&lt;iframe src=https://mail.example.com&gt;&lt;/iframe&gt;</code></pre>
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 攻撃者が用意した罠サイト --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>attacker site&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- ユーザを滞在されるためのダミーコンテンツ --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>dummy contents&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!--</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  ユーザの Cookie が送られるため、ユーザのメールボックスが読み込まれる</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  JS で直接アクセスはできないが、内容は同じメモリに展開される</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  この iframe を隠しておき、時間をかけて中身を推測する</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">--></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://mail.example.com</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">iframe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>これが Spectre による攻撃のざっくりした部分だ。
         <p>これを本質的に解決するには、ブラウザの作りを根本的に直すしか無いが、それは時間がかかる。
         <p>しかし、Web は URL にアクセスするだけで、全てのユーザがこの攻撃に晒される危険性があるため、なんとかしないといけない。
@@ -258,24 +256,24 @@
         <p><code translate=no>&lt;iframe&gt;</code> 以外にも、Cross Origin なリソースを同じプロセスに展開する方法が知られている。
         <p>例えば、ユーザが Cookie を持っているときにのみ取得できる JSON や HTML があったとする。
         <p>これらを <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> で読み込めば、メモリ上に展開できる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
-&lt;title&gt;attacker site&lt;/title&gt;
-
-&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
-&lt;h1&gt;dummy contents&lt;/h1&gt;
-
-&lt;!--
-  ユーザの Cookie が送られるため JSON が読み込まれる
-  JSON を展開しただけでなにもおきないが、メモリには展開されている
---&gt;
-&lt;script src=https://admin.example.com/secret.json&gt;&lt;/script&gt;
-
-&lt;!--
-  ユーザの Cookie が送られるため HTML が読み込まれる
-  HTML を img で読み込んでるのでパースは失敗しエラーになるが
-  メモリには展開されている。
---&gt;
-&lt;img src=https://admin.example.com/secret.html&gt;&lt;/img&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 攻撃者が用意した罠サイト --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>attacker site&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- ユーザを滞在されるためのダミーコンテンツ --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>dummy contents&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!--</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  ユーザの Cookie が送られるため JSON が読み込まれる</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  JSON を展開しただけでなにもおきないが、メモリには展開されている</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">--></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://admin.example.com/secret.json</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!--</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  ユーザの Cookie が送られるため HTML が読み込まれる</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  HTML を img で読み込んでるのでパースは失敗しエラーになるが</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  メモリには展開されている。</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">--></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://admin.example.com/secret.html</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">img</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>一度メモリに展開できれば、前述のように Spectre で読み出せる可能性がある。
         <p>こうした読み込みは、基本的には攻撃にしか使われないため、これらをブロックすることはサイドチャネル攻撃の抑止に繋がる。
         <p>CORB はこうしたコードで意図しないリソースがメモリに展開されることを防ぐ仕組みだ。
@@ -313,21 +311,21 @@
         <p>例えば、<code translate=no>&lt;script&gt;</code> から JS へのリクエストであれば成功してしまう。
         <p>そこで、CORB と同等のことを Opt-In で行うのが Cross-Origin-Resource-Policy(CORP) だ。
         <p>そのヘッダが付いたリソースが、どの Origin から読まれて良いかを決める。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- 攻撃者が用意した罠サイト --&gt;
-&lt;title&gt;attacker site&lt;/title&gt;
-
-&lt;!-- ユーザを滞在されるためのダミーコンテンツ --&gt;
-&lt;h1&gt;dummy contents&lt;/h1&gt;
-
-&lt;!--
-  ユーザの Cookie が送られるため JS が読み込まれる
-  これは CORB では防げない。
---&gt;
-&lt;script src=https://admin.example.com/secret.js&gt;&lt;/script&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 攻撃者が用意した罠サイト --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>attacker site&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">title</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- ユーザを滞在されるためのダミーコンテンツ --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>dummy contents&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">h1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!--</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  ユーザの Cookie が送られるため JS が読み込まれる</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  これは CORB では防げない。</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">--></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://admin.example.com/secret.js</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この secret.js に対して以下のいずれかのヘッダをつける。
-        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Resource-Policy: same-origin
-Cross-Origin-Resource-Policy: same-site
-Cross-Origin-Resource-Policy: cross-origin</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Resource-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> same-origin</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Resource-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> same-site</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Resource-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> cross-origin</span></span></code></pre>
         <p>same-origin や same-site を指定すれば、ブラウザは secret.js のレスポンスヘッダを見た時点で、メモリへ展開してよいかどうかをブラウザが判断できる。
         <p>どんなレスポンスにも使えるため、CORB で守られないものも守ることができる。
         <p>省略されているものは暗黙的に cross-origin になっている状態と言え、これまで通りどのページからも読み込める。
@@ -336,14 +334,14 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
       <section>
         <h2 id="coep"><a href="#coep">COEP</a></h2>
         <p>現状は <code translate=no>require-corp</code> という値だけが定義されている。
-        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Embedder-Policy: require-corp</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Embedder-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> require-corp</span></span></code></pre>
         <p>これをトップフレームの HTML レスポンスに指定すると、そのサブリソース全てが CORP を指定したものでないといけなくなる。つまり、<code translate=no>&lt;script&gt;</code> に読む JS や、<code translate=no>&lt;img&gt;</code> に読む画像、<code translate=no>&lt;iframe&gt;</code> に埋め込む別のページも、全て CORP を明示している必要があるということだ。
         <p>全てのサブリソースの CORP の値が、読み込みページと正しく整合してないとブロックされるため、CORP を強制するということは、全てのサブリソースがそのトップフレームで読み込まれることを許可している状態であることを意味する。
         <p>これにより、全てのリソースが意図した読み込みで構成されている状態になるため、同じプロセスで展開されても問題無いことが保証できる。
         <p>ただし、CORS に明示的に対応している場合はこの限りではない。
         <p>例えば <code translate=no>&lt;script&gt;</code> や <code translate=no>&lt;img&gt;</code> の場合は以下のように明示的に CORS mode でリクエストさせることができる。
-        <pre class=html data-code=html><code translate=no class=language-html>&lt;!-- cross origin script を CORS で取得する --&gt;
-&lt;script crossorigin src=https://example.com/script.js&gt;</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- cross origin script を CORS で取得する --></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> crossorigin</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://example.com/script.js</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>この場合、リクエストには Origin ヘッダが載り、サーバはそれを見て明示的に Access-Control-Allow-Origin を返すことになる。
         <p>つまり、すでに明示的に読み込める Origin を制限しているため、CORP をつけていなくても COEP の要件を満たす。
         <p>Public CDN のようなサーバは、これまで CORP が暗黙的に <code translate=no>cross-origin</code> だったことに依存し、特に何もせず Cross Origin でコンテンツを配信してきた。
@@ -359,9 +357,9 @@ Cross-Origin-Resource-Policy: cross-origin</code></pre>
         <ul>
           <li><a href="https://docs.google.com/document/d/1Ey3MXcLzwR1T7aarkpBXEwP7jKdd2NvQdgYvF8_8scI/edit" target=_blank>Cross-Origin-Opener-Policy Explainer</a>
         </ul>
-        <pre class=http data-code=http><code translate=no class=language-http>Cross-Origin-Opener-Policy: same-origin
-Cross-Origin-Opener-Policy: same-origin-allow-popups
-Cross-Origin-Opener-Policy: unsafe-none</code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Opener-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> same-origin</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Opener-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> same-origin-allow-popups</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cross-Origin-Opener-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> unsafe-none</span></span></code></pre>
         <p>対応は以下のようになる。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
         <figure>
@@ -487,9 +485,9 @@ Cross-Origin-Opener-Policy: unsafe-none</code></pre>
           <h3 id="crossoriginisolated"><a href="#crossoriginisolated">crossOriginIsolated</a></h3>
           <p>Isolated な環境でしか利用できない API が存在するということは、分岐のために Isolated であるかどうかを知りたい場面がでてくる。
           <p>そこで、CORP + COEP + COOP が適切に設定されているかどうかを取得するフラグとして提案されているのが <code translate=no>self.crossOriginIsolated</code> だ。
-          <pre class=js data-code=js><code translate=no class=language-js>if (self.crossOriginIsolated) {
-  // Cross Origin Isolation が有効な場合 true を返す
-}</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (self.crossOriginIsolated) {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // Cross Origin Isolation が有効な場合 true を返す</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <ul>
             <li><a href="https://annevankesteren.nl/2020/01/shared-memory-feature-detection" target=_blank>Feature detection of SharedArrayBuffer objects and shared memory - Anne&apos;s Blog</a>
           </ul>

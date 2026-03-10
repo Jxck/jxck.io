@@ -10,10 +10,8 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
   <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
@@ -71,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2016-02-17T08:00:00+08:00",
-    "dateModified": "2026-03-07T08:00:00+08:00",
+    "dateModified": "2026-03-10T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,7 +90,7 @@
   </script>
 
   <title>zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
@@ -115,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2016-02-17>2016-02-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -197,8 +195,8 @@
         <section>
           <h3 id="gzip-ディレクティブ"><a href="#gzip-ディレクティブ">gzip ディレクティブ</a></h3>
           <p>以下を設定すると、h2o はコンテンツを on the fly (リクエストが来てから)圧縮し送信してくれる。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
-          <pre class=http data-code=http><code translate=no class=language-http>gzip: ON</code></pre>
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">gzip</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ON</span></span></code></pre>
           <p><a href="https://h2o.examp1e.net/configure/gzip_directives.html#gzip" target=_blank>Configure &gt; Gzip Directives &gt; &quot;gzip&quot;</a>
           <p>これにより、あらかじめ圧縮していないコンテンツや、バックエンドのアプリケーションが動的に生成したコンテンツを圧縮転送することができる。
           <p>圧縮時間分のオーバーヘッドは考えられるが、一般的に gzip の処理時間は小さく、転送量の削減によるネットワーク的メリットの方が高いため、この方法が採用されることが多い。
@@ -206,7 +204,7 @@
         <section>
           <h3 id="send-gzip-ディレクティブ"><a href="#send-gzip-ディレクティブ">send-gzip ディレクティブ</a></h3>
           <p>あらかじめコンテンツを gzip 圧縮した状態で <code translate=no>ファイル名.gz</code> で配置し、以下を設定すると、h2o は自動的に圧縮済みファイルを転送してくれる。
-          <pre class=http data-code=http><code translate=no class=language-http>file.send-gzip: ON</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">file.send-gzip: ON</span></span></code></pre>
           <p><a href="https://h2o.examp1e.net/configure/file_directives.html#file.send-gzip" target=_blank>Configure &gt; File Directives &gt; &quot;file.send-gzip&quot;</a>
           <p>事前に圧縮するため、レスポンスへのオーバーヘッドは無くなる。
           <p>しかし、バックエンドが動的に生成するレスポンスには適用できないため、事前に準備可能な静的ファイルへの適用に限定される。
@@ -232,7 +230,7 @@
         <section>
           <h3 id="ベンチマーク"><a href="#ベンチマーク">ベンチマーク</a></h3>
           <p>以下のように、前回の記事に対して zopfli コマンドを実行し、time コマンドで実行時間を計測した。
-          <pre class=sh-session data-code=sh-session><code translate=no class=language-sh-session>$ time zopfli --i10 -c loading-css-over-http2.html</code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">time</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> zopfli --i10 -c loading-css-over-http2.html</span></span></code></pre>
           <p><code translate=no>--i</code> が探索回数であり、これを増やせばより小さく圧縮できるが、時間がかかる。
           <p>デフォルトは <code translate=no>i = 15</code> であるため、<code translate=no>10..100</code> まで増やしながら実行した。
           <p>最初の段は、元のファイルサイズ、二段目は <code translate=no>gzip</code> コマンドの結果である。
