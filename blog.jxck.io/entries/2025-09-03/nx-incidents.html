@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-09-03/nx-incidents.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>Nx の攻撃から学べること #s1ngularity | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-03>2025-09-03</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
@@ -175,7 +175,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">Nx の攻撃から学べること #s1ngularity</a></h1>
       <section>
@@ -227,7 +227,7 @@
           </ul>
           <p>タイトルの通り「PR のタイトルのルールが守られていないから、GH Actions でチェックする」という、何の変哲もない変更だ。
           <p>問題は、Run している Inline の Shell だ。そこだけを見てみよう。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
           <pre class=sh data-code=sh><code translate=no class=language-sh>echo &quot;Validating PR title: ${{ github.event.pull_request.title }}&quot;
 node ./scripts/commit-lint.js /tmp/pr-message.txt</code></pre>
           <p><code translate=no>github.event.pull_request.title</code> は、PR の「タイトル」を格納した変数だ。
@@ -239,8 +239,8 @@ node ./scripts/commit-lint.js /tmp/pr-message.txt</code></pre>
           <p>
             <picture>
               <source type=image/avif srcset=shell-injection-pr.avif?250903_161837>
-              <source type=image/webp srcset=shell-injection-pr.webp?250903_161837>
-              <img loading=lazy decoding=async src=shell-injection-pr.png?250903_161837 alt="PR のタイトルでスクリプトを取得し実行する例" width=458 height=60>
+              <source type=image/webp srcset=shell-injection-pr.webp?250903_162247>
+              <img loading=lazy decoding=async src=shell-injection-pr.png?260310_001057 alt="PR のタイトルでスクリプトを取得し実行する例" width=458 height=60>
             </picture>
           </p>
           <p>これにより、GitHub Actions 上で任意のスクリプトが実行された。
@@ -251,9 +251,9 @@ node ./scripts/commit-lint.js /tmp/pr-message.txt</code></pre>
           <p>ところが、この PR にはおなじみの &quot;🤖 Generated with Claude Code&quot; が付与されていた。
           <p>
             <picture>
-              <source type=image/avif srcset=PR-by-CC.avif?250903_161837>
-              <source type=image/webp srcset=PR-by-CC.webp?250903_161837>
-              <img loading=lazy decoding=async src=PR-by-CC.png?250903_161837 alt=""🤖 Generated with Claude Code" が付与された PR" width=255 height=109>
+              <source type=image/avif srcset=PR-by-CC.avif?260310_001057>
+              <source type=image/webp srcset=PR-by-CC.webp?250903_162247>
+              <img loading=lazy decoding=async src=PR-by-CC.png?260310_001057 alt=""🤖 Generated with Claude Code" が付与された PR" width=255 height=109>
             </picture>
           </p>
           <p>そのため、「AI で作成された PR で脆弱性が発生した」と喧伝されることになった。
@@ -483,8 +483,8 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
           <p>
             <picture>
               <source type=image/avif srcset=attacked-repo.avif?250903_161837>
-              <source type=image/webp srcset=attacked-repo.webp?250903_161837>
-              <img loading=lazy decoding=async src=attacked-repo.png?250903_161837 alt="攻撃されたリポジトリのリスト" width=855 height=215>
+              <source type=image/webp srcset=attacked-repo.webp?250903_162247>
+              <img loading=lazy decoding=async src=attacked-repo.png?260310_001057 alt="攻撃されたリポジトリのリスト" width=855 height=215>
             </picture>
           </p>
           <p>実行したところ 904 行ヒットした。調査によってはブレがあるようで、ニュース記事などで「1000 人以上が被害に」と謳われているのは、おそらくこの数をもとにしていそうだ。いずれも、8/26 22:30 ~ 8/27 04:00 くらいまでの 6 時間程度で発生しているため、おかしなコードがコミットされたと気付いたときには、かなり攻撃は進んでいたことがわかる。
@@ -652,7 +652,7 @@ core.setFailed(&quot;Stall&quot;);</code></pre>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

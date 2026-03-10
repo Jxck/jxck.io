@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-10-02/popover.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -71,7 +71,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-02T08:00:00+08:00",
-    "dateModified": "2026-03-06T08:00:00+08:00",
+    "dateModified": "2024-11-20T08:00:00+08:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -92,10 +92,10 @@
   </script>
 
   <title>Dialog と Popover #5 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,13 +109,13 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-20>2024-11-20</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -165,7 +165,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">Dialog と Popover #5</a></h1>
       <section>
@@ -238,7 +238,7 @@
         <section>
           <h3 id="roledialog"><a href="#roledialog">role=dialog</a></h3>
           <p>ARIA には Dialog という Role が以前から定義されており、もし(概念上の)Dialog を自前で実装するのであれば <code translate=no>&lt;div role=&quot;dialog&quot;&gt;</code> のように指定することで「これは Dialog だ」ということを明示し、UA に伝える必要があった。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;div role=&quot;dialog&quot;&gt;
   &lt;form&gt;
     &lt;label&gt;Are you sure you want to continue?&lt;/label&gt;
@@ -523,7 +523,7 @@ button {
           <picture>
             <source type=image/avif srcset=github-profile-popover.avif?241002_223502>
             <source type=image/webp srcset=github-profile-popover.webp?241002_223655>
-            <img loading=lazy decoding=async src=github-profile-popover.png?241002_223502 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
+            <img loading=lazy decoding=async src=github-profile-popover.png?260310_001057 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
           </picture>
         </p>
         <p>このような Popover は、画面中のすべてのアカウントごとに <code translate=no>&lt;div popover&gt;</code> を作っておくのではなく、1 つ用意してその内容を書き換えながら再利用する実装が多い。
@@ -627,7 +627,7 @@ document.querySelectorAll(&quot;img.icon&quot;).forEach((img) =&gt; {
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

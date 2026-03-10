@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>Chromium にコントリビュートするための周辺知識 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
@@ -175,7 +175,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">Chromium にコントリビュートするための周辺知識</a></h1>
       <section>
@@ -255,7 +255,7 @@
             </li>
           </ul>
           <p>例えば「ファイルパスじゃなくて中身に、全部小文字の &quot;fetch&quot; が出てくる <code translate=no>.cc</code> でテストじゃないやつを blink 以下で探す」はこんな感じ。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
           <pre><code translate=no>content:fetch case:y f:third_party/blink/renderer/core/fetch f:.cc -test</code></pre>
           <p><code translate=no>lang:cpp</code> だと <code translate=no>.h</code> も入るので拡張子の方が絞れる。
           <p>よく使うもののおおよその階層を把握し、そこを絞ってからディレクトリ内検索する方が良い。
@@ -300,7 +300,7 @@
             <picture>
               <source type=image/avif srcset=chrome-process-architecture.avif?240326_010150>
               <source type=image/webp srcset=chrome-process-architecture.webp?240326_010558>
-              <img loading=lazy decoding=async src=chrome-process-architecture.png?240326_005751 alt="chrome process architecture" width=720 height=405>
+              <img loading=lazy decoding=async src=chrome-process-architecture.png?260310_001057 alt="chrome process architecture" width=720 height=405>
             </picture>
           </p>
           <p>というあたりを把握しておくと検索しやすい。
@@ -314,7 +314,7 @@
             <picture>
               <source type=image/avif srcset=crbug.avif?240326_010221>
               <source type=image/webp srcset=crbug.webp?240326_010558>
-              <img loading=lazy decoding=async src=crbug.png?240326_005751 alt="crbug" width=4226 height=1350>
+              <img loading=lazy decoding=async src=crbug.png?260310_001057 alt="crbug" width=4226 height=1350>
             </picture>
           </p>
           <p>最近 Issue Tracker という新しいツールにマイグレートされたので、使い方がまだよくわからない。調べて出てくる crbug は大抵古い UI なので注意が必要。
@@ -350,7 +350,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=crrev.avif?240326_010224>
               <source type=image/webp srcset=crrev.webp?240326_010558>
-              <img loading=lazy decoding=async src=crrev.png?240326_005751 alt="crrev" width=1872 height=864>
+              <img loading=lazy decoding=async src=crrev.png?260310_001057 alt="crrev" width=1872 height=864>
             </picture>
           </p>
           <p>コントリビューションガイドを読んでおくといい。
@@ -370,7 +370,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=review-files.avif?240326_010241>
               <source type=image/webp srcset=review-files.webp?240326_010558>
-              <img loading=lazy decoding=async src=review-files.png?240326_005751 alt="review files" width=1466 height=1116>
+              <img loading=lazy decoding=async src=review-files.png?260310_001057 alt="review files" width=1466 height=1116>
             </picture>
           </p>
           <p>この単位でレビューコメントが付き、それに対応していくことになる。
@@ -379,7 +379,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=missing-owner.avif?240426_182718>
               <source type=image/webp srcset=missing-owner.webp?240426_182752>
-              <img loading=lazy decoding=async src=missing-owner.png?240426_182718 alt="missing-owner" width=864 height=263>
+              <img loading=lazy decoding=async src=missing-owner.png?260310_001057 alt="missing-owner" width=864 height=263>
             </picture>
           </p>
           <p>オーナーは、各ディレクトリの OWNERS ファイルを探すと書かれている。基本は SUGGESTED OWNER のボタンで自動で探してサジェストされるが、ファイルから選んで足しても良い。
@@ -388,7 +388,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=review.avif?240326_010244>
               <source type=image/webp srcset=review.webp?240326_010558>
-              <img loading=lazy decoding=async src=review.png?240326_005751 alt="review" width=1246 height=394>
+              <img loading=lazy decoding=async src=review.png?260310_001057 alt="review" width=1246 height=394>
             </picture>
           </p>
           <p>レビューが付いたら、そこに対して REPLY でコメントを返すか、次の Patchset で直して、直ったら DONE にする。
@@ -397,7 +397,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=reply.avif?240326_010229>
               <source type=image/webp srcset=reply.webp?240326_010558>
-              <img loading=lazy decoding=async src=reply.png?240326_005751 alt="reply" width=770 height=246>
+              <img loading=lazy decoding=async src=reply.png?260310_001057 alt="reply" width=770 height=246>
             </picture>
           </p>
           <p>今ボールを持っている人は、名前の隣に Attention (矢印)のマークが付く。
@@ -405,7 +405,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=attention.avif?240426_185502>
               <source type=image/webp srcset=attention.webp?240426_185502>
-              <img loading=lazy decoding=async src=attention.jpeg?240426_185502 alt="attention" width=978 height=492>
+              <img loading=lazy decoding=async src=attention.jpeg?260310_001057 alt="attention" width=978 height=492>
             </picture>
           </p>
           <p>Attention が自分のままだとレビューをしてもらえないので、レビューしてもらう準備が整ったら、ここの MODIFY から Attention をレビュアーに変える必要がある。
@@ -413,7 +413,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=modify-attention-set.avif?240410_140759>
               <source type=image/webp srcset=modify-attention-set.webp?240410_140759>
-              <img loading=lazy decoding=async src=modify-attention-set.png?240410_140759 alt="modify attention set" width=834 height=127>
+              <img loading=lazy decoding=async src=modify-attention-set.png?260310_001057 alt="modify attention set" width=834 height=127>
             </picture>
           </p>
           <p>ここで Reviewer に矢印を移して Send するとボールが相手に移る。
@@ -421,7 +421,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=modify-attention-to.avif?240410_140759>
               <source type=image/webp srcset=modify-attention-to.webp?240410_140759>
-              <img loading=lazy decoding=async src=modify-attention-to.png?240410_140759 alt="modify attention to" width=839 height=254>
+              <img loading=lazy decoding=async src=modify-attention-to.png?260310_001057 alt="modify attention to" width=839 height=254>
             </picture>
           </p>
           <p>Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
@@ -430,7 +430,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=rebase-dry-run.avif?240326_010227>
               <source type=image/webp srcset=rebase-dry-run.webp?240326_010558>
-              <img loading=lazy decoding=async src=rebase-dry-run.png?240326_005751 alt="rebase-dry-run" width=688 height=80>
+              <img loading=lazy decoding=async src=rebase-dry-run.png?260310_001057 alt="rebase-dry-run" width=688 height=80>
             </picture>
           </p>
           <p>全部終わると、Code-Review +1 がもらえる。これがないとマージされない。
@@ -438,7 +438,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=lgtm.avif?240326_010226>
               <source type=image/webp srcset=lgtm.webp?240326_010558>
-              <img loading=lazy decoding=async src=lgtm.png?240326_005751 alt="lgtm" width=1204 height=360>
+              <img loading=lazy decoding=async src=lgtm.png?260310_001057 alt="lgtm" width=1204 height=360>
             </picture>
           </p>
           <p>テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、&quot;SUBMIT TO CQ&quot; ボタンが出る。
@@ -446,7 +446,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=ready-to-submit.avif?240426_182718>
               <source type=image/webp srcset=ready-to-submit.webp?240426_182752>
-              <img loading=lazy decoding=async src=ready-to-submit.jpeg?240426_182718 alt="ready to submit" width=1896 height=606>
+              <img loading=lazy decoding=async src=ready-to-submit.jpeg?260310_001057 alt="ready to submit" width=1896 height=606>
             </picture>
           </p>
           <p>これを権限のある人に押してもらうと、最後にテストが走ってからマージされる。
@@ -460,7 +460,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=patchset-hash.avif?240326_010227>
               <source type=image/webp srcset=patchset-hash.webp?240326_010558>
-              <img loading=lazy decoding=async src=patchset-hash.png?240326_005751 alt="patchset hash" width=664 height=132>
+              <img loading=lazy decoding=async src=patchset-hash.png?260310_001057 alt="patchset hash" width=664 height=132>
             </picture>
           </p>
           <p>それを Chromium Dash の Commits に入れれば情報が出る。
@@ -486,7 +486,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
             <picture>
               <source type=image/avif srcset=commit-landed.avif?240326_010152>
               <source type=image/webp srcset=commit-landed.webp?240326_010558>
-              <img loading=lazy decoding=async src=commit-landed.png?240326_005751 alt="commit landed" width=1398 height=188>
+              <img loading=lazy decoding=async src=commit-landed.png?260310_001057 alt="commit landed" width=1398 height=188>
             </picture>
           </p>
           <p>今回の場合は 96 でリリースされたことがわかる。
@@ -815,9 +815,9 @@ $ git cl upload</code></pre>
           <p>C++ のシンボルやヘッダの参照が壊れて真っ赤になる時がある。
           <p>
             <picture>
-              <source type=image/avif srcset=clangd-error.avif?240403_162721>
+              <source type=image/avif srcset=clangd-error.avif?260310_001057>
               <source type=image/webp srcset=clangd-error.webp?240403_162721>
-              <img loading=lazy decoding=async src=clangd-error.png?240403_162721 alt="clangd-error" width=1386 height=1140>
+              <img loading=lazy decoding=async src=clangd-error.png?260310_001057 alt="clangd-error" width=1386 height=1140>
             </picture>
           </p>
           <p>これは、clangd 用のデータベースがなく、自動では作られないかららしい。
@@ -1014,7 +1014,7 @@ hello</code></pre>
           <picture>
             <source type=image/avif srcset=platform-status-create.avif?240410_172256>
             <source type=image/webp srcset=platform-status-create.webp?240410_172256>
-            <img loading=lazy decoding=async src=platform-status-create.jpeg?240410_172256 alt="Create Platform Status Entry" width=850 height=366>
+            <img loading=lazy decoding=async src=platform-status-create.jpeg?260310_001057 alt="Create Platform Status Entry" width=850 height=366>
           </picture>
         </p>
         <p>作成したエントリは以下。
@@ -1031,7 +1031,7 @@ hello</code></pre>
           <picture>
             <source type=image/avif srcset=development-stages.avif?240410_172256>
             <source type=image/webp srcset=development-stages.webp?240410_172256>
-            <img loading=lazy decoding=async src=development-stages.jpeg?240410_172256 alt="Development Stages" width=894 height=308>
+            <img loading=lazy decoding=async src=development-stages.jpeg?260310_001057 alt="Development Stages" width=894 height=308>
           </picture>
         </p>
         <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかかるっぽい。
@@ -1039,7 +1039,7 @@ hello</code></pre>
           <picture>
             <source type=image/avif srcset=review-request.avif?240423_144012>
             <source type=image/webp srcset=review-request.webp?240423_144012>
-            <img loading=lazy decoding=async src=review-request.png?240423_144012 alt="Review Request" width=1256 height=248>
+            <img loading=lazy decoding=async src=review-request.png?260310_001057 alt="Review Request" width=1256 height=248>
           </picture>
         </p>
         <p>通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
@@ -1048,15 +1048,15 @@ hello</code></pre>
           <picture>
             <source type=image/avif srcset=platform-status-edit.avif?240418_152030>
             <source type=image/webp srcset=platform-status-edit.webp?240418_152030>
-            <img loading=lazy decoding=async src=platform-status-edit.jpeg?240418_152030 alt="platform status edit" width=1792 height=236>
+            <img loading=lazy decoding=async src=platform-status-edit.jpeg?260310_001057 alt="platform status edit" width=1792 height=236>
           </picture>
         </p>
         <p>すると Intents のメールを自動生成する UI が出てくる。基本はこれをコピって blink-dev に送れば良い。
         <p>
           <picture>
-            <source type=image/avif srcset=draft-intent-to-ship.avif?240418_152030>
+            <source type=image/avif srcset=draft-intent-to-ship.avif?260310_001057>
             <source type=image/webp srcset=draft-intent-to-ship.webp?240418_152030>
-            <img loading=lazy decoding=async src=draft-intent-to-ship.jpeg?240418_152030 alt="Draft intent to Ship email" width=1746 height=1036>
+            <img loading=lazy decoding=async src=draft-intent-to-ship.jpeg?260310_001057 alt="Draft intent to Ship email" width=1746 height=1036>
           </picture>
         </p>
         <p>blink-dev で API オーナーから LGTM が 3 つもらえれば、その機能を Ship することができる。
@@ -1069,7 +1069,7 @@ hello</code></pre>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

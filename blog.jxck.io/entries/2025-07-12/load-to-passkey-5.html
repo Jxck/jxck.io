@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-12>2025-07-12</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
@@ -146,7 +146,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">Passkey への道 #5: 2FA/WebAuthn</a></h1>
       <section>
@@ -161,8 +161,8 @@
         <p>
           <picture>
             <source type=image/avif srcset=yubikey.avif?250707_162111>
-            <source type=image/webp srcset=yubikey.webp?250707_162111>
-            <img loading=lazy decoding=async src=yubikey.png?250707_162111 alt="YubiKey" width=340 height=100>
+            <source type=image/webp srcset=yubikey.webp?250711_175121>
+            <img loading=lazy decoding=async src=yubikey.png?260310_001057 alt="YubiKey" width=340 height=100>
           </picture>
         </p>
         <p>このメモリースティックのようなデバイスは、Security Key と呼ばれ、内部に取り出せない秘密鍵を保存している。
@@ -184,7 +184,7 @@
         <p>パスワードを忘れたユーザは、メールアドレスでリカバリできるのが一般的だ。もしここで、TOTP や WebAuthn を登録したスマホを無くしたら、そのユーザはどうリカバリすべきだろうか?
         <p>もしここで、メールアドレスで TOTP/WebAuthn をリカバリできるとなれば、それは正規化するとメールで入っている単要素に集約される。メールが盗まれた時に、両方とも突破できるなら 2FA としての効能が薄い。
         <p>そこで、TOTP/WebAuthn を登録したユーザには、通常以下のような乱数列が表示され、それを保存するように促される。これが「バックアップコード」と呼ばれるものだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
         <pre><code translate=no>adsff-aoeif
 xpvge-fiqle
 o438d-fo2de
@@ -229,7 +229,7 @@ o438d-fo2de
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-06-14/url.parse.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>URL.parse を Chromium で Ship するまで | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-06-14>2024-06-14</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
@@ -151,7 +151,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">URL.parse を Chromium で Ship するまで</a></h1>
       <section>
@@ -163,7 +163,7 @@
         <h2 id="invalid-url-の処理"><a href="#invalid-url-の処理">invalid URL の処理</a></h2>
         <p><code translate=no>new URL()</code> によって、文字列の URL をパースすることができるようになって久しいが、この API は invalid な場合に例外を投げる。
         <p>例外処理をするよりも、先に URL としてパース可能かどうかを知るための <code translate=no>URL.canParse()</code> が提案され、先に実装が進んだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
         <pre class=js data-code=js><code translate=no class=language-js>URL.canParse(str) // boolean</code></pre>
         <p>しかし、これでは二回パースが必要になるため無駄が多い。
         <pre class=js data-code=js><code translate=no class=language-js>if (URL.canParse(str)) { // 1 回目のパース
@@ -278,9 +278,9 @@
         <p>基本的には URL の WebIDL が変わるので、そこを追加する。
         <p>
           <picture>
-            <source type=image/avif srcset=web-idl-for-url.avif?240617_153447>
+            <source type=image/avif srcset=web-idl-for-url.avif?260310_001057>
             <source type=image/webp srcset=web-idl-for-url.webp?240614_060753>
-            <img loading=lazy decoding=async src=web-idl-for-url.png?240614_060554 alt="URL の WebIDL にメソッドを追加する" width=2864 height=838>
+            <img loading=lazy decoding=async src=web-idl-for-url.png?260310_001057 alt="URL の WebIDL にメソッドを追加する" width=2864 height=838>
           </picture>
         </p>
         <ul>
@@ -294,9 +294,9 @@
         <p>これをもとに Python のスクリプトで binding が生成されるので、その実体となる C++ のコードを書く。
         <p>
           <picture>
-            <source type=image/avif srcset=dom_url-implementation.avif?240617_153447>
+            <source type=image/avif srcset=dom_url-implementation.avif?260310_001057>
             <source type=image/webp srcset=dom_url-implementation.webp?240614_060753>
-            <img loading=lazy decoding=async src=dom_url-implementation.png?240614_060554 alt="C++ での binding の実装" width=1186 height=1464>
+            <img loading=lazy decoding=async src=dom_url-implementation.png?260310_001057 alt="C++ での binding の実装" width=1186 height=1464>
           </picture>
         </p>
         <ul>
@@ -332,7 +332,7 @@
           <picture>
             <source type=image/avif srcset=cq-dry-run-result.avif?240617_153447>
             <source type=image/webp srcset=cq-dry-run-result.webp?240614_060753>
-            <img loading=lazy decoding=async src=cq-dry-run-result.png?240614_060554 alt="CQ DRY RUN の結果" width=2804 height=1646>
+            <img loading=lazy decoding=async src=cq-dry-run-result.png?260310_001057 alt="CQ DRY RUN の結果" width=2804 height=1646>
           </picture>
         </p>
         <p>しかし、CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
@@ -354,7 +354,7 @@
           <picture>
             <source type=image/avif srcset=prepare-to-ship.avif?240617_153447>
             <source type=image/webp srcset=prepare-to-ship.webp?240614_060753>
-            <img loading=lazy decoding=async src=prepare-to-ship.png?240614_060554 alt="Chrome Platform Status からのレビューリクエスト" width=1752 height=348>
+            <img loading=lazy decoding=async src=prepare-to-ship.png?260310_001057 alt="Chrome Platform Status からのレビューリクエスト" width=1752 height=348>
           </picture>
         </p>
         <ul>
@@ -398,7 +398,7 @@
           <picture>
             <source type=image/avif srcset=url-parse-on-m126.avif?240614_053051>
             <source type=image/webp srcset=url-parse-on-m126.webp?240614_053214>
-            <img loading=lazy decoding=async src=url-parse-on-m126.png?240614_053051 alt="Chrome 126 で URL.parse が動いているところ" width=1552 height=326>
+            <img loading=lazy decoding=async src=url-parse-on-m126.png?260310_001057 alt="Chrome 126 で URL.parse が動いているところ" width=1552 height=326>
           </picture>
         </p>
       </section>
@@ -415,7 +415,7 @@
           <picture>
             <source type=image/avif srcset=blink-api-owners-gift.avif?240614_053051>
             <source type=image/webp srcset=blink-api-owners-gift.webp?240614_053214>
-            <img loading=lazy decoding=async src=blink-api-owners-gift.png?240614_053051 alt="Blink API Owners Gift" width=4032 height=3024>
+            <img loading=lazy decoding=async src=blink-api-owners-gift.png?260310_001057 alt="Blink API Owners Gift" width=4032 height=3024>
           </picture>
         </p>
         <p>嬉しい。
@@ -425,7 +425,7 @@
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-04-16/link-visited-history.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>閲覧履歴があってもリンクの色が変わらないケースについて | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-04-16>2025-04-16</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
@@ -152,7 +152,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">閲覧履歴があってもリンクの色が変わらないケースについて</a></h1>
       <section>
@@ -167,7 +167,7 @@
         <p>例えば、Wikipedia では、リンクをクリックして閲覧先を確認すると、閲覧済みのリンクの色が変わる。
         <p>これは、ブラウザに保存された閲覧履歴に該当するリンクの色を、訪問済みとして変えるブラウザの機能だ。
         <p>
-          <img loading=lazy decoding=async src=./link-visited.drawio.svg?250416_175407 alt="リンク先が閲覧済みの場合色が変わる" width=500 height=321>
+          <img loading=lazy decoding=async src=./link-visited.drawio.svg?250416_175319 alt="リンク先が閲覧済みの場合色が変わる" width=500 height=321>
         </p>
         <p>多くのリンクがある場合、確認済みかどうかがわかるために、便利に使われることもあるだろう。
         <p>(最近では、閲覧済みでもリンクの色を変えないように実装したサイトも多い。)
@@ -176,12 +176,12 @@
         <h2 id="問題となるケース"><a href="#問題となるケース">問題となるケース</a></h2>
         <p>ここで Google 検索で「ハイパーテキスト Wikipedia」を検索し、そこから Wikipedia のページに遷移したとしよう。
         <p>
-          <img loading=lazy decoding=async src=./google-search.drawio.svg?250417_235247 alt="Google 検索から直接ページにアクセスする" width=500 height=206>
+          <img loading=lazy decoding=async src=./google-search.drawio.svg?250417_235209 alt="Google 検索から直接ページにアクセスする" width=500 height=206>
         </p>
         <p>その後また Wikipedia の「ハイパーリンク」ページに戻ったら、当然閲覧済みの「ハイパーテキスト」のリンクは色が変わると想定されるだろう。
         <p>ところが、今後この場合は、色が変わらなくなる。
         <p>
-          <img loading=lazy decoding=async src=./link-visited-but-unchanged.drawio.svg?250417_235247 alt="閲覧済みなのにリンクの色が変わらない" width=500 height=167>
+          <img loading=lazy decoding=async src=./link-visited-but-unchanged.drawio.svg?250417_235209 alt="閲覧済みなのにリンクの色が変わらない" width=500 height=167>
         </p>
         <p>これは例えば、以下のような不便として現れる可能性がある。
         <ul>
@@ -207,12 +207,12 @@
         <h2 id="閲覧履歴とプライバシー"><a href="#閲覧履歴とプライバシー">閲覧履歴とプライバシー</a></h2>
         <p>例えば、攻撃者がある動画サイトを運営していたとしよう。メールアドレスでログインしたら、無料で動画が楽しめるページだ。
         <p>攻撃者は、そのページの隅っこに、小さく「トランプ大統領の Twitter アカウント」を埋め込んでいたとする。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
         <pre><code translate=no>&lt;a style=&quot;font-size: 1px&quot; href=&quot;https://x.com/realdonaldtrump&quot;&gt;🤫&lt;/a&gt;</code></pre>
         <p>ユーザはそんなことに気づかず、動画を楽しんでいる。
         <p>しかし攻撃者は、このリンクの色がどちらかを調べれば、「このユーザはトランプ大統領のアカウントを閲覧したことがあるか」がわかってしまうのだ。
         <p>だから何だと思うかもしれないが、ログインユーザのメールアドレスと紐づけ、その数が何万ともなれば、このリストは何らかの意味を持ってこないだろうか? 実はこういう名簿は、それなりの価値をもって取引されている場合があるのだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230938">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
         <figure>
           <figcaption>Visited Table</figcaption>
           <table>
@@ -578,7 +578,7 @@ history = {
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

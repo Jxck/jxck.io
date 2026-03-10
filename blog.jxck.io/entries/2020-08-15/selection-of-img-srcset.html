@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>img の srcset 指定時に選択される画像 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-08-15>2020-08-15</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
@@ -159,7 +159,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">img の srcset 指定時に選択される画像</a></h1>
       <section>
@@ -171,7 +171,7 @@
       <section>
         <h2 id="srcset-attribute"><a href="#srcset-attribute">srcset attribute</a></h2>
         <p>まず以下のようなコードを考える。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
         <pre class=html data-code=html><code translate=no class=language-html>&lt;style&gt;
 body {
   margin: 0;
@@ -215,16 +215,16 @@ body {
         <p>
           <picture>
             <source type=image/avif srcset=srcset-firefox.avif?240313_215401>
-            <source type=image/webp srcset=srcset-firefox.webp?240313_215401>
-            <img loading=lazy decoding=async src=srcset-firefox.gif?240313_215401 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
+            <source type=image/webp srcset=srcset-firefox.webp?260310_001057>
+            <img loading=lazy decoding=async src=srcset-firefox.gif?260310_003535 alt="Firefox では仮定したサイズで画像が切り替わっている" title="srcset image selection on firefox" width=482 height=547>
           </picture>
         </p>
         <p>Chrome/Edge は DPR が 1 の場合は想定した挙動だったが、DPR を 2, 3 に変えたときだけ想定とは違う動きをした。
         <p>
           <picture>
-            <source type=image/avif srcset=srcset-chrome.avif?240313_215401>
-            <source type=image/webp srcset=srcset-chrome.webp?240313_215401>
-            <img loading=lazy decoding=async src=srcset-chrome.gif?240313_215401 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
+            <source type=image/avif srcset=srcset-chrome.avif?260310_001057>
+            <source type=image/webp srcset=srcset-chrome.webp?250127_155644>
+            <img loading=lazy decoding=async src=srcset-chrome.gif?260310_003535 alt="Chrome では DPR が 1 でないとき、サイズの切り替わりが想定と異なる" title="srcset image selection on chrome" width=482 height=547>
           </picture>
         </p>
         <p>この理由をつきとめるのが今回の本題となる。
@@ -427,8 +427,8 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
           <li>
             <picture>
               <source type=image/avif srcset=srcset-chrome-dpr2.avif?240313_215401>
-              <source type=image/webp srcset=srcset-chrome-dpr2.webp?240313_215401>
-              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?240313_215401 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
+              <source type=image/webp srcset=srcset-chrome-dpr2.webp?250127_155644>
+              <img loading=lazy decoding=async src=srcset-chrome-dpr2.gif?260310_003535 alt="Chrome で DPR2 のとき 572px では 1024w が、 573px では 1280w が選択された" title="srcset image selection on chrome as expected" width=622 height=862>
             </picture>
           </li>
         </ul>
@@ -506,7 +506,7 @@ static unsigned SelectionLogic(Vector&lt;ImageCandidate*&gt;&amp; image_candidat
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

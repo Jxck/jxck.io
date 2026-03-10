@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2024-09-27/dialog.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>Dialog と Popover #3 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-20>2024-11-20</time></dd></div>
@@ -160,7 +160,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">Dialog と Popover #3</a></h1>
       <section>
@@ -173,7 +173,7 @@
         <section>
           <h3 id="open-属性"><a href="#open-属性"><code translate=no>open</code> 属性</a></h3>
           <p><code translate=no>&lt;dialog&gt;</code> は、デフォルトでは不可視 (<code translate=no>display: none</code>) な要素となっている。<code translate=no>open</code> 属性が付くと表示される。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
           <pre class=html data-code=html><code translate=no class=language-html>&lt;dialog open&gt;
   &lt;div&gt;
     &lt;h1&gt;Hello Dialog&lt;/h1&gt;
@@ -200,7 +200,7 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
             <picture>
               <source type=image/avif srcset=2.a11y-tree.avif?240928_041512>
               <source type=image/webp srcset=2.a11y-tree.webp?240928_042208>
-              <img loading=lazy decoding=async src=2.a11y-tree.png?240928_041512 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
+              <img loading=lazy decoding=async src=2.a11y-tree.png?260310_001057 alt="Accessibility Tree 上は role: dialog, modal: false になっている" width=538 height=514>
             </picture>
           </p>
           <p>これを、<code translate=no>showModal()</code> で開くとこうなる。
@@ -212,7 +212,7 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
             <picture>
               <source type=image/avif srcset=4.default-style.avif?240928_041512>
               <source type=image/webp srcset=4.default-style.webp?240928_042208>
-              <img loading=lazy decoding=async src=4.default-style.png?240928_041512 alt="Chrome の backdrop デフォルトスタイル" width=920 height=186>
+              <img loading=lazy decoding=async src=4.default-style.png?260310_001057 alt="Chrome の backdrop デフォルトスタイル" width=920 height=186>
             </picture>
           </p>
           <p>non-Modal と異なり、Modal は同時に 1 つしか開けない。
@@ -221,7 +221,7 @@ document.querySelector(&quot;button.showModal&quot;).addEventListener(&quot;clic
             <picture>
               <source type=image/avif srcset=5.a11y-tree.avif?240928_041512>
               <source type=image/webp srcset=5.a11y-tree.webp?240928_042208>
-              <img loading=lazy decoding=async src=5.a11y-tree.png?240928_041512 alt="Accessibility Tree 上は role: dialog, modal: true になっている" width=548 height=522>
+              <img loading=lazy decoding=async src=5.a11y-tree.png?260310_001057 alt="Accessibility Tree 上は role: dialog, modal: true になっている" width=548 height=522>
             </picture>
           </p>
         </section>
@@ -385,7 +385,7 @@ document.querySelector(&quot;dialog&quot;).addEventListener(&quot;close&quot;, (
             <picture>
               <source type=image/avif srcset=6.scrollable-section.avif?240928_041512>
               <source type=image/webp srcset=6.scrollable-section.webp?240928_042208>
-              <img loading=lazy decoding=async src=6.scrollable-section.png?240928_041512 alt="scrollable section" width=797 height=494>
+              <img loading=lazy decoding=async src=6.scrollable-section.png?260310_001057 alt="scrollable section" width=797 height=494>
             </picture>
           </p>
           <p>注意点として、もしこのスクロールする <code translate=no>&lt;section&gt;</code> の手前に別のコントローラがあった場合を考えよう。
@@ -564,7 +564,7 @@ dialog.returnValue // &quot;accept&quot;</code></pre>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

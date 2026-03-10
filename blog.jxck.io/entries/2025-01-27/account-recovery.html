@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2025-01-27/account-recovery.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>&quot;Less Password&quot; 時代のアカウント防災訓練 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-01-27>2025-01-27</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
@@ -156,7 +156,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">&quot;Less Password&quot; 時代のアカウント防災訓練</a></h1>
       <section>
@@ -198,7 +198,7 @@
         <p>特に、二段階/要素認証の普及で、覚えておいた Password だけで入れるサービスは減った。一方、二段階/要素の選択肢が多く、フローもサービスによって異なる。そんなサービスを生活の中で、数え切れないほど使うようになった。全体を正確に把握するのは筆者にも難しい。ましてや一般ユーザは、あまり意識せず場当たり的に色々な場所に保存し、知らぬ間に複雑にしてしまっている場合もあるだろう。
         <p>最初にこのチェーンを把握し、どういう依存関係になっているかを把握すると良いだろう。
         <p>
-          <img loading=lazy decoding=async src=./recovery-chain.drawio.svg?250127_155159 alt="依存が複雑なリカバリの連鎖" width=565 height=365>
+          <img loading=lazy decoding=async src=./recovery-chain.drawio.svg?250127_155644 alt="依存が複雑なリカバリの連鎖" width=565 height=365>
         </p>
       </section>
       <section>
@@ -209,7 +209,7 @@
         <p>登録時のバックアップコードまでちゃんと保存しているか、保存していたとしても、それが最新のものになっているかなど、普段使わないものは確認しておかないと、いざというとき使えないこともある。
         <p>基本的には、チェーンはシンプルな方が良い。筆者の場合は基本的に全て 1Password に保存し、1Password にさえログインできれば、ほぼ全て復旧できる状態だ。そのうえで、利便性のために中間(iCloud Keychain etc)にいくつかのコピーが挟まっているような状態にしている。
         <p>
-          <img loading=lazy decoding=async src=./simplified-chain.drawio.svg?250127_155348 alt="チェーンをシンプルにし復旧コストを下げたチェーン" width=565 height=365>
+          <img loading=lazy decoding=async src=./simplified-chain.drawio.svg?250127_155644 alt="チェーンをシンプルにし復旧コストを下げたチェーン" width=565 height=365>
         </p>
         <p>もちろん、1Password が SPoF で、コンプロマイズされれば終わる。LastPass のようなことが 1Password で起こらない保証は難しい。しかし、疑い出せばデバイスだって OS だって多角形の重箱にしか見えなくなる。素人が独自で考えたオリジナルの管理方法のように、自分だけが安全だと過信した泥船に乗ることを選ばない限りは、何かしらのリカバリルートを信用するしかないのが現実だろう。
         <p>セキュリティと可用性はトレードオフだが、多くの一般ユーザにとっては「<em>攻撃されるリスク</em>」よりも「<em>ミスって詰む</em>」リスクのほうがよっぽど高いと個人的には思っている。
@@ -220,7 +220,7 @@
         <h2 id="2fa"><a href="#2fa">2FA</a></h2>
         <p>二要素認証は、構図としては以下のようになる。
         <p>
-          <img loading=lazy decoding=async src=./2-factor-auth.drawio.svg?250127_154118 alt="Password と Authenticator の二要素認証" width=200 height=300>
+          <img loading=lazy decoding=async src=./2-factor-auth.drawio.svg?250127_154523 alt="Password と Authenticator の二要素認証" width=200 height=300>
         </p>
         <p>「記憶」に頼る Password と独立させるために、YubiKey や Titan のような Authenticator の「所持」要素を入れるのは、2FA としては理想かもしれない。しかし、壊れたり流されたりすれば終わりだ。
         <p>実際、WebAuthn (not Passkey) が出てきた頃は、「2 つの Authenticator を買い、1 つは普段使い、1 つは貸金庫に保存」などという話もあった。しかし、物理 Authenticator を何個か使ってきたが、割とすぐ壊れ、何度か買い直したので、バックアップとしての心もとなさを感じている。
@@ -228,7 +228,7 @@
         <p>最近では 2FA 適用時に、バックアップコードを提供することが多い。このバックアップコードも「災害」を前提に考えると、意外と保管が難しい。紙で印刷したり、USB に入れて貸金庫に入れても、何かのはずみでサービス側のコードを更新してしまうと、保管したものは無効になるという同期の問題もある。
         <p>結局、筆者は 2FA だろうがバックアップコードだろうが、全て 1Password のログインアイテムに、Password と一緒に保存している。二要素ではなく、俗に言う一要素二段階の状態だが、可用性を重視しているのでそれ自体は気にしていない。
         <p>
-          <img loading=lazy decoding=async src=./1-factor-2-step-auth.drawio.svg?250127_154118 alt="1Password での一要素二段階認証" width=200 height=300>
+          <img loading=lazy decoding=async src=./1-factor-2-step-auth.drawio.svg?250127_154523 alt="1Password での一要素二段階認証" width=200 height=300>
         </p>
         <p>代わりに、Passkey だろうと乱数表だろうと、全て 1Password に保存し、1Password の管理にだけ集中できるようにすることで、運用と認知の負荷をかなり下げることができている。
         <p>2FA は、簡単な Password が使い回されていた時代に、後付けで「それだけでは入れなくする」目的で追加された側面が大きいと考えている。すでに Password Manager で複雑な Password を登録し、さらに追加の要素を足しているのであれば、その時点でほとんどの攻撃に対策はできている。
@@ -257,8 +257,8 @@
         <p>
           <picture>
             <source type=image/avif srcset=./1password-signin.avif?250127_154118>
-            <source type=image/webp srcset=./1password-signin.webp?250127_154118>
-            <img loading=lazy decoding=async src=./1password-signin.png?250127_154118 alt="1Password のサインイン画面。前述の 3 つが必要" width=476 height=413>
+            <source type=image/webp srcset=./1password-signin.webp?250127_155644>
+            <img loading=lazy decoding=async src=./1password-signin.png?260310_001057 alt="1Password のサインイン画面。前述の 3 つが必要" width=476 height=413>
           </picture>
         </p>
         <p>1 と 3 は、筆者は記憶に頼っている。特に 3 は、1Password を使っていれば高頻度で入力することになるため、普段使いしている筆者にとって問題はない。
@@ -320,7 +320,7 @@
         <h2 id="訓練成果"><a href="#訓練成果">訓練成果</a></h2>
         <p>2024 年末時点で、筆者のリカバリプランは以下のようになっている。
         <p>
-          <img loading=lazy decoding=async src=./current-recovery-chain.drawio.svg?250130_135129 alt="現在のリカバリチェーン" width=565 height=365>
+          <img loading=lazy decoding=async src=./current-recovery-chain.drawio.svg?250130_135140 alt="現在のリカバリチェーン" width=565 height=365>
         </p>
         <p>全てを失った状態からは
         <ol>
@@ -365,7 +365,7 @@
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->

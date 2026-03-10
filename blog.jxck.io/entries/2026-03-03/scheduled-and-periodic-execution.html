@@ -10,11 +10,11 @@
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
   <link rel=canonical href=https://blog.jxck.io/entries/2026-03-03/scheduled-and-periodic-execution.html>
 
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012045>
-  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005305>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/prism.js?250306_012246>
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
-  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012045></script>
-  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005305></script>
+  <script defer src=https://www.jxck.io/assets/js/prism.js?250306_012246></script>
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
 
   <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
   <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
@@ -92,10 +92,10 @@
   </script>
 
   <title>「定時実行」と「定期実行」の実装ガイド | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230938>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260211_230947>
 </head>
 <body>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_021259>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
@@ -109,10 +109,10 @@
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130526>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022022>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
   <main>
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014450>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-03-03>2026-03-03</time></dd></div>
       <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
@@ -171,7 +171,7 @@
       </div>
     </dl>
 
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230938>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
       <h1><a href="">「定時実行」と「定期実行」の実装ガイド</a></h1>
       <section>
@@ -189,7 +189,7 @@
         <p>実装も、「普通にスクリプトを書いて、00:10 に実行するだけだろう」と思いがちだ。
         <p>ここでは少し短くして、毎時 10 分にタスクを実行する場合を考えてみよう。イメージとしてはこうだ。
         <p>
-          <img loading=lazy decoding=async src=1.timeline.drawio.svg?260303_232340 alt="毎時 10 分(つまり 1 時間に 1 回)タスクを実行する" width=640 height=117>
+          <img loading=lazy decoding=async src=1.timeline.drawio.svg?260303_232503 alt="毎時 10 分(つまり 1 時間に 1 回)タスクを実行する" width=640 height=117>
         </p>
         <section>
           <h3 id="初回実行"><a href="#初回実行">初回実行</a></h3>
@@ -197,15 +197,15 @@
           <p>例えば、「毎時 10 分に実行するスケジュールを、23:50 に開始したらどうするか」を考えてみよう。筆者の経験上、ここには大体 3 パターンある。
           <p>1: 毎時 10 分と言っているのだから、次の最初の 10 分、つまり 00:10 から開始する。そこまでのデータもそこで処理する。
           <p>
-            <img loading=lazy decoding=async src=2-1.timeline.drawio.svg?260303_232340 alt="毎時 10 分と言っているのだから、次の最初の 10 分、つまり 00:10 から開始する。そこまでのデータもそこで処理する。" width=640 height=117>
+            <img loading=lazy decoding=async src=2-1.timeline.drawio.svg?260303_232503 alt="毎時 10 分と言っているのだから、次の最初の 10 分、つまり 00:10 から開始する。そこまでのデータもそこで処理する。" width=640 height=117>
           </p>
           <p>2: 開始時に 23:50 までのデータを処理し、次は 00:10 にそこまでの処理を行い、以降は直近 1 時間のデータを処理する。
           <p>
-            <img loading=lazy decoding=async src=2-2.timeline.drawio.svg?260303_232340 alt="開始時に 23:50 までのデータを処理し、次は 00:10 にそこまでの処理を行い、以降は直近 1 時間のデータを処理する。" width=640 height=117>
+            <img loading=lazy decoding=async src=2-2.timeline.drawio.svg?260303_232503 alt="開始時に 23:50 までのデータを処理し、次は 00:10 にそこまでの処理を行い、以降は直近 1 時間のデータを処理する。" width=640 height=117>
           </p>
           <p>3: 最初に 23:10 より前のものを一旦処理しておき、00:10 には直近 1 時間のデータを処理する。
           <p>
-            <img loading=lazy decoding=async src=2-3.timeline.drawio.svg?260303_232340 alt="最初に 23:10 より前のものを一旦処理しておき、 00:10 には直近 1 時間のデータを処理する。" width=640 height=117>
+            <img loading=lazy decoding=async src=2-3.timeline.drawio.svg?260303_232503 alt="最初に 23:10 より前のものを一旦処理しておき、 00:10 には直近 1 時間のデータを処理する。" width=640 height=117>
           </p>
           <p>メールの一括送信のようなものは、次の定時から始めれば良い。しかし、何かを集計するようなタスクでは、集計結果のグラフがそこだけ異常値になるが、その異常値の影響がなるべく小さくなる方に倒したいことがほとんどだ。
           <p>タスクによっては、「スクリプトを開始した瞬間から、次の定時までが n 分以内なら〜」といった絶妙な条件分岐を入れ、集計の影響が以降の集計に影響しないように調整することもある。
@@ -222,19 +222,19 @@
           <p>取り得る選択肢はいくつかある。
           <p>1: 終わっていないタスクを中断して次を始める
           <p>
-            <img loading=lazy decoding=async src=3-1.timeline.drawio.svg?260303_232340 alt="1: 終わっていないタスクを中断して次を始める" width=640 height=117>
+            <img loading=lazy decoding=async src=3-1.timeline.drawio.svg?260303_232503 alt="1: 終わっていないタスクを中断して次を始める" width=640 height=117>
           </p>
           <p>「実行したこと自体に意味がある」タイプのタスクはこれでよいだろう。特に、中断時のリカバリが定義できる要件であれば実現しやすい。
           <p>ただし、そこまでのデータを処理するような場合は、前のタスクが失敗していた場合、残っているデータをどう処理するかなどを考慮する必要がある。
           <p>2: 終わっていないタスクと並行して次を始める
           <p>
-            <img loading=lazy decoding=async src=3-2.timeline.drawio.svg?260303_232340 alt="2: 終わっていないタスクと並行して次を始める" width=640 height=117>
+            <img loading=lazy decoding=async src=3-2.timeline.drawio.svg?260303_232503 alt="2: 終わっていないタスクと並行して次を始める" width=640 height=117>
           </p>
           <p>「完遂に意味がある」タイプのタスクなら 2 を実装しがちだが、非常に注意が必要だ。
           <p>この場合、終わっていない理由が解決しない限り、無限にタスクプロセスが増え続ける可能性がある。そして、気づいたらリソースを食い潰してサーバが落ちる。そこまで終わっていなかった数週間分のタスクが全て中途半端に飛び、復旧で地獄を見る、ということになりかねない。
           <p>3: 人間に助けを求める
           <p>
-            <img loading=lazy decoding=async src=3-3.timeline.drawio.svg?260303_232340 alt="3: 人間に助けを求める" width=640 height=117>
+            <img loading=lazy decoding=async src=3-3.timeline.drawio.svg?260303_232503 alt="3: 人間に助けを求める" width=640 height=117>
           </p>
           <p>要するにアラートを出してスケジューラ自体を止めるという方針だ。
           <p>筆者の意見としては「<strong>タスクスケジュールの中での例外処理は、そのプログラムの中で解決しようと頑張らない方が良い</strong>」と考えている。
@@ -324,17 +324,17 @@
           <h3 id="実行間隔"><a href="#実行間隔">実行間隔</a></h3>
           <p>実は、一番見落としがちなのが「実行間隔」である。「10 分ごとと言っているのだから 10 分ごとだろう」と思うかもしれない。おそらく、今想像している 10 分ごととは、こういうものではないだろうか。
           <p>
-            <img loading=lazy decoding=async src=4-1.timeline.drawio.svg?260303_232340 alt="タスクの開始が 10 分間隔" width=640 height=117>
+            <img loading=lazy decoding=async src=4-1.timeline.drawio.svg?260303_232503 alt="タスクの開始が 10 分間隔" width=640 height=117>
           </p>
           <p>では、それがざっくりこんな実装だったとしよう。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015123">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?250125_015157">
           <pre class=ruby data-code=ruby><code translate=no class=language-ruby>loop do
   task()
   sleep(10 * 60)
 end</code></pre>
           <p>この場合、タイムラインはこうだ。
           <p>
-            <img loading=lazy decoding=async src=4-2.timeline.drawio.svg?260303_232340 alt="タスクの終了から 10 分空ける" width=640 height=117>
+            <img loading=lazy decoding=async src=4-2.timeline.drawio.svg?260303_232503 alt="タスクの終了から 10 分空ける" width=640 height=117>
           </p>
           <p>わかりにくいかもしれないが、微妙に後ろにずれている。
           <p>「タスクが完了してから 10 分」で実装しているため、タスク実行にかかる時間を忘れているからだ。
@@ -348,12 +348,12 @@ end</code></pre>
           <p>定期実行でも、注意点は同じだ。例えば、前のタスクが 10 分以上終わらなかったらどうするか。
           <p>もし、前のタスク終了から 10 分で続けていくと、どんどんズレが大きくなっていく。コレがしたい要件は、経験上見たことはない。あるんだろうか?
           <p>
-            <img loading=lazy decoding=async src=4-3.timeline.drawio.svg?260303_232340 alt="タスク終了から 10 分後に次のタスクを開始する" width=640 height=117>
+            <img loading=lazy decoding=async src=4-3.timeline.drawio.svg?260303_232503 alt="タスク終了から 10 分後に次のタスクを開始する" width=640 height=117>
           </p>
           <p>前述を踏まえて「前の実行から 10 分経ったら次を始める」という実装だと、タスクが並列で走ってしまう。しかし、大抵は「前の実行から 10 分経ったら、前のタスクは終わっているので、次のタスクを始める」という暗黙の前提がある。
           <p>つまり、スケジューラは前のタスクの実行が完了しているかも確認する必要があるのだ。そのうえで、前のタスクを止めて次を走らせるか、フォークして次のタスクも定時で走らせるかを決めることになる。
           <p>
-            <img loading=lazy decoding=async src=4-4.timeline.drawio.svg?260303_232340 alt="前のタスクが終了していない場合の実行判断が必要" width=640 height=117>
+            <img loading=lazy decoding=async src=4-4.timeline.drawio.svg?260303_232503 alt="前のタスクが終了していない場合の実行判断が必要" width=640 height=117>
           </p>
           <p>しかし、大抵は前の実行に問題があり、それを放置して次に進むほうがリスクなことも多いため、スケジューラ自体に「タスクが 3 分以上かかっていたら、全てをアラート」といった、スレッショルドを設定する方が良い。それをしていれば、後続をどうするかを考えるのも含め、人間に判断を委ねられて、実装をシンプルにできる。
         </section>
@@ -361,7 +361,7 @@ end</code></pre>
           <h3 id="リトライ_1"><a href="#リトライ_1">リトライ</a></h3>
           <p>「定期実行」のリトライも注意が必要だ。特に「定期実行」として実装されたものは、初回実行を行うものが多い。したがって、例えばうっかり消えたファイルを探してリトライをし続けると、リトライした回数だけ実行し続けることになる。
           <p>
-            <img loading=lazy decoding=async src=5.timeline.drawio.svg?260303_232340 alt="回復しない失敗をリトライし続ける" width=640 height=117>
+            <img loading=lazy decoding=async src=5.timeline.drawio.svg?260303_232503 alt="回復しない失敗をリトライし続ける" width=640 height=117>
           </p>
           <p>したがって、リトライは必ず間隔を空けるべきであり、回数を制限して終了するようにしなければならない。
           <p>この点も、先述の話と同様だ。
@@ -370,7 +370,7 @@ end</code></pre>
           <h3 id="初回実行_1"><a href="#初回実行_1">初回実行</a></h3>
           <p>定時実行と違って、定期実行ではタスクを開始した瞬間に初回を実行するのが普通だろう。
           <p>
-            <img loading=lazy decoding=async src=6-1.timeline.drawio.svg?260303_232340 alt="スケジュール開始時に初回の実行をする" width=640 height=117>
+            <img loading=lazy decoding=async src=6-1.timeline.drawio.svg?260303_232503 alt="スケジュール開始時に初回の実行をする" width=640 height=117>
           </p>
           <p>一見、それで良さそうに見える。
           <p>しかし、ここにも落とし穴がある。
@@ -380,7 +380,7 @@ end</code></pre>
           <p>「定期実行は定時実行と違って軸がない」が問題になるのは、スケジューラが再起動したときだ。
           <p>先ほどの実装で、実行を開始してから 15 分後に再起動が走ったら、どうなるだろうか。
           <p>
-            <img loading=lazy decoding=async src=6-2.timeline.drawio.svg?260303_232340 alt="再起動が入った場合に初回の実行をするか" width=640 height=117>
+            <img loading=lazy decoding=async src=6-2.timeline.drawio.svg?260303_232503 alt="再起動が入った場合に初回の実行をするか" width=640 height=117>
           </p>
           <p>おそらくこうなる。
           <p>「<em>定期実行は、前回開始地点からの経過時間</em>」と普通は考えられるため、実は初回実行は「前回最後にいつ実行したか」を踏まえて行わなければならない。
@@ -508,7 +508,7 @@ ExecStart=/usr/local/bin/taskd</code></pre>
   </main>
   <hr>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012520>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
   <footer>
     <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
