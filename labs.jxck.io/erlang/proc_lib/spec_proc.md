@@ -18,7 +18,7 @@ The sys module has functions for simple debugging of processes implemented using
 SYS のモジュールは、 behaviour を使用して実施されるプロセスの簡単なデバッグのための機能を持っています。 gen_statem behaviour の code_lock の 例を使ってこれを説明します:
 
 
-```erlang
+```erl
 Erlang/OTP 20 [DEVELOPMENT] [erts-9.0] [source-5ace45e] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:10] [hipe] [kernel-poll:false]
 
 Eshell V9.0  (abort with ^G)
@@ -102,7 +102,7 @@ The simple server from Overview, implemented using sys and proc_lib so it fits i
 sys と proc_lib を使用して実装されたシンプルなサーバーなので、監視ツリーで扱えます:
 
 
-```erlang
+```erl
 -module(ch4).
 -export([start_link/0]).
 -export([alloc/0, free/1]).
@@ -172,7 +172,7 @@ Example on how the simple debugging functions in the sys module can also be used
 sys モジュールの単純なデバッグ機能を ch4 でどのように使用できるかの例:
 
 
-```erlang
+```erl
 % erl
 Erlang (BEAM) emulator version 5.2.3.6 [hipe] [threads:0]
 
@@ -228,7 +228,7 @@ In the example, synchronous start is used. The process starts by calling ch4:sta
 この例では、同期起動が使用されています。プロセスは、 `ch4:start_link()` を呼び出して開始します。
 
 
-```erlang
+```erl
 start_link() ->
     proc_lib:start_link(ch4, init, [self()]).
 ```
@@ -242,7 +242,7 @@ All initialization, including name registration, is done in init. The new proces
 初期化処理(名前の登録を含む)は init で行われます。新しいプロセスは、開始処理を行った親プロセスに ACK を返さなければなりません。
 
 
-```erlang
+```erl
 init(Parent) ->
     ...
     proc_lib:init_ack(Parent, {ok, self()}),
@@ -261,7 +261,7 @@ To support the debug facilites in sys, a debug structure is needed. The Deb term
 sys のデバッグ機能をサポートするには、  debug structure が必要です。 Deb が `sys:debug_options/1` を利用して初期化されます。
 
 
-```erlang
+```erl
 init(Parent) ->
     ...
     Deb = sys:debug_options([]),
@@ -278,7 +278,7 @@ Then, for each system event to be logged or traced, the following function is to
 次に、ログまたはトレースされるシステムイベントごとに、以下の関数が呼び出されます。
 
 
-```erlang
+```erl
 sys:handle_debug(Deb, Func, Info, Event) => Deb1
 ```
 
@@ -307,7 +307,7 @@ In the example, handle_debug is called for each incoming and outgoing message. T
 この例では、着信/発信メッセージごとに `handle_debug` が呼び出されます。フォーマット関数 Func は関数 `ch4:write_debug/3` で、 `io:format/3` を使ってメッセージを出力します。
 
 
-```erlang
+```erl
 loop(Chs, Parent, Deb) ->
     receive
         {From, alloc} ->
@@ -403,7 +403,7 @@ Module:system_replace_state(StateFun, State)
 In the example:
 
 
-```erlang
+```erl
 loop(Chs, Parent, Deb) ->
     receive
         ...
@@ -431,7 +431,7 @@ If the special process is set to trap exits and if the parent process terminates
 special process が exit をトラップするように設定されていて、親プロセスが終了した場合、期待される動作は同じ理由での終了です。
 
 
-```erlang
+```erl
 init(...) ->
     ...,
     process_flag(trap_exit, true),
@@ -461,7 +461,7 @@ If the compiler is to warn for missing callback functions, as it does for the OT
 コンパイラが欠落しているコールバック関数を警告する場合は、 OTP behaviour の場合と同様に、 behaviour モジュールに`-callback` 属性を追加して、予期されるコールバックを記述します。
 
 
-```erlang
+```erl
 -callback Name1(Arg1_1, Arg1_2, ..., Arg1_N1) -> Res1.
 -callback Name2(Arg2_1, Arg2_2, ..., Arg2_N2) -> Res2.
 ...
@@ -498,7 +498,7 @@ As an alternative to the -callback and -optional_callbacks attributes you may di
 `-callback` と `-optional_callbacks` 要素の代わりとして、 `behaviour_info()` を直接実装し export することもできます。
 
 
-```erlang
+```erl
 behaviour_info(callbacks) ->
     [{Name1, Arity1},...,{NameN, ArityN}].
 ```
@@ -512,7 +512,7 @@ When the compiler encounters the module attribute -behaviour(Behaviour). in a mo
 コンパイラがモジュール属性 `-behaviour(Behaviour)` を検出したとき。モジュール Mod では `Behaviour:behaviour_info(callbacks)` を呼び出し、その結果を Mod から実際にエクスポートされた関数のセットと比較し、コールバック関数がない場合に警告を出します。
 
 
-```erlang
+```erl
 %% User-defined behaviour module
 -module(simple_server).
 -export([start_link/2, init/3, ...]).
@@ -548,7 +548,7 @@ init(Parent, Name, Module) ->
 In a callback module:
 
 
-```erlang
+```erl
 -module(db).
 -behaviour(simple_server).
 
@@ -562,7 +562,7 @@ The contracts specified with -callback attributes in behaviour modules can be fu
 behaviour モジュールの `-callback` 属性で指定されたコントラクトは、コールバックモジュールに `-spec` 属性を追加することでさらに洗練されます。これは、`-callback` コントラクトが通常は一般的なので便利です。コールバックの契約を持つ同じコールバックモジュール:
 
 
-```erlang
+```erl
 -module(db).
 -behaviour(simple_server).
 

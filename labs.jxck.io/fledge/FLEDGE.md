@@ -12,26 +12,27 @@
 
 私たちは、 WICG の後援のもと、定期的にミーティングを開催し、この提案の詳細を確認し、必要な変更を速やかに行うことを計画しています。 このミーティングに参加して詳細を検討したい方は、 Issue [#88](https://github.com/WICG/turtledove/issues/88)のタイミングに関する質問にコメントしてください。
 
-- [Summary](#summary)
-- [Background](#background)
-- [Design Elements](#design-elements)
-  - [1. Browsers Record Interest Groups](#1-browsers-record-interest-groups)
-    - [1.1 Joining Interest Groups](#11-joining-interest-groups)
-    - [1.2 Interest Group Attributes](#12-interest-group-attributes)
-  - [2. Sellers Run On-Device Auctions](#2-sellers-run-on-device-auctions)
-    - [2.1 Initiating an On-Device Auction](#21-initiating-an-on-device-auction)
-    - [2.2 Auction Participants](#22-auction-participants)
-    - [2.3 Scoring Bids](#23-scoring-bids)
-  - [3. Buyers Provide Ads and Bidding Functions (BYOS for now)](#3-buyers-provide-ads-and-bidding-functions-byos-for-now)
-    - [3.1 Fetching Real-Time Data from a Trusted Server](#31-fetching-real-time-data-from-a-trusted-server)
-    - [3.2 On-Device Bidding](#32-on-device-bidding)
-    - [3.3 Metadata with the Ad Bid](#33-metadata-with-the-ad-bid)
-    - [3.4 Ads Composed of Multiple Pieces](#34-ads-composed-of-multiple-pieces)
-  - [4. Browsers Render the Winning Ad](#4-browsers-render-the-winning-ad)
-  - [5. Event-Level Reporting (for now)](#5-event-level-reporting-for-now)
-    - [5.1 Seller Reporting on Render](#51-seller-reporting-on-render)
-    - [5.2 Buyer Reporting on Render and Ad Events](#52-buyer-reporting-on-render-and-ad-events)
-    - [5.3 Losing Bidder Reporting](#53-losing-bidder-reporting)
+- [First Experiment (FLEDGE)](#first-experiment-fledge)
+  - [Summary](#summary)
+  - [Background](#background)
+  - [Design Elements](#design-elements)
+    - [1. Browsers Record Interest Groups](#1-browsers-record-interest-groups)
+      - [1.1 Joining Interest Groups](#11-joining-interest-groups)
+      - [1.2 Interest Group Attributes](#12-interest-group-attributes)
+    - [2. Sellers Run On-Device Auctions](#2-sellers-run-on-device-auctions)
+      - [2.1 Initiating an On-Device Auction](#21-initiating-an-on-device-auction)
+      - [2.2 Auction Participants](#22-auction-participants)
+      - [2.3 Scoring Bids](#23-scoring-bids)
+    - [3. Buyers Provide Ads and Bidding Functions (BYOS for now)](#3-buyers-provide-ads-and-bidding-functions-byos-for-now)
+      - [3.1 Fetching Real-Time Data from a Trusted Server](#31-fetching-real-time-data-from-a-trusted-server)
+      - [3.2 On-Device Bidding](#32-on-device-bidding)
+      - [3.3 Metadata with the Ad Bid](#33-metadata-with-the-ad-bid)
+      - [3.4 Ads Composed of Multiple Pieces](#34-ads-composed-of-multiple-pieces)
+    - [4. Browsers Render the Winning Ad](#4-browsers-render-the-winning-ad)
+    - [5. Event-Level Reporting (for now)](#5-event-level-reporting-for-now)
+      - [5.1 Seller Reporting on Render](#51-seller-reporting-on-render)
+      - [5.2 Buyer Reporting on Render and Ad Events](#52-buyer-reporting-on-render-and-ad-events)
+      - [5.3 Losing Bidder Reporting](#53-losing-bidder-reporting)
 
 
 ## Summary
@@ -267,14 +268,14 @@ scoreAd(adMetadata,
 * browserSignals: ブラウザが構築するオブジェクトで、ブラウザが知っていて、 Seller のオークションスクリプトが確認したいと思う情報を含みます。
 
 
-    ```js
-    { 'topWindowHostname':   'www.example-publisher.com',
-      'interestGroupOwner':  'www.example-dsp.com',
-      'interestGroupName':   'womens-running-shoes',
-      'adRenderFingerprint': 'M0rNy1D5RVowjnpa',
-      'biddingDurationMsec': 12
-    }
-    ```
+```js
+{ 'topWindowHostname':   'www.example-publisher.com',
+  'interestGroupOwner':  'www.example-dsp.com',
+  'interestGroupName':   'womens-running-shoes',
+  'adRenderFingerprint': 'M0rNy1D5RVowjnpa',
+  'biddingDurationMsec': 12
+}
+```
 
 > The output of `scoreAd()` is a number indicating how desirable this ad is.  Any value that is zero or negative indicates that the ad cannot win the auction.  (This could be used, for example, to eliminate any interest-group-targeted ad that would not beat a contextually-targeted candidate.)   The winner of the auction is the ad object which was given the highest score.
 
@@ -376,14 +377,14 @@ The arguments to `generateBid()` are:
 * browserSignals: ブラウザが構築するオブジェクトで、ブラウザが知っていて、 Buyer のオークションスクリプトが使用または検証したいと思う情報を含みます。 これには、コンテキストに関する情報(例:現在のページの真のホスト名、 Seller が嘘をつく可能性がある)と、利益団体自体に関する情報(例:以前にオークションに勝った回数、オンデバイスの周波数上限設定を可能にするため)が含まれます。
 
 
-    ```js
-    { 'topWindowHostname': 'www.example-publisher.com',
-      'seller':    'www.example-ssp.com',
-      'joinCount': 3,
-      'bidCount':  17,
-      'prevWins':  [[time1,ad1],[time2,ad2],...],
-    }
-    ```
+```js
+{ 'topWindowHostname': 'www.example-publisher.com',
+  'seller':    'www.example-ssp.com',
+  'joinCount': 3,
+  'bidCount':  17,
+  'prevWins':  [[time1,ad1],[time2,ad2],...],
+}
+```
 
 > The output of `generateBid()` contains three fields:
 

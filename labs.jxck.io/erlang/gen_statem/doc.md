@@ -24,7 +24,7 @@ For an Event-Driven State Machine, the input is an event that triggers a state t
 イベントドリブンステートマシンの場合、入力は状態遷移をトリガするイベントであり、出力は状態遷移中に実行されるアクションです。これは、有限状態機械の数学的モデルと同様に、以下の形式の関係の集合として記述することができる。
 
 
-```erlang
+```erl
 State(S) x Event(E) -> Actions(A), State(S')
 ```
 
@@ -54,7 +54,7 @@ gen_statem のビヘイビアは、 2 つのコールバックモードをサポ
 
 - `state_functions`: 状態遷移ルールが、次のルールを満たす関数で書かれる。
 
-```erlang
+```erl
 StateName(EventType, EventContent, Data) ->
     ... code for actions here ...
     {next_state, NewStateName, NewData}.
@@ -68,7 +68,7 @@ This form is used in most examples here for example in section Example.
 
 - `handle_event_function`: 1 つの関数が全ての状態遷移ルールを表現する。
 
-```erlang
+```erl
 handle_event(EventType, EventContent, State, Data) ->
     ... code for actions here ...
     {next_state, NewState, NewData}
@@ -130,7 +130,7 @@ The gen_statem behavior can regardless of callback mode automatically call the s
 gen_statem のビヘイビアにかかわらず、コールバックモードの自動できる状態コールバックを呼び出しますが、状態遷移ルールの残りの部分に近い状態エントリのアクションを書くことができますので、いつでも状態が変化する特殊な引数を持ちます。通常、次のようになります。
 
 
-```erlang
+```erl
 StateName(enter, _OldState, Data) ->
     ... code for state entry actions here ...
     {keep_state, NewData};
@@ -227,7 +227,7 @@ This code lock state machine can be implemented using gen_statem with the follow
 このコードロックステートマシンは、次のコールバックモジュールを使用して gen_statem を使用して実装できます。
 
 
-```erlang
+```erl
 -module(code_lock).
 -behaviour(gen_statem).
 -define(NAME, code_lock).
@@ -291,7 +291,7 @@ In the example in the previous section, gen_statem is started by calling `code_l
 
 前のセクションの例では gen_statem は `code_lock:start_link(Code)` を呼び出して起動します。
 
-```erlang
+```erl
 start_link(Code) ->
     gen_statem:start_link({local, ?NAME}, ?MODULE, Code, []).
 ```
@@ -335,7 +335,7 @@ If name registration succeeds, the new gen_statem process calls callback functio
 名前の登録に成功すると、新しい gen_statem プロセスがコールバック関数 `code_lock:init(Code)` を呼び出します。この関数は `{ok, State, Data}` を返すことが期待されます。ここで State は gen_statem の初期状態です(この場合はロックされます)。ドアが最初にロックされていると仮定します。データは、 gen_statem の内部サーバーデータです。ここで、サーバーデータは、正しいボタンシーケンスを格納するキーコードを持つマップであり、
 
 
-```erlang
+```erl
 init(Code) ->
     do_lock(),
     Data = #{code => Code, remaining => Code},
@@ -352,7 +352,7 @@ Function gen_statem:start_link must be used if the gen_statem is part of a super
 `gen_statem:start` は、スタンドアローンの gen_statem を起動するのに使う。
 
 
-```erlang
+```erl
 callback_mode() ->
     state_functions.
 ```
@@ -368,7 +368,7 @@ The function notifying the code lock about a button event is implemented using `
 
 ボタンイベントをコードロックに通知する関数は、 `gen_statem:cast/2` で実装される。
 
-```erlang
+```erl
 button(Digit) ->
     gen_statem:cast(?NAME, {button, Digit}).
 ```
@@ -386,7 +386,7 @@ The event is made into a message and sent to the gen_statem. When the event is r
 `NewData` は gen_statem のサーバデータの新しい値で、 `Actions` は gen_statem エンジンのアクションのリストである。
 
 
-```erlang
+```erl
 locked(cast, {button, Digit}, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
         [Digit] -> % Complete
@@ -432,7 +432,7 @@ When a correct code has been given, the door is unlocked and the following tuple
 正しいコードが与えられると、ドアはロック解除され `locked/2` から次のタプルが返されます。
 
 
-```erlang
+```erl
 {next_state, open, Data#{remaining := Code}, [{state_timeout, 10000, lock}]};
 ```
 
@@ -441,7 +441,7 @@ When a correct code has been given, the door is unlocked and the following tuple
 10, 000 はミリ秒単位のタイムアウト値です。この時間(10 秒)後、タイムアウトが発生します。次に、 `StateName(state_timeout, lock, Data)` が呼び出されます。タイムアウトは、ドアが 10 秒間 open 状態になったあとで発生します。その後、ドアは再びロックされます。
 
 
-```erlang
+```erl
 open(state_timeout, lock,  Data) ->
     do_lock(),
     {next_state, locked, Data};
@@ -463,7 +463,7 @@ Consider a `code_length/0` function that returns the length of the correct code 
 正確なコードの長さを返す `code_length/0` 関数を考えてみましょう。状態固有でないすべてのイベントを共通関数 `handle_event/3` にディスパッチします。
 
 
-```erlang
+```erl
 ...
 -export([button/1, code_length/0]).
 ...
@@ -497,7 +497,7 @@ If mode handle_event_function is used, all events are handled in `Module:handle_
 モード handle_event_function が使用されている場合、すべてのイベントは `Module:handle_event/4` で処理され 、イベントに応じて最初に分岐し、次に状態に応じて分岐するイベント中心のアプローチを使用できます(ただし、そうする必要はありません)。
 
 
-```erlang
+```erl
 ...
 -export([handle_event/4]).
 
@@ -541,7 +541,7 @@ If it is necessary to clean up before termination, the shutdown strategy must be
 終了前にクリーンアップする必要がある場合、シャットダウンストラテジはタイムアウト値でなければならず、 gen_statem は `init/1` 関数で `process_flag(trap_exit , true)` を呼び出して終了信号をトラップするように設定する必要があります。
 
 
-```erlang
+```erl
 init(Args) ->
     process_flag(trap_exit, true),
     do_lock(),
@@ -557,7 +557,7 @@ In this example, function `terminate/3` locks the door if it is open, so we do n
 この例では、 `terminate/3` はドアが開いている場合にロックします。したがって、 supervision tree が terminate したときに誤ってドアを開いたままにしません。
 
 
-```erlang
+```erl
 terminate(_Reason, State, _Data) ->
     State =/= locked andalso do_lock(),
     ok.
@@ -570,7 +570,7 @@ If the gen_statem is not part of a supervision tree, it can be stopped using `ge
 
 gen_statem が supervision tree の一部ではない場合、 `gen_statem:stop` を利用して停止することもできる。好ましくは API 関数を介し:
 
-```erlang
+```erl
 ...
 -export([start_link/1, stop/0]).
 
@@ -600,7 +600,7 @@ This type of time-out is useful to for example act on inactivity. Let us restart
 このタイプのタイムアウトは、例えば、非アクティブに対処するのに便利です。たとえば 30 秒間ボタンを押さなかった場合は、コードシーケンスを再起動します。
 
 
-```erlang
+```erl
 ...
 
 locked(timeout, _, #{code := Code, remaining := Remaining} = Data) ->
@@ -637,7 +637,7 @@ Here is how to accomplish the state time-out in the previous example by insted u
 代わりに Erlang Timer を使用して前の例の状態タイムアウトを達成する方法は次のとおりです。
 
 
-```erlang
+```erl
 ...
 locked(cast, {button, Digit}, #{code := Code, remaining := Remaining} = Data) ->
     case Remaining of
@@ -682,7 +682,7 @@ In this example, instead of ignoring button events while in the open state, we c
 
 この例では、 Open 状態でボタンイベントを無視するのではなく、それらを先送りすることができ、それらはキューに入れられ、後で locked 状態で処理されます。
 
-```erlang
+```erl
 ...
 open(cast, {button, _}, Data) ->
     {keep_state, Data, [postpone]};
@@ -719,7 +719,7 @@ Erlang's selective receive statement is often used to describe simple state mach
 Erlang の選択受信文は、単純なステートマシンの例を簡単な Erlang コードで記述するためによく使用されます。以下は、最初の例の実装です。
 
 
-```erlang
+```erl
 -module(code_lock).
 -define(NAME, code_lock_1).
 -export([start_link/1, button/1]).
@@ -786,7 +786,7 @@ You return a list containing state_enter from your `callback_mode/0` function an
 `callback_mode/0` 関数から state_enter を含むリストを返すと、 gen_statem エンジンは、状態が変わるたびに引数 `(enter, OldState, ...)` で状態コールバックを 1 回呼び出します 。次に、これらのイベントのような呼び出しをすべての状態で処理するだけです。
 
 
-```erlang
+```erl
 ...
 init(Code) ->
     process_flag(trap_exit, true),
@@ -849,7 +849,7 @@ The following example uses an input model where you give the lock characters wit
 次の例では、ロック文字に `put_chars(Chars)` を指定し、次に `enter()` を呼び出して入力を終了する入力モデルを使用します。
 
 
-```erlang
+```erl
 ...
 -export(put_chars/1, enter/0).
 ...
@@ -904,7 +904,7 @@ Notice that this state diagram does not specify how to handle a button event in 
 
 Using state functions:
 
-```erlang
+```erl
 -module(code_lock).
 -behaviour(gen_statem).
 -define(NAME, code_lock_2).
@@ -981,7 +981,7 @@ This section describes what to change in the example to use one `handle_event/4`
 この節では、 `handle_event/4` 関数を 1 つ使用する例で変更する内容について説明します。以前に使用された、イベントに応じた最初の分岐へのアプローチは、状態入力呼び出しのためにここでうまくいきません。したがって、この例は最初に状態によって分岐します。
 
 
-```erlang
+```erl
 ...
 -export([handle_event/4]).
 
@@ -1048,7 +1048,7 @@ To avoid this, you can format the internal state that gets in the error log and 
 これを避けるには、エラーログに取り込まれ、関数 `Module:format_status/2` を実装して `sys:get_status/1, 2` から返される内部状態をフォーマットすることができます。
 
 
-```erlang
+```erl
 ...
 -export([init/1, terminate/3, code_change/4, format_status/2]).
 ...
@@ -1108,7 +1108,7 @@ We define the state as `{StateName, LockButton}`, where StateName is as before a
 状態を `{StateName, LockButton}` と定義します。ここで StateName は以前と同じで LockButton は現在のロックボタンです。
 
 
-```erlang
+```erl
 -module(code_lock).
 -behaviour(gen_statem).
 -define(NAME, code_lock_3).
@@ -1226,7 +1226,7 @@ We can in this example hibernate in the `{open, _}` state, because what normally
 
 この例では、 `{open, _}` 状態で冬眠することができます。なぜなら、その状態で通常起こるのは、しばらくしてからの状態タイムアウトが `{locked, _}` への遷移を引き起こすからです。
 
-```erlang
+```erl
 ...
 %% State: open
 handle_event(EventType, EventContent, {open, LockButton}, Data) ->

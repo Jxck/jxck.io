@@ -214,7 +214,7 @@ hello world
 ```js:../2017-07-19/race-fetch.js
 ```
 
-```erlang:../2018-01-14/erlang-record-to-map.erl
+```erl:../2018-01-14/erlang-record-to-map.erl
 ```
 
 ```rb:../2018-03-27/ct.rb

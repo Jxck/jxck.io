@@ -186,7 +186,7 @@ The following is the complete callback module file pushbutton.erl:
 以下は完全なコールバックモジュールファイル pushbutton.erl です:
 
 
-```erlang
+```erl
 -module(pushbutton).
 -behaviour(gen_statem).
 
@@ -270,7 +270,7 @@ To compare styles, here follows the same example using callback mode state_funct
 スタイルを比較するために、ここで使用した同じ例を次のコールバックモード state_functions 関数の後に交換する、またはむしろコードを init/1 の pushbutton.erl 上記の例のファイル:
 
 
-```erlang
+```erl
 callback_mode() -> handle_event_function.
 
 %%% state callback(s)

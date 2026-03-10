@@ -10,7 +10,7 @@
 ## RTCPeerConnection
 
 
-```javascript
+```js
 [Constructor(optional RTCConfiguration configuration)]
 interface RTCPeerConnection : EventTarget {
     static Promise<RTCCertificate>            generateCertificate(AlgorithmIdentifier keygenAlgorithm);
@@ -83,7 +83,7 @@ partial interface RTCPeerConnection {
 onnegotiationneeded が発火するので、
 そこで言われた通りにシグナリングを行う。
 
-```javascript
+```js
 const rtcPeerConnection = new RTCPeerConnection(rtcConfiguration)
 
 rtcPeerConnection.onnegotiationneeded = () => {
@@ -98,7 +98,7 @@ stream.getTracks().forEach((track) => {
 addTrack が無い場合は addStream する
 
 
-```javascript
+```js
 rtcPeerConnection.addStream(stream)
 ```
 
@@ -108,7 +108,7 @@ createOffer で作った SDP を setLocalDescription し、 Peer に送る
 受信した相手は、 setRemoteDescription する。
 
 
-```javascript
+```js
 // Alice
 const offer = await rtcPeerConnection.createOffer()
 await rtcPeerConnection.setLocalDescription(offer)
@@ -135,7 +135,7 @@ ice candidate が生成される。
 (最後に null な candidate が発生する場合があるが、送る必要はない)
 
 
-```javascript
+```js
 // Alice
 rtcPeerConnection.onicecandidate = (e) => {
   /// Alice -> Bob

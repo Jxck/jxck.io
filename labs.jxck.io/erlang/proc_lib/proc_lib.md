@@ -129,7 +129,7 @@ The following example illustrates how this function and proc_lib:start_link/3 ar
 次の例は、この関数と `proc_lib:start_link/3` の使い方を示しています 。
 
 
-```erlang
+```erl
 -module(my_proc).
 -export([start_link/0]).
 -export([init/1]).
