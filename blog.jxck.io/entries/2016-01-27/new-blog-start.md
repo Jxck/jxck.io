@@ -126,7 +126,7 @@ markdown 上は画像と同じ記法で、拡張子が `mp4` の場合は `<vide
 
 QuickTime で screen record を取り gif 的に表示するなら推奨は以下。
 
-```sh
+```console
 # メタデータを消し、frame rate を 24 にし、Audio を消す
 $ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.webm
 $ ffmpeg -i video.mov -map_metadata -1 -r 24 -an video.mp4

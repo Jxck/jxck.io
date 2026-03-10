@@ -52,7 +52,7 @@ cacoo は、作成した図を SVG 書き出すことが可能であるため、
 
 ソースは以下である。
 
-```svg
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <svg contentScriptType="text/ecmascript"
      xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -115,7 +115,7 @@ cacoo で吐いたままの SVG には、不要なメタ情報などが含まれ
 
 これを行うツールに SVGGo があるため、これをかけてみた結果が以下である。
 
-```svg
+```xml
 <svg contentScriptType="text/ecmascript"
      viewBox="-15.0 -15.0 286.0 286.0"
      preserveAspectRatio="xMidYMin meet"
@@ -155,7 +155,7 @@ cacoo の吐く SVG を読んでみると、この部分が気に食わなかっ
 
 簡単な画像であれば、自分でゼロから手書きすることで、不要なメタ情報や無駄パスがない SVG を作ることができる。
 
-```svg
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <rect width="256" height="256" fill="#000000" />

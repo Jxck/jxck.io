@@ -388,7 +388,7 @@ function customize(ast, { host, base }) {
         }
       }
       if (node.name === `pre`) {
-        if (node.name === `pre` && node.attr.has(`path`)) {
+        if (node.attr.has(`path`)) {
           const path = node.attr.get(`path`)
           const code = readFileSync(`${base}${path}`, {
             encoding: `utf-8`,

@@ -38,100 +38,18 @@ pre {
   }
 }
 
-/** Prism.js Syntax Highlight **/
-:root {
-  --code-yellow: #ffe557;
-  --code-aqua: #03b5f1;
-  --code-blue: #76acff;
-  --code-gray: #b3b3b3;
-  --code-green: #1cd24d;
-  --code-orange: #ff8b24;
-  --code-pink: #ff61bf;
-}
-
-/** style **/
-.token {
-  &.important,
-  &.bold {
-    font-weight: bold;
+/** Shiki Syntax Highlight **/
+pre.shiki {
+  code {
+    border: 1px solid var(--code-block-border);
+    border-radius: var(--radius);
+    background-color: light-dark(var(--shiki-light-bg), var(--shiki-dark-bg));
+    color: light-dark(var(--shiki-light), var(--shiki-dark));
   }
 
-  &.italic {
-    font-style: italic;
-  }
-
-  &.entity {
-    cursor: help;
-  }
-
-  &.command,
-  &.parameter,
-  &.operator,
-  &.punctuation,
-  &.output {
-    color: var(--code-block-font);
-  }
-
-  &.attr-name,
-  &.selector,
-  &.shell-symbol {
-    color: var(--code-blue);
-  }
-
-  &.delimiter.tag,
-  &.variable {
-    color: var(--code-yellow);
-  }
-
-  &.tag,
-  &.function {
-    color: var(--code-green);
-  }
-
-  &.key,
-  &.attr-value,
-  &.atom,
-  &.property,
-  &.keyword {
-    color: var(--code-pink);
-  }
-
-  &.header-name.keyword,
-  &.string,
-  &.regex {
-    color: var(--code-blue);
-  }
-
-  &.interpolation,
-  &.constant,
-  &.class-name {
-    color: var(--code-orange);
-  }
-
-  &.response-status,
-  &.boolean,
-  &.number {
-    color: var(--code-aqua);
-  }
-
-  &.rule,
-  &.builtin {
-    color: var(--code-green);
-  }
-
-  &.prolog,
-  &.doctype,
-  &.shebang,
-  &.comment {
-    color: var(--code-gray);
-  }
-
-  &.request-line {
-    color: var(--code-aqua);
-  }
-
-  &.bash.language-bash,
-  &.bash.language-bash > &.function {
-    color: var(--code-block-font);
+  span {
+    color: light-dark(var(--shiki-light), var(--shiki-dark));
+    background-color: light-dark(var(--shiki-light-bg), var(--shiki-dark-bg));
+    font-style: light-dark(var(--shiki-light-font-style, inherit), var(--shiki-dark-font-style, inherit));
   }
 }
