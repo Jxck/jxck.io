@@ -116,7 +116,7 @@ Cache-Control: max-age=10000, immutable
 
 その結果が以下である。
 
-```sh-session
+```console
 $ cat access_log.* | grep 304 | cut -f7 | sort | uniq -c | sort -nr | head -n 30
 43468 /feeds/atom.xml
 31113 /

@@ -40,7 +40,7 @@ Safari は、AOM には参加しているようだが WebP の対応も割と最
 
 node の方が GIF にも対応してそうだったので、こちらを採用した。
 
-```shell-session
+```console
 $ npx avif -h
 
 Convert images to AVIF
@@ -73,7 +73,7 @@ Options:
 
 いくつか調べると `libavif` の Wiki に書かれていたので、これを用いて ffmpeg と avifenc を組み合わせて生成することができた。
 
-```shell-session
+```console
 $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $*.avif
 ```
 

@@ -44,7 +44,7 @@ Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyft
 
 対象を subset.txt に保存し、変換は以下のようにした。
 
-```sh-session
+```console
 $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-features='*' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
 
@@ -58,7 +58,7 @@ $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../subset.txt --layout-featur
 
 コマンドヘルプを見ながら適当につけた以下のオプションが問題である。
 
-```sh-session
+```console
 --layout-features='*'
 ```
 
@@ -126,7 +126,7 @@ palt とは別に、字体を置き換える pwid があるが、そちらは Ch
 
 そこで結果として `palt` のみを指定してフォントをビルドすることにした。
 
-```sh-session
+```console
 $ pyftsubset NotoSansCJKjp-Regular.otf --text-file=../All.txt --layout-features='palt' --flavor=woff2 --output-file=NotoSansCJKjp-Regular-Jxck-20191011.woff2
 ```
 
