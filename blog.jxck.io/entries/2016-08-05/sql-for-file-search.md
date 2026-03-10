@@ -122,7 +122,7 @@ false   false   true    core
 
 つまりこんな感じだ。
 
-```ruby
+```rb
 Dir.glob('from 句にあたる */** 的なの')
    .select('where 句にあたる filter の proc')
    .sort('order by 句にあたる sort の proc')
@@ -139,7 +139,7 @@ where size > 1000
 
 は
 
-```ruby
+```rb
 File.size(file) > 100
 ```
 
@@ -147,7 +147,7 @@ File.size(file) > 100
 
 これを文字として得ている `'size'`, `'>'`, `'100'` を使って動的に組み立てると以下になる。
 
-```ruby
+```rb
 File
   .method('size')
   .call(file)

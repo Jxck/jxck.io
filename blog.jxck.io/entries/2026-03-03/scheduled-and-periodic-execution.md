@@ -200,7 +200,7 @@
 
 では、それがざっくりこんな実装だったとしよう。
 
-```ruby
+```rb
 loop do
   task()
   sleep(10 * 60)
@@ -293,7 +293,7 @@ end
 
 こういうやつだ。
 
-```ruby
+```rb
 loop do
   task()
   sleep(10 * 60)

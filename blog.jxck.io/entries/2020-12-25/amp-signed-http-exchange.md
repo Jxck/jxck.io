@@ -127,7 +127,7 @@ toml を更新して起動し直すと成功。
 
 これを systemd に登録して完了。
 
-```service:amppkg.service
+```systemd:amppkg.service
 ```
 
 (最初、検証時に作られた `/tmp/amppkg-ocsp` の権限が起動ユーザのみに絞られており、Systemd を別ユーザで起動すると既存のファイルにアクセスできずに失敗した。単純に消せばいい。)
@@ -173,7 +173,7 @@ h2o は Path ベースでの Proxy は簡単だが、ヘッダをベースに分
 
 (機能は知っていたが、Example を見て同じドメインの別のパスに移譲すると勝手に思い込んでいたが、普通に別ポートにも移譲できた。)
 
-```ruby:amppkg.rb
+```rb:amppkg.rb
 ```
 
 
