@@ -1,0 +1,13 @@
+[Unit]
+Description=Run certbot renewal every 2 days
+
+[Timer]
+# 毎月1日から2日おき、06:00 に実行
+OnCalendar=*-*-01/2 06:00:00
+# 最大1時間のランダム遅延
+RandomizedDelaySec=3600
+# タイマー停止中に実行が漏れた場合、起動時に実行する
+Persistent=true
+
+[Install]
+WantedBy=timers.target

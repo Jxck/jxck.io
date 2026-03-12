@@ -1,0 +1,8 @@
+[Unit]
+Description=Certbot renewal
+
+[Service]
+# 1回実行して終了(常駐しない)
+Type=oneshot
+# 期限が近い証明書を更新する
+ExecStart=/home/linuxbrew/.linuxbrew/bin/certbot renew --quiet
