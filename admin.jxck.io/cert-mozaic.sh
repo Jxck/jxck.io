@@ -1,4 +1,4 @@
-sudo certbot certonly \
+sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   -n \
   --webroot \
   --agree-tos \

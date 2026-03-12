@@ -1,15 +1,4 @@
-#certbot-auto certonly \
-#  # --force-renewal \
-#  --manual \
-#  --email jxck@jxck.io \
-#  --agree-tos \
-#  -d jxck.io \
-#  -d *.jxck.io \
-#  --manual-public-ip-logging-ok \
-#  --preferred-challenges dns-01 \
-#  --server https://acme-v02.api.letsencrypt.org/directory
-
-sudo certbot certonly \
+sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   -n \
   --webroot \
   --agree-tos \
@@ -17,6 +6,7 @@ sudo certbot certonly \
   -w ../www.jxck.io \
   --expand \
   --force-renewal \
+  --preferred-profile shortlived \
   --cert-name jxck.io \
   -d jxck.io \
   -d www.jxck.io \
@@ -36,15 +26,3 @@ sudo certbot certonly \
   -d ipv6.jxck.io \
   -d ipv4.jxck.io \
   -d note.jxck.io
-  
-  # -d publisher.labs.jxck.io \
-  # -d advertiser.labs.jxck.io \
-  # -d adtech.labs.jxck.io \
-  # -d ssp.labs.jxck.io \
-  # -d dsp.labs.jxck.io \
-  # -d shopping.labs.jxck.io \
-  # -d travel.labs.jxck.io \
-
-
-cd /keys
-sudo ./pkcs8.sh
