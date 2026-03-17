@@ -2692,3 +2692,16 @@ eyeD3 --title "ep199 Monthly Platform 202602" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep200.mp3
+
+eyeD3 --title "ep200 Monthly Ecosystem 202603" \
+      --track 208 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep200.mp3
+
+
+

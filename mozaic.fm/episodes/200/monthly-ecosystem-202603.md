@@ -3,9 +3,13 @@ type: podcast
 tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep200.mp3
 published_at: 2026-03-18
-guest: [@sakito](https://x.com/__sakito__)
-guest: [@re-taro](https://x.com/re_taro_)
-guest: [@yukukotani](https://x.com/yukukotani)
+guests:
+  - name: "@sakito"
+    url: https://x.com/__sakito__
+  - name: "@re-taro"
+    url: https://x.com/re_taro_
+  - name: "@yukukotani"
+    url: https://x.com/yukukotani
 ---
 
 # ep200 Monthly Ecosystem 202603
@@ -13,7 +17,6 @@ guest: [@yukukotani](https://x.com/yukukotani)
 ## Theme
 
 第 200 回のテーマは 2026 年 3 月の Monthly Ecosystem です。
-
 
 ## Show Note
 
@@ -160,7 +163,6 @@ guest: [@yukukotani](https://x.com/yukukotani)
   - https://x.com/nodacry/status/2033184666291982497
   - 独学の Win 向けゲームを iPhone に移植
   - 企画力ある人が AI を手に入れる強さに期待
-
 
 ## Events
 
