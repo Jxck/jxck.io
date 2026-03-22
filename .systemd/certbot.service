@@ -6,3 +6,6 @@ Description=Certbot renewal
 Type=oneshot
 # 期限が近い証明書を更新する
 ExecStart=/home/linuxbrew/.linuxbrew/bin/certbot renew --quiet
+# 証明書更新後に h2o をリロードして新しい証明書を反映する
+# (証明書が更新されなかった場合も毎回 reload が走るが軽量なので問題ない)
+ExecStartPost=/bin/systemctl reload h2o
