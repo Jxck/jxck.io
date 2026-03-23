@@ -296,9 +296,9 @@
           <p>これによって rendering process がサンドボックス化されている。つまり、インターネットの有象無象なコードを落として実行し、仮に rendering process が攻撃されても、そこから browser process は守られているため、OS から情報を抜いたりはできない。
           <p>
             <picture>
-              <source type=image/avif srcset=chrome-process-architecture.avif?240326_010150>
-              <source type=image/webp srcset=chrome-process-architecture.webp?240326_010558>
-              <img loading=lazy decoding=async src=chrome-process-architecture.png?260310_001057 alt="chrome process architecture" width=720 height=405>
+              <source type=image/avif srcset=chrome-process-architecture.avif?260323_164112>
+              <source type=image/webp srcset=chrome-process-architecture.webp?260309_235641>
+              <img loading=lazy decoding=async src=chrome-process-architecture.png?260309_235641 alt="chrome process architecture" width=720 height=405>
             </picture>
           </p>
           <p>というあたりを把握しておくと検索しやすい。
@@ -310,9 +310,9 @@
           <p>何かバグを見つけた時に報告する先。
           <p>
             <picture>
-              <source type=image/avif srcset=crbug.avif?240326_010221>
-              <source type=image/webp srcset=crbug.webp?240326_010558>
-              <img loading=lazy decoding=async src=crbug.png?260310_001057 alt="crbug" width=4226 height=1350>
+              <source type=image/avif srcset=crbug.avif?260323_164112>
+              <source type=image/webp srcset=crbug.webp?260309_235641>
+              <img loading=lazy decoding=async src=crbug.png?260309_235641 alt="crbug" width=4226 height=1350>
             </picture>
           </p>
           <p>最近 Issue Tracker という新しいツールにマイグレートされたので、使い方がまだよくわからない。調べて出てくる crbug は大抵古い UI なので注意が必要。
@@ -346,9 +346,9 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <p>Git で upload したコードはここに入りレビューされる。この UI は慣れないと難しい。
           <p>
             <picture>
-              <source type=image/avif srcset=crrev.avif?240326_010224>
-              <source type=image/webp srcset=crrev.webp?240326_010558>
-              <img loading=lazy decoding=async src=crrev.png?260310_001057 alt="crrev" width=1872 height=864>
+              <source type=image/avif srcset=crrev.avif?260323_164112>
+              <source type=image/webp srcset=crrev.webp?260309_235641>
+              <img loading=lazy decoding=async src=crrev.png?260309_235641 alt="crrev" width=1872 height=864>
             </picture>
           </p>
           <p>コントリビューションガイドを読んでおくといい。
@@ -366,85 +366,85 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <p>crrev には Patchset という概念があり、これは複数コミットがあっても <code translate=no>git cl upload</code> した単位でつく。
           <p>
             <picture>
-              <source type=image/avif srcset=review-files.avif?240326_010241>
-              <source type=image/webp srcset=review-files.webp?240326_010558>
-              <img loading=lazy decoding=async src=review-files.png?260310_001057 alt="review files" width=1466 height=1116>
+              <source type=image/avif srcset=review-files.avif?260323_164112>
+              <source type=image/webp srcset=review-files.webp?260309_235641>
+              <img loading=lazy decoding=async src=review-files.png?260309_235641 alt="review files" width=1466 height=1116>
             </picture>
           </p>
           <p>この単位でレビューコメントが付き、それに対応していくことになる。
           <p>各ディレクトリにはオーナーがおり、全てのファイルのオーナーにレビューをしてもらう必要がある。適切なオーナーがレビューに入ってないと、ファイルの頭に赤いバツが出る。
           <p>
             <picture>
-              <source type=image/avif srcset=missing-owner.avif?240426_182718>
-              <source type=image/webp srcset=missing-owner.webp?240426_182752>
-              <img loading=lazy decoding=async src=missing-owner.png?260310_001057 alt="missing-owner" width=864 height=263>
+              <source type=image/avif srcset=missing-owner.avif?260323_164112>
+              <source type=image/webp srcset=missing-owner.webp?260309_235641>
+              <img loading=lazy decoding=async src=missing-owner.png?260309_235641 alt="missing-owner" width=864 height=263>
             </picture>
           </p>
           <p>オーナーは、各ディレクトリの OWNERS ファイルを探すと書かれている。基本は SUGGESTED OWNER のボタンで自動で探してサジェストされるが、ファイルから選んで足しても良い。
           <p>ある程度のコードのコア部分のレビューが終わったら、テストや設定ファイルのオーナーを追加して、マージまでに全員のレビューをもらわないと、マージ直前で警告が出て差し戻される。
           <p>
             <picture>
-              <source type=image/avif srcset=review.avif?240326_010244>
-              <source type=image/webp srcset=review.webp?240326_010558>
-              <img loading=lazy decoding=async src=review.png?260310_001057 alt="review" width=1246 height=394>
+              <source type=image/avif srcset=review.avif?260323_164112>
+              <source type=image/webp srcset=review.webp?260309_235641>
+              <img loading=lazy decoding=async src=review.png?260309_235641 alt="review" width=1246 height=394>
             </picture>
           </p>
           <p>レビューが付いたら、そこに対して REPLY でコメントを返すか、次の Patchset で直して、直ったら DONE にする。
           <p>コメントをつけたら、それだけで相手に通知がいくわけではない。コメントをつけたり DONE を押したら、必ず画面上部の REPLY を押す必要がある。これがないと Submit されないので、夜コメント書いて朝返事があるかなと思ったら REPLY 押し忘れてたみたいなことがあるので注意。
           <p>
             <picture>
-              <source type=image/avif srcset=reply.avif?240326_010229>
-              <source type=image/webp srcset=reply.webp?240326_010558>
-              <img loading=lazy decoding=async src=reply.png?260310_001057 alt="reply" width=770 height=246>
+              <source type=image/avif srcset=reply.avif?260323_164112>
+              <source type=image/webp srcset=reply.webp?260309_235641>
+              <img loading=lazy decoding=async src=reply.png?260309_235641 alt="reply" width=770 height=246>
             </picture>
           </p>
           <p>今ボールを持っている人は、名前の隣に Attention (矢印)のマークが付く。
           <p>
             <picture>
-              <source type=image/avif srcset=attention.avif?240426_185502>
-              <source type=image/webp srcset=attention.webp?240426_185502>
-              <img loading=lazy decoding=async src=attention.jpeg?260310_001057 alt="attention" width=978 height=492>
+              <source type=image/avif srcset=attention.avif?260323_164112>
+              <source type=image/webp srcset=attention.webp?260309_235641>
+              <img loading=lazy decoding=async src=attention.jpeg?260309_235641 alt="attention" width=978 height=492>
             </picture>
           </p>
           <p>Attention が自分のままだとレビューをしてもらえないので、レビューしてもらう準備が整ったら、ここの MODIFY から Attention をレビュアーに変える必要がある。
           <p>
             <picture>
-              <source type=image/avif srcset=modify-attention-set.avif?240410_140759>
-              <source type=image/webp srcset=modify-attention-set.webp?240410_140759>
-              <img loading=lazy decoding=async src=modify-attention-set.png?260310_001057 alt="modify attention set" width=834 height=127>
+              <source type=image/avif srcset=modify-attention-set.avif?260323_164112>
+              <source type=image/webp srcset=modify-attention-set.webp?260309_235641>
+              <img loading=lazy decoding=async src=modify-attention-set.png?260309_235641 alt="modify attention set" width=834 height=127>
             </picture>
           </p>
           <p>ここで Reviewer に矢印を移して Send するとボールが相手に移る。
           <p>
             <picture>
-              <source type=image/avif srcset=modify-attention-to.avif?240410_140759>
-              <source type=image/webp srcset=modify-attention-to.webp?240410_140759>
-              <img loading=lazy decoding=async src=modify-attention-to.png?260310_001057 alt="modify attention to" width=839 height=254>
+              <source type=image/avif srcset=modify-attention-to.avif?260323_164112>
+              <source type=image/webp srcset=modify-attention-to.webp?260309_235641>
+              <img loading=lazy decoding=async src=modify-attention-to.png?260309_235641 alt="modify attention to" width=839 height=254>
             </picture>
           </p>
           <p>Rebase は UI 上からできるが、全部のコメントを一旦終えてから Rebase するのがマナーらしい。
           <p>Rebase が終わったら、&quot;CQ DRY RUN&quot; する。これが CI でビルドと全テストを流すボタン。ただし、権限のある人にしかできないので、Reviewer にやってもらうことになる。
           <p>
             <picture>
-              <source type=image/avif srcset=rebase-dry-run.avif?240326_010227>
-              <source type=image/webp srcset=rebase-dry-run.webp?240326_010558>
-              <img loading=lazy decoding=async src=rebase-dry-run.png?260310_001057 alt="rebase-dry-run" width=688 height=80>
+              <source type=image/avif srcset=rebase-dry-run.avif?260323_164112>
+              <source type=image/webp srcset=rebase-dry-run.webp?260309_235641>
+              <img loading=lazy decoding=async src=rebase-dry-run.png?260309_235641 alt="rebase-dry-run" width=688 height=80>
             </picture>
           </p>
           <p>全部終わると、Code-Review +1 がもらえる。これがないとマージされない。
           <p>
             <picture>
-              <source type=image/avif srcset=lgtm.avif?240326_010226>
-              <source type=image/webp srcset=lgtm.webp?240326_010558>
-              <img loading=lazy decoding=async src=lgtm.png?260310_001057 alt="lgtm" width=1204 height=360>
+              <source type=image/avif srcset=lgtm.avif?260323_164112>
+              <source type=image/webp srcset=lgtm.webp?260309_235641>
+              <img loading=lazy decoding=async src=lgtm.png?260309_235641 alt="lgtm" width=1204 height=360>
             </picture>
           </p>
           <p>テストが通り Code-Review +2 がもらえると、ついに Ready to submit になり、&quot;SUBMIT TO CQ&quot; ボタンが出る。
           <p>
             <picture>
-              <source type=image/avif srcset=ready-to-submit.avif?240426_182718>
-              <source type=image/webp srcset=ready-to-submit.webp?240426_182752>
-              <img loading=lazy decoding=async src=ready-to-submit.jpeg?260310_001057 alt="ready to submit" width=1896 height=606>
+              <source type=image/avif srcset=ready-to-submit.avif?260323_164112>
+              <source type=image/webp srcset=ready-to-submit.webp?260309_235641>
+              <img loading=lazy decoding=async src=ready-to-submit.jpeg?260309_235641 alt="ready to submit" width=1896 height=606>
             </picture>
           </p>
           <p>これを権限のある人に押してもらうと、最後にテストが走ってからマージされる。
@@ -456,9 +456,9 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <p>まず、マージされた Patchset のコミットハッシュを取得する。(crrev だと Patchset の横からコピーできる)
           <p>
             <picture>
-              <source type=image/avif srcset=patchset-hash.avif?240326_010227>
-              <source type=image/webp srcset=patchset-hash.webp?240326_010558>
-              <img loading=lazy decoding=async src=patchset-hash.png?260310_001057 alt="patchset hash" width=664 height=132>
+              <source type=image/avif srcset=patchset-hash.avif?260323_164112>
+              <source type=image/webp srcset=patchset-hash.webp?260309_235641>
+              <img loading=lazy decoding=async src=patchset-hash.png?260309_235641 alt="patchset hash" width=664 height=132>
             </picture>
           </p>
           <p>それを Chromium Dash の Commits に入れれば情報が出る。
@@ -482,9 +482,9 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           </ul>
           <p>
             <picture>
-              <source type=image/avif srcset=commit-landed.avif?240326_010152>
-              <source type=image/webp srcset=commit-landed.webp?240326_010558>
-              <img loading=lazy decoding=async src=commit-landed.png?260310_001057 alt="commit landed" width=1398 height=188>
+              <source type=image/avif srcset=commit-landed.avif?260323_164112>
+              <source type=image/webp srcset=commit-landed.webp?260309_235641>
+              <img loading=lazy decoding=async src=commit-landed.png?260309_235641 alt="commit landed" width=1398 height=188>
             </picture>
           </p>
           <p>今回の場合は 96 でリリースされたことがわかる。
@@ -813,9 +813,9 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <p>C++ のシンボルやヘッダの参照が壊れて真っ赤になる時がある。
           <p>
             <picture>
-              <source type=image/avif srcset=clangd-error.avif?260310_001057>
-              <source type=image/webp srcset=clangd-error.webp?240403_162721>
-              <img loading=lazy decoding=async src=clangd-error.png?260310_001057 alt="clangd-error" width=1386 height=1140>
+              <source type=image/avif srcset=clangd-error.avif?260309_235641>
+              <source type=image/webp srcset=clangd-error.webp?260309_235641>
+              <img loading=lazy decoding=async src=clangd-error.png?260309_235641 alt="clangd-error" width=1386 height=1140>
             </picture>
           </p>
           <p>これは、clangd 用のデータベースがなく、自動では作られないかららしい。
@@ -1010,9 +1010,9 @@ content_shell took too long to startup.
         <p>新機能の追加は、その機能についての Chrome Status エントリの作成から始まる。
         <p>
           <picture>
-            <source type=image/avif srcset=platform-status-create.avif?240410_172256>
-            <source type=image/webp srcset=platform-status-create.webp?240410_172256>
-            <img loading=lazy decoding=async src=platform-status-create.jpeg?260310_001057 alt="Create Platform Status Entry" width=850 height=366>
+            <source type=image/avif srcset=platform-status-create.avif?260323_164112>
+            <source type=image/webp srcset=platform-status-create.webp?260309_235641>
+            <img loading=lazy decoding=async src=platform-status-create.jpeg?260309_235641 alt="Create Platform Status Entry" width=850 height=366>
           </picture>
         </p>
         <p>作成したエントリは以下。
@@ -1027,34 +1027,34 @@ content_shell took too long to startup.
         <p>下部にある Development Stages から、この機能に関わるあらゆる情報を入力して集約することができる。
         <p>
           <picture>
-            <source type=image/avif srcset=development-stages.avif?240410_172256>
-            <source type=image/webp srcset=development-stages.webp?240410_172256>
-            <img loading=lazy decoding=async src=development-stages.jpeg?260310_001057 alt="Development Stages" width=894 height=308>
+            <source type=image/avif srcset=development-stages.avif?260323_164112>
+            <source type=image/webp srcset=development-stages.webp?260309_235641>
+            <img loading=lazy decoding=async src=development-stages.jpeg?260309_235641 alt="Development Stages" width=894 height=308>
           </picture>
         </p>
         <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかかるっぽい。
         <p>
           <picture>
-            <source type=image/avif srcset=review-request.avif?240423_144012>
-            <source type=image/webp srcset=review-request.webp?240423_144012>
-            <img loading=lazy decoding=async src=review-request.png?260310_001057 alt="Review Request" width=1256 height=248>
+            <source type=image/avif srcset=review-request.avif?260323_164112>
+            <source type=image/webp srcset=review-request.webp?260309_235641>
+            <img loading=lazy decoding=async src=review-request.png?260309_235641 alt="Review Request" width=1256 height=248>
           </picture>
         </p>
         <p>通常は Intent to Prototype で開発開始を宣言するが、すでに議論と合意が終わっている仕様などは、開発してから Intent to Ship を行うこともある。
         <p>情報を入力し終えたら、右上の鉛筆マークから移動する。
         <p>
           <picture>
-            <source type=image/avif srcset=platform-status-edit.avif?240418_152030>
-            <source type=image/webp srcset=platform-status-edit.webp?240418_152030>
-            <img loading=lazy decoding=async src=platform-status-edit.jpeg?260310_001057 alt="platform status edit" width=1792 height=236>
+            <source type=image/avif srcset=platform-status-edit.avif?260323_164112>
+            <source type=image/webp srcset=platform-status-edit.webp?260309_235641>
+            <img loading=lazy decoding=async src=platform-status-edit.jpeg?260309_235641 alt="platform status edit" width=1792 height=236>
           </picture>
         </p>
         <p>すると Intents のメールを自動生成する UI が出てくる。基本はこれをコピって blink-dev に送れば良い。
         <p>
           <picture>
-            <source type=image/avif srcset=draft-intent-to-ship.avif?260310_001057>
-            <source type=image/webp srcset=draft-intent-to-ship.webp?240418_152030>
-            <img loading=lazy decoding=async src=draft-intent-to-ship.jpeg?260310_001057 alt="Draft intent to Ship email" width=1746 height=1036>
+            <source type=image/avif srcset=draft-intent-to-ship.avif?260309_235641>
+            <source type=image/webp srcset=draft-intent-to-ship.webp?260309_235641>
+            <img loading=lazy decoding=async src=draft-intent-to-ship.jpeg?260309_235641 alt="Draft intent to Ship email" width=1746 height=1036>
           </picture>
         </p>
         <p>blink-dev で API オーナーから LGTM が 3 つもらえれば、その機能を Ship することができる。

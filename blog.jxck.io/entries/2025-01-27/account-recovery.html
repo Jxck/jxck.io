@@ -218,7 +218,7 @@
         <h2 id="2fa"><a href="#2fa">2FA</a></h2>
         <p>二要素認証は、構図としては以下のようになる。
         <p>
-          <img loading=lazy decoding=async src=./2-factor-auth.drawio.svg?250127_154523 alt="Password と Authenticator の二要素認証" width=200 height=300>
+          <img loading=lazy decoding=async src=./2-factor-auth.drawio.svg?250127_001824 alt="Password と Authenticator の二要素認証" width=200 height=300>
         </p>
         <p>「記憶」に頼る Password と独立させるために、YubiKey や Titan のような Authenticator の「所持」要素を入れるのは、2FA としては理想かもしれない。しかし、壊れたり流されたりすれば終わりだ。
         <p>実際、WebAuthn (not Passkey) が出てきた頃は、「2 つの Authenticator を買い、1 つは普段使い、1 つは貸金庫に保存」などという話もあった。しかし、物理 Authenticator を何個か使ってきたが、割とすぐ壊れ、何度か買い直したので、バックアップとしての心もとなさを感じている。
@@ -226,7 +226,7 @@
         <p>最近では 2FA 適用時に、バックアップコードを提供することが多い。このバックアップコードも「災害」を前提に考えると、意外と保管が難しい。紙で印刷したり、USB に入れて貸金庫に入れても、何かのはずみでサービス側のコードを更新してしまうと、保管したものは無効になるという同期の問題もある。
         <p>結局、筆者は 2FA だろうがバックアップコードだろうが、全て 1Password のログインアイテムに、Password と一緒に保存している。二要素ではなく、俗に言う一要素二段階の状態だが、可用性を重視しているのでそれ自体は気にしていない。
         <p>
-          <img loading=lazy decoding=async src=./1-factor-2-step-auth.drawio.svg?250127_154523 alt="1Password での一要素二段階認証" width=200 height=300>
+          <img loading=lazy decoding=async src=./1-factor-2-step-auth.drawio.svg?250127_001824 alt="1Password での一要素二段階認証" width=200 height=300>
         </p>
         <p>代わりに、Passkey だろうと乱数表だろうと、全て 1Password に保存し、1Password の管理にだけ集中できるようにすることで、運用と認知の負荷をかなり下げることができている。
         <p>2FA は、簡単な Password が使い回されていた時代に、後付けで「それだけでは入れなくする」目的で追加された側面が大きいと考えている。すでに Password Manager で複雑な Password を登録し、さらに追加の要素を足しているのであれば、その時点でほとんどの攻撃に対策はできている。
@@ -254,9 +254,9 @@
         </ol>
         <p>
           <picture>
-            <source type=image/avif srcset=./1password-signin.avif?250127_154118>
-            <source type=image/webp srcset=./1password-signin.webp?250127_155644>
-            <img loading=lazy decoding=async src=./1password-signin.png?260310_001057 alt="1Password のサインイン画面。前述の 3 つが必要" width=476 height=413>
+            <source type=image/avif srcset=./1password-signin.avif?260323_164112>
+            <source type=image/webp srcset=./1password-signin.webp?260309_235641>
+            <img loading=lazy decoding=async src=./1password-signin.png?260309_235641 alt="1Password のサインイン画面。前述の 3 つが必要" width=476 height=413>
           </picture>
         </p>
         <p>1 と 3 は、筆者は記憶に頼っている。特に 3 は、1Password を使っていれば高頻度で入力することになるため、普段使いしている筆者にとって問題はない。

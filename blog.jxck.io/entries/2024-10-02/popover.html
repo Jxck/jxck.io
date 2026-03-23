@@ -428,7 +428,7 @@
         <p>Anchor に対して相対配置する場合は、Anchor となる要素の周囲のどこかに配置することになるため、先ほどの「左上」や「右下」などの指定は頻出することになる。
         <p>このケースに対して、<code translate=no>anchor()</code> を用いて指定する代わりに「Anchor の周囲のどこに配置するか」を指定できるように導入されたのが Position Area Grid だ。
         <p>
-          <img loading=lazy decoding=async src=position-area-grid.drawio.svg?241003_012609 alt="Anchor を中心に 9 個に分割したグリッド" width=300 height=300>
+          <img loading=lazy decoding=async src=position-area-grid.drawio.svg?241003_012232 alt="Anchor を中心に 9 個に分割したグリッド" width=300 height=300>
         </p>
         <p><code translate=no>position-anchor</code> を指定した要素に <code translate=no>position-area</code> で、表示したい位置を指定する。(もともとは <code translate=no>inset-area</code> という名前だったが、指定する側からすれば Position なのでこの名前に変更された。)
         <p>先ほどの「右下」を <code translate=no>position-anchor</code> を使い、ロジカルプロパティで指定するなら、以下のようになる。
@@ -519,9 +519,9 @@
         <p>例えば、GitHub のリンクをマウスオーバーした場合、Issue なら概要、User ならプロフィールが Popover されるだろう。プロフィールの場合は、アイコンが Anchor になる。
         <p>
           <picture>
-            <source type=image/avif srcset=github-profile-popover.avif?241002_223502>
-            <source type=image/webp srcset=github-profile-popover.webp?241002_223655>
-            <img loading=lazy decoding=async src=github-profile-popover.png?260310_001057 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
+            <source type=image/avif srcset=github-profile-popover.avif?260323_164112>
+            <source type=image/webp srcset=github-profile-popover.webp?260309_235641>
+            <img loading=lazy decoding=async src=github-profile-popover.png?260309_235641 alt="GitHub のアカウントをマウスオーバーすると開くプロフィールのポップオーバー" width=844 height=662>
           </picture>
         </p>
         <p>このような Popover は、画面中のすべてのアカウントごとに <code translate=no>&lt;div popover&gt;</code> を作っておくのではなく、1 つ用意してその内容を書き換えながら再利用する実装が多い。

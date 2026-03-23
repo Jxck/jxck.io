@@ -167,8 +167,8 @@
         <p>マウスが乗ってないと出ない UI も、そこに Tab などでフォーカスを移し、その状態で Dev Tools の <code translate=no>&quot;Emulate a focused page&quot;</code> を有効にすれば良い。
         <p>
           <video title="Tab などでフォーカスした状態で "Emulate a focused page" を有効にする" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=4.emulate-a-focused-page.mp4?240330_162816>
-            <source type=video/webm src=4.emulate-a-focused-page.webm?240330_162816>
+            <source type=video/mp4 src=4.emulate-a-focused-page.mp4?240330_162620>
+            <source type=video/webm src=4.emulate-a-focused-page.webm?240330_162620>
           </video>
         </p>
       </section>
@@ -184,8 +184,8 @@
         <p>この UI を表示した状態で Devtools で DOM を見たい場合、Devtools 側にマウスを移動すると UI が消えてしまい、inspect できない。
         <p>
           <video title="マウスオーバーで出る UI が devtools でうまく inspect できない様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=0.debug-mouseover.mp4?231116_154951>
-            <source type=video/webm src=0.debug-mouseover.webm?231116_154951>
+            <source type=video/mp4 src=0.debug-mouseover.mp4?210820_183047>
+            <source type=video/webm src=0.debug-mouseover.webm?210820_183047>
           </video>
         </p>
         <p>JS のどの処理で変更されているかわかっていれば、そこに break point を打って止めればよいのだが、近年の bundle/minify されたコードを source map なしにデバッグすると、面倒な上にムダに時間がかかる場合もある。
@@ -200,8 +200,8 @@
         <p>GitHub の場合は、アイコンの mouseleave と、表示されたプロフィールの mouseleave を消すと、落ち着いて DOM を inspect できるようになる。
         <p>
           <video title="mouseleave を消すことで UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=1.remove-mouseleave.mp4?231116_154951>
-            <source type=video/webm src=1.remove-mouseleave.webm?231116_154951>
+            <source type=video/mp4 src=1.remove-mouseleave.mp4?210820_183047>
+            <source type=video/webm src=1.remove-mouseleave.webm?210820_183047>
           </video>
         </p>
       </section>
@@ -218,8 +218,8 @@
         <p>GitHub の場合は、ページ下部に非表示の DOM が先にあり、この属性を変えているタイプの実装なので、そこが判明していれば、以下のように inspect できる。
         <p>
           <video title="attribute modification に break point を設定し UI が消えないようにし inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=2.break-on-state.mp4?231116_154951>
-            <source type=video/webm src=2.break-on-state.webm?231116_154951>
+            <source type=video/mp4 src=2.break-on-state.mp4?210820_183047>
+            <source type=video/webm src=2.break-on-state.webm?210820_183047>
           </video>
         </p>
       </section>
@@ -230,8 +230,8 @@
         <p>GitHub の場合は、プロフィールを表示してから F8 を押してからマウスを動かせば、mouseleave の JS 発火時に break できる。
         <p>
           <video title="UI が消える前に F8 でスクリプト実行を停止し inspect する様のスクリーンレコード" width=2880 height=1800 controls playsinline>
-            <source type=video/mp4 src=3.break-F8.mp4?231116_154951>
-            <source type=video/webm src=3.break-F8.webm?231116_154951>
+            <source type=video/mp4 src=3.break-F8.mp4?210820_183047>
+            <source type=video/webm src=3.break-F8.webm?210820_183047>
           </video>
         </p>
         <p>同じことを、console に <code translate=no>setTimeout(() =&gt; {debugger}, 1000)</code> を貼り付けて 1 秒以内に UI を出して、debugger で JS を止めるというやり方で紹介していることもあるようだが、やっていることは同じだ。
