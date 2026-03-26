@@ -1,14 +1,12 @@
 Proc.new do |env|
-  # env["rack.errors"].p()
-  # logger = env["rack.errors"]
   path = env["PATH_INFO"]
-  if path === "/index.html"
-    next [399, {}, []]
+  if path == "/index.html"
+    next [308, {"Location" => "/tags"}, []]
   end
-  matched = path.match("/(.*).html")
+  matched = path.match(/\/(.+)\.html$/)
   if matched
     tag = matched[1]
-    next [308, { "Content-Type" => "text/html", "Location" => "/tags##{tag}" }, []]
+    next [308, {"Location" => "/tags##{tag}"}, []]
   end
   [399, {}, []]
 end
