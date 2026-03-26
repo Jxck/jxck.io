@@ -335,7 +335,7 @@ function customize(ast, { host, base }) {
         if (node.level === 2) {
           const text = node.children.at(0).text
           if (text === `Intro` || text === `Theme`) {
-            state.description = hsc(serialize_description(node.parent))
+            state.description = serialize_description(node.parent)
           }
         }
 
