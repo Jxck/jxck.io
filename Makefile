@@ -1,9 +1,10 @@
-.PHONY: build compile preview draft fmt install update image png jpeg gif webp avif comp clean remove space singler format start stop status kill restart reload test logf
+.PHONY: build compile preview draft fmt mtime install update image png jpeg gif webp avif comp clean remove space singler format start stop status kill restart reload test logf
 
 NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 
 build:
 	$(MAKE) fmt
+	$(MAKE) mtime
 	cd .src && $(NODE) build.js build
 	$(MAKE) comp
 
@@ -20,6 +21,9 @@ draft:
 fmt:
 	.src/markdown/formatter.js blog.jxck.io/entries/**/*.md
 	npx prettier -w mozaic.fm/episodes/**/*.md
+
+mtime:
+	git restore-mtime blog.jxck.io/entries/**/*.md mozaic.fm/episodes/**/*.md
 
 install:
 	brew bundle --file=$(DOTFILES)/Brewfile
