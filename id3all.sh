@@ -2705,3 +2705,16 @@ eyeD3 --title "ep200 Monthly Ecosystem 202603" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep201.mp3
+
+eyeD3 --title "ep201 Monthly Platform 202603" \
+      --track 209 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep201.mp3
+
+
+
