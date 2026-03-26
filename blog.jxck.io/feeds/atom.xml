@@ -5,21 +5,23 @@
 <link rel="self" type="application/atom+xml" href="https://blog.jxck.io/feeds/atom.xml"/>
 <author><name>Jxck</name></author>
 <id>tag:blog.jxck.io,2016:feed</id>
-<updated>2026-03-23T00:00:00Z</updated>
+<updated>2026-03-24T00:00:00Z</updated>
 
   <entry>
    <title type="html">HTTPS 証明書クロニクル</title>
    <link href="https://blog.jxck.io/entries/2026-03-23/https-certificate-chronicle.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-03-23</id>
-   <updated>2026-03-23T00:00:00Z</updated>
-   <summary>Web サービスをデプロイする際に、CA から証明書を取得し HTTPS で暗号化するのが一般的となった。かつては &quot;SSL 証明書&quot; として、メールでやり取りし有料で購入するのが常識だったが、自動/無料で取得することが増えた。かつては 5~10 年あった有効期限もどんどん短くなり、今では 6 日の証明書も発行されている。このように、証明書を取り巻く変遷は目覚ましく、それは Web を取り巻く環境の劇的な変化を色濃く反映した結果と言える。http:// が https:// になった裏で何が起こり、これからどうなっていくのか。まとめていく。(極力ソースを付記するが、既に消えて WebArchive にも残っていないものも多く、筆者の記憶に頼る情報も多い。)</summary>
+   <published>2026-03-23T00:00:00Z</published>
+   <updated>2026-03-24T00:00:00Z</updated>
+   <summary>Web サービスをデプロイする際に、CA から証明書を取得し HTTPS で暗号化するのが一般的となった。かつては &#34;SSL 証明書&#34; として、メールでやり取りし有料で購入するのが常識だったが、自動/無料で取得することが増えた。かつては 5~10 年あった有効期限もどんどん短くなり、今では 6 日の証明書も発行されている。このように、証明書を取り巻く変遷は目覚ましく、それは Web を取り巻く環境の劇的な変化を色濃く反映した結果と言える。http:// が https:// になった裏で何が起こり、これからどうなっていくのか。まとめていく。(極力ソースを付記するが、既に消えて WebArchive にも残っていないものも多く、筆者の記憶に頼る情報も多い。)</summary>
   </entry>
 
   <entry>
    <title type="html">「定時実行」と「定期実行」の実装ガイド</title>
    <link href="https://blog.jxck.io/entries/2026-03-03/scheduled-and-periodic-execution.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-03-03</id>
-   <updated>2026-03-03T00:00:00Z</updated>
+   <published>2026-03-03T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>「毎時何時に実行」や「何時間ごとに実行」といった、タスクスケジューリングを実装する機会は少なくない。タスクを実装し cron に登録すれば、動くものを実装するのは難しくない。しかし、ひとたびタスクが思うように動かなかった途端、隠れていた要件が牙を剥く。一度でも痛い目を見た人は、それを経験的に疑い「まず色々と前提を確かめよう」という気持ちになり、例外処理を事前に固めることができる。今回は、実装方法そのものというよりも、「実装する前に確認すべき例外事項」を個人の経験を元に解説していく。</summary>
   </entry>
 
@@ -27,7 +29,8 @@
    <title type="html">ローカル HTTPS 開発専用ツール SPTTH を公開した</title>
    <link href="https://blog.jxck.io/entries/2026-02-25/sptth.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-02-25</id>
-   <updated>2026-02-25T00:00:00Z</updated>
+   <published>2026-02-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>http://localhost:3000 での開発には限界がある。しかし、本番と同じように https://example.com でアクセスできる環境をローカルに作るには、ドメインの解決、証明書の発行、443 での起動など、少し手間がかかる。そこで、必要な全てを 1 つのツールで行い、様々な開発環境を再現するためのツールを開発したので、紹介する。Jxck/sptth: reverse https proxy (https - sptth) for local developmenthttps://github.com/Jxck/sptth</summary>
   </entry>
 
@@ -35,7 +38,8 @@
    <title type="html">「カンファレンス開催ノウハウ」を公開します</title>
    <link href="https://blog.jxck.io/entries/2026-02-17/conference-know-how.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-02-17</id>
-   <updated>2026-02-17T00:00:00Z</updated>
+   <published>2026-02-17T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>コロナ禍が明け、カンファレンス文化も再開し、コロナ前かそれ以上の頻度で多くのカンファレンスが企画されるようになりました。しかし、コロナ中の断絶によってノウハウの継承が途絶えた部分もあり、後発のイベントが既知の失敗を重ねている場面も見られます。そこで、カンファレンス主催者の有志が集まり、それぞれのノウハウを持ち寄ってまとめた「カンファレンス開催ノウハウ」を作成しました。📔 カンファレンス開催ノウハウ - Google ドキュメント複数人で書いたため、この公開は同時に複数の有志によりブログなどで告知されます。</summary>
   </entry>
 
@@ -43,7 +47,8 @@
    <title type="html">text-scale によるユーザ指定倍率での文字拡大</title>
    <link href="https://blog.jxck.io/entries/2026-02-11/text-scale.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-02-11</id>
-   <updated>2026-02-11T00:00:00Z</updated>
+   <published>2026-02-11T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>小さい文字が見づらい場合、ユーザは OS の文字サイズを大きくすることで、視認性を調整することができる。こうした機能は大抵の OS が備えており、システムフォントのサイズなどに反映される。しかし、その指定がそのまま Web コンテンツにも反映されるかというと、必ずしもそうではない。この問題を解決するために、いくつかの標準が提案され、策定と実装が進んでいる。</summary>
   </entry>
 
@@ -51,7 +56,8 @@
    <title type="html">Global Privacy Control という法的効力を持つヘッダ</title>
    <link href="https://blog.jxck.io/entries/2026-02-05/gpc.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-02-05</id>
-   <updated>2026-02-05T00:00:00Z</updated>
+   <published>2026-02-05T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>GPC (Global Privacy Control) の策定と実装が進んでいる。このヘッダは、サービス、ユーザ、ブラウザ、全てにとって「無視することができない特別なヘッダ」となりつつある。たかだか 1 という値を送るだけのヘッダに、何の意味があるのか?失敗して歴史に消えつつある DNT と何が違うのか?解説していく。</summary>
   </entry>
 
@@ -59,7 +65,8 @@
    <title type="html">Web 技術年末試験 2025 講評 #web_exam2025</title>
    <link href="https://blog.jxck.io/entries/2026-01-24/web-exam-2025.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-01-24</id>
-   <updated>2026-01-24T00:00:00Z</updated>
+   <published>2026-01-24T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>2025 年の Web 技術を振り返る試験として、「Web 技術年末試験 2025」を実施した。その問題と想定解答、平均点などを公開する。</summary>
   </entry>
 
@@ -67,6 +74,7 @@
    <title type="html">Web の維持への寄付</title>
    <link href="https://blog.jxck.io/entries/2026-01-04/donation-for-web.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2026-01-04</id>
+   <published>2026-01-04T00:00:00Z</published>
    <updated>2026-01-04T00:00:00Z</updated>
    <summary>Web は誰のものでもなく、誰でも無料で使える。しかし、その状態を維持するための費用が、かかっていないわけではない。そこで、Web を生業にしている筆者としては、Web が壊れないための「維持コスト」をほんの一部でも負担するという意図をもって、寄付を行っている。</summary>
   </entry>
@@ -75,7 +83,8 @@
    <title type="html">2025 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2025-12-30/end-of-2025.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-12-30</id>
-   <updated>2025-12-30T00:00:00Z</updated>
+   <published>2025-12-30T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2025 年を振り返る。</summary>
   </entry>
 
@@ -83,7 +92,8 @@
    <title type="html">3PCA 33 日目: Outro</title>
    <link href="https://blog.jxck.io/entries/2025-12-09/3pc-finale.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-12-09</id>
-   <updated>2025-12-09T00:00:00Z</updated>
+   <published>2025-12-09T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、2023 年の 3rd Party Cookie Advent Calendar の最終日とする。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie</summary>
   </entry>
 
@@ -91,7 +101,8 @@
    <title type="html">Background Fetch API が消えそうだった話</title>
    <link href="https://blog.jxck.io/entries/2025-12-08/deprecating-background-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-12-08</id>
-   <updated>2025-12-08T00:00:00Z</updated>
+   <published>2025-12-08T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>「Background Fetch を使っているのが、世界であなたのサイトだけなんだけど、この機能消しても良い?」と、TPAC 2025 の会場で、Chrome の Service Worker チームの開発者と話していた際に言われた。</summary>
   </entry>
 
@@ -99,15 +110,17 @@
    <title type="html">Web とは何か</title>
    <link href="https://blog.jxck.io/entries/2025-11-19/web.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-19</id>
-   <updated>2025-11-19T00:00:00Z</updated>
-   <summary>見落とされがちだが、「Web とは何か」という仕様はない。Web を定義した W3C のドキュメントもなければ、IETF の RFC もない。Web は仕様ではないのだ。これだけしっかりと標準化された技術の粋を集めた総体が、なぜそんなにもフワっとしているのだろうか?我々は、何を &quot;Web&quot; と呼んでいるのだろうか?</summary>
+   <published>2025-11-19T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
+   <summary>見落とされがちだが、「Web とは何か」という仕様はない。Web を定義した W3C のドキュメントもなければ、IETF の RFC もない。Web は仕様ではないのだ。これだけしっかりと標準化された技術の粋を集めた総体が、なぜそんなにもフワっとしているのだろうか?我々は、何を &#34;Web&#34; と呼んでいるのだろうか?</summary>
   </entry>
 
   <entry>
    <title type="html">TPAC 2025 参加記録</title>
    <link href="https://blog.jxck.io/entries/2025-11-18/tpac2025.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-18</id>
-   <updated>2025-11-18T00:00:00Z</updated>
+   <published>2025-11-18T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>W3C が毎年開催する国際会議、TPAC 2025 に参加してきた。</summary>
   </entry>
 
@@ -115,7 +128,8 @@
    <title type="html">1Password AC #10: SSH と Git コミット署名</title>
    <link href="https://blog.jxck.io/entries/2025-11-13/ssh-signing.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-13</id>
-   <updated>2025-11-13T00:00:00Z</updated>
+   <published>2025-11-13T00:00:00Z</published>
+   <updated>2025-11-08T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 10 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmwSSH の鍵を使って、直接サーバにログインするような運用は減っているかもしれない。それでも SSH の鍵を使う場面が無くなったわけではない。今回は、1Password への SSH Key 登録と、Git のコミット署名有効化について解説する。</summary>
   </entry>
 
@@ -123,7 +137,8 @@
    <title type="html">1Password AC #9: Travel Mode</title>
    <link href="https://blog.jxck.io/entries/2025-11-12/travel-mode.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-12</id>
-   <updated>2025-11-12T00:00:00Z</updated>
+   <published>2025-11-12T00:00:00Z</published>
+   <updated>2025-11-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 9 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw</summary>
   </entry>
 
@@ -131,7 +146,8 @@
    <title type="html">1Password AC #8: 1Password CLI</title>
    <link href="https://blog.jxck.io/entries/2025-11-11/cli.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-11</id>
-   <updated>2025-11-11T00:00:00Z</updated>
+   <published>2025-11-11T00:00:00Z</published>
+   <updated>2025-11-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 8 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw前回、Group/Vault を整備したため、チームの中で活用する準備が整った。</summary>
   </entry>
 
@@ -139,7 +155,8 @@
    <title type="html">1Password AC #7: Group と Vault の運用</title>
    <link href="https://blog.jxck.io/entries/2025-11-10/group-vault.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-10</id>
-   <updated>2025-11-10T00:00:00Z</updated>
+   <published>2025-11-10T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 7 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw今回は、Business アカウントを運用する上で重要な、Group/Vault の概念について解説する。</summary>
   </entry>
 
@@ -147,7 +164,8 @@
    <title type="html">1Password AC #6: Business アカウント特典の無料 Family アカウント</title>
    <link href="https://blog.jxck.io/entries/2025-11-09/family-paln.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-09</id>
-   <updated>2025-11-09T00:00:00Z</updated>
+   <published>2025-11-09T00:00:00Z</published>
+   <updated>2025-11-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 6 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmwここでは、1Password Business アカウントに付随する、Family アカウントの無料特典について解説する。要するに、Business アカウントに参加している間は、1Password を無料で使えるという意味だ。</summary>
   </entry>
 
@@ -155,7 +173,8 @@
    <title type="html">1Password AC #5: 1Password アカウントへの 2FA</title>
    <link href="https://blog.jxck.io/entries/2025-11-08/2fa.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-08</id>
-   <updated>2025-11-08T00:00:00Z</updated>
+   <published>2025-11-08T00:00:00Z</published>
+   <updated>2025-11-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 5 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmwここでは、1Password アカウントに対する 2FA の有効化について検討する。</summary>
   </entry>
 
@@ -163,6 +182,7 @@
    <title type="html">1Password AC #4: Secret Key の運用とアカウントリカバリ</title>
    <link href="https://blog.jxck.io/entries/2025-11-07/secret-key.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-07</id>
+   <published>2025-11-07T00:00:00Z</published>
    <updated>2025-11-07T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 4 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmwここまで 1Password における Master Password について解説してきた。記憶に頼る Master Password と異なり、Secret Key は実質的に所有の要素となる。本エントリでは、この Secret Key の扱いについて解説する。</summary>
   </entry>
@@ -171,7 +191,8 @@
    <title type="html">1Password AC #3: Master Password の作り方</title>
    <link href="https://blog.jxck.io/entries/2025-11-06/create-master-password.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-06</id>
-   <updated>2025-11-06T00:00:00Z</updated>
+   <published>2025-11-06T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 3 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw前回は「1Password の Master Password はマルチアカウントで共通して使って良い」という解説をした。1Password の Master Password は使い回すべき理由 | blog.jxck.iohttps://blog.jxck.io/entries/2025-11-05/reuse-master-password.htmlこれは 1Password のマルチアカウントが「単一ユーザ内のスコープ」として設計されていること、そして「Master Password が覚えるべき最後の 1 つのパスワード」であるという設計思想に基づくものだった。つまり、「Master Password」をいかに堅牢に作るかは、1Password ユーザにとって非常に重要だ。「そんな Master Password はどう作ればよいか?」について解説を試みる。</summary>
   </entry>
 
@@ -179,7 +200,8 @@
    <title type="html">1Password AC #2: Master Password をマルチアカウントで使い回すべき理由</title>
    <link href="https://blog.jxck.io/entries/2025-11-05/reuse-master-password.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-05</id>
-   <updated>2025-11-05T00:00:00Z</updated>
+   <published>2025-11-05T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 2 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1passwordこのシリーズでは、組織において 1Password Business を運用する上での考慮点を解説していく。1Password Business 運用ガイド素案 - Google ドキュメントhttps://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw個人で 1Password を使っている人が、1Password Business を導入している組織にジョインする場合、新しく組織用のアカウントが発行される。つまり、1Password をマルチアカウントで運用することになる。関わる組織が増えていけば、切り替えるアカウントもどんどん増えていくが、1Password はマルチアカウントの UI がよくできているため、負担になることは特にないだろう。このとき、追加する別アカウントの Master Password は、それまで使っているものを「使い回す」ことが推奨されている。「パスワードを使い回すのは避けるべき」というのが、認証において啓蒙し続けられた基本だった。ではなぜ 1Password のマルチアカウントでは、推奨されるのだろうか。</summary>
   </entry>
 
@@ -187,7 +209,8 @@
    <title type="html">1Password AC #1: Business アカウント運用の検証</title>
    <link href="https://blog.jxck.io/entries/2025-11-04/1password-business.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-11-04</id>
-   <updated>2025-11-04T00:00:00Z</updated>
+   <published>2025-11-04T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、1Password Advent Calendar の 1 日目である。1Password - Qiita Advent Calendar 2025 - Qiitahttps://qiita.com/advent-calendar/2025/1password1Password を個人で使うだけでなく、組織全体で利用することで、開発に必要なアカウントを共有したり、CLI を使って自動化するといった、様々なメリットがある。組織で 1Password を展開する際は、1Password を Business プランで契約し、ドメインに所属するメンバーにアカウントを発行することになるだろう。その際、組織でどのようなルールを設け、どのような方法で管理し、どのように組織に合わせた設計を行うかは、多くの人が同じような検証を実施することになると思われる。今回は筆者 (Jxck) が、自分で持っている mozaic.fm のドメインを用いて、ビジネスアカウントを契約し、汎用的な運用方法の素案を検討した。その成果をドキュメントにまとめたので、同じように 1Password の組織展開を考えている際は参考になればと思う。</summary>
   </entry>
 
@@ -195,7 +218,8 @@
    <title type="html">3PCA 32 日目: Privacy Sandbox の後始末</title>
    <link href="https://blog.jxck.io/entries/2025-10-21/deprecation-of-effort.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-10-21</id>
-   <updated>2025-10-21T00:00:00Z</updated>
+   <published>2025-10-21T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、_2023_ 年の 3rd Party Cookie Advent Calendar の 32 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie宙に浮いていた Privacy Sandbox プロジェクトの「後始末」が公開された。</summary>
   </entry>
 
@@ -203,7 +227,8 @@
    <title type="html">サプライチェーン攻撃への防御策</title>
    <link href="https://blog.jxck.io/entries/2025-09-20/mitigate-risk-of-oss-dependencies.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-09-20</id>
-   <updated>2025-09-20T00:00:00Z</updated>
+   <published>2025-09-20T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>前回は、Nx の事例をベースに「パッケージを公開する側」の対策について解説した。今回は、「パッケージを使う側」、もっと言えば「OSS を使う上で開発者が考えるべきこと」について考察する。</summary>
   </entry>
 
@@ -211,7 +236,8 @@
    <title type="html">Nx の攻撃から学べること #s1ngularity</title>
    <link href="https://blog.jxck.io/entries/2025-09-03/nx-incidents.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-09-03</id>
-   <updated>2025-09-03T00:00:00Z</updated>
+   <published>2025-09-03T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Nx リポジトリが攻撃を受け、広範囲にわたるインシデントが発生した。今回の事例は、GitHub Actions を中心に複数のステップが組み合わさった攻撃であり、過去に何度も発生してきた攻撃と本質的には変わらない。しかし、途中で AI が何度か登場するため「AI が書いたコードをマージしたから」などといった表面的な反応もあるが、実態はそこまで単純な話でもない。また、「自分のプロジェクトは Nx を使っていないから関係ない」とも言えない攻撃であるため、特にフロントエンドエンジニアは全員注意と確認が必要となる。この攻撃が何だったのか、そこから学べることは何なのか、解説する。</summary>
   </entry>
 
@@ -219,6 +245,7 @@
    <title type="html">企業向け Web Bootcamp 2025 開催後記</title>
    <link href="https://blog.jxck.io/entries/2025-08-01/web-bootcamp-2025.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-08-01</id>
+   <published>2025-08-01T00:00:00Z</published>
    <updated>2025-08-01T00:00:00Z</updated>
    <summary>2025 年 6 月初旬に、副業で Web 技術アドバイザをしている企業の Web チームエンジニア向けに、4 日間の Web Bootcamp を実施した。</summary>
   </entry>
@@ -227,7 +254,8 @@
    <title type="html">1Password と遺言保管制度を用いたデジタル終活</title>
    <link href="https://blog.jxck.io/entries/2025-07-25/digital-regacy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-25</id>
-   <updated>2025-07-25T00:00:00Z</updated>
+   <published>2025-07-25T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>筆者のように、インターネット上での生活が長く、かつエンジニアとして生きてきた人間には、一般の人には伝わりにくいデジタルの遺品が多く存在する。仮に自分が死んだ場合に、これらをどのように遺族に処分してもらうかは、なかなか難しい問題だ。筆者はこの「デジタル終活」をどうするかを、長いこと模索してきた。今回は、「1Password」と法務局が行う「自筆証書遺言保管制度」を用いた方法を思いついたため、検証を試みる。</summary>
   </entry>
 
@@ -235,7 +263,8 @@
    <title type="html">親にエンディングノートを書いてもらう</title>
    <link href="https://blog.jxck.io/entries/2025-07-24/ending-note-for-parent.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-24</id>
-   <updated>2025-07-24T00:00:00Z</updated>
+   <published>2025-07-24T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>親の年齢に限らず、生きているうちにやってもらった方がいい、たった 1 つのこととして、エンディングノートの作成がある。終活は、それをどのくらい準備しておくかで、本人以上に遺族の負担が格段に減るからだ。</summary>
   </entry>
 
@@ -243,7 +272,8 @@
    <title type="html">Passkey への道 #10: 1Password 導入セミナー</title>
    <link href="https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-23</id>
-   <updated>2025-07-23T00:00:00Z</updated>
+   <published>2025-07-23T00:00:00Z</published>
+   <updated>2025-07-24T00:00:00Z</updated>
    <summary>先日、Passkey 啓蒙の一環で、まだパスワードマネージャを導入してない人に対する「1Password 導入セミナー」を実施した。その内容を再収録したものを公開する。ざっくりと、前半が一般ユーザ、後半が開発者向けの内容となっている。動画及び資料は、啓蒙目的であれば自由に使ってもらって構わない。なお、筆者は 1Password との利害関係は一切無い。</summary>
   </entry>
 
@@ -251,7 +281,8 @@
    <title type="html">Passkey への道 #9: ユーザに求められる令和のアカウントリテラシ</title>
    <link href="https://blog.jxck.io/entries/2025-07-16/load-to-passkey-9.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-16</id>
-   <updated>2025-07-16T00:00:00Z</updated>
+   <published>2025-07-16T00:00:00Z</published>
+   <updated>2025-07-23T00:00:00Z</updated>
    <summary>サービスは、ユーザを守るために Passkey をサポートし、ユーザの移行を促す努力をする必要があった。このプロセスに対して、ユーザはまったくの受動的態度でいることはできない。では、ユーザはいったい何をリテラシとして身につけ、どう自分の身を守っていくべきなのだろうか?</summary>
   </entry>
 
@@ -259,7 +290,8 @@
    <title type="html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</title>
    <link href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-15</id>
-   <updated>2025-07-15T00:00:00Z</updated>
+   <published>2025-07-15T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>パスワード + TOTP は限界を迎え、Passkey へ移行しなければ、サービスがユーザを守りきれなくなった。逆を言えば、サービスがユーザを守りたいと思うのであれば、Passkey を提供しないわけにはいかない時代に突入している。では、令和のこの状況において、サービスはどう対応していくべきだろうか?</summary>
   </entry>
 
@@ -267,7 +299,8 @@
    <title type="html">Passkey への道 #7: そして Username-Less へ</title>
    <link href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-14</id>
-   <updated>2025-07-14T00:00:00Z</updated>
+   <published>2025-07-14T00:00:00Z</published>
+   <updated>2025-07-23T00:00:00Z</updated>
    <summary>Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。</summary>
   </entry>
 
@@ -275,7 +308,8 @@
    <title type="html">Passkey への道 #6: タブーを破った Apple</title>
    <link href="https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-13</id>
-   <updated>2025-07-13T00:00:00Z</updated>
+   <published>2025-07-13T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティスが啓蒙されたりもしていた。それらをスマホに移行して、登録は便利だが壊したら詰むでは、ユーザは安心して使えない。いや、正確には「よくわからないまま使って、詰んでから Apple のサポートに連絡する」という状態だったのだろう。ここに解決策が提示されたのが、WWDC 2021 だった。</summary>
   </entry>
 
@@ -283,7 +317,8 @@
    <title type="html">Passkey への道 #5: 2FA/WebAuthn</title>
    <link href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-12</id>
-   <updated>2025-07-12T00:00:00Z</updated>
+   <published>2025-07-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。であれば、最初から文字列に頼らなければ良い。それが WebAuthn と FIDO だった。</summary>
   </entry>
 
@@ -291,7 +326,8 @@
    <title type="html">Passkey への道 #4: 文字列の限界</title>
    <link href="https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-11</id>
-   <updated>2025-07-11T00:00:00Z</updated>
+   <published>2025-07-11T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>パスワードと TOTP の問題は、「人間が入力する必要がある」ことだった。対策は Autofill であり、そのためにもパスワードマネージャ相当が必要になる。では、パスワードマネージャを使っていれば、パスワードと TOTP で十分なのだろうか?</summary>
   </entry>
 
@@ -299,7 +335,8 @@
    <title type="html">Passkey への道 #3: 手入力の限界</title>
    <link href="https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-10</id>
-   <updated>2025-07-10T00:00:00Z</updated>
+   <published>2025-07-10T00:00:00Z</published>
+   <updated>2025-07-23T00:00:00Z</updated>
    <summary>パスワードだけでの認証に限界が訪れ、TOTP を用いた 2FA が普及した。しかし、これでもまだ、全くもって不完全であることが、フィッシング詐欺の増加によって証明された。</summary>
   </entry>
 
@@ -307,7 +344,8 @@
    <title type="html">Passkey への道 #2: 2FA/TOTP</title>
    <link href="https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-09</id>
-   <updated>2025-07-09T00:00:00Z</updated>
+   <published>2025-07-09T00:00:00Z</published>
+   <updated>2025-07-23T00:00:00Z</updated>
    <summary>「パスワード」が認証の最重要要素で、いかにそれを死守するかを「サービス側」「ユーザ側」双方で考え続けてきたのが、平成の認証だった。ところが、それは早々に破綻し、「パスワードだけでの認証」に限界が来た。そこで、導入されたのが二要素認証(2FA: 2-Factor Auth)だ。</summary>
   </entry>
 
@@ -315,7 +353,8 @@
    <title type="html">Passkey への道 #1: 平成の Password 感</title>
    <link href="https://blog.jxck.io/entries/2025-07-08/load-to-passkey-1.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-08</id>
-   <updated>2025-07-08T00:00:00Z</updated>
+   <published>2025-07-08T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>まず、今使われているパスワード認証について、これがなぜ問題で、なぜ Password-Less が求められているのかを振り返っていこう。</summary>
   </entry>
 
@@ -323,15 +362,17 @@
    <title type="html">Passkey への道 #0: Intro</title>
    <link href="https://blog.jxck.io/entries/2025-07-07/load-to-passkey-0.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-07-07</id>
-   <updated>2025-07-07T00:00:00Z</updated>
-   <summary>フィッシング詐欺や Infostealer を用いた金融サイトの乗っ取り詐欺などは、その被害総額が 5000 億円 を突破してもなお拡大し続けている。米国で発生した 2024 年のオンライン詐欺被害は 166 億ドル に達した。証券や銀行サービスからは「FIDO 認証登録のお願い」のようなメールが絶えず届き、最近では Gmail のような 20 億以上のユーザがいる大手サービス や、警視庁サイバー犯罪対策課まで「Passkey を利用しましょう」と移行を促すアナウンスをするところまできている。まだ、多くの人が &quot;Passkey&quot; という名前すら知らないか、聞いたことはあるがきちんと移行まではしていないという状況だろう。新しい技術とはいえ、Passkey の普及があと 1 年早かっただけで、防げた被害は計り知れないだろうと痛感する。一方、Passkey を知っていながら、誤解のある人も少なくないようだ。複雑なパスワードを登録しているから移行する必要はない2FA を設定しているから必要ない登録したいサービスに、指紋を渡すのは嫌だGoogle や Apple に認証までロックインされたくない変なことしてログインできなくなるのが怖いetc etcまた、移行する必要性を認識しながら、パスワードマネージャ等保存先が十分に浸透していなかったり、サービス側の Passkey 対応が普及途上な側面もある。</summary>
+   <published>2025-07-07T00:00:00Z</published>
+   <updated>2025-07-23T00:00:00Z</updated>
+   <summary>フィッシング詐欺や Infostealer を用いた金融サイトの乗っ取り詐欺などは、その被害総額が 5000 億円 を突破してもなお拡大し続けている。米国で発生した 2024 年のオンライン詐欺被害は 166 億ドル に達した。証券や銀行サービスからは「FIDO 認証登録のお願い」のようなメールが絶えず届き、最近では Gmail のような 20 億以上のユーザがいる大手サービス や、警視庁サイバー犯罪対策課まで「Passkey を利用しましょう」と移行を促すアナウンスをするところまできている。まだ、多くの人が &#34;Passkey&#34; という名前すら知らないか、聞いたことはあるがきちんと移行まではしていないという状況だろう。新しい技術とはいえ、Passkey の普及があと 1 年早かっただけで、防げた被害は計り知れないだろうと痛感する。一方、Passkey を知っていながら、誤解のある人も少なくないようだ。複雑なパスワードを登録しているから移行する必要はない2FA を設定しているから必要ない登録したいサービスに、指紋を渡すのは嫌だGoogle や Apple に認証までロックインされたくない変なことしてログインできなくなるのが怖いetc etcまた、移行する必要性を認識しながら、パスワードマネージャ等保存先が十分に浸透していなかったり、サービス側の Passkey 対応が普及途上な側面もある。</summary>
   </entry>
 
   <entry>
    <title type="html">CSS の ident() による動的な custom-ident の生成</title>
    <link href="https://blog.jxck.io/entries/2025-06-14/ident.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-06-14</id>
-   <updated>2025-06-14T00:00:00Z</updated>
+   <published>2025-06-14T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>CSS で Custom Ident 値を動的に生成する ident() が提案されている。策定中の仕様をベースに解説する。</summary>
   </entry>
 
@@ -339,7 +380,8 @@
    <title type="html">大フィッシング攻撃時代における攻撃手法と自衛手段の考察</title>
    <link href="https://blog.jxck.io/entries/2025-05-12/age-of-phishing.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-05-12</id>
-   <updated>2025-05-12T00:00:00Z</updated>
+   <published>2025-05-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>GW のさなか、有名投資家のテスタ氏を中心に、大規模な乗っ取り攻撃の存在が報告された。当初 900 億円程度と試算された被害額は、数日のうちに 3000 億円を超えると修正され、富裕層のみならず一般市民も無視できない状況となっている。今、一体何が起こっているのか。金融資産を預かるサービスはどのようにユーザを守るべきか。我々ユーザはどのように自衛するべきか。判明している情報をもとに考察する。</summary>
   </entry>
 
@@ -347,7 +389,8 @@
    <title type="html">3PCA 31 日目: 3rd Party Cookie 廃止の廃止</title>
    <link href="https://blog.jxck.io/entries/2025-04-25/end-of-effort.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-04-25</id>
-   <updated>2025-04-25T00:00:00Z</updated>
+   <published>2025-04-25T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 31 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieこのエントリもいよいよ終わりに近づいてきたようだ。</summary>
   </entry>
 
@@ -355,7 +398,8 @@
    <title type="html">閲覧履歴があってもリンクの色が変わらないケースについて</title>
    <link href="https://blog.jxck.io/entries/2025-04-16/link-visited-history.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-04-16</id>
-   <updated>2025-04-16T00:00:00Z</updated>
+   <published>2025-04-16T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>4 月末にリリースされる Chrome 136 からは、一部のケースで「閲覧履歴があってもリンクの色が変わらない」状態が発生する。もしこの挙動に依存して閲覧をしているユーザがいれば、多少不便に感じるかもしれない。しかし、これは長年問題視されてきた、ユーザのプライバシー保護のための更新だ。ユーザ側でも、「サイトが壊れたのでは?」と思う人もいるだろうため、前半は技術用語を少なめに解説し、エンジニア向けの解説は後半で行う。</summary>
   </entry>
 
@@ -363,6 +407,7 @@
    <title type="html">Web における Security, Safety, Trust の相対性</title>
    <link href="https://blog.jxck.io/entries/2025-04-03/security-safety-trust.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-04-03</id>
+   <published>2025-04-03T00:00:00Z</published>
    <updated>2025-04-03T00:00:00Z</updated>
    <summary>我々は、インターネット上において「信頼」できるサービスを、「安全」に使うことに、「安心」を求める。プライバシーは守られ、不正な取引には加担せず、詐欺被害も受けたくない。技術的に言えば、通信は暗号化し、個人は匿名化し、データは秘匿し、それによって Secure で Safety で Trustworthy な Web が手に入る。それを突き詰めた先に、「自由」で理想的なインターネットがある。本当だろうか?</summary>
   </entry>
@@ -371,15 +416,17 @@
    <title type="html">悪いのは全部 Eve だと思ってた</title>
    <link href="https://blog.jxck.io/entries/2025-04-01/dont-be-eveil.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-04-01</id>
-   <updated>2025-04-01T00:00:00Z</updated>
-   <summary>いつも本ブログを読んで頂いている皆様、そしてセキュリティ関係者の皆様へ。この度は、筆者による &quot;Eve&quot; に対する不適切な引用、および、原稿内における不名誉な扱いについて、この場を借りて謝罪させていただきます。</summary>
+   <published>2025-04-01T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
+   <summary>いつも本ブログを読んで頂いている皆様、そしてセキュリティ関係者の皆様へ。この度は、筆者による &#34;Eve&#34; に対する不適切な引用、および、原稿内における不名誉な扱いについて、この場を借りて謝罪させていただきます。</summary>
   </entry>
 
   <entry>
    <title type="html">CSS における if と function の提案</title>
    <link href="https://blog.jxck.io/entries/2025-03-06/if-function-css.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-03-06</id>
-   <updated>2025-03-06T00:00:00Z</updated>
+   <published>2025-03-06T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>CSS に if() および @function が提案されている。仕様がこれで確定したとは言い切れないため、背景および現状にフォーカスして解説する。なお先に言っておくが、関数の再帰は初期仕様から外されているため、「CSS がプログラミング言語になった」という話ではない。</summary>
   </entry>
 
@@ -387,7 +434,8 @@
    <title type="html">OWASP に Cookie Theft 対策 Cheat Sheet を執筆した</title>
    <link href="https://blog.jxck.io/entries/2025-03-03/owasp-cheat-sheet.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-03-03</id>
-   <updated>2025-03-03T00:00:00Z</updated>
+   <published>2025-03-03T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>OWASP に Cookie Theft 対策の Cheat Sheet を提案し、マージされた。</summary>
   </entry>
 
@@ -395,7 +443,8 @@
    <title type="html">Web における Beacon の変遷 (sendBeacon(), fetch() keepalive, fetchLater())</title>
    <link href="https://blog.jxck.io/entries/2025-02-25/beaconing.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-02-25</id>
-   <updated>2025-02-25T00:00:00Z</updated>
+   <published>2025-02-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>ページを閉じる際に何かしらの情報をサーバで収集したいケースがある。これを Beacon の送信(Beaconing)と呼び、ブラウザではページ表示中に収集したパフォーマンス統計の収集や、広告タグによるトラッキングなどに用いられる。しかし、「ページが閉じる直前に、サーバにリクエストを送信する」を確実に実行するのは実は難しく、これを標準技術で実現する過程で、複数の API が生まれるに至った。各 API の策定経緯と、挙動の違いについて解説していく。</summary>
   </entry>
 
@@ -403,15 +452,17 @@
    <title type="html">&amp;quot;Less Password&amp;quot; 時代のアカウント防災訓練</title>
    <link href="https://blog.jxck.io/entries/2025-01-27/account-recovery.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-01-27</id>
-   <updated>2025-01-27T00:00:00Z</updated>
-   <summary>震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」を個人的に実施するようになって数年経つ。観点は「今、持っているものを全て失っても、リカバリできるだろうか?」だ。現代のアカウントの管理は、&quot;Password Less&quot; を目指す過渡期で、中途半端に複雑だ。Password は無くなっているというより、集約された &quot;Less Password&quot; 状態であり、残る「最後の Password」を起点にどう全体を復元するかが、災害時リカバリの課題となる。これに失敗して全てが詰むと、仮に無事避難できたとしても、相当な喪失を味わうだろう。現状の選択肢と設計方針を振り返りつつ、災害時にデジタルアカウントをどう守るかについて考えたい。</summary>
+   <published>2025-01-27T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
+   <summary>震災の直後、復興のさなかに水害が起こり、再び全てが流される。能登の人々にとっては大変な 2024 年だったと思う。首都直下型や南海トラフはいつ起こってもおかしくないと言われ、戦火すら他人事ではなくなっている。家に災害用の備蓄を用意するのと同様、定期的に「アカウント防災訓練」を個人的に実施するようになって数年経つ。観点は「今、持っているものを全て失っても、リカバリできるだろうか?」だ。現代のアカウントの管理は、&#34;Password Less&#34; を目指す過渡期で、中途半端に複雑だ。Password は無くなっているというより、集約された &#34;Less Password&#34; 状態であり、残る「最後の Password」を起点にどう全体を復元するかが、災害時リカバリの課題となる。これに失敗して全てが詰むと、仮に無事避難できたとしても、相当な喪失を味わうだろう。現状の選択肢と設計方針を振り返りつつ、災害時にデジタルアカウントをどう守るかについて考えたい。</summary>
   </entry>
 
   <entry>
    <title type="html">Web 技術年末試験 2024 講評 #web_exam2024</title>
    <link href="https://blog.jxck.io/entries/2025-01-22/web-exam-2024.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-01-22</id>
-   <updated>2025-01-22T00:00:00Z</updated>
+   <published>2025-01-22T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2024 年の Web 技術を振り返る試験として、「Web 技術年末試験 2024」を実施した。その問題と想定解答、平均点などを公開する。</summary>
   </entry>
 
@@ -419,7 +470,8 @@
    <title type="html">Cookie Theft 対策と Device Bound Session Credentials</title>
    <link href="https://blog.jxck.io/entries/2025-01-16/device-bound-session-credentials.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2025-01-16</id>
-   <updated>2025-01-16T00:00:00Z</updated>
+   <published>2025-01-16T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Chrome チームより提案された Device Bound Session Credentials の実装が進み、Flag 付きで試すことができる。この提案の背景と、解決する問題、現時点での挙動について解説する。</summary>
   </entry>
 
@@ -427,7 +479,8 @@
    <title type="html">2024 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2024-12-31/end-of-year-2024.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-12-31</id>
-   <updated>2024-12-31T00:00:00Z</updated>
+   <published>2024-12-31T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2024 年を振り返る。</summary>
   </entry>
 
@@ -435,7 +488,8 @@
    <title type="html">3PCA 30 日目: 2024 年の 3rd Party Cookie まとめ</title>
    <link href="https://blog.jxck.io/entries/2024-12-12/state-of-3pc-2024.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-12-12</id>
-   <updated>2024-12-12T00:00:00Z</updated>
+   <published>2024-12-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、2023 年の 3rd Party Cookie Advent Calendar の 30 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieこのアドベントカレンダーを開始した 2023 年末の時点では、2024 年(つまり今年)の年始に Chrome による 1% Deprecate が始まり、2024 年をかけてその範囲を広げ、今頃は Post 3rd Party Cookie の世界が訪れている見通しだった。しかし、その予定は大きく変更され、これからどうなるのかも不透明だ。つまり、この話は 2025 年も継続することになってしまったため、2024 年の現状を一旦まとめておくこととする。</summary>
   </entry>
 
@@ -443,7 +497,8 @@
    <title type="html">Dialog と Popover #12</title>
    <link href="https://blog.jxck.io/entries/2024-11-14/timeout-popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-11-14</id>
-   <updated>2024-11-14T00:00:00Z</updated>
+   <published>2024-11-14T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。</summary>
   </entry>
 
@@ -451,7 +506,8 @@
    <title type="html">Dialog と Popover #11</title>
    <link href="https://blog.jxck.io/entries/2024-11-01/tooltip-popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-11-01</id>
-   <updated>2024-11-01T00:00:00Z</updated>
+   <published>2024-11-01T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>今回考えたいのは、GitHub の Issue や User アイコンをマウスでホバーすると、Issue の詳細や User Profile が表示されるアレだ。挙動としては想像通り、対象要素に Anchoring した &lt;div popover&gt; を表示し、中に好きなようにコンテンツを入れれば良い。ただし、UI のセマンティクスに関しては、複数の議論が行われており、方針もいくつか考えられる。今回は、それらの現状を整理しつつ、考えうる選択肢をいくつか提示する。その中で要件に合わせて何を選ぶかは実装者に委ねたい。</summary>
   </entry>
 
@@ -459,7 +515,8 @@
    <title type="html">Dialog と Popover #10</title>
    <link href="https://blog.jxck.io/entries/2024-10-22/menu-popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-22</id>
-   <updated>2024-10-22T00:00:00Z</updated>
+   <published>2024-10-22T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</summary>
   </entry>
 
@@ -467,7 +524,8 @@
    <title type="html">Dialog と Popover #9</title>
    <link href="https://blog.jxck.io/entries/2024-10-16/toast-popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-16</id>
-   <updated>2024-10-16T00:00:00Z</updated>
+   <published>2024-10-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</summary>
   </entry>
 
@@ -475,7 +533,8 @@
    <title type="html">Dialog と Popover #8</title>
    <link href="https://blog.jxck.io/entries/2024-10-11/cookie-banner-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-11</id>
-   <updated>2024-10-11T00:00:00Z</updated>
+   <published>2024-10-11T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</summary>
   </entry>
 
@@ -483,7 +542,8 @@
    <title type="html">Dialog と Popover #7</title>
    <link href="https://blog.jxck.io/entries/2024-10-10/user-consent-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-10</id>
-   <updated>2024-10-10T00:00:00Z</updated>
+   <published>2024-10-10T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。あくまで仕様の組み合わせ方についての解説であり、実装そのものの推奨ではない。また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</summary>
   </entry>
 
@@ -491,7 +551,8 @@
    <title type="html">Dialog と Popover #6</title>
    <link href="https://blog.jxck.io/entries/2024-10-03/animation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-03</id>
-   <updated>2024-10-03T00:00:00Z</updated>
+   <published>2024-10-03T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ついに &lt;toast&gt; -&gt; &lt;popup&gt; -&gt; popup -&gt; popover として、要素から属性になり名前も決まった。とはいえ実装は popup とそんなに変わらないので、popup でやっていた Origin Trials を継続しながら、徐々に実装を進めていくフェーズが 2022/12 くらいの話だ。Intent to extend Origin Trial: Popover APIhttps://groups.google.com/a/chromium.org/g/blink-dev/c/kZXexHhH7EA/m/UmQYwGW3DAAJしかし、popover を実用するには足りていない議論があった。それが Animation だ。</summary>
   </entry>
 
@@ -499,7 +560,8 @@
    <title type="html">Dialog と Popover #5</title>
    <link href="https://blog.jxck.io/entries/2024-10-02/popover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-10-02</id>
-   <updated>2024-10-02T00:00:00Z</updated>
+   <published>2024-10-02T00:00:00Z</published>
+   <updated>2024-11-20T00:00:00Z</updated>
    <summary>このあたりから、まだ議論中の話が多いため、今後変わる可能性が高い点に注意。popup が紆余曲折を経て popover 属性になり、2023/3 に Safari が TP166 で実装した。そのまま Safari 17 に入ることを 2023/6 の WWDC で発表したあたりから、popover の実装は各ブラウザで一気に話が進む。Release Notes for Safari Technology Preview 166https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/News from WWDC23: WebKit Features in Safari 17 betahttps://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/そして、2024/4 ごろに発表された Baseline 2024 に popover がエントリしたことで、2024 年は全ブラウザで互換性を高めていくことに合意し、作業を進めていくことになる。俗に言う「元年」というやつと言えるだろう。Popover API lands in Baselinehttps://web.dev/blog/popover-api今回は、この popover の議論と、仕様が完成していくまでをまとめる。</summary>
   </entry>
 
@@ -507,7 +569,8 @@
    <title type="html">Dialog と Popover #4</title>
    <link href="https://blog.jxck.io/entries/2024-09-30/toast-popup.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-30</id>
-   <updated>2024-09-30T00:00:00Z</updated>
+   <published>2024-09-30T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ここまでで &lt;dialog&gt; 要素が標準化され、Modal/non-Modal な Dialog がネイティブで出せるようになった。今まで自前で実装していた z-index の指定や、フォーカスの管理、非活性化、キーボードでの処理、スタイルなども、細かい仕様がほぼ標準によってカバーされた。Top Layerinert:modal / ::backdropCloseWatcherFocusable Scrollersetcしかし、&lt;dialog&gt; はあくまで「ユーザのインタラクションを求める」という用途で使うものであり、role=dialog ではない、例えばちょっとしたメッセージの通知などに使うものではない。そこで、これらの資産を活用し、より汎用的な UI を標準化しようという話が、&lt;dialog&gt; の標準化の裏で並行して行われた。</summary>
   </entry>
 
@@ -515,7 +578,8 @@
    <title type="html">Dialog と Popover #3</title>
    <link href="https://blog.jxck.io/entries/2024-09-27/dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-27</id>
-   <updated>2024-09-27T00:00:00Z</updated>
+   <published>2024-09-27T00:00:00Z</published>
+   <updated>2024-11-20T00:00:00Z</updated>
    <summary>前回までは &lt;dialog&gt; が標準化されるまでの経緯と、API の概要や関連仕様を解説した。今回は &lt;dialog&gt; の API としての使い方について、具体的に解説していく。</summary>
   </entry>
 
@@ -523,7 +587,8 @@
    <title type="html">Dialog と Popover #2</title>
    <link href="https://blog.jxck.io/entries/2024-09-26/dialog-element.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-26</id>
-   <updated>2024-09-26T00:00:00Z</updated>
+   <published>2024-09-26T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>showModalDialog() は今から考えれば、確かにひどい API だった。しかし、何か Modal を開き、ユーザにインタラクションをさせ、閉じたらそこで入力された値や選択された結果を取得し、処理を進めたいユースケース自体は、規約への同意取得や、Cookie バナー、ログインなど多々ある。そういった場面では、ライブラリなどを用いて実装する必要があったが、Modal を実装するのは実際にはそんなに簡単ではなかった。</summary>
   </entry>
 
@@ -531,7 +596,8 @@
    <title type="html">Dialog と Popover #1</title>
    <link href="https://blog.jxck.io/entries/2024-09-25/show-modal-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-25</id>
-   <updated>2024-09-25T00:00:00Z</updated>
+   <published>2024-09-25T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>HTML の &lt;dialog&gt; 要素と、popover 属性、および関連する様々な仕様が標準化され、実装が進められている。Open UI を中心に進められているこれらの改善は、多くのサイトで共通したユースケースがありながら、長らくミッシングピースとなっていた重要な機能だ。もし今、同等のユースケースを自前で実装しているのであれば、適切な仕様を用いた実装に刷新することで、従来はほぼ不可能だった UX を提供できるようになる。今回から、数回の連載形式で、これらの仕様がどのように標準化され、我々開発者はこれをどのように使っていくべきなのかについて解説する。</summary>
   </entry>
 
@@ -539,7 +605,8 @@
    <title type="html">Web Developer Conference 2024 開催後記 #wdc2024</title>
    <link href="https://blog.jxck.io/entries/2024-09-09/web-developer-conference.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-09-09</id>
-   <updated>2024-09-09T00:00:00Z</updated>
+   <published>2024-09-09T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>2024/9/7 に、Web Developer Conference を開催した。Web Developer Conference 2024 開催告知 #wdc2024 | blog.jxck.iohttps://blog.jxck.io/entries/2024-06-12/web-dev-conf-2024.htmlConnpasshttps://web-study.connpass.com/event/321711/Togetterhttps://togetter.com/li/2430964</summary>
   </entry>
 
@@ -547,7 +614,8 @@
    <title type="html">3PCA 29 日目: Privacy Sandbox の方針転換は何を意味するか</title>
    <link href="https://blog.jxck.io/entries/2024-07-31/deprecating-the-deprecation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-07-31</id>
-   <updated>2024-07-31T00:00:00Z</updated>
+   <published>2024-07-31T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 29 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie先日、Google より Privacy Sandbox の方針転換について発表があった。本当は、まだ記事を書くには情報が足りていないため、あまり書く気はなかったが、今後出てくる発表に備えて経緯をまとめるために、「何がまだ分かっていないか」の現状を書いておくことにする。</summary>
   </entry>
 
@@ -555,7 +623,8 @@
    <title type="html">なぜブラウザエンジンは 1 つではダメなのか? または Ladybird への期待</title>
    <link href="https://blog.jxck.io/entries/2024-07-05/why-are-new-browsers-required.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-07-05</id>
-   <updated>2024-07-05T00:00:00Z</updated>
+   <published>2024-07-05T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Ladybird は、他のブラウザエンジンをフォークせず、企業との取引に頼らず、寄付だけで作ることを宣言した新しいブラウザエンジンだ。Ladybirdhttps://ladybird.org/これがいかに価値のある取り組みなのか、Web を漫然と眺めてきた筆者による N=1 の妄言を書いてみる。</summary>
   </entry>
 
@@ -563,7 +632,8 @@
    <title type="html">「1 分 de Web 標準」のやり方 at Web Developer Conference 2024 #wdc2024</title>
    <link href="https://blog.jxck.io/entries/2024-06-26/1min-de-web-standard.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-06-26</id>
-   <updated>2024-06-26T00:00:00Z</updated>
+   <published>2024-06-26T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>9/7 開催予定の Web Developer Conference 2024 では、「1 分 de Web 標準」という LT 大会を予定しています。CFP も募集中ですが、(筆者の周り以外では)聞き馴染みのないやり方だと思うので、この LT のやり方を解説します。プロポーザル | Web Developer Conference 2024 - fortee.jphttps://fortee.jp/web-dev-conf-2024/proposal/all</summary>
   </entry>
 
@@ -571,7 +641,8 @@
    <title type="html">URL.parse を Chromium で Ship するまで</title>
    <link href="https://blog.jxck.io/entries/2024-06-14/url.parse.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-06-14</id>
-   <updated>2024-06-14T00:00:00Z</updated>
+   <published>2024-06-14T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Chrome 126 で筆者が実装した URL.parse が Ship された。Chromium にコントリビュートしたことは何回かあったが、単体機能を Ship したのは初めてだった。</summary>
   </entry>
 
@@ -579,7 +650,8 @@
    <title type="html">Web Developer Conference 2024 開催告知 #wdc2024</title>
    <link href="https://blog.jxck.io/entries/2024-06-12/web-dev-conf-2024.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-06-12</id>
-   <updated>2024-06-12T00:00:00Z</updated>
+   <published>2024-06-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>夏に Web 開発周りの話をするカンファレンスをやります。参加は Connpass で募集しています。Web Developer Conference 2024 - connpasshttps://web-study.connpass.com/event/321711/Session と LT の募集を fortee で今日から開始したので応募を待ってます。Web Developer Conference 2024 - fortee.jphttps://fortee.jp/web-dev-conf-2024</summary>
   </entry>
 
@@ -587,7 +659,8 @@
    <title type="html">Reverse HTTP Transport が描く新しい Web サービスデプロイ構成</title>
    <link href="https://blog.jxck.io/entries/2024-05-10/reverse-http-transport.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-05-10</id>
-   <updated>2024-05-10T00:00:00Z</updated>
+   <published>2024-05-10T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>IETF の httpbis で、Reverse HTTP Transport という仕様が提案されている。Reverse HTTP Transporthttps://www.ietf.org/archive/id/draft-bt-httpbis-reverse-http-01.htmlこの仕様は、Origin サーバの前に何かしら Intermediaries (Loadbalancer, Reverse Proxy, CDN etc)があるのが一般的な現代の Web サービス構成において、非常に革新的なアイデアを取り入れたプロトコルと言える。まだ v01 という初期段階ではあるが、発想が非常に面白かったので、読書メモを残す。</summary>
   </entry>
 
@@ -595,7 +668,8 @@
    <title type="html">Referrer-Policy の制限を強めると安全になるという誤解</title>
    <link href="https://blog.jxck.io/entries/2024-05-07/referrer-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-05-07</id>
-   <updated>2024-05-07T00:00:00Z</updated>
+   <published>2024-05-07T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Referrer-Policy は、送信される Referer の値を制御することが可能だ。このヘッダの副次的な効果をよく理解していないと、「no-referrer にして送らないのが最も安全だ」という誤解を生むことになる。では、複数あるポリシーの中でどのような観点で、どのディレクティブを採用するのが良いのだろうか?前提として前回の記事の「リクエストの出自をチェックすることは現代の実装のベースプラクティスである」という点を踏まえて考えてみる。令和時代の API 実装のベースプラクティスと CSRF 対策 | blog.jxck.iohttps://blog.jxck.io/entries/2024-04-26/csrf.html</summary>
   </entry>
 
@@ -603,7 +677,8 @@
    <title type="html">令和時代の API 実装のベースプラクティスと CSRF 対策</title>
    <link href="https://blog.jxck.io/entries/2024-04-26/csrf.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-04-26</id>
-   <updated>2024-04-26T00:00:00Z</updated>
+   <published>2024-04-26T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>CSRF という古の攻撃がある。この攻撃を「古(いにしえ)」のものにすることができたプラットフォームの進化の背景を、「Cookie が SameSite Lax by Default になったからだ」という解説を見ることがある。確かに、現実的にそれによって攻撃の成立は難しくなり、救われているサービスもある。しかし、それはプラットフォームが用意した対策の本質から言うと、解釈が少しずれていると言えるだろう。今回は、「CSRF がどうして成立していたのか」を振り返ることで、本当にプラットフォームに足りていなかったものと、それを補っていった経緯、本当にすべき対策は何であるかを解説していく。結果として見えてくるのは、今サービスを実装する上での「ベース」(not ベスト)となるプラクティスだと筆者は考えている。</summary>
   </entry>
 
@@ -611,7 +686,8 @@
    <title type="html">RFC の URL はどのドメインで貼るのが良いか</title>
    <link href="https://blog.jxck.io/entries/2024-03-27/link-to-rfc.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-03-27</id>
-   <updated>2024-03-27T00:00:00Z</updated>
+   <published>2024-03-27T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>IETF の RFC は、いくつかの場所で同じものが公開されている。どの URL が最適なのか、という話。結論は www.rfc-editor.org だ。</summary>
   </entry>
 
@@ -619,7 +695,8 @@
    <title type="html">Chromium にコントリビュートするための周辺知識</title>
    <link href="https://blog.jxck.io/entries/2024-03-26/chromium-contribution.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-03-26</id>
-   <updated>2024-03-26T00:00:00Z</updated>
+   <published>2024-03-26T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>Chromium にコントリビュートするためには、ソースコードを理解する以外にも、もろもろ必要な周辺知識がある。ドキュメントはかなり整備されている方ではあるが、そのドキュメントにたどり着くのが難しい場合もある。レビュアーなどが親切に教えてくれるものをローカルにメモしているが、それも散らばってきたため、ここにまとめることにする。まずは初期状態で公開するが、どんどん更新していき、長くなっても分割しないで追記を繰り返そうと考えている。</summary>
   </entry>
 
@@ -627,7 +704,8 @@
    <title type="html">mozaic.fm 10 周年記念イベント開催後記</title>
    <link href="https://blog.jxck.io/entries/2024-03-13/mozaicfm-10-years-anniv.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-03-13</id>
-   <updated>2024-03-13T00:00:00Z</updated>
+   <published>2024-03-13T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2014 年 3 月に開始した mozaic.fm が、気づいたら 10 周年を迎えた。これを機に、10 周年記念イベントとして、初のオフラインイベントをゲンロンカフェで開催した。Podcast でのみ告知し、当日まで情報制限をかけていたにもかかわらず、チケットもグッズも無事完売することができた。イベントを振り返りつつログを残す。</summary>
   </entry>
 
@@ -635,7 +713,8 @@
    <title type="html">Promise.withResolvers によるイベントの Promise 化</title>
    <link href="https://blog.jxck.io/entries/2024-02-10/promise.withresolvers.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-02-10</id>
-   <updated>2024-02-10T00:00:00Z</updated>
+   <published>2024-02-10T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Promise.withResolvers() は、Stage 4 であり ES2024 の候補となった。すでにブラウザでの実装も進んでいるため、その活用方法を解説する。</summary>
   </entry>
 
@@ -643,7 +722,8 @@
    <title type="html">TC39 に新設された Stage 2.7 について</title>
    <link href="https://blog.jxck.io/entries/2024-02-06/tc39-stage-2.7.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-02-06</id>
-   <updated>2024-02-06T00:00:00Z</updated>
+   <published>2024-02-06T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>TC39 の Stage 2 と Stage 3 の間に、新たに Stage 2.7 が追加された。これは何だろうと思った人が検索で辿り着けるよう、その経緯と目的をまとめる。</summary>
   </entry>
 
@@ -651,7 +731,8 @@
    <title type="html">Apple によるブラウザエンジン規制の緩和</title>
    <link href="https://blog.jxck.io/entries/2024-01-28/apple-sideloading.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-01-28</id>
-   <updated>2024-01-28T00:00:00Z</updated>
+   <published>2024-01-28T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>以前から騒がれていた Apple によるサイドローディング周りの緩和について、正式な情報公開があった。Apple announces changes to iOS, Safari, and the App Store in the European Union - Applehttps://www.apple.com/newsroom/2024/01/apple-announces-changes-to-ios-safari-and-the-app-store-in-the-european-union/ストアやペイメントの緩和もあるが、ここでは WebKit に関する部分だけを抜粋し、どのような条件があるのかをまとめておく。筆者が公開情報を読んで解釈したものなので、内容は保証しない。</summary>
   </entry>
 
@@ -659,7 +740,8 @@
    <title type="html">Web 技術年末試験 2023 講評 #web_exam2023</title>
    <link href="https://blog.jxck.io/entries/2024-01-23/web-exam-2023.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2024-01-23</id>
-   <updated>2024-01-23T00:00:00Z</updated>
+   <published>2024-01-23T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2023 年の Web 技術を振り返る試験として、「Web 技術年末試験 2023」を実施した。その問題と想定解答、平均点などを公開する。</summary>
   </entry>
 
@@ -667,7 +749,8 @@
    <title type="html">2023 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2023-12-31/end-of-2023.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-31</id>
-   <updated>2023-12-31T00:00:00Z</updated>
+   <published>2023-12-31T00:00:00Z</published>
+   <updated>2026-03-04T00:00:00Z</updated>
    <summary>例年通り 2023 年を振り返る。</summary>
   </entry>
 
@@ -675,7 +758,8 @@
    <title type="html">3PCA 最終日: 3rd Party Cookie 亡き後の Web はどうなるか?</title>
    <link href="https://blog.jxck.io/entries/2023-12-30/after-deprecation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-30</id>
-   <updated>2023-12-30T00:00:00Z</updated>
+   <published>2023-12-30T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の最終日である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieここまで、3rd Party Cookie との 30 年にわたる戦いと、ITP 以降それが Deprecation されるに至った流れ、そして Privacy Sandbox の API について解説してきた。最終日は、ここまでを踏まえて、来年以降の Web がどうなっていくのかを考えていく。</summary>
   </entry>
 
@@ -683,7 +767,8 @@
    <title type="html">3PCA 27 日目: FedCM</title>
    <link href="https://blog.jxck.io/entries/2023-12-29/fedcm.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-29</id>
-   <updated>2023-12-29T00:00:00Z</updated>
+   <published>2023-12-29T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 27 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は、散々壊れるユースケースとして解説してきた「認証連携」をカバーする FedCM について解説する。</summary>
   </entry>
 
@@ -691,7 +776,8 @@
    <title type="html">3PCA 26 日目: Related Website Sets</title>
    <link href="https://blog.jxck.io/entries/2023-12-28/related-website-sets.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-28</id>
-   <updated>2023-12-28T00:00:00Z</updated>
+   <published>2023-12-28T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 26 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日からは、Privacy Sandbox の「広告」以外の API を解説していく。</summary>
   </entry>
 
@@ -699,7 +785,8 @@
    <title type="html">3PCA 25 日目: Measurement</title>
    <link href="https://blog.jxck.io/entries/2023-12-27/measurement.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-27</id>
-   <updated>2023-12-27T00:00:00Z</updated>
+   <published>2023-12-27T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 25 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は、広告の測定について解説する。</summary>
   </entry>
 
@@ -707,7 +794,8 @@
    <title type="html">3PCA 24 日目: Retargeting</title>
    <link href="https://blog.jxck.io/entries/2023-12-26/retargeting.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-26</id>
-   <updated>2023-12-26T00:00:00Z</updated>
+   <published>2023-12-26T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 24 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日はリターゲティングをカバーする Protected Audience API について解説する。</summary>
   </entry>
 
@@ -715,7 +803,8 @@
    <title type="html">3PCA 23 日目: Interest Based Advertising</title>
    <link href="https://blog.jxck.io/entries/2023-12-25/interest-based-advertising.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-25</id>
-   <updated>2023-12-25T00:00:00Z</updated>
+   <published>2023-12-25T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 23 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今回からは、Privacy Sandbox の API を、ジャンルごとに分けて概要を解説していく。個々の API は非常に複雑であり、また今後も細かい点が変わっていくだろう。どうせガッツリ使うのであれば、仕様を読む必要があるため、ここでは「何がしたいのか」「何ができるのか」に絞って解説する。</summary>
   </entry>
 
@@ -723,7 +812,8 @@
    <title type="html">3PCA 22 日目: Privacy Sandbox</title>
    <link href="https://blog.jxck.io/entries/2023-12-24/privacy-sandbox.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-24</id>
-   <updated>2023-12-24T00:00:00Z</updated>
+   <published>2023-12-24T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 22 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日からいよいよ Privacy Sandbox の話に入っていく。</summary>
   </entry>
 
@@ -731,7 +821,8 @@
    <title type="html">「議論だけ」のカンファレンスの作り方</title>
    <link href="https://blog.jxck.io/entries/2023-12-23/discussing-web.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-23</id>
-   <updated>2023-12-23T00:00:00Z</updated>
+   <published>2023-12-23T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>「議論だけ」のカンファレンスを、長いこと開催してきた。個人的には好きなので、他にもあったらいいと思っているが、そういうカンファレンスは他に見ない。カンファレンス自体を、筆者のような個人が手弁当でやれるのは、もう最後かもしれないと今回ひしひしと感じたので、これまでどうやってきたのかを残しておくことにする。</summary>
   </entry>
 
@@ -739,7 +830,8 @@
    <title type="html">次世代 Web カンファレンス 2023 開催後記</title>
    <link href="https://blog.jxck.io/entries/2023-12-22/next-web-conf-2023.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-22</id>
-   <updated>2023-12-22T00:00:00Z</updated>
+   <published>2023-12-22T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>2023/12/16(土) に、以下で告知した「次世代 Web カンファレンス」を開催した。次世代 Web カンファレンス 2023 開催告知 | blog.jxck.iohttps://blog.jxck.io/entries/2023-11-16/next-web-conf-2023.html次世代 Web カンファレンス 2023 - connpasshttps://nextwebconf.connpass.com/event/300174/</summary>
   </entry>
 
@@ -747,7 +839,8 @@
    <title type="html">3PCA 21 日目: SameSite Cookie</title>
    <link href="https://blog.jxck.io/entries/2023-12-21/same-site.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-21</id>
-   <updated>2023-12-21T00:00:00Z</updated>
+   <published>2023-12-21T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 21 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieGoogle が 3rd Party Cookie を Deprecate していく方針を発表してから、最初に始めたのが SameSite Lax by Default だった。これが何のために行われたのかを解説する。</summary>
   </entry>
 
@@ -755,7 +848,8 @@
    <title type="html">3PCA 20 日目: 3rd Party Cookie Deprecation</title>
    <link href="https://blog.jxck.io/entries/2023-12-20/deprecation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-20</id>
-   <updated>2023-12-20T00:00:00Z</updated>
+   <published>2023-12-20T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 20 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieここまで ITP について見てきたが、これはあくまで Safari が独断で行っていたことだ。それに対して、他が追従するかどうかはブラウザ次第だっただろう。では、他のブラウザはどのような反応をしたか。この反応には、その時の情勢も鑑みる必要がある。</summary>
   </entry>
 
@@ -763,7 +857,8 @@
    <title type="html">3PCA 19 日目: Super Cookie</title>
    <link href="https://blog.jxck.io/entries/2023-12-19/super-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-19</id>
-   <updated>2023-12-19T00:00:00Z</updated>
+   <published>2023-12-19T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 19 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は Super Cookie の解説をする。迂回手段ゾーンとしては、最後に紹介する手法だ。</summary>
   </entry>
 
@@ -771,7 +866,8 @@
    <title type="html">3PCA 18 日目: Cloaking</title>
    <link href="https://blog.jxck.io/entries/2023-12-18/cloaking.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-18</id>
-   <updated>2023-12-18T00:00:00Z</updated>
+   <published>2023-12-18T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 18 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は、ITP の迂回で注目された Cloaking について解説する。</summary>
   </entry>
 
@@ -779,7 +875,8 @@
    <title type="html">3PCA 17 日目: Fingerprinting</title>
    <link href="https://blog.jxck.io/entries/2023-12-17/fingerprinting.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-17</id>
-   <updated>2023-12-17T00:00:00Z</updated>
+   <published>2023-12-17T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 17 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は、Cookie に頼らない Tracking 手段としての、Fingerprinting について解説する。</summary>
   </entry>
 
@@ -787,7 +884,8 @@
    <title type="html">3PCA 16 日目: Bounce Tracking</title>
    <link href="https://blog.jxck.io/entries/2023-12-16/bounce-tracking.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-16</id>
-   <updated>2023-12-16T00:00:00Z</updated>
+   <published>2023-12-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 16 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は 3rd Party Cookie の迂回としてトラッキングに用いられた、Bounce Tracking について解説する。</summary>
   </entry>
 
@@ -795,7 +893,8 @@
    <title type="html">3PCA 15 日目: Work Around</title>
    <link href="https://blog.jxck.io/entries/2023-12-15/work-around.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-15</id>
-   <updated>2023-12-15T00:00:00Z</updated>
+   <published>2023-12-15T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 15 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今回は ITP が始まったことで試行された、迂回方法について見ていく。</summary>
   </entry>
 
@@ -803,7 +902,8 @@
    <title type="html">3PCA 14 日目: Partitioning</title>
    <link href="https://blog.jxck.io/entries/2023-12-14/partitioning.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-14</id>
-   <updated>2023-12-14T00:00:00Z</updated>
+   <published>2023-12-14T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 14 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今日は Safari, Firefox で導入され、その後 Chrome によって標準化されつつある、Partitioning という概念を解説する。</summary>
   </entry>
 
@@ -811,7 +911,8 @@
    <title type="html">3PCA 13 日目: ITP</title>
    <link href="https://blog.jxck.io/entries/2023-12-13/itp.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-13</id>
-   <updated>2023-12-13T00:00:00Z</updated>
+   <published>2023-12-13T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 13 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie</summary>
   </entry>
 
@@ -819,7 +920,8 @@
    <title type="html">3PCA 12 日目: 終わりの始まり</title>
    <link href="https://blog.jxck.io/entries/2023-12-12/deprecation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-12</id>
-   <updated>2023-12-12T00:00:00Z</updated>
+   <published>2023-12-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 12 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie</summary>
   </entry>
 
@@ -827,7 +929,8 @@
    <title type="html">3PCA 11 日目: Cookie Banner</title>
    <link href="https://blog.jxck.io/entries/2023-12-11/3pca-banner.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-11</id>
-   <updated>2023-12-11T00:00:00Z</updated>
+   <published>2023-12-11T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 11 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie前回は、各国で法律が整備されていった流れや、主な法律の特徴を解説した。しかし、法律はあくまで法律であり仕様ではないため、「どう実装するべきか」は各サービスに委ねられている(ガイドラインなどはあるが)。多くの場合、これを Web の実装に落とし込むと、いわゆる「Cookie バナー」相当になるわけだ。今回は、実世界でどのようなバナーが提供されているのかを見ていく。</summary>
   </entry>
 
@@ -835,7 +938,8 @@
    <title type="html">3PCA 10 日目: なぜ Cookie には同意が必要なのか?</title>
    <link href="https://blog.jxck.io/entries/2023-12-10/3pca-consent.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-10</id>
-   <updated>2023-12-10T00:00:00Z</updated>
+   <published>2023-12-10T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 10 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今回は、この話をする上で避けては通れない、規制や法律について触れておく。しかし、筆者はあくまでエンジニアであり、この分野は専門外だ。内容については、素人が適当に書いており、信頼性は AI 以下だと思って読んでほしい。</summary>
   </entry>
 
@@ -843,7 +947,8 @@
    <title type="html">3PCA 9 日目: DNT</title>
    <link href="https://blog.jxck.io/entries/2023-12-09/3pca-dnt.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-09</id>
-   <updated>2023-12-09T00:00:00Z</updated>
+   <published>2023-12-09T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 9 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今回は、P3P の後に提案され、非常に似たコンセプトで、かつ最近まで使われていた DNT について解説する。</summary>
   </entry>
 
@@ -851,7 +956,8 @@
    <title type="html">3PCA 8 日目: P3P</title>
    <link href="https://blog.jxck.io/entries/2023-12-08/3pca-p3p.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-08</id>
-   <updated>2023-12-08T00:00:00Z</updated>
+   <published>2023-12-08T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 8 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie今回は、Cookie2 が失敗した後に、別のアプローチでこの課題に挑んだ P3P を解説する。</summary>
   </entry>
 
@@ -859,7 +965,8 @@
    <title type="html">3PCA 7 日目: Cookie2</title>
    <link href="https://blog.jxck.io/entries/2023-12-07/3pca-cookie2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-07</id>
-   <updated>2023-12-07T00:00:00Z</updated>
+   <published>2023-12-07T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 7 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookieここからは第二幕、人類と 3rd Party Cookie の闘いの歴史を見ていく。「歴史の話はいらない、早くコードを見せろ」と思っている読者の気持ちもわかるが、残念ながら背景がわかっていないとまともな闘いはできないだろう。</summary>
   </entry>
 
@@ -867,7 +974,8 @@
    <title type="html">3PCA 6 日目: トラッキングの問題</title>
    <link href="https://blog.jxck.io/entries/2023-12-06/3pca-tracking.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-06</id>
-   <updated>2023-12-06T00:00:00Z</updated>
+   <published>2023-12-06T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 6 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie前回は、3rd Party Cookie にはネガティブ/ポジティブを含め、さまざまなユースケースがあるという解説をした。では、なぜ 3rd Party Cookie は今「問題」になっているのだろうか?</summary>
   </entry>
 
@@ -875,7 +983,8 @@
    <title type="html">3PCA 5 日目: 認証の連携</title>
    <link href="https://blog.jxck.io/entries/2023-12-05/3pca-authentication.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-05</id>
-   <updated>2023-12-05T00:00:00Z</updated>
+   <published>2023-12-05T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 5 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie前回は、3rd Party Cookie を使った広告のリターゲティングの仕組みを解説した。「あの気持ち悪い広告の正体は 3rd Party Cookie だったのか」と思った人もいるかもしれない。そんな諸悪の根源である 3rd Party Cookie など「さっさと無効にしてしまえばいいのでは?」と思うかもしれないが、それは簡単なことではない。なぜなら、3rd Party Cookie のユースケースは、ネガティブなものだけではないからだ。その一例として、今回は認証連携のユースケースを解説する。</summary>
   </entry>
 
@@ -883,7 +992,8 @@
    <title type="html">3PCA 4 日目: 3rd Party Cookie の正体</title>
    <link href="https://blog.jxck.io/entries/2023-12-04/3pca-3rd-party-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-04</id>
-   <updated>2023-12-04T00:00:00Z</updated>
+   <published>2023-12-04T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 4 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie前回は「サブリソースにまで Cookie が送られて何が嬉しいのか」という話だった。今回はそのユースケースについて考えていく。</summary>
   </entry>
 
@@ -891,7 +1001,8 @@
    <title type="html">3PCA 3 日目: 自動で送られる Cookie</title>
    <link href="https://blog.jxck.io/entries/2023-12-03/3pca-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-03</id>
-   <updated>2023-12-03T00:00:00Z</updated>
+   <published>2023-12-03T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 3 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie前回は「Cookie は 区別 と 識別 の用途があり、区別 だけのユースケースもある」という解説をした。今回も、もう少し Cookie の性質を振り返っていく。</summary>
   </entry>
 
@@ -899,7 +1010,8 @@
    <title type="html">3PCA 2 日目: Cookie による区別と識別</title>
    <link href="https://blog.jxck.io/entries/2023-12-02/3pca-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-02</id>
-   <updated>2023-12-02T00:00:00Z</updated>
+   <published>2023-12-02T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 2 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie</summary>
   </entry>
 
@@ -907,7 +1019,8 @@
    <title type="html">3PCA 1 日目: 3rd Party Cookie Advent Calendar Agenda</title>
    <link href="https://blog.jxck.io/entries/2023-12-01/3pca-agenda.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-12-01</id>
-   <updated>2023-12-01T00:00:00Z</updated>
+   <published>2023-12-01T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>このエントリは、3rd Party Cookie Advent Calendar の 1 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calendar/2023/3rd-party-cookie</summary>
   </entry>
 
@@ -915,15 +1028,17 @@
    <title type="html">なぜ HTML の form は PUT / DELETE をサポートしないのか?</title>
    <link href="https://blog.jxck.io/entries/2023-11-27/hixie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-11-27</id>
-   <updated>2023-11-27T00:00:00Z</updated>
-   <summary>10 年ほど前に同じことを調べたことがある。なぜ html の form は PUT / DELETE をサポートしないのか? - Block Rockin&apos; Codeshttps://jxck.hatenablog.com/entry/why-form-dosent-support-put-delete当時は全くの素人で、素人なりに調査はしたが、ほとんどが推測の域を出ない結論だった。この問題についてあらためて記す。</summary>
+   <published>2023-11-27T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
+   <summary>10 年ほど前に同じことを調べたことがある。なぜ html の form は PUT / DELETE をサポートしないのか? - Block Rockin&#39; Codeshttps://jxck.hatenablog.com/entry/why-form-dosent-support-put-delete当時は全くの素人で、素人なりに調査はしたが、ほとんどが推測の域を出ない結論だった。この問題についてあらためて記す。</summary>
   </entry>
 
   <entry>
    <title type="html">次世代 Web カンファレンス 2023 開催告知</title>
    <link href="https://blog.jxck.io/entries/2023-11-16/next-web-conf-2023.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-11-16</id>
-   <updated>2023-11-16T00:00:00Z</updated>
+   <published>2023-11-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2023/12/16(土) に、3 回目となる「次世代 Web カンファレンス」を開催します。次世代 Web カンファレンス 2023 - connpass名称: 次世代 Web カンファレンス 2023日時: 2023/12/16(土) 11:00-20:00場所: サイボウズ参加費: 無料配信: なしアーカイブ: 未定懇親会: なし入場規制: ありハッシュタグ(全体): #nwc_all</summary>
   </entry>
 
@@ -931,7 +1046,8 @@
    <title type="html">ブラウザでリロードしながらキャッシュの挙動を確認してる全ての開発者へ</title>
    <link href="https://blog.jxck.io/entries/2023-11-05/reload-and-cache.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-11-05</id>
-   <updated>2023-11-05T00:00:00Z</updated>
+   <published>2023-11-05T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>こういうタイトルを付けるのはあまり好きではないが、あえてこのようにした。</summary>
   </entry>
 
@@ -939,7 +1055,8 @@
    <title type="html">Cookie2 とは何か</title>
    <link href="https://blog.jxck.io/entries/2023-08-19/cookie2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-08-19</id>
-   <updated>2023-08-19T00:00:00Z</updated>
+   <published>2023-08-19T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>タイトルを見て「Cookie の新しい仕様か、キャッチアップしよう」と思って開いたのなら、以降を読む必要はない。</summary>
   </entry>
 
@@ -947,7 +1064,8 @@
    <title type="html">Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化</title>
    <link href="https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-07-29</id>
-   <updated>2023-07-29T00:00:00Z</updated>
+   <published>2023-07-29T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Chrome で Compression Dictionary Transport の Experiment が行われている。Intent to Experiment: Compression dictionary transport with Shared Brotlihttps://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72Eこの提案の仕様および本サイトへの適用について解説する。</summary>
   </entry>
 
@@ -955,7 +1073,8 @@
    <title type="html">Cookie Store API による document.cookie の改善</title>
    <link href="https://blog.jxck.io/entries/2023-06-18/cookie-store-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-06-18</id>
-   <updated>2023-06-18T00:00:00Z</updated>
+   <published>2023-06-18T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>JS から Cookie を操作する document.cookie の改善を目的とした Cookie Store API についてまとめる。</summary>
   </entry>
 
@@ -963,7 +1082,8 @@
    <title type="html">AbortSignal.any(), AbortSignal.timeout(), そして addEventListener() の Signal</title>
    <link href="https://blog.jxck.io/entries/2023-06-01/abort-signal-any.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-06-01</id>
-   <updated>2023-06-01T00:00:00Z</updated>
+   <published>2023-06-01T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>最近 AbortSignal.any() が提案され、急速に実装が進んでいる。すでに定義されている AbortSignal.timeout() や addEventListener() への Signal なども含め、非同期処理の中断を実装する際の API はかなり整備されてきた。これら API のモチベーションと設計を中心にまとめる。</summary>
   </entry>
 
@@ -971,7 +1091,8 @@
    <title type="html">URL バーの表示の変遷</title>
    <link href="https://blog.jxck.io/entries/2023-05-28/history-of-url-bar.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-05-28</id>
-   <updated>2023-05-28T00:00:00Z</updated>
+   <published>2023-05-28T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>ついに URL バーから EV 証明書の組織表示が消されるアナウンスが、Chrome から発表された。思えば、URL バーの見た目も、だいぶ変わってきたように思う。URL バーの表示の変遷を一度まとめておく。</summary>
   </entry>
 
@@ -979,7 +1100,8 @@
    <title type="html">IETF RFC における ABNF と Parsing Algorithm の関係</title>
    <link href="https://blog.jxck.io/entries/2023-05-17/abnf-or-algorithm-in-rfc.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-05-17</id>
-   <updated>2023-05-17T00:00:00Z</updated>
+   <published>2023-05-17T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>HTTPBis では、RFC 8941: Structured Field Values (以下 SFV) の更新作業が行われている。RFC 8941: Structured Field Values for HTTPhttps://www.rfc-editor.org/rfc/rfc8941.html機能面では Date 型が追加されるという点が大きいが、個人的にはその裏で行われるもっと興味深い議論に注目したい。それは、「RFC における ABNF の立ち位置」に関するものだ。</summary>
   </entry>
 
@@ -987,7 +1109,8 @@
    <title type="html">技術書籍をシンタックスハイライトする話</title>
    <link href="https://blog.jxck.io/entries/2023-05-02/syntax-highlighted-wdpress.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-05-02</id>
-   <updated>2023-05-02T00:00:00Z</updated>
+   <published>2023-05-02T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>「連載するけど、代わりにコードはハイライトさせてほしい」それが Web+DB Press 編集長に俺が出した条件だった。</summary>
   </entry>
 
@@ -995,7 +1118,8 @@
    <title type="html">OpenAI API を用いた文書校正(誤字脱字検出)</title>
    <link href="https://blog.jxck.io/entries/2023-03-24/proofreading-via-openai.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-03-24</id>
-   <updated>2023-03-24T00:00:00Z</updated>
+   <published>2023-03-24T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>OpenAI の API を用いて、長年の課題だった文書校正を VSCode 上で実現するプラグインを修作したところ、思った以上の成果だった。</summary>
   </entry>
 
@@ -1003,7 +1127,8 @@
    <title type="html">誇りを被った仕様の針に意図を通す</title>
    <link href="https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-02-28</id>
-   <updated>2023-02-28T00:00:00Z</updated>
+   <published>2023-02-28T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Interop 2022 の目覚ましい成果の一つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の一つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれはそこまでの作業の蓄積を無に帰すレベルで影響を与える場合がある。一方それらは Web 開発者が使う時点では解決されており、基本的に気にされることはない。だからといって、気にする必要がないわけではない。ということを象徴する事件が、今回も裏で起こっていた。</summary>
   </entry>
 
@@ -1011,7 +1136,8 @@
    <title type="html">次世代 CSS 仕様が与えるコンポーネント時代の Web への影響</title>
    <link href="https://blog.jxck.io/entries/2023-01-07/new-css-capabilities-for-component.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2023-01-07</id>
-   <updated>2023-01-07T00:00:00Z</updated>
+   <published>2023-01-07T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>SPA の隆盛で進化したフロントエンドライブラリによって生み出された「コンポーネント」という資産は、それを View 層の最小単位として扱うエコシステムにその重心をずらした。近年の Web 開発は、虫食いのテンプレートエンジンにデータをはめ込む方式から、デザインシステムにカタログされたコンポーネント群に、API から取得したステートを流し込み、それらを「いつ、どこで、どう」レンダリングするかという課題への最適解を、各位が模索するフェーズとなっている。コンポーネントを敷き詰めるコンテナ側の設計は、Flexbox および Grid の登場によるレイアウトの進化が手助けしたところも大いにある。しかし、「ページ」を前提に設計された CSS は、「コンポーネント」を前提にした設計に移行するうえで、ミッシングピースが多かった。現在、提案/実装が進んでいる CSS の新機能群には、この「コンポーネントベースの Web 開発」に大いに影響を与えるポテンシャルを持つものが多い。今回は、2023 年の予習として、それらの仕様を「開発スタイルに与えうる影響」の側面から俯瞰し妄想したものをメモに残す。</summary>
   </entry>
 
@@ -1019,7 +1145,8 @@
    <title type="html">2022 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2022-12-31/end-of-2022.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-12-31</id>
-   <updated>2022-12-31T00:00:00Z</updated>
+   <published>2022-12-31T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2022 年を振り返る。</summary>
   </entry>
 
@@ -1027,7 +1154,8 @@
    <title type="html">CORB から ORB へ</title>
    <link href="https://blog.jxck.io/entries/2022-10-25/corb-to-orb.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-10-25</id>
-   <updated>2022-10-25T00:00:00Z</updated>
+   <published>2022-10-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>CORB (Cross Origin Read Blocking) が Fetch の仕様から消え、後継の ORB (Opaque Response Blocking) が策定作業中である。ここでどのような変更が起こっているのかを調査し、記録する。</summary>
   </entry>
 
@@ -1035,7 +1163,8 @@
    <title type="html">XMLHttpRequest とはなんだったのか</title>
    <link href="https://blog.jxck.io/entries/2022-09-30/XMLHttpRequest.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-09-30</id>
-   <updated>2022-09-30T00:00:00Z</updated>
+   <published>2022-09-30T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を残す。</summary>
   </entry>
 
@@ -1043,7 +1172,8 @@
    <title type="html">HPKE とは何か</title>
    <link href="https://blog.jxck.io/entries/2022-08-25/hpke.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-08-25</id>
-   <updated>2022-08-25T00:00:00Z</updated>
+   <published>2022-08-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>HPKE (Hybrid Public Key Encryption) が RFC 9180 として公開された。RFC 9180: Hybrid Public Key Encryptionhttps://www.rfc-editor.org/rfc/rfc9180.htmlHPKE は、公開鍵暗号方式と共通鍵暗号方式を組み合わせて(ハイブリッド)任意の平文を暗号化するための、汎用的な枠組みとして標準化されている。この仕様は、多くのユースケースが想定されており、RFC になる前から ECH (Encrypted Client Hello), MLS (Message Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。本サイトで書く予定の他の記事でも HPKE は頻出する予定であり、今後より多くの場面でこの仕様を見ることになると思われるため、一度この仕様の概観について解説する。(筆者は暗号の専門家ではないため、解釈や語彙使用の間違いがあるかもしれない。)</summary>
   </entry>
 
@@ -1051,7 +1181,8 @@
    <title type="html">HTTP 関連 RFC が大量に出た話と 3 行まとめ</title>
    <link href="https://blog.jxck.io/entries/2022-06-16/HTTP-RFCs.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-06-16</id>
-   <updated>2022-06-16T00:00:00Z</updated>
+   <published>2022-06-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2022/06/06 ~ 9 あたりに、長きに渡って策定作業が行われていた HTTP 関連の RFC が大量に公開された。RFC 9110: HTTP SemanticsRFC 9111: HTTP CachingRFC 9112: HTTP/1.1RFC 9113: HTTP/2RFC 9114: HTTP/3RFC 9163: Expect-CT Extension for HTTPRFC 9204: QPACK: Field Compression for HTTP/3RFC 9205: Building Protocols with HTTPRFC 9209: The Proxy-Status HTTP Response Header FieldRFC 9211: The Cache-Status HTTP Response Header FieldRFC 9213: Targeted HTTP Cache ControlRFC 9218: Extensible Prioritization Scheme for HTTPRFC 9220: Bootstrapping WebSockets with HTTP/3RFC 9230: Oblivious DNS over HTTPSいったい何が起こっているのか、それぞれの経緯と開発者が知っておいた方がいいこと、そうでもないことを解説する。</summary>
   </entry>
 
@@ -1059,7 +1190,8 @@
    <title type="html">JavaScript のメディアタイプと RFC 9239</title>
    <link href="https://blog.jxck.io/entries/2022-05-31/text-javascript.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-05-31</id>
-   <updated>2022-05-31T00:00:00Z</updated>
+   <published>2022-05-31T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた application/javascript ではなくなった経緯などを踏まえ、解説する。</summary>
   </entry>
 
@@ -1067,7 +1199,8 @@
    <title type="html">Navigation API による「JS での画面遷移」と SPA の改善</title>
    <link href="https://blog.jxck.io/entries/2022-04-22/navigation-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-04-22</id>
-   <updated>2022-04-22T00:00:00Z</updated>
+   <published>2022-04-22T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>従来の History API を改善する Navigation API の仕様策定と実装が進んでいる。これは、History API の使いにくかった部分を補うだけではなく、「JS で画面遷移をする」という現状のミッシングピースに取り組み、SPA が抱える多くの問題だけでなく MPA すら改善する可能性がある。この API の目的と仕様を解説しつつ、実装のメモを残す。</summary>
   </entry>
 
@@ -1075,15 +1208,17 @@
    <title type="html">Markdown の Table 記法を CSS で実現する</title>
    <link href="https://blog.jxck.io/entries/2022-03-06/markdown-style-table-css.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-03-06</id>
-   <updated>2022-03-06T00:00:00Z</updated>
-   <summary>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &apos;##&apos; を指定するといった具合だ。しかし、これまで &lt;table&gt; だけはうまく Markdown 記法を再現する CSS が書けないでいた。そこで、周りの CSS 強者に実現できないか聞いてみたところ、@shqld, @araya, @yoshiko 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。</summary>
+   <published>2022-03-06T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
+   <summary>本ブログは Markdown で原稿を書き、それを HTML に変換して表示している。このとき、CSS を用いて Markdown のシンタックスに似せた Style を適用している。例えば以下のように h2::before に content: &#39;##&#39; を指定するといった具合だ。しかし、これまで &lt;table&gt; だけはうまく Markdown 記法を再現する CSS が書けないでいた。そこで、周りの CSS 強者に実現できないか聞いてみたところ、@shqld, @araya, @yoshiko 達の協力を得て、かなりの完成度にすることができた。実現方法を記録する。</summary>
   </entry>
 
   <entry>
    <title type="html">サイトの HTTP3 化と DNS HTTPS RR および Alt-Svc Header によるアドバタイズ</title>
    <link href="https://blog.jxck.io/entries/2022-02-05/http3.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-02-05</id>
-   <updated>2022-02-05T00:00:00Z</updated>
+   <published>2022-02-05T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>本サイトを HTTP3 対応し、Alt-Svc ヘッダおよび DNS HTTPS Resource Record によってそれをアドバタイズする構成を適用した。色々ハマったので作業のログを記す。</summary>
   </entry>
 
@@ -1091,7 +1226,8 @@
    <title type="html">画像最適化戦略 AVIF 編</title>
    <link href="https://blog.jxck.io/entries/2022-01-07/avif.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2022-01-07</id>
-   <updated>2022-01-07T00:00:00Z</updated>
+   <published>2022-01-07T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい AVIF 形式を提供し、対応ブラウザに配信するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 6 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編&gt; 画像最適化戦略 AVIF 編</summary>
   </entry>
 
@@ -1099,7 +1235,8 @@
    <title type="html">2021 年をふりかえる</title>
    <link href="https://blog.jxck.io/entries/2021-12-28/end-of-2021.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-12-28</id>
-   <updated>2021-12-28T00:00:00Z</updated>
+   <published>2021-12-28T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2021 年を振り返る。</summary>
   </entry>
 
@@ -1107,7 +1244,8 @@
    <title type="html">Web のセマンティクスにおける Push と Pull</title>
    <link href="https://blog.jxck.io/entries/2021-12-08/web-semantics-push-and-pull.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-12-08</id>
-   <updated>2021-12-08T00:00:00Z</updated>
+   <published>2021-12-08T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>筆者は、Web のセマンティクスに対する実装の方針として、大きく Push 型の実装 と Pull 型の実装 があると考えている。もっと言えば、それは実装方法という具体的な話よりも、開発者のセマンティクスに対する態度を表現することができる。この話は「Push よりも Pull が良い」などと簡単に切り分けられる話ではない。「自分は今 Push で実装しているのか、Pull で実装しているのか」この観点を意識するかしないかによって、セマンティクスに対する視野が広くなり、その応用として、たとえば今自分が行っている実装が、将来の Web においてどのような互換性の問題を生じるかなどを想像できるようになるだろう。最近問題になる Ossification を、こうした視点の欠如の結果とみることもできる。(本エントリでの Ossification は、一般に言われている Protocol Ossification よりも、もう少し広義に捉えていることに注意)抽象的な話が続くため、なるべく具体例を交えて解説を試みる。</summary>
   </entry>
 
@@ -1115,7 +1253,8 @@
    <title type="html">自作 Markdown プロセッサベースの blog.jxck.io v2 リリース</title>
    <link href="https://blog.jxck.io/entries/2021-11-30/blog-v2-release.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-11-30</id>
-   <updated>2021-11-30T00:00:00Z</updated>
+   <published>2021-11-30T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>本サイトは自作の Markdown ビルダを使っていたが、色々と気に食わない部分があったのでフルスクラッチで作り直し、それにともなってサイトの刷新を実施した。必要だった要件や、意思決定を作業ログとして記す。</summary>
   </entry>
 
@@ -1123,7 +1262,8 @@
    <title type="html">ABNF Parser の実装</title>
    <link href="https://blog.jxck.io/entries/2021-10-21/abnf-parser.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-10-21</id>
-   <updated>2021-10-21T00:00:00Z</updated>
+   <published>2021-10-21T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>IETF の RFC では ABNF 形式の表現がよく使われ、たまに実装することがある。しかし、実装するたびに前のコードを引っ張り出して思い出す、を繰り返しているので、自分用にメモとしてやり方をまとめる。完全に我流であり、目的は「その ABNF が正しいかを確認すること」なので、高速化や効率性を求める実用実装とは目的が違う点は先に言っておく。</summary>
   </entry>
 
@@ -1131,7 +1271,8 @@
    <title type="html">Private Relay と IP Blindness による Fingerprint 対策</title>
    <link href="https://blog.jxck.io/entries/2021-09-22/private-relay-for-ip-blindness.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-09-22</id>
-   <updated>2021-09-22T00:00:00Z</updated>
+   <published>2021-09-22T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>iOS15 がリリースされたため、Private Relay のベータを試すことができた。このようなサービスが提供されるようになった背景を踏まえ、挙動を簡単に確認しつつ、解説する。</summary>
   </entry>
 
@@ -1139,7 +1280,8 @@
    <title type="html">mouseover 中に表示される DOM のデバッグ</title>
    <link href="https://blog.jxck.io/entries/2021-08-20/how-to-debug-mouseover.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-08-20</id>
-   <updated>2021-08-20T00:00:00Z</updated>
+   <published>2021-08-20T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>先日、後輩が「mouseover 中にしか表示されない DOM のデバッグ」に手こずっていたのを見て、たまには小ネタもということで、いくつかのテクニックを紹介する。実際には、発生しているイベントを制御するというテクニックなので、応用すると色々使えるだろう。</summary>
   </entry>
 
@@ -1147,7 +1289,8 @@
    <title type="html">Cross Origin iframe からの alert/confirm/prompt 呼び出しの無効化</title>
    <link href="https://blog.jxck.io/entries/2021-08-02/3rd-party-iframe-dialog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-08-02</id>
-   <updated>2021-08-02T00:00:00Z</updated>
+   <published>2021-08-02T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>直近で話題になっている Chrome の挙動変更についてまとめた。Reverse OT による延命はあるが、もともとが「セキュリティ的な理由でできなくする」のが目的のため、OT 期間中に修正が必要そうであることを先に述べておく。なお、これはあくまで筆者が調べた結果に基づいた見解であるため、該当する開発者は常に公式のアナウンスなどに注意し、最新の情報を踏まえて自身で判断すべきである。</summary>
   </entry>
 
@@ -1155,7 +1298,8 @@
    <title type="html">本サイトの AMP 提供の停止とここまでの振り返り</title>
    <link href="https://blog.jxck.io/entries/2021-06-26/amp-tone-down.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-06-26</id>
-   <updated>2021-06-26T00:00:00Z</updated>
+   <published>2021-06-26T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>前回の記事で、奇遇にも本サイトの AMP 対応を落とすことになった。しかし、そうでなくても AMP をどこかでやめることは考えていたため、きっかけの一つが SXG 対応になったのは、順当な流れだと筆者は感じている。これは AMP がなぜ始まり、なぜトーンダウンしつつあるのか、そしてこれからどうなっていくのか、という流れをまとめるいい機会でもある。その過程で生み出され、本サイトでも検証を続けてきた Performance Timing API, Core Web Vitals, Signed HTTP Exchange 、そして今構想されている Bento AMP などを踏まえ、一連の流れを覚えている範囲で記録としてまとめておく。ソースは筆者の主観であり、眺めてきた体感を mozaic.fm の Monthly Web などで話してきたものがベースなので、信頼性や正確性は期待しないで欲しい。</summary>
   </entry>
 
@@ -1163,7 +1307,8 @@
    <title type="html">Non AMP SXG による Prefetch 対応と AMP 提供の停止</title>
    <link href="https://blog.jxck.io/entries/2021-05-28/blog-over-sxg.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-05-28</id>
-   <updated>2021-05-28T00:00:00Z</updated>
+   <published>2021-05-28T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトを (Non AMP) SXG に対応した。これにより、Google のモバイル検索では、結果を表示した時点でこのサイトの SXG が Prefetch され、結果を選択したら Cache から素早く表示されつつ、アドレスバーにも本サイトのものとして表示される。この、Non AMP SXG 対応にあたって、本サイトの AMP の提供も停止することになった。移行の作業ログと、関連する流れについて記す。</summary>
   </entry>
 
@@ -1171,7 +1316,8 @@
    <title type="html">IE11 サポート終了の歴史</title>
    <link href="https://blog.jxck.io/entries/2021-05-11/end-of-ie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-05-11</id>
-   <updated>2021-05-11T00:00:00Z</updated>
+   <published>2021-05-11T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>IE11 が役目を終えていく流れを記録として残す。特に MS からのアナウンスや、それに準じた各サービスの反応、特に IE サポート終了アナウンスをまとめることで、IE11 というブラウザがどのように終了していったのかを記録することを目的とする。もともとは Google Docs にまとめていたものである。日付はアナウンスの公開日サポート終了日ではないサポート終了日も書いておけばよかったけど今からやり直す気力はない、、赤字 は MS 関連もしくはサポート終了の影響が大きそうなアナウンスWindows における IE11 自体のサポート終了については以下を参照https://www.atmarkit.co.jp/ait/articles/1503/11/news134.htmlできればある程度の結論が出るまでこのエントリを更新していきたい</summary>
   </entry>
 
@@ -1179,7 +1325,8 @@
    <title type="html">Public Suffix List の用途と今起こっている問題について</title>
    <link href="https://blog.jxck.io/entries/2021-04-21/public-suffix-list.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-04-21</id>
-   <updated>2021-04-21T00:00:00Z</updated>
+   <published>2021-04-21T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Public Suffix List (PSL) は、現在の Web プラットフォームの一端を支えている非常に重要な要素だ。実はこれが、少数のボランティアにより GitHub でメンテナンスされた、単なるテキストリストであることは、あまり知られていないかもしれない。最近、このリストへの追加リクエストがあとを絶たず、問題になっている。そもそも PSL とは何であり、今どのような問題が起こっているのかについて解説する。</summary>
   </entry>
 
@@ -1187,7 +1334,8 @@
    <title type="html">Web Font のメトリクス上書きによる CLS の改善</title>
    <link href="https://blog.jxck.io/entries/2021-02-25/font-metrics-override.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-02-25</id>
-   <updated>2021-02-25T00:00:00Z</updated>
+   <published>2021-02-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。</summary>
   </entry>
 
@@ -1195,7 +1343,8 @@
    <title type="html">Cache-Control: must-understand ディレクティブとは何か</title>
    <link href="https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-02-12</id>
-   <updated>2021-02-12T00:00:00Z</updated>
+   <published>2021-02-12T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>IETF が策定する HTTP の仕様が更新されようとしている。ここには、Cache の仕様も含まれており、そのなかで must-understand という Cache-Control のディレクティブが追加されている。このディレクティブが追加された経緯と仕様について解説する。</summary>
   </entry>
 
@@ -1203,7 +1352,8 @@
    <title type="html">Structured Field Values による Header Field の構造化</title>
    <link href="https://blog.jxck.io/entries/2021-01-31/structured-field-values.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2021-01-31</id>
-   <updated>2021-01-31T00:00:00Z</updated>
+   <published>2021-01-31T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>HTTP Header の値を構造化する Structured Field Values の仕様が RFC になった。RFC 8941: Structured Field Values for HTTPこの仕様の詳細について、筆者の実装を交えて解説する。</summary>
   </entry>
 
@@ -1211,7 +1361,8 @@
    <title type="html">2020 年をふりかえる</title>
    <link href="https://blog.jxck.io/entries/2020-12-31/end-of-2020.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-12-31</id>
-   <updated>2020-12-31T00:00:00Z</updated>
+   <published>2020-12-31T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2020 年を振り返る。</summary>
   </entry>
 
@@ -1219,7 +1370,8 @@
    <title type="html">AMP SXG 対応</title>
    <link href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-12-25</id>
-   <updated>2020-12-25T00:00:00Z</updated>
+   <published>2020-12-25T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトを AMP SXG に対応した。その作業ログを記す。</summary>
   </entry>
 
@@ -1227,7 +1379,8 @@
    <title type="html">CSS Layout API で Masonry Layout</title>
    <link href="https://blog.jxck.io/entries/2020-12-03/masonry-layout.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-12-03</id>
-   <updated>2020-12-03T00:00:00Z</updated>
+   <published>2020-12-03T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Pinterest でおなじみの Masonry Layout を CSS の標準にする作業と実装が進んでいる。以下のように画像を敷き詰めるタイルレイアウトのことを Masonry (石工やレンガ造りの意味らしい) Layout という。上の例の場合は、Height が不揃いの画像を並べる上で、左から敷き詰め、折り返したら既にある画像の高さに合わせて 2 列目が始まるというロジックになる。これを実現するには、割と複雑な CSS を書く必要があり、様々なサイトで CSS ライブラリや、Grid などを用いて再現する方法が紹介されている。これをそのまま CSS の標準にする作業が Layout API の文脈で行われており、既に一部が(主に Firefox で)実装されている。仕様は以下だ。CSS Grid Layout Module Level 3https://drafts.csswg.org/css-grid-3/従来の CSS Grid は、縦横が揃った Grid を展開し、そこに対して要素を割り当てるのが基本だが、それでは縦が揃わないため Masonry は実現できない。そこで、grid-template-rows / grid-template-columns へ masonry を追加し、これを指定すると Masonry レイアウトが実現できるようになる。省略すると grid: masonry / ${column} になるため、column に repeat などを指定すれば Pinterest のようなレイアウトが実現できる。3 列の Masonry Layout は以下だ。&lt;style&gt;.grid {  display: inline-grid;  grid: masonry / repeat(3, auto);  border: 1px solid;  gap: 1vw;  masonry-auto-flow: pack;  width: 32vw;}img {  width: 10vw;}&lt;/style&gt;&lt;div class=masonry&gt;  &lt;img&gt;  &lt;img&gt;  &lt;img&gt;  ...&lt;/div&gt;敷き詰めるためのアルゴリズムは仕様で決まっている。https://drafts.csswg.org/css-grid-3/#masonry-layout-algorithmデフォルトでは、敷き詰める際に一番余白が空いているところに画像が挿入される。これを制御するプロパティとして masonry-auto-flow が定義されており、next にすると画像の HTML 上での出現順に積み上げるようにすることもできる。masonry-auto-flow: pack;masonry-auto-flow: next;他の値もあるがまだ定義が明示されていないようだ。このあたりのアルゴリズムは要件によって多様だと思われるため、仕様の策定とともに変わる可能性は高いだろう。https://drafts.csswg.org/css-grid-3/#masonry-auto-flow</summary>
   </entry>
 
@@ -1235,7 +1388,8 @@
    <title type="html">Web 技術の調査方法</title>
    <link href="https://blog.jxck.io/entries/2020-11-19/how-to-track-web-standards.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-11-19</id>
-   <updated>2020-11-19T00:00:00Z</updated>
+   <published>2020-11-19T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>「新しい API などを、どうやって調べているのか」「仕様などを調べる際に、どこから手をつければ良いのか」などといった質問をもらうことがある。確かにどこかに明文化されていると言うよりは、普段からやっていて、ある程度慣れてきているだけなものであり、自分としても明文化していなかったため、これを機に解説してみる。やり方は一つではない上に日々変わっていくだろうが、頻繁にこの記事を更新するつもりはない。また、筆者は実務で必要になるというよりは、ほとんどを趣味でやっているため、このやり方が合わない場面は多々有るだろう。スコープとしては、ライブラリ、ツール、フレームワークなどではなく、Web プラットフォーム関連の標準やブラウザの実装状況などに限定している。</summary>
   </entry>
 
@@ -1243,7 +1397,8 @@
    <title type="html">Puppeteer で静的サイトの Font Subsetting</title>
    <link href="https://blog.jxck.io/entries/2020-09-07/font-subsetting-with-puppeteer.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-09-07</id>
-   <updated>2020-09-07T00:00:00Z</updated>
+   <published>2020-09-07T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Web Font のサブセット化を Font Weight に応じて作り分けるとともに、それを Puppeteer を用いて生成するように変更した。</summary>
   </entry>
 
@@ -1251,7 +1406,8 @@
    <title type="html">WebCodecs と WebTransport でビデオチャット</title>
    <link href="https://blog.jxck.io/entries/2020-09-01/webcodecs-webtransport-chat.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-09-01</id>
-   <updated>2020-09-01T00:00:00Z</updated>
+   <published>2020-09-01T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>ブラウザの持つ Video/Audio コーデック実装へアクセスする API として WebCodecs の仕様策定と実装が進んでいる。これにより、映像や音声の変換などといったユースケースへの応用も可能だ。本来なら WebCodecs 単体の API について解説するところだが、筆者がこの API を待っていた理由であるところの「WebRTC の代替」としての WebCodecs/WebTransport の応用に注目し、背景も踏まえて解説する。</summary>
   </entry>
 
@@ -1259,7 +1415,8 @@
    <title type="html">img の srcset 指定時に選択される画像</title>
    <link href="https://blog.jxck.io/entries/2020-08-15/selection-of-img-srcset.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-08-15</id>
-   <updated>2020-08-15T00:00:00Z</updated>
+   <published>2020-08-15T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>&lt;img&gt; や &lt;picture&gt; で srcset に複数の画像を指定することで、デバイスに応じて適切な解像度の画像を提供することができる。この画像が、どういった条件で選択されるのかを頭では勝手に理解していたつもりだが、理解とは違う挙動があったため、仕様と実装を確認した。その記録を記す。なお、先に言うがどのブラウザも 仕様に準拠して 実装されている。</summary>
   </entry>
 
@@ -1267,7 +1424,8 @@
    <title type="html">Webbundle によるサブリソース取得の最適化</title>
    <link href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-07-26</id>
-   <updated>2020-07-26T00:00:00Z</updated>
+   <published>2020-07-26T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。現時点での仕様と実装を解説する。Intent to Prototype: Subresource loading with Web Bundles</summary>
   </entry>
 
@@ -1275,7 +1433,8 @@
    <title type="html">ローカル開発環境の https 化</title>
    <link href="https://blog.jxck.io/entries/2020-06-29/https-for-localhost.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-06-29</id>
-   <updated>2020-06-29T00:00:00Z</updated>
+   <published>2020-06-29T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>Web の https 化が進み、それに伴って https を前提とする API も増えてきた。そうした API を用いた開発をローカルで行う場合、localhost という特別なホストを用いることもできるが、それだけでは間に合わないケースも少なからずある。localhost を https にするという方法もあるが、そのように紹介されている方法には、いくつか注意すべき点もある。この辺りの話を、直近 1 ヶ月で 3 回くらいしたので、筆者が普段使っている方法や注意点についてまとめる。特に推奨するつもりはない。</summary>
   </entry>
 
@@ -1283,7 +1442,8 @@
    <title type="html">QuicTransport によるアプリケーションレイヤでの QUIC 活用</title>
    <link href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-06-09</id>
-   <updated>2020-06-09T00:00:00Z</updated>
+   <published>2020-06-09T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>WebTransport の Quic 実装である QuicTransport の開発が Chrome で行われている。Chrome で Origin Trials が開始されたので仕様と実装を解説する。</summary>
   </entry>
 
@@ -1291,7 +1451,8 @@
    <title type="html">Site Isolation 及び Web のセキュリティモデルの更新</title>
    <link href="https://blog.jxck.io/entries/2020-05-22/site-isolation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-05-22</id>
-   <updated>2020-05-22T00:00:00Z</updated>
+   <published>2020-05-22T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Origin は Web におけるセキュリティモデルの一つとして、コンテンツ間の Communication に関する境界を定義し、リソースを保護してきた。しかし、Spectre の発覚以降、Communication に関する制限だけではなく Isolation によるメモリレベルでのアクセス制御が必要となった。そこで現在作業されているのが、CORB, CORP, COEP, COOP といった仕様群であり、これは Web におけるセキュリティモデルの更新作業と見ることができる。概要と現状について解説する。</summary>
   </entry>
 
@@ -1299,7 +1460,8 @@
    <title type="html">mozaic.fm v3 リリースと Podcast の PWA 化</title>
    <link href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-05-06</id>
-   <updated>2020-05-06T00:00:00Z</updated>
+   <published>2020-05-06T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>mozaic.fm をリニューアルし v3 としてリリースした。今回の更新は以下のような変更/修正を実施している。PWA 化before install promptBackground FetchPeriodic Background SyncContent Index APIBadging APIPlayer UI の刷新Pure WebcomponentsMedia Session APIWAI-ARIAPortal PreviewScreen Wake LockSecurityCSP v3 (not Report-Only)Cross Origin Resource PolicyCross Origin Opener PolicyCross Origin Embedder PolicyExpect-CTNELReferrer Policyその他Transpile LessScroll To Text Fragment SearchSpotifyWIPTemplate InstantiationHTML ModulesDocument PolicySilent PushWASM ID3SXG実施したモチベーションおよび、実施内容について記す。先に言っておくが、実装も仕様も全く安定してないものを、エミュレータだけでエスパー実装しているので、実機で動く保証もなく、しょっちゅう壊れる。サイトが壊れて聴けなかったらご愛用の Podcast アプリで聞いてほしい。</summary>
   </entry>
 
@@ -1307,7 +1469,8 @@
    <title type="html">Periodic Background Sync 及び Web を Install するということ</title>
    <link href="https://blog.jxck.io/entries/2020-04-23/periodic-background-sync.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-04-23</id>
-   <updated>2020-04-23T00:00:00Z</updated>
+   <published>2020-04-23T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>メールクライアントや RSS リーダーのようなユースケースを PWA で実装する場合、バックグラウンドで定期的にタスクを実行したいケースがある。このユースケースに特化した API として提案されているのが、Periodic Background Sync(PBS) だ。しかし、この API を取り巻く議論は「Web にアプリのような API を持ち込む上での難しさ」を物語っている。この API が Web において正当化できるかどうかは、Project Fugu に代表される Application Capabilities を Web に持ち込む場合の試金石になりそうだ。現時点での、仕様、実装、議論について解説する。</summary>
   </entry>
 
@@ -1315,7 +1478,8 @@
    <title type="html">Scroll to Text Fragment を用いたサイト内検索の実装</title>
    <link href="https://blog.jxck.io/entries/2020-03-27/scroll-to-search-result.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-03-27</id>
-   <updated>2020-03-27T00:00:00Z</updated>
+   <published>2020-03-27T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Scroll to Text Fragment のユースケースとして、本サイトにサイト内検索を実装した。</summary>
   </entry>
 
@@ -1323,7 +1487,8 @@
    <title type="html">牧歌的 Cookie の終焉</title>
    <link href="https://blog.jxck.io/entries/2020-02-25/end-of-idyllic-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-02-25</id>
-   <updated>2020-02-25T00:00:00Z</updated>
+   <published>2020-02-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Cookie は、ブラウザに一度保存すれば、次からその値を自動的に送ってくるという、非常に都合の良い仕様から始まった。State Less が基本だった Web にセッションの概念をもたらし、今ではこれが無ければ実現できないユースケースの方が多い。冷静に考えればふざけてるとしか思えないヘッダ名からもわかるように、当初はこのヘッダがこんなに重宝され、Web のあり方を変えるかもしれないくらい重要な議論を巻き起こすことになるとは、最初の実装者も思ってなかっただろう。そんな Cookie が今どう使われ、3rd Party Cookie (3rdPC) の何が問題になっているのかを踏まえ、これからどうなっていくのかについて考える。</summary>
   </entry>
 
@@ -1331,7 +1496,8 @@
    <title type="html">3rd Party Cookie 調査のための Web 広告導入</title>
    <link href="https://blog.jxck.io/entries/2020-01-31/ads-for-blog.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-31</id>
-   <updated>2020-01-31T00:00:00Z</updated>
+   <published>2020-01-31T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>昨今、特に広告サービスを中心に 3rd Party Cookie を用いたトラッキングについての議論が多く行われている。Safari による ITP や、Chrome による Privacy Sandbox への移行など、技術的な変化も著しい。こうした技術の変遷を観測し、調査検証を行うために、これまで避けていた Web 広告を本サイトに導入することにした。</summary>
   </entry>
 
@@ -1339,7 +1505,8 @@
    <title type="html">Service Worker の Background Fetch によるメディアのキャッシュ</title>
    <link href="https://blog.jxck.io/entries/2020-01-24/background-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-24</id>
-   <updated>2020-01-24T00:00:00Z</updated>
+   <published>2020-01-24T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Podcast を PWA 対応するために、待望だった機能の 1 つが Background Fetch だ。これにより、通常 Range Request で取得するような、大きなファイルを事前にダウンロードしておくことができるようになる。この API と、Service Worker およびブラウザにおける Range Request/Partial Response の扱いについて記す。</summary>
   </entry>
 
@@ -1347,7 +1514,8 @@
    <title type="html">ブラウザで何が起こっているのかを知る Reporting API と ReportingObserver</title>
    <link href="https://blog.jxck.io/entries/2020-01-18/reporting.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2020-01-18</id>
-   <updated>2020-01-18T00:00:00Z</updated>
+   <published>2020-01-18T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Web サービスにおいては通常、Web サーバから取得できるアクセスログやエラーログを取得し解析する基盤を保有するだろう。しかし、Web サーバから取得できる情報だけでは、ブラウザで何が起こったのかを知るのは限界がある。今回は、ブラウザ内で起こったことを知るための Reporting API と、その Report の収集について解説する。</summary>
   </entry>
 
@@ -1355,7 +1523,8 @@
    <title type="html">2019 年をふりかえる</title>
    <link href="https://blog.jxck.io/entries/2019-12-28/end-of-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-12-28</id>
-   <updated>2019-12-28T00:00:00Z</updated>
+   <published>2019-12-28T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>例年通り 2019 年を振り返る</summary>
   </entry>
 
@@ -1363,7 +1532,8 @@
    <title type="html">WebBundle によるコンテンツの結合と WebPackaging</title>
    <link href="https://blog.jxck.io/entries/2019-11-12/webbundle.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-11-12</id>
-   <updated>2019-11-12T00:00:00Z</updated>
+   <published>2019-11-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>依存コンテンツを 1 つにまとめて配信する WebBundle の仕様策定と実装が進んでいる。これは Signed HTTP Exchange と合わせて WebPackaging を実現するための仕様であり、組み合わせれば WebBundle に対して署名することでコンテンツの配信を通信と分けて考えることができる。Signed HTTP Exchange に比べると格段に簡単な仕様なので、現状のフォーマットと挙動について解説する。draft-yasskin-wpack-bundled-exchanges-latest</summary>
   </entry>
 
@@ -1371,7 +1541,8 @@
    <title type="html">Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス</title>
    <link href="https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-11-03</id>
-   <updated>2019-11-03T00:00:00Z</updated>
+   <published>2019-11-03T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>家では Mac を使っていたが、やはり Ubuntu 開発環境を作ることにした。前々から気になっていた Intel NUC をベースに Ubuntu 環境を構築。また、外出時もアクセスできるように SSH Port Forwarding を使って、固定 IP の無い家に外からアクセスできるようにした。備忘録を兼ねて記す。</summary>
   </entry>
 
@@ -1379,7 +1550,8 @@
    <title type="html">Scroll To Text Fragment と :~:text</title>
    <link href="https://blog.jxck.io/entries/2019-10-16/scroll-to-text-fragment.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-10-16</id>
-   <updated>2019-10-16T00:00:00Z</updated>
+   <published>2019-10-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ページ内の特定の位置へのスクロールは、URL フラグメントと HTML の ID 属性を用いて行われていた。しかし、ID を持たない要素へのスクロールというユースケースをカバーするために、フラグメントの拡張仕様が提案されている。Chrome がフラグ付きで実装しているため、この仕様の特徴について解説する。</summary>
   </entry>
 
@@ -1387,7 +1559,8 @@
    <title type="html">Noto Sans Hinted と font-feature-settings: &amp;apos;palt&amp;apos;</title>
    <link href="https://blog.jxck.io/entries/2019-10-13/font-feature-settings.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-10-13</id>
-   <updated>2019-10-13T00:00:00Z</updated>
+   <published>2019-10-13T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>Noto Sans のサブセット生成を見なおし、Noto Sans Hinted から pyftsubset で生成し、ついでに font-feature-settings を有効にした。作業と検証の記録を兼ねて、実施結果を記す。</summary>
   </entry>
 
@@ -1395,7 +1568,8 @@
    <title type="html">Promise.allSettled と Promise.any</title>
    <link href="https://blog.jxck.io/entries/2019-08-20/promise-allsettled-any.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-20</id>
-   <updated>2019-08-20T00:00:00Z</updated>
+   <published>2019-08-20T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Promise.allSettled() と Promise.any() の仕様策定が進んでいる。両者は近いレイヤの仕様では有るが、作業の進捗には差がある。Promise.allSettled は Stage 4 であり、Chrome や Safari TP には実装もされているPromise.any は Stage 2 であり、実装はまだないここでは、これらがあると何が嬉しいのかを Promise.all(), Promise.race() の特徴を踏まえて解説する。</summary>
   </entry>
 
@@ -1403,7 +1577,8 @@
    <title type="html">WebTransport と WebCodecs そして Web はどこまで &amp;quot;ゲーム化&amp;quot; するか</title>
    <link href="https://blog.jxck.io/entries/2019-08-18/webtransport-and-webcodecs.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-18</id>
-   <updated>2019-08-18T00:00:00Z</updated>
+   <published>2019-08-18T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Transport として HTTP over TCP を基本としていた Web のあり方は大きく変わり、転送するメディアも HTML だけに止まらなくなってきた。その対角線上にあるユースケースとして、UDP でバイナリデータを双方向にやり取りする「ゲーム」があるだろう。WebSocket/MSE/WebRTC/WASM など、Web で Game を行うためのパーツは徐々に揃いつつあり、過去に比べればだいぶ状況は改善してきていると言える。しかし、できることが増えればこそ、それぞれのパーツの不足する部分が浮き彫りになる。WebTransport と WebCodecs は、主にそんな Web Game の需要から「本当に必要としているもの」を再考した結果をまとめた提案と言えるだろう。これが、単に Web Game 開発の需要を満たすだけで終わるものか、ゲーム以外の Web の開発にどこまで影響を及ぼすか。現状の仕様の提案とそのモチベーションを元に、考察していく。</summary>
   </entry>
 
@@ -1411,7 +1586,8 @@
    <title type="html">Nullish Coalescing と Optional Chaining</title>
    <link href="https://blog.jxck.io/entries/2019-08-14/nullish-coalescing-optional-chaining.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-08-14</id>
-   <updated>2019-08-14T00:00:00Z</updated>
+   <published>2019-08-14T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>JS における null/undefined の扱いを改善するための 2 つの機能が提案されている。Nullish Coalescing Operator (stage 3)Optional Chaining Operator (stage 3)いずれも Stage 3 に進み、実装も始まっているので、現時点での解説を行う。</summary>
   </entry>
 
@@ -1419,7 +1595,8 @@
    <title type="html">Display Locking によるレンダリングの最適化と Async DOM</title>
    <link href="https://blog.jxck.io/entries/2019-06-16/display-locking.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-06-16</id>
-   <updated>2019-06-16T00:00:00Z</updated>
+   <published>2019-06-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>React や lit-html などにより、DOM 操作の抽象化に加えて最適化が提供されることが一般的となった。見方を変えれば、本来ブラウザがやるような最適化を、ライブラリが肩代わりしていると捉えることもできる。これは、現在の標準 API には、規模が大きく処理が複雑なアプリケーションを開発する際に、足りてないものがあると考えることが可能だ。課題の 1 つとして「DOM 操作が同期処理である」という点に着目し、Async DOM という文脈でいくつかの提案が行われた。今回は、その提案の 1 つであり Chrome で実装が進んでいる Display Locking について現状を解説する。</summary>
   </entry>
 
@@ -1427,7 +1604,8 @@
    <title type="html">画像最適化戦略 Lazy Loading 編</title>
    <link href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-05-20</id>
-   <updated>2019-05-20T00:00:00Z</updated>
+   <published>2019-05-20T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>長らく議論されてきた &lt;img&gt; や &lt;iframe&gt; における Lazyload について、仕様と実装が動きを見せている。ここでは、特に画像 &lt;img&gt; に注目し、Lazyloading の議論の変遷を踏まえた上で現状を解説する。画像最適化シリーズ第 5 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編&gt; 画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
@@ -1435,7 +1613,8 @@
    <title type="html">mozaic bootcamp 2019</title>
    <link href="https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-05-12</id>
-   <updated>2019-05-12T00:00:00Z</updated>
+   <published>2019-05-12T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>2019/4/28 - 5/1 の 4 日間で、mozaic bootcamp 2019 というひたすら Web 技術を叩き込むイベントを開催した。その内容やモチベーションについては、以下で話している。ep48 Monthly Web 201901 | mozaic.fmこのイベントの概要と目的について記録する。</summary>
   </entry>
 
@@ -1443,7 +1622,8 @@
    <title type="html">Web における技術の解釈とエコシステムによる合意形成プロセスについて</title>
    <link href="https://blog.jxck.io/entries/2019-04-26/hyperlink-auditing-via-ping.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-04-26</id>
-   <updated>2019-04-26T00:00:00Z</updated>
+   <published>2019-04-26T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>「ユーザが意図する挙動」とは何か。技術的に可能であるが「やらない方が良いこと」は、誰がどう決めるのか。Web には仕様、実装、デプロイ、そしてユーザの利用とフィードバックによって、そうした合意がゆるやかに形成されていく仕組みがあると筆者は考えている。しかし、これは明文化されているわけでもなく、その全体像を把握するのは一般には難しいだろう。今回は、ちょうど何度目かの議論が再発している ping 属性を例に、この合意形成の概観について解説を試みる。</summary>
   </entry>
 
@@ -1451,7 +1631,8 @@
    <title type="html">Private Class Field の導入に伴う JS の構文拡張</title>
    <link href="https://blog.jxck.io/entries/2019-03-14/private-class-field.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-03-14</id>
-   <updated>2019-03-14T00:00:00Z</updated>
+   <published>2019-03-14T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が進んでいる。これにより、従来の JS にはなかった Class の Private フィールドが使えるようになる。提案されている構文や、挙動について解説する。</summary>
   </entry>
 
@@ -1459,7 +1640,8 @@
    <title type="html">安全な文字列であると型で検証する Trusted Types について</title>
    <link href="https://blog.jxck.io/entries/2019-01-27/trusted-types.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-27</id>
-   <updated>2019-01-27T00:00:00Z</updated>
+   <published>2019-01-27T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。WICG/trusted-typesIntent to Experiment: Trusted Types</summary>
   </entry>
 
@@ -1467,7 +1649,8 @@
    <title type="html">Cache Digest と HTTP2 Server Push の現状</title>
    <link href="https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-19</id>
-   <updated>2019-01-19T00:00:00Z</updated>
+   <published>2019-01-19T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>httpbis のチェアである mnot から、Cache Digest についての現状確認が ML に投稿された。もしこのまま反応がなければ、Cache Digest は終わり、対ブラウザキャッシュの Server Push は現実的ではなくなる。</summary>
   </entry>
 
@@ -1475,7 +1658,8 @@
    <title type="html">次世代 Web カンファレンス 2019 開催後記</title>
    <link href="https://blog.jxck.io/entries/2019-01-15/next-web-conf-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2019-01-15</id>
-   <updated>2019-01-15T00:00:00Z</updated>
+   <published>2019-01-15T00:00:00Z</published>
+   <updated>2022-02-21T00:00:00Z</updated>
    <summary>2019/1/13(日) に、以下で告知した「次世代 Web カンファレンス」を開催した。次世代 Web カンファレンス 2019 開催告知 | blog.jxck.io前日に初雪が観測されて心配したが、天気にも恵まれ、開催趣旨の通り予定していたセッションを全て終えることができた。次世代 Web カンファレンス - connpass各セッションはこれから録画を見るが、登壇者達に聞いた感触としては、概ね熱い議論ができていたようなので、場を設けた価値はあったと思う。録画や togetter はすでに上がっている。</summary>
   </entry>
 
@@ -1483,7 +1667,8 @@
    <title type="html">2018 年をふりかえる</title>
    <link href="https://blog.jxck.io/entries/2018-12-31/end-of-2018.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-12-31</id>
-   <updated>2018-12-31T00:00:00Z</updated>
+   <published>2018-12-31T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>例年通り 2018 年を振り返る</summary>
   </entry>
 
@@ -1491,7 +1676,8 @@
    <title type="html">WebPackaging の Signed HTTP Exchanges</title>
    <link href="https://blog.jxck.io/entries/2018-12-01/signed-http-exchanges.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-12-01</id>
-   <updated>2018-12-01T00:00:00Z</updated>
+   <published>2018-12-01T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>WebPackaging は以下の 3 つの仕様を組み合わせたユースケースである。Signed HTTP Exchanges: Signing (コンテンツに署名する)Bundled HTTP Exchanges: Bundling (コンテンツを 1 つにまとめる)Loading Signed Exchanges: Loading (そのコンテンツをロードする)本エントリでは、各仕様を Signing/Bundling/Loading と記す。現状、Signing および Loading の仕様策定が進んでおり、Chrome は Experimental な実装を行っている。全体的に仕様が大きく、今後も変更される可能性が高いため、今回は実装が進んでいる Signing に絞り、ユースケース、仕様、および本ブログへの適用を中心に解説する。</summary>
   </entry>
 
@@ -1499,7 +1685,8 @@
    <title type="html">prefers-color-scheme を用いた Dark Mode 対応と User Preference Media Features</title>
    <link href="https://blog.jxck.io/entries/2018-11-10/dark-mode-via-prefers-color-scheme.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-11-10</id>
-   <updated>2018-11-10T00:00:00Z</updated>
+   <published>2018-11-10T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>macOS Mojave は OS レベルで Dark Mode に対応した。しかし、Web コンテンツは依然として白背景黒文字ベースのデザインが多く、結果ブラウザの中だけ眩しいという問題がある。Safari TP69 では、これにメディアクエリで対応するための prefers-color-scheme が実装された。これを用いた Dark Mode 対応と、本ブログの Dark Mode 対応、および策定中の User Preference Media Features について解説する。</summary>
   </entry>
 
@@ -1507,7 +1694,8 @@
    <title type="html">Cookie の性質を利用した攻撃と Same Site Cookie の効果</title>
    <link href="https://blog.jxck.io/entries/2018-10-26/same-site-cookie.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-10-26</id>
-   <updated>2018-10-26T00:00:00Z</updated>
+   <published>2018-10-26T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Cookie はブラウザによって保存され、紐づいたドメインへのリクエストに自動で付与される。この挙動によって Web におけるセッション管理が実現されている一方、これを悪用した攻撃方法として、CSRF や Timing Attack などが数多く知られており、個別に対策がなされてきた。現在、提案実装されている SameSite Cookie は、そもそもの Cookie の挙動を変更し、こうした問題を根本的に解決すると期待されている。Cookie の挙動とそれを用いた攻撃、そして Same Site Cookie について解説する。</summary>
   </entry>
 
@@ -1515,7 +1703,8 @@
    <title type="html">Referrer-Policy によるリファラ制御</title>
    <link href="https://blog.jxck.io/entries/2018-10-08/referrer-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-10-08</id>
-   <updated>2018-10-08T00:00:00Z</updated>
+   <published>2018-10-08T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>リファラはリンクなどでページを遷移する際に、遷移元の URL をリクエストの Referer ヘッダに載せる仕様である。この付与はブラウザが自動で行うため、場合によっては非公開として扱っている URL が意図せず漏れることがある。この挙動を制御することができる、Referrer-Policy ヘッダについて解説する。</summary>
   </entry>
 
@@ -1523,7 +1712,8 @@
    <title type="html">次世代 Web カンファレンス 2019 開催告知</title>
    <link href="https://blog.jxck.io/entries/2018-09-15/next-web-conf-2019.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-09-15</id>
-   <updated>2018-09-15T00:00:00Z</updated>
+   <published>2018-09-15T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>2019/1/13(日) に、「次世代 Web カンファレンス」を開催します。名称次世代 Web カンファレンス日時2019/1/13(日) 9:00-17:30場所法政大学富士見ゲート 4F 401, 402, 403後援法政大学情報科学部配信Youtube募集Connpass参加費無料(参考) 2015 年実施のログは以下です。bloghttp://jxck.hatenablog.com/entry/next-web-conf-2915connpasshttps://nextwebconf.connpass.com/event/19699/録画405, 406, 407</summary>
   </entry>
 
@@ -1531,7 +1721,8 @@
    <title type="html">Clear-Site-Data Header</title>
    <link href="https://blog.jxck.io/entries/2018-07-24/clear-site-data.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-24</id>
-   <updated>2018-07-24T00:00:00Z</updated>
+   <published>2018-07-24T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>Clear-Site-Data Header の実装が進んでいる。このヘッダについて解説する。</summary>
   </entry>
 
@@ -1539,7 +1730,8 @@
    <title type="html">Element.toggleAttribute</title>
    <link href="https://blog.jxck.io/entries/2018-07-20/toggle-attribute.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-20</id>
-   <updated>2018-07-20T00:00:00Z</updated>
+   <published>2018-07-20T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>非常にシンプルかつミッシングピースだった Element.toggleAttribute という仕様が提案された。最近になって各ブラウザが一斉に実装を進め、リリースに向けたアナウンスが出始めている。この仕様について解説する。</summary>
   </entry>
 
@@ -1547,7 +1739,8 @@
    <title type="html">Monthly Web の作り方 2018 年版</title>
    <link href="https://blog.jxck.io/entries/2018-07-18/how-to-logging-monthly-web.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-07-18</id>
-   <updated>2018-07-18T00:00:00Z</updated>
+   <published>2018-07-18T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>筆者がやっている Podcast である mozaic.fm の中で、Monthly Web という月ごとの Web の動向をまとめる回をやっている。未だに落ち着いたとはいえないが、2017 年 7 月に初めてから 1 年続けたので、結果として現状どうなっているかをログに残す。</summary>
   </entry>
 
@@ -1555,7 +1748,8 @@
    <title type="html">Web Authentication API で FIDO U2F(YubiKey) 認証</title>
    <link href="https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-15</id>
-   <updated>2018-05-15T00:00:00Z</updated>
+   <published>2018-05-15T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Web Authentication(WebAuthN) API の策定と実装が進んでいる。これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。今回は YubiKey 認証の実装を通じて、ブラウザ API の呼び出しと、サーバ側で必要な処理について解説する。https://w3c.github.io/webauthn/</summary>
   </entry>
 
@@ -1563,7 +1757,8 @@
    <title type="html">Layered APIs と High Level API の標準化指針</title>
    <link href="https://blog.jxck.io/entries/2018-05-01/layered-apis.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-05-01</id>
-   <updated>2018-05-01T00:00:00Z</updated>
+   <published>2018-05-01T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Extensible Web Manifest 以降、標準化作業は Low Level API にフォーカスし、一定の成果が出ている。そこで、これらをベースとし、よりアプリレイヤの需要を満たすための High Level API をどう標準化するか、という点について指針が提案された。基本は、Low Level API を元に Polyfill を作り、そこからのフィードバックにより策定を進めるという方針だ。合わせて ES Modules の Import を用いて、polyfill とネイティブ実装をスムーズに切り替える拡張が提案されている。本記事では Layered APIs (LAPIs) と呼ばれる、この一連の枠組みについて解説する。また、同等の話を 東京 Node 学園 #tng30 で行った資料は以下である。Web over Layered APIs</summary>
   </entry>
 
@@ -1571,7 +1766,8 @@
    <title type="html">Linux で出力を別の shell に pts 経由で表示する</title>
    <link href="https://blog.jxck.io/entries/2018-04-30/redirect-to-pts.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-04-30</id>
-   <updated>2018-04-30T00:00:00Z</updated>
+   <published>2018-04-30T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>tmux, screen, terminal のタブなど、shell を複数起動する方法はいくつかある。Linux では、pts を経由すれば、ある shell の出力を簡単に別の shell で表示することができる。これを応用すると、簡易ダッシュボードを作り色々便利に使うことができる。</summary>
   </entry>
 
@@ -1579,7 +1775,8 @@
    <title type="html">Certificate Transparency の仕組みと HPKP から Expect-CT への移行</title>
    <link href="https://blog.jxck.io/entries/2018-03-27/certificate-transparency.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-03-27</id>
-   <updated>2018-03-27T00:00:00Z</updated>
+   <published>2018-03-27T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>本サイトは HPKP (public-key-pins-report-only) に対応していた。しかし、HPKP はその運用性の問題などもあり、Chrome はすでに deprecate するアナウンスを出している。代替の仕様として、Certificate Transparency (CT) のエコシステムと、それを利用する Expect-CT の策定/実装が進んでいる。CT エコシステムの概要、Log の登録/検証、HPKP から Expect-CT への移行などについて解説する。</summary>
   </entry>
 
@@ -1587,7 +1784,8 @@
    <title type="html">Feature Policy による Permission Delegation</title>
    <link href="https://blog.jxck.io/entries/2018-03-08/feature-policy-permission-delegation.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-03-08</id>
-   <updated>2018-03-08T00:00:00Z</updated>
+   <published>2018-03-08T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>ブラウザの機能を制限する Feature Policy の実装が進みつつある。Feature Policy は、ブラウザが持つ機能について選択的に許可/制限を行う API だ。AMP のように特定の機能を制限する目的にも使えるが、クロスオリジン iframe に対する権限移譲のための API としても使用される。Feature Policy のモチベーションおよび適用方法について、類似する CSP や iframe sandbox と合わせて解説する。なお、今回解説する内容は、まだブラウザの実装に反映されていない部分があるため、注意されたい。</summary>
   </entry>
 
@@ -1595,7 +1793,8 @@
    <title type="html">WebFont の WOFF2 対応によるサイズ最適化</title>
    <link href="https://blog.jxck.io/entries/2018-02-13/web-font-woff2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-02-13</id>
-   <updated>2018-02-13T00:00:00Z</updated>
+   <published>2018-02-13T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Safari 10.0 から WOFF2 がサポートされており、これをもって IE 以外のメジャーブラウザではサポートが揃いつつある。本サイトは WOFF 形式での Web Font を提供しているが、WOFF2 形式では WOFF よりも 12% 程度圧縮率が高いため、本サイトでも WOFF2 に移行することとした。フォーマット変更による効果について解説する。</summary>
   </entry>
 
@@ -1603,7 +1802,8 @@
    <title type="html">Safari による User-Agent 固定化と Web における Feature Detection</title>
    <link href="https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-17</id>
-   <updated>2018-01-17T00:00:00Z</updated>
+   <published>2018-01-17T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting--- Release Notes for Safari Technology Preview 46すぐには無理だろうと思ったが、TP47 でもこれを打ち消すアナウンスはなかったため、これを取り上げることにした。TP はあくまで Preview であり、これが このままリリースされるとは限らない 点に注意したい。今回は、これがそのままリリースされた場合の影響について考察するため、現在の User-Agent の使われ方を解説する。</summary>
   </entry>
 
@@ -1611,7 +1811,8 @@
    <title type="html">Apple の AOM 加盟と AV1 への期待</title>
    <link href="https://blog.jxck.io/entries/2018-01-15/aom-and-av1.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-15</id>
-   <updated>2018-01-15T00:00:00Z</updated>
+   <published>2018-01-15T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Apple が Alliance for Open Media に加盟したという報道があった。もし、このまま Safari が AV1 をサポートするまで至れば、WebRTC のコーデック戦争に一旦の落ち着きが出ると思われる。Apple joins alliance to shrink your online videos - CNETこの動向について解説する。</summary>
   </entry>
 
@@ -1619,7 +1820,8 @@
    <title type="html">record to map in Erlang</title>
    <link href="https://blog.jxck.io/entries/2018-01-14/erlang-record-to-map.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-14</id>
-   <updated>2018-01-14T00:00:00Z</updated>
+   <published>2018-01-14T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>Record を Map に変換するだけのマクロ</summary>
   </entry>
 
@@ -1627,7 +1829,8 @@
    <title type="html">Form で submit されたデータの収集と FormData &amp;amp; URLSearchParams</title>
    <link href="https://blog.jxck.io/entries/2018-01-13/formdata-urlsearchparams.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-13</id>
-   <updated>2018-01-13T00:00:00Z</updated>
+   <published>2018-01-13T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>&lt;form&gt; の onsubmit をフックして、入力された値を &lt;input&gt; から集めて送るといった処理はよくある。このとき、submit されたデータの収拾方法はいくつかある。submit に限らず、そのイベントに付随する情報は、基本的にイベントオブジェクトに内包されている。Form を例に、イベントオブジェクトを意識したコーディングについて解説する。</summary>
   </entry>
 
@@ -1635,7 +1838,8 @@
    <title type="html">Bookmarklet という一番身近な自動化技術</title>
    <link href="https://blog.jxck.io/entries/2018-01-12/let-it-bookmarklet.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-12</id>
-   <updated>2018-01-12T00:00:00Z</updated>
+   <published>2018-01-12T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>「毎回やるなら bookmarklet にでもすれば?」と言ったら、後輩が「そんな便利なことできたんですね、知りませんでした」と言っていた。そんな時代にこそ、今更だれも解説しないであろう、bookmarklet という技術についてもう一度書いておく。</summary>
   </entry>
 
@@ -1643,7 +1847,8 @@
    <title type="html">SDP の Unified Plan と Plan B</title>
    <link href="https://blog.jxck.io/entries/2018-01-05/sdp-unified-plan.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2018-01-05</id>
-   <updated>2018-01-05T00:00:00Z</updated>
+   <published>2018-01-05T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>新年早々、Blink Dev で Unified Plan の Intent to Implement という嬉しい知らせが届いた。Intent to Implement: WebRTC Unified Plan SDPSDP の互換性についてインパクトの大きいこの変更について簡単に解説する。</summary>
   </entry>
 
@@ -1651,7 +1856,8 @@
    <title type="html">2017 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2017-12-31/end-of-2017.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-31</id>
-   <updated>2017-12-31T00:00:00Z</updated>
+   <published>2017-12-31T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>例年通り、今年を振り返る。</summary>
   </entry>
 
@@ -1659,7 +1865,8 @@
    <title type="html">ResizeObserver による変更検知と Element Query</title>
    <link href="https://blog.jxck.io/entries/2017-12-30/resize-observer-and-element-query.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-30</id>
-   <updated>2017-12-30T00:00:00Z</updated>
+   <published>2017-12-30T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>ResizeObserver の ship が進みつつある。この仕様の解説および、ElementQuery / ContainerQuery について解説する。Resize Observer 1</summary>
   </entry>
 
@@ -1667,7 +1874,8 @@
    <title type="html">WHATWG の IPR Policy と Governance Structure</title>
    <link href="https://blog.jxck.io/entries/2017-12-12/whatwg-working-mode-changes.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-12</id>
-   <updated>2017-12-12T00:00:00Z</updated>
+   <published>2017-12-12T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>WHATWG が IPR Policy と Governance Structure についての更新を発表した。おおまかな流れと、これによって引き起されそうな変化について解説する。</summary>
   </entry>
 
@@ -1675,7 +1883,8 @@
    <title type="html">Font Display プロパティを用いた FOIT/FOUT 最適化</title>
    <link href="https://blog.jxck.io/entries/2017-12-06/font-display.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-12-06</id>
-   <updated>2017-12-06T00:00:00Z</updated>
+   <published>2017-12-06T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Web Font 読み込み中の HTML 表示については、ブラウザデフォルトの挙動に依存していた。フォントファイルサイズが大きい場合は、FOIT/FOUT の問題が顕著になり、JS を用いた回避策が利用されることも多かった。これを解決するため、CSS に font-display プロパティが作成され、実装が進んでいる。各プロパティの違いと挙動、そして本サイトへの適用について解説する。</summary>
   </entry>
 
@@ -1683,7 +1892,8 @@
    <title type="html">Houdini Paint API</title>
    <link href="https://blog.jxck.io/entries/2017-10-31/houdini-paint-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-10-31</id>
-   <updated>2017-10-31T00:00:00Z</updated>
+   <published>2017-10-31T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Houdini で議論されている CSS Paint API が Chrome Canary で flag 付きで実装されている。デモの実装を通して、関連仕様を含めた以下の 4 つのドラフトを解説する。CSS Painting API Level 1CSS Properties and Values API Level 1CSS Typed OM Level 1Worklets Level 1</summary>
   </entry>
 
@@ -1691,7 +1901,8 @@
    <title type="html">CSS Rhythmic Sizing で Vertical Rhythm</title>
    <link href="https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-10-09</id>
-   <updated>2017-10-09T00:00:00Z</updated>
+   <published>2017-10-09T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>タイポグラフィに関連したデザイン手法の 1 つに Vertical Rhythm がある。そして、現在 CSS でそれを簡単に実現するための CSS Rhythmic Sizing という仕様が提案されている。Chrome にフラグ付きで実装されたこの仕様を用いて、本サイトへの適用を行ったので、解説する。CSS Rhythmic Sizing</summary>
   </entry>
 
@@ -1699,7 +1910,8 @@
    <title type="html">予約済みドメイン (.example, .localhost, .test) について</title>
    <link href="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-09-27</id>
-   <updated>2017-09-27T00:00:00Z</updated>
+   <published>2017-09-27T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>特別なドメインとして予約され、特定の用途で使用可能なドメインとして、.example .localhost .test などがある。localhost の Draft や、gTLD である .dev が Chrome で Preload HSTS になったなどの動きを踏まえ、これらの意味や用途を解説する。</summary>
   </entry>
 
@@ -1707,7 +1919,8 @@
    <title type="html">ブラウザで適当なランダム文字列</title>
    <link href="https://blog.jxck.io/entries/2017-09-26/random-str-in-js.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-09-26</id>
-   <updated>2017-09-26T00:00:00Z</updated>
+   <published>2017-09-26T00:00:00Z</published>
+   <updated>2025-02-04T00:00:00Z</updated>
    <summary>テストや仮実装で、適当なランダム文字列が欲しい場合に便利なスニペット。</summary>
   </entry>
 
@@ -1715,7 +1928,8 @@
    <title type="html">Foreign Fetch が削除されそうな理由と Cookie の double keying</title>
    <link href="https://blog.jxck.io/entries/2017-09-19/remove-foreign-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-09-19</id>
-   <updated>2017-09-19T00:00:00Z</updated>
+   <published>2017-09-19T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>以前、本ブログでも紹介した Foreign Fetch が、仕様から削除される方向で進んでいる。Foreign Fetch による Micro Service Workers | blog.jxck.ioこれは、Safari などが進めている Cookie の double keying が影響しているらしいので、現状についてまとめる。</summary>
   </entry>
 
@@ -1723,7 +1937,8 @@
    <title type="html">Brotli を用いた静的コンテンツ配信最適化と Accept-Encoding: br について</title>
    <link href="https://blog.jxck.io/entries/2017-08-19/content-encoding-brotli.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-19</id>
-   <updated>2017-08-19T00:00:00Z</updated>
+   <published>2017-08-19T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>High Sierra に乗る Safari 11 で Brotli 対応がされるということで、メジャーブラウザの Brotli 対応が概ね揃うことになる。そこで、本サイトも Brotli による静的コンテンツ配信に対応した。</summary>
   </entry>
 
@@ -1731,7 +1946,8 @@
    <title type="html">.mjs とは何か、またはモジュールベース JS とエコシステムの今後</title>
    <link href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-15</id>
-   <updated>2017-08-15T00:00:00Z</updated>
+   <published>2017-08-15T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>長いこと議論になっていた ES Modules の Node における扱いに一応の決着が付き、.mjs という拡張子が採択された。この拡張子の意味と、今後ブラウザと合わせて Universal JS を実装していく上での作法が見えてきたことになる。合わせてエコシステムが対応していくことで、長年の夢だった JS のモジュール化を進めていくことができるだろう。</summary>
   </entry>
 
@@ -1739,7 +1955,8 @@
    <title type="html">Promise.prototype.finally</title>
    <link href="https://blog.jxck.io/entries/2017-08-10/promise-finally-proposal.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-10</id>
-   <updated>2017-08-10T00:00:00Z</updated>
+   <published>2017-08-10T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Promise.prototype.finally の仕様が TC39 stage 3 となり、Safari TP37 で先行実装が入った。tc39/proposal-promise-finally</summary>
   </entry>
 
@@ -1747,7 +1964,8 @@
    <title type="html">Service Worker の Navigation Preload による表示遅延回避</title>
    <link href="https://blog.jxck.io/entries/2017-08-05/navigation-preload.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-08-05</id>
-   <updated>2017-08-05T00:00:00Z</updated>
+   <published>2017-08-05T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Service Worker で Fetch を Proxy する場合、Fetch 発生時に SW が起動していなければ、その起動を待つ必要が出る。そして、この SW の起動には無視できない時間がかかる場合があった。これを改善する Navigation Preload について解説する。</summary>
   </entry>
 
@@ -1755,7 +1973,8 @@
    <title type="html">Fetch の中断と Promise のキャンセル方法の標準化</title>
    <link href="https://blog.jxck.io/entries/2017-07-19/aborting-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-19</id>
-   <updated>2017-07-19T00:00:00Z</updated>
+   <published>2017-07-19T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>XHR から fetch() に積極的に移行しづらかった最大のミッシングピースとして、中断できないという問題があった。これは、fetch() が選んだ Promise ベースのインタフェースにおいて、キャンセルをどうするかという議論と絡み、長く決着が付かずにいた問題である。最近、やっと話が前進したので、ここまでの経過を解説する。</summary>
   </entry>
 
@@ -1763,7 +1982,8 @@
    <title type="html">ネットワーク中立性について #NetNeutrality</title>
    <link href="https://blog.jxck.io/entries/2017-07-14/net-neutrality.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-14</id>
-   <updated>2017-07-14T00:00:00Z</updated>
+   <published>2017-07-14T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>US では #NetNeutrality について話題になっている一方、日本ではさほど話題になってないように思う。インターネットを基盤としている Web 開発者にとっても、いつまで他人事でいられるか怪しい。事態そのものがあまり知られてないかもと思い、決して精通しているわけではないが紹介する。</summary>
   </entry>
 
@@ -1771,7 +1991,8 @@
    <title type="html">EventTarget の継承可能化による EventEmitter の代替</title>
    <link href="https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-07-10</id>
-   <updated>2017-07-10T00:00:00Z</updated>
+   <published>2017-07-10T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>念願 だった EventTarget の constructible/subclassable が DOM の仕様にマージされた。これにより、いわゆる EventEmitter のブラウザ移植が不要になることが期待される。Allow constructing and subclassing EventTarget</summary>
   </entry>
 
@@ -1779,7 +2000,8 @@
    <title type="html">ES Modules への橋渡しとしての nomodule 属性</title>
    <link href="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-06-21</id>
-   <updated>2017-06-21T00:00:00Z</updated>
+   <published>2017-06-21T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>ブラウザにおける新機能の利用においては、非対応ブラウザの考慮も必要となる。ES Modules の利用においても、いかに非対応ブラウザでフォールバックの手段を提供するかが課題となっていた。今回は、Modules の対応/非対応を切り分けるための仕様である nomodule 属性を解説する。</summary>
   </entry>
 
@@ -1787,7 +2009,8 @@
    <title type="html">Web Budget API と Web に導入されつつある Budget と Cost の概念</title>
    <link href="https://blog.jxck.io/entries/2017-06-12/web-budget-api.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-06-12</id>
-   <updated>2017-06-12T00:00:00Z</updated>
+   <published>2017-06-12T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>PWA の普及により、バックグラウンド処理をいかに制限するかといった課題が生まれた。その対策として、バックグラウンド処理における Budget と Cost の概念が提案され、それを扱う Budget API の策定が進んでいる。基本概念と現時点での API 外観について解説する。</summary>
   </entry>
 
@@ -1795,7 +2018,8 @@
    <title type="html">Safari 11.0 will support WebRTC</title>
    <link href="https://blog.jxck.io/entries/2017-06-06/webrtc-in-safari11.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-06-06</id>
-   <updated>2017-06-06T00:00:00Z</updated>
+   <published>2017-06-06T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Safari 11 のアップデートに、待望だった WebRTC がリストされた。</summary>
   </entry>
 
@@ -1803,7 +2027,8 @@
    <title type="html">WebRTC 1.0 に向けたロードマップ</title>
    <link href="https://blog.jxck.io/entries/2017-05-22/webrtc-loadmap.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-22</id>
-   <updated>2017-05-22T00:00:00Z</updated>
+   <published>2017-05-22T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Google の Product Manager である Huib Kleinhout が、discuss-webrtc の ML に以下のような投稿をした。Completing WebRTC 1.0WebRTC 1.0 を年内に終わらせるためのロードマップ(Chrome の改善を含む)を提示している。このロードマップに期待を寄せ、簡単に現状を振り返りつつ紹介する。</summary>
   </entry>
 
@@ -1811,7 +2036,8 @@
    <title type="html">gen_fsm から gen_statem へ</title>
    <link href="https://blog.jxck.io/entries/2017-05-18/gen_statem.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-18</id>
-   <updated>2017-05-18T00:00:00Z</updated>
+   <published>2017-05-18T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>Erlang/OTP 19 から、gen_fsm の後継として gen_statem が導入された。OTP の内部でも ssl などはすでに gen_statem に移行している。このビヘイビアの概要について記す。gen_statem APIgen_statem Behaviorすでにかなり安定はしているが、軽微といえども非互換な変更が OTP 20 以降に発生する可能性があることがドキュメントに言及されている。本記事は 19 時点での API ドキュメントをベースにしている。</summary>
   </entry>
 
@@ -1819,7 +2045,8 @@
    <title type="html">Web Share API</title>
    <link href="https://blog.jxck.io/entries/2017-05-10/web-share.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-05-10</id>
-   <updated>2017-05-10T00:00:00Z</updated>
+   <published>2017-05-10T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Web Share API が Origin Trials を卒業したという知らせが届いた。コンテンツを他のサービスなどと連携するこの API について紹介する。</summary>
   </entry>
 
@@ -1827,7 +2054,8 @@
    <title type="html">JavaScript における文字コードと「文字数」の数え方</title>
    <link href="https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-03-02</id>
-   <updated>2017-03-02T00:00:00Z</updated>
+   <published>2017-03-02T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>textarea などに入力された文字数を、JS で数えたい場合がある。ここで .length を数えるだけではダメな理由は、文字コードや JS の内部表現の話を理解する必要がある。多言語や絵文字対応なども踏まえた上で、どう処理するべきなのか。それ自体は枯れた話題ではあるが、近年 ECMAScript に追加された機能などを交えて解説する。なお、文字コードの仕組みを詳解すること自体が目的では無いため、BOM, UCS-2, Endian, 歴史的経緯など、この手の話題につき物な話の一部は省くこととする。</summary>
   </entry>
 
@@ -1835,7 +2063,8 @@
    <title type="html">Monthly Web 2017/02</title>
    <link href="https://blog.jxck.io/entries/2017-02-21/monthly-web-201702.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-02-21</id>
-   <updated>2017-02-21T00:00:00Z</updated>
+   <published>2017-02-21T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>今月の Web メモ</summary>
   </entry>
 
@@ -1843,7 +2072,8 @@
    <title type="html">Polyfill のあり方と Web の進化と協調するためのガイドライン</title>
    <link href="https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-02-17</id>
-   <updated>2017-02-17T00:00:00Z</updated>
+   <published>2017-02-17T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>W3C の TAG から、主にブラウザ API の Polyfill に関するドキュメントが公開された。Polyfills and the evolution of the WebPolyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。今回はこの内容を元に、Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。</summary>
   </entry>
 
@@ -1851,7 +2081,8 @@
    <title type="html">CSP Report 収集と実レポートの考察</title>
    <link href="https://blog.jxck.io/entries/2017-02-13/csp-report-case-study.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-02-13</id>
-   <updated>2017-02-13T00:00:00Z</updated>
+   <published>2017-02-13T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このブログで CSP レポートの収集を開始してもうすぐ 1 年になる。現状、対象ドメイン内で &lt;input&gt; は一切提供しておらず、大半が静的に生成されたページであるが、この条件でも、かなり多くのレポートが集まった。今回は、収集した実際のレポートを例に、攻撃ではないと思われるレポートとしてどういったものが送られて来たかを中心に、その内容やレポーティングサーバ、CSP の運用に関する現時点の考察についてまとめる。</summary>
   </entry>
 
@@ -1859,7 +2090,8 @@
    <title type="html">Monthly Web 2017/01</title>
    <link href="https://blog.jxck.io/entries/2017-01-27/monthly-web-201701.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-01-27</id>
-   <updated>2017-01-27T00:00:00Z</updated>
+   <published>2017-01-27T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>月一メモ</summary>
   </entry>
 
@@ -1867,7 +2099,8 @@
    <title type="html">mixed contents 対応を促進する CSP ディレクティブ</title>
    <link href="https://blog.jxck.io/entries/2017-01-10/mixed-contents.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2017-01-10</id>
-   <updated>2017-01-10T00:00:00Z</updated>
+   <published>2017-01-10T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>HTTPS 移行の問題点の一つに、mixed contents への対応がある。逆に mixed contents の発生を恐れ、HTTPS に移行できないサービスもあるだろう。本エントリでは mixed contents の正しい理解と、その検出や解消に利用できる可能性のある、CSP の Upgrade-Insecure-Request および、Block-All-Mixed-Contents を解説する。</summary>
   </entry>
 
@@ -1875,7 +2108,8 @@
    <title type="html">2016 年を振り返る</title>
    <link href="https://blog.jxck.io/entries/2016-12-31/end-of-2016.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-31</id>
-   <updated>2016-12-31T00:00:00Z</updated>
+   <published>2016-12-31T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>例年通り、今年を振り返る。</summary>
   </entry>
 
@@ -1883,7 +2117,8 @@
    <title type="html">HTTP の新しいステータスコード 103 Early Hints</title>
    <link href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-16</id>
-   <updated>2016-12-16T00:00:00Z</updated>
+   <published>2016-12-16T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>これは、http2 Advent Calendar 2016 の 16 日目の記事である。HTTP に新しいステータスコード 103 Early Hints が追加されようとしている。HTTP/1.1 および HTTP2 双方と関わり、リソース配信の最適化に利用することができる。いったい何のために必要なのか、どういうメリットが考えられるかを解説する。</summary>
   </entry>
 
@@ -1891,7 +2126,8 @@
    <title type="html">Foreign Fetch による Micro Service Workers</title>
    <link href="https://blog.jxck.io/entries/2016-12-12/foreign-fetch.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-12</id>
-   <updated>2016-12-12T00:00:00Z</updated>
+   <published>2016-12-12T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>Service Worker に Foreign Fetch という機能が提案されている。この機能があるとクロスオリジンへの fetch をフックできる Service Worker を、その対象オリジンから提供できるようになる。一体どういう仕組みなのか、これによって何が可能になるのかについて、デモを交えて記す。</summary>
   </entry>
 
@@ -1899,7 +2135,8 @@
    <title type="html">Link rel=serviceworker ヘッダによる API やアセットの Offline 対応</title>
    <link href="https://blog.jxck.io/entries/2016-12-11/link-rel-service-worker.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-12-11</id>
-   <updated>2016-12-11T00:00:00Z</updated>
+   <published>2016-12-11T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>Service Worker を登録する方法は現状 3 つある。HTML meta タグでの追加ならば、Service Worker を追加するためだけの JS であれば不要になる。HTTP ヘッダでの追加ならば、HTML を持たない API にも Service Worker を追加した対応が可能である。次の記事で foreign fetch について解説する予定であるため、その前提知識として本機能を分離し紹介する。</summary>
   </entry>
 
@@ -1907,7 +2144,8 @@
    <title type="html">Node v7 で入った WHATWG URL 実装について</title>
    <link href="https://blog.jxck.io/entries/2016-10-27/whatwg-url.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-10-27</id>
-   <updated>2016-10-27T00:00:00Z</updated>
+   <published>2016-10-27T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Node v7.0.0 が公開され、今回のリリースで WHATWG URL の実装が Experimental として入った。既に標準で含まれていた url module との違いや、URL API などについて解説する。</summary>
   </entry>
 
@@ -1915,7 +2153,8 @@
    <title type="html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</title>
    <link href="https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-09-29</id>
-   <updated>2016-09-29T00:00:00Z</updated>
+   <published>2016-09-29T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>ブラウザに追加される新しい機能に対して、Vendor Prefix の代替となる Origin Trials の導入が徐々に始まっている。今回は、これまでの Vendor Prefix の問題点と、代替として提案された Origin Trials のデザインや導入方法などについて記す。</summary>
   </entry>
 
@@ -1923,7 +2162,8 @@
    <title type="html">Google Developer Experts (GDE) になりました</title>
    <link href="https://blog.jxck.io/entries/2016-08-30/be-a-google-developer-experts.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-08-30</id>
-   <updated>2016-08-30T00:00:00Z</updated>
+   <published>2016-08-30T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Google の中の人からお声がけ頂き、Google Developer Experts (GDE) に Web Technologies の Expert として Join することになりました。</summary>
   </entry>
 
@@ -1931,7 +2171,8 @@
    <title type="html">「Socket.IO は必要か?」または「WebSocket は通るのか?」問題について 2016 年版</title>
    <link href="https://blog.jxck.io/entries/2016-08-22/websocket-connectivity.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-08-22</id>
-   <updated>2016-08-22T00:00:00Z</updated>
+   <published>2016-08-22T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>「Socket.IO 使ったほうがいいですか?」 という主旨の質問をもらった。これは、WebSocket が繋がらない環境に向けて、フォールバック機能を有する Socket.IO にしておいた方が良いのかという意味である。WebSocket が出てきた当初と比べて、Web を取り巻く状況は変わったが、変わってないところもある。念のためと Socket.IO を使うのもよいが、「本当に必要なのか」を問うのは重要である。Rails も ActionCable で WebSocket に対応し、ユーザも増えるかもしれないことも踏まえ、ここで、もう一度現状について、把握している範囲で解説しておく。</summary>
   </entry>
 
@@ -1939,7 +2180,8 @@
    <title type="html">SQL でファイル検索するコマンド selects を書いた話</title>
    <link href="https://blog.jxck.io/entries/2016-08-05/sql-for-file-search.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-08-05</id>
-   <updated>2016-08-05T00:00:00Z</updated>
+   <published>2016-08-05T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>UNIX コマンドを SQL で抽出できるツール qq を作った。 というエントリを読んで、そういえば似たようなものを作ってたなと思い出した。自分の dotfiles の中にある、便利コマンド集の中にある selects についてである。このコマンドは SQL という検索を記述的に表現する共通言語をファイル検索に応用し、Ruby の動的言語として表現力を使って実装したものといえる。その実装方法と実行例などについて記す。</summary>
   </entry>
 
@@ -1947,7 +2189,8 @@
    <title type="html">Fetch での Stream を用いたプログレス取得とキャンセル</title>
    <link href="https://blog.jxck.io/entries/2016-07-21/fetch-progress-cancel.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-21</id>
-   <updated>2016-07-21T00:00:00Z</updated>
+   <published>2016-07-21T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>WHATWG が定義する Fetch API は、出たばかりの仕様では、途中でのキャンセルや、プログレスイベントの取得が含まれていなかった。しかし、後の更新で fetch 結果の Response Body が WHATWG Stream API を実装することになったため、現在の仕様ではプログレスを取ることもキャンセルをすることも可能となっている。今回は、こうした API のアップデートについて記す。</summary>
   </entry>
 
@@ -1955,7 +2198,8 @@
    <title type="html">Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</title>
    <link href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-07-12</id>
-   <updated>2016-07-12T00:00:00Z</updated>
+   <published>2016-07-12T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>ブラウザはリロード時に、max-age に満たないキャッシュを持っていても Conditional GET によってキャッシュの Validate (有効性の問い合わせ)を行う。Cache-Control Extension として提案されている Immutable 拡張は、キャッシュが max-age 内であればリロード時もキャッシュヒットさせる拡張である。このヘッダの効果と、本サイトへの適用について記す。</summary>
   </entry>
 
@@ -1963,7 +2207,8 @@
    <title type="html">Intersection Observer を用いた要素出現検出の最適化</title>
    <link href="https://blog.jxck.io/entries/2016-06-25/intersection-observer.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-25</id>
-   <updated>2016-06-25T00:00:00Z</updated>
+   <published>2016-06-25T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>スクロールによる DOM 要素の出現などを効率よく検知するため、新しく Intersection Observer という API が追加された。この API の使い方と、本サイトへの適用について記す。</summary>
   </entry>
 
@@ -1971,7 +2216,8 @@
    <title type="html">mozaic.fm の v2 のリリースと Podcast の実装と移行</title>
    <link href="https://blog.jxck.io/entries/2016-06-20/mozaicfm-v2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-20</id>
-   <updated>2016-06-20T00:00:00Z</updated>
+   <published>2016-06-20T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>mozaic.fm をリニューアルし、v2 としてリリースした。今回の更新のモチベーションは大きく分けて 2 つある。tumblr を捨てたかったfeedburner を捨てたかったこれによる breaking change 含む変更の内容と、実装のメモを記す。</summary>
   </entry>
 
@@ -1979,15 +2225,17 @@
    <title type="html">リンクのへの rel=noopener 付与による Tabnabbing 対策</title>
    <link href="https://blog.jxck.io/entries/2016-06-12/noopener.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-12</id>
-   <updated>2016-06-12T00:00:00Z</updated>
-   <summary>本サイト以下全ての target=_blank 付きのリンクに rel=&quot;noopener noreferrer&quot; の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。</summary>
+   <published>2016-06-12T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
+   <summary>本サイト以下全ての target=_blank 付きのリンクに rel=&#34;noopener noreferrer&#34; の付与を実施した。このプロパティの意味と、これが無い場合のフィッシング詐欺攻撃の可能性について解説する。</summary>
   </entry>
 
   <entry>
    <title type="html">Passive Event Listeners によるスクロールの改善</title>
    <link href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-06-09</id>
-   <updated>2016-06-09T00:00:00Z</updated>
+   <published>2016-06-09T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>DOM のイベントリスナの仕様に Passive Event Listeners というオプションが追加された。このオプションは、主にモバイルなどでのスクロールの詰まり(Scroll Junk) を解決するために導入されたものである。今回は、この仕様が解決する問題と、本サイトへの適用を解説する。Passive Event Listeners Spec</summary>
   </entry>
 
@@ -1995,7 +2243,8 @@
    <title type="html">中級者向け Service Worker Tutorial</title>
    <link href="https://blog.jxck.io/entries/2016-04-24/service-worker-tutorial.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-24</id>
-   <updated>2016-04-24T00:00:00Z</updated>
+   <published>2016-04-24T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Service Worker の初心者向けのチュートリアルや、使ってみた系のエントリも増えてきました。しかし、Service Worker は通常のブラウザ用 JS の開発と少し経路が違い、慣れるまで開発やデバッグもなかなか難しいと思います。そこで特に難しい部分、そして分かっていないと実際にデプロイした際に難しいと思う部分について、実際に動きを確認しながら解説したいと思います。なお、Service Worker の基本的な概念などについては、他のチュートリアルなどを見て理解している前提で進めます。思いつきで撮ったので色々ミスも有ります、また Chrome Dev Tools の UI はどうせ変わるのでそのつもりで見てください。TODO になっている動画は、そのうち撮って追加します。</summary>
   </entry>
 
@@ -2003,7 +2252,8 @@
    <title type="html">Stale-While-Revalidate ヘッダによるブラウザキャッシュの非同期更新</title>
    <link href="https://blog.jxck.io/entries/2016-04-16/stale-while-revalidate.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-16</id>
-   <updated>2016-04-16T00:00:00Z</updated>
+   <published>2016-04-16T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>システムにおいてキャッシュの設計は永遠の課題であり、Web のパフォーマンスにおいても非常に重要である。Web では、HTTP ヘッダを用いてブラウザやプロキシにキャッシュの制御を指定する。Stale-While-Revalidate ヘッダは、このキャッシュ制御に選択肢を追加する新しい仕様である。このヘッダの概要と、本サイトへの適用を解説する。</summary>
   </entry>
 
@@ -2011,7 +2261,8 @@
    <title type="html">HTTP Strict Transport Security(HSTS) 対応</title>
    <link href="https://blog.jxck.io/entries/2016-04-11/strict-transport-security.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-11</id>
-   <updated>2016-04-11T00:00:00Z</updated>
+   <published>2016-04-11T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>本サイトにて HTTP Strict Transport Security (HSTS) を有効化した。includeSubdomains を用いた *.jxck.io 全体への適用および、ブラウザへの Preload 登録も検討したが、本サイトの特性上それは見送った。導入に必要な設定や、注意点についてまとめる。</summary>
   </entry>
 
@@ -2019,7 +2270,8 @@
    <title type="html">Public Key Pinning for HTTP(HPKP) 対応と report-uri.io でのレポート収集</title>
    <link href="https://blog.jxck.io/entries/2016-04-09/public-key-pinning.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-04-09</id>
-   <updated>2016-04-09T00:00:00Z</updated>
+   <published>2016-04-09T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトにて Public Key Pinning for HTTP を有効化した。CSP 同様、まずは Report-Only を設定し、HPKP Report についても、report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。なお、本サイトへの導入はあくまで 実験 である。運用や影響も踏まえると、一般サービスへの安易な導入は推奨しない。また、本来は HSTS と併用することが推奨されている。(必須ではない)そちらも追って対応する予定である。</summary>
   </entry>
 
@@ -2027,7 +2279,8 @@
    <title type="html">Content Security Policy(CSP) 対応と report-uri.io でのレポート収集</title>
    <link href="https://blog.jxck.io/entries/2016-03-30/content-security-policy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-30</id>
-   <updated>2016-03-30T00:00:00Z</updated>
+   <published>2016-03-30T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>本サイトにて Content Security Policy を有効化した。まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。CSP Report については、report-uri.io を用いて収集することにした。導入に必要な設定や、注意点についてまとめる。</summary>
   </entry>
 
@@ -2035,7 +2288,8 @@
    <title type="html">画像最適化戦略 SVG/Font 編</title>
    <link href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-27</id>
-   <updated>2016-03-27T00:00:00Z</updated>
+   <published>2016-03-27T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトで使用している UI アイコン系の画像を、ギリギリまで最適化した手書き SVG に置き換えた(ただしソースは 観賞用 なので、インデントは残す)。また、装飾に画像ではなく CSS の content を利用することで、ローカルフォントデータを利用し、画像転送を減らす工夫にも言及する。画像最適化シリーズ第 4 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編&gt; 画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
@@ -2043,7 +2297,8 @@
    <title type="html">画像最適化戦略 WebP 編</title>
    <link href="https://blog.jxck.io/entries/2016-03-26/webp.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-26</id>
-   <updated>2016-03-26T00:00:00Z</updated>
+   <published>2016-03-26T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイトの PNG/JPEG で提供している画像については、よりサイズが小さくなりやすい WebP 形式を提供し、対応ブラウザに配布するようにした。フォーマットを出し分けるため、画像の指定は &lt;picture&gt; 要素を用いて対応した。画像最適化シリーズ第 3 回目のエントリである。画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編&gt; 画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
@@ -2051,7 +2306,8 @@
    <title type="html">画像最適化戦略 Picture 編</title>
    <link href="https://blog.jxck.io/entries/2016-03-25/picture.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-25</id>
-   <updated>2016-03-25T00:00:00Z</updated>
+   <published>2016-03-25T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>本サイトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、&lt;picture&gt; 要素を適用した。画像最適化シリーズ第 2 回目のエントリである。画像最適化戦略 PNG/JPEG 編&gt; 画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
@@ -2059,7 +2315,8 @@
    <title type="html">画像最適化戦略 PNG/JPEG 編</title>
    <link href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-24</id>
-   <updated>2016-03-24T00:00:00Z</updated>
+   <published>2016-03-24T00:00:00Z</published>
+   <updated>2026-03-07T00:00:00Z</updated>
    <summary>本サイトで使用している PNG/JPEG 画像に対し、メタデータ削除、減色、リサイズなど基本的な最適化処理の適用戦略と、その方法および結果について。画像最適化シリーズ第 1 回目のエントリである。&gt; 画像最適化戦略 PNG/JPEG 編画像最適化戦略 Picture 編画像最適化戦略 WebP 編画像最適化戦略 SVG/Font 編画像最適化戦略 Lazy Loading 編</summary>
   </entry>
 
@@ -2067,7 +2324,8 @@
    <title type="html">Noto Sans の Web Font 対応とサブセットによる最適化</title>
    <link href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-14</id>
-   <updated>2016-03-14T00:00:00Z</updated>
+   <published>2016-03-14T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>このサイトのフォントに Web Font を適用することにした。フォントには Google と Adobe が協同で開発した Noto Sans CJK JP を採用した。また、このサイトでは使用しないだろう文字を削除したサブセットを作ることで、フォントサイズを最適化した。</summary>
   </entry>
 
@@ -2075,7 +2333,8 @@
    <title type="html">Preload を用いたリソースプリローディングの最適化</title>
    <link href="https://blog.jxck.io/entries/2016-03-04/preload.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-03-04</id>
-   <updated>2016-03-04T00:00:00Z</updated>
+   <published>2016-03-04T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Preload を指定する &lt;link rel=preload&gt; の仕様が公開されており、現在 Chrome Canary に実装されている。この仕様のモチベーションについて、Chrome 開発者の Yoav Weiss 氏のブログも公開された。今回は、この仕様の特徴と用途を解説し、本サイトへの適用について検討する。W3C Preload SpecIntent to Ship: &lt;link rel=preload&gt;Preload: What Is It Good For?</summary>
   </entry>
 
@@ -2083,7 +2342,8 @@
    <title type="html">JSON-LD と Open Graph で構造化メタデータ対応</title>
    <link href="https://blog.jxck.io/entries/2016-02-26/jsonld-opengraph.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-26</id>
-   <updated>2016-02-26T00:00:00Z</updated>
+   <published>2016-02-26T00:00:00Z</published>
+   <updated>2025-01-23T00:00:00Z</updated>
    <summary>本サイトのメタ情報を整理するため、HTML のメタタグの整理、JSON-LD による schema.org 対応、Facebook, Twitter を主とした Open Graph 対応を実施した。これにより、既に AMP 対応していた本サイトが、Google のモバイル検索でキャッシュの対象となる(クロール待ち)。</summary>
   </entry>
 
@@ -2091,7 +2351,8 @@
    <title type="html">zopfli で静的コンテンツの gzip 配信と Content/Transfer-Encoding について</title>
    <link href="https://blog.jxck.io/entries/2016-02-17/content-encoding-zopfli.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-17</id>
-   <updated>2016-02-17T00:00:00Z</updated>
+   <published>2016-02-17T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>HTTP では Accept-Encoding と Content-Encoding でのネゴシエーションにより、gz などで圧縮したコンテンツを転送することができる。本サイトでは zopfli を用いて gzip 形式の配信に対応した。</summary>
   </entry>
 
@@ -2099,7 +2360,8 @@
    <title type="html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について</title>
    <link href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-15</id>
-   <updated>2016-02-15T00:00:00Z</updated>
+   <published>2016-02-15T00:00:00Z</published>
+   <updated>2026-03-06T00:00:00Z</updated>
    <summary>Chrome が予定している &lt;link rel=stylesheet&gt; の挙動の変更について、Google Chrome チームの Jake が、興味深いブログを上げている。The future of loading CSSこの内容は、単に Chrome に対する変更だけではなく、HTTP2 によって変化する最適化手法と、それを最も活かすための HTML, CSS の構成についてのヒントがある。今回は、この内容を意訳+補足解説し、本サイトに適用していく。</summary>
   </entry>
 
@@ -2107,7 +2369,8 @@
    <title type="html">Resource Hints API でリソースの投機的取得</title>
    <link href="https://blog.jxck.io/entries/2016-02-11/resource-hints.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-11</id>
-   <updated>2016-02-11T00:00:00Z</updated>
+   <published>2016-02-11T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Resource Hints とは現在提案されている以下のドラフトであり、ブラウザに「次に必要となるリソースを教える」ことで、投機的な取得を行う API 群である。https://w3c.github.io/resource-hints/主に以下がある。dns-prefetchpreconnectprefetchprerender今回は本サイトでこれを適用した話。</summary>
   </entry>
 
@@ -2115,7 +2378,8 @@
    <title type="html">Atom の RSS Feed 対応</title>
    <link href="https://blog.jxck.io/entries/2016-02-09/atom-feed.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-09</id>
-   <updated>2016-02-09T00:00:00Z</updated>
+   <published>2016-02-09T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>このブログの Atom feed を吐くようにした。右上の feed アイコン から登録できる。</summary>
   </entry>
 
@@ -2123,7 +2387,8 @@
    <title type="html">h2o で https/2 のデプロイと設定</title>
    <link href="https://blog.jxck.io/entries/2016-02-08/h2o-http2-deploy.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-08</id>
-   <updated>2016-02-08T00:00:00Z</updated>
+   <published>2016-02-08T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>土台がだいたいできたので、このサイトを h2o にデプロイした話。</summary>
   </entry>
 
@@ -2131,7 +2396,8 @@
    <title type="html">AMP HTML 対応</title>
    <link href="https://blog.jxck.io/entries/2016-02-01/amp-html.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-02-01</id>
-   <updated>2016-02-01T00:00:00Z</updated>
+   <published>2016-02-01T00:00:00Z</published>
+   <updated>2024-11-15T00:00:00Z</updated>
    <summary>Google が推奨する仕様である AMP HTML に、このブログを対応した。言いたいことは色々あるが、とりあえず非常に難しかったため、その対応方法や感想などを残す。</summary>
   </entry>
 
@@ -2139,7 +2405,8 @@
    <title type="html">HTML の省略によるサイズ最適化</title>
    <link href="https://blog.jxck.io/entries/2016-01-28/html-compression.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-01-28</id>
-   <updated>2016-01-28T00:00:00Z</updated>
+   <published>2016-01-28T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>本サイト blog.jxck.io 以下については、Markdown から静的ファイルを生成するスタイルで作成している。この変換時に以前から思っていた HTML の最適化 を実施することにした。しかし、md-&gt;html 変換時にそれをできるツールが見当たらないため、Markdown の AST から HTML を構築する過程で、省略を施すスクリプトを自作した。ただし、ソースはあくまで観賞用なので、インデントやコメントは残している。チューニングではなく単なる実験としてサイト全体にこれを適用し、その結果を記す。</summary>
   </entry>
 
@@ -2147,7 +2414,8 @@
    <title type="html">Blog を移転しました</title>
    <link href="https://blog.jxck.io/entries/2016-01-27/new-blog-start.html" rel="alternate" />
    <id>tag:blog.jxck.io,2016:entry://2016-01-27</id>
-   <updated>2016-01-27T00:00:00Z</updated>
+   <published>2016-01-27T00:00:00Z</published>
+   <updated>2026-03-10T00:00:00Z</updated>
    <summary>長いこと はてな blog をメインにし、他にも Qiita や Tumblr を使って色々書いて来たが、そろそろ自分のドメインに全部集約していこうかと思う。</summary>
   </entry>
 
