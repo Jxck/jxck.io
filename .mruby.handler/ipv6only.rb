@@ -13,7 +13,7 @@ Proc.new do |env|
       https://blog.jxck.io/entries/2026-04-01/ipv6-only.html
 
       ただし、この記事も IPv6 で接続しないと見れません。
-      スマホのキャリア回線などで確認して下さい。
+      スマホのキャリア回線でテザリングするか、 Cloudflare WARP を入れるのが手軽です。
 
       Jxck
     TEXT
