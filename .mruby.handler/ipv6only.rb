@@ -1,3 +1,6 @@
+# IPv4 block の時に使ったハンドラ。
+# 今は使ってない。
+
 Proc.new do |env|
   addr = env["REMOTE_ADDR"]
   # IPv6 ならそのまま通す
@@ -14,11 +17,12 @@ Proc.new do |env|
     あなたのアドレス: #{addr}
 
     この制限は、あなたの身の回りに IPv4 のみの環境がどのくらい残っているかを啓蒙する目的で行っています。
-    #{
-    # 詳細な背景については以下を参照してください。
-    # https://blog.jxck.io/entries/2026-04-01/ipv6-only.html
-    # ただし、この記事も IPv6 で接続しないと見られません。
-  }スマホのキャリア回線でテザリングするか、 Cloudflare WARP を入れるのが手軽です。
+    詳細な背景については以下を参照してください。
+
+    https://blog.jxck.io/entries/2026-04-01/ipv6-only.html
+
+    ただし、この記事も IPv6 で接続しないと見られません。
+    スマホのキャリア回線でテザリングするか、 Cloudflare WARP を入れるのが手軽です。
 
     Jxck
   TEXT
