@@ -253,12 +253,6 @@ hello world
 ```cpp:../2020-08-15/selection-logic.cpp
 ```
 
-```html:../2016-04-24/claim.html
-```
-
-```html:../2016-04-24/push.html
-```
-
 ```js:../2016-04-24/backgroundsync-master.js
 ```
 
