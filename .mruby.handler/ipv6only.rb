@@ -2,6 +2,10 @@ Proc.new do |env|
   addr = env["REMOTE_ADDR"]
   # IPv6 ならそのまま通す
   next [399, {}, []] if addr.include?(":")
+  # bot/crawler 等は許可する (OGP 取得, RSS リーダー等)
+  allowed = ["bot", "crawler", "proxy", "spider", "facebook", "line", "hatena", "feed", "rss", "reader", "http://", "https://"]
+  ua = env["HTTP_USER_AGENT"].to_s.downcase
+  next [399, {}, []] if allowed.any? { |word| ua.include?(word) }
   # IPv4 ならエラーにする
   body = <<~TEXT
     本サイトは、 IPv6 での接続のみを受け付けるように制限しています。
