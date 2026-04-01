@@ -109,7 +109,7 @@ Origin Trials は、新しい機能を先取りして試すために、Token を
 
 この仕組みを利用して、例えば Token を付与しその Token が有効である間は機能を延命し、その間に修正できるよう猶予を与えるというのが Reverse Origin Trials だ。ただアナウンスなどをしても誰も修正をしないために考え出された機能であり、WebComponents V0 の deprecate などでも運用された。
 
-今回の Token は以下から取得できる。使い方は [過去に書いた記事](https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html) が参考になるだろう。
+今回の Token は以下から取得できる。使い方は [過去に書いた記事](https://blog.jxck.io/entries/2016-09-29/vendor-prefix-to-origin-trials.html) が参考になるだろう。
 
 - Trial for Disable Different Origin Subframe Dialog Suppression
   - https://developer.chrome.com/origintrials/#/view_trial/2541156089743802369

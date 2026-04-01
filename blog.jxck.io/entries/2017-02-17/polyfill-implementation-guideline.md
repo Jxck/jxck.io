@@ -149,7 +149,7 @@ requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame || 
 
 なお、Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用されている。これについては以下を参照のこと。
 
-[Web 標準化のフィードバックサイクルを円滑にする Origin Trials について](https://blog.jxck.io/entries/2016-09-29/vender-prefix-to-origin-trials.html)
+[Web 標準化のフィードバックサイクルを円滑にする Origin Trials について](https://blog.jxck.io/entries/2016-09-29/vendor-prefix-to-origin-trials.html)
 
 
 ## Polyfill を実装するタイミング

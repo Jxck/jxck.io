@@ -53,7 +53,7 @@
 - 2023-12-12: [3PCA 12 日目: 終わりの始まり](https://blog.jxck.io/entries/2023-12-12/deprecation.html)
 - 2023-12-13: [3PCA 13 日目: ITP](https://blog.jxck.io/entries/2023-12-13/itp.html)
 - 2023-12-14: [3PCA 14 日目: Partitioning](https://blog.jxck.io/entries/2023-12-14/partitioning.html)
-- 2023-12-15: [3PCA 15 日目: Work Around](https://blog.jxck.io/entries/2023-12-15/work-around.html)
+- 2023-12-15: [3PCA 15 日目: Work Around](https://blog.jxck.io/entries/2023-12-15/workaround.html)
 - 2023-12-16: [3PCA 16 日目: Bounce Tracking](https://blog.jxck.io/entries/2023-12-16/bounce-tracking.html)
 - 2023-12-17: [3PCA 17 日目: Fingerprinting](https://blog.jxck.io/entries/2023-12-17/fingerprinting.html)
 - 2023-12-18: [3PCA 18 日目: Cloaking](https://blog.jxck.io/entries/2023-12-18/cloaking.html)

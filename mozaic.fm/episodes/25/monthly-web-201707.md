@@ -131,7 +131,7 @@ Web をより深く理解するために
   - https://github.com/jakearchibald/byte-storage
 - Allow constructing and subclassing EventTarget
   - https://github.com/whatwg/dom/commit/c4c1c8b47340a1e5ecc1a07670927b831f240586
-  - [blog](https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html)
+  - [blog](https://blog.jxck.io/entries/2017-07-10/subclassable-eventtarget.html)
 - Dev 向け HTML Spec
   - https://html.spec.whatwg.org/dev/
   - https://blog.whatwg.org/developers-edition-comeback
