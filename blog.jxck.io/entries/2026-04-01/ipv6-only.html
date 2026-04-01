@@ -8,7 +8,7 @@
   <link rel=author    href=https://jxck.io/humans.txt>
   <link rel=manifest  href=/manifest.webmanifest>
   <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
-  <link rel=canonical href=https://blog.jxck.io/entries/2026-04-01/cognitive-saturation.html>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-04-01/ipv6-only.html>
 
   <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
 
@@ -45,8 +45,8 @@
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
-  <meta property=og:url          content=https://blog.jxck.io/entries/2026-04-01/cognitive-saturation.html>
-  <meta property=og:title        content="認知がサチる(Cognitive Saturation) | blog.jxck.io">
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-04-01/ipv6-only.html>
+  <meta property=og:title        content="本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
   <meta property=og:description  content="4/1 なので、本サイトを IPv6 のみのアクセスに限定することにした。背景を解説する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
@@ -61,9 +61,9 @@
     "@type": "BlogPosting",
     "mainEntityOfPage":{
       "@type":"WebPage",
-      "@id":"https://blog.jxck.io/entries/2026-04-01/cognitive-saturation.html"
+      "@id":"https://blog.jxck.io/entries/2026-04-01/ipv6-only.html"
     },
-    "headline": "認知がサチる(Cognitive Saturation) | blog.jxck.io",
+    "headline": "本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
@@ -89,7 +89,7 @@
   }
   </script>
 
-  <title>認知がサチる(Cognitive Saturation) | blog.jxck.io</title>
+  <title>本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
 </head>
 <body>
@@ -145,6 +145,7 @@
               <li><a href="#451-unavailable-for-legal-reasons">451 Unavailable For Legal Reasons</a>
               <li><a href="#403-forbidden">403 Forbidden</a>
               <li><a href="#outro">Outro</a>
+              <li><a href="#retrospective">Retrospective</a>
             </ol>
           </nav>
         </dd>
@@ -153,7 +154,7 @@
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
-      <h1><a href="">認知がサチる(Cognitive Saturation)</a></h1>
+      <h1><a href="">本サイトの IPv4 アクセスをブロックするテスト</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>4/1 なので、本サイトを IPv6 のみのアクセスに限定することにした。
@@ -205,7 +206,7 @@ IPv6: 13.91 (20.0%)</code></pre>
         <p>「アクセスできなくなったことの不便」を正当化する人もいるだろうが、v6 移行自体がそうした人によってこそ阻まれている側面は無視できない。その意味でも Dual Stack で運用してきたが、アクセスを断つことで「<strong>普段意識していなかった v4 環境</strong>」を意識するきっかけを提供する方が、本ブログの意図に合う。
         <p>マンションの場合、契約の見直しや設定の確認だけで有効になる場合もあるかもしれない (場合によっては「夜ネットが遅い」問題も解決するかもしれない)。
         <p>社内の場合、「うちの会社は未だに v4 なのか」と気づくと、イントラに対する見え方も変わるだろう。管理者に問い合わせて、高度に洗練された七色の言い訳を聞いてみる機会になればいい。
-        <p>クローラや RSS リーダーを使ったり、自分で作っているユーザは、もし挙動が壊れたら、実装を見直すきっかけになる。
+        <p>クローラなどを自分で作っているユーザは、もし挙動が壊れたら、実装を見直すきっかけになる。
         <p>そうした啓蒙と実験の意図を兼ねて、本サイトを IPv6 のみの提供に絞ってみることにした。
       </section>
       <section>
@@ -214,7 +215,7 @@ IPv6: 13.91 (20.0%)</code></pre>
         <p>最も端的な方法は、A レコードを返さず、AAAA レコードのみを返す方法だ。これなら、Happy Eyeballs も不要で、迷うことなく IPv6 を選び、対応していなければエラーになる。
         <p>ところがこの方法だと、多くの繋がらないユーザが「サイトが落ちている」と勘違いするだろう。その報告を大量に受け続けるのはさすがに面倒くさい。
         <p>ネットワークレイヤでエラーになると「v6 のみ提供している」というこちらの意図を、クライアントに伝えることができない。ポリシーを説明するために、この記事へリダイレクトすることもできない。
-        <p>そこで、IP レイヤでの Dual Stack は維持しつつ、アプリケーションレイヤでエラーとすることにした。
+        <p>そこで、IP レイヤでの Dual Stack は維持しつつ、アプリケーションレイヤでエラーとすることにした。なまじ A レコードが返ってしまうことによる不具合も想像できるが、サイトが落ちてると思われるよりは良い。
         <p>具体的には v4 アクセスのみエラーステータス、および HTML の場合はエラーページを返す方針だ。
         <p>
           <picture>
@@ -295,6 +296,29 @@ Jxck</code></pre>
         <p>生きているうちに、誰も何もしなくてもこのブログにアクセスでき、A レコードを削除しても障害報告が来ない日は、来るのだろうか。
         <p>なお、この記事をシェアする際は、あえて主語を省いたコメントを添えることが、より多くのユーザに「自分が置かれた状況」を認識させることに繋がるだろう。
         <p>2026 年 4 月 1 日 Jxck
+      </section>
+      <section>
+        <h2 id="retrospective"><a href="#retrospective">Retrospective</a></h2>
+        <p>4/1 を終えたため制限を解除した。
+        <p>まず、本記事を Chat/SNS に貼った際の OGP 展開が失敗するという報告が届く(Discord, X, Slack, mixi2 etc)。また筆者のつかっている inoreader で RSS の更新がされなかったことも確認。
+        <p>A レコード経由で 403 を取得した結果と考えられるが、これらのクローラが AAAA のみを取得していたら、無事に表示されていたかどうかは不明。
+        <p>そこで、途中から UA ベースで Crawler, Bot 系の制限を外し、feed のパスも対象外として様子見をした。
+        <p>4/1 中のステータスコード 200 と 403 の比率は 56.5% 対 43.5% であり、半々だった。200 の中には IPv4 を緩和したクローラ系のリクエストもある。
+        <p>そもそも、一日のアクセス数としては、本サイトで記事を公開した日のアクセスとしては最低レベルのトラフィックだった。おそらく、記事の拡散部分が詰まり、多くの人が記事の更新自体に気づかず、アクセスが激減していたことがわかる。
+        <pre><code translate=no>2026-01-04/donation-for-web.html        ***********************************
+2026-01-24/web-exam-2025.html           ***************************
+2026-02-05/gpc.html                     ******************************
+2026-02-11/text-scale.html              *****************************
+2026-02-17/conference-know-how.html     ****************************************
+2026-02-25/sptth.html                   ****************************************************************************************************
+2026-03-03/scheduled-and-periodic-ex    *************************************************
+2026-03-23/https-certificate-chronic    *******************************************
+2026-04-01/cognitive-saturation.html    ****</code></pre>
+        <p>結論としては想定通りで、A を返しつつ 403 にする方針は、かなりエコシステムが壊れる。
+        <p>できれば A を落とす方向にしたいが、それでは「サイトが落ちている」と勘違いされる可能性が高く、そのフェーズで意図を伝える方法がないため、なかなか難しい。
+        <p>その場合、やはりクライアント側が v6 のサポートと、そちらの優先を行わない限りは、サーバ側から移行を促すのは難しそうだ。
+        <p>このケースの場合は HTTP で IPv6 への移行を示唆するような方法が欲しくなるが、レイヤバイオレーションになるため難しいだろう。
+        <p>今度実験するときは、思い切って A レコードを落とす方を試したい。
       </section>
     </article>
   </main>
