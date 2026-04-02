@@ -164,7 +164,7 @@ Finding っていう資料が二つ出た。
   - re-rendering の領域を局所化
 
 - 1/30: [IETF US 開催に懸念](https://www.ietf.org/blog/2017/01/barriers-to-entry/)
-  - IETF Chicago の場所を変えるのは遅いが、来れない人帰れない人もいるかもなので、状況を注視。
+  - IETF Chicago の場所を変えるのは遅いが、来られない人帰れない人もいるかもなので、状況を注視。
 
 - 1/31: [Media Session API](https://developers.google.com/web/updates/2017/02/media-session)
   - Android Chrome で media の再生が便利に

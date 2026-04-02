@@ -14,11 +14,11 @@
 試験形式であるため点数は出るが、目的は「今年はこんなことがあった」を振り返ることや、「こんなことがあったのは知らなかった」という取りこぼしに気づく機会になることである。
 
 
-## 解答用紙/想定回答
+## 解答用紙/想定解答
 
 - [解答用紙]: Web 技術年末試験 2025
   - https://docs.google.com/document/d/1Ck9zKYMUV8UprBlS5fKkAGBIrGX6CPksMosnQbfwx28/
-- [想定回答]: Web 技術年末試験 2025
+- [想定解答]: Web 技術年末試験 2025
   - https://docs.google.com/document/d/1K8zECehwBoUgV8H-fWPijMdC4E11hMBt-rX_mFHIyWQ/
 
 今年は Docs のタブ機能で、大問ごとのタブを分ける作りにした。
