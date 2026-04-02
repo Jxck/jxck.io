@@ -316,10 +316,10 @@ div {
 ```css
 @function --pc-mobile(--PC, --Mobile) {
   @media (width <= 960px) {
-    result: var(--PC);
+    result: var(--Mobile);
   }
   @media (960px < width) {
-    result: var(--Mobile);
+    result: var(--PC);
   }
 }
 
