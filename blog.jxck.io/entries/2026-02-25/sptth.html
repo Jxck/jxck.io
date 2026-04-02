@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-02-25T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-04-02T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-25>2026-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -200,7 +200,7 @@
           <li>ローカルに CA を立ち上げ、動的に証明書を発行する。
           <li>プロキシを 443 で立ち上げ、ローカルサーバには平文で転送する。
         </ol>
-        <p>全てを 1 つのコマンドにし、一回の sudo で起動できれば、認証も一回で済みローカルへの影響も最小限にできる。
+        <p>全てを 1 つのコマンドにし、1 回の sudo で起動できれば、認証も 1 回で済み、ローカルへの影響も最小限にできる。
         <p>と、頭では思いついていたが、手を動かすとなると相応の時間がかかる。
         <p>しかも、DNS と CA と Reverse Proxy を実装するとなると、それなりに面倒だ。
         <p>しかし時代が変わり一晩で動くところまでいけたため、公開することにした。
@@ -242,15 +242,15 @@
         <p>初回起動時にローカル CA を立ち上げるので、それを許可する。
         <p>あとは、OS の DNS 設定を 127.0.0.1 に変えるだけだ。
         <p>ブラウザから <a href="https://example.com" target=_blank>https://example.com</a> にアクセスすれば <a href="http://localhost:3000" target=_blank>http://localhost:3000</a> に、<a href="https://example.net" target=_blank>https://example.net</a> にアクセスすれば <a href="http://localhost:4000" target=_blank>http://localhost:4000</a> にアクセスできる。ローカル CA で署名した正しい証明書なので、URL バーも赤くならない。
-        <p>sudo が一個になり、設定も一箇所にまとめて、複数のサービスを <strong>デプロイしたときと同じブラウザの状態</strong> で操作することができるようになる。ブラウザが持つ Permission も Origin も Security Surface も、本番と同じ条件で開発できるのだ。
+        <p>sudo が 1 回で済み、設定も 1 箇所にまとまる。これにより、複数のサービスを <strong>デプロイしたときと同じブラウザの状態</strong> で操作できるようになる。ブラウザが持つ Permission も Origin も Security Surface も、本番と同じ条件で開発できるのだ。
       </section>
       <section>
         <h2 id="architecture"><a href="#architecture">Architecture</a></h2>
         <p>基本的には、DNS、CA、LB を 1 つのツールに詰め込んだだけだ。
-        <p>DNS は 53 (sudo) で起動し、toml に書いたドメインだけ、指定した A/AAAA レコードを返し、それ以外は upstream に移譲するようになる。
-        <p>CA は、初回起動時にルート証明書を OS の証明書ストアに入れる(sudo)。その上で、毎回 toml に書かれたドメインの証明書を発行する。
+        <p>DNS は 53 (sudo) で起動し、TOML に書いたドメインだけ、指定した A/AAAA レコードを返し、それ以外は upstream に移譲するようになる。
+        <p>CA は、初回起動時にルート証明書を OS の証明書ストアに入れる (sudo)。その上で、毎回 TOML に書かれたドメインの証明書を発行する。
         <p>LB は、443 (sudo) で起動し、リクエストを受けたら upstream のローカルサーバに転送する。したがって、ローカルで開発しているサーバは今まで通り localhost:3000 などで開発すれば良い。
-        <p>以上を 1 つのコマンドにしているため、<code translate=no>sudo</code> が一回で済み、toml を変えるまでは起動しっぱなしでよくなる。
+        <p>以上を 1 つのコマンドにしているため、<code translate=no>sudo</code> が 1 回で済み、TOML を変えるまでは起動しっぱなしでよくなる。
         <p>必要な設定は、OS の DNS 設定の変更だけだ。
       </section>
       <section>
@@ -265,7 +265,7 @@
       <section>
         <h2 id="implementation"><a href="#implementation">Implementation</a></h2>
         <p>プロトタイプはすべて Codex App の音声入力だけで開発した。
-        <p>コードは一行も書かず、読んでない。
+        <p>コードは 1 行も書かず、1 行も読んでいない。
         <p>とはいえ、プランの段階でだいぶ脱線する場面もあるので、任せきりにはしていない。こちらには、かなり明確に方針とアーキテクチャが浮かんでいるため、そのキャリブレーションには相応の時間をかけている。
         <p>今後の開発はこうなると思うので、そのうえでクオリティを担保するような方法を探る意味でも、様々な取り組みを試す場としている。
         <p>特に Codex と Claude の相互レビューや、クオリティ担保系の Skill はある程度ワークしているように思う。

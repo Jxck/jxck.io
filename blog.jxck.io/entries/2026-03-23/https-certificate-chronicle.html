@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-03-23T00:00:00+09:00",
-    "dateModified": "2026-04-01T00:00:00+09:00",
+    "dateModified": "2026-04-02T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-03-23>2026-03-23</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-01>2026-04-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -192,7 +192,7 @@
         </p>
         <p>証明書の期限も 1〜5 年と長く、頻繁に行うことではなかった。メールベースのフローでも運用が回っていたのもそのためだ。
         <p>また、HTTPS 化するのは「パスワードを盗聴されないため」という前提が強く、サイト全体ではなく「ログイン画面だけが HTTPS」という構成も一般的だった。当時、TLS は CPU 処理が増えるため「負荷が上がる」「パフォーマンスが下がる」などの理由から、極力暗号化するページを減らしたいというモチベーションが働いていた。
-        <p>それでも対応するのは、金融や EC など重要度の高いものばかりで、個人のサイトが暗号化されることはかなりレアだった。そこまでセキュリティレベルの高いサービスでは、秘密鍵ファイルをローカルに生成したりせず、商用 HSM (Hardware Security Module) を導入する。作った鍵を 10 年使うような運用も多かったため、キーセレモニー(CA がルートの鍵を発行する際に関係者が集って立ち会う)のようなものが行われることもあったようだ。
+        <p>それでも対応するのは、金融や EC など重要度の高いものばかりで、個人のサイトが暗号化されることはかなりレアだった。そこまでセキュリティレベルの高いサービスでは、秘密鍵ファイルをローカルに生成したりせず、商用 HSM (Hardware Security Module) を導入した。作った鍵を 10 年使うような運用も多かったため、キーセレモニー (CA がルートの鍵を発行する際に関係者が集って立ち会う) のようなものが行われることもあったようだ。
         <p>GAFAM レベルになると「秘密鍵のセキュリティレベルは、プルトニウムと同じ扱い」という例え話もあった。漏洩すれば全通信が盗聴できるため、あながち冗談でもない。
         <p>今とはかなり、雰囲気の違う運用だったことがわかるだろう。
       </section>
@@ -330,7 +330,7 @@
           <picture>
             <source type=image/avif srcset=https-over-chrome.avif?260323_151457>
             <source type=image/webp srcset=https-over-chrome.webp?260323_151457>
-            <img loading=lazy decoding=async src=https-over-chrome.png?260323_151457 alt="2016 年の段階で日本の HTTPS 移行が他国より遅れている" width=516 height=528>
+            <img loading=lazy decoding=async src=https-over-chrome.png?260402_163722 alt="2016 年の段階で日本の HTTPS 移行が他国より遅れている" width=516 height=528>
           </picture>
         </p>
         <ul>
@@ -381,7 +381,7 @@
           <picture>
             <source type=image/avif srcset=diginotar-certificate-error.avif?260318_235239>
             <source type=image/webp srcset=diginotar-certificate-error.webp?260318_235239>
-            <img loading=lazy decoding=async src=diginotar-certificate-error.png?260318_235239 alt="Google Certificate Error caused by DigiNotar" width=569 height=320>
+            <img loading=lazy decoding=async src=diginotar-certificate-error.png?260402_163722 alt="Google Certificate Error caused by DigiNotar" width=569 height=320>
           </picture>
         </p>
         <ul>
@@ -607,7 +607,7 @@
             </ul>
           </li>
         </ul>
-        <p>一方、完全に失効情報を無くすわけにはいかないので、むしろもともと対応していなかった CRL の方に移行した。といっても、CRL は既にブラウザプロセス自体が代表して取得し、各種検証に使うようなモデルになっている上に、Bloom filter で圧縮されているため効率も良くなっている。
+        <p>一方、完全に失効情報を無くすわけにはいかないので、むしろもともと対応していなかった CRL の方に移行した。といっても、CRL は既にブラウザプロセス自体が代表して取得し、各種検証に使うようなモデルになっている。さらに、Bloom filter で圧縮されているため効率も良くなっている。
         <ul>
           <li>
             A New Life for Certificate Revocation Lists - Let&apos;s Encrypt
@@ -617,7 +617,7 @@
           </li>
         </ul>
         <p>6 日で期限が切れる証明書を使うということは、余裕をもって 2, 3 日くらいで再発行をリクエストしないといけない。2, 3 日に一度 HTTP や DNS への変更を外部のツールに委ねるといった状態は、負荷の増大や脆弱性を埋め込む可能性があるため避けたい。
-        <p>そこで ACME の発行プロセスも、従来の Validation から改善が提案されている。これまでは、クライアントが One Time Token を取得し、それを DNS や HTTP でデプロイする方法が使われていた。しかし、これを公開鍵暗号の方式に移し、クライアントが作った公開鍵を DNS に置く方式に変えることで、鍵のローテーションが無い限りは DNS クエリを書き換える必要がなくなるようにしていく提案だ。
+        <p>そこで ACME の発行プロセスについても、従来の Validation からの改善が提案されている。これまでは、クライアントが One Time Token を取得し、それを DNS や HTTP でデプロイする方法が使われていた。しかし、これを公開鍵暗号の方式に移し、クライアントが作った公開鍵を DNS に置く方式に変える提案だ。これにより、鍵のローテーションが無い限り、DNS クエリを書き換える必要がなくなる。
         <ul>
           <li>
             DNS-PERSIST-01: A New Model for DNS-based Challenge Validation - Let&apos;s Encrypt
@@ -644,7 +644,7 @@
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>このまますぐに、全ての証明書が 6 日になるとは限らない。しかし、失効の問題が本質的に解決しないとなれば、期限はどんどん短くなっていくだろう。つまり、自動化はもう待ったなしのところまで来ている。
-        <p>自動化さえうまく回っていれば、デプロイ側にとっては 90 日でも、45 日でも、6 日でもそこまで変わらない。問題は、発行する側のインフラと、監視する(CT)インフラだ。少なくとも証明書の発行については、Certbot なりを systemd に登録し、systemd timer で更新を仕込んでおけば、あとは 30 日に一回を 2 日に一回にスケジュールを変えるだけだ。
+        <p>自動化さえうまく回っていれば、デプロイ側にとっては 90 日でも、45 日でも、6 日でもそこまで変わらない。問題は、発行する側のインフラと、監視する (CT) インフラだ。少なくとも証明書の発行については、Certbot なりを systemd に登録し、systemd timer で更新を仕込んでおけば、あとは 30 日に 1 回を 2 日に 1 回にスケジュールを変えるだけだ。
         <p>Let&apos;s Encrypt が十分に広がり、業界を牽引するに値する影響力を持った今、どこまでこうした積年の課題を解決していくか、注視していきたい。
       </section>
       <section>

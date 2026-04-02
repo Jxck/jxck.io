@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-04-01T00:00:00+09:00",
-    "dateModified": "2026-04-01T00:00:00+09:00",
+    "dateModified": "2026-04-02T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-01>2026-04-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-01>2026-04-01</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -170,14 +170,14 @@
           <picture>
             <source type=image/avif srcset=ipv6-adoption-world.avif?260331_161102>
             <source type=image/webp srcset=ipv6-adoption-world.webp?260331_161102>
-            <img loading=lazy decoding=async src=ipv6-adoption-world.png?260331_161102 alt="Google へのアクセスの半分が IPv6 になっている" width=635 height=413>
+            <img loading=lazy decoding=async src=ipv6-adoption-world.png?260402_163722 alt="Google へのアクセスの半分が IPv6 になっている" width=635 height=413>
           </picture>
         </p>
         <p>
           <picture>
             <source type=image/avif srcset=ipv6-adoption-japan.avif?260331_161123>
             <source type=image/webp srcset=ipv6-adoption-japan.webp?260331_161123>
-            <img loading=lazy decoding=async src=ipv6-adoption-japan.png?260331_161123 alt="Google への日本からのアクセスも 6 割近く IPv6 になっている" width=526 height=336>
+            <img loading=lazy decoding=async src=ipv6-adoption-japan.png?260402_163722 alt="Google への日本からのアクセスも 6 割近く IPv6 になっている" width=526 height=336>
           </picture>
         </p>
         <p><a href="https://www.google.com/intl/en/ipv6/statistics.html#tab=ipv6-adoption" target=_blank>https://www.google.com/intl/en/ipv6/statistics.html#tab=ipv6-adoption</a>
@@ -202,7 +202,7 @@ IPv6: 13.91 (20.0%)</code></pre>
       <section>
         <h2 id="ipv6-only-のトライアル"><a href="#ipv6-only-のトライアル">IPv6 Only のトライアル</a></h2>
         <p>様々な理由はあるだろうが、日本のエンジニアが主な対象となるこのサイトを、v6 のみにしたら何が起こるのかは、ずっと気になっていた。
-        <p>掴んだ WiFi がだめでも、スマホのキャリア回線は大抵 v6 が通るため、代替方法が一切ないことはないだろう。そもそも、見られなくなったところで人の生命に関わるわけでもなく、アクセスが減ったところで筆者も困るわけではない。そうしたコンテンツが、移行に消極的である必要もない。
+        <p>掴んだ WiFi がだめでも、スマホのキャリア回線は大抵 v6 が通るため、代替方法が一切ないわけではないだろう。そもそも、見られなくなったところで人の生命に関わるわけでもなく、アクセスが減ったところで筆者も困るわけではない。そうしたコンテンツが移行に消極的である必要もない。
         <p>「アクセスできなくなったことの不便」を正当化する人もいるだろうが、v6 移行自体がそうした人によってこそ阻まれている側面は無視できない。その意味でも Dual Stack で運用してきたが、アクセスを断つことで「<strong>普段意識していなかった v4 環境</strong>」を意識するきっかけを提供する方が、本ブログの意図に合う。
         <p>マンションの場合、契約の見直しや設定の確認だけで有効になる場合もあるかもしれない (場合によっては「夜ネットが遅い」問題も解決するかもしれない)。
         <p>社内の場合、「うちの会社は未だに v4 なのか」と気づくと、イントラに対する見え方も変わるだろう。管理者に問い合わせて、高度に洗練された七色の言い訳を聞いてみる機会になればいい。
@@ -216,12 +216,12 @@ IPv6: 13.91 (20.0%)</code></pre>
         <p>ところがこの方法だと、多くの繋がらないユーザが「サイトが落ちている」と勘違いするだろう。その報告を大量に受け続けるのはさすがに面倒くさい。
         <p>ネットワークレイヤでエラーになると「v6 のみ提供している」というこちらの意図を、クライアントに伝えることができない。ポリシーを説明するために、この記事へリダイレクトすることもできない。
         <p>そこで、IP レイヤでの Dual Stack は維持しつつ、アプリケーションレイヤでエラーとすることにした。なまじ A レコードが返ってしまうことによる不具合も想像できるが、サイトが落ちてると思われるよりは良い。
-        <p>具体的には v4 アクセスのみエラーステータス、および HTML の場合はエラーページを返す方針だ。
+        <p>具体的には、v4 アクセスに対してのみエラーステータスを返し、HTML の場合はエラーページも返す方針だ。
         <p>
           <picture>
             <source type=image/avif srcset=error-page.avif?260331_214923>
             <source type=image/webp srcset=error-page.webp?260331_214923>
-            <img loading=lazy decoding=async src=error-page.png?260331_214923 alt="エラーページ" width=523 height=212>
+            <img loading=lazy decoding=async src=error-page.png?260402_163722 alt="エラーページ" width=523 height=212>
           </picture>
         </p>
         <pre><code translate=no>本サイトは、IPv6 での接続のみを受け付けるように制限しています。
@@ -251,7 +251,7 @@ Jxck</code></pre>
       <section>
         <h2 id="400-bad-request"><a href="#400-bad-request">400 Bad Request</a></h2>
         <p>かなり汎用的にリクエストのエラーを示すことができるが、主に「HTTP リクエスト」自体に問題がある場合に返す想定だ。しかし、今回はリクエストのシンタックスやフォーマットには問題がないにもかかわらず返すことにはなる。
-        <p>例えば「リクエストを直せば通る可能性がある」と考えるクライアントもあるかもしれないが、今回はその下位レイヤであるコネクションから修正しないと、いくら HTTP レイヤを見直しても意味がない。これは、今回のエラーが HTTP のネゴシエーションで発生するものではなく、その上にある「権限」や「ポリシー」に近い理由でエラーにしていると考えられ、その点で妥当なアドバタイズとは言えないだろう。
+        <p>例えば「リクエストを直せば通る可能性がある」と考えるクライアントもあるかもしれないが、今回はその下位レイヤであるコネクションから修正しないと、いくら HTTP レイヤを見直しても意味がない。今回のエラーは HTTP のネゴシエーションで発生するものではなく、その上にある「権限」や「ポリシー」に近い理由で返していると考えられるため、その点で妥当なアドバタイズとは言えないだろう。
       </section>
       <section>
         <h2 id="406-not-acceptable"><a href="#406-not-acceptable">406 Not Acceptable</a></h2>
@@ -294,13 +294,12 @@ Jxck</code></pre>
         <p>こうしたところに、v6 移行を阻む要因が未だに残っている。
         <p>筆者は Cloudflare WARP を入れることで、大外に v6 アドレスをもらい、このブログに接続している。
         <p>生きているうちに、誰も何もしなくてもこのブログにアクセスでき、A レコードを削除しても障害報告が来ない日は、来るのだろうか。
-        <p>なお、この記事をシェアする際は、あえて主語を省いたコメントを添えることが、より多くのユーザに「自分が置かれた状況」を認識させることに繋がるだろう。
         <p>2026 年 4 月 1 日 Jxck
       </section>
       <section>
         <h2 id="retrospective"><a href="#retrospective">Retrospective</a></h2>
         <p>4/1 を終えたため制限を解除した。
-        <p>まず、本記事を Chat/SNS に貼った際の OGP 展開が失敗するという報告が届く(Discord, X, Slack, mixi2 etc)。また筆者のつかっている inoreader で RSS の更新がされなかったことも確認。
+        <p>まず、本記事を Chat/SNS に貼った際の OGP 展開が失敗するという報告が届いた(Discord, X, Slack, mixi2 etc)。また、筆者が使っている inoreader で RSS の更新がされなかったことも確認した。
         <p>A レコード経由で 403 を取得した結果と考えられるが、これらのクローラが AAAA のみを取得していたら、無事に表示されていたかどうかは不明。
         <p>そこで、途中から UA ベースで Crawler, Bot 系の制限を外し、feed のパスも対象外として様子見をした。
         <p>4/1 中のステータスコード 200 と 403 の比率は 56.5% 対 43.5% であり、半々だった。200 の中には IPv4 を緩和したクローラ系のリクエストもある。
