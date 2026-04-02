@@ -1,6 +1,7 @@
 .PHONY: build compile preview draft fmt mtime install update image png jpeg gif webp avif comp clean remove fmt start stop status kill restart reload test logf
 
-NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
+NODE  := $(HOME)/.local/share/mise/installs/node/latest/bin/node
+CORES := $(shell nproc)
 
 build:
 	$(MAKE) fmt
@@ -19,8 +20,8 @@ draft:
 	cd .src && $(NODE) build.js draft
 
 fmt:
-	.src/markdown/formatter.js blog.jxck.io/entries/**/*.md
-	npx prettier -w mozaic.fm/episodes/**/*.md
+	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | sort -r | xargs -P $(CORES) -L 10 ./.src/markdown/formatter.js
+	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | sort -r | xargs -P $(CORES) -L 10 npx prettier -w
 
 mtime:
 	git restore-mtime blog.jxck.io/entries/**/*.md mozaic.fm/episodes/**/*.md
@@ -42,8 +43,8 @@ systemd-status:
 
 ## optimize all image
 image:
-	$(MAKE) -j$(shell core) png jpeg gif
-	$(MAKE) -j$(shell core) webp avif
+	$(MAKE) -j$(CORES) png jpeg gif
+	$(MAKE) -j$(CORES) webp avif
 
 
 ##########################
@@ -68,7 +69,8 @@ SB = $(addsuffix .sb, $(ENTRIES))
 	brotli -q 11 -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
 
 # 対象ファイルを圧縮
-comp: $(BR) $(SB)
+comp:
+	$(MAKE) -j$(CORES) $(BR) $(SB)
 
 # 圧縮を削除
 clean:
@@ -101,19 +103,19 @@ remove:
 OPTIPNG := optipng -o7
 png:
 	find ./blog.jxck.io/entries -name '*.png' \
-		| xargs -P$(shell core) -I{} sh -c '$(OPTIPNG) {}'
+		| xargs -P$(CORES) -I{} sh -c '$(OPTIPNG) {}'
 
 ## jpeg
 JPEGTRAN := jpegtran -copy none -optimize -progressive
 jpeg:
 	find ./blog.jxck.io/entries -name '*.jpeg' \
-		| xargs -P$(shell core) -I{} sh -c 'echo {} && $(JPEGTRAN) -outfile {} {}'
+		| xargs -P$(CORES) -I{} sh -c 'echo {} && $(JPEGTRAN) -outfile {} {}'
 
 ## gif
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
 	find ./blog.jxck.io/entries -name '*.gif' \
-		| xargs -P$(shell core) -I{} sh -c '$(GIFSICLE) {} -o {}'
+		| xargs -P$(CORES) -I{} sh -c '$(GIFSICLE) {} -o {}'
 
 
 PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
@@ -141,7 +143,8 @@ WEBP += $(GIF:.gif=.webp)
 	$(GWEBP) $< -o $@
 	touch -r $< $@
 
-webp: $(WEBP)
+webp:
+	$(MAKE) -j$(CORES) $(WEBP)
 
 
 ## avif
@@ -163,15 +166,8 @@ AVIF += $(GIF:.gif=.avif)
 	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $@
 	touch -r $< $@
 
-avif: $(AVIF)
-
-
-##########################
-# formatter
-##########################
-fmt:
-	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb
-	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 format.rb
+avif:
+	$(MAKE) -j$(CORES) $(AVIF)
 
 
 ##########################
