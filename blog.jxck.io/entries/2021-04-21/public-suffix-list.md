@@ -24,7 +24,7 @@ PSL を解説するには、まず関連する用語について整理する。
 
 `jxck.io` のように、我々がレジストラから割当を受けられる(購入できる)ドメインを Registerable Domain と言う。
 
-すると、Registerable Domain とは TLD の一個下の階層、つまり *TLD + 1* と思うかもしれない。しかしここには例外がある。
+すると、Registerable Domain とは TLD の 1 つ下の階層、つまり *TLD + 1* と思うかもしれない。しかしここには例外がある。
 
 
 ### Effective Top Level Domain (eTLD)

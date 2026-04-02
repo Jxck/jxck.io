@@ -64,7 +64,7 @@ CORB と ORB の違いについては、以下に詳細がある。
 > It also makes ORB a much bigger risk for web compatibility.
 > --- https://chromium.googlesource.com/chromium/src/+/HEAD/services/network/public/cpp/corb/README.md
 
-仕様を比較してみると、ORB にも `blocklist` な変数が定義されているため、一見両方とも Allow と Block を併用してるように見えるが、ステップの最後が `allow(true)` を返すか `deny(false)` を返すのかの違いが大きいということのようだ。
+仕様を比較してみると、ORB にも `blocklist` な変数が定義されているため、一見両方とも Allow と Block を併用しているように見えるが、ステップの最後が `allow(true)` を返すか `deny(false)` を返すのかの違いが大きいということのようだ。
 
 - Define opaque-response blocking by annevk · Pull Request #1442 · whatwg/fetch
   - https://github.com/whatwg/fetch/pull/1442/files

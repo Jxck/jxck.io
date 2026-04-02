@@ -89,7 +89,7 @@ self.addEventListener('fetch', (e) => {
 
 - Range/Partial の仕様はあくまで HTTP の仕様
 - WHATWG において、それらがブラウザでどう扱われるかは、標準化されてない
-- `<audio>` / `<video>` などで Range を使うのはブラウザがそう実装してるだけ
+- `<audio>` / `<video>` などで Range を使うのはブラウザがそう実装しているだけ
 - Service Worker/Cache のような API でどうするかは決まってない
 
 つまり、*Service Worker はそもそも Range/Partial には対応してない* というか標準化されてないと言って良いだろう。
@@ -157,7 +157,7 @@ task.addEventListener('progress', (e) => console.log(e.downloaded))
 task.abort()
 ```
 
-ただし、Pause/Resume は API がなく、[提案](https://github.com/WICG/background-fetch/issues/38) はされてるが、その UI は OS 側が提供するというスタンスだ。
+ただし、Pause/Resume は API がなく、[提案](https://github.com/WICG/background-fetch/issues/38) はされているが、その UI は OS 側が提供するというスタンスだ。
 
 
 ## background event

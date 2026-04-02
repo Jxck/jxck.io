@@ -82,7 +82,7 @@ QUIC や TLS1.3 はすでに出ていたのに、HTTP/3 がなかなか出なか
 ### RFC 9111: HTTP Caching
 
 - いわゆるキャッシュに関する挙動と `Cache-Control` Field を切り出したもの。
-- ちょこちょこ改善されたり、古い記述が消えたりしてるが、おおむね今までと変わらない。
+- ちょこちょこ改善されたり、古い記述が消えたりしているが、おおむね今までと変わらない。
 - `must-understand` が追加された。詳細は [こちら](https://blog.jxck.io/entries/2021-02-12/cache-control-must-understand.html)。
 
 
