@@ -1,4 +1,4 @@
-.PHONY: build compile preview draft fmt mtime install update image png jpeg gif webp avif comp clean remove space singler format start stop status kill restart reload test logf
+.PHONY: build compile preview draft fmt mtime install update image png jpeg gif webp avif comp clean remove fmt start stop status kill restart reload test logf
 
 NODE := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 
@@ -169,15 +169,7 @@ avif: $(AVIF)
 ##########################
 # formatter
 ##########################
-space:
-	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 spacer
-	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 spacer
-
-singler:
-	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 singler
-	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 singler
-
-format:
+fmt:
 	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | xargs -L 1 format.rb
 	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | xargs -L 1 format.rb
 
