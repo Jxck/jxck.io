@@ -55,7 +55,7 @@ end
 $stderr.puts "reading #{files.size} files (#{total_bytes} bytes)" if opts[:verbose]
 
 # 2. multi-length slice extraction and frequency counting
-slice_lengths = [base_slice]
+slice_lengths = [base_slice / 2, base_slice, base_slice * 2, base_slice * 4].select { |l| l >= 8 }
 all_slices = {}  # slice_bytes => Set of file indices
 
 slice_lengths.each do |sl|

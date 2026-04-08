@@ -17,6 +17,7 @@ cat .src/template/*.ejs > $CAT_DICT
 
 echo ">>> Zstd Train Mode"
 zstd --train \
+    --maxdict=262144 \
     .src/template/*.ejs \
     ./blog.jxck.io/entries/**/*.html \
     -o $DCZ_DICT
@@ -24,14 +25,14 @@ zstd --train \
 echo ">>> Brotli Dictionary Generator"
 dictionary_generator \
     --dsh \
-    -t112640 \
+    -t262144 \
     $DCB_DICT \
     .src/template/*.ejs \
     ./blog.jxck.io/entries/**/*.html
 
 echo ">>> Ruby Dict Generator"
 ruby ./blog.jxck.io/dictionary/dict-generator.rb \
-    -s 112640 \
+    -s 262144 \
     -o $RB_DICT \
     -v \
     .src/template/*.ejs \
