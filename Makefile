@@ -70,7 +70,8 @@ SB = $(addsuffix .sb, $(ENTRIES))
 
 # 対象ファイルを圧縮
 comp:
-	$(MAKE) -j$(CORES) $(BR) $(SB)
+	$(MAKE) -j$(CORES) $(BR)
+# $(SB)
 
 # 圧縮を削除
 clean:
