@@ -33,6 +33,9 @@ dictionary_generator \
 echo ">>> Ruby Dict Generator"
 ruby ./blog.jxck.io/dictionary/dict-generator.rb \
     -s 262144 \
+    -l 12 \
+    -b 4096 \
+    -f 3 \
     -o $RB_DICT \
     -v \
     .src/template/*.ejs \

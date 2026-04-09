@@ -206,10 +206,10 @@ end
 
 opts = {
   output: "dictionary.dict",
-  size: 32 * 1024,
-  slice_length: 16,
-  block_length: 1024,
-  min_frequency: 2,
+  size: 256 * 1024,
+  slice_length: 12,
+  block_length: 4096,
+  min_frequency: 3,
   verbose: false,
 }
 
