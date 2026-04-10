@@ -944,11 +944,10 @@ async function podcast(files, params = { preview: false }) {
  */
 async function main(arg) {
   if (arg === `build`) {
-    const [entries, episodes] = await Promise.all([
-      Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`)),
-      Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`)),
-    ])
-    return await Promise.all([blog(entries), podcast(episodes)])
+    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
+    await blog(entries)
+    const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
+    return await podcast(episodes)
   }
 
   if (arg === `preview`) {
