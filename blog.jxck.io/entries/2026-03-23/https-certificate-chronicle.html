@@ -90,25 +90,25 @@
   </script>
 
   <title>HTTPS 証明書クロニクル | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -178,7 +178,7 @@
         <p>当時はまだ、HTTPS のデプロイは企業サイトがわざわざ対応するものであり、証明書も企業が有料で購入するものだった。
         <p>2000 年に入り、証明書は単体での販売だけでなく、企業向けセキュリティソリューションの一環として、認証基盤やメール署名、VPN などと抱き合わせで売られるようになった。つまり PKI は BtoB ビジネスが主戦場であり、個人向けは非常にニッチな市場だったのだ。
         <p>当時の証明書発行も、担当者同士がメールベースでやりとりするのが主流だった。企業の担当者は手元で鍵を生成し、対応するリクエストファイル (CSR: Certificate Signing Request) をメールに添付して送る。CA 担当者は、署名した証明書をメールで送り返す運用だ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ openssl genrsa -out server.key 256</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ openssl req -new</span></span>
@@ -188,7 +188,7 @@
         <p>追加で契約を結べば、CA 側が企業の所在や登記を別途確認したり、担当者への電話確認などを追加することで、OV (Organization Validation) や EV (Extended Validation) の証明書も発行された。
         <p>URL バーに緑の UI で組織名が表示されていたのは、この確認プロセスで「実在する組織が運用している(ペーパーカンパニーではない)」と保証できたからだ。今で言う SNS の公式アカウントに付くバッジのような意味合いだ。
         <p>
-          <img loading=lazy decoding=async src=https-full-green-ev.svg?260319_034651 alt="先頭に EV の組織名が追加された HTTPS の URL バー" width=400 height=80>
+          <img loading=lazy decoding=async src=https-full-green-ev.svg?260323_165226 alt="先頭に EV の組織名が追加された HTTPS の URL バー" width=400 height=80>
         </p>
         <p>証明書の期限も 1〜5 年と長く、頻繁に行うことではなかった。メールベースのフローでも運用が回っていたのもそのためだ。
         <p>また、HTTPS 化するのは「パスワードを盗聴されないため」という前提が強く、サイト全体ではなく「ログイン画面だけが HTTPS」という構成も一般的だった。当時、TLS は CPU 処理が増えるため「負荷が上がる」「パフォーマンスが下がる」などの理由から、極力暗号化するページを減らしたいというモチベーションが働いていた。
@@ -328,9 +328,9 @@
         <p>2016 年に筆者が GDE になった時に面接があったが、実態は知り合いのエンジニアとの雑談だった。そこで「日本の HTTPS の普及がすごく遅いんだけど、なんでだと思う?」という議論をしたのを覚えている。
         <p>
           <picture>
-            <source type=image/avif srcset=https-over-chrome.avif?260323_151457>
-            <source type=image/webp srcset=https-over-chrome.webp?260323_151457>
-            <img loading=lazy decoding=async src=https-over-chrome.png?260402_163722 alt="2016 年の段階で日本の HTTPS 移行が他国より遅れている" width=516 height=528>
+            <source type=image/avif srcset=https-over-chrome.avif?260323_165226>
+            <source type=image/webp srcset=https-over-chrome.webp?260323_165226>
+            <img loading=lazy decoding=async src=https-over-chrome.png?260402_144343 alt="2016 年の段階で日本の HTTPS 移行が他国より遅れている" width=516 height=528>
           </picture>
         </p>
         <ul>
@@ -379,9 +379,9 @@
         <p>スクリーンショットはストレージサービスごと失われてしまったが、いくつか転載されたリソースがあったので引用する。
         <p>
           <picture>
-            <source type=image/avif srcset=diginotar-certificate-error.avif?260318_235239>
-            <source type=image/webp srcset=diginotar-certificate-error.webp?260318_235239>
-            <img loading=lazy decoding=async src=diginotar-certificate-error.png?260402_163722 alt="Google Certificate Error caused by DigiNotar" width=569 height=320>
+            <source type=image/avif srcset=diginotar-certificate-error.avif?260323_165226>
+            <source type=image/webp srcset=diginotar-certificate-error.webp?260323_165226>
+            <img loading=lazy decoding=async src=diginotar-certificate-error.png?260402_144343 alt="Google Certificate Error caused by DigiNotar" width=569 height=320>
           </picture>
         </p>
         <ul>

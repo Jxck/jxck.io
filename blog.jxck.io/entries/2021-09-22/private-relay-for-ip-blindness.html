@@ -90,25 +90,25 @@
   </script>
 
   <title>Private Relay と IP Blindness による Fingerprint 対策 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -228,7 +228,7 @@
         <p>Proxy を 1 つ挟むというのは、OHTTP など他の提案でも共通しているところだが、Private Relay の特徴は Proxy が 2 つある点だろう。
         <p>
           <picture>
-            <source type=image/avif srcset=private-relay.avif?260323_164112>
+            <source type=image/avif srcset=private-relay.avif?260323_164042>
             <source type=image/webp srcset=private-relay.webp?240402_005258>
             <img loading=lazy decoding=async src=private-relay.png?230731_162734 alt="Private Relay のシーケンス図 - IETF の資料より" width=2164 height=1624>
           </picture>
@@ -251,7 +251,7 @@
           <p>UI は非常にシンプルで、以下から有効にできる。
           <p>
             <picture>
-              <source type=image/avif srcset=ios15.avif?260323_164112>
+              <source type=image/avif srcset=ios15.avif?260323_164042>
               <source type=image/webp srcset=ios15.webp?240402_005258>
               <img loading=lazy decoding=async src=ios15.png?230731_162734 alt="iOS15 - iCloud から Private Relay の設定" width=531 height=944>
             </picture>
@@ -259,7 +259,7 @@
           <p>位置情報については以下の選択肢がある。IP ジオロケーションについては後述するが、おそらく以下のような差だろう。
           <p>
             <picture>
-              <source type=image/avif srcset=ios15-ipgeo.avif?260323_164112>
+              <source type=image/avif srcset=ios15-ipgeo.avif?260323_164042>
               <source type=image/webp srcset=ios15-ipgeo.webp?240402_005258>
               <img loading=lazy decoding=async src=ios15-ipgeo.png?230731_162734 alt="iOS15 - Private Relay のジオロケーション設定" width=531 height=944>
             </picture>
@@ -272,7 +272,7 @@
         <section>
           <h3 id="挙動"><a href="#挙動">挙動</a></h3>
           <p>まず、無効状態で <code translate=no>https://jxck.io</code> に接続したところが以下だ。ちなみに SIM はラインモバイルを使用している。(IP アドレスは微妙に変えてある)
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre><code translate=no>2021/09/21 04:28:11.010 180.10.203.175 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>
           <p>次に Private Relay 有効状態だと以下のようになる。
           <pre><code translate=no>2021/09/21 04:40:07.430 2606:54c0:3b00:10::16:e1 HTTP/2 200 GET jxck.io / &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1&quot;</code></pre>

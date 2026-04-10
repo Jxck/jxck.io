@@ -90,25 +90,25 @@
   </script>
 
   <title>Non AMP SXG による Prefetch 対応と AMP 提供の停止 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -204,7 +204,7 @@
         <section>
           <h3 id="webpkgserver"><a href="#webpkgserver">webpkgserver</a></h3>
           <p>webpkgserver は <code translate=no>go get</code> ではうまく動かなかったため、README にある通りソースからビルドした。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --depth</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://github.com/google/webpackager</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> webpackager/cmd/webpkgserver</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">go</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> build</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> .</span></span></code></pre>
@@ -296,7 +296,7 @@
           <p>まず、Network の Timeline 上は SXG のレスポンスと CBOR リクエストが続き、SXG から取り出された HTML が取得されている。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-timeline.avif?260323_164112>
+              <source type=image/avif srcset=sxg-timeline.avif?260323_164042>
               <source type=image/webp srcset=sxg-timeline.webp?240402_005258>
               <img loading=lazy decoding=async src=sxg-timeline.png?230731_162734 alt="SXG レスポンス、 CBOR レスポンス、 SXG から取り出された HTML の順に取得されている Devtools Timeline の図" width=2390 height=300>
             </picture>
@@ -304,7 +304,7 @@
           <p>SXG の Preview タブを見ると、Signature や Certificate も正しく解釈されていることが確認できる。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-response.avif?260323_164112>
+              <source type=image/avif srcset=sxg-response.avif?260323_164042>
               <source type=image/webp srcset=sxg-response.webp?240402_005258>
               <img loading=lazy decoding=async src=sxg-response.png?230731_162734 alt="SXG の Signature や Certificate が正しく解釈されている Devtools の Preview の図" width=2128 height=1192>
             </picture>
@@ -325,8 +325,8 @@
           <p>しかし、本サイトは既に <a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP</a> と <a href="https://blog.jxck.io/entries/2020-12-25/amp-signed-http-exchange.html">AMP SXG</a> に対応しているため、モバイルの検索結果では AMP がヒットし、AMP SXG がリンクされている。
           <p>
             <picture>
-              <source type=image/avif srcset=gsrp-amp.avif?260323_164112>
-              <source type=image/webp srcset=gsrp-amp.webp?260309_235641>
+              <source type=image/avif srcset=gsrp-amp.avif?260323_164042>
+              <source type=image/webp srcset=gsrp-amp.webp?240313_215035>
               <img loading=lazy decoding=async src=gsrp-amp.jpeg?260309_235641 alt="AMP SXG と Non AMP SXG を両方デプロイした場合、 Google Search Result では AMP が優先される" width=2322 height=684>
             </picture>
           </p>
@@ -356,15 +356,15 @@
           <p>また、ページの DOM 中に <code translate=no>&lt;link rel=prefetch&gt;</code> が挿入されていることが確認できる。
           <p>
             <picture>
-              <source type=image/avif srcset=gsrp-sxg.avif?260323_164112>
-              <source type=image/webp srcset=gsrp-sxg.webp?260309_235641>
+              <source type=image/avif srcset=gsrp-sxg.avif?260323_164042>
+              <source type=image/webp srcset=gsrp-sxg.webp?240313_215035>
               <img loading=lazy decoding=async src=gsrp-sxg.jpeg?260309_235641 alt="Non AMP SXG が Prefetch されている" width=2406 height=774>
             </picture>
           </p>
           <p>これにより、検索結果を表示した時点で HTML は Google の SXG Cache から取得されている。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-prefetch.avif?260323_164112>
+              <source type=image/avif srcset=sxg-prefetch.avif?260323_164042>
               <source type=image/webp srcset=sxg-prefetch.webp?240402_005258>
               <img loading=lazy decoding=async src=sxg-prefetch.png?230731_162734 alt="検索結果を表示した時点で HTML は Google の SXG Cache から取得されている" width=3030 height=742>
             </picture>
@@ -372,7 +372,7 @@
           <p>実際に検索結果に遷移すると、HTTP Request は筆者のサーバには発生せず、Prefetch された HTML から展開されていることがわかる。
           <p>
             <picture>
-              <source type=image/avif srcset=sxg-navigate.avif?260323_164112>
+              <source type=image/avif srcset=sxg-navigate.avif?260323_164042>
               <source type=image/webp srcset=sxg-navigate.webp?240402_005258>
               <img loading=lazy decoding=async src=sxg-navigate.png?230731_162734 alt="検索結果に遷移すると Prefetch した HTML が展開されている" width=3044 height=736>
             </picture>

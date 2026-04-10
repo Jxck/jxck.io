@@ -90,25 +90,25 @@
   </script>
 
   <title>Nx の攻撃から学べること #s1ngularity | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -225,7 +225,7 @@
           </ul>
           <p>タイトルの通り「PR のタイトルのルールが守られていないから、GH Actions でチェックする」という、何の変哲もない変更だ。
           <p>問題は、Run している Inline の Shell だ。そこだけを見てみよう。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Validating PR title: ${{ </span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">github</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">event</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">pull_request</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">title</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> }}"</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">node</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./scripts/commit-lint.js</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> /tmp/pr-message.txt</span></span></code></pre>
           <p><code translate=no>github.event.pull_request.title</code> は、PR の「タイトル」を格納した変数だ。
@@ -236,8 +236,8 @@
           <p>しかし、任意の Shell が実行できるということは、例えば以下のようにすれば、何でもできる。
           <p>
             <picture>
-              <source type=image/avif srcset=shell-injection-pr.avif?260323_164112>
-              <source type=image/webp srcset=shell-injection-pr.webp?260309_235641>
+              <source type=image/avif srcset=shell-injection-pr.avif?260323_164042>
+              <source type=image/webp srcset=shell-injection-pr.webp?250903_162247>
               <img loading=lazy decoding=async src=shell-injection-pr.png?260309_235641 alt="PR のタイトルでスクリプトを取得し実行する例" width=458 height=60>
             </picture>
           </p>
@@ -250,7 +250,7 @@
           <p>
             <picture>
               <source type=image/avif srcset=PR-by-CC.avif?260309_235641>
-              <source type=image/webp srcset=PR-by-CC.webp?260309_235641>
+              <source type=image/webp srcset=PR-by-CC.webp?250903_162247>
               <img loading=lazy decoding=async src=PR-by-CC.png?260309_235641 alt=""🤖 Generated with Claude Code" が付与された PR" width=255 height=109>
             </picture>
           </p>
@@ -480,8 +480,8 @@
           </ul>
           <p>
             <picture>
-              <source type=image/avif srcset=attacked-repo.avif?260323_164112>
-              <source type=image/webp srcset=attacked-repo.webp?260309_235641>
+              <source type=image/avif srcset=attacked-repo.avif?260323_164042>
+              <source type=image/webp srcset=attacked-repo.webp?250903_162247>
               <img loading=lazy decoding=async src=attacked-repo.png?260309_235641 alt="攻撃されたリポジトリのリスト" width=855 height=215>
             </picture>
           </p>

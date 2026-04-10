@@ -90,25 +90,25 @@
   </script>
 
   <title>1Password AC #10: SSH と Git コミット署名 | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -179,8 +179,8 @@
         <p>1Password は、SSH の鍵も保管することができるため、もしファイルで保存しているなら、すぐにでも 1Password に移すべきだ。
         <p>
           <picture>
-            <source type=image/avif srcset=ssh-key-item.avif?260323_164112>
-            <source type=image/webp srcset=ssh-key-item.webp?260309_235641>
+            <source type=image/avif srcset=ssh-key-item.avif?260323_164042>
+            <source type=image/webp srcset=ssh-key-item.webp?251108_002005>
             <img loading=lazy decoding=async src=ssh-key-item.png?260309_235641 alt="SSH Key Item" width=570 height=290>
           </picture>
         </p>
@@ -197,14 +197,14 @@
           </li>
         </ul>
         <p>Mac であれば、以下のように、1Password の Socket を Agent として使うよう、SSH の Config を変更するだけだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre><code translate=no>Host *
   IdentityAgent &quot;~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock&quot;</code></pre>
         <p>これで、SSH 接続時に Touch ID でアンロックすれば、登録した鍵を使って接続できる。
         <p>
           <picture>
-            <source type=image/avif srcset=ssh-connection.avif?260323_164112>
-            <source type=image/webp srcset=ssh-connection.webp?260309_235641>
+            <source type=image/avif srcset=ssh-connection.avif?260323_164042>
+            <source type=image/webp srcset=ssh-connection.webp?251108_002005>
             <img loading=lazy decoding=async src=ssh-connection.png?260309_235641 alt="1Password で SSH 接続" width=283 height=252>
           </picture>
         </p>
@@ -236,16 +236,16 @@
         <p>SSH Key Item のオプションから、必要な設定のスニペットを取得できるので、それを <code translate=no>.gitconfig</code> に書くだけだ。
         <p>
           <picture>
-            <source type=image/avif srcset=commit-signing.avif?260323_164112>
-            <source type=image/webp srcset=commit-signing.webp?260309_235641>
+            <source type=image/avif srcset=commit-signing.avif?260323_164042>
+            <source type=image/webp srcset=commit-signing.webp?251108_002005>
             <img loading=lazy decoding=async src=commit-signing.png?260309_235641 alt="configure git commit signing" width=466 height=453>
           </picture>
         </p>
         <p>GitHub にも正しく設定すれば、コミットに &quot;Verified&quot; というバッジが付き、クリックすれば署名の検証結果が表示される。
         <p>
           <picture>
-            <source type=image/avif srcset=github-verified-badge.avif?260323_164112>
-            <source type=image/webp srcset=github-verified-badge.webp?260309_235641>
+            <source type=image/avif srcset=github-verified-badge.avif?260323_164042>
+            <source type=image/webp srcset=github-verified-badge.webp?251108_002005>
             <img loading=lazy decoding=async src=github-verified-badge.png?260309_235641 alt="GitHub に表示される署名の検証バッジ" width=503 height=172>
           </picture>
         </p>

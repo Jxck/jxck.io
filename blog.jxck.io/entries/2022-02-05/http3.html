@@ -90,25 +90,25 @@
   </script>
 
   <title>サイトの HTTP3 化と DNS HTTPS RR および Alt-Svc Header によるアドバタイズ | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -175,7 +175,7 @@
             <li><a href="https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14" target=_blank>https://github.com/h2o/h2o/blob/master/examples/h2o/h2o.conf#L14</a>
           </ul>
           <p>まず、<code translate=no>listen</code> directive の中で <code translate=no>type: quic</code> を指定するとそれだけで QUIC が有効になり、HTTP3 が動くようだ。そして、そのとおり実際に動く。
-          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+          <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="yaml"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># The following three lines enable HTTP3</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  &#x3C;&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ssl_listen</span></span>
@@ -393,7 +393,7 @@
           <p>筆者の場合は Sakura の DNS を利用していたが、ここではそもそも HTTPS Record が選択できなかったため、DNS を引っ越すところから始める必要があった。
           <p>
             <picture>
-              <source type=image/avif srcset=sakura-dns-supported-record.avif?260323_164112>
+              <source type=image/avif srcset=sakura-dns-supported-record.avif?260323_164042>
               <source type=image/webp srcset=sakura-dns-supported-record.webp?240402_005258>
               <img loading=lazy decoding=async src=sakura-dns-supported-record.png?220731_020714 alt="Sakura DNS のレコードタイプ" title="Sakura DNS Supported Record" width=347 height=404>
             </picture>
@@ -401,7 +401,7 @@
           <p>そこで HTTPS Record Type に対応している Google Cloud DNS に引っ越すことにした。
           <p>
             <picture>
-              <source type=image/avif srcset=google-cloud-dns-supported-record.avif?260323_164112>
+              <source type=image/avif srcset=google-cloud-dns-supported-record.avif?260323_164042>
               <source type=image/webp srcset=google-cloud-dns-supported-record.webp?240402_005258>
               <img loading=lazy decoding=async src=google-cloud-dns-supported-record.png?220731_020714 alt="Google Cloud DNS のレコードタイプ" title="Google Cloud DNS Supported Record" width=502 height=616>
             </picture>
@@ -427,7 +427,7 @@
           <p>これは、<em>HTTP RR は DoH に対応している必要がある</em> というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
           <p>
             <picture>
-              <source type=image/avif srcset=enable-firefox-doh.avif?260323_164112>
+              <source type=image/avif srcset=enable-firefox-doh.avif?260323_164042>
               <source type=image/webp srcset=enable-firefox-doh.webp?240402_005258>
               <img loading=lazy decoding=async src=enable-firefox-doh.png?220731_020714 alt="Firefox の DoH 有効化" title="Enable Firefox DoH" width=1338 height=370>
             </picture>
@@ -435,7 +435,7 @@
           <p>設定が成功していれば、Firefox の about:networking#dnslookuptool からクエリを試すと、HTTPS RR が引けることが確認できる。
           <p>
             <picture>
-              <source type=image/avif srcset=firefox-dns-lookup.avif?260323_164112>
+              <source type=image/avif srcset=firefox-dns-lookup.avif?260323_164042>
               <source type=image/webp srcset=firefox-dns-lookup.webp?240402_005258>
               <img loading=lazy decoding=async src=firefox-dns-lookup.png?220731_020714 alt="Firefox での DNS Lookup テスト" title="Firefox DNS Lookup" width=1410 height=648>
             </picture>
@@ -447,7 +447,7 @@
         <p>以上を設定してやっとサイトを HTTP3 に対応することができた。
         <p>
           <picture>
-            <source type=image/avif srcset=http3-devtools.avif?260323_164112>
+            <source type=image/avif srcset=http3-devtools.avif?260323_164042>
             <source type=image/webp srcset=http3-devtools.webp?240402_005258>
             <img loading=lazy decoding=async src=http3-devtools.png?220731_020714 alt="Chrome Devtools の Network Tab で HTTP3 化を確認" width=1446 height=1672>
           </picture>

@@ -90,25 +90,25 @@
   </script>
 
   <title>Display Locking によるレンダリングの最適化と Async DOM | blog.jxck.io</title>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_184644>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_215351   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?190123_200004   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
 
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260212_130408>
-  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022032>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
   <main>
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
@@ -171,7 +171,7 @@
       <section>
         <h2 id="現状の-dom-操作の課題"><a href="#現状の-dom-操作の課題">現状の DOM 操作の課題</a></h2>
         <p>まず、以下のような処理を考える。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_184439">
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">body.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">appendChild</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">($div)</span></span></code></pre>
         <p>この処理が JS の途中で出現すれば、その瞬間 Window にある DOM Tree はロックを取得し、<code translate=no>$div</code> の追加処理が行われ、DOM Tree が atomic に更新される。
         <p>DOM Tree の更新が終わったら、レンダリング処理(style -&gt; layout -&gt; paint -&gt; composite)が発生し、すぐさま画面上に新たな要素が表示される。
@@ -297,9 +297,9 @@
           <p>わかりやすいように、<code translate=no>appendChild</code> に <code translate=no>setTimeout</code> を仕込んだ例は以下のように挙動する。
           <p>
             <picture>
-              <source type=image/avif srcset=display-no-locking.avif?260323_164112>
-              <source type=image/webp srcset=display-no-locking.webp?260323_164112>
-              <img loading=lazy decoding=async src=display-no-locking.gif?260402_163722 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
+              <source type=image/avif srcset=display-no-locking.avif?260323_164042>
+              <source type=image/webp srcset=display-no-locking.webp?260323_164042>
+              <img loading=lazy decoding=async src=display-no-locking.gif?260402_144343 alt="lock を取らず普通に appendChild する例" title="display with no locking" width=825 height=968>
             </picture>
           </p>
           <p>そこで、<code translate=no>&lt;ul&gt;</code> のロックを取得し、全ての <code translate=no>&lt;li&gt;</code> が追加されてから一気にレンダリングする場合以下のように書ける。
