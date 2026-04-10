@@ -880,3 +880,4 @@ async function main(arg: string): Promise<void> {
 }
 
 await main(process.argv[2])
+console.log("")

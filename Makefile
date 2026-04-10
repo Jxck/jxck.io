@@ -20,7 +20,7 @@ fmt-blog:
 fmt-podcast:
 	selects path from './mozaic.fm/episodes/**/*' where extname '==' '.md' \
 		| sort -r \
-		| parallel -X -j $(CORES) npx prettier -w
+		| parallel -X -j $(CORES) npx prettier -w --log-level error
 
 mtime:
 	$(MAKE) mtime-blog
@@ -89,11 +89,11 @@ ENTRIES := $(shell selects path from "./blog.jxck.io/entries/**/*.html")
 BR = $(addsuffix .br, $(TARGET))
 
 %.br: %
-	brotli -q 11 -f $<
+	brotli -v -q 11 -f $<
 
 # 対象ファイルを圧縮
 comp:
-	$(MAKE) -j$(CORES) $(BR)
+	$(MAKE) $(BR)
 
 # 圧縮を削除
 clean:

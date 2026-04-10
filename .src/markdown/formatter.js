@@ -405,5 +405,6 @@ if (process.argv.length > 2) {
         await writeFile(filepath, formatted)
       }
     })
+    console.log("")
   }
 }
