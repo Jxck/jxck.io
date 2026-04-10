@@ -564,10 +564,6 @@ async function parse_entry(entry: string): Promise<Blog> {
   }
 }
 
-interface BuildOption {
-  preview: boolean
-}
-
 interface Podcast {
   ep: number
   canonical: string
@@ -652,7 +648,7 @@ async function parse_episode(entry: Podcast, order: number): Promise<any> {
 /**
  * build blog entries
  */
-async function blog(files: string[], params: BuildOption = { preview: false }): Promise<void> {
+async function blog(files: string[]): Promise<void> {
   console.log(`\ncompile blog entries: ${files.length}`)
 
   const entries = await Promise.all(
@@ -679,8 +675,6 @@ async function blog(files: string[], params: BuildOption = { preview: false }): 
     const result = ejs.render(entry_template, context)
     await overWriteFile(context.entry.target, result)
   }
-
-  if (params.preview) return
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -762,7 +756,7 @@ async function blog(files: string[], params: BuildOption = { preview: false }): 
 /**
  * build podcast episodes
  */
-async function podcast(files: string[], params: BuildOption = { preview: false }): Promise<void> {
+async function podcast(files: string[]): Promise<void> {
   console.log(`\ncompile podcast episodes: ${files.length}`)
 
   const paths: Podcast[] = files
@@ -796,15 +790,14 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
   const episodes = await Promise.all(paths.map((path, i) => parse_episode(path, i)))
   const latest = episodes.at(0)
 
-  if (params.preview === false) {
-    // set id3
-    console.log("\n")
-    console.log(
-      await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`),
-    )
-    console.log(
-      await promisify(exec)(
-        `
+  // set id3
+  console.log("\n")
+  console.log(
+    await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`),
+  )
+  console.log(
+    await promisify(exec)(
+      `
       eyeD3 --title "${latest.title}" \
       --track ${episodes.length} \
       --artist 'Jxck' \
@@ -815,9 +808,8 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
       --preserve-file-times \
       ../${latest.audio_file}
     `.trim(),
-      ),
-    )
-  }
+    ),
+  )
 
   // build episodes
   const podcast_template_file = `./template/podcast.html.ejs`
@@ -836,8 +828,6 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
     const result = ejs.render(podcast_template, context)
     await overWriteFile(episode.target, result)
   }
-
-  if (params.preview) return
 
   // build index
   const result = await renderFile(`./template/podcast.index.html.ejs`, {
@@ -881,21 +871,6 @@ async function main(arg: string): Promise<void> {
   if (arg === `podcast`) {
     const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
     return await podcast(episodes)
-  }
-
-  if (arg === `preview`) {
-    // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
-    await blog([entries.at(0)!], { preview: true })
-
-    // const episodes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-    const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
-    return await podcast([episodes.at(0)!], { preview: true })
-  }
-
-  if (arg === `draft`) {
-    const entries = [`../blog.jxck.io/drafts/index.md`]
-    return await blog(entries, { preview: true })
   }
 }
 

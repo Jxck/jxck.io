@@ -1,4 +1,4 @@
-.PHONY: build blog podcast compile preview draft fmt fmt-blog fmt-podcast mtime mtime-blog mtime-podcast install update image png jpeg gif webp avif comp clean remove start stop status kill restart reload test logf
+.PHONY: build blog podcast compile fmt fmt-blog fmt-podcast mtime mtime-blog mtime-podcast install update image png jpeg gif webp avif comp clean remove start stop status kill restart reload test logf
 
 NODE  := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 CORES := $(shell nproc)
