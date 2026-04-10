@@ -2,6 +2,7 @@
 require "optparse"
 require "digest"
 require "base64"
+require "fileutils"
 
 InputFile = Struct.new(:abs_path, :rel_path, :data, :slice_ids, :selected_ranges, keyword_init: true)
 Candidate = Struct.new(:file_index, :score, :position, :generation, keyword_init: true)
@@ -206,16 +207,20 @@ end
 
 opts = {
   output: "dictionary.dict",
+  output_dir: nil,
   size: 256 * 1024,
   slice_length: 12,
   block_length: 4096,
   min_frequency: 3,
   verbose: false,
+  output_set: false,
+  output_dir_set: false,
 }
 
 OptionParser.new do |o|
   o.banner = "Usage: #{$0} [options] samples..."
-  o.on("-o", "--output FILE", "Output dictionary file (default: #{opts[:output]})") { |v| opts[:output] = v }
+  o.on("-o", "--output FILE", "Output dictionary file (default: #{opts[:output]})") { |v| opts[:output] = v; opts[:output_set] = true }
+  o.on("-d", "--output-dir DIR", "Write dictionary as SHA-256 hex filename under DIR") { |v| opts[:output_dir] = v; opts[:output_dir_set] = true }
   o.on("-s", "--size BYTES", Integer, "Target dictionary size in bytes (default: #{opts[:size]})") { |v| opts[:size] = v }
   o.on("-l", "--slice-length N", Integer, "Slice length in bytes (default: #{opts[:slice_length]})") { |v| opts[:slice_length] = v }
   o.on("-b", "--block-length N", Integer, "Block length in bytes (default: #{opts[:block_length]})") { |v| opts[:block_length] = v }
@@ -226,6 +231,11 @@ end.parse!
 
 if ARGV.empty?
   $stderr.puts "error: no input files"
+  exit 1
+end
+
+if opts[:output_set] && opts[:output_dir_set]
+  $stderr.puts "error: --output and --output-dir are mutually exclusive"
   exit 1
 end
 
@@ -385,13 +395,21 @@ files.each do |file|
   end
 end
 
-File.binwrite(opts[:output], dictionary)
+sha256_digest = Digest::SHA256.digest(dictionary)
+sha256_hex = sha256_digest.unpack1("H*")
+sha256_base64 = Base64.strict_encode64(sha256_digest)
 
-sha256 = Digest::SHA256.digest(dictionary)
-hash = Base64.strict_encode64(sha256)
+output_path = opts[:output]
+if opts[:output_dir]
+  # Use the same SHA-256 as CDT dictionary identification, but encode it as hex for a safe filename.
+  FileUtils.mkdir_p(opts[:output_dir])
+  output_path = File.join(opts[:output_dir], "#{sha256_hex}.dict")
+end
+
+File.binwrite(output_path, dictionary)
 
 if opts[:verbose]
   $stderr.puts
-  $stderr.puts "wrote #{opts[:output]} (#{dictionary.bytesize} bytes)"
-  $stderr.puts "sha256: :#{hash}:"
+  $stderr.puts "wrote #{output_path} (#{dictionary.bytesize} bytes)"
+  $stderr.puts "sha256: :#{sha256_base64}:"
 end
