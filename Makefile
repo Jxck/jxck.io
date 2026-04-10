@@ -6,18 +6,18 @@ CORES := $(shell nproc)
 build:
 	$(MAKE) fmt
 	$(MAKE) mtime
-	cd .src && $(NODE) build.js build
+	cd .src && $(NODE) build.ts build
 	$(MAKE) comp
 
 compile:
 	$(NODE) -v
-	cd .src && $(NODE) build.js build
+	cd .src && $(NODE) build.ts build
 
 preview:
-	cd .src && $(NODE) build.js preview
+	cd .src && $(NODE) build.ts preview
 
 draft:
-	cd .src && $(NODE) build.js draft
+	cd .src && $(NODE) build.ts draft
 
 fmt:
 	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | sort -r | xargs -P $(CORES) -L 10 ./.src/markdown/formatter.js
@@ -60,23 +60,17 @@ TARGET := $(WWW) $(BLO) $(MOZ)
 ENTRIES := $(shell selects path from "./blog.jxck.io/entries/**/*.html")
 
 BR = $(addsuffix .br, $(TARGET))
-SB = $(addsuffix .sb, $(ENTRIES))
 
 %.br: %
 	brotli -q 11 -f $<
 
-# %.sb: %
-# 	brotli -q 11 -f --dictionary=$(wildcard ./blog.jxck.io/dictionary/*dict) --suffix=.sb $<
-
 # 対象ファイルを圧縮
 comp:
 	$(MAKE) -j$(CORES) $(BR)
-# $(SB)
 
 # 圧縮を削除
 clean:
 	@rm -fv $(BR)
-	@rm -fv $(SB)
 
 ##########################
 # Build Markdown
