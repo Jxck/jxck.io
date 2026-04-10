@@ -1,13 +1,46 @@
-.PHONY: build compile preview draft fmt mtime install update image png jpeg gif webp avif comp clean remove fmt start stop status kill restart reload test logf
+.PHONY: build blog podcast compile preview draft fmt fmt-blog fmt-podcast mtime mtime-blog mtime-podcast install update image png jpeg gif webp avif comp clean remove start stop status kill restart reload test logf
 
 NODE  := $(HOME)/.local/share/mise/installs/node/latest/bin/node
 CORES := $(shell nproc)
 
 build:
-	$(MAKE) fmt
-	$(MAKE) mtime
-	cd .src && $(NODE) build.ts build
+	$(MAKE) blog
+	$(MAKE) podcast
 	$(MAKE) comp
+
+fmt:
+	$(MAKE) fmt-blog
+	$(MAKE) fmt-podcast
+
+fmt-blog:
+	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' \
+		| sort -r \
+		| xargs -P $(CORES) -L 10 ./.src/markdown/formatter.js
+
+fmt-podcast:
+	selects path from './mozaic.fm/episodes/**/*' where extname '==' '.md' \
+		| sort -r \
+		| xargs -P $(CORES) -L 10 npx prettier -w
+
+mtime:
+	$(MAKE) mtime-blog
+	$(MAKE) mtime-podcast
+
+mtime-blog:
+	git restore-mtime blog.jxck.io/entries/**/*.md
+
+mtime-podcast:
+	git restore-mtime mozaic.fm/episodes/**/*.md
+
+blog:
+	$(MAKE) fmt-blog
+	$(MAKE) mtime-blog
+	cd .src && $(NODE) build.ts blog
+
+podcast:
+	$(MAKE) fmt-podcast
+	$(MAKE) mtime-podcast
+	cd .src && $(NODE) build.ts podcast
 
 compile:
 	$(NODE) -v
@@ -18,13 +51,6 @@ preview:
 
 draft:
 	cd .src && $(NODE) build.ts draft
-
-fmt:
-	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' | sort -r | xargs -P $(CORES) -L 10 ./.src/markdown/formatter.js
-	selects path from './mozaic.fm/episodes/**/*'   where extname '==' '.md' | sort -r | xargs -P $(CORES) -L 10 npx prettier -w
-
-mtime:
-	git restore-mtime blog.jxck.io/entries/**/*.md mozaic.fm/episodes/**/*.md
 
 install:
 	brew bundle --file=$(DOTFILES)/Brewfile

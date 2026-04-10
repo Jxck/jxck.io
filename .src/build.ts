@@ -873,11 +873,14 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
  * main
  */
 async function main(arg: string): Promise<void> {
-  if (arg === `build`) {
+  if (arg === `blog`) {
     const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
     await blog(entries)
-    // const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
-    // return await podcast(episodes)
+  }
+
+  if (arg === `podcast`) {
+    const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
+    return await podcast(episodes)
   }
 
   if (arg === `preview`) {
