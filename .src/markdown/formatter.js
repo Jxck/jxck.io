@@ -397,7 +397,7 @@ if (process.argv.length > 2) {
     const files = process.argv.slice(2)
 
     files.forEach(async (file) => {
-      console.log(file)
+      process.stdout.write(".")
       const filepath = join(pwd, file)
       const original = await readFile(filepath, { encoding: `utf-8` })
       const formatted = format(original)
