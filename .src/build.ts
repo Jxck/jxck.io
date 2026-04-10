@@ -6,16 +6,7 @@ import { exec } from "child_process"
 import { glob } from "node:fs/promises"
 import { parse as parseYAML } from "yaml"
 
-import {
-  encode,
-  decode,
-  traverse,
-  Node,
-  hsc,
-  map,
-  create_id_from_text,
-  to_toc,
-} from "markdown"
+import { encode, decode, traverse, Node, hsc, map, create_id_from_text, to_toc } from "markdown"
 
 /**
  * dump for debug
@@ -28,8 +19,8 @@ function dump(ast: Node): void {
         if (key === `parent`) return undefined
         return value
       },
-      `  `
-    )
+      `  `,
+    ),
   )
 }
 
@@ -47,7 +38,7 @@ export function cache_busting(path: string): string {
     second: `2-digit`,
   })
   const parts = Object.fromEntries(
-    formatter.formatToParts(mtime).map(({ type, value }) => [type, value])
+    formatter.formatToParts(mtime).map(({ type, value }) => [type, value]),
   )
   const { year, month, day, hour, minute, second } = parts
   return `?${year}${month}${day}_${hour}${minute}${second}`
@@ -131,11 +122,7 @@ function short(str: string, n = 140): string {
 async function audio_duration(audio: string): Promise<string> {
   const stdout = await (async () => {
     if (process.platform === `darwin`) {
-      return (
-        await promisify(exec)(
-          `afinfo ./${audio} | grep duration | cut -d' ' -f 3`
-        )
-      ).stdout
+      return (await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)).stdout
     } else {
       return (await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)).stdout
     }
@@ -167,7 +154,15 @@ interface Info {
 /**
  * create info section from yaml
  */
-function info_section({ published_at, guests, toc }: { published_at: string, guests: Guest[], toc: Node }): Node {
+function info_section({
+  published_at,
+  guests,
+  toc,
+}: {
+  published_at: string
+  guests: Guest[]
+  toc: Node
+}): Node {
   // console.log({ published_at, guests })
 
   // validate date format
@@ -259,17 +254,26 @@ interface Param {
   base: string
 }
 
+interface CustomizeResult {
+  root: Node
+  tags: string[]
+  description: string | null
+  toc: Node
+  title: string | null
+}
+
 /**
  * Customize AST with traverse()
  */
-function customize(ast: Node, { host, base }: Param): { root: Node, tags: string[], description: string | null, toc: Node, title: string | null } {
-  const state: {
+function customize(ast: Node, { host, base }: Param): CustomizeResult {
+  interface State {
     tags: string[]
     description: string | null
     headings: Node[]
     title: string | null
     style: Record<string, boolean>
-  } = {
+  }
+  const state: State = {
     tags: [],
     description: null,
     headings: [],
@@ -321,8 +325,7 @@ function customize(ast: Node, { host, base }: Param): { root: Node, tags: string
         }, null)
 
         // あったらその重複カウント、なければ 0
-        const _id_count =
-          last !== null ? parseInt(last.attr.get(`_id_count`)!) + 1 : 0
+        const _id_count = last !== null ? parseInt(last.attr.get(`_id_count`)!) + 1 : 0
         const suffix = _id_count === 0 ? `` : `_${_id_count}`
         const id = `${_id}${suffix}`
 
@@ -404,7 +407,7 @@ function append_css(node: Node, css: string): Node {
 /**
  * # [tag] title => {title: "title", tags: [tag]}
  */
-function customize_heading(node: Node): { node: Node, tags: string[] } {
+function customize_heading(node: Node): { node: Node; tags: string[] } {
   const text = node.children[0].text
   const result = /(?<tag>\[.*\])?(?<title>.*)/.exec(text)!.groups!
   const { tag, title } = result
@@ -431,11 +434,8 @@ function customize_image(node: Node, base: string): Node {
   /**
    * TODO: parse 方法を見直す
    */
-  const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(
-    attr.get(`src`)!
-  )
-  if (path === null)
-    throw new Error(`missing <width>x<height> in "${attr.get(`src`)}"`)
+  const path = /(?<src>.*?)#(?<width>\d*?)x(?<height>\d*?)$/.exec(attr.get(`src`)!)
+  if (path === null) throw new Error(`missing <width>x<height> in "${attr.get(`src`)}"`)
   const { src, width, height } = path.groups!
 
   const query = (() => {
@@ -509,9 +509,7 @@ function customize_image(node: Node, base: string): Node {
     return picture
   }
 
-  throw new Error(
-    `<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`
-  )
+  throw new Error(`<img> should ".jpeg" or ".png" or ".svg" and <video> should ".mp4" in "${src}"`)
 }
 
 interface Blog {
@@ -591,14 +589,13 @@ async function parse_episode(entry: Podcast, order: number): Promise<any> {
   const canonical = target.replace(`../`, `https://`)
 
   const groups = md.match(
-    /^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m
+    /^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m,
   )!.groups!
   const { frontmatter, markdown } = groups
 
   const yaml = parseYAML(frontmatter, { schema: "core" }) as Info
   yaml.tags.forEach((tag) => {
-    if (/[A-Z]+/.test(tag))
-      throw new Error(`tag should be lowercase: ${tag}`)
+    if (/[A-Z]+/.test(tag)) throw new Error(`tag should be lowercase: ${tag}`)
   })
 
   const { tags, published_at, audio, guests = [] } = yaml
@@ -662,7 +659,7 @@ async function blog(files: string[], params: BuildOption = { preview: false }): 
     files
       .sort()
       .reverse()
-      .map((file) => parse_entry(file))
+      .map((file) => parse_entry(file)),
   )
 
   // build entries
@@ -771,15 +768,10 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
   const paths: Podcast[] = files
     .map((path) => {
       const [dot, mozaic, episodes, ep, file] = path.split(`/`)
-      const title = readFileSync(path, { encoding: `utf-8` }).match(
-        /# (?<h1>.*)/
-      )!.groups!.h1
+      const title = readFileSync(path, { encoding: `utf-8` }).match(/# (?<h1>.*)/)!.groups!.h1
       return {
         ep: parseInt(ep),
-        canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(
-          `.md`,
-          `.html`
-        )}`,
+        canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
         url: `/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
         path,
         file,
@@ -801,18 +793,14 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
     })
     .reverse()
 
-  const episodes = await Promise.all(
-    paths.map((path, i) => parse_episode(path, i))
-  )
+  const episodes = await Promise.all(paths.map((path, i) => parse_episode(path, i)))
   const latest = episodes.at(0)
 
   if (params.preview === false) {
     // set id3
     console.log("\n")
     console.log(
-      await promisify(exec)(
-        `eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`
-      )
+      await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`),
     )
     console.log(
       await promisify(exec)(
@@ -826,8 +814,8 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
       --to-v2.3 \
       --preserve-file-times \
       ../${latest.audio_file}
-    `.trim()
-      )
+    `.trim(),
+      ),
     )
   }
 
@@ -894,15 +882,11 @@ async function main(arg: string): Promise<void> {
 
   if (arg === `preview`) {
     // const entries = [`../blog.jxck.io/entries/2016-01-27/new-blog-start.md`]
-    const entries = await Array.fromAsync(
-      glob(`../blog.jxck.io/entries/**/*.md`)
-    )
+    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
     await blog([entries.at(0)!], { preview: true })
 
     // const episodes = [`../mozaic.fm/episodes/0/introduction-of-mozaicfm.md`]
-    const episodes = await Array.fromAsync(
-      glob(`../mozaic.fm/episodes/**/*.md`)
-    )
+    const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
     return await podcast([episodes.at(0)!], { preview: true })
   }
 
