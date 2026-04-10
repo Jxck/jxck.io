@@ -1,7 +1,7 @@
 `use strict`;
 
 export { format } from "./formatter.js";
-import { highlight } from "../highlight.js"
+import { highlight } from "./highlight.js"
 
 /**
  * @typedef {Object} Heading
@@ -293,7 +293,7 @@ export function encode(node, option = {}) {
     if (lang && highlight) {
       // Shiki は自身でエスケープするため、生テキストを渡す
       const raw_code = node.children.map((child) => serialize_child_text(child)).join(`\n`)
-      return `${spaces(indent)}${highlight(raw_code, lang, { path: node.attr.get(`path`) })}\n`
+      return `${spaces(indent)}${highlight(raw_code, lang, { path: node.attr.get(`path`) ?? undefined })}\n`
     }
 
     const code = node.children.map((child) => serialize(child)).join(`\n`)
