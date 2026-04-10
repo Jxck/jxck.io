@@ -3,8 +3,9 @@
 set -euo pipefail
 setopt null_glob
 
-ROOT=${0:A:h}
-WORK_DIR=${ROOT}/work/check
+SCRIPT_DIR=${0:A:h}
+ROOT=${SCRIPT_DIR:h}
+WORK_DIR=${SCRIPT_DIR}/check
 GENERATOR=${ROOT}/dict-generator.rb
 
 mkdir -p "${WORK_DIR}"

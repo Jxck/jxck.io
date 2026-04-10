@@ -3,10 +3,11 @@
 set -euo pipefail
 setopt null_glob
 
-ROOT=${0:A:h}
+SCRIPT_DIR=${0:A:h}
+ROOT=${SCRIPT_DIR:h}
 BLOG_ROOT=${ROOT:h}
 REPO_ROOT=${BLOG_ROOT:h}
-WORK_DIR=${ROOT}/work
+WORK_DIR=${SCRIPT_DIR}
 TMP_DIR=${WORK_DIR}/tmp
 TRAIN_LIST=${WORK_DIR}/train.list
 EVAL_LIST=${WORK_DIR}/eval.list
