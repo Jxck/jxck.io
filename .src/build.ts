@@ -1,7 +1,7 @@
 import { readFile, writeFile, stat, open } from "fs/promises"
 import { readFileSync, statSync } from "fs"
 import { promisify } from "util"
-import { render } from "ejs"
+import ejs from "ejs"
 import { exec } from "child_process"
 import { glob } from "node:fs/promises"
 import { parse as parseYAML } from "yaml"
@@ -246,7 +246,7 @@ function version(src: string): string {
  */
 async function renderFile(template: string, context: any): Promise<string> {
   context.filename = template
-  return render(await readFile(template, { encoding: `utf-8` }), context)
+  return ejs.render(await readFile(template, { encoding: `utf-8` }), context)
 }
 
 interface Param {
@@ -676,7 +676,7 @@ async function blog(files: string[], params: BuildOption = { preview: false }): 
       entry,
       filename: entry_template_file,
     }
-    const result = render(entry_template, context)
+    const result = ejs.render(entry_template, context)
     await overWriteFile(context.entry.target, result)
   }
 
@@ -833,7 +833,7 @@ async function podcast(files: string[], params: BuildOption = { preview: false }
       episode,
       filename: podcast_template_file,
     }
-    const result = render(podcast_template, context)
+    const result = ejs.render(podcast_template, context)
     await overWriteFile(episode.target, result)
   }
 
