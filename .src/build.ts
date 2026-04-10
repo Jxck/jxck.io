@@ -1,6 +1,6 @@
 import { exec } from "child_process"
 import { readFileSync, statSync } from "fs"
-import { readFile, writeFile, stat, glob } from "fs/promises"
+import { readFile as _readFile, writeFile, stat, glob } from "fs/promises"
 import { promisify, styleText } from "util"
 
 import ejs from "ejs"
@@ -32,6 +32,10 @@ function logg(color: Parameters<typeof styleText>[0], ...args: string[]) {
   process.stdout.write(styleText(color, args.join(" ")))
 }
 
+async function readFile(path: string) {
+  return await _readFile(path, { encoding: `utf-8` })
+}
+
 /**
  * Calculate hash from mtime
  */
@@ -57,7 +61,7 @@ export function cache_busting(path: string): string {
  */
 export async function overWriteFile(path: string, body: string): Promise<void> {
   try {
-    const current = await readFile(path, { encoding: `utf-8` })
+    const current = await readFile(path)
     if (body === current) return
   } catch (err: any) {
     if (err.code === "ENOENT") {
@@ -76,11 +80,7 @@ export async function overWriteFile(path: string, body: string): Promise<void> {
 function serialize_description(node: Node, acc = ``): string {
   if (node.name === `heading`) return ``
   if (node.name === `text`) return node.text
-  return node.children
-    .map((child) => {
-      return serialize_description(child, acc)
-    })
-    .join(``)
+  return node.children.map((child) => serialize_description(child, acc)).join(``)
 }
 
 /**
@@ -109,7 +109,7 @@ function indent(str: string, i = 2): string {
     .split(`\n`)
     .map((line) => {
       if (line === ``) return line + `\n`
-      return ` `.repeat(i) + line + `\n`
+      return line.padStart(line.length + i) + `\n`
     })
     .join(``)
     .trimStart()
@@ -174,8 +174,9 @@ function info_section({
   // console.log({ published_at, guests })
 
   // validate date format
-  if (/20[1-2]\d-[0-1]\d-[0-3]\d/.test(published_at) === false)
+  if (/20[1-2]\d-[0-1]\d-[0-3]\d/.test(published_at) === false) {
     throw new Error(`${published_at} is invalid date format`)
+  }
 
   const dl = new Node({
     name: `dl`,
@@ -184,7 +185,7 @@ function info_section({
   })
 
   // published_at
-  ;(() => {
+  {
     const div = new Node({ name: `div`, type: `block` })
     const dt = new Node({ name: `dt`, type: `inline` })
     const dd = new Node({ name: `dd`, type: `inline` })
@@ -192,7 +193,7 @@ function info_section({
     dd.addText(published_at)
     div.appendChildren([dt, dd])
     dl.appendChild(div)
-  })()
+  }
 
   // guests
   guests.forEach(({ name, url }) => {
@@ -219,7 +220,7 @@ function info_section({
   })
 
   // toc
-  ;(() => {
+  {
     const div = new Node({ name: `div`, type: `block` })
     const dt = new Node({ name: `dt`, type: `inline` })
     const dd = new Node({ name: `dd`, type: `block` })
@@ -234,7 +235,7 @@ function info_section({
     nav.appendChild(toc)
     summary.addText(`headings`)
     dl.appendChild(div)
-  })()
+  }
 
   return dl
 }
@@ -254,7 +255,7 @@ function version(src: string): string {
  */
 async function renderFile(template: string, context: any): Promise<string> {
   context.filename = template
-  return ejs.render(await readFile(template, { encoding: `utf-8` }), context)
+  return ejs.render(await readFile(template), context)
 }
 
 interface Param {
@@ -265,9 +266,9 @@ interface Param {
 interface CustomizeResult {
   root: Node
   tags: string[]
-  description: string | null
+  title: string
+  description: string
   toc: Node
-  title: string | null
 }
 
 /**
@@ -276,17 +277,16 @@ interface CustomizeResult {
 function customize(ast: Node, { host, base }: Param): CustomizeResult {
   interface State {
     tags: string[]
-    description: string | null
+    title: string
+    description: string
     headings: Node[]
-    title: string | null
     style: Record<string, boolean>
   }
   const state: State = {
     tags: [],
-    description: null,
+    title: "",
+    description: "",
     headings: [],
-    title: null,
-
     /**
      * table, pre など必ず出てくるわけではない CSS は
      * 登場したら一度だけ CSS を読み込むように
@@ -368,9 +368,7 @@ function customize(ast: Node, { host, base }: Param): CustomizeResult {
       if (node.name === `pre`) {
         if (node.attr.has(`path`)) {
           const path = node.attr.get(`path`)
-          const code = readFileSync(`${base}${path}`, {
-            encoding: `utf-8`,
-          }).trimEnd()
+          const code = readFileSync(`${base}${path}`, { encoding: `utf-8` }).trimEnd()
           node.addText(code)
         }
         if (state.style.pre === false) {
@@ -391,7 +389,7 @@ function customize(ast: Node, { host, base }: Param): CustomizeResult {
       return node
     },
   })
-  const { tags, description, headings, title } = state
+  const { title, tags, description, headings } = state
   const toc = to_toc(headings, { list: `ol` })
   return { root, tags, description, toc, title }
 }
@@ -525,12 +523,12 @@ interface Blog {
   canonical: string
   relative: string
   host: string
-  title: string | null
+  title: string
   tags: string[]
   toc_html: string
   article: string
   icon: string
-  description: string | null
+  description: string
   created_at: string
   updated_at: string
 }
@@ -540,7 +538,7 @@ interface Blog {
  */
 async function parse_entry(entry: string): Promise<Blog> {
   logg("blue", "b")
-  const md = await readFile(entry, { encoding: `utf-8` })
+  const md = await readFile(entry)
   const target = entry.replace(`.md`, `.html`)
   const canonical = target.replace(`../`, `https://`)
   const { mtime } = await stat(entry)
@@ -588,7 +586,7 @@ interface Podcast {
  */
 async function parse_episode(entry: Podcast, order: number): Promise<any> {
   process.stdout.write("m")
-  const md = await readFile(entry.path, { encoding: `utf-8` })
+  const md = await readFile(entry.path)
   const target = entry.path.replace(`.md`, `.html`)
   const canonical = target.replace(`../`, `https://`)
 
@@ -659,9 +657,7 @@ async function parse_episode(entry: Podcast, order: number): Promise<any> {
 async function blog(file: string): Promise<void> {
   const entry = await parse_entry(file)
   const entry_template_file = `./template/blog.html.ejs`
-  const entry_template = await readFile(entry_template_file, {
-    encoding: `utf-8`,
-  })
+  const entry_template = await readFile(entry_template_file)
 
   const context = {
     indent,
@@ -746,12 +742,8 @@ async function blog_index(files: string[]): Promise<void> {
   }, new Map())
 
   const tags = Array.from(tag_map.entries())
-    .sort((a, b) => {
-      return a[0] > b[0] ? 1 : -1
-    })
-    .map(([k, v]) => {
-      return [k, v.sort()]
-    })
+    .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+    .map(([k, v]) => [k, v.sort()])
 
   const tags_result = await renderFile(`./template/blog.tags.html.ejs`, {
     tags,
@@ -787,9 +779,7 @@ async function podcast(files: string[]): Promise<void> {
       } as Podcast
     })
     .sort((a, b) => {
-      if (a.ep === b.ep) {
-        return a.file.length - b.file.length
-      }
+      if (a.ep === b.ep) return a.file.length - b.file.length
       return a.ep - b.ep
     })
     .map((curr, i, arr) => {
@@ -825,9 +815,7 @@ async function podcast(files: string[]): Promise<void> {
 
   // build episodes
   const podcast_template_file = `./template/podcast.html.ejs`
-  const podcast_template = await readFile(podcast_template_file, {
-    encoding: `utf-8`,
-  })
+  const podcast_template = await readFile(podcast_template_file)
   for (const episode of episodes) {
     const context = {
       indent,
@@ -882,7 +870,7 @@ async function main(arg: string): Promise<void> {
 
   if (arg === `blog`) {
     const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
-    await Promise.all(entries.map((entry) => blog))
+    await Promise.all(entries.map(blog))
   }
 
   if (arg === `podcast`) {
