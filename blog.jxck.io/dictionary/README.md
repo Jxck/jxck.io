@@ -143,6 +143,8 @@ blog.jxck.io/dictionary/
 
 ### 生成済み辞書での圧縮
 
+既定では、RFC 9842 の fixed header を付けた `*.dcb` と `*.dcz` を両方生成する。
+
 ```sh
 ./blog.jxck.io/dictionary/compress.sh \
   --dict ./blog.jxck.io/dictionary/work/best.dict \
@@ -150,10 +152,29 @@ blog.jxck.io/dictionary/
   ./blog.jxck.io/entries/**/*.html
 ```
 
-このスクリプトは、raw dictionary を使って各 HTML を圧縮し、`work/compressed/` 配下に元の相対パスを保ったまま出力する。
+`dcb` だけ出したい場合は、出力種別を明示する。
 
-- 既定では RFC 9842 の fixed header を付けた `*.dcb` / `*.dcz` を生成する
-- `--raw` を付けると、ヘッダ無しの `*.br` / `*.zstd` を生成する
+```sh
+./blog.jxck.io/dictionary/compress.sh \
+  -dcb \
+  --dict ./blog.jxck.io/dictionary/work/best.dict \
+  --output-dir ./blog.jxck.io/dictionary/work/compressed \
+  ./blog.jxck.io/entries/**/*.html
+```
+
+このスクリプトは、raw dictionary を使って各 HTML を圧縮し、`work/compressed/` 配下に元の相対パスを保ったまま出力する。出力指定は排他ではなく加算式なので、`-br -dcb` のように raw と CDT を混在指定できる。
+
+出力オプションは以下。
+
+- `-br` / `--raw-brotli` でヘッダ無し `*.br` を生成する
+- `-zstd` / `--raw-zstd` でヘッダ無し `*.zstd` を生成する
+- `-dcb` / `--delta-compression-brotli` で `*.dcb` を生成する
+- `-dcz` / `--delta-compression-zstd` で `*.dcz` を生成する
+
+何も指定しなければ、従来どおり `*.dcb` と `*.dcz` の両方を生成する。
+
+圧縮パラメータは以下で固定している。
+
 - `brotli` は `-q 11 -w 24`、`zstd` は `-22 --ultra --long=23 --patch-from` を使う
 
 RFC 9842 では、`dcb` は `0xff 44 43 42 + SHA-256(dict)`、`dcz` は `0x5e 2a 4d 18 20 00 00 00 + SHA-256(dict)` の fixed header を持つため、`compress.sh` はそのヘッダを付与してから出力する。

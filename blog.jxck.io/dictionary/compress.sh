@@ -4,8 +4,11 @@ set -euo pipefail
 
 DICT=""
 OUT_DIR="./blog.jxck.io/dictionary/work/compressed"
-MODE="cdt"
 VERBOSE=0
+WANT_RAW_BR=0
+WANT_RAW_ZSTD=0
+WANT_DCB=0
+WANT_DCZ=0
 
 usage() {
   cat <<'EOF'
@@ -16,8 +19,12 @@ Compress files with a generated raw dictionary.
 Options:
   -d, --dict FILE        Raw dictionary file to use
   -o, --output-dir DIR   Output directory (default: ./blog.jxck.io/dictionary/work/compressed)
-      --raw              Emit raw .br and .zstd streams
-      --cdt              Emit RFC 9842 .dcb and .dcz payloads (default)
+  -br, --raw-brotli      Emit raw Brotli stream (.br)
+  -zstd, --raw-zstd      Emit raw Zstd stream (.zstd)
+  -dcb, --delta-compression-brotli
+                         Emit Brotli-based CDT payload (.dcb)
+  -dcz, --delta-compression-zstd
+                         Emit Zstd-based CDT payload (.dcz)
   -v, --verbose          Print progress information
   -h, --help             Show this help
 EOF
@@ -42,6 +49,55 @@ abspath() {
   )
 }
 
+# 出力先では、実行時の cwd から見た入力の相対構造を保つ。
+relative_to_cwd() {
+  local path="$1"
+
+  local rel="${path#$cwd/}"
+  if [[ "$rel" == "$path" ]]; then
+    printf "%s\n" "${path:t}"
+    return
+  fi
+
+  printf "%s\n" "$rel"
+}
+
+# raw shared Brotli をそのまま出力する。
+compress_brotli() {
+  local input="$1"
+  local output="$2"
+
+  brotli -q 11 -w 24 -f --dictionary="$DICT" "$input" -o "$output"
+}
+
+# raw shared Zstd をそのまま出力する。
+compress_zstd() {
+  local input="$1"
+  local output="$2"
+
+  zstd -q -f -22 --ultra --long=23 --patch-from="$DICT" "$input" -o "$output"
+}
+
+# CDT payload は raw stream を作って fixed header を前置して完成させる。
+emit_cdt() {
+  local raw_ext="$1"
+  local magic="$2"
+  local input="$3"
+  local out_base="$4"
+
+  local tmp="${out_base}.tmp.${raw_ext}"
+  local out="${out_base}.${raw_ext}"
+
+  if [[ "$raw_ext" == "dcb" ]]; then
+    compress_brotli "$input" "$tmp"
+  else
+    compress_zstd "$input" "$tmp"
+  fi
+
+  wrap_cdt "$magic" "$tmp" "$out"
+  rm -f "$tmp"
+}
+
 while (( $# > 0 )); do
   case "$1" in
     -d|--dict)
@@ -52,12 +108,20 @@ while (( $# > 0 )); do
       OUT_DIR="${2:-}"
       shift 2
       ;;
-    --raw)
-      MODE="raw"
+    -br|--raw-brotli)
+      WANT_RAW_BR=1
       shift
       ;;
-    --cdt)
-      MODE="cdt"
+    -zstd|--raw-zstd)
+      WANT_RAW_ZSTD=1
+      shift
+      ;;
+    -dcb|--delta-compression-brotli)
+      WANT_DCB=1
+      shift
+      ;;
+    -dcz|--delta-compression-zstd)
+      WANT_DCZ=1
       shift
       ;;
     -v|--verbose)
@@ -111,6 +175,12 @@ dict_hash_hex="$(shasum -a 256 "$DICT" | awk '{print $1}')"
 dcb_magic=$'\xff\x44\x43\x42'
 dcz_magic=$'\x5e\x2a\x4d\x18\x20\x00\x00\x00'
 
+# 出力指定が無い場合は、従来どおり CDT の両形式を出す。
+if (( WANT_RAW_BR == 0 && WANT_RAW_ZSTD == 0 && WANT_DCB == 0 && WANT_DCZ == 0 )); then
+  WANT_DCB=1
+  WANT_DCZ=1
+fi
+
 wrap_cdt() {
   local magic="$1"
   local raw_file="$2"
@@ -128,11 +198,8 @@ for input in "$@"; do
     exit 1
   fi
 
-  rel_input="${abs_input#$cwd/}"
-  if [[ "$rel_input" == "$abs_input" ]]; then
-    rel_input="${abs_input:t}"
-  fi
-
+  # 入力の相対パス構造をそのまま出力先へ写す。
+  rel_input="$(relative_to_cwd "$abs_input")"
   out_base="${OUT_DIR}/${rel_input}"
   mkdir -p "${out_base:h}"
 
@@ -140,20 +207,21 @@ for input in "$@"; do
     print -u2 -- "compressing ${rel_input}"
   fi
 
-  if [[ "$MODE" == "raw" ]]; then
-    brotli -q 11 -w 24 -f --dictionary="$DICT" "$abs_input" -o "${out_base}.br"
-    zstd -q -f -22 --ultra --long=23 --patch-from="$DICT" "$abs_input" -o "${out_base}.zstd"
-    continue
+  # 出力指定は排他ではなく加算式なので、raw と CDT を混在指定できる。
+  if (( WANT_RAW_BR )); then
+    compress_brotli "$abs_input" "${out_base}.br"
   fi
 
-  tmp_br="${out_base}.tmp.br"
-  tmp_zstd="${out_base}.tmp.zstd"
+  if (( WANT_RAW_ZSTD )); then
+    compress_zstd "$abs_input" "${out_base}.zstd"
+  fi
 
-  brotli -q 11 -w 24 -f --dictionary="$DICT" "$abs_input" -o "$tmp_br"
-  zstd -q -f -22 --ultra --long=23 --patch-from="$DICT" "$abs_input" -o "$tmp_zstd"
+  if (( WANT_DCB )); then
+    # CDT payload は raw stream を一旦作ってから fixed header を前置する。
+    emit_cdt "dcb" "$dcb_magic" "$abs_input" "$out_base"
+  fi
 
-  wrap_cdt "$dcb_magic" "$tmp_br" "${out_base}.dcb"
-  wrap_cdt "$dcz_magic" "$tmp_zstd" "${out_base}.dcz"
-
-  rm -f "$tmp_br" "$tmp_zstd"
+  if (( WANT_DCZ )); then
+    emit_cdt "dcz" "$dcz_magic" "$abs_input" "$out_base"
+  fi
 done
