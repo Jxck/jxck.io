@@ -36,6 +36,7 @@ blog:
 	$(MAKE) fmt-blog
 	$(MAKE) mtime-blog
 	cd .src && $(NODE) build.ts blog
+	cd .src && $(NODE) build.ts blog_index
 
 podcast:
 	$(MAKE) fmt-podcast

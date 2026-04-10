@@ -1,12 +1,11 @@
-import { readFile, writeFile, stat, open } from "fs/promises"
-import { readFileSync, statSync } from "fs"
-import { promisify } from "util"
-import ejs from "ejs"
 import { exec } from "child_process"
-import { glob } from "node:fs/promises"
-import { parse as parseYAML } from "yaml"
+import { readFileSync, statSync } from "fs"
+import { readFile, writeFile, stat, glob } from "fs/promises"
+import { promisify, styleText } from "util"
 
+import ejs from "ejs"
 import { encode, decode, traverse, Node, hsc, map, create_id_from_text, to_toc } from "markdown"
+import { parse as parseYAML } from "yaml"
 
 /**
  * dump for debug
@@ -22,6 +21,15 @@ function dump(ast: Node): void {
       `  `,
     ),
   )
+}
+
+function logger(color: Parameters<typeof styleText>[0], ...args: string[]) {
+  const bright = `${color}Bright` as Parameters<typeof styleText>[0]
+  console.log(styleText(bright, args.join(" ")))
+}
+
+function logg(color: Parameters<typeof styleText>[0], ...args: string[]) {
+  process.stdout.write(styleText(color, args.join(" ")))
 }
 
 /**
@@ -58,7 +66,7 @@ export async function overWriteFile(path: string, body: string): Promise<void> {
       return console.error(err)
     }
   }
-  console.log(`overwrite ${path}`)
+  logger("green", "overwrite", path)
   return await writeFile(path, body)
 }
 
@@ -531,7 +539,7 @@ interface Blog {
  * parse entry file into context
  */
 async function parse_entry(entry: string): Promise<Blog> {
-  process.stdout.write("b")
+  logg("blue", "b")
   const md = await readFile(entry, { encoding: `utf-8` })
   const target = entry.replace(`.md`, `.html`)
   const canonical = target.replace(`../`, `https://`)
@@ -646,10 +654,32 @@ async function parse_episode(entry: Podcast, order: number): Promise<any> {
 }
 
 /**
- * build blog entries
+ * build entry
  */
-async function blog(files: string[]): Promise<void> {
-  console.log(`\ncompile blog entries: ${files.length}`)
+async function blog(file: string): Promise<void> {
+  const entry = await parse_entry(file)
+  const entry_template_file = `./template/blog.html.ejs`
+  const entry_template = await readFile(entry_template_file, {
+    encoding: `utf-8`,
+  })
+
+  const context = {
+    indent,
+    short,
+    hsc,
+    version,
+    entry,
+    filename: entry_template_file,
+  }
+  const result = ejs.render(entry_template, context)
+  await overWriteFile(context.entry.target, result)
+}
+
+/**
+ * build blog index/rss/sitemap/tags
+ */
+async function blog_index(files: string[]): Promise<void> {
+  logger("blue", "\ncompile blog entries:", files.length.toString())
 
   const entries = await Promise.all(
     files
@@ -657,24 +687,6 @@ async function blog(files: string[]): Promise<void> {
       .reverse()
       .map((file) => parse_entry(file)),
   )
-
-  // build entries
-  const entry_template_file = `./template/blog.html.ejs`
-  const entry_template = await readFile(entry_template_file, {
-    encoding: `utf-8`,
-  })
-  for (const entry of entries) {
-    const context = {
-      indent,
-      short,
-      hsc,
-      version,
-      entry,
-      filename: entry_template_file,
-    }
-    const result = ejs.render(entry_template, context)
-    await overWriteFile(context.entry.target, result)
-  }
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -757,7 +769,7 @@ async function blog(files: string[]): Promise<void> {
  * build podcast episodes
  */
 async function podcast(files: string[]): Promise<void> {
-  console.log(`\ncompile podcast episodes: ${files.length}`)
+  logger("green", "\ncompile podcast episodes:", files.length.toString())
 
   const paths: Podcast[] = files
     .map((path) => {
@@ -863,9 +875,14 @@ async function podcast(files: string[]): Promise<void> {
  * main
  */
 async function main(arg: string): Promise<void> {
+  if (arg === `blog_index`) {
+    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
+    await blog_index(entries)
+  }
+
   if (arg === `blog`) {
     const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
-    await blog(entries)
+    await Promise.all(entries.map((entry) => blog))
   }
 
   if (arg === `podcast`) {
