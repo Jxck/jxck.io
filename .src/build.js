@@ -738,7 +738,7 @@ async function blog(files, params = { preview: false }) {
     return acc
   }, new Map())
 
-  console.log(await promisify(exec)(`../compression-dictionary-transport.sh`))
+  // console.log(await promisify(exec)(`../compression-dictionary-transport.sh`))
 
   // compression dictionary transport
   // const dict_path = (
