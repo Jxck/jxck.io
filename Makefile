@@ -15,12 +15,12 @@ fmt:
 fmt-blog:
 	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' \
 		| sort -r \
-		| xargs -P $(CORES) -L 10 ./.src/markdown/formatter.js
+		| parallel -X -j $(CORES) ./.src/markdown/formatter.js
 
 fmt-podcast:
 	selects path from './mozaic.fm/episodes/**/*' where extname '==' '.md' \
 		| sort -r \
-		| xargs -P $(CORES) -L 10 npx prettier -w
+		| parallel -X -j $(CORES) npx prettier -w
 
 mtime:
 	$(MAKE) mtime-blog
@@ -125,19 +125,19 @@ remove:
 OPTIPNG := optipng -o7
 png:
 	find ./blog.jxck.io/entries -name '*.png' \
-		| xargs -P$(CORES) -I{} sh -c '$(OPTIPNG) {}'
+		| parallel -j $(CORES) $(OPTIPNG)
 
 ## jpeg
 JPEGTRAN := jpegtran -copy none -optimize -progressive
 jpeg:
 	find ./blog.jxck.io/entries -name '*.jpeg' \
-		| xargs -P$(CORES) -I{} sh -c 'echo {} && $(JPEGTRAN) -outfile {} {}'
+		| parallel -j $(CORES) 'echo {} && $(JPEGTRAN) -outfile {} {}'
 
 ## gif
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
 	find ./blog.jxck.io/entries -name '*.gif' \
-		| xargs -P$(CORES) -I{} sh -c '$(GIFSICLE) {} -o {}'
+		| parallel -j $(CORES) '$(GIFSICLE) {} -o {}'
 
 
 PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
