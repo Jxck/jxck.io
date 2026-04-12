@@ -396,7 +396,7 @@ if (process.argv.length > 2) {
     /**@type{Array.<string>}*/
     const files = process.argv.slice(2)
 
-    files.forEach(async (file) => {
+    await Promise.all(files.map(async (file) => {
       process.stdout.write(".")
       const filepath = join(pwd, file)
       const original = await readFile(filepath, { encoding: `utf-8` })
@@ -404,7 +404,7 @@ if (process.argv.length > 2) {
       if (original !== formatted) {
         await writeFile(filepath, formatted)
       }
-    })
+    }))
     console.log("")
   }
 }
