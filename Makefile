@@ -97,44 +97,11 @@ podcast:
 
 
 ##########################
-# Compression
-##########################
-# 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
-COMP_EXCLUDE := \
-  %.gz %.br %.sb \
-  %.png %.jpeg %.gif %.webp %.avif \
-  %.mp4 %.webm \
-  %.woff2 \
-  %.rb %.sh %.cgi \
-  %.md %.txt
-
-COMP_WWW     := $(filter-out $(COMP_EXCLUDE), $(shell find ./www.jxck.io  -xtype f ! -path '*/.*'))
-COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*' ! -path '*/tags/*'))
-COMP_MOZAIC  := $(filter-out $(COMP_EXCLUDE), $(shell find ./mozaic.fm    -xtype f ! -path '*/.*'))
-COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
-
-COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
-
-# brotli 圧縮コマンド
-%.br: %
-	brotli -v -q 11 -f $<
-
-# brotli 差分圧縮
-comp: $(COMP_BR)
-
-# .br 削除
-clean:
-	@rm -fv $(COMP_BR)
-
-# ビルド結果と .br を削除
-remove: clean
-	@rm -fv $(BLOG_HTML)
-	@rm -fv $(PODCAST_HTML)
-
-
-##########################
 # Optimize Image
 ##########################
+BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
+BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
+BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
 
 # 全画像の最適化
 image:
@@ -155,11 +122,6 @@ jpeg:
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
 	printf '%s\n' $(BLOG_GIF) | parallel -j $(CORES) '$(GIFSICLE) {} -o {}'
-
-
-BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
-BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
-BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
 
 
 ## webp
@@ -213,6 +175,42 @@ AVIF_FILES += $(BLOG_GIF:.gif=.avif)
 
 # avif 差分ビルド
 avif: $(AVIF_FILES)
+
+
+##########################
+# Compression
+##########################
+# 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
+COMP_EXCLUDE := \
+  %.gz %.br %.sb \
+  %.png %.jpeg %.gif %.webp %.avif \
+  %.mp4 %.webm \
+  %.woff2 \
+  %.rb %.sh %.cgi \
+  %.md %.txt
+
+COMP_WWW     := $(filter-out $(COMP_EXCLUDE), $(shell find ./www.jxck.io  -xtype f ! -path '*/.*'))
+COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*' ! -path '*/tags/*'))
+COMP_MOZAIC  := $(filter-out $(COMP_EXCLUDE), $(shell find ./mozaic.fm    -xtype f ! -path '*/.*'))
+COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
+
+COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
+
+# brotli 圧縮コマンド
+%.br: %
+	brotli -v -q 11 -f $<
+
+# brotli 差分圧縮
+comp: $(COMP_BR)
+
+# .br 削除
+clean:
+	@rm -fv $(COMP_BR)
+
+# ビルド結果と .br を削除
+remove: clean
+	@rm -fv $(BLOG_HTML)
+	@rm -fv $(PODCAST_HTML)
 
 
 ##########################
