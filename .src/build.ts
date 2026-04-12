@@ -536,6 +536,15 @@ interface Blog {
   updated_at: string
 }
 
+interface BlogMeta {
+  canonical: string
+  title: string
+  tags: string[]
+  description: string
+  created_at: string
+  updated_at: string
+}
+
 /**
  * parse entry file into context
  */
@@ -672,20 +681,42 @@ async function blog(file: string): Promise<void> {
   }
   const result = ejs.render(entry_template, context)
   await overWriteFile(context.entry.target, result)
+
+  const meta: BlogMeta = {
+    canonical:   entry.canonical,
+    title:       entry.title,
+    tags:        entry.tags,
+    description: entry.description,
+    created_at:  entry.created_at,
+    updated_at:  entry.updated_at,
+  }
+  const meta_path = entry.target.replace(/\.html$/, `.json`)
+  await overWriteFile(meta_path, JSON.stringify(meta, null, 2) + `\n`)
 }
 
 /**
  * build blog index/rss/sitemap/tags
  */
-async function blog_index(files: string[]): Promise<void> {
-  logger("blue", "\ncompile blog entries:", files.length.toString())
+async function blog_index(meta_files: string[]): Promise<void> {
+  logger("blue", "\ncompile blog entries:", meta_files.length.toString())
 
-  const entries = await Promise.all(
-    files
-      .sort()
-      .reverse()
-      .map((file) => parse_entry(file)),
+  const ICON = `https://blog.jxck.io/assets/img/jxck`
+
+  const metas: BlogMeta[] = await Promise.all(
+    meta_files.map(async (f) => JSON.parse(await readFile(f)) as BlogMeta),
   )
+
+  const entries = metas
+    .map((m) => {
+      const url = new URL(m.canonical)
+      return {
+        ...m,
+        host:     url.host,
+        relative: url.pathname.replace(/^\//, ``),
+        icon:     ICON,
+      }
+    })
+    .sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
 
   // build index
   const entries_per_year = entries.reduce((acc, entry) => {
@@ -876,8 +907,10 @@ function normalize_path(file: string): string {
  */
 async function main(arg: string, rest: string[]): Promise<void> {
   if (arg === `blog_index`) {
-    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
-    await blog_index(entries)
+    if (rest.length === 0) {
+      throw new Error(`build.ts blog_index requires one or more meta.json paths`)
+    }
+    await blog_index(rest.map(normalize_path))
   }
 
   if (arg === `blog`) {

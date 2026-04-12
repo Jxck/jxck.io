@@ -45,6 +45,7 @@ mtime: mtime-blog mtime-podcast
 BLOG_FILES := $(shell find ./blog.jxck.io/entries ! -type d)
 BLOG_MD    := $(filter %.md, $(BLOG_FILES))
 BLOG_HTML  := $(BLOG_MD:.md=.html)
+BLOG_JSON  := $(BLOG_MD:.md=.json)
 
 # blog の fmt
 fmt-blog:
@@ -54,14 +55,14 @@ fmt-blog:
 mtime-blog:
 	git restore-mtime $(BLOG_MD)
 
-# blog の差分ビルド
-./blog.jxck.io/entries/%.html: ./blog.jxck.io/entries/%.md
+# blog の差分ビルド (1 つの md から .html と .json を同時に生成)
+./blog.jxck.io/entries/%.html ./blog.jxck.io/entries/%.json &: ./blog.jxck.io/entries/%.md
 	./.src/markdown/formatter.js $<
 	$(NODE) .src/build.ts blog $<
 
 # index.html は @touch で mtime を進め blog_index の再実行を防ぐ
-./blog.jxck.io/index.html: $(BLOG_HTML)
-	$(NODE) .src/build.ts blog_index
+./blog.jxck.io/index.html: $(BLOG_JSON)
+	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
 	@touch $@
 
 # index/rss/sitemap/tags の更新
