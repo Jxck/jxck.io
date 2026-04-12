@@ -1,195 +1,241 @@
-.PHONY: build blog podcast compile fmt fmt-blog fmt-podcast mtime mtime-blog mtime-podcast install update image png jpeg gif webp avif comp clean remove start stop status kill restart reload test logf
+.PHONY: build
+.PHONY: blog blog-all
+.PHONY: podcast
+.PHONY: fmt fmt-blog fmt-podcast
+.PHONY: mtime mtime-blog mtime-podcast
+.PHONY: image png jpeg gif webp avif
+.PHONY: comp clean remove
+.PHONY: install update systemd-list systemd-status
+.PHONY: start stop status kill restart reload test logf
+.PHONY: _start _stop _restart
 
-NODE  := $(HOME)/.local/share/mise/installs/node/latest/bin/node
+# コア数
 CORES := $(shell nproc)
 
+# トップレベルの Make を並列化
+MAKEFLAGS += --no-print-directory
+ifeq ($(MAKELEVEL),0)
+MAKEFLAGS += -j$(CORES)
+endif
+
+# Commands
+NODE     := $(HOME)/.local/share/mise/installs/node/latest/bin/node
+PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
+
+
+##########################
+# Aggregate
+##########################
+# 全体の差分ビルド
 build:
 	$(MAKE) blog
 	$(MAKE) podcast
 	$(MAKE) comp
 
-fmt:
-	$(MAKE) fmt-blog
-	$(MAKE) fmt-podcast
+# blog/podcast の md を formatter にかけて整形
+fmt: fmt-blog fmt-podcast
 
+# blog/podcast の md の mtime を最終コミット時刻に戻す
+mtime: mtime-blog mtime-podcast
+
+
+##########################
+# Blog
+##########################
+BLOG_FILES := $(shell find ./blog.jxck.io/entries ! -type d)
+BLOG_MD    := $(filter %.md, $(BLOG_FILES))
+BLOG_HTML  := $(BLOG_MD:.md=.html)
+
+# blog の fmt
 fmt-blog:
-	selects path from './blog.jxck.io/entries/**/*' where extname '==' '.md' \
-		| sort -r \
-		| parallel -X -j $(CORES) ./.src/markdown/formatter.js
+	printf '%s\n' $(BLOG_MD) | parallel -X -j $(CORES) ./.src/markdown/formatter.js
 
-fmt-podcast:
-	selects path from './mozaic.fm/episodes/**/*' where extname '==' '.md' \
-		| sort -r \
-		| parallel -X -j $(CORES) npx prettier -w --log-level error
-
-mtime:
-	$(MAKE) mtime-blog
-	$(MAKE) mtime-podcast
-
+# blog の mtime を戻す
 mtime-blog:
-	git restore-mtime blog.jxck.io/entries/**/*.md
+	git restore-mtime $(BLOG_MD)
 
-mtime-podcast:
-	git restore-mtime mozaic.fm/episodes/**/*.md
+# blog の差分ビルド
+./blog.jxck.io/entries/%.html: ./blog.jxck.io/entries/%.md
+	./.src/markdown/formatter.js $<
+	$(NODE) .src/build.ts blog $<
 
-blog:
+# index.html は @touch で mtime を進め blog_index の再実行を防ぐ
+./blog.jxck.io/index.html: $(BLOG_HTML)
+	$(NODE) .src/build.ts blog_index
+	@touch $@
+
+# index/rss/sitemap/tags の更新
+blog: ./blog.jxck.io/index.html
+
+# blog のフルビルド
+blog-all:
 	$(MAKE) fmt-blog
 	$(MAKE) mtime-blog
-	$(NODE) .src/build.ts blog
+	$(NODE) .src/build.ts blog_all
 	$(NODE) .src/build.ts blog_index
 
+
+##########################
+# Podcast
+##########################
+PODCAST_MD   := $(shell find ./mozaic.fm/episodes -name '*.md')
+PODCAST_HTML := $(PODCAST_MD:.md=.html)
+
+# podcast の fmt
+fmt-podcast:
+	printf '%s\n' $(PODCAST_MD) | sort -r | parallel -X -j $(CORES) $(PRETTIER) -w --log-level error
+
+# podcast の mtime を戻す
+mtime-podcast:
+	git restore-mtime $(PODCAST_MD)
+
+# podcast のフルビルド
 podcast:
 	$(MAKE) fmt-podcast
 	$(MAKE) mtime-podcast
 	$(NODE) .src/build.ts podcast
 
-compile:
-	$(NODE) -v
-	$(NODE) .src/build.ts build
-
-preview:
-	$(NODE) .src/build.ts preview
-
-draft:
-	$(NODE) .src/build.ts draft
-
-install:
-	brew bundle --file=$(DOTFILES)/Brewfile
-	npm install
-	.h2o/install.sh
-
-update:
-	ncu -u
-
-systemd-list:
-	@systemctl list-unit-files | grep $(foreach service, $(notdir $(wildcard ./.systemd/*)), -e '^$(service)')
-
-systemd-status:
-	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
-
-
-## optimize all image
-image:
-	$(MAKE) -j$(CORES) png jpeg gif
-	$(MAKE) -j$(CORES) webp avif
-
 
 ##########################
 # Compression
 ##########################
-# 探索は www/blog/mozaic のみ
 # 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
-WWW := $(shell selects path from "./www.jxck.io/**/*"  where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-BLO := $(shell selects path from "./blog.jxck.io/**/*" where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" and      path "!~" "drafts" and path "!~" "tags" order by path desc)
-MOZ := $(shell selects path from "./mozaic.fm/**/*"    where "file?" "==" "true" and extname "!~" ".gz|.br|.sb|.png|.jpeg|.gif|.webp|.avif|.mp4|.webm|.rb|.md|.txt|.woff2|.sh|.cgi" order by path desc)
-TARGET := $(WWW) $(BLO) $(MOZ)
+COMP_EXCLUDE := \
+  %.gz %.br %.sb \
+  %.png %.jpeg %.gif %.webp %.avif \
+  %.mp4 %.webm \
+  %.woff2 \
+  %.rb %.sh %.cgi \
+  %.md %.txt
 
-ENTRIES := $(shell selects path from "./blog.jxck.io/entries/**/*.html")
+COMP_WWW     := $(filter-out $(COMP_EXCLUDE), $(shell find ./www.jxck.io  -xtype f ! -path '*/.*'))
+COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*' ! -path '*/tags/*'))
+COMP_MOZAIC  := $(filter-out $(COMP_EXCLUDE), $(shell find ./mozaic.fm    -xtype f ! -path '*/.*'))
+COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
 
-BR = $(addsuffix .br, $(TARGET))
+COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
+# brotli 圧縮コマンド
 %.br: %
 	brotli -v -q 11 -f $<
 
-# 対象ファイルを圧縮
-comp:
-	$(MAKE) $(BR)
+# brotli 差分圧縮
+comp: $(COMP_BR)
 
-# 圧縮を削除
+# .br 削除
 clean:
-	@rm -fv $(BR)
+	@rm -fv $(COMP_BR)
 
-##########################
-# Build Markdown
-##########################
-
-# .md
-BMD = $(wildcard ./blog.jxck.io/entries/**/*.md)
-PMD = $(wildcard ./mozaic.fm/episodes/**/*.md)
-
-# .html
-BHTML = $(BMD:.md=.html)
-PHTML = $(PMD:.md=.html)
-
-# ビルド結果(HTML)も削除
-remove:
-	@rm -fv $(BHTML)
-	@rm -fv $(PHTML)
+# ビルド結果と .br を削除
+remove: clean
+	@rm -fv $(BLOG_HTML)
+	@rm -fv $(PODCAST_HTML)
 
 
 ##########################
 # Optimize Image
 ##########################
 
-## png
+# 全画像の最適化
+image:
+	$(MAKE) png jpeg gif
+	$(MAKE) webp avif
+
+# PNG を optipng で最適化
 OPTIPNG := optipng -o7
 png:
-	find ./blog.jxck.io/entries -name '*.png' \
-		| parallel -j $(CORES) $(OPTIPNG)
+	printf '%s\n' $(BLOG_PNG) | parallel -j $(CORES) $(OPTIPNG)
 
-## jpeg
+# JPEG を jpegtran で最適化
 JPEGTRAN := jpegtran -copy none -optimize -progressive
 jpeg:
-	find ./blog.jxck.io/entries -name '*.jpeg' \
-		| parallel -j $(CORES) 'echo {} && $(JPEGTRAN) -outfile {} {}'
+	printf '%s\n' $(BLOG_JPEG) | parallel -j $(CORES) 'echo {} && $(JPEGTRAN) -outfile {} {}'
 
-## gif
+# GIF を gifsicle で最適化
 GIFSICLE := gifsicle --optimize=3 --colors 256 -v
 gif:
-	find ./blog.jxck.io/entries -name '*.gif' \
-		| parallel -j $(CORES) '$(GIFSICLE) {} -o {}'
+	printf '%s\n' $(BLOG_GIF) | parallel -j $(CORES) '$(GIFSICLE) {} -o {}'
 
 
-PNG = $(wildcard ./blog.jxck.io/entries/**/*.png)
-JPG = $(wildcard ./blog.jxck.io/entries/**/*.jpeg)
-GIF = $(wildcard ./blog.jxck.io/entries/**/*.gif)
+BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
+BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
+BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
 
 
 ## webp
 CWEBP = cwebp -q 40 -quiet -m 6
 GWEBP = gif2webp -q 40 -quiet -m 6
 
-WEBP = $(PNG:.png=.webp)
-WEBP += $(JPG:.jpeg=.webp)
-WEBP += $(GIF:.gif=.webp)
+WEBP_FILES := $(BLOG_PNG:.png=.webp)
+WEBP_FILES += $(BLOG_JPEG:.jpeg=.webp)
+WEBP_FILES += $(BLOG_GIF:.gif=.webp)
 
+# PNG -> webp 変換
 %.webp: %.png
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
+# JPEG -> webp 変換
 %.webp: %.jpeg
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
+# GIF -> webp 変換
 %.webp: %.gif
 	$(GWEBP) $< -o $@
 	touch -r $< $@
 
-webp:
-	$(MAKE) -j$(CORES) $(WEBP)
+# webp 差分ビルド
+webp: $(WEBP_FILES)
 
 
 ## avif
 AVIFENC := avifenc --speed 0 --min 0 --max 40
 
-AVIF = $(PNG:.png=.avif)
-AVIF += $(JPG:.jpeg=.avif)
-AVIF += $(GIF:.gif=.avif)
+AVIF_FILES := $(BLOG_PNG:.png=.avif)
+AVIF_FILES += $(BLOG_JPEG:.jpeg=.avif)
+AVIF_FILES += $(BLOG_GIF:.gif=.avif)
 
+# PNG -> avif 変換
 %.avif: %.png
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
+# JPEG -> avif 変換
 %.avif: %.jpeg
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
+# GIF -> avif 変換
 %.avif: %.gif
 	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $@
 	touch -r $< $@
 
-avif:
-	$(MAKE) -j$(CORES) $(AVIF)
+# avif 差分ビルド
+avif: $(AVIF_FILES)
+
+
+##########################
+# Setup
+##########################
+# 依存インストール
+install:
+	npm install
+	.h2o/install.sh
+
+# 依存更新
+update:
+	ncu --cooldown 7 --upgrade
+	npm install
+	.h2o/install.sh
+
+# .systemd unit 一覧
+systemd-list:
+	@systemctl list-unit-files | grep $(foreach service, $(notdir $(wildcard ./.systemd/*)), -e '^$(service)')
+
+# .systemd unit 状態一覧
+systemd-status:
+	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
 
 
 ##########################
@@ -210,14 +256,16 @@ kill:
 restart:
 	sudo systemctl restart h2o
 
-reload:
-	sudo .h2o/local/bin/h2o -t -c h2o.conf | cat
+# h2o.conf の syntax check 後に reload
+reload: test
 	sudo systemctl daemon-reload
 	sudo systemctl reload h2o
 
+# h2o.conf の syntax check
 test:
 	sudo .h2o/local/bin/h2o -t -c h2o.conf | cat
 
+# journalctl ログ表示
 logf:
 	sudo journalctl -u h2o -f
 

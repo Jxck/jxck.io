@@ -863,15 +863,32 @@ async function podcast(files: string[]): Promise<void> {
 }
 
 /**
+ * Makefile などから渡される project-root 基準のパスを
+ * .src/ 基準 (../<host>/...) に正規化する
+ */
+function normalize_path(file: string): string {
+  if (file.startsWith(`../`)) return file
+  return `../${file.replace(/^\.\//, ``)}`
+}
+
+/**
  * main
  */
-async function main(arg: string): Promise<void> {
+async function main(arg: string, rest: string[]): Promise<void> {
   if (arg === `blog_index`) {
     const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
     await blog_index(entries)
   }
 
   if (arg === `blog`) {
+    if (rest.length === 0) {
+      throw new Error(`build.ts blog requires one or more md file paths`)
+    }
+    const entries = rest.map(normalize_path)
+    await Promise.all(entries.map(blog))
+  }
+
+  if (arg === `blog_all`) {
     const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
     await Promise.all(entries.map(blog))
   }
@@ -882,5 +899,5 @@ async function main(arg: string): Promise<void> {
   }
 }
 
-await main(process.argv[2])
+await main(process.argv[2], process.argv.slice(3))
 console.log("")
