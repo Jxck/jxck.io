@@ -5,7 +5,8 @@ set -eu
 BASE=$(cd $(dirname $0) && pwd)
 
 sudo apt update
-sudo apt install -y mruby bison cmake make gcc g++
+sudo apt install -y mruby bison cmake make gcc g++ \
+  liburing-dev libuv1-dev libwslay-dev
 
 rm -rf $BASE/pkg/h2o
 rm -rf $BASE/local
@@ -18,7 +19,6 @@ git clone --depth=1 https://github.com/h2o/h2o
 cd $BASE/pkg/h2o
 cmake \
   -DCMAKE_INSTALL_PREFIX=$BASE/local \
-  -DWITH_MRUBY=on \
-  -DWITH_BUNDLED_SSL=on .
-make
+  -DWITH_MRUBY=on .
+make -j$(nproc)
 make install
