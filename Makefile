@@ -35,23 +35,23 @@ mtime-podcast:
 blog:
 	$(MAKE) fmt-blog
 	$(MAKE) mtime-blog
-	cd .src && $(NODE) build.ts blog
-	cd .src && $(NODE) build.ts blog_index
+	$(NODE) .src/build.ts blog
+	$(NODE) .src/build.ts blog_index
 
 podcast:
 	$(MAKE) fmt-podcast
 	$(MAKE) mtime-podcast
-	cd .src && $(NODE) build.ts podcast
+	$(NODE) .src/build.ts podcast
 
 compile:
 	$(NODE) -v
-	cd .src && $(NODE) build.ts build
+	$(NODE) .src/build.ts build
 
 preview:
-	cd .src && $(NODE) build.ts preview
+	$(NODE) .src/build.ts preview
 
 draft:
-	cd .src && $(NODE) build.ts draft
+	$(NODE) .src/build.ts draft
 
 install:
 	brew bundle --file=$(DOTFILES)/Brewfile

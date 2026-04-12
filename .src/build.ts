@@ -1,3 +1,6 @@
+// 以降の相対パスは .src 基準なので、どこから起動されても cwd を固定する
+process.chdir(import.meta.dirname)
+
 import { exec } from "child_process"
 import { readFileSync, statSync } from "fs"
 import { readFile as _readFile, writeFile, stat, glob } from "fs/promises"
