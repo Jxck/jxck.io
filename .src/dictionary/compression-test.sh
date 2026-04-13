@@ -1,11 +1,27 @@
 #!/usr/bin/env zsh
 
+set -euo pipefail
+setopt null_glob
+
+SCRIPT_DIR=${0:A:h}
+SRC_DIR=${SCRIPT_DIR:h}
+REPO_ROOT=${SRC_DIR:h}
+BLOG_ROOT=${REPO_ROOT}/blog.jxck.io
+SAMPLE_DIR=${SCRIPT_DIR}/sample
+
 # 定数定義
-SAMPLE_DIR=./.src/dictionary/sample
 DCZ_DICT=${SAMPLE_DIR}/entries.dcz.dict
 DCB_DICT=${SAMPLE_DIR}/entries.dcb.dict
 CAT_DICT=${SAMPLE_DIR}/entries.cat.dict
 RB_DICT=${SAMPLE_DIR}/entries.rb.dict
+TEMPLATES=(${REPO_ROOT}/.src/template/*.ejs)
+ENTRIES=(${BLOG_ROOT}/entries/**/*.html)
+SAMPLES=(${SAMPLE_DIR}/*.html)
+
+if (( ${#TEMPLATES} == 0 || ${#ENTRIES} == 0 || ${#SAMPLES} == 0 )); then
+  print -u2 -- "error: missing templates, entries, or sample html files"
+  exit 1
+fi
 
 # クリーンアップ
 \rm -f ${SAMPLE_DIR}/*.dict ${SAMPLE_DIR}/*.zstd ${SAMPLE_DIR}/*.br
@@ -13,13 +29,13 @@ RB_DICT=${SAMPLE_DIR}/entries.rb.dict
 # 辞書生成
 
 echo ">>> Template 単純結合"
-cat .src/template/*.ejs > $CAT_DICT
+cat "${TEMPLATES[@]}" > $CAT_DICT
 
 echo ">>> Zstd Train Mode"
 zstd --train \
     --maxdict=262144 \
-    .src/template/*.ejs \
-    ./blog.jxck.io/entries/**/*.html \
+    "${TEMPLATES[@]}" \
+    "${ENTRIES[@]}" \
     -o $DCZ_DICT
 
 echo ">>> Brotli Dictionary Generator"
@@ -27,23 +43,23 @@ dictionary_generator \
     --dsh \
     -t262144 \
     $DCB_DICT \
-    .src/template/*.ejs \
-    ./blog.jxck.io/entries/**/*.html
+    "${TEMPLATES[@]}" \
+    "${ENTRIES[@]}"
 
 echo ">>> Ruby Dict Generator"
-ruby ./blog.jxck.io/dictionary/dict-generator.rb \
+ruby "${SCRIPT_DIR}/dict-generator.rb" \
     -s 262144 \
     -l 12 \
     -b 4096 \
     -f 3 \
     -o $RB_DICT \
     -v \
-    .src/template/*.ejs \
-    ./blog.jxck.io/entries/**/*.html
+    "${TEMPLATES[@]}" \
+    "${ENTRIES[@]}"
 
 
 # 辞書を用いた圧縮 (raw content dictionary)
-for TARGET in ${SAMPLE_DIR}/*.html; do
+for TARGET in "${SAMPLES[@]}"; do
     zstd -f -22 --ultra --long --patch-from=$DCZ_DICT $TARGET -o ${TARGET}.zstd.zstd
     zstd -f -22 --ultra --long --patch-from=$DCB_DICT $TARGET -o ${TARGET}.br.zstd
     zstd -f -22 --ultra --long --patch-from=$CAT_DICT $TARGET -o ${TARGET}.cat.zstd

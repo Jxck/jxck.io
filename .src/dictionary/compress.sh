@@ -49,9 +49,15 @@ abspath() {
   )
 }
 
-# 出力先では、実行時の cwd から見た入力の相対構造を保つ。
+# 出力先が入力の親系ならその配下で相対化し、そうでなければ cwd 基準の相対構造を保つ。
 relative_to_cwd() {
   local path="$1"
+
+  local rel_to_out="${path#$OUT_DIR/}"
+  if [[ "$rel_to_out" != "$path" ]]; then
+    printf "%s\n" "$rel_to_out"
+    return
+  fi
 
   local rel="${path#$cwd/}"
   if [[ "$rel" == "$path" ]]; then

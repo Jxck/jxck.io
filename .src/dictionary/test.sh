@@ -1,22 +1,34 @@
 #!/usr/bin/env zsh
 
-# repo root から実行する想定。
+set -euo pipefail
+setopt null_glob
+
+SCRIPT_DIR=${0:A:h}
+SRC_DIR=${SCRIPT_DIR:h}
+REPO_ROOT=${SRC_DIR:h}
+BLOG_ROOT=${REPO_ROOT}/blog.jxck.io
 
 # # 辞書作成
-# ruby ./.src/dictionary/dict-generator.rb \
-#   -d ./blog.jxck.io/dictionary/ \  # output dir, filename is <sha256hex>.dict
+# ruby ${SCRIPT_DIR}/dict-generator.rb \
+#   -d ${BLOG_ROOT}/dictionary/ \     # output dir, filename is <sha256hex>.dict
 #   -s 262144 \                      # dictionary size: 256KB
 #   -l 12 \                          # slice length
 #   -b 4096 \                        # block length
 #   -f 3 \                           # minimum document frequency
 #   -v \                             # verbose output
-#   .src/template/*.ejs \
-#   blog.jxck.io/entries/**/*.html
+#   ${REPO_ROOT}/.src/template/*.ejs \
+#   ${BLOG_ROOT}/entries/**/*.html
 
 # 圧縮
-dict=(blog.jxck.io/dictionary/*.dict(N[1])) # 一個だけ
-./.src/dictionary/compress.sh \
+dict=(${BLOG_ROOT}/dictionary/*.dict(N[1])) # 一個だけ
+
+if (( ${#dict} == 0 )); then
+  print -u2 -- "error: no dictionary file found in ${BLOG_ROOT}/dictionary"
+  exit 1
+fi
+
+${SCRIPT_DIR}/compress.sh \
   --dict "$dict" \
-  --output-dir blog.jxck.io/entries/2016-01-27/ \
+  --output-dir ${BLOG_ROOT}/entries/2016-01-27/ \
   -dcb \
-  blog.jxck.io/entries/2016-01-27/new-blog-start.html
+  ${BLOG_ROOT}/entries/2016-01-27/new-blog-start.html
