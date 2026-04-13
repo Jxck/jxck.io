@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # 定数定義
-SAMPLE_DIR=./blog.jxck.io/dictionary/sample
+SAMPLE_DIR=./.src/dictionary/sample
 DCZ_DICT=${SAMPLE_DIR}/entries.dcz.dict
 DCB_DICT=${SAMPLE_DIR}/entries.dcb.dict
 CAT_DICT=${SAMPLE_DIR}/entries.cat.dict

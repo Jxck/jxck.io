@@ -5,8 +5,9 @@ setopt null_glob
 
 SCRIPT_DIR=${0:A:h}
 ROOT=${SCRIPT_DIR:h}
-BLOG_ROOT=${ROOT:h}
-REPO_ROOT=${BLOG_ROOT:h}
+SRC_DIR=${ROOT:h}
+REPO_ROOT=${SRC_DIR:h}
+BLOG_ROOT=${REPO_ROOT}/blog.jxck.io
 WORK_DIR=${SCRIPT_DIR}
 TMP_DIR=${WORK_DIR}/tmp
 TRAIN_LIST=${WORK_DIR}/train.list

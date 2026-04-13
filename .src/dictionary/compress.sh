@@ -3,7 +3,7 @@
 set -euo pipefail
 
 DICT=""
-OUT_DIR="./blog.jxck.io/dictionary/work/compressed"
+OUT_DIR="./.src/dictionary/work/compressed"
 VERBOSE=0
 WANT_RAW_BR=0
 WANT_RAW_ZSTD=0
@@ -12,13 +12,13 @@ WANT_DCZ=0
 
 usage() {
   cat <<'EOF'
-Usage: ./blog.jxck.io/dictionary/compress.sh [options] files...
+Usage: ./.src/dictionary/compress.sh [options] files...
 
 Compress files with a generated raw dictionary.
 
 Options:
   -d, --dict FILE        Raw dictionary file to use
-  -o, --output-dir DIR   Output directory (default: ./blog.jxck.io/dictionary/work/compressed)
+  -o, --output-dir DIR   Output directory (default: ./.src/dictionary/work/compressed)
   -br, --raw-brotli      Emit raw Brotli stream (.br)
   -zstd, --raw-zstd      Emit raw Zstd stream (.zstd)
   -dcb, --delta-compression-brotli
