@@ -1,4 +1,5 @@
 .PHONY: build
+.PHONY: dict
 .PHONY: blog blog-all
 .PHONY: podcast
 .PHONY: fmt fmt-blog fmt-podcast
@@ -30,6 +31,7 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 build:
 	$(MAKE) blog
 	$(MAKE) podcast
+	$(MAKE) dict
 	$(MAKE) comp
 
 # blog/podcast の md を formatter にかけて整形
@@ -181,9 +183,19 @@ avif: $(AVIF_FILES)
 ##########################
 # Compression
 ##########################
+# blog.jxck.io/dictionary/ に <sha256hex>.dict を生成する。
+# 256KB / slice=12 / block=4096 / min_frequency=3 は tuning 済みの採用値。
+DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
+	-d ./blog.jxck.io/dictionary \
+	-s 262144 \
+	-l 12 \
+	-b 4096 \
+	-f 3 \
+	-v
+
 # 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
 COMP_EXCLUDE := \
-  %.gz %.br %.sb \
+  %.gz %.br %.sb %.dcb %.dict \
   %.png %.jpeg %.gif %.webp %.avif \
   %.mp4 %.webm \
   %.woff2 \
@@ -201,12 +213,24 @@ COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 %.br: %
 	brotli -v -q 11 -f $<
 
+EJS := $(shell find ./.src/template -name '*.ejs')
+
+# entries html と template から配信用辞書を再生成し、生成された hash 名へ entries.dict を張る
+./blog.jxck.io/dictionary/entries.dict: $(EJS) $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
+	@rm -f ./blog.jxck.io/dictionary/*.dict
+	@dict=`$(DICT_GENERATOR) $(EJS) $(BLOG_HTML)`; \
+		test -n "$$dict"; \
+		ln -sfn "$${dict##*/}" ./blog.jxck.io/dictionary/entries.dict
+
+dict: ./blog.jxck.io/dictionary/entries.dict
+
 # brotli 差分圧縮
 comp: $(COMP_BR)
 
-# .br 削除
+# .br と辞書を削除
 clean:
 	@rm -fv $(COMP_BR)
+	@rm -fv ./blog.jxck.io/dictionary/*.dict
 
 # ビルド結果と .br を削除
 remove: clean
