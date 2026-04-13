@@ -225,7 +225,7 @@ OptionParser.new do |o|
   o.on("-l", "--slice-length N", Integer, "Slice length in bytes (default: #{opts[:slice_length]})") { |v| opts[:slice_length] = v }
   o.on("-b", "--block-length N", Integer, "Block length in bytes (default: #{opts[:block_length]})") { |v| opts[:block_length] = v }
   o.on("-f", "--min-frequency N", Integer, "Minimum file count for a slice (default: #{opts[:min_frequency]})") { |v| opts[:min_frequency] = v }
-  o.on("-v", "--verbose", "Print progress information") { opts[:verbose] = true }
+  o.on("-v", "--verbose", "Print progress information to stderr") { opts[:verbose] = true }
   o.on("-h", "--help", "Show help") { puts o; exit }
 end.parse!
 
@@ -413,3 +413,6 @@ if opts[:verbose]
   $stderr.puts "wrote #{output_path} (#{dictionary.bytesize} bytes)"
   $stderr.puts "sha256: :#{sha256_base64}:"
 end
+
+# 他の CLI に連携しやすくするため、生成したファイルのパスを出す。
+puts output_path
