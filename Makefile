@@ -56,7 +56,7 @@ mtime-blog:
 	git restore-mtime $(BLOG_MD)
 
 # blog の差分ビルド (1 つの md から .html と .json を同時に生成)
-./blog.jxck.io/entries/%.html ./blog.jxck.io/entries/%.json &: ./blog.jxck.io/entries/%.md
+./blog.jxck.io/entries/%.html ./blog.jxck.io/entries/%.json: ./blog.jxck.io/entries/%.md
 	./.src/markdown/formatter.js $<
 	$(NODE) .src/build.ts blog $<
 
@@ -73,7 +73,7 @@ blog-all:
 	$(MAKE) fmt-blog
 	$(MAKE) mtime-blog
 	$(NODE) .src/build.ts blog_all
-	$(NODE) .src/build.ts blog_index
+	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
 
 
 ##########################
@@ -84,7 +84,7 @@ PODCAST_HTML := $(PODCAST_MD:.md=.html)
 
 # podcast の fmt
 fmt-podcast:
-	printf '%s\n' $(PODCAST_MD) | sort -r | parallel -X -j $(CORES) $(PRETTIER) -w --log-level error
+	printf '%s\n' $(PODCAST_MD) | parallel -X -j $(CORES) $(PRETTIER) -w --log-level error
 
 # podcast の mtime を戻す
 mtime-podcast:

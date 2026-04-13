@@ -361,7 +361,7 @@ function customize(ast: Node, { host, base }: Param): CustomizeResult {
         node.children = []
         node.appendChild(a)
       }
-      if (node.name === `figure` && state.style.table === false) {
+      if (node.name === `figure`) {
         if (state.style.table === false) {
           // 一度だけ table css を差し込む
           state.style.table = true
