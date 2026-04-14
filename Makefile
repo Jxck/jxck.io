@@ -186,7 +186,6 @@ avif: $(AVIF_FILES)
 # blog.jxck.io/dictionary/ に <sha256hex>.dict を生成する。
 # 256KB / slice=12 / block=4096 / min_frequency=3 は tuning 済みの採用値。
 DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
-	-d ./blog.jxck.io/dictionary \
 	-s 262144 \
 	-l 12 \
 	-b 4096 \

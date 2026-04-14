@@ -10,7 +10,7 @@ BLOG_ROOT=${REPO_ROOT}/blog.jxck.io
 
 # # 辞書作成
 # ruby ${SCRIPT_DIR}/dict-generator.rb \
-#   -d ${BLOG_ROOT}/dictionary/ \     # output dir, filename is <sha256hex>.dict
+#   -o ${BLOG_ROOT}/dictionary/entries.dict \
 #   -s 262144 \                      # dictionary size: 256KB
 #   -l 12 \                          # slice length
 #   -b 4096 \                        # block length

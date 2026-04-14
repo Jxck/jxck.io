@@ -15,12 +15,13 @@ Proc.new do |env|
 
   # dcb を受け取るなら、想定した dictionary かを判定
   available_dictionary = env["HTTP_AVAILABLE_DICTIONARY"]
+  # Dictionary-ID は Structured Fields String なので quotes を含んだ値で比較する
   dictionary_id = env["HTTP_DICTIONARY_ID"]
   unless available_dictionary == expected_dictionary && dictionary_id == '"entries"'
     next [399, {}, []]
   end
 
-  # h2o が PATH_INFO を正規化済みの前提でプレフィクスと拡張子のみ確認
+  # h2o が PATH_INFO を正規化済みの前提で、/entries/*.html だけを dcb 配信対象にする
   path_info = (env["SCRIPT_NAME"] || "") + (env["PATH_INFO"] || "")
   unless path_info.start_with?("/entries/") && File.extname(path_info) == ".html"
     next [399, {}, []]
