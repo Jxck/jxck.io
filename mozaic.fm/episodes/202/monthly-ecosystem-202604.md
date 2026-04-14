@@ -18,7 +18,6 @@ guests:
 
 第 202 回のテーマは 2026 年 4 月の Monthly Ecosystem です。
 
-
 ## Show Note
 
 - Supply-Chain Compromise of axios npm Package
@@ -136,7 +135,6 @@ guests:
   - AI Agent が Supabase のドキュメントに直接アクセスできる SSH サーバー
   - Supabase の MCP は search_docs があるが、先に目的が必要。
   - Bash なら雑に探したり、偶然何かを見つけたりできる。
-
 
 ## Events
 

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/202/monthly-ecosystem-202604.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065654></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 202 回のテーマは 2026 年 4 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/202/monthly-ecosystem-202604.html>
+  <meta property=og:title        content="ep202 Monthly Ecosystem 202604 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 202 回のテーマは 2026 年 4 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep202 Monthly Ecosystem 202604 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/201/monthly-platform-202603.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?260310_182656>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_013824>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022018>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?250125_014517>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?250125_012543>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?260217_213617>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154206         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_012959 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200413_030043 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/201/monthly-platform-202603.html>ep201 Monthly Platform 202603</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep202 Monthly Ecosystem 202604</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2026-04-14
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__sakito__" target=_blank>@sakito</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/yukukotani" target=_blank>@yukukotani</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__sosukesuzuki" target=_blank>@sosuke</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 202 回のテーマは 2026 年 4 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Supply-Chain Compromise of axios npm Package
+          <ul>
+            <li><a href="https://gist.github.com/joe-desimone/36061dabd2bc2513705e0d083a9673e7" target=_blank>https://gist.github.com/joe-desimone/36061dabd2bc2513705e0d083a9673e7</a>
+            <li><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering" target=_blank>https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering</a>
+            <li>axios のメンテナがマルウェア感染を受け axios が汚染スクリプトを配布した
+            <li>攻撃は北朝鮮系で金銭目的とされている
+            <li>メンテナに面接をよそおって近づき、Zoom の調子が悪いと、修正スクリプトを渡す方式
+            <li>インストールすると infostealer が動き、トークンを抜かれる。
+            <li>ちょうど Faltt が Takumi Guard を始めたばかりなので、移行する流れができた
+            <li>
+              Our response to the Axios developer tool compromise
+              <ul>
+                <li><a href="https://openai.com/index/axios-developer-tool-compromise/" target=_blank>https://openai.com/index/axios-developer-tool-compromise/</a>
+                <li>OpenAI も被害
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          要(かなめ)はサイバーセキュリティ～守らなければ奪われる～第１話「なりすまし」(一般社員向け) - YouTube
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=oLW7YG85c-8" target=_blank>https://www.youtube.com/watch?v=oLW7YG85c-8</a>
+            <li>警視庁公式 YouTube の 3 話ドラマ
+            <li>サプライチェーン被害に合う流れがリアル
+          </ul>
+        </li>
+        <li>
+          Introducing 1Password® Unified Access: Identity Security for Humans and Their AI Agents | 1Password
+          <ul>
+            <li><a href="https://1password.com/blog/introducing-1password-unified-access" target=_blank>https://1password.com/blog/introducing-1password-unified-access</a>
+          </ul>
+        </li>
+        <li>
+          Release pnpm 11 RC 0 · pnpm/pnpm
+          <ul>
+            <li><a href="https://github.com/pnpm/pnpm/releases/tag/v11.0.0-rc.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v11.0.0-rc.0</a>
+            <li><code translate=no>minimumReleaseAge</code> defaults to 1 day
+          </ul>
+        </li>
+        <li>
+          Release pnpm 11 Beta 0 · pnpm/pnpm
+          <ul>
+            <li><a href="https://github.com/pnpm/pnpm/releases/tag/v11.0.0-beta.0" target=_blank>https://github.com/pnpm/pnpm/releases/tag/v11.0.0-beta.0</a>
+          </ul>
+        </li>
+        <li>
+          [RFC] JSIR: A High-Level IR for JavaScript - MLIR - LLVM Discussion Forums
+          <ul>
+            <li><a href="https://discourse.llvm.org/t/rfc-jsir-a-high-level-ir-for-javascript/90456" target=_blank>https://discourse.llvm.org/t/rfc-jsir-a-high-level-ir-for-javascript/90456</a>
+            <li><a href="https://github.com/google/jsir" target=_blank>https://github.com/google/jsir</a>
+            <li>Google が JS の中間表現の標準化を提案
+            <li>実装として、Google がデコンパイルや難読化に使ってる JSIR を公開
+            <li>ツールを AST ベースから、IR ベースへの移行を提案
+          </ul>
+        </li>
+        <li>
+          Announcing TypeScript 6.0 - TypeScript
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/</a>
+            <li><a href="https://github.com/andrewbranch/ts5to6" target=_blank>https://github.com/andrewbranch/ts5to6</a>
+          </ul>
+        </li>
+        <li>
+          Node.js - Node.js 25.9.0 (Current)
+          <ul>
+            <li><a href="https://nodejs.org/en/blog/release/v25.9.0" target=_blank>https://nodejs.org/en/blog/release/v25.9.0</a>
+            <li><code translate=no>--experimental-stream-iter</code> (stream/iter)
+            <li>
+              jasnell/new-streams: A proposal for a new streams API
+              <ul>
+                <li><a href="https://github.com/jasnell/new-streams" target=_blank>https://github.com/jasnell/new-streams</a>
+                <li>WHATWG Stream の実装上の問題を批判した
+                <li>その POC 実装
+              </ul>
+            </li>
+            <li>
+              We deserve a better streams API for JavaScript | The Cloudflare Blog
+              <ul>
+                <li><a href="https://blog.cloudflare.com/a-better-web-streams-api/" target=_blank>https://blog.cloudflare.com/a-better-web-streams-api/</a>
+                <li>Node.js コアコントリビューター、Cloudflare Workers メンバーの James Snell による Streams Standards に対する批判記事。
+                <li>現状の仕様は必要以上に複雑で実装が遅くなりがち。
+                <li>パフォーマンスが出ないため、新しいストリーム API を提案している。
+              </ul>
+            </li>
+            <li>
+              On the Streams Standard | Domenic Denicola
+              <ul>
+                <li><a href="https://domenic.me/streams-standard/" target=_blank>https://domenic.me/streams-standard/</a>
+                <li>Streams Standards の仕様策定を進めていた Domenic Denicola による反論記事。
+                <li>
+                  最適化されたファストパスを実装できるように、内部動作を可能な限り外部から観測できないよう細心の注意を払って設計されているため、パフォーマンスに対する批判は見当違いである。
+                  <ul>
+                    <li>ただし仕様策定から 10 年たって振り返ると BYOB やバックプレッシャーなどの仕様が複雑になってしまったのは反省点だと認める。
+                  </ul>
+                </li>
+                <li>現代の Web 標準環境において、基礎的なプリミティブを改善するために予算やリソースを割いてもらうのは、2010 年代よりも遥かに難しい。
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Tales from the Void: March 2026 Recap | VoidZero
+          <ul>
+            <li><a href="https://voidzero.dev/posts/whats-new-mar-2026" target=_blank>https://voidzero.dev/posts/whats-new-mar-2026</a>
+          </ul>
+        </li>
+        <li>
+          Introducing EmDash - the spiritual successor to WordPress that solves plugin security
+          <ul>
+            <li><a href="https://blog.cloudflare.com/emdash-wordpress/" target=_blank>https://blog.cloudflare.com/emdash-wordpress/</a>
+          </ul>
+        </li>
+        <li>
+          Next.js 16.2 | Next.js
+          <ul>
+            <li><a href="https://nextjs.org/blog/next-16-2" target=_blank>https://nextjs.org/blog/next-16-2</a>
+          </ul>
+        </li>
+        <li>
+          Next.js 16.2: AI Improvements | Next.js
+          <ul>
+            <li><a href="https://nextjs.org/blog/next-16-2-ai" target=_blank>https://nextjs.org/blog/next-16-2-ai</a>
+          </ul>
+        </li>
+        <li>
+          Next.js Across Platforms: Adapters, OpenNext, and Our Commitments
+          <ul>
+            <li><a href="https://nextjs.org/blog/nextjs-across-platforms" target=_blank>https://nextjs.org/blog/nextjs-across-platforms</a>
+            <li>OpenNext と共同開発された AdapterAPI
+          </ul>
+        </li>
+        <li>
+          Release v10.3.0 · storybookjs/storybook
+          <ul>
+            <li><a href="https://github.com/storybookjs/storybook/releases/tag/v10.3.0" target=_blank>https://github.com/storybookjs/storybook/releases/tag/v10.3.0</a>
+          </ul>
+        </li>
+        <li>
+          Storybook 10.3
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-10-3/" target=_blank>https://storybook.js.org/blog/storybook-10-3/</a>
+          </ul>
+        </li>
+        <li>
+          Best practices for using Storybook with AI
+          <ul>
+            <li><a href="https://storybook.js.org/docs/ai/best-practices" target=_blank>https://storybook.js.org/docs/ai/best-practices</a>
+            <li>Storybook MCP と AI 活用のために Story ファイルを書くベストプラクティス
+          </ul>
+        </li>
+        <li>
+          Storybook MCP for React
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-mcp-for-react/" target=_blank>https://storybook.js.org/blog/storybook-mcp-for-react/</a>
+          </ul>
+        </li>
+        <li>
+          Release v2.7.6 · denoland/deno
+          <ul>
+            <li><a href="https://github.com/denoland/deno/releases/tag/v2.7.6" target=_blank>https://github.com/denoland/deno/releases/tag/v2.7.6</a>
+          </ul>
+        </li>
+        <li>
+          Bun v1.3.11 | Bun Blog
+          <ul>
+            <li><a href="https://bun.com/blog/bun-v1.3.11" target=_blank>https://bun.com/blog/bun-v1.3.11</a>
+          </ul>
+        </li>
+        <li>
+          Bun v.1.3.12 | Bun Blog
+          <ul>
+            <li><a href="https://bun.com/blog/bun-v1.3.12" target=_blank>https://bun.com/blog/bun-v1.3.12</a>
+          </ul>
+        </li>
+        <li>
+          Valibot v1.3: Smarter pipelines, result caching, and new validators | Valibot
+          <ul>
+            <li><a href="https://valibot.dev/blog/valibot-v1.3-release-notes/" target=_blank>https://valibot.dev/blog/valibot-v1.3-release-notes/</a>
+          </ul>
+        </li>
+        <li>
+          ESLint v10.1.0 released - ESLint - Pluggable JavaScript Linter
+          <ul>
+            <li><a href="https://eslint.org/blog/2026/03/eslint-v10.1.0-released/" target=_blank>https://eslint.org/blog/2026/03/eslint-v10.1.0-released/</a>
+          </ul>
+        </li>
+        <li>
+          RedwoodSDK 1.0: Getting Out of the Weeds
+          <ul>
+            <li><a href="https://rwsdk.com/blog/redwood-v1-getting-out-of-the-weeds" target=_blank>https://rwsdk.com/blog/redwood-v1-getting-out-of-the-weeds</a>
+          </ul>
+        </li>
+        <li>
+          Vitest 4.1 is out! | Vitest
+          <ul>
+            <li><a href="https://vitest.dev/blog/vitest-4-1.html" target=_blank>https://vitest.dev/blog/vitest-4-1.html</a>
+          </ul>
+        </li>
+        <li>
+          [flags] land enableTrustedTypesIntegration
+          <ul>
+            <li><a href="https://github.com/facebook/react/pull/35816" target=_blank>https://github.com/facebook/react/pull/35816</a>
+            <li>Trusted Types API を React に入れる話し
+          </ul>
+        </li>
+        <li>
+          Announcing Knip v6 | Knip
+          <ul>
+            <li><a href="https://knip.dev/blog/knip-v6" target=_blank>https://knip.dev/blog/knip-v6</a>
+            <li>oxc 移行した 2~4x 高速化
+            <li>「oxc が全部やってくれた、めちゃくちゃ感謝」
+          </ul>
+        </li>
+        <li>
+          Writing Tests | Guide | Vitest
+          <ul>
+            <li><a href="https://vitest.dev/guide/learn/writing-tests.html" target=_blank>https://vitest.dev/guide/learn/writing-tests.html</a>
+            <li>Vitest のベストプラクティスまとめ
+          </ul>
+        </li>
+        <li>
+          Introducing Material UI and MUI X v9
+          <ul>
+            <li><a href="https://mui.com/blog/introducing-mui-v9/" target=_blank>https://mui.com/blog/introducing-mui-v9/</a>
+            <li>コンポーネント追加、カレンダーやチャット専用、AI のためのドキュメント構造化などもしていくらしい
+          </ul>
+        </li>
+        <li>
+          Project Glasswing: Securing critical software for the AI era Anthropic
+          <ul>
+            <li><a href="https://www.anthropic.com/glasswing" target=_blank>https://www.anthropic.com/glasswing</a>
+            <li>AWS, Apple, Google, MS などが共同で防御強化のため作ったプロジェクト
+            <li>Mythos(ミュトス) が OS/browser で大量の脆弱性を自律発見したことが発端
+            <li>AI の攻撃能力の急上昇に対抗するため、防御側に先に渡し、重要インフラを守る必要がある
+            <li>90 日以内に成果と修正済み脆弱性を公開し、新しいセキュリティ標準の策定も進行。
+            <li>Anthropic は 1 億ドルのクレジット提供などで支援し、40 以上の組織が参加。
+          </ul>
+        </li>
+        <li>
+          0din-ai/ai-scanner: AI model safety scanner built on NVIDIA garak
+          <ul>
+            <li><a href="https://github.com/0din-ai/ai-scanner" target=_blank>https://github.com/0din-ai/ai-scanner</a>
+            <li>TODO
+          </ul>
+        </li>
+        <li>
+          Claude Managed Agents
+          <ul>
+            <li><a href="https://platform.claude.com/docs/en/managed-agents/overview" target=_blank>https://platform.claude.com/docs/en/managed-agents/overview</a>
+            <li>Anthropic 公式のマネージドなエージェントハーネス
+            <li>Tool や FS をサンドボックスで動かせる
+          </ul>
+        </li>
+        <li>
+          Supabase docs over SSH
+          <ul>
+            <li><a href="https://supabase.com/blog/supabase-docs-over-ssh" target=_blank>https://supabase.com/blog/supabase-docs-over-ssh</a>
+            <li>AI Agent が Supabase のドキュメントに直接アクセスできる SSH サーバー
+            <li>Supabase の MCP は search_docs があるが、先に目的が必要。
+            <li>Bash なら雑に探したり、偶然何かを見つけたりできる。
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          4 月
+          <ul>
+            <li>
+              22-24: Google Cloud Next 2026
+              <ul>
+                <li><a href="https://www.googlecloudevents.com/next-vegas" target=_blank>https://www.googlecloudevents.com/next-vegas</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          5 月
+          <ul>
+            <li>
+              9: フロントエンドカンファレンス名古屋
+              <ul>
+                <li><a href="https://fec-nagoya-org.github.io/2026/" target=_blank>https://fec-nagoya-org.github.io/2026/</a>
+              </ul>
+            </li>
+            <li>
+              19-20: Google I/O 2026
+              <ul>
+                <li><a href="https://io.google/2026/" target=_blank>https://io.google/2026/</a>
+              </ul>
+            </li>
+            <li>
+              22-23: TS Kaigi 2026
+              <ul>
+                <li><a href="https://2026.tskaigi.org/" target=_blank>https://2026.tskaigi.org/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          6 月
+          <ul>
+            <li>
+              2-3: Microsoft Build
+              <ul>
+                <li><a href="https://build.microsoft.com/en-US/home" target=_blank>https://build.microsoft.com/en-US/home</a>
+              </ul>
+            </li>
+            <li>
+              10: Code with Claude
+              <ul>
+                <li><a href="https://claude.com/code-with-claude" target=_blank>https://claude.com/code-with-claude</a>
+              </ul>
+            </li>
+            <li>
+              23-25: Figma Config 2026
+              <ul>
+                <li><a href="https://config.figma.com/" target=_blank>https://config.figma.com/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/201/monthly-platform-202603.html>ep201 Monthly Platform 202603</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright>
+    <small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small>
+    <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+  </p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep202.mp3
+    data-title="ep202 Monthly Ecosystem 202604"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
