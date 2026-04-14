@@ -195,7 +195,7 @@ DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
 
 # 対象外ファイルを除き brotli で圧縮する (zopfli/gz は h2o 側でやることにした)
 COMP_EXCLUDE := \
-  %.gz %.br %.sb %.dcb %.dict \
+  %.gz %.br %.sb %.dcb \
   %.png %.jpeg %.gif %.webp %.avif \
   %.mp4 %.webm \
   %.woff2 \
