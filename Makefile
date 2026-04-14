@@ -215,12 +215,9 @@ COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
 EJS := $(shell find ./.src/template -name '*.ejs')
 
-# entries html と template から配信用辞書を再生成し、生成された hash 名へ entries.dict を張る
+# entries html と template から配信用辞書を再生成
 ./blog.jxck.io/dictionary/entries.dict: $(EJS) $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
-	@rm -f ./blog.jxck.io/dictionary/*.dict
-	@dict=`$(DICT_GENERATOR) $(EJS) $(BLOG_HTML)`; \
-		test -n "$$dict"; \
-		ln -sfn "$${dict##*/}" ./blog.jxck.io/dictionary/entries.dict
+	$(DICT_GENERATOR) -o $@ $(EJS) $(BLOG_HTML)
 
 dict: ./blog.jxck.io/dictionary/entries.dict
 
