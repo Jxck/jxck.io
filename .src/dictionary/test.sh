@@ -20,10 +20,10 @@ BLOG_ROOT=${REPO_ROOT}/blog.jxck.io
 #   ${BLOG_ROOT}/entries/**/*.html
 
 # 圧縮
-dict=(${BLOG_ROOT}/dictionary/*.dict(N[1])) # 一個だけ
+dict=${BLOG_ROOT}/dictionary/entries.dict
 
-if (( ${#dict} == 0 )); then
-  print -u2 -- "error: no dictionary file found in ${BLOG_ROOT}/dictionary"
+if [[ ! -f "$dict" ]]; then
+  print -u2 -- "error: dictionary file not found: $dict"
   exit 1
 fi
 
