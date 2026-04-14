@@ -1,5 +1,5 @@
 .PHONY: build
-.PHONY: dict
+.PHONY: dict dcb
 .PHONY: blog blog-all
 .PHONY: podcast
 .PHONY: fmt fmt-blog fmt-podcast
@@ -209,9 +209,20 @@ COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
 
 COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
+# 全 entry HTML に対応する .dcb
+BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
+
 # brotli 圧縮コマンド
 %.br: %
 	brotli -v -q 11 -f $<
+
+# .dcb 生成コマンド (entries.dict を使った brotli 差分圧縮)
+%.html.dcb: %.html ./blog.jxck.io/dictionary/entries.dict
+	./.src/dictionary/compress.sh \
+	  --dict ./blog.jxck.io/dictionary/entries.dict \
+	  --output-dir $(dir $<) \
+	  -dcb \
+	  $<
 
 EJS := $(shell find ./.src/template -name '*.ejs')
 
@@ -221,12 +232,16 @@ EJS := $(shell find ./.src/template -name '*.ejs')
 
 dict: ./blog.jxck.io/dictionary/entries.dict
 
-# brotli 差分圧縮
-comp: $(COMP_BR)
+# dcb 差分生成 (単独実行可)
+dcb: $(BLOG_DCB)
 
-# .br と辞書を削除
+# brotli .br と dcb をまとめて生成
+comp: $(COMP_BR) $(BLOG_DCB)
+
+# .br と .dcb と辞書を削除
 clean:
 	@rm -fv $(COMP_BR)
+	@rm -fv $(BLOG_DCB)
 	@rm -fv ./blog.jxck.io/dictionary/*.dict
 
 # ビルド結果と .br を削除
