@@ -16,6 +16,15 @@
 - CDT 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、mruby では `"entries"` のように quotes を含んだ値で比較する
 
+## Plan File Workflow
+
+- プランは `.claude/plan/` 配下に `YYYYMMDD-HHMM-概要.md` で作る
+- 初稿は `# WIP Plan: プラン名` で始める
+- 初稿本文は `## Plan by (Agent 名)` に書く
+- レビューは `## Review by (Agent 名)` を末尾に追記していく
+- レビューへの返答は `## Answer by (Agent 名)` を末尾に追記してよい
+- 方針が固まったら全体を清書し、同じファイルを `# Fixed Plan: プラン名` で上書きする
+
 
 ## Scope
 
