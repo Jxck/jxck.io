@@ -188,3 +188,101 @@ $ brotli -q 11 \
 ```
 
 
+
+
+
+
+
+---
+
+
+
+
+## zstd dictionary
+
+辞書を用いた圧縮は brotli, zstd どちらでも可能だが、今回は zstd の方を用いることにする。
+
+- facebook/zstd: Zstandard - Fast real-time compression algorithm
+  - https://github.com/facebook/zstd
+
+Homebrew で入れることができる。
+
+```console
+$ brew install zstd
+```
+
+これを用いてソースとなるファイルから辞書を生成する。
+
+```console
+$ zstd --train ./template/*.ejs -o entries.dict
+```
+
+基本的に静的ファイルは Cache Busting しておきたいので、`Available-Dictionary` に利用される SHA256 の値でファイルをリネームしておく。
+
+```sh
+$ sha256sum ./entries.dict
+91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2
+$ mv entries.dict 91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict
+```
+
+この辞書をデプロイする。なお、この辞書のための MIME は定義されておらず、辞書に用いたコンテンツに応じて任意のものを使ってよいとされている。
+
+つまり、HTML をソースにしたら辞書も `text/html` となるということだが、今回は EJS をソースにしており HTML そのものではないので、一応 `text/plain` としておく。(HTML, JS, CSS などを混ぜて辞書を作ったら、どういう値にするのがよいのだろうか?)
+
+この辞書を index.html の HTML でアドバタイズする。
+
+```html
+<link rel="compression-dictionary" href="/91ed3fa57e7127555ce76142c9e0a7e6e194aa4b2f139ab3954f2d54068c84f2.dict">
+```
+
+次に、先程ビルドした brotli リポジトリのバイナリを使って、テンプレートを使って生成した各 HTML を、辞書を使って圧縮する。
+
+```console
+$ zstd -D entries.dict /path/to/entry.html
+```
+
+最後に、サーバが `Accept-Encoding: dcz` に対して、指定されたハッシュと同じ辞書で圧縮した `.dcz` ファイルを返すようにデプロイすれば完了だ。
+
+## H2O のパッチ
+
+本サイトは h2o でサーブしているが、h2o はまだ `.dcb` に対応していないのでパッチを当ててビルドした。
+
+`send-compression` を有効にしたときに、拡張子付きのファイルを探してくれる部分をいじり、`.dcb` を返すようにしている。
+
+また、`.dcb` を返す際に `Available-Dictionary` のハッシュを検証したり、`Vary` を付与するためには、conf で mruby を呼ぶか、同じくパッチを当てるしか無い。そのオーバーヘッドは検証に影響するため、ここも省略して辞書の `expires` を短くしておくにとどめた。
+
+## 検証
+
+Chrome Canary 117.0.5912.0 で以下のフラグを有効にし、挙動を検証した。
+
+- #enable-compression-dictionary-transport
+- #enable-compression-dictionary-transport-backend
+
+この状態で本ブログのインデックスページにアクセスすると、以下のようにメインコンテンツの後に辞書が取得されていることがわかる。
+
+![dictionary が取得されている devtools timeline のスクショ](./dictionary.png#3584x2108)
+
+次に、記事に遷移すると、コンテントネゴシエーションの結果 dcb が返されていることがわかる。
+
+![Content-Encoding dcb が取得されている devtools timeline のスクショ](./compression.png#3584x2106)
+
+[前回の記事](/entries/2023-06-18/cookie-store-api.html) の圧縮結果を比較すると、以下のようになっている。
+
+Caption: 圧縮率の比較
+| format | byte | ratio |
+|-------:|------:|------:|
+| html | 27278 | 100% |
+| br | 5453 | 20% |
+| dcb | 4559 | 17% |
+
+この結果では 3 point 圧縮率が向上している。全ファイルを同様に計算したが、平均で 4 point の向上だった。また、1 つだけ、結果が -1 point (br の方が dcb より 1byte 少ない)という結果もあった。
+
+今回使った辞書のサイズは 7245 byte で、これを通常の br 圧縮して 1557 byte だったが、事前にバックグラウンドで取得することを考えると、辞書はもう少し大きくても問題はないだろう。
+
+今回はテンプレートをただくっつけただけの辞書だったため、本文の内容の圧縮には寄与してない。brotli のデフォルト辞書がそもそも HTML を考慮していることを考えると、むしろそこに出てこない日本語部分で、頻出単語を並べるといった方法で辞書を作った方が、圧縮率は向上したかもしれない。
+
+いずれにせよ、辞書の作り方が非常に重要になることがよくわかる。
+
+そして、このサイトではほとんど使ってない JS/CSS の圧縮は今回対象外だったが、SPA ではそうしたアセットの圧縮こそ本仕様の本領が発揮される部分だと思われる。
+
+そのあたりは今後の課題としたい。
