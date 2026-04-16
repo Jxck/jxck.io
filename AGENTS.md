@@ -3,6 +3,18 @@
 このリポジトリで記事原稿をレビューまたは校正する際は、以下の方針に従う。
 
 
+## Project Notes
+
+- ビルドの中心は `Makefile` と `.src/build.ts`
+- `.src/build.ts` は起動時に `process.chdir(import.meta.dirname)` するため、相対パスは `.src/` 基準で考える
+- `make blog` は記事の差分ビルドと `index.html` 更新のみを行い、`.dcb` は作らない
+- `make dict` は `blog.jxck.io/dictionary/entries.dict` を直接更新する
+- `make comp` は通常の `.br` と `blog.jxck.io/entries/**/*.html.dcb` を生成する
+- 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/` に置く
+- CDT 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
+- `Dictionary-ID` は Structured Fields String なので、mruby では `"entries"` のように quotes を含んだ値で比較する
+
+
 ## Scope
 
 - 対象は主に `blog.jxck.io/entries/**/*.md`
@@ -42,7 +54,6 @@
 - 漢字の開き閉じ
 - 業界慣用表現
 - ファイル末尾に改行を足さない
-- 編集後は、ファイル末尾が改行で終わっていないことを確認する
 
 
 ## Sentence Splitting
