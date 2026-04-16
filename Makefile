@@ -128,8 +128,8 @@ gif:
 
 
 ## webp
-CWEBP = cwebp -q 40 -quiet -m 6
-GWEBP = gif2webp -q 40 -quiet -m 6
+CWEBP := cwebp -q 40 -quiet -m 6
+GWEBP := gif2webp -q 40 -quiet -m 6
 
 WEBP_FILES := $(BLOG_PNG:.png=.webp)
 WEBP_FILES += $(BLOG_JPEG:.jpeg=.webp)
@@ -202,7 +202,7 @@ COMP_EXCLUDE := \
   %.md %.txt
 
 COMP_WWW     := $(filter-out $(COMP_EXCLUDE), $(shell find ./www.jxck.io  -xtype f ! -path '*/.*'))
-COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*' ! -path '*/tags/*'))
+COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*'))
 COMP_MOZAIC  := $(filter-out $(COMP_EXCLUDE), $(shell find ./mozaic.fm    -xtype f ! -path '*/.*'))
 COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
 
@@ -219,7 +219,7 @@ BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
 %.html.dcb: %.html ./blog.jxck.io/dictionary/entries.dict
 	./.src/dictionary/compress.sh \
 	  --dict ./blog.jxck.io/dictionary/entries.dict \
-	  --output-dir $(dir $<) \
+	  --output-dir . \
 	  -dcb \
 	  $<
 
