@@ -74,7 +74,7 @@ blog: ./blog.jxck.io/index.html
 blog-all:
 	$(MAKE) fmt-blog
 	$(MAKE) mtime-blog
-	$(NODE) .src/build.ts blog_all
+	$(NODE) .src/build.ts blog $(BLOG_MD)
 	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
 
 

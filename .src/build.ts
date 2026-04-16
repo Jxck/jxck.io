@@ -909,11 +909,6 @@ async function main(arg: string, rest: string[]): Promise<void> {
     await Promise.all(entries.map(blog))
   }
 
-  if (arg === `blog_all`) {
-    const entries = await Array.fromAsync(glob(`../blog.jxck.io/entries/**/*.md`))
-    await Promise.all(entries.map(blog))
-  }
-
   if (arg === `podcast`) {
     const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
     return await podcast(episodes)
