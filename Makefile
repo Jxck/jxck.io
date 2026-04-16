@@ -183,7 +183,7 @@ avif: $(AVIF_FILES)
 ##########################
 # Compression
 ##########################
-# blog.jxck.io/dictionary/ に <sha256hex>.dict を生成する。
+# blog.jxck.io/dictionary/entries.dict を生成する。
 # 256KB / slice=12 / block=4096 / min_frequency=3 は tuning 済みの採用値。
 DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
 	-s 262144 \
@@ -286,6 +286,8 @@ systemd-list:
 systemd-status:
 	$(foreach service, $(notdir $(wildcard ./.systemd/*)), systemctl status $(service))
 
+fmt:
+	npm run fmt
 
 ##########################
 # h2o

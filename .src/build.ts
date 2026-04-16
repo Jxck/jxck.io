@@ -683,12 +683,12 @@ async function blog(file: string): Promise<void> {
   await overWriteFile(context.entry.target, result)
 
   const meta: BlogMeta = {
-    canonical:   entry.canonical,
-    title:       entry.title,
-    tags:        entry.tags,
+    canonical: entry.canonical,
+    title: entry.title,
+    tags: entry.tags,
     description: entry.description,
-    created_at:  entry.created_at,
-    updated_at:  entry.updated_at,
+    created_at: entry.created_at,
+    updated_at: entry.updated_at,
   }
   const meta_path = entry.target.replace(/\.html$/, `.json`)
   await overWriteFile(meta_path, JSON.stringify(meta, null, 2) + `\n`)
@@ -711,9 +711,9 @@ async function blog_index(meta_files: string[]): Promise<void> {
       const url = new URL(m.canonical)
       return {
         ...m,
-        host:     url.host,
+        host: url.host,
         relative: url.pathname.replace(/^\//, ``),
-        icon:     ICON,
+        icon: ICON,
       }
     })
     .sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
@@ -729,17 +729,6 @@ async function blog_index(meta_files: string[]): Promise<void> {
     return acc
   }, new Map())
 
-  // console.log(await promisify(exec)(`../compression-dictionary-transport.sh`))
-
-  // compression dictionary transport
-  // const dict_path = (
-  //   await Array.fromAsync(glob(`../blog.jxck.io/dictionary/*.dict`))
-  // )
-  //   .at(0)
-  //   .split("/")
-  //   .at(-1)
-  // console.log({ dict_path })
-
   const index_result = await renderFile(`./template/blog.index.html.ejs`, {
     indent,
     short,
@@ -747,7 +736,6 @@ async function blog_index(meta_files: string[]): Promise<void> {
     version,
     entries_per_year,
     first: entries[0],
-    // dict_path,
   })
   await overWriteFile(`../blog.jxck.io/index.html`, index_result)
 
