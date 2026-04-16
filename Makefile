@@ -1,11 +1,11 @@
-.PHONY: build
+.PHONY: all
 .PHONY: dict dcb
 .PHONY: blog blog-all
 .PHONY: podcast
 .PHONY: fmt fmt-blog fmt-podcast
 .PHONY: mtime mtime-blog mtime-podcast
 .PHONY: image png jpeg gif webp avif
-.PHONY: comp clean remove
+.PHONY: comp clean blog-clean podcast-clean distclean
 .PHONY: install update systemd-list systemd-status
 .PHONY: start stop status kill restart reload test logf
 .PHONY: _start _stop _restart
@@ -28,7 +28,7 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 # Aggregate
 ##########################
 # 全体の差分ビルド
-build:
+all:
 	$(MAKE) blog
 	$(MAKE) podcast
 	$(MAKE) dict
@@ -243,10 +243,25 @@ clean:
 	@rm -fv $(BLOG_DCB)
 	@rm -fv ./blog.jxck.io/dictionary/*.dict
 
-# ビルド結果と .br を削除
-remove: clean
+# blog の生成ファイルを削除 (画像は除く)
+blog-clean:
 	@rm -fv $(BLOG_HTML)
+	@rm -fv $(BLOG_JSON)
+	@rm -f ./blog.jxck.io/index.html
+	@rm -f ./blog.jxck.io/feeds/atom.xml
+	@rm -f ./blog.jxck.io/feeds/sitemap.xml
+	@rm -f ./blog.jxck.io/tags/index.html
+
+# podcast の生成ファイルを削除
+podcast-clean:
 	@rm -fv $(PODCAST_HTML)
+	@rm -f ./mozaic.fm/index.html
+	@rm -f ./feed.mozaic.fm/index.xml
+	@rm -f ./feed.mozaic.fm/index.json
+	@rm -f ./id3all.sh
+
+# 全生成ファイルを削除 (画像は除く)
+distclean: clean blog-clean podcast-clean
 
 
 ##########################
