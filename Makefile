@@ -223,11 +223,9 @@ BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
 	  -dcb \
 	  $<
 
-EJS := $(shell find ./.src/template -name '*.ejs')
-
-# entries html と template から配信用辞書を再生成
-./blog.jxck.io/dictionary/entries.dict: $(EJS) $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
-	$(DICT_GENERATOR) -o $@ $(EJS) $(BLOG_HTML)
+# entries html から配信用辞書を再生成
+./blog.jxck.io/dictionary/entries.dict: $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
+	$(DICT_GENERATOR) -o $@ $(BLOG_HTML)
 
 dict: ./blog.jxck.io/dictionary/entries.dict
 
