@@ -15,7 +15,6 @@
 - 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/` に置く
 - CDT 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、mruby では `"entries"` のように quotes を含んだ値で比較する
-- 共有 skill の正本は `.agents/skills/` に置き、Claude/Codex のラッパはそれを参照する
 
 
 ## Plan File Workflow
@@ -26,6 +25,15 @@
 - レビューは `## Review by (Agent 名)` を末尾に追記していく
 - レビューへの返答は `## Answer by (Agent 名)` を末尾に追記してよい
 - 方針が固まったら全体を清書し、同じファイルを `# Fixed Plan: プラン名` で上書きする
+
+
+## Skill Directory Workflow
+
+- 共有 skill の正本は `.agents/skills/<skill>/SKILL.md` に置く
+- `.claude/skills/<skill>/SKILL.md` と `.codex/skills/<skill>/SKILL.md` は、原則としてその正本への symlink にする
+- skill の内容を更新する場合は、正本だけを編集する
+- `name` や `description` を含む frontmatter は正本だけに持たせる
+- Claude/Codex 側に内容を複製して持たない
 
 
 # Article Review Policy

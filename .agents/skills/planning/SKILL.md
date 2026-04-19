@@ -1,0 +1,30 @@
+---
+name: planning
+description: Create and iterate on implementation plans under .agents/plan/ so multiple agents (Claude / Codex / 他) can review each other's drafts. Use when entering plan mode, drafting an implementation plan, or reviewing an existing plan.
+---
+
+# planning
+
+このリポジトリで実装プランを作成し、複数 Agent が相互レビューするときの共通ルールである。
+
+正本ルールは [`AGENTS.md`](../../../AGENTS.md) の `Plan File Workflow` セクションにある。  
+この planning skill を使う場合は、必ず `AGENTS.md` を読み込み、その方針に厳密に従うこと。
+
+## 起動時にやること
+
+1. [`AGENTS.md`](../../../AGENTS.md) の `Plan File Workflow` を確認する
+2. プランを作る場合
+   - `.agents/plan/YYYYMMDD-HHMM-概要.md` を新規作成する
+   - 初稿は `# WIP Plan: プラン名` で始め、本文を `## Plan by (Agent 名)` に書く
+3. 既存プランをレビューする場合
+   - 対象ファイルを読み、末尾に `## Review by (Agent 名)` を追記する
+   - 既存の `## Review by (...)` / `## Answer by (...)` を勝手に書き換えない
+4. レビューに応答する場合
+   - 末尾に `## Answer by (Agent 名)` を追記する
+5. 方針が固まったら全体を清書し、同じファイルを `# Fixed Plan: プラン名` で上書きする
+
+## 注意
+
+- プランは cross-tool で共有するため、Claude / Codex / 他 Agent のいずれでも読み書きできる Markdown に保つ
+- Agent 名は自分のツール名 (`Claude`, `Codex`, ...) を明記する
+- 日付は今日の日付 (JST) を使い、ファイル名は絶対にあとから変えない
