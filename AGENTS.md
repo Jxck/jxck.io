@@ -1,6 +1,6 @@
-# Article Review Policy
+# Project Agent Policy
 
-このリポジトリで記事原稿をレビューまたは校正する際は、以下の方針に従う。
+このリポジトリで作業する際の正本ルールです。
 
 
 ## Project Notes
@@ -15,6 +15,8 @@
 - 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/` に置く
 - CDT 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、mruby では `"entries"` のように quotes を含んだ値で比較する
+- 共有 skill の正本は `.agents/skills/` に置き、Claude/Codex のラッパはそれを参照する
+
 
 ## Plan File Workflow
 
@@ -24,6 +26,11 @@
 - レビューは `## Review by (Agent 名)` を末尾に追記していく
 - レビューへの返答は `## Answer by (Agent 名)` を末尾に追記してよい
 - 方針が固まったら全体を清書し、同じファイルを `# Fixed Plan: プラン名` で上書きする
+
+
+# Article Review Policy
+
+このリポジトリで記事原稿をレビューまたは校正する際は、以下の方針に従う。
 
 
 ## Scope
