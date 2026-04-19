@@ -20,7 +20,7 @@
 
 ## Plan File Workflow
 
-- プランは `.claude/plan/` 配下に `YYYYMMDD-HHMM-概要.md` で作る
+- プランは `.agents/plan/` 配下に `YYYYMMDD-HHMM-概要.md` で作る
 - 初稿は `# WIP Plan: プラン名` で始める
 - 初稿本文は `## Plan by (Agent 名)` に書く
 - レビューは `## Review by (Agent 名)` を末尾に追記していく
