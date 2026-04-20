@@ -1,11 +1,14 @@
-# 起動時に entries.dict 本体から Available-Dictionary の期待値を 1 回だけ計算する
-# これにより request ごとに hash を再計算する必要がない
-dict_body = File.open("./blog.jxck.io/dictionary/entries.dict", "rb") { |f| f.read }
-dict_hash = [Digest::SHA256.digest(dict_body)].pack("m0")
-expected_dictionary = ":#{dict_hash}:"
+# 起動時に唯一の dict 本体から Available-Dictionary の期待値を 1 回だけ計算する
+dict_path = Dir.glob("./blog.jxck.io/dictionary/entries/*.dict").first
+dict_body = dict_path && File.open(dict_path, "rb") { |f| f.read }
+dict_hash = dict_body && [Digest::SHA256.digest(dict_body)].pack("m0")
+expected_dictionary = dict_hash && ":#{dict_hash}:"
 
 # リクエストごとのハンドラ
 Proc.new do |env|
+  # もし dict_path が存在しなくても起動はするようにバイパス
+  next [399, {}, []] if expected_dictionary.nil?
+
   # 1. dcb を受け取れないなら通常レスポンスへフォールバックする
   accept_encoding = env["HTTP_ACCEPT_ENCODING"] || ""
   accepts_dcb = accept_encoding.split(",").map { |e| e.strip.downcase }.include?("dcb")

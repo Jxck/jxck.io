@@ -2,7 +2,7 @@
 
 `blog.jxck.io` 向けの shared dictionary を生成し、`dcb` payload を事前作成し、H2O で配信するためのツール群です。
 
-実際に配信する辞書本体は `blog.jxck.io/dictionary/entries.dict` に置きます。
+実際に配信する辞書本体は `blog.jxck.io/dictionary/entries/<sha256hex>.dict` に置き、本文配信時の `Link` ヘッダは `h2o.conf.d/dictionary.conf` で管理します。
 
 
 ## 構成
@@ -22,7 +22,11 @@
     best.params          # tune.sh の最良パラメータ
 
 blog.jxck.io/dictionary/
-  entries.dict           # 配信用の採用済み辞書
+  entries/
+    <hash>.dict          # 配信用 shared dictionary
+
+h2o.conf.d/
+  dictionary.conf        # active dict の Link ヘッダ断片
 
 .mruby.handler/
   dcb.rb                 # H2O 側の dcb 配信ロジック
@@ -51,22 +55,27 @@ blog.jxck.io/dictionary/
 
 どのファイルを処理するかは `Makefile` が管理し、実際の HTML / JSON 生成は `.src/build.ts`、辞書生成は `dict-generator.rb`、圧縮は `compress.sh` が担当します。差分判定は Make のパターンルールに任せ、別スクリプトで再実装する方向は採りません。
 
-### 3. 配信用辞書は固定名 `entries.dict`
+### 3. 配信用辞書は hash 名 1 本 + static Link ヘッダで管理する
 
-`<sha256hex>.dict` + symlink 案は検討の末やめました。
+配信用辞書は `blog.jxck.io/dictionary/entries/<sha256hex>.dict` で保持します。`make dict` は生成前に既存の `entries/*.dict` を削除し、新しい hash 名の辞書を 1 本だけ作ります。本文配信で使う `Link` ヘッダは `h2o.conf.d/dictionary.conf` に:
 
-- H2O 側で辞書本体から SHA-256 を 1 回だけ計算できる
-- `Available-Dictionary` の照合にファイル名ハックが不要
-- Make / H2O / 手元確認の参照先が固定になる
-- 辞書が 1 本の間は、hash 名運用の利点より複雑さの方が大きい
+```yaml
+header.set: 'Link: </dictionary/entries/<sha256hex>.dict>; rel="compression-dictionary"'
+```
 
-将来 `js.dict` のような別辞書を増やすなら、`id` ごとに固定名 1 本を持つ方針です。
+の形で書き出し、H2O が静的に読み込みます。
+
+- URL 自体が content address になるので、同じ URL は常に同じバイト列を指せる
+- HTML に dict URL を埋め込まないため、辞書学習入力との循環依存がない
+- `make dict` と `.mruby.handler/dcb.rb` / `make comp` の参照先を `entries/*.dict` の唯一ファイルに揃えられる
+
+将来 `js.dict` のような別辞書を増やすなら、`/dictionary/<id>/<hash>.dict` と `Dictionary-ID` を対応させる方針です。
 
 ### 4. H2O は配信条件の判定だけ持つ
 
 CDT 配信ロジックは `.mruby.handler/dcb.rb` にあります。辞書生成や圧縮は build 時に終わらせ、request 時は lookup と条件判定だけです。
 
-1. `entries.dict` の body から SHA-256 → `Available-Dictionary` 期待値を起動時に 1 回計算
+1. `blog.jxck.io/dictionary/entries/*.dict` の唯一の dict body から SHA-256 → `Available-Dictionary` 期待値を起動時に 1 回計算
 2. request 時に `Accept-Encoding`, `Available-Dictionary`, `Dictionary-ID`, `PATH_INFO` を見て `.html.dcb` を返す
 
 
@@ -142,12 +151,12 @@ CDT 配信ロジックは `.mruby.handler/dcb.rb` にあります。辞書生成
 
 1. `make blog` — 記事 HTML / JSON の差分ビルド + index 更新
 2. `make podcast` — podcast の全エピソードビルド
-3. `make dict` — `entries.dict` の再生成
+3. `make dict` — `entries/<hash>.dict` と `dictionary.conf` の更新
 4. `make comp` — `.br` と `.html.dcb` の生成
 
 ### `make dict`
 
-`blog.jxck.io/entries/**/*.html`, `.src/dictionary/dict-generator.rb` に依存して `blog.jxck.io/dictionary/entries.dict` を更新します。
+`blog.jxck.io/entries/**/*.html`, `.src/dictionary/dict-generator.rb` に依存して `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本だけ生成し、`h2o.conf.d/dictionary.conf` を更新します。
 
 ### `make comp`
 
@@ -157,7 +166,7 @@ CDT 配信ロジックは `.mruby.handler/dcb.rb` にあります。辞書生成
 
 ### `make clean`
 
-`.br` / `.dcb` / `blog.jxck.io/dictionary/*.dict` を削除します。
+`.br` / `.dcb` / `blog.jxck.io/dictionary/**/*.dict` を削除し、`h2o.conf.d/dictionary.conf` は placeholder に戻します。
 
 ### `make distclean`
 
@@ -172,7 +181,7 @@ raw dictionary を生成します。
 
 ```sh
 ruby ./.src/dictionary/dict-generator.rb \
-  -o ./blog.jxck.io/dictionary/entries.dict \
+  -d ./blog.jxck.io/dictionary/entries \
   -s 262144 -l 12 -b 4096 -f 3 -v \
   ./blog.jxck.io/entries/**/*.html
 ```
@@ -193,7 +202,7 @@ raw dictionary を使って圧縮ファイルを生成します。
 
 ```sh
 ./.src/dictionary/compress.sh \
-  --dict ./blog.jxck.io/dictionary/entries.dict \
+  --dict ./blog.jxck.io/dictionary/entries/<hash>.dict \
   --output-dir . \
   -dcb \
   ./blog.jxck.io/entries/2016-01-27/new-blog-start.html
@@ -243,7 +252,7 @@ held-out eval でパラメータグリッドを探索します。結果は `work
 
 ### 辞書配信
 
-`h2o.conf` で `/dictionary/entries.dict` に対して:
+`h2o.conf` で `/dictionary/entries/` に対して:
 
 ```
 Use-As-Dictionary: match="/entries/*", match-dest=("document"), id="entries"
@@ -253,10 +262,10 @@ Use-As-Dictionary: match="/entries/*", match-dest=("document"), id="entries"
 
 ### 本文配信
 
-`/` 配下で:
+`/` 配下では `!file h2o.conf.d/dictionary.conf` を読み、生成済み辞書に対応する:
 
 ```
-Link: </dictionary/entries.dict>; rel="compression-dictionary"
+Link: </dictionary/entries/<sha256hex>.dict>; rel="compression-dictionary"
 ```
 
 を付けています。実際の dcb 判定は `.mruby.handler/dcb.rb` で行います。
