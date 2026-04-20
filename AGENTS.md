@@ -17,14 +17,10 @@
 - `Dictionary-ID` は Structured Fields String なので、mruby では `"entries"` のように quotes を含んだ値で比較する
 
 
-## Plan File Workflow
+## Plan File Policy
 
-- プランは `.agents/plan/` 配下に `YYYYMMDD-HHMM-概要.md` で作る
-- 初稿は `# WIP Plan: プラン名` で始める
-- 初稿本文は `## Plan by (Agent 名)` に書く
-- レビューは `## Review by (Agent 名)` を末尾に追記していく
-- レビューへの返答は `## Answer by (Agent 名)` を末尾に追記してよい
-- 方針が固まったら全体を清書し、同じファイルを `# Fixed Plan: プラン名` で上書きする
+- プラン作成・レビュー・固定化の正本ルールは `.agents/skills/planning/SKILL.md` に置く
+- プランを作成またはレビューする場合は、必ず `planning` skill を使う
 
 
 ## Skill Directory Workflow
