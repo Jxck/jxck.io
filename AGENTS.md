@@ -29,8 +29,8 @@
 
 ## Skill Directory Workflow
 
-- 共有 skill の正本は `.agents/skills/<skill>/SKILL.md` に置く
-- `.claude/skills/<skill>/SKILL.md` と `.codex/skills/<skill>/SKILL.md` は、原則としてその正本への symlink にする
+- 共有 skill の正本は `.agents/skills/<skill>/` に置く
+- `.claude/skills/<skill>` と `.codex/skills/<skill>` は、原則としてその正本ディレクトリへの symlink にする
 - skill の内容を更新する場合は、正本だけを編集する
 - `name` や `description` を含む frontmatter は正本だけに持たせる
 - Claude/Codex 側に内容を複製して持たない
