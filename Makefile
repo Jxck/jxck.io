@@ -106,6 +106,8 @@ BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
 BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
 BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
 BLOG_IMAGE := $(BLOG_PNG) $(BLOG_JPEG) $(BLOG_GIF)
+BLOG_IMAGE += $(BLOG_PNG:.png=.webp) $(BLOG_JPEG:.jpeg=.webp) $(BLOG_GIF:.gif=.webp)
+BLOG_IMAGE += $(BLOG_PNG:.png=.avif) $(BLOG_JPEG:.jpeg=.avif) $(BLOG_GIF:.gif=.avif)
 
 # blog 画像の mtime を戻す
 mtime-image:
@@ -140,33 +142,21 @@ WEBP_FILES := $(BLOG_PNG:.png=.webp)
 WEBP_FILES += $(BLOG_JPEG:.jpeg=.webp)
 WEBP_FILES += $(BLOG_GIF:.gif=.webp)
 
-# optimizer は元画像を in-place で更新するため、preserve_mtime で mtime を戻す。
-# 最適化系の処理が最適化済みのファイルにも実行され、mtime が更新されると
-# webp/avif の生成が強制で走ってしまうので、最適化では mtime を変えない。
-# 最初に画像を追加したら、最適化して webp/avif を生成。webp/avif があったらスキップできる。
-define preserve_mtime
-tmp=$$(mktemp); \
-touch -r $(1) $$tmp; \
-$(2); \
-touch -r $$tmp $(1); \
-rm -f $$tmp
-endef
-
 # PNG -> webp 変換
 %.webp: %.png
-	$(call preserve_mtime,$<,$(OPTIPNG) $<)
+	$(OPTIPNG) $<
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
 # JPEG -> webp 変換
 %.webp: %.jpeg
-	$(call preserve_mtime,$<,$(JPEGTRAN) -outfile $< $<)
+	$(JPEGTRAN) -outfile $< $<
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
 # GIF -> webp 変換
 %.webp: %.gif
-	$(call preserve_mtime,$<,$(GIFSICLE) $< -o $<)
+	$(GIFSICLE) $< -o $<
 	$(GWEBP) $< -o $@
 	touch -r $< $@
 
@@ -183,19 +173,19 @@ AVIF_FILES += $(BLOG_GIF:.gif=.avif)
 
 # PNG -> avif 変換
 %.avif: %.png
-	$(call preserve_mtime,$<,$(OPTIPNG) $<)
+	$(OPTIPNG) $<
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 # JPEG -> avif 変換
 %.avif: %.jpeg
-	$(call preserve_mtime,$<,$(JPEGTRAN) -outfile $< $<)
+	$(JPEGTRAN) -outfile $< $<
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 # GIF -> avif 変換
 %.avif: %.gif
-	$(call preserve_mtime,$<,$(GIFSICLE) $< -o $<)
+	$(GIFSICLE) $< -o $<
 	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | $(AVIFENC) --stdin $@
 	touch -r $< $@
 
