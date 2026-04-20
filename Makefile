@@ -3,8 +3,8 @@
 .PHONY: blog blog-all
 .PHONY: podcast
 .PHONY: fmt fmt-blog fmt-podcast
-.PHONY: mtime mtime-blog mtime-podcast
-.PHONY: image png jpeg gif webp avif
+.PHONY: mtime mtime-blog mtime-podcast mtime-image
+.PHONY: image png jpeg gif webp avif image-clean
 .PHONY: comp clean blog-clean podcast-clean distclean
 .PHONY: install update systemd-list systemd-status
 .PHONY: start stop status kill restart reload test logf
@@ -105,10 +105,15 @@ podcast:
 BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
 BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
 BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
+BLOG_IMAGE := $(BLOG_PNG) $(BLOG_JPEG) $(BLOG_GIF)
+
+# blog 画像の mtime を戻す
+mtime-image:
+	@git restore-mtime $(BLOG_IMAGE)
 
 # 全画像の最適化
 image:
-	$(MAKE) png jpeg gif
+	$(MAKE) mtime-image
 	$(MAKE) webp avif
 
 # PNG を optipng で最適化
@@ -137,16 +142,19 @@ WEBP_FILES += $(BLOG_GIF:.gif=.webp)
 
 # PNG -> webp 変換
 %.webp: %.png
+	$(OPTIPNG) $<
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
 # JPEG -> webp 変換
 %.webp: %.jpeg
+	$(JPEGTRAN) -outfile $< $<
 	$(CWEBP) $< -o $@
 	touch -r $< $@
 
 # GIF -> webp 変換
 %.webp: %.gif
+	$(GIFSICLE) $< -o $<
 	$(GWEBP) $< -o $@
 	touch -r $< $@
 
@@ -155,7 +163,7 @@ webp: $(WEBP_FILES)
 
 
 ## avif
-AVIFENC := avifenc --speed 0 --min 0 --max 40
+AVIFENC := avifenc --speed 0 -q 40
 
 AVIF_FILES := $(BLOG_PNG:.png=.avif)
 AVIF_FILES += $(BLOG_JPEG:.jpeg=.avif)
@@ -163,17 +171,20 @@ AVIF_FILES += $(BLOG_GIF:.gif=.avif)
 
 # PNG -> avif 変換
 %.avif: %.png
+	$(OPTIPNG) $<
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 # JPEG -> avif 変換
 %.avif: %.jpeg
+	$(JPEGTRAN) -outfile $< $<
 	$(AVIFENC) -o $@ $<
 	touch -r $< $@
 
 # GIF -> avif 変換
 %.avif: %.gif
-	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15 $@
+	$(GIFSICLE) $< -o $<
+	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | $(AVIFENC) --stdin $@
 	touch -r $< $@
 
 # avif 差分ビルド
@@ -240,6 +251,11 @@ clean:
 	@rm -fv $(COMP_BR)
 	@rm -fv $(BLOG_DCB)
 	@rm -fv ./blog.jxck.io/dictionary/*.dict
+
+# 画像の派生生成物を削除
+image-clean:
+	@rm -fv $(WEBP_FILES)
+	@rm -fv $(AVIF_FILES)
 
 # blog の生成ファイルを削除 (画像は除く)
 blog-clean:
