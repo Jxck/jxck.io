@@ -196,9 +196,11 @@ avif: $(AVIF_FILES)
 ##########################
 # Compression
 ##########################
-# blog.jxck.io/dictionary/entries/<hash>.dict を生成する。
-DICT_DIR  := ./blog.jxck.io/dictionary/entries
-DICT_CONF := ./h2o.conf.d/dictionary.conf
+# blog.jxck.io/dictionary/entries/<hash>.dict を生成し、
+# build 時は fixed name の active.dict から参照する。
+DICT_DIR    := ./blog.jxck.io/dictionary/entries
+DICT_ACTIVE := $(DICT_DIR)/active.dict
+DICT_CONF   := ./h2o.dict.conf
 # 256KB / slice=12 / block=4096 / min_frequency=3 は tuning 済みの採用値。
 DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
 	-s 262144 \
@@ -231,24 +233,30 @@ BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
 	brotli -v -q 11 -f $<
 
 # entries html から配信用辞書と active dict metadata を更新する
-$(DICT_CONF): $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
+$(DICT_ACTIVE): $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
 	@rm -f $(DICT_DIR)/*.dict
 	@dict_path=$$($(DICT_GENERATOR) -d $(DICT_DIR) $(BLOG_HTML)); \
+	  dict_name=$${dict_path##*/}; \
+	  ln -snf "$$dict_name" $(DICT_ACTIVE); \
 	  dict_url=$${dict_path#./blog.jxck.io}; \
 	  printf "header.set: 'Link: <%s>; rel=\"compression-dictionary\"'\n" "$$dict_url" > $(DICT_CONF)
 
+# active dict があれば Link 断片も再生成できる
+$(DICT_CONF): $(DICT_ACTIVE)
+	@dict_name=$$(readlink $(DICT_ACTIVE)); \
+	  dict_url=/dictionary/entries/$${dict_name##*/}; \
+	  printf "header.set: 'Link: <%s>; rel=\"compression-dictionary\"'\n" "$$dict_url" > $(DICT_CONF)
+
 # .dcb 生成コマンド (active dict を使った brotli 差分圧縮)
-%.html.dcb: %.html $(DICT_CONF)
-	@dict_path=$$(echo $(DICT_DIR)/*.dict); \
-	  test -n "$$dict_path"; \
-	  ./.src/dictionary/compress.sh \
-	    --dict "$$dict_path" \
+%.html.dcb: %.html $(DICT_ACTIVE)
+	@./.src/dictionary/compress.sh \
+	    --dict "$(DICT_ACTIVE)" \
 	    --output-dir . \
 	    -dcb \
 	    $<
 
 dict:
-	@$(MAKE) -B $(DICT_CONF)
+	@$(MAKE) -B $(DICT_ACTIVE)
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)

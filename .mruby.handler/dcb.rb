@@ -1,6 +1,6 @@
-# 起動時に唯一の dict 本体から Available-Dictionary の期待値を 1 回だけ計算する
-dict_path = Dir.glob("./blog.jxck.io/dictionary/entries/*.dict").first
-dict_body = dict_path && File.open(dict_path, "rb") { |f| f.read }
+# 起動時に active dict 本体から Available-Dictionary の期待値を 1 回だけ計算する
+dict_path = "./blog.jxck.io/dictionary/entries/active.dict"
+dict_body = File.file?(dict_path) && File.open(dict_path, "rb") { |f| f.read }
 dict_hash = dict_body && [Digest::SHA256.digest(dict_body)].pack("m0")
 expected_dictionary = dict_hash && ":#{dict_hash}:"
 

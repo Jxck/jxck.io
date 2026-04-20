@@ -9,7 +9,7 @@
 - `.src/build.ts` は起動時に `process.chdir(import.meta.dirname)` するため、相対パスは `.src/` 基準
 - `make` (= `make all`) で blog → podcast → dict → comp を順に実行する
 - `make blog` は記事の差分ビルドと `index.html` 更新のみを行い、`.dcb` は作らない
-- `make dict` は `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、`h2o.conf.d/dictionary.conf` を更新する
+- `make dict` は `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、`blog.jxck.io/dictionary/entries/active.dict` と `h2o.dict.conf` を更新する
 - `make comp` は通常の `.br` と `blog.jxck.io/entries/**/*.html.dcb` を生成する
 - `make clean` は `.br` / `.dcb` / `.dict` を削除、`make distclean` は全生成物を削除
 - 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/entries/` に置く
