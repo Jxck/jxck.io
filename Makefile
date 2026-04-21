@@ -250,8 +250,12 @@ $(DICT_CONF): $(DICT_ACTIVE)
 	  dict_url=/dictionary/entries/$${dict_name##*/}; \
 	  printf "header.set: 'Link: <%s>; rel=\"compression-dictionary\"'\n" "$$dict_url" > $(DICT_CONF)
 
-# .dcb 生成コマンド (active dict を使った brotli 差分圧縮)
-%.html.dcb: %.html $(DICT_ACTIVE)
+# .dcb 生成コマンド (make dict で更新済みの active dict を使う)
+%.html.dcb: %.html
+	@test -e "$(DICT_ACTIVE)" || { \
+	  echo "missing $(DICT_ACTIVE): run 'make dict' first" >&2; \
+	  exit 1; \
+	}
 	@./.src/dictionary/compress.sh \
 	    --dict "$(DICT_ACTIVE)" \
 	    --output-dir . \
@@ -260,6 +264,7 @@ $(DICT_CONF): $(DICT_ACTIVE)
 
 dict:
 	@$(MAKE) -B $(DICT_ACTIVE)
+	@$(MAKE) -B dcb
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
