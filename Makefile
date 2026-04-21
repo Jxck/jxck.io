@@ -37,8 +37,8 @@ all:
 # blog/podcast の md を formatter にかけて整形
 fmt: fmt-blog fmt-podcast
 
-# blog/podcast の md の mtime を最終コミット時刻に戻す
-mtime: mtime-blog mtime-podcast
+# 全ファイルの mtime を最終コミット時刻に戻す
+mtime: mtime-blog mtime-podcast mtime-image mtime-comp
 
 
 ##########################
@@ -73,7 +73,6 @@ blog: ./blog.jxck.io/index.html
 # blog のフルビルド
 blog-all:
 	$(MAKE) fmt-blog
-	$(MAKE) mtime-blog
 	$(NODE) .src/build.ts blog $(BLOG_MD)
 	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
 
@@ -95,7 +94,6 @@ mtime-podcast:
 # podcast のフルビルド
 podcast:
 	$(MAKE) fmt-podcast
-	$(MAKE) mtime-podcast
 	$(NODE) .src/build.ts podcast
 
 
@@ -115,7 +113,6 @@ mtime-image:
 
 # 全画像の最適化
 image:
-	$(MAKE) mtime-image
 	$(MAKE) webp avif
 
 # PNG を optipng で最適化
@@ -230,7 +227,7 @@ BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
 DICT_FILES := $(shell find $(DICT_DIR) \( -type f -o -type l \) ! -path '*/.*' 2>/dev/null)
 COMP_FILES := $(COMP_TARGETS) $(COMP_BR) $(BLOG_DCB) $(DICT_FILES) $(DICT_CONF)
 
-# pull 後に comp 関連の source / generated を git の commit 時刻へ揃える
+# comp の mtime を戻す
 mtime-comp:
 	@git restore-mtime $(COMP_FILES)
 
@@ -267,10 +264,8 @@ dict:
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
 
-# pull 後の server では、comp の前に mtime を揃えて差分判定を安定させる
-comp:
-	$(MAKE) mtime-comp
-	$(MAKE) $(COMP_BR) $(BLOG_DCB)
+# 圧縮
+comp: $(COMP_BR) $(BLOG_DCB)
 
 # .br と .dcb と辞書を削除
 clean:
