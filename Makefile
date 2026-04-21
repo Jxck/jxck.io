@@ -3,7 +3,7 @@
 .PHONY: blog blog-all
 .PHONY: podcast
 .PHONY: fmt fmt-blog fmt-podcast
-.PHONY: mtime mtime-blog mtime-podcast mtime-image
+.PHONY: mtime mtime-blog mtime-podcast mtime-image mtime-comp
 .PHONY: image png jpeg gif webp avif image-clean
 .PHONY: comp clean blog-clean podcast-clean distclean
 .PHONY: install update systemd-list systemd-status
@@ -227,6 +227,12 @@ COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
 # 全 entry HTML に対応する .dcb
 BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
+DICT_FILES := $(shell find $(DICT_DIR) \( -type f -o -type l \) ! -path '*/.*' 2>/dev/null)
+COMP_FILES := $(COMP_TARGETS) $(COMP_BR) $(BLOG_DCB) $(DICT_FILES) $(DICT_CONF)
+
+# pull 後に comp 関連の source / generated を git の commit 時刻へ揃える
+mtime-comp:
+	@git restore-mtime $(COMP_FILES)
 
 # brotli 圧縮コマンド
 %.br: %
@@ -261,8 +267,10 @@ dict:
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
 
-# brotli .br と dcb をまとめて生成
-comp: $(COMP_BR) $(BLOG_DCB)
+# pull 後の server では、comp の前に mtime を揃えて差分判定を安定させる
+comp:
+	$(MAKE) mtime-comp
+	$(MAKE) $(COMP_BR) $(BLOG_DCB)
 
 # .br と .dcb と辞書を削除
 clean:
