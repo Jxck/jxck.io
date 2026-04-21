@@ -24,10 +24,10 @@
 blog.jxck.io/dictionary/
   entries/
     <hash>.dict          # 配信用 shared dictionary
+    <hash>.dict.br       # 辞書自体を br 事前圧縮したもの
     active.dict          # build / mruby から参照する active dict symlink
 
-h2o.conf.d/
-h2o.dict.conf            # active dict の Link ヘッダ断片
+h2o.dict.conf            # active dict の Link ヘッダ断片 (repo root)
 
 .mruby.handler/
   dcb.rb                 # H2O 側の dcb 配信ロジック
@@ -157,7 +157,14 @@ CDT 配信ロジックは `.mruby.handler/dcb.rb` にあります。辞書生成
 
 ### `make dict`
 
-`blog.jxck.io/entries/**/*.html`, `.src/dictionary/dict-generator.rb` に依存して `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本だけ生成し、`h2o.dict.conf` を更新します。
+`blog.jxck.io/entries/**/*.html`, `.src/dictionary/dict-generator.rb` に依存して以下を一度に行います。
+
+1. 既存の `entries/*.dict` を削除し、`<hash>.dict` を 1 本だけ生成する
+2. `active.dict` を `<hash>.dict` への symlink として張り直す
+3. `h2o.dict.conf` に `<hash>.dict` を指す `Link` ヘッダを書き出す
+4. 辞書自体の事前圧縮 `<hash>.dict.br` を生成する
+5. 全 `.html.dcb` を新しい辞書で再生成する (`-B dcb`)
+6. `make reload` で h2o を reload する
 
 ### `make comp`
 
@@ -257,9 +264,10 @@ held-out eval でパラメータグリッドを探索します。結果は `work
 
 ```
 Use-As-Dictionary: match="/entries/*", match-dest=("document"), id="entries"
+Cache-Control: public, max-age=31536000, immutable
 ```
 
-を付けて配信しています。
+を付けて配信しています。URL 自体が content address (`<hash>.dict`) なので `immutable` を宣言できます。
 
 ### 本文配信
 
