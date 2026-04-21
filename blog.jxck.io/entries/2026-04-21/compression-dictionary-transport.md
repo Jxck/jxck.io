@@ -442,6 +442,8 @@ Link: </dictionary/entries/<sha256>.dict>; rel="compression-dictionary"
 
 - Compression dictionary lifetime and cache lifetime · Issue #2649 · httpwg/http-extensions
   - https://github.com/httpwg/http-extensions/issues/2649
+- Removed ttl from dictionary response by pmeenan · Pull Request #2709 · httpwg/http-extensions
+  - https://github.com/httpwg/http-extensions/pull/2709
 
 辞書名そのものにハッシュ値があるため、`max-age` は長くできる。したがって、辞書のレスポンスはこのようにした。
 
