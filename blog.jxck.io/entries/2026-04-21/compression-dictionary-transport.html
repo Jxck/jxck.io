@@ -145,7 +145,7 @@
                 <li><a href="#差分辞書">差分辞書</a>
               </ol>
               <li><a href="#webbundle-の失敗">WebBundle の失敗</a>
-              <li><a href="#web-font-問題">Web Font 問題</a>
+              <li><a href="#webfont-問題">WebFont 問題</a>
               <li><a href="#web-における辞書共有">Web における辞書共有</a>
               <li><a href="#rfc-9842-compression-dictionary-transport">RFC 9842: Compression Dictionary Transport</a>
               <li><a href="#delta-compression">Delta Compression</a>
@@ -194,8 +194,8 @@
       </section>
       <section>
         <h2 id="辞書"><a href="#辞書">辞書</a></h2>
-        <p>例えば HTML の場合、<code translate=no>&lt;!doctype html&gt;</code> で始まる可能性が非常に高く、画像などのバイナリデータは、ヘッダ部分には共通するパターンが多くなる。それらは、1 回しか出てこないことも多い。
-        <p>そこで、あらかじめ <code translate=no>&lt;!doctype html&gt;</code> やバイナリヘッダなどのデータを参照用に用意しておき、それを圧縮対象の手前にくっつけてから圧縮を始めると、こうしたパターンも圧縮できることになる。
+        <p>例えば HTML の場合、<code translate=no>&lt;!doctype html&gt;</code> で始まる可能性が非常に高い。構造化されたフォーマットほど、ヘッダ部分には共通するパターンが多くなるのだ。しかし、それらは 1 回しか出てこないことも多い。
+        <p>そこで、あらかじめ <code translate=no>&lt;!doctype html&gt;</code> を参照用に用意しておき、それを圧縮対象の手前にくっつけてから圧縮を始めると、こうしたパターンも圧縮できることになる。この方法は、バイナリでも通用する。
         <p>このとき、圧縮で参照するために頻出パターンを集めたファイルを、LZ77 では辞書(Dictionary)と呼ぶ。汎用アルゴリズムを超えた圧縮を実現するには、いかに「精度の良い辞書」を用意するかが、圧縮性能を大きく左右することになる。
       </section>
       <section>
@@ -212,7 +212,7 @@
         </ul>
         <p>実際にバイナリを覗いてみると、テキストとして認識可能な箇所が多々ある。
         <p>最初の部分は、頻出英単語だろう。
-        <pre><code translate=no>timedownlifeleftbackcodedatashowonlysitecityopenjustlikefreeworktextyearoverbodyloveformbookplaylivelinehelphomesidemorewordlongthemviewfindpagedaysfullheadtermeachareafromtruemarkableuponhighdatelandnewsevennextcasebothpostusedmadehandherewhatnameLinkblogsizebaseheldmakemainuser&apos;)</code></pre>
+        <pre><code translate=no>timedownlifeleftbackcodedatashowonlysitecityopenjustlikefreeworktextyearoverbodyloveformbookplaylivelinehelphomesidemorewordlongthemviewfindpagedaysfullheadtermeachareafromtruemarkableuponhighdatelandnewsevennextcasebothpostusedmadehandherewhatnameLinkblogsizebaseheldmakemainuser</code></pre>
         <p>途中はなんとなく JS 感がある(改行も含めて圧縮できるよう、辞書内に改行がそのまま入っている)。
         <pre><code translate=no>exit:35Zvarsbeat&apos;});diet999;anne}}&lt;/[i].LangkmĀ²wiretoysaddssealalex;
   }echonine.org005)tonyjewssandlegsroof000) 200winegeardogsbootgarycutstyletemption.xmlcockgang$(&apos;.50pxPh.Dmiscalanloandeskmileryanunixdisc);}
@@ -243,12 +243,12 @@ s:// [];tollplug(){
         <p>もしここで、自分の配布しているコンテンツの特性を踏まえて最適化された <em>自作の辞書</em> を作り、それを用いて圧縮できれば、より小さくできるだろう。
         <section>
           <h3 id="テンプレートを用いた辞書"><a href="#テンプレートを用いた辞書">テンプレートを用いた辞書</a></h3>
-          <p>例えば、テンプレートエンジンにコンテンツを流し込んでいるサイトの場合、テンプレートはどの記事にも現れる共通部分ととらえることができる。そのテンプレートを連結したものは、HTML を圧縮する際の辞書として使えるだろう。雑に言うとこうだ。
+          <p>例えば、テンプレートエンジンにコンテンツを流し込んでいるサイトの場合、テンプレートはどの記事にも現れる共通部分と捉えることができる。そのテンプレートを連結したものは、HTML を圧縮する際の辞書として使えるだろう。雑に言うとこうだ。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 辞書生成</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cat ./src/template/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.hbs </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> template.dict</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 辞書を用いて圧縮</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ brotli --dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">template.dict</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> index.html</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html.br</span></span></code></pre>
-          <p>この辞書は、レスポンス HTML の多くの箇所をカバーするため、全体の圧縮効率を向上することができる。
+          <p>この辞書は、レスポンス HTML の多くの箇所をカバーするため、全体の圧縮効率を向上させることができる。
         </section>
         <section>
           <h3 id="差分辞書"><a href="#差分辞書">差分辞書</a></h3>
@@ -257,7 +257,7 @@ s:// [];tollplug(){
 <span class="line"><span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></span>
 <span class="line"><span> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></span>
 <span class="line"><span> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></code></pre>
-          <p>次に、途中の一単語だけ変更した v1.txt を用意する。
+          <p>次に、途中の 1 単語だけ変更した v1.txt を用意する。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="diff"><code translate="no"><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- Duis aute irure dolor in reprehenderit in voluptate...</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ Duis aute irure dolor in Jxck in voluptate...</span></span></code></pre>
           <p>このとき、v0.txt を辞書に v1.txt を圧縮してみる。
@@ -267,7 +267,7 @@ s:// [];tollplug(){
 1. COPY   259 bytes from v0.txt[0:259]
 2. INSERT &quot;Jxck&quot;
 3. COPY   177 bytes from v0.txt[272:449]</code></pre>
-          <p>前後は v0 の該当部分を参照し、変更部分のリテラルだけがある状態だ。おかげで、440Byte が 19byte まで圧縮できている。
+          <p>前後は v0 の該当部分を参照し、変更部分のリテラルだけがある状態だ。おかげで、440 byte が 19 byte まで圧縮できている。
           <p>つまり、<em>両者の Diff だけを送っている</em> ような状態にかなり近いといえるのだ。
           <p>これを JS などに応用すると、bundle.v0.js を辞書にすれば、その一部を更新してビルドし直した bundle.v1.js は v0 と v1 の差分だけに圧縮できるのだ。
           <p>このように、辞書を用いた差分の圧縮は、<strong>Web における差分更新</strong> に応用できるのだ。
@@ -285,22 +285,22 @@ s:// [];tollplug(){
             </ul>
           </li>
         </ul>
-        <p>このメリットは、現代ではスタンダードな JS の Bundling でも効果が期待された。
-        <p>我々は ESM を手に入れてからも、Native な <code translate=no>import</code> はほとんど使ってない。<code translate=no>import</code> 段階で、多くの依存を取得すると、オーバーヘッドがデカいため WebPack などで 1 ファイルにまとめて配布している。その中では Native な <code translate=no>import</code> は使ってない。<code translate=no>import</code> は Bundler が見るための構文としてしか使われてない現状があるのだ。
-        <p>従って、bundle された一箇所 <code translate=no>main.js</code> だけが修正されただけでも、更新されてない依存を含めた bundle.js 全体を再取得する必要があるのだ。これは非常に無駄が多い。
-        <p>そこで複数の JS を Bundle して bundle.js を作るのではなく、バラバラのまま WebBundle で一括配布する。クライアントは、ばらばらに Fetch されたかのように import できる。そうすれば、JS の <code translate=no>import</code> 時に Fetch するのと異なり、ネットワークオーバーヘッドを減らして、生の <code translate=no>import</code> が使える。個別のキャッシュもできる。これが WebBundle に期待されたメリットだ。
+        <p>差分更新は、現代ではスタンダードな JS の Bundling でも効果が期待された。
+        <p>我々は ESM を手に入れてからも、Native な <code translate=no>import</code> はほとんど使っていない。<code translate=no>import</code> 段階で、多くの依存を取得すると、オーバーヘッドが大きいため WebPack などで 1 ファイルにまとめて配布している。その中では Native な <code translate=no>import</code> は使っていない。<code translate=no>import</code> は Bundler が見るための構文としてしか使われていない現状があるのだ。
+        <p>従って、bundle された <code translate=no>main.js</code> の 1 箇所が修正されただけでも、更新されていない依存を含めた bundle.js 全体を再取得する必要があるのだ。これは非常に無駄が多い。
+        <p>そこで複数の JS を Bundle して bundle.js を作るのではなく、ばらばらのまま WebBundle で一括配布する。クライアントは、ばらばらに Fetch されたかのように import できる。そうすれば、JS の <code translate=no>import</code> 時に Fetch するのと異なり、ネットワークオーバーヘッドを減らして、生の <code translate=no>import</code> が使える。個別のキャッシュもできる。これが WebBundle に期待されたメリットだ。
         <p>問題は、WebBundle した中で <code translate=no>main.js</code> だけが更新された場合、それだけを取得できるようにするにはどうするか?という差分更新の API 設計だった。
         <p>単純に「これらのファイルを持っている」などのリストを素直に提示するのは、クライアントのキャッシュ状況を開示していることになる。そこまでエントロピーが高いと、Fingerprint や Tracking のベクターとなってしまう。また、この設計はどうしても IPC を挟み、パフォーマンスが出にくいという問題もあるようだった。
-        <p>差分更新ができなければ、結局最新の WebBundle ファイルを毎回取得する必要があり、bundle.js と差がないことになる。そして、徐々にこのコンセプトは作業がなくなり、実質死んだ提案と言って良い状態になった。
+        <p>差分更新ができなければ、結局最新の WebBundle ファイルを毎回取得する必要があり、bundle.js と差がないことになる。そして、徐々に作業がなくなり、実質終わったコンセプトと言って良い状態になった。
         <p>その後始まった Shared Brotli は、この「差分更新」のコンセプトを、辞書を用いて再始動するモチベーションがあったのだ。
       </section>
       <section>
-        <h2 id="web-font-問題"><a href="#web-font-問題">Web Font 問題</a></h2>
+        <h2 id="webfont-問題"><a href="#webfont-問題">WebFont 問題</a></h2>
         <p>これが最も効くユースケースは WebFont だろう。
         <p>Noto Sans JP の woff2 を配布したいが、全部は重い。かといって、そのページに必要な文字だけを送ったら、次のページでは足りない。全ページで必要な文字を事前に把握するのも難しい。
         <p>ページごとに毎回異なる woff2 を取得するのも重いし、ページ間の woff2 はほとんどが共通していることになる。これこそが、差分更新が求められる場面だ。
         <p>例えば、全てのページで「そのページに必要な文字だけ」の woff2 を用意し、ページごとに送る。しかし、転送は既に送っている woff2 を辞書として圧縮することで、「足りない文字だけを送る」に近い転送量に下げることができる。
-        <p>全ページで、そのページ用の woff2 を作っておく事前作業や、それを「クライアントにすでにある woff2」を辞書として圧縮するオーバーヘッドは残る。そもそも、1 ファイルの転送は残るため、ネットワークが遅ければフォント置換による FO(I/U)T は避けられないだろう。それでも、CJK で Web Font をどうしても使いたい開発者にとっては、縋れる藁ではあるだろう。
+        <p>全ページで、そのページ用の woff2 を作っておく事前作業や、それを「クライアントにすでにある woff2」を辞書として圧縮するオーバーヘッドは残る。そもそも、1 ファイルの転送は残るため、ネットワークが遅ければフォント置換による FO(I/U)T は避けられないだろう。それでも、CJK で WebFont をどうしても使いたい開発者にとっては、縋れる藁ではあるだろう。
         <p>残る問題は、「その辞書をどう共有するか」というプロトコルだ。
       </section>
       <section>
@@ -310,11 +310,19 @@ s:// [];tollplug(){
           <li>
             A Proposal for Shared Dictionary Compression over HTTP
             <ul>
-              <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/js.dictionary_Compression_over_HTTP.pdf" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/js.dictionary_Compression_over_HTTP.pdf</a>
+              <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf</a>
             </ul>
           </li>
         </ul>
-        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome からも削除された。
+        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome から Unship の Intent が出た。
+        <ul>
+          <li>
+            Intent to Unship: SDCH
+            <ul>
+              <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/nQl0ORHy7sw/m/LkXwXcUtAgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/nQl0ORHy7sw/m/LkXwXcUtAgAJ</a>
+            </ul>
+          </li>
+        </ul>
         <p>一方、後発の Brotli がブラウザに実装され、<code translate=no>Content-Encoding: br</code> として静的辞書を使った圧縮転送を実現した。つまり、ブラウザには Brotli の実装が既に入っていたのだ。
         <p>この Brotli には、仕様に定義された静的辞書以外に、独自に作った辞書を使うこともできるため、その辞書を共有するためのプロトコルを作る取り組みが始まった。
         <p>SDCH や WebBundle の失敗を踏まえて、仕様をシンプルに絞った。CORS を前提とする昨今のセキュリティマナー、過剰なエントロピーを露出しないプライバシーマナーに則りモダンな仕様にした。
@@ -351,10 +359,10 @@ s:// [];tollplug(){
       </section>
       <section>
         <h2 id="delta-compression"><a href="#delta-compression">Delta Compression</a></h2>
-        <p>すでに取得したリソースを、次の送信するリソースの辞書として使う方式だ。
-        <p>例えば <code translate=no>index.html</code> を返す際に、「他の HTML の辞書に使える」ということを<code translate=no>Use-As-Dictionary</code> で指定する。
+        <p>すでに取得したリソースを、次に送信するリソースの辞書として使う方式だ。
+        <p>例えば <code translate=no>index.html</code> を返す際に、「他の HTML の辞書に使える」ということを <code translate=no>Use-As-Dictionary</code> で指定する。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/*", match-dest=("document"), id="entries", type="raw"</span></span></code></pre>
-        <p><code translate=no>index.html</code> を取得済みのクライアントは、そこから <code translate=no>about.html</code> に遷移する際に、以下のように「辞書に使える <code translate=no>index.html</code> を持っている、とリクエストに付与する。
+        <p><code translate=no>index.html</code> を取得済みのクライアントは、そこから <code translate=no>about.html</code> に遷移する際に、以下のように「辞書に使える <code translate=no>index.html</code> を持っている」とリクエストに付与する。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcb, dcz</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> :&#x3C;base64-SHA256 of index.html>:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Dictionary-ID</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "entries"</span></span></code></pre>
@@ -364,7 +372,7 @@ s:// [];tollplug(){
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/*", match-dest=("document"), id="entries", type="raw"</span></span></code></pre>
         <p>このレスポンスは、圧縮に使う辞書によって結果が変わってしまうため、<code translate=no>Vary</code> に依存するヘッダを入れるのを忘れてはならない。また、ここに <code translate=no>Use-As-Dictionary</code> を付与すれば、他のコンテンツの圧縮にも使うことができる。
         <p>この場合サーバは、受け取った <code translate=no>Available-Dictionary</code> のハッシュ値から、対応する辞書(ここでは HTML)を引き、それを使って次のレスポンスを圧縮することになる。現在、Brotli や Zstd のオンザフライ圧縮をしているのであれば、そこに辞書を追加するだけなので、パフォーマンスの問題もそこまで大きくはならないだろう。
-        <p>しかし、動的に HTML を生成し、レスポンスしたら捨ててしまうタイプの実装では、ハッシュから辞書となる HTML を引けないため、CDN などに HTML をキャッシュしているような構成の方が相性がいい。辞書にするためメモリに持つ場合は、その管理の戦略も必要だろう。
+        <p>しかし、動的に HTML を生成し、レスポンスしたら捨ててしまうタイプの実装では、ハッシュから辞書となる HTML を引けないため、CDN などに HTML をキャッシュしているような構成の方が相性が良い。辞書にするためメモリに持つ場合は、その管理の戦略も必要だろう。
         <p>また、オンザフライで圧縮するため、圧縮率よりは圧縮速度を重視した実装をすることになる。速度を重視する場合は、Brotli よりは Zstd の方が有利そうだ。
         <p>現状、このような高度な差分圧縮配信に対応したサーバは、ざっと探したところ見つかっていない。
       </section>
@@ -382,7 +390,7 @@ s:// [];tollplug(){
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/octet-stream</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/assets/js/*", match-dest=("script"), id="js", type="raw"</span></span></code></pre>
         <p>この仕様の特徴として、<code translate=no>js.dict</code> のための <code translate=no>Content-Type</code> は定義されていない。かなり初期の段階で「あったほうが良いのでは?」というフィードバックもしたが、無いまま仕様になってしまった。
-        <p>どのような辞書なのかは <code translate=no>Use-As-Dictionary</code> の <code translate=no>type</code> で指定することになっているが、現状デフォルトの <code translate=no>raw</code> のみしかない。<code translate=no>raw</code> はいわゆる &quot;unformatted blob of bytes&quot; として仕様に定義されているため、<code translate=no>application/octet-stream</code> を指定するのが妥当そうだ。
+        <p>どのような辞書なのかは <code translate=no>Use-As-Dictionary</code> の <code translate=no>type</code> で指定することになっているが、現状はデフォルトの <code translate=no>raw</code> しかない。<code translate=no>raw</code> はいわゆる &quot;unformatted blob of bytes&quot; として仕様に定義されているため、<code translate=no>application/octet-stream</code> を指定するのが妥当そうだ。
         <p>あとの流れは同じだ。以降の JS の取得に対して、ブラウザは <code translate=no>Available-Dictionary</code> を送ってくる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcb, dcz</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> :&#x3C;base64-SHA256 of js.dict>:</span></span>
@@ -427,8 +435,8 @@ s:// [];tollplug(){
           <h3 id="構成"><a href="#構成">構成</a></h3>
           <p>本サイトは、テンプレートエンジンに Markdown を流し込んだ静的な HTML でできており、動的なレスポンスは検索くらいしかない。ビルドした静的ファイルは、全て Brotli の一番強いオプションで、時間をかけてじっくり事前圧縮し、<code translate=no>Content-Encoding: br</code> で配布している。
           <p>Delta Compression の場合、取得済みの記事を次の記事の辞書にすれば、記事の差分だけを送っている状態にできる。ただしこれは、どのハッシュがどの HTML を指すかを把握し、動的に圧縮する必要がある。
-          <p>Separate dictionary の場合、記事ページ(<code translate=no>/entries/*</code>)から辞書を生成し、全ての記事を事前に圧縮しておくことができるだろう。
-          <p>h2o はどちらの方式にも対応していないため、パッチを当てるか mruby で実装する必要がある。まずは PoC として mruby で実装したいため、比較的対応が楽な後者の Separate dictionary 方式を採用することにした。
+          <p>Separate Dictionary の場合、記事ページ(<code translate=no>/entries/*</code>)から辞書を生成し、全ての記事を事前に圧縮しておくことができるだろう。
+          <p>h2o はどちらの方式にも対応していないため、パッチを当てるか mruby で実装する必要がある。まずは PoC として mruby で実装したいため、比較的対応が楽な後者の Separate Dictionary 方式を採用することにした。
         </section>
       </section>
       <section>
@@ -455,7 +463,7 @@ s:// [];tollplug(){
         <pre><code translate=no>0x5e, 0x2a, 0x4d, 0x18 (magic)
 0x20, 0x00, 0x00, 0x00 (magic)
 (SHA256 32 bytes)</code></pre>
-        <p>全ての <code translate=no>.html</code> の隣には、従来の <code translate=no>.html.br</code> と <code translate=no>.html.dcb</code> ファイルがある状態だ。
+        <p>全ての <code translate=no>.html</code> の隣には、従来通りの <code translate=no>.html.br</code> と、新しくビルドした <code translate=no>.html.dcb</code> ファイルがある状態だ。
         <p>全 269 ファイルで圧縮を行ったところ、<code translate=no>.html</code> に対して <code translate=no>.dcb</code> は以下のような結果になった。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
         <figure>
@@ -469,21 +477,18 @@ s:// [];tollplug(){
             </thead>
             <tbody>
               <tr>
-                <td class=align-center>対象ファイル数</td>
-                <td class=align-center>269</td>
-              </tr>
-              <tr>
                 <td class=align-center>平均圧縮後比率</td>
-                <td class=align-center>10.79%</td>
+                <td class=align-center>10.77%</td>
               </tr>
               <tr>
                 <td class=align-center>平均削減率</td>
-                <td class=align-center>89.21%</td>
+                <td class=align-center>89.23%</td>
               </tr>
             </tbody>
           </table>
         </figure>
         <p><code translate=no>.html</code> を配信するより 1/10 程度になる。
+        <p><code translate=no>.br</code> と <code translate=no>.dcb</code> で辞書の効果を比べると以下だ。
         <figure>
           <figcaption>`.br` と `.dcb` の比較</figcaption>
           <table>
@@ -495,26 +500,32 @@ s:// [];tollplug(){
             </thead>
             <tbody>
               <tr>
-                <td class=align-center>対象ファイル数</td>
-                <td class=align-center>269</td>
+                <td class=align-center><code translate=no>.html.br</code> の平均サイズ</td>
+                <td class=align-center>6,486 byte</td>
               </tr>
               <tr>
-                <td class=align-center><code translate=no>.br</code> に対する <code translate=no>.dcb</code> の平均削減率</td>
-                <td class=align-center>46.70%</td>
+                <td class=align-center><code translate=no>.html.dcb</code> の平均サイズ</td>
+                <td class=align-center>3,708 byte</td>
+              </tr>
+              <tr>
+                <td class=align-center>平均サイズ比</td>
+                <td class=align-center>53.20%</td>
+              </tr>
+              <tr>
+                <td class=align-center>平均削減率</td>
+                <td class=align-center>46.80%</td>
               </tr>
             </tbody>
           </table>
         </figure>
-        <p>また、CDT をネゴシエーションできなかった場合は、従来通り <code translate=no>.html.br</code> を返す。
-        <p><code translate=no>.html.br</code> と <code translate=no>.html.dcb</code> を比べると以下だ。
-        <p>つまり辞書のおかげで、ただ brotli 圧縮するより、半分くらい小さくなっていると言える。
+        <p>つまり辞書のおかげで、ただ Brotli 圧縮するより、半分くらい小さくなっていると言える。
       </section>
       <section>
         <h2 id="辞書の配布"><a href="#辞書の配布">辞書の配布</a></h2>
         <p>作成した辞書は、<code translate=no>blog.jxck.io</code> 以下のすべてのパスで、<code translate=no>Link</code> ヘッダでアドバタイズしている。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/dictionary/entries/&#x3C;sha256>.dict>; rel="compression-dictionary"</span></span></code></pre>
         <p>どこかしらにアクセスすれば辞書をバックグラウンドで取得できるので、次にアクセスする記事から圧縮に使える。
-        <p>辞書の有効期限は、単純に辞書の <code translate=no>Cache-Control</code> で行う。
+        <p>辞書の有効期限は、単純に辞書の <code translate=no>Cache-Control</code> で管理する。
         <p>以前は <code translate=no>ttl=3600</code> のように、キャッシュと独立した辞書の期限を指定できる提案もあった。これは特に、先の Delta Compression のパターンで HTML レスポンスの期限と、辞書としての期限を変えたいという要望だった。しかし、<code translate=no>max-age</code> と <code translate=no>stale-while-revalidate</code> の併用などによってカバーできる可能性があり、必要になったら再度議論する方向で一旦削除されている。
         <p>辞書名そのものにハッシュ値があるため、<code translate=no>max-age</code> は長くできる。したがって、辞書のレスポンスはこのようにした。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/octet-stream</span></span>
@@ -558,7 +569,7 @@ If the request does not include an &quot;Origin&quot; request header, return FAL
 If the value of the &quot;Access-Control-Allow-Origin&quot; response header is &quot;*&quot;, return TRUE.
 If the value of the &quot;Access-Control-Allow-Origin&quot; response header matches the value of the &quot;Origin&quot; request header, return TRUE.
 Return FALSE.</code></pre>
-        <p>ただし、本サイトでは実装を小さくするため、このすべては実装してない。例えば、他のサイトから Origin をまたいで遷移してくる場合は、辞書の圧縮を行ってない。対応しなければ、従来通り <code translate=no>.html</code> や <code translate=no>.html.br</code> にフォールバックするだけだ。
+        <p>ただし、本サイトでは実装を小さくするため、このすべては実装していない。例えば、他のサイトから Origin をまたいで遷移してくる場合は、辞書の圧縮を行っていない。対応しなければ、従来通り <code translate=no>.html</code> や <code translate=no>.html.br</code> にフォールバックするだけだ。
       </section>
       <section>
         <h2 id="debug"><a href="#debug">Debug</a></h2>
@@ -572,7 +583,7 @@ Return FALSE.</code></pre>
           </picture>
         </p>
         <p>正しい辞書が使えていない場合などは結構ハマる。
-        <p>brotli の圧縮内容を確認する brotlidump.py というツールもあるが、こちらは <code translate=no>-D</code> による独自辞書指定に対応してない。AI がパッチを当てて動かしてくれたので助かった。
+        <p>brotli の圧縮内容を確認する brotlidump.py というツールもあるが、こちらは <code translate=no>-D</code> による独自辞書指定に対応していない。AI がパッチを当てて動かしてくれたので助かった。
         <ul>
           <li>
             brotli/research/brotlidump.py at master · google/brotli
@@ -597,7 +608,7 @@ Return FALSE.</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
+        <p>Compression Dictionary Transport の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
         <p>本ブログでは 2023 年 7 月に、まだ策定段階の Compression Dictionary Transport について解説した。
         <ul>
           <li>
@@ -649,7 +660,7 @@ Return FALSE.</code></pre>
             Mozilla Standard Position
             <ul>
               <li>
-                Request for Mozilla Position on Compression dictionary transport · Issue #771 · mozilla/standards-positions
+                Compression dictionary transport · Issue #771 · mozilla/standards-positions
                 <ul>
                   <li><a href="https://github.com/mozilla/standards-positions/issues/771" target=_blank>https://github.com/mozilla/standards-positions/issues/771</a>
                 </ul>
@@ -691,6 +702,12 @@ Return FALSE.</code></pre>
                 Intent to Ship: Compression dictionary transport with Shared Brotli and Shared Zstandard
                 <ul>
                   <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/MuaRf28nExk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/MuaRf28nExk</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Unship: SDCH
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/nQl0ORHy7sw/m/LkXwXcUtAgAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/nQl0ORHy7sw/m/LkXwXcUtAgAJ</a>
                 </ul>
               </li>
             </ul>
