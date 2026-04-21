@@ -527,6 +527,14 @@ s:// [];tollplug(){
         <p>どこかしらにアクセスすれば辞書をバックグラウンドで取得できるので、次にアクセスする記事から圧縮に使える。
         <p>辞書の有効期限は、単純に辞書の <code translate=no>Cache-Control</code> で管理する。
         <p>以前は <code translate=no>ttl=3600</code> のように、キャッシュと独立した辞書の期限を指定できる提案もあった。これは特に、先の Delta Compression のパターンで HTML レスポンスの期限と、辞書としての期限を変えたいという要望だった。しかし、<code translate=no>max-age</code> と <code translate=no>stale-while-revalidate</code> の併用などによってカバーできる可能性があり、必要になったら再度議論する方向で一旦削除されている。
+        <ul>
+          <li>
+            Compression dictionary lifetime and cache lifetime · Issue #2649 · httpwg/http-extensions
+            <ul>
+              <li><a href="https://github.com/httpwg/http-extensions/issues/2649" target=_blank>https://github.com/httpwg/http-extensions/issues/2649</a>
+            </ul>
+          </li>
+        </ul>
         <p>辞書名そのものにハッシュ値があるため、<code translate=no>max-age</code> は長くできる。したがって、辞書のレスポンスはこのようにした。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/octet-stream</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/entries/*", match-dest=("document"), id="entries"</span></span>
