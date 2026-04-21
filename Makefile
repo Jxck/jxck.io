@@ -262,14 +262,20 @@ $(DICT_CONF): $(DICT_ACTIVE)
 	    -dcb \
 	    $<
 
+# 辞書を再生成する
+# 配信用の hash.dict.br と全 html.dcb を更新する
 dict:
 	@$(MAKE) -B $(DICT_ACTIVE)
+	@dict_name=$$(readlink $(DICT_ACTIVE)); \
+	  $(MAKE) -B "$(DICT_DIR)/$$dict_name.br"
 	@$(MAKE) -B dcb
+	@$(MAKE) reload
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
 
-# 圧縮
+# 圧縮 .br と .dcb を生成する
+# 辞書は再生成せず、既存の辞書で行う
 comp: $(COMP_BR) $(BLOG_DCB)
 
 # .br と .dcb と辞書を削除
