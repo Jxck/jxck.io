@@ -440,6 +440,9 @@ Link: </dictionary/entries/<sha256>.dict>; rel="compression-dictionary"
 
 以前は `ttl=3600` のように、キャッシュと独立した辞書の期限を指定できる提案もあった。これは特に、先の Delta Compression のパターンで HTML レスポンスの期限と、辞書としての期限を変えたいという要望だった。しかし、`max-age` と `stale-while-revalidate` の併用などによってカバーできる可能性があり、必要になったら再度議論する方向で一旦削除されている。
 
+- Compression dictionary lifetime and cache lifetime · Issue #2649 · httpwg/http-extensions
+  - https://github.com/httpwg/http-extensions/issues/2649
+
 辞書名そのものにハッシュ値があるため、`max-age` は長くできる。したがって、辞書のレスポンスはこのようにした。
 
 ```http
