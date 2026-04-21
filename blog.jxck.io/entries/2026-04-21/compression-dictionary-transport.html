@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-04-21/compression-dictionary-transport.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Compression Dictionary Transport は、圧縮に用いる辞書を HTTP 上で共有するプロトコルであり、2025 年 9 月に RFC 9842 として標準化された。本サイトの対応を行ったので、方式の概要とデプロイ方法について解説する。">
+  <meta name=keywords            content="cdt,zstd,brotli,compression">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-04-21/compression-dictionary-transport.html>
+  <meta property=og:title        content="Compression Dictionary Transport によるコンテンツ圧縮の最適化 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Compression Dictionary Transport は、圧縮に用いる辞書を HTTP 上で共有するプロトコルであり、2025 年 9 月に RFC 9842 として標準化された。本サイトの対応を行ったので、方式の概要とデプロイ方法について解説する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-04-21/compression-dictionary-transport.html"
+    },
+    "headline": "Compression Dictionary Transport によるコンテンツ圧縮の最適化 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-04-21T00:00:00+09:00",
+    "dateModified": "2026-04-21T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Compression Dictionary Transport は、圧縮に用いる辞書を HTTP 上で共有するプロトコルであり、2025 年 9 月に RFC 9842 として標準化された。本サイトの対応を行ったので、方式の概要とデプロイ方法について解説する。"
+  }
+  </script>
+
+  <title>Compression Dictionary Transport によるコンテンツ圧縮の最適化 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-21>2026-04-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-21>2026-04-21</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cdt">cdt</a>
+              <li><a href="/tags#zstd">zstd</a>
+              <li><a href="/tags#brotli">brotli</a>
+              <li><a href="/tags#compression">compression</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#圧縮">圧縮</a>
+              <li><a href="#辞書">辞書</a>
+              <li><a href="#brotli-の静的辞書">Brotli の静的辞書</a>
+              <li><a href="#自作の辞書">自作の辞書</a>
+              <ol>
+                <li><a href="#テンプレートを用いた辞書">テンプレートを用いた辞書</a>
+                <li><a href="#差分辞書">差分辞書</a>
+              </ol>
+              <li><a href="#webbundle-の失敗">WebBundle の失敗</a>
+              <li><a href="#web-font-問題">Web Font 問題</a>
+              <li><a href="#web-における辞書共有">Web における辞書共有</a>
+              <li><a href="#rfc-9842-compression-dictionary-transport">RFC 9842: Compression Dictionary Transport</a>
+              <li><a href="#delta-compression">Delta Compression</a>
+              <li><a href="#separate-dictionary">Separate Dictionary</a>
+              <li><a href="#プライバシーと制限">プライバシーと制限</a>
+              <li><a href="#本サイトへの適用">本サイトへの適用</a>
+              <ol>
+                <li><a href="#構成">構成</a>
+              </ol>
+              <li><a href="#辞書の作成">辞書の作成</a>
+              <li><a href="#事前圧縮">事前圧縮</a>
+              <li><a href="#辞書の配布">辞書の配布</a>
+              <li><a href="#.dcb-ファイルの提供"><code translate=no>.dcb</code> ファイルの提供</a>
+              <li><a href="#debug">Debug</a>
+              <li><a href="#demo">DEMO</a>
+              <li><a href="#outro">Outro</a>
+              <li><a href="#resources">Resources</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">Compression Dictionary Transport によるコンテンツ圧縮の最適化</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Compression Dictionary Transport は、圧縮に用いる辞書を HTTP 上で共有するプロトコルであり、2025 年 9 月に RFC 9842 として標準化された。
+        <p>本サイトの対応を行ったので、方式の概要とデプロイ方法について解説する。
+      </section>
+      <section>
+        <h2 id="圧縮"><a href="#圧縮">圧縮</a></h2>
+        <p>圧縮は、基本的に「同じ値が出てきたら、前の値への参照に置き換える」という方式が中心となる。
+        <p>例えば以下のような HTML を考えよう。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"author"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"canonical"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://blog.jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+        <p>参照する位置とその長さを <code translate=no>[n:m]</code> と表すと以下のように置き換えられる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"author"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://jxck.io"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[0:11]canonical[18:16]blog.[34:9]</span></span></code></pre>
+        <p>文字列表現では少ししか短くなっていないが、参照をバイナリで表現すればかなり小さくなる。これが LZ77 などの基本的な考え方だ。
+        <p>この方式は、対象としたデータの中で、いかに効率よく「同じ値」を見つけるかが肝となる。圧縮ツールでは、この「同じ値」をどこまでの範囲で探すかを指定している場合が多い。丁寧に探せば圧縮率は向上するが、メモリ消費と実行時間が増え、速度を重視すると圧縮率が下がる。
+        <p>ところが、対象データだけで探索を行う場合、最初の方に出てくるデータは圧縮が難しいことがわかる。そこより前に、コピーできるデータがないからだ。
+        <p>同じ理由で、小さいファイルの圧縮率は相対的に下がる。そこが、アルゴリズムだけを用いた圧縮の限界になる。
+      </section>
+      <section>
+        <h2 id="辞書"><a href="#辞書">辞書</a></h2>
+        <p>例えば HTML の場合、<code translate=no>&lt;!doctype html&gt;</code> で始まる可能性が非常に高く、画像などのバイナリデータは、ヘッダ部分には共通するパターンが多くなる。それらは、1 回しか出てこないことも多い。
+        <p>そこで、あらかじめ <code translate=no>&lt;!doctype html&gt;</code> やバイナリヘッダなどのデータを参照用に用意しておき、それを圧縮対象の手前にくっつけてから圧縮を始めると、こうしたパターンも圧縮できることになる。
+        <p>このとき、圧縮で参照するために頻出パターンを集めたファイルを、LZ77 では辞書(Dictionary)と呼ぶ。汎用アルゴリズムを超えた圧縮を実現するには、いかに「精度の良い辞書」を用意するかが、圧縮性能を大きく左右することになる。
+      </section>
+      <section>
+        <h2 id="brotli-の静的辞書"><a href="#brotli-の静的辞書">Brotli の静的辞書</a></h2>
+        <p>Brotli は最初から「Web 上でやり取りするデータ」にフォーカスしている。そこで、実際に Web 上でやり取りされている情報を大量に集め、そこから頻出パターンを抜き出した辞書を生成し、<em>仕様の中に直書き</em> している。
+        <p>RFC にある、長い Hex がそれに当たる。
+        <ul>
+          <li>
+            RFC 7932 - Brotli Compressed Data Format
+            <ul>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc7932#appendix-A" target=_blank>https://datatracker.ietf.org/doc/html/rfc7932#appendix-A</a>
+            </ul>
+          </li>
+        </ul>
+        <p>実際にバイナリを覗いてみると、テキストとして認識可能な箇所が多々ある。
+        <p>最初の部分は、頻出英単語だろう。
+        <pre><code translate=no>timedownlifeleftbackcodedatashowonlysitecityopenjustlikefreeworktextyearoverbodyloveformbookplaylivelinehelphomesidemorewordlongthemviewfindpagedaysfullheadtermeachareafromtruemarkableuponhighdatelandnewsevennextcasebothpostusedmadehandherewhatnameLinkblogsizebaseheldmakemainuser&apos;)</code></pre>
+        <p>途中はなんとなく JS 感がある(改行も含めて圧縮できるよう、辞書内に改行がそのまま入っている)。
+        <pre><code translate=no>exit:35Zvarsbeat&apos;});diet999;anne}}&lt;/[i].LangkmĀ²wiretoysaddssealalex;
+  }echonine.org005)tonyjewssandlegsroof000) 200winegeardogsbootgarycutstyletemption.xmlcockgang$(&apos;.50pxPh.Dmiscalanloandeskmileryanunixdisc);}
+dustclip).
+
+70px-200DVDs7]&gt;&lt;tapedemoi++)wageeurophiloptsholeFAQsasin-26TlabspetsURL bulkcook;}
+HEAD[0])abbrjuan(198leshtwin&lt;/i&gt;sonyguysfuckpipe|-
+!002)ndow[1];[];
+Log salt
+    bangtrimbath){
+00px
+});ko:ģfeesad&gt;
+s:// [];tollplug(){
+{
+ .js&apos;200pdualboat.JPG);
+}quot);
+
+&apos;);</code></pre>
+        <p>後半の方は明らかに頻出 HTML だ。
+        <pre><code translate=no>&lt;html &lt;meta charset=&quot;utf-8&quot;&gt;:url&quot; content=&quot;http://.css&quot; rel=&quot;stylesheet&quot;style type=&quot;text/css&quot;&gt;type=&quot;text/css&quot; href=&quot;w3.org/1999/xhtml&quot; xmltype=&quot;text/javascript&quot; method=&quot;get&quot; action=&quot;link rel=&quot;stylesheet&quot;  = document.getElementtype=&quot;image/x-icon&quot; /&gt;cellpadding=&quot;0&quot; cellsp.css&quot; type=&quot;text/css&quot; &lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;&quot; width=&quot;1&quot; height=&quot;1&quot;&quot;&gt;&lt;a href=&quot;http://www.style=&quot;display:none;&quot;&gt;alternate&quot; type=&quot;appli-//W3C//DTD XHTML 1.0 ellspacing=&quot;0&quot; cellpad type=&quot;hidden&quot; value=&quot;/a&gt;&amp;nbsp;&lt;span role=&quot;s</code></pre>
+        <p>これが Brotli の仕様そのものに含まれている。つまり、辞書を別途共有する必要はなく、サーバとクライアント両方が Brotli に対応しているだけで、この辞書を使った圧縮/伸長が可能になるのだ。
+        <p>Web の静的ファイルを Brotli 圧縮すると、gzip よりかなり小さく圧縮できるのは、この辞書によるところも大きい。
+      </section>
+      <section>
+        <h2 id="自作の辞書"><a href="#自作の辞書">自作の辞書</a></h2>
+        <p>Brotli が RFC になったのは 2016 年だ。すでに 10 年経ち、その間にも Web には様々な変化がある。新しく増えた API や、頻度が増えた構文パターンなどは、既存の辞書には含まれていない。その変化を辞書に反映するには RFC を更新する必要があるのだ。
+        <p>また、あくまで世界中のトラフィックを集計して作った汎用辞書であるため、自分が配布するコンテンツに特化したチューニングなどもできない。
+        <p>もしここで、自分の配布しているコンテンツの特性を踏まえて最適化された <em>自作の辞書</em> を作り、それを用いて圧縮できれば、より小さくできるだろう。
+        <section>
+          <h3 id="テンプレートを用いた辞書"><a href="#テンプレートを用いた辞書">テンプレートを用いた辞書</a></h3>
+          <p>例えば、テンプレートエンジンにコンテンツを流し込んでいるサイトの場合、テンプレートはどの記事にも現れる共通部分ととらえることができる。そのテンプレートを連結したものは、HTML を圧縮する際の辞書として使えるだろう。雑に言うとこうだ。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 辞書生成</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ cat ./src/template/</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.hbs </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> template.dict</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># 辞書を用いて圧縮</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ brotli --dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">template.dict</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> index.html</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html.br</span></span></code></pre>
+          <p>この辞書は、レスポンス HTML の多くの箇所をカバーするため、全体の圧縮効率を向上することができる。
+        </section>
+        <section>
+          <h3 id="差分辞書"><a href="#差分辞書">差分辞書</a></h3>
+          <p>まず、Lorem Ipsum の冒頭を v0.txt として保存する。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="text" data-path="v0.txt"><code translate="no"><span class="line"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></span>
+<span class="line"><span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></span>
+<span class="line"><span> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span></span>
+<span class="line"><span> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></code></pre>
+          <p>次に、途中の一単語だけ変更した v1.txt を用意する。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="diff"><code translate="no"><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- Duis aute irure dolor in reprehenderit in voluptate...</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ Duis aute irure dolor in Jxck in voluptate...</span></span></code></pre>
+          <p>このとき、v0.txt を辞書に v1.txt を圧縮してみる。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ brotli --dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">v0.txt</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> v1.txt</span></span></code></pre>
+          <p>この結果は、以下のようなバイナリになっている。
+          <pre><code translate=no>======== Meta block contents ========
+1. COPY   259 bytes from v0.txt[0:259]
+2. INSERT &quot;Jxck&quot;
+3. COPY   177 bytes from v0.txt[272:449]</code></pre>
+          <p>前後は v0 の該当部分を参照し、変更部分のリテラルだけがある状態だ。おかげで、440Byte が 19byte まで圧縮できている。
+          <p>つまり、<em>両者の Diff だけを送っている</em> ような状態にかなり近いといえるのだ。
+          <p>これを JS などに応用すると、bundle.v0.js を辞書にすれば、その一部を更新してビルドし直した bundle.v1.js は v0 と v1 の差分だけに圧縮できるのだ。
+          <p>このように、辞書を用いた差分の圧縮は、<strong>Web における差分更新</strong> に応用できるのだ。
+        </section>
+      </section>
+      <section>
+        <h2 id="webbundle-の失敗"><a href="#webbundle-の失敗">WebBundle の失敗</a></h2>
+        <p>実は Web における差分更新を実現するための取り組みは、以前にもあった。
+        <p>ページに必要な複数のリソースを 1 つにまとめ、1 回の Fetch で取得できるようにする WebBundle という仕様がかつて提案された。
+        <ul>
+          <li>
+            Webbundle によるサブリソース取得の最適化 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html">https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>このメリットは、現代ではスタンダードな JS の Bundling でも効果が期待された。
+        <p>我々は ESM を手に入れてからも、Native な <code translate=no>import</code> はほとんど使ってない。<code translate=no>import</code> 段階で、多くの依存を取得すると、オーバーヘッドがデカいため WebPack などで 1 ファイルにまとめて配布している。その中では Native な <code translate=no>import</code> は使ってない。<code translate=no>import</code> は Bundler が見るための構文としてしか使われてない現状があるのだ。
+        <p>従って、bundle された一箇所 <code translate=no>main.js</code> だけが修正されただけでも、更新されてない依存を含めた bundle.js 全体を再取得する必要があるのだ。これは非常に無駄が多い。
+        <p>そこで複数の JS を Bundle して bundle.js を作るのではなく、バラバラのまま WebBundle で一括配布する。クライアントは、ばらばらに Fetch されたかのように import できる。そうすれば、JS の <code translate=no>import</code> 時に Fetch するのと異なり、ネットワークオーバーヘッドを減らして、生の <code translate=no>import</code> が使える。個別のキャッシュもできる。これが WebBundle に期待されたメリットだ。
+        <p>問題は、WebBundle した中で <code translate=no>main.js</code> だけが更新された場合、それだけを取得できるようにするにはどうするか?という差分更新の API 設計だった。
+        <p>単純に「これらのファイルを持っている」などのリストを素直に提示するのは、クライアントのキャッシュ状況を開示していることになる。そこまでエントロピーが高いと、Fingerprint や Tracking のベクターとなってしまう。また、この設計はどうしても IPC を挟み、パフォーマンスが出にくいという問題もあるようだった。
+        <p>差分更新ができなければ、結局最新の WebBundle ファイルを毎回取得する必要があり、bundle.js と差がないことになる。そして、徐々にこのコンセプトは作業がなくなり、実質死んだ提案と言って良い状態になった。
+        <p>その後始まった Shared Brotli は、この「差分更新」のコンセプトを、辞書を用いて再始動するモチベーションがあったのだ。
+      </section>
+      <section>
+        <h2 id="web-font-問題"><a href="#web-font-問題">Web Font 問題</a></h2>
+        <p>これが最も効くユースケースは WebFont だろう。
+        <p>Noto Sans JP の woff2 を配布したいが、全部は重い。かといって、そのページに必要な文字だけを送ったら、次のページでは足りない。全ページで必要な文字を事前に把握するのも難しい。
+        <p>ページごとに毎回異なる woff2 を取得するのも重いし、ページ間の woff2 はほとんどが共通していることになる。これこそが、差分更新が求められる場面だ。
+        <p>例えば、全てのページで「そのページに必要な文字だけ」の woff2 を用意し、ページごとに送る。しかし、転送は既に送っている woff2 を辞書として圧縮することで、「足りない文字だけを送る」に近い転送量に下げることができる。
+        <p>全ページで、そのページ用の woff2 を作っておく事前作業や、それを「クライアントにすでにある woff2」を辞書として圧縮するオーバーヘッドは残る。そもそも、1 ファイルの転送は残るため、ネットワークが遅ければフォント置換による FO(I/U)T は避けられないだろう。それでも、CJK で Web Font をどうしても使いたい開発者にとっては、縋れる藁ではあるだろう。
+        <p>残る問題は、「その辞書をどう共有するか」というプロトコルだ。
+      </section>
+      <section>
+        <h2 id="web-における辞書共有"><a href="#web-における辞書共有">Web における辞書共有</a></h2>
+        <p>実は過去にも、まさしく「サーバとクライアントで辞書を共有し圧縮率を上げる」という目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、Chrome にも実装されていた。
+        <ul>
+          <li>
+            A Proposal for Shared Dictionary Compression over HTTP
+            <ul>
+              <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/js.dictionary_Compression_over_HTTP.pdf" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/js.dictionary_Compression_over_HTTP.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome からも削除された。
+        <p>一方、後発の Brotli がブラウザに実装され、<code translate=no>Content-Encoding: br</code> として静的辞書を使った圧縮転送を実現した。つまり、ブラウザには Brotli の実装が既に入っていたのだ。
+        <p>この Brotli には、仕様に定義された静的辞書以外に、独自に作った辞書を使うこともできるため、その辞書を共有するためのプロトコルを作る取り組みが始まった。
+        <p>SDCH や WebBundle の失敗を踏まえて、仕様をシンプルに絞った。CORS を前提とする昨今のセキュリティマナー、過剰なエントロピーを露出しないプライバシーマナーに則りモダンな仕様にした。
+        <p>そうして、差分更新の近似になる「Web における辞書共有」を再定義したのが &quot;<em>Shared Brotli</em>&quot; と呼ばれる提案だった。
+        <p>後から「zstd など他の圧縮方式でも使える」ということで、名前をより汎用的な &quot;Compression Dictionary Transport (CDT)&quot; にリネームし、標準化作業が進められた。
+      </section>
+      <section>
+        <h2 id="rfc-9842-compression-dictionary-transport"><a href="#rfc-9842-compression-dictionary-transport">RFC 9842: Compression Dictionary Transport</a></h2>
+        <p>2025 年 9 月に RFC 9842 として発行された。
+        <ul>
+          <li>
+            RFC 9842: Compression Dictionary Transport
+            <ul>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc9842" target=_blank>https://www.rfc-editor.org/rfc/rfc9842</a>
+            </ul>
+          </li>
+        </ul>
+        <p>CDT は、任意のコンテンツから辞書を作成し、それをサーバ/クライアント間で共有する 2 つの方式が提案されている。
+        <ul>
+          <li>
+            Delta Compression
+            <ul>
+              <li>クライアントが取得したコンテンツを、次の取得の辞書にする
+            </ul>
+          </li>
+          <li>
+            Separate Dictionary
+            <ul>
+              <li>事前にサーバが用意した辞書を、クライアントがバックグラウンドで取得する
+            </ul>
+          </li>
+        </ul>
+        <p>どちらも、共有した辞書を Brotli/Zstd で使用することができる。
+      </section>
+      <section>
+        <h2 id="delta-compression"><a href="#delta-compression">Delta Compression</a></h2>
+        <p>すでに取得したリソースを、次の送信するリソースの辞書として使う方式だ。
+        <p>例えば <code translate=no>index.html</code> を返す際に、「他の HTML の辞書に使える」ということを<code translate=no>Use-As-Dictionary</code> で指定する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/*", match-dest=("document"), id="entries", type="raw"</span></span></code></pre>
+        <p><code translate=no>index.html</code> を取得済みのクライアントは、そこから <code translate=no>about.html</code> に遷移する際に、以下のように「辞書に使える <code translate=no>index.html</code> を持っている、とリクエストに付与する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcb, dcz</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> :&#x3C;base64-SHA256 of index.html>:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Dictionary-ID</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "entries"</span></span></code></pre>
+        <p>提示されたハッシュから、クライアントが <code translate=no>index.html</code> を辞書として持っていることを知ったサーバは、次に返す <code translate=no>about.html</code> を <code translate=no>index.html</code> を辞書として圧縮して返すことができる。Brotli で圧縮する場合は Dictionary-Compressed Brotli (<code translate=no>dcb</code>)、Zstd なら Dictionary-Compressed Zstd (<code translate=no>dcz</code>) としてレスポンスする。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcb</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Vary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> Accept-Encoding, Available-Dictionary, Dictionary-ID</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/*", match-dest=("document"), id="entries", type="raw"</span></span></code></pre>
+        <p>このレスポンスは、圧縮に使う辞書によって結果が変わってしまうため、<code translate=no>Vary</code> に依存するヘッダを入れるのを忘れてはならない。また、ここに <code translate=no>Use-As-Dictionary</code> を付与すれば、他のコンテンツの圧縮にも使うことができる。
+        <p>この場合サーバは、受け取った <code translate=no>Available-Dictionary</code> のハッシュ値から、対応する辞書(ここでは HTML)を引き、それを使って次のレスポンスを圧縮することになる。現在、Brotli や Zstd のオンザフライ圧縮をしているのであれば、そこに辞書を追加するだけなので、パフォーマンスの問題もそこまで大きくはならないだろう。
+        <p>しかし、動的に HTML を生成し、レスポンスしたら捨ててしまうタイプの実装では、ハッシュから辞書となる HTML を引けないため、CDN などに HTML をキャッシュしているような構成の方が相性がいい。辞書にするためメモリに持つ場合は、その管理の戦略も必要だろう。
+        <p>また、オンザフライで圧縮するため、圧縮率よりは圧縮速度を重視した実装をすることになる。速度を重視する場合は、Brotli よりは Zstd の方が有利そうだ。
+        <p>現状、このような高度な差分圧縮配信に対応したサーバは、ざっと探したところ見つかっていない。
+      </section>
+      <section>
+        <h2 id="separate-dictionary"><a href="#separate-dictionary">Separate Dictionary</a></h2>
+        <p>Separate Dictionary は、その名の通り共有辞書を事前生成しておく方法だ。
+        <p>例えば、配信する全ての JS から辞書を作成する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./dictionary_generator</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./js.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./assets/js/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.js</span></span></code></pre>
+        <p>この <code translate=no>js.dict</code> をサーバにデプロイし、HTML の <code translate=no>&lt;link&gt;</code> または HTTP <code translate=no>Link:</code> ヘッダで指定する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"js.dict"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"compression-dictionary"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;js.dict>; rel="compression-dictionary"</span></span></code></pre>
+        <p>このレスポンスを取得した際に、ブラウザは辞書の存在に気づき、それをダウンロードすることで、以降のコンテンツの伸長に利用できる。
+        <p>つまり、投機的な取得であるため、例えばメインページのための辞書をログインページでダウンロードしておくといった設計になるだろう。代わりに、それなりに大きな辞書を配布しやすい。
+        <p><code translate=no>js.dict</code> のレスポンスヘッダには、辞書が対象とするパスを以下のように指定する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/octet-stream</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/assets/js/*", match-dest=("script"), id="js", type="raw"</span></span></code></pre>
+        <p>この仕様の特徴として、<code translate=no>js.dict</code> のための <code translate=no>Content-Type</code> は定義されていない。かなり初期の段階で「あったほうが良いのでは?」というフィードバックもしたが、無いまま仕様になってしまった。
+        <p>どのような辞書なのかは <code translate=no>Use-As-Dictionary</code> の <code translate=no>type</code> で指定することになっているが、現状デフォルトの <code translate=no>raw</code> のみしかない。<code translate=no>raw</code> はいわゆる &quot;unformatted blob of bytes&quot; として仕様に定義されているため、<code translate=no>application/octet-stream</code> を指定するのが妥当そうだ。
+        <p>あとの流れは同じだ。以降の JS の取得に対して、ブラウザは <code translate=no>Available-Dictionary</code> を送ってくる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept-Encoding</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcb, dcz</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Available-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> :&#x3C;base64-SHA256 of js.dict>:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Dictionary-ID</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "js"</span></span></code></pre>
+        <p>サーバは、クライアントが指定してきた辞書を使用し、コンテンツを圧縮して返すことができる。
+        <p>この方式の場合は、辞書が事前に生成済みだ。したがって、bundle.js のように JS も生成済みであれば、事前に時間をかけて丁寧に圧縮した bundle.js.dcb を用意しておき、辞書が一致したらそれを返すという方法が使える。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ brotli -q 11 -w 24 -f --dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">js.dict</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> bundle.js</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> bundle.js.dcb</span></span></code></pre>
+        <p>JS のビルドに追加して実行すれば良いため、静的サイトジェネレータなどとも相性が良いと言えるだろう。
+      </section>
+      <section>
+        <h2 id="プライバシーと制限"><a href="#プライバシーと制限">プライバシーと制限</a></h2>
+        <p>WebBundle の失敗を踏まえ、CDT では制限を課している。
+        <ul>
+          <li>
+            辞書は Partitioning される
+            <ul>
+              <li>Cookie や Cache と同じ
+              <li>辞書をサイト間共有するといったことはできない
+            </ul>
+          </li>
+          <li>
+            <code translate=no>Available-Dictionary</code> は常に 1 つしか送らない
+            <ul>
+              <li>複数辞書の候補があっても、それをリストで送りサーバが選ぶようなことはしない
+              <li>どれが送られるかはクライアントが選ぶので、トラッキングベクタになりにくい
+            </ul>
+          </li>
+          <li>
+            辞書と圧縮対象は Same-Origin
+            <ul>
+              <li><code translate=no>Use-As-Dictionary</code> の <code translate=no>match</code> は辞書と同じ origin のみ
+              <li>Cross-Origin になるレスポンスに CDT を使うなら CORS チェックを通る必要がある
+              <li>別 origin に対して無条件に <code translate=no>Available-Dictionary</code> を送れるわけではない
+            </ul>
+          </li>
+        </ul>
+        <p>これにより、Web のセキュリティ基盤である Same Origin Policy に則った仕様となり、Cross Origin Info Leak のリスクを減らすことができる。
+      </section>
+      <section>
+        <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
+        <section>
+          <h3 id="構成"><a href="#構成">構成</a></h3>
+          <p>本サイトは、テンプレートエンジンに Markdown を流し込んだ静的な HTML でできており、動的なレスポンスは検索くらいしかない。ビルドした静的ファイルは、全て Brotli の一番強いオプションで、時間をかけてじっくり事前圧縮し、<code translate=no>Content-Encoding: br</code> で配布している。
+          <p>Delta Compression の場合、取得済みの記事を次の記事の辞書にすれば、記事の差分だけを送っている状態にできる。ただしこれは、どのハッシュがどの HTML を指すかを把握し、動的に圧縮する必要がある。
+          <p>Separate dictionary の場合、記事ページ(<code translate=no>/entries/*</code>)から辞書を生成し、全ての記事を事前に圧縮しておくことができるだろう。
+          <p>h2o はどちらの方式にも対応していないため、パッチを当てるか mruby で実装する必要がある。まずは PoC として mruby で実装したいため、比較的対応が楽な後者の Separate dictionary 方式を採用することにした。
+        </section>
+      </section>
+      <section>
+        <h2 id="辞書の作成"><a href="#辞書の作成">辞書の作成</a></h2>
+        <p>まず、サンプルとなるファイルから辞書を作成する。
+        <p>今回は単純に <code translate=no>/entries/**/*.html</code> を全てサンプルとし、辞書を生成した。テンプレート由来の共通部分も最終的には HTML に展開されて含まれるため、入力は全記事 HTML のみとしている。
+        <p>作成した辞書は <code translate=no>/dictionary/entries/&lt;sha256&gt;.dict</code> として配布している。
+        <p>辞書は大きくすることもできるが、大きければ効率が良いわけでもない。色々テストをした結果、256KB を採用した。
+        <p>辞書もほとんどただのテキストなので、Brotli で強めに圧縮したところ、60KB ほどになった。
+        <p>辞書の作り方は、それだけで 1 つのエントリになるため、次回に詳細を解説する。
+      </section>
+      <section>
+        <h2 id="事前圧縮"><a href="#事前圧縮">事前圧縮</a></h2>
+        <p>HTML のビルドプロセスの最後に、その HTML を全て集めた辞書を作り、その辞書で各 HTML を圧縮する処理を加えた。
+        <p>事前処理なので、最も強いオプションで強く圧縮している。
+        <p>実験したところ、同じ辞書を使っていても、<code translate=no>zstd</code> と <code translate=no>brotli</code> で圧縮率が変わる。
+        <p>本サイトでは、<code translate=no>brotli</code> を用いた圧縮の方が小さくなったため、そちらを採用することにした。
+        <p>提供している辞書に加えて、Brotli 自体が静的な辞書を持っていることも効いているのかもしれない。
+        <p>辞書を使って圧縮した <code translate=no>.dcb</code> / <code translate=no>.dcz</code> には固定のヘッダをつける必要がある。
+        <p>Dictionary-Compressed Brotli (<code translate=no>dcb</code>) は以下の 36 byte
+        <pre><code translate=no>0xff, 0x44, 0x43, 0x42 (magic)
+(SHA256 32 bytes)</code></pre>
+        <p>Dictionary-Compressed Zstd (<code translate=no>dcz</code>) は以下の 40 byte
+        <pre><code translate=no>0x5e, 0x2a, 0x4d, 0x18 (magic)
+0x20, 0x00, 0x00, 0x00 (magic)
+(SHA256 32 bytes)</code></pre>
+        <p>全ての <code translate=no>.html</code> の隣には、従来の <code translate=no>.html.br</code> と <code translate=no>.html.dcb</code> ファイルがある状態だ。
+        <p>全 269 ファイルで圧縮を行ったところ、<code translate=no>.html</code> に対して <code translate=no>.dcb</code> は以下のような結果になった。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
+        <figure>
+          <figcaption>`.html` と `.dcb` の比較</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-center>指標</th>
+                <th class=align-center>値</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-center>対象ファイル数</td>
+                <td class=align-center>269</td>
+              </tr>
+              <tr>
+                <td class=align-center>平均圧縮後比率</td>
+                <td class=align-center>10.79%</td>
+              </tr>
+              <tr>
+                <td class=align-center>平均削減率</td>
+                <td class=align-center>89.21%</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+        <p><code translate=no>.html</code> を配信するより 1/10 程度になる。
+        <figure>
+          <figcaption>`.br` と `.dcb` の比較</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-center>指標</th>
+                <th class=align-center>値</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-center>対象ファイル数</td>
+                <td class=align-center>269</td>
+              </tr>
+              <tr>
+                <td class=align-center><code translate=no>.br</code> に対する <code translate=no>.dcb</code> の平均削減率</td>
+                <td class=align-center>46.70%</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+        <p>また、CDT をネゴシエーションできなかった場合は、従来通り <code translate=no>.html.br</code> を返す。
+        <p><code translate=no>.html.br</code> と <code translate=no>.html.dcb</code> を比べると以下だ。
+        <p>つまり辞書のおかげで、ただ brotli 圧縮するより、半分くらい小さくなっていると言える。
+      </section>
+      <section>
+        <h2 id="辞書の配布"><a href="#辞書の配布">辞書の配布</a></h2>
+        <p>作成した辞書は、<code translate=no>blog.jxck.io</code> 以下のすべてのパスで、<code translate=no>Link</code> ヘッダでアドバタイズしている。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/dictionary/entries/&#x3C;sha256>.dict>; rel="compression-dictionary"</span></span></code></pre>
+        <p>どこかしらにアクセスすれば辞書をバックグラウンドで取得できるので、次にアクセスする記事から圧縮に使える。
+        <p>辞書の有効期限は、単純に辞書の <code translate=no>Cache-Control</code> で行う。
+        <p>以前は <code translate=no>ttl=3600</code> のように、キャッシュと独立した辞書の期限を指定できる提案もあった。これは特に、先の Delta Compression のパターンで HTML レスポンスの期限と、辞書としての期限を変えたいという要望だった。しかし、<code translate=no>max-age</code> と <code translate=no>stale-while-revalidate</code> の併用などによってカバーできる可能性があり、必要になったら再度議論する方向で一旦削除されている。
+        <p>辞書名そのものにハッシュ値があるため、<code translate=no>max-age</code> は長くできる。したがって、辞書のレスポンスはこのようにした。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Type</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> application/octet-stream</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Use-As-Dictionary</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> match="/entries/*", match-dest=("document"), id="entries"</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cache-Control</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000</span></span></code></pre>
+      </section>
+      <section>
+        <h2 id=".dcb-ファイルの提供"><a href="#.dcb-ファイルの提供"><code translate=no>.dcb</code> ファイルの提供</a></h2>
+        <p>最後は辞書利用のネゴシエーションだ。これは、h2o の mruby handler で実装している。
+        <ul>
+          <li>
+            jxck.io/.mruby.handler/dcb.rb
+            <ul>
+              <li><a href="https://github.com/Jxck/jxck.io/blob/main/.mruby.handler/dcb.rb" target=_blank>https://github.com/Jxck/jxck.io/blob/main/.mruby.handler/dcb.rb</a>
+            </ul>
+          </li>
+        </ul>
+        <p>要点はこうだ。
+        <ul>
+          <li>起動時に <code translate=no>active.dict</code> を取得し、SHA256 のハッシュを事前に計算しておく
+          <li>
+            リクエストごとに以下をチェック
+            <ul>
+              <li><code translate=no>Accept-Encoding: dcb</code> がある
+              <li><code translate=no>Available-Dictionary</code> が <code translate=no>active.dict</code> の実体辞書のハッシュと一致
+              <li><code translate=no>Dictionary-ID</code> が <code translate=no>&quot;entries&quot;</code> と一致
+              <li>リクエストされた Path が <code translate=no>match</code> / <code translate=no>match-dest</code> と一致
+              <li>リクエストコンテキストが正しい
+            </ul>
+          </li>
+        </ul>
+        <p>最後のリクエストコンテキストは、要するに CORS チェックだ。
+        <p>RFC の以下にアルゴリズムがあるため、それをそのまま実装すれば良い。
+        <pre><code translate=no>If there is no &quot;Sec-Fetch-Site&quot; request header, return TRUE.
+If the value of the &quot;Sec-Fetch-Site&quot; request header is &quot;same-origin&quot;, return TRUE.
+If there is no &quot;Sec-Fetch-Mode&quot; request header, return TRUE.
+If the value of the &quot;Sec-Fetch-Mode&quot; request header is &quot;navigate&quot; or &quot;same-origin&quot;, return TRUE.
+If the value of the &quot;Sec-Fetch-Mode&quot; request header is &quot;cors&quot;:
+If the response does not include an &quot;Access-Control-Allow-Origin&quot; response header, return FALSE.
+If the request does not include an &quot;Origin&quot; request header, return FALSE.
+If the value of the &quot;Access-Control-Allow-Origin&quot; response header is &quot;*&quot;, return TRUE.
+If the value of the &quot;Access-Control-Allow-Origin&quot; response header matches the value of the &quot;Origin&quot; request header, return TRUE.
+Return FALSE.</code></pre>
+        <p>ただし、本サイトでは実装を小さくするため、このすべては実装してない。例えば、他のサイトから Origin をまたいで遷移してくる場合は、辞書の圧縮を行ってない。対応しなければ、従来通り <code translate=no>.html</code> や <code translate=no>.html.br</code> にフォールバックするだけだ。
+      </section>
+      <section>
+        <h2 id="debug"><a href="#debug">Debug</a></h2>
+        <p>正直デバッグはしづらい。
+        <p>一応 Chrome は <code translate=no>chrome://net-internals#sharedDictionary</code> で、取得済み辞書の情報を見ることができ、そこからキャッシュを消すことができる(名前の通り過去の遺物感がある)。
+        <p>
+          <picture>
+            <source type=image/avif srcset=./net-internals.avif?260421_170152>
+            <source type=image/webp srcset=./net-internals.webp?260421_170152>
+            <img loading=lazy decoding=async src=./net-internals.png?260421_170152 alt="chrome のデバッグ画面" width=621 height=343>
+          </picture>
+        </p>
+        <p>正しい辞書が使えていない場合などは結構ハマる。
+        <p>brotli の圧縮内容を確認する brotlidump.py というツールもあるが、こちらは <code translate=no>-D</code> による独自辞書指定に対応してない。AI がパッチを当てて動かしてくれたので助かった。
+        <ul>
+          <li>
+            brotli/research/brotlidump.py at master · google/brotli
+            <ul>
+              <li><a href="https://github.com/google/brotli/blob/master/research/brotlidump.py" target=_blank>https://github.com/google/brotli/blob/master/research/brotlidump.py</a>
+            </ul>
+          </li>
+        </ul>
+        <p>zstd の方は、<code translate=no>--train</code> という辞書を作るモードが備わっている。しかし、この辞書はそのままでは CDT には使えない。これはかなりハマって、結構な時間を溶かしたので、次回解説する。
+        <p>プロトコル自体がもう少し使われるようになれば、開発の周辺環境も改善されるだろう。
+      </section>
+      <section>
+        <h2 id="demo"><a href="#demo">DEMO</a></h2>
+        <p>本サイトの記事 HTML に限定し、Compression Dictionary Transport の Separate Dictionary 対応を行った。
+        <p>
+          <picture>
+            <source type=image/avif srcset=./dictionary-compressed-html.avif?260421_170209>
+            <source type=image/webp srcset=./dictionary-compressed-html.webp?260421_170209>
+            <img loading=lazy decoding=async src=./dictionary-compressed-html.png?260421_170209 alt="CDT により辞書で圧縮された HTML とそのヘッダ" width=901 height=709>
+          </picture>
+        </p>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Shared Compression Dictionary の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
+        <p>本ブログでは 2023 年 7 月に、まだ策定段階の Compression Dictionary Transport について解説した。
+        <ul>
+          <li>
+            Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html">https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>本ブログは、その更新版にあたる。
+      </section>
+      <section>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <ul>
+          <li>
+            Spec
+            <ul>
+              <li>
+                RFC 9842 - Compression Dictionary Transport
+                <ul>
+                  <li><a href="https://www.rfc-editor.org/rfc/rfc9842.html" target=_blank>https://www.rfc-editor.org/rfc/rfc9842.html</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Explainer
+            <ul>
+              <li>
+                WICG/compression-dictionary-transport
+                <ul>
+                  <li><a href="https://github.com/WICG/compression-dictionary-transport" target=_blank>https://github.com/WICG/compression-dictionary-transport</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Requirements Doc
+            <ul>
+              <li>
+                Compression dictionary transport with Shared Brotli
+                <ul>
+                  <li><a href="https://docs.google.com/document/d/1IcRHLv-e9boECgPA5J4t8NDv9FPHDGgn0C12kfBgANg/edit" target=_blank>https://docs.google.com/document/d/1IcRHLv-e9boECgPA5J4t8NDv9FPHDGgn0C12kfBgANg/edit</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mozilla Standard Position
+            <ul>
+              <li>
+                Request for Mozilla Position on Compression dictionary transport · Issue #771 · mozilla/standards-positions
+                <ul>
+                  <li><a href="https://github.com/mozilla/standards-positions/issues/771" target=_blank>https://github.com/mozilla/standards-positions/issues/771</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WebKit Position
+            <ul>
+              <li>
+                Compression Dictionary Transport · Issue #160 · WebKit/standards-positions
+                <ul>
+                  <li><a href="https://github.com/WebKit/standards-positions/issues/160" target=_blank>https://github.com/WebKit/standards-positions/issues/160</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            TAG Design Review
+            <ul>
+              <li>
+                Tag review for Compression Dictionary Transport · Issue #877 · w3ctag/design-reviews
+                <ul>
+                  <li><a href="https://github.com/w3ctag/design-reviews/issues/877" target=_blank>https://github.com/w3ctag/design-reviews/issues/877</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Intents
+            <ul>
+              <li>
+                Intent to Experiment: Compression dictionary transport with Shared Brotli
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/NgH-BeYO72E</a>
+                </ul>
+              </li>
+              <li>
+                Intent to Ship: Compression dictionary transport with Shared Brotli and Shared Zstandard
+                <ul>
+                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/MuaRf28nExk" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/MuaRf28nExk</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Chrome Platform Status
+            <ul>
+              <li>
+                Compression dictionary transport with Shared Brotli and Shared Zstandard - Chrome Platform Status
+                <ul>
+                  <li><a href="https://chromestatus.com/feature/5124977788977152?gate=5186705503551488" target=_blank>https://chromestatus.com/feature/5124977788977152?gate=5186705503551488</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            WPT (Web Platform Test)
+            <ul>
+              <li>
+                web-platform-tests dashboard
+                <ul>
+                  <li><a href="https://wpt.fyi/results/fetch/compression-dictionary?label=experimental&label=master&aligned" target=_blank>https://wpt.fyi/results/fetch/compression-dictionary?label=experimental&amp;label=master&amp;aligned</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            DEMO
+            <ul>
+              <li>
+                horo-t/compression-dictionary-transport-shop-demo
+                <ul>
+                  <li><a href="https://github.com/horo-t/compression-dictionary-transport-shop-demo" target=_blank>https://github.com/horo-t/compression-dictionary-transport-shop-demo</a>
+                </ul>
+              </li>
+              <li>
+                horo-t/compression-dictionary-transport-threejs-demo
+                <ul>
+                  <li><a href="https://github.com/horo-t/compression-dictionary-transport-threejs-demo" target=_blank>https://github.com/horo-t/compression-dictionary-transport-threejs-demo</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Blog
+            <ul>
+              <li>
+                Supercharge compression efficiency with shared dictionaries
+                <ul>
+                  <li><a href="https://developer.chrome.com/blog/shared-dictionary-compression" target=_blank>https://developer.chrome.com/blog/shared-dictionary-compression</a>
+                </ul>
+              </li>
+              <li>
+                Compression Dictionary Transport (Shared Brotli) によるコンテンツ圧縮の最適化 | blog.jxck.io
+                <ul>
+                  <li><a href="https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html">https://blog.jxck.io/entries/2023-07-29/compression-dictionary-transport.html</a>
+                </ul>
+              </li>
+              <li>
+                All the way up to 11: Serve Brotli from origin and Introducing Compression Rules
+                <ul>
+                  <li><a href="https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression" target=_blank>https://blog.cloudflare.com/this-is-brotli-from-origin/#the-future-of-web-compression</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            MDN
+            <ul>
+              <li>
+                Compression Dictionary Transport - HTTP | MDN
+                <ul>
+                  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport" target=_blank>https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Compression_dictionary_transport</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Presentation
+          <li>
+            Issues
+            <ul>
+              <li>
+                Compression dictionary transport with Shared Brotli [40255884] - Chromium
+                <ul>
+                  <li><a href="https://issues.chromium.org/issues/40255884" target=_blank>https://issues.chromium.org/issues/40255884</a>
+                </ul>
+              </li>
+              <li>
+                1882979 - [meta] Compression Dictionary Transport
+                <ul>
+                  <li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1882979" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=1882979</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Other
+        </ul>
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
