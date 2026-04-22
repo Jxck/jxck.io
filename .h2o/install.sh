@@ -22,3 +22,6 @@ cmake \
   -DWITH_MRUBY=on .
 make -j$(nproc)
 make install
+
+# Clean up build artifacts
+rm -rf $BASE/pkg
