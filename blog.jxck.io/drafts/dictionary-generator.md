@@ -1,18 +1,173 @@
+# [cdt][zstd][brotli][compression] Compression Dictionary Transport 用の Toolkit 開発
+
+## Intro
+
+Compression Dictionary Transport(CDT) は、まだ新しいプロトコルのため専用のツールが不足している。
+
+それらを開発し公開したので、紹介する。
+
+## CDT-Toolkit
+
+CDT は、あらかじめ辞書を作ってクライアントに取得させておき、それを用いて転送を圧縮することができる。
+
+ところが、この辞書を作る汎用的なツールはない。
+
+また CDT で転送するには、作った辞書を用いて圧縮し、専用のヘッダを付ける必要がある。
+
+ところが、この圧縮を行う専用のツールはない。
+
+この 2 つができるツールを Rust で開発し、 `cdt-toolkit` として公開した。
+
+- Jxck/cdt-toolkit
+  - https://github.com/Jxck/cdt-toolkit
 
 
-### Zstd の辞書
+## How to Use
 
-Zstd は、辞書を用いる仕組みを持っているが、 Brotli のように仕様の中には含んでいない。代わりに、辞書を作る *"Training Mode"* を提供している。
+crates.io からインストールできる。
 
-複数のサンプルデータを用意し「このようなデータを送る」というサンプルデータを用意し、そこから辞書を生成することで、圧縮率を上げることができるのだ。もし v1.0.0 の `bundle.js` を辞書に含めれば、共通点の多い v1.0.1 の `bundle.js` のサイズはかなり圧縮できるだろう。
+辞書の作成は、辞書のもとになる素材を渡す。例えばビルド済みの HTML があるなら、それらをまるごと渡せば良いだろう。
 
-また、 zstd の圧縮/展開は brotli よりも高速であるとされているため、特に動的に圧縮するような場合に向いている。
+```sh
+cdt dictionary \
+  --output html.dict \
+  build/html/*.html
+```
 
-Brotli には静的辞書があるため、自分で作る必要はないが、代わりに辞書の内容は古くなっていく問題がある。例えば、 JS に新しく長い名前の API が入ってもそれは辞書に含まれていない。ドメイン固有の頻出データも、汎用目的の静的辞書ではカバーできない。これが自分で辞書を作る方式の優位性でもある。
+生成された辞書を用いて、以下のように HTML を事前に圧縮できる。
 
-一方、サーバが圧縮し、クライアントが展開するモデルでは、サーバが作った辞書をクライアントに送る必要がある。
+```sh
+cdt compress \
+  --dict html.dict \
+  -b \
+  build/html/*.html
+```
 
-この辞書を共有する方法は、 Web における 1 つのミッシングポイントでもあった。
+これで `*.html` を辞書を使って brotli 圧縮した `*.html.dcb` が生成される。
+
+`-z` にすれば zstd で圧縮した `*.html.zstd` だ。
+
+
+## 辞書の生成
+
+CDT で用いる辞書は、いわゆる "raw dictionary" と呼ばれるものだ。
+
+圧縮対象の手前に付けて、参照できる形であればなんでもよい。
+
+例えば、 HTML がテンプレートから生成されているなら、そのテンプレートを結合するだけでも辞書にはなる。
+
+```sh
+cat ./template/*.ejs > template.dict
+```
+
+これによって共通部分の圧縮は可能になるが、テンプレート同士に共通の部分があれば、辞書の中に同じパターンが何度も出てきて無駄になる。
+
+また、テンプレートの中に埋め込むコンテツに共通部分があっても、この辞書ではそこの圧縮率を上げられない。
+
+したがって、対象となるデータから、圧縮効率が高く、なるべく小さい辞書を生成するのが望ましい。
+
+### brotli dictionary_generator
+
+brotli には、サブツールとして `dictionary_generator` という C のプログラムが内包されている。
+
+- brotli/research at master · google/brotli
+  - https://github.com/google/brotli/tree/master/research
+
+```sh
+$ dictionary_generator \
+    --dsh \
+    -t112640 \
+    html.dict \
+    ./**/*.html
+```
+
+これは、あくまで研究/検証目的であり、同梱された可視化ツールなどを併用する前提だ。
+
+単体で配布されているわけでもなく、 brotli をインストールしたら自動で付いてくるわけでもないため、使いにくい。
+
+### zstd train mode
+
+zstd コマンドには、 `--train` オプションがついている。
+
+名前の通り、サンプルから学習して辞書を生成し、それを用いた圧縮ができる。
+
+```sh
+$ zstd --train \
+    ./blog.jxck.io/entries/**/*.html \
+    -o dcz.dict
+$ zstd -D dcz.dict index.html
+$ zstd -D dcz.dict --decompress index.html.zstd
+```
+
+ところが、ここに一個落とし穴がある。
+
+`zstd --train` は、独自ヘッダや Huffman Encoding の統計情報など、専用のメタデータが付与された辞書を作る。それは `zstd -D` コマンドで使うことが前提だ。
+
+ところが、 CDT が転送する辞書は "raw dictionary" なので、 Train Mode でつけられたメタデータなどを解釈するわけではない。 `zstd --patch-from` の方に相当する挙動だ。
+
+つまり、 `--train` で作った辞書は、 CDT で使えない訳では無いが、独自ヘッダの後に続くコンテンツ部分が使われるだけで、ヘッダ部分はノイズにしかならない。
+
+### CDT Dictionary Generator
+
+CDT Toolkit であれば、以下のように渡したコンテンツを元に辞書を生成することができる。
+
+対象は HTML, CSS, JS などなんでもよい。コンテンツタイプごとに辞書を出し分けてもよいし、全部まとめて１つの辞書を作っても良い。
+
+```sh
+cdt dictionary \
+  --output html.dict \
+  build/html/*.html
+```
+
+辞書を作るうえでのパラメータも調整できる。
+
+TODO: パラメータの説明
+
+## CDT Header
+
+生成した辞書を用いて、コンテンツを圧縮することは、 `brotli` / `zstd` コマンドでもできる。
+
+しかし CDT の場合は、圧縮したコンテンツに "*特定のヘッダ*" を付与する必要があるのだ。
+
+(HTTP Header のことではなく、バイナリファイルの先頭に付与するバイト列のこと)
+
+値は RFC に定義されており、 brotli/zstd でフォーマットが変わる。
+
+Dictionary-Compressed Brotli (`dcb`) は以下の 36 byte
+
+```
+0xff, 0x44, 0x43, 0x42 (magic)
+(SHA256 32 bytes)
+```
+
+Dictionary-Compressed Zstd (`dcz`) は以下の 40 byte
+
+```
+0x5e, 0x2a, 0x4d, 0x18 (magic)
+0x20, 0x00, 0x00, 0x00 (magic)
+(SHA256 32 bytes)
+```
+
+これを付けずに、ただ `.br` / `.zstd` の圧縮ファイルを CDT で転送しても、ブラウザは正しく表示してくれない。
+
+そして、この「CDT Header を付与するツール」は、ざっと調べたところ存在しなかった。
+
+CDT Toolkit は、以下のように辞書を用いて圧縮し、このバイナリヘッダを付与したファイルを生成する。
+
+```sh
+cdt compress \
+  --dict html.dict \
+  -b \
+  build/html/*.html
+```
+
+これは、このまま `Content-Encoding: dcb` で転送することができる。
+
+圧縮フォーマットは `dcb`, `dcz` を選ぶことができる。
+
+---
+
+
 
 
 ### テンプレート結合辞書
@@ -39,48 +194,6 @@ $ cat ./blog.jxck.io/entries/**/*.html > entries.dict
 
 原因は、テンプレート部分だけでは、`<main>` に流し込んだ生成後の HTML の共通部分が取れないことや、ビルド後には消える `<%= %>` テンプレート記法が残っていることが上げられる。
 
-### brotli dictionary_generator
-
-brotli には、サブツールとして `dictionary_generator` という C のプログラムが内包されている。
-
-- brotli/research at master · google/brotli
-  - https://github.com/google/brotli/tree/master/research
-
-これは、あくまで研究/検証目的であり、同梱された可視化ツールなどを併用する前提だが、今回の用途でも十分使えそうだ。
-
-辞書は事前に丹念に生成することができるため、最も貪欲なオプションを用い、生成した全ての HTML をサンプルとして辞書を生成した。
-
-```sh
-$ dictionary_generator \
-    --dsh \
-    -t112640 \
-    dcb.dict \
-    ./blog.jxck.io/entries/**/*.html
-```
-
-### zstd train mode
-
-zstd は、コマンドの中に `--train` オプションがついている。
-
-名前の通り、サンプルから学習して辞書を生成し、それを用いた圧縮ができる。
-
-```sh
-$ zstd --train \
-    ./blog.jxck.io/entries/**/*.html \
-    -o dcz.dict
-$ zstd -D dcz.dict index.html
-$ zstd -D dcz.dict --decompress index.html.zstd
-```
-
-ところが、ここに一個落とし穴がある。
-
-`zstd --train` は、独自ヘッダや Huffman Encoding の統計情報など、専用のメタデータが付与された辞書を作る。それは `zstd -D` で使うことが前提だ。
-
-ところが、 Compression Dictionary Transport で転送するのは、単にパターンが連結されただけのバイナリで、 Train Mode でつけられたメタデータなどを解釈しない。
-
-Compression Dictionary Transport で使うには、 `-D` ではなく `--patch-from=` を使う。これは、単に辞書を手前に付けて、パターンとして認識するだけなので、独自ヘッダの部分はノイズにしかならない。
-
-しかし、辞書を作るという点での性能は、 dictionary_generator よりも緻密に実装されていそうだ。
 
 ## 比較
 
