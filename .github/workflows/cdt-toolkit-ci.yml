@@ -1,0 +1,24 @@
+name: cdt-toolkit-ci
+
+on:
+  push:
+    paths:
+      - ".src/cdt-toolkit/**"
+      - ".github/workflows/cdt-toolkit-ci.yml"
+  pull_request:
+    paths:
+      - ".src/cdt-toolkit/**"
+      - ".github/workflows/cdt-toolkit-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .src/cdt-toolkit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo check
+      - run: cargo test
+      - run: cargo clippy --all-targets -- -D warnings

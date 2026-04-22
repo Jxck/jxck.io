@@ -199,7 +199,7 @@ DICT_DIR    := ./blog.jxck.io/dictionary/entries
 DICT_ACTIVE := $(DICT_DIR)/active.dict
 DICT_CONF   := ./h2o.dict.conf
 # 256KB / slice=12 / block=4096 / min_frequency=3 は tuning 済みの採用値。
-DICT_GENERATOR := ruby ./.src/dictionary/dict-generator.rb \
+DICT_GENERATOR := cdt dictionary \
 	-s 262144 \
 	-l 12 \
 	-b 4096 \
@@ -236,7 +236,7 @@ mtime-comp:
 	brotli -v -q 11 -f $<
 
 # entries html から配信用辞書と active dict metadata を更新する
-$(DICT_ACTIVE): $(BLOG_HTML) ./.src/dictionary/dict-generator.rb
+$(DICT_ACTIVE): $(BLOG_HTML)
 	@rm -f $(DICT_DIR)/*.dict
 	@dict_path=$$($(DICT_GENERATOR) -d $(DICT_DIR) $(BLOG_HTML)); \
 	  dict_name=$${dict_path##*/}; \
@@ -256,10 +256,10 @@ $(DICT_CONF): $(DICT_ACTIVE)
 	  echo "missing $(DICT_ACTIVE): run 'make dict' first" >&2; \
 	  exit 1; \
 	}
-	@./.src/dictionary/compress.sh \
+	@cdt compress \
 	    --dict "$(DICT_ACTIVE)" \
 	    --output-dir . \
-	    -dcb \
+	    --delta-compression-brotli \
 	    $<
 
 # 辞書を再生成する
@@ -269,7 +269,6 @@ dict:
 	@dict_name=$$(readlink $(DICT_ACTIVE)); \
 	  $(MAKE) -B "$(DICT_DIR)/$$dict_name.br"
 	@$(MAKE) -B dcb
-	@$(MAKE) reload
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
