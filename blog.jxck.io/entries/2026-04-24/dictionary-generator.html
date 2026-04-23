@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-04-24/dictionary-generator.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Compression Dictionary Transport(CDT) は、まだ新しいプロトコルのため専用のツールが不足している。それらを開発し公開したので、紹介する。">
+  <meta name=keywords            content="cdt,zstd,brotli,compression">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-04-24/dictionary-generator.html>
+  <meta property=og:title        content="Compression Dictionary Transport 用の Toolkit を公開した | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Compression Dictionary Transport(CDT) は、まだ新しいプロトコルのため専用のツールが不足している。それらを開発し公開したので、紹介する。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-04-24/dictionary-generator.html"
+    },
+    "headline": "Compression Dictionary Transport 用の Toolkit を公開した | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-04-24T00:00:00+09:00",
+    "dateModified": "2026-04-24T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Compression Dictionary Transport(CDT) は、まだ新しいプロトコルのため専用のツールが不足している。それらを開発し公開したので、紹介する。"
+  }
+  </script>
+
+  <title>Compression Dictionary Transport 用の Toolkit を公開した | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-24>2026-04-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-24>2026-04-24</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#cdt">cdt</a>
+              <li><a href="/tags#zstd">zstd</a>
+              <li><a href="/tags#brotli">brotli</a>
+              <li><a href="/tags#compression">compression</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#cdt-toolkit">CDT-Toolkit</a>
+              <li><a href="#how-to-use">How to Use</a>
+              <li><a href="#辞書の生成">辞書の生成</a>
+              <ol>
+                <li><a href="#brotli-dictionary_generator">brotli dictionary_generator</a>
+                <li><a href="#zstd-train-mode">zstd train mode</a>
+                <li><a href="#cdt-dictionary-generator">CDT Dictionary Generator</a>
+                <li><a href="#dictionary-tuning-skill"><code translate=no>dictionary-tuning</code> SKILL</a>
+              </ol>
+              <li><a href="#cdt-header">CDT Header</a>
+              <li><a href="#deploy">Deploy</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">Compression Dictionary Transport 用の Toolkit を公開した</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Compression Dictionary Transport(CDT) は、まだ新しいプロトコルのため専用のツールが不足している。
+        <p>それらを開発し公開したので、紹介する。
+      </section>
+      <section>
+        <h2 id="cdt-toolkit"><a href="#cdt-toolkit">CDT-Toolkit</a></h2>
+        <p>CDT は、あらかじめ辞書を作ってクライアントに取得させておき、それを用いて転送を圧縮することができる。
+        <p>ところが、この辞書を作る汎用的なツールはない。
+        <p>また CDT で転送するには、作った辞書を用いて圧縮し、専用のヘッダを付ける必要がある。
+        <p>ところが、この圧縮を行う専用のツールはない。
+        <p>この 2 つができるツールを Rust で開発し、<code translate=no>cdt-toolkit</code> として公開した。
+        <ul>
+          <li>
+            Jxck/cdt-toolkit
+            <ul>
+              <li><a href="https://github.com/Jxck/cdt-toolkit" target=_blank>https://github.com/Jxck/cdt-toolkit</a>
+            </ul>
+          </li>
+        </ul>
+        <p>crates.io にも公開している。
+        <ul>
+          <li>
+            cdt-toolkit - crates.io: Rust Package Registry
+            <ul>
+              <li><a href="https://crates.io/crates/cdt-toolkit" target=_blank>https://crates.io/crates/cdt-toolkit</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="how-to-use"><a href="#how-to-use">How to Use</a></h2>
+        <p>辞書の作成は、辞書のもとになる素材を渡す。例えばビルド済みの HTML があるなら、それらをまるごと渡せば良いだろう。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  build/html/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
+        <p>生成された辞書を用いて、以下のように HTML を事前に圧縮できる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> compress</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -b</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  build/html/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
+        <p>これで <code translate=no>*.html</code> を辞書を使って brotli 圧縮した <code translate=no>*.html.dcb</code> が生成される。
+        <p><code translate=no>-z</code> にすれば zstd で圧縮した <code translate=no>*.html.zstd</code> だ。
+      </section>
+      <section>
+        <h2 id="辞書の生成"><a href="#辞書の生成">辞書の生成</a></h2>
+        <p>CDT で用いる辞書は、いわゆる &quot;raw dictionary&quot; と呼ばれるものだ。
+        <p>圧縮対象の手前に付けて、参照できる形であればなんでもよい。
+        <p>例えば、HTML がテンプレートから生成されているなら、そのテンプレートを結合するだけでも辞書にはなる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./template/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.ejs</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> template.dict</span></span></code></pre>
+        <p>これによって共通部分の圧縮は可能になるが、テンプレート同士に共通の部分があれば、辞書の中に同じパターンが何度も出てきて無駄になる。
+        <p>また、テンプレートの中に埋め込むコンテツに共通部分があっても、この辞書ではそこの圧縮率を上げられない。
+        <p>したがって、対象となるデータから、圧縮効率が高く、なるべく小さい辞書を生成するのが望ましい。
+        <section>
+          <h3 id="brotli-dictionary_generator"><a href="#brotli-dictionary_generator">brotli dictionary_generator</a></h3>
+          <p>brotli には、サブツールとして <code translate=no>dictionary_generator</code> という C のプログラムが内包されている。
+          <ul>
+            <li>
+              brotli/research
+              <ul>
+                <li><a href="https://github.com/google/brotli/tree/master/research" target=_blank>https://github.com/google/brotli/tree/master/research</a>
+              </ul>
+            </li>
+          </ul>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary_generator</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    --dsh</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -t112640</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    ./</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">**</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
+          <p>これは、あくまで研究/検証目的であり、同梱された可視化ツールなどを併用する前提だ。
+          <p>単体で配布されているわけでもなく、brotli をインストールしたら自動で付いてくるわけでもないため、使いにくい。
+        </section>
+        <section>
+          <h3 id="zstd-train-mode"><a href="#zstd-train-mode">zstd train mode</a></h3>
+          <p>zstd コマンドには、<code translate=no>--train</code> オプションがついている。
+          <p>名前の通り、サンプルから学習して辞書を生成し、それを用いた圧縮ができる。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zstd</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --train</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    ./blog.jxck.io/entries/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">**</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zstd</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -D</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zstd</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -D</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --decompress</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html.zstd</span></span></code></pre>
+          <p>ところが、ここに一個落とし穴がある。
+          <p><code translate=no>zstd --train</code> は、独自ヘッダや Huffman Encoding の統計情報など、専用のメタデータが付与された辞書を作る。それは <code translate=no>zstd -D</code> コマンドで使うことが前提だ。
+          <p>ところが、CDT が転送する辞書は &quot;raw dictionary&quot; なので、Train Mode でつけられたメタデータなどを解釈するわけではない。<code translate=no>zstd --patch-from</code> の方に相当する挙動だ。
+          <p>つまり、<code translate=no>--train</code> で作った辞書は、CDT で使えない訳では無いが、独自ヘッダの後に続くコンテンツ部分が使われるだけで、ヘッダ部分はノイズにしかならない。
+        </section>
+        <section>
+          <h3 id="cdt-dictionary-generator"><a href="#cdt-dictionary-generator">CDT Dictionary Generator</a></h3>
+          <p>CDT Toolkit であれば、以下のように渡したコンテンツを元に辞書を生成することができる。
+          <p>対象は HTML, CSS, JS などなんでもよい。コンテンツタイプごとに辞書を出し分けてもよいし、全部まとめて１つの辞書を作っても良い。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  build/html/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
+          <p>辞書を作るうえでのパラメータも調整できる。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -h</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -o,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --output</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">OUTPU</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">T</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -d,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --output-dir</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">OUTPUT_DI</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">R</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -s,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --size</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SIZ</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">E</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">                    [default: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">262144]</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -l,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --slice-length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">SLICE_LENGT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">H</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [default: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">12]</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -b,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --block-length</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">BLOCK_LENGT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">H</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    [default: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">4096]</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  -f,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --min-frequency</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">MIN_FREQUENC</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">Y</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  [default: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">3]</span></span></code></pre>
+          <p><code translate=no>-o</code> を指定しなければ、<code translate=no>&lt;sha256&gt;.dict</code> で出力することができる。
+          <p>これは、ハッシュ名を計算しなくても、ファイル名から辞書を引くことができるようにするためだ。
+          <p>辞書の性能は残りのパラメータで調整できる。
+        </section>
+        <section>
+          <h3 id="dictionary-tuning-skill"><a href="#dictionary-tuning-skill"><code translate=no>dictionary-tuning</code> SKILL</a></h3>
+          <p>辞書を生成すパラメータは、圧縮対象のファイルによって変わる。
+          <p>そこで、これを自動で詰めることができる SKILL を同梱している。
+          <ul>
+            <li>
+              skills/dictionary-tuning/SKILL.md
+              <ul>
+                <li><a href="https://github.com/Jxck/cdt-toolkit/blob/main/skills/dictionary-tuning/SKILL.md" target=_blank>https://github.com/Jxck/cdt-toolkit/blob/main/skills/dictionary-tuning/SKILL.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>このスキルを AI に読ませることで、内部的には辞書の性能を詰めるためのスクリプトを実行しながら、対象のコンテンツを最も効率よく圧縮できる辞書を生成できる。
+        </section>
+      </section>
+      <section>
+        <h2 id="cdt-header"><a href="#cdt-header">CDT Header</a></h2>
+        <p>生成した辞書を用いて、コンテンツを圧縮することは、<code translate=no>brotli</code> / <code translate=no>zstd</code> コマンドでもできる。
+        <p>しかし CDT の場合は、圧縮したコンテンツに &quot;<em>特定のヘッダ</em>&quot; を付与する必要があるのだ。
+        <p>(HTTP Header のことではなく、バイナリファイルの先頭に付与するバイト列のこと)
+        <p>値は RFC に定義されており、brotli/zstd でフォーマットが変わる。
+        <p>Dictionary-Compressed Brotli (<code translate=no>dcb</code>) は以下の 36 byte
+        <pre><code translate=no>0xff, 0x44, 0x43, 0x42 (magic)
+(SHA256 32 bytes)</code></pre>
+        <p>Dictionary-Compressed Zstd (<code translate=no>dcz</code>) は以下の 40 byte
+        <pre><code translate=no>0x5e, 0x2a, 0x4d, 0x18 (magic)
+0x20, 0x00, 0x00, 0x00 (magic)
+(SHA256 32 bytes)</code></pre>
+        <p>これを付けずに、ただ <code translate=no>.br</code> / <code translate=no>.zstd</code> の圧縮ファイルを CDT で転送しても、ブラウザは正しく表示してくれない。
+        <p>そして、この「CDT Header を付与するツール」は、ざっと調べたところ存在しなかった。
+        <p>CDT Toolkit は、以下のように辞書を用いて圧縮し、このバイナリヘッダを付与したファイルを生成する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> compress</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  -b</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  build/html/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
+        <p>これは、このまま <code translate=no>Content-Encoding: dcb</code> で転送することができる。
+        <p>圧縮フォーマットは <code translate=no>dcb</code>, <code translate=no>dcz</code> を選ぶことができる。
+      </section>
+      <section>
+        <h2 id="deploy"><a href="#deploy">Deploy</a></h2>
+        <p>cdt コマンドで辞書を作り、それを用いて圧縮を行えば、あとはそれをデプロイするだけだ。
+        <p>詳細は、本サイトのデプロイをベースに以下で解説している。
+        <ul>
+          <li>
+            Compression Dictionary Transport によるコンテンツ圧縮の最適化 | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2026-04-21/compression-dictionary-transport.html">https://blog.jxck.io/entries/2026-04-21/compression-dictionary-transport.html</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>Compression Dictionary Transport 用のツールキットを開発し、公開した。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
