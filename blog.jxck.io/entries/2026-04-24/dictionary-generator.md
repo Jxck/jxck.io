@@ -1,4 +1,4 @@
-# [cdt][zstd][brotli][compression] Compression Dictionary Transport 用の Toolkit 開発
+# [cdt][zstd][brotli][compression] Compression Dictionary Transport 用の Toolkit を公開した
 
 ## Intro
 
