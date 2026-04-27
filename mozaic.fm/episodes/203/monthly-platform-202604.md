@@ -16,13 +16,11 @@ guests:
 
 第 203 回のテーマは 2026 年 4 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 148
-
 
 #### Updates
 
@@ -87,7 +85,6 @@ guests:
     - Follow
 - What's New in WebGPU (Chrome 147-148)
   - https://developer.chrome.com/blog/new-in-webgpu-147-148
-
 
 #### Intents
 
@@ -224,7 +221,6 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/jS0khnC5IWA
 - Web-Facing Change PSA: Disconnect WebSockets on BFCache entry
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/52nlr8z3Png
-
 
 #### Other
 
@@ -404,11 +400,9 @@ guests:
     - Improving Blink Performance with Oilpan 1
     - Automagic Testing with MojoLPM
 
-
 ### Firefox 動向
 
 #### Stable: 150
-
 
 #### Updates
 
@@ -429,7 +423,6 @@ guests:
   - Multiple import maps(Experimental)
 - QR Codes, Speed Calculators, Better RAM Usage - These Weeks in Firefox: Issue 199
   - https://blog.nightly.mozilla.org/2026/04/15/qr-codes-speed-calculators-better-ram-usage-these-weeks-in-firefox-issue-199/
-
 
 #### Intents
 
@@ -455,7 +448,6 @@ guests:
 - PSA: Node ownerGlobal changes
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/LKU2-9Bkfc4
 
-
 #### Newsletter
 
 - https://fxdx.dev/
@@ -464,7 +456,6 @@ guests:
 - Firefox Security & Privacy Newsletter Q1 2026
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/QGDKJ7Cekv8
 
-
 #### MDN / Open Web Docs
 
 - https://developer.mozilla.org/en-US/blog/
@@ -472,7 +463,6 @@ guests:
   - https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/
   - React SPA から Lit ベースの SSR 済みサイトに置き換えた話
   - Lit ベース Web Components (DSD) や Baseline も積極的に活用している
-
 
 #### Standard Position
 
@@ -506,7 +496,6 @@ guests:
   - New `onmove` event handler for the Window object
     - https://github.com/mozilla/standards-positions/issues/938
 
-
 #### Other
 
 - **The zero-days are numbered**
@@ -526,11 +515,9 @@ guests:
   - https://shivankaul.com/blog/firefox-bundles-adblock-rust?ref=itsfoss.com
   - Firefox 149 で実験的に Brave 製 Ad-blocker が入っていた?
 
-
 ### Safari 動向
 
 #### Stable: 26.4
-
 
 #### Updates
 
@@ -622,7 +609,6 @@ guests:
     - Added support for RTCRtpReceiver.jitterBufferTarget.
     - Added support for video source width and height in RTC stats.
 
-
 #### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2026-04-01+
@@ -643,7 +629,6 @@ guests:
   - CPU Performance API
     - https://github.com/WebKit/standards-positions/issues/622
 
-
 #### Other
 
 - Community Letter from Tim - Apple
@@ -652,11 +637,9 @@ guests:
   - https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/
   - Tim Cook が Apple CEO 退任。John Ternus が 9/1 付で新 CEO に就任。
 
-
 ### Edge 動向
 
 #### Stable: 147
-
 
 #### Updates
 
@@ -668,7 +651,6 @@ guests:
   - ここでも見れる
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
-
 
 #### Other
 
@@ -700,11 +682,9 @@ guests:
 - Add Webauthn remoteClientDataJSON extension explainer (#1306)
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/commit/3ab3c8775968d7c37169568dd6e1c639084dd356
 
-
 ### WHATWG/W3C 動向
 
 #### TPAC
-
 
 #### Draft
 
@@ -731,7 +711,6 @@ guests:
     - https://www.w3.org/news/2026/first-public-working-drafts-for-the-linked-web-storage-lws-1-0-authentication-suite/
 - Group Note Draft
 
-
 #### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -739,7 +718,6 @@ guests:
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2026-04-02.md
 - 2026-04-09
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2026-04-09.md
-
 
 #### WHATNOT
 
@@ -785,7 +763,6 @@ guests:
   - Stage2: Reference Target
   - Form Control Range が近く Stage3 になる予定
 
-
 #### CSSWG
 
 - https://www.w3.org/blog/CSS/
@@ -822,7 +799,6 @@ guests:
   - flex/grid/multi-column 内で何番目の col/row かを CQ で取得
 - Form Controls 系諸々整備
 
-
 #### Other
 
 - W3C Workshop Report: Smart Voice Agents
@@ -844,7 +820,6 @@ guests:
 - Call for Participation in Agent Identity Registry Protocol Community Group
   - https://www.w3.org/community/agent-identity/2026/04/24/call-for-participation-in-agent-identity-registry-protocol-community-group/
   - AI の Identity を検証可能にするインフラ整備をする CG
-
 
 ### TC39/TC55 動向
 
@@ -869,7 +844,6 @@ guests:
     - Mozilla DOM チーム協力のもと WebIDL the promises resolution steps をこの仕様に置き換えて WPT を実行した
     - 概ねテストが通ったので互換性の問題はなさそう
 
-
 #### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2026-03-01}...main@{2026-04-01}
@@ -890,9 +864,7 @@ guests:
   - **Temporal**
   - Intl Era and MonthCode
 
-
 #### New Proposals
-
 
 #### WinterTC
 
@@ -913,14 +885,11 @@ guests:
     - Footer
       - Footer navigation
 
-
 #### Other
-
 
 ### IETF 動向
 
 #### IETF
-
 
 #### WG
 
@@ -956,7 +925,6 @@ guests:
     - https://www.ietf.org/archive/id/draft-meow-mrrp-00.html
 - Meeting
 
-
 #### Other
 
 - What's Missing in the 'Agentic' Story
@@ -971,7 +939,6 @@ guests:
   - AI エージェントの開発には、ユーザーの権利を尊重する明確な役割が必要である。
   - 現在の AI エージェントは、ユーザーの利益を十分に考慮していない可能性がある。
   - AI エージェントの透明性と規制の必要性が強調されている。
-
 
 ### 周辺動向
 
@@ -1023,15 +990,12 @@ guests:
   - Phase 3: Automatic Dictionary Management
     - 最終的には、辞書のライフサイクル管理まで自動化する構想です。
 
-
 #### セキュリティ動向
-
 
 #### Other
 
 - The Web Is An Antitrust Wedge - Infrequently Noted
   - https://infrequently.org/2026/04/the-web-is-an-antitrust-wedge/
-
 
 ### イベント
 
@@ -1054,7 +1018,6 @@ guests:
   - 15-17: Web Engines Hackfest
     - https://webengineshackfest.org/
 - 7 月
-
 
 ### Wrap Up
 
