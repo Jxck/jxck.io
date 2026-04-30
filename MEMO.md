@@ -86,10 +86,10 @@ image の記法で video に展開される。
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `make build` で全体の変換や圧縮のなどを一式行う
+- `make blog` で記事の差分ビルドと `index.html` 更新 (テスト用、 `.dcb` は作らない)
+- `make all` (= `make blog && make podcast && make dict && make comp`) で全体の変換・圧縮を一式行う
   - これで build 結果をコミットしたら終わり
-- `make preview`
-  - markdown 変換だけを行う。テスト用。
+- ビルドの中心は `Makefile` と `.src/build.ts`
 
 
 ### md
@@ -151,10 +151,6 @@ alt, title, 画像のサイズがないといけない。
 $ cwebp -q 40 image.png -o image.webp
 ```
 
-さらに gulp から gulp-image を叩いて最適化も行っている。
-
-これは `$ gulp` で叩けるが `make build` に入ってる。
-
 
 ### 圧縮
 
@@ -167,7 +163,19 @@ html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 - .br は brotli コマンドで事前に作る
 - .gz は h2o のオンデマンドで作る
 
-これは `make comp` でできるが、 `make build` に入ってるため、もろもろ準備できたら最後の build で実行。
+これは `make comp` でできるが、 `make all` に入ってるため、もろもろ準備できたら最後の build で実行。
+
+
+### Compression Dictionary Transport (CDT)
+
+加えて、 entries 配下の HTML は CDT で `.dcb` も生成して配信している。
+
+- `make dict` で `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、 `active.dict` と `h2o.dict.conf` を更新
+- `make comp` で記事の `.html.dcb` を生成 (辞書は再生成せず既存辞書を使用)
+- 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
+- `Dictionary-ID` は Structured Fields String なので、 mruby 側では `"entries"` のように quote を含めて比較する
+- 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/entries/` に置く
+- `make clean` は `.br` / `.dcb` / `.dict` を削除、 `make distclean` は全生成物を削除
 
 
 ## podcast
@@ -182,9 +190,8 @@ https://github.com/Jxck/jxck.io/tree/main/mozaic.fm
 - 編集した mp3 を生成
 - 原稿を md で記述
 - episodes 以下にエピソード番号のディレクトリを作りそこに置く
-- `make podcast` で html が生成される
-- `make podcastfeed` で RSS が更新される
-- `make build` で全体の変換や圧縮のなどを一式行う
+- `make podcast` で html と RSS (`feed.mozaic.fm/index.{xml,json}`) が同時に生成される
+- `make all` で全体の変換や圧縮のなどを一式行う
 
 
 ### md
@@ -224,6 +231,8 @@ mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/m
 - mp3
 
 で編集したものを吐く。
+
+実体は `mozaic.fm/files.mozaic.fm/` に置き、 `jxck.io/files.mozaic.fm` から symlink している (mozaic.fm は別 repo)。 mp3 は Git LFS で履歴管理する。
 
 
 ### ID3 Tag
