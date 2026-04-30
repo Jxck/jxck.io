@@ -4,6 +4,8 @@ Description=Certbot renewal
 [Service]
 # 1回実行して終了(常駐しない)
 Type=oneshot
+# Homebrew 管理下に root-owned __pycache__ を生成しない
+Environment=PYTHONDONTWRITEBYTECODE=1
 # 期限が近い証明書を更新する
 ExecStart=/home/linuxbrew/.linuxbrew/bin/certbot renew --quiet
 # 証明書更新後に h2o をリロードして新しい証明書を反映する
