@@ -19,7 +19,7 @@
 
 ## Plan File Policy
 
-- プラン作成・レビュー・固定化の正本ルールは `.agents/skills/planning/SKILL.md` に置く
+- プラン作成・レビュー・固定化の正本ルールはグローバル skill (`planning`) にある
 - プランを作成またはレビューする場合は、必ず `planning` skill を使う
 
 
