@@ -180,7 +180,7 @@ APG にも Tooltip についてのパターンがある。
 
 - Draft tooltip dialog design pattern · Issue #85 · w3c/aria-practices
   - https://github.com/w3c/aria-practices/issues/85
-- Semantics and the popover attribute: which role to use when? | hidde.blog
+- Semantics and the popover attribute: which role to use when?
   - https://hidde.blog/popover-semantics/
 
 なお、Confluence は `role=dialog` で実装している。

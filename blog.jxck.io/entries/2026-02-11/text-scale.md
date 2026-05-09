@@ -132,7 +132,7 @@ h1 {
 
 結果、この提案は標準化までは至らなかった。
 
-- [css-env-1] remove pem/bsem unit by davidsgrogan
+- [css-env-1] remove pem/bsem unit
   - https://github.com/w3c/csswg-drafts/pull/13281
 
 

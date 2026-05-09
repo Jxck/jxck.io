@@ -153,7 +153,7 @@ let sentSignal = new SentSignal();
 fetch(data, {
   deferSend: new DeferSend(),
   signal: abortController.signal,
-  sentSignal: sentsentSignal
+  sentSignal: sentSignal
 });
 
 sentSignal.addEventListener("sent", () => {
@@ -178,7 +178,7 @@ sentSignal.addEventListener("sent", () => {
 
 - Fetch-based design · Issue #70 · WICG/pending-beacon
   - https://github.com/WICG/pending-beacon/issues/70#issuecomment-1525821663
-- [explainer] Add explainer for `fetchLater()` API by mingyc · Pull Request #80 · WICG/pending-beacon
+- [explainer] Add explainer for `fetchLater()` API · WICG/pending-beacon
   - https://github.com/WICG/pending-beacon/pull/80
 
 `fetch()` の Request を受けるという設計は変えず、送信キューへの登録が完了したことだけを Resolve する API にしたものが `fetchLater()` となる。

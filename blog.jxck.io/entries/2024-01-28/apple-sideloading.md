@@ -63,7 +63,7 @@ Web Browser Engine Entitlement
 Embedded Browser Engine Entitlement
 : 埋め込み用途で利用する場合に通すべき申請
 
-ここで認定されたデベロッパーに、ブラウザ開発に必要な API (JIT や Multiprocess など) を解放する。
+ここで認定されたデベロッパーに、ブラウザ開発に必要な API (JIT や Multi Process など) を解放する。
 
 今回は *Web Browser Engine Entitlement* の方に絞る。
 

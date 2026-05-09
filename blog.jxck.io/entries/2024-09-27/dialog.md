@@ -444,7 +444,7 @@ non-Modal Dialog の場合は、他の要素が操作できるためキーボー
 
 ## Links
 
-- Use the dialog element (reasonably) | scottohara.me
+- Use the dialog element (reasonably)
   - https://www.scottohara.me/blog/2023/01/26/use-the-dialog-element.html
 - Implement dialog initial focus proposal · whatwg/html@a9f103c
   - https://github.com/whatwg/html/commit/a9f103c9f7bd09ef712990194638c75db1f50e3c

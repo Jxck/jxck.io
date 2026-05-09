@@ -61,12 +61,12 @@ not animatable は「アニメーションすると複雑すぎるため `transi
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/UV9POKsNZA8/m/WCj2GZGXAAAJ
 - [css-display] Why is display listed as not animatable instead of animation type: discrete? · Issue #6429 · w3c/csswg-drafts
   - https://github.com/w3c/csswg-drafts/issues/6429#issuecomment-1318933547
-- rendering/entry-exit-animations.md at master · chrishtr/rendering
+- rendering/entry-exit-animations.md at master
   - https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md
 
 これによって、CSS Display Module Level 4 から `display` の Animation Type は not animatable ではなく discrete に近いが、少し特別扱いされる値となった。
 
-- rendering/entry-exit-animations.md at master · chrishtr/rendering
+- rendering/entry-exit-animations.md at master
   - https://github.com/chrishtr/rendering/blob/master/entry-exit-animations.md
 
 例えば `opacity` の Animation Type は by computed value で、0 から 1 の間をスライダーを動かすように連続した変化をさせる。一方、true/false, enable/disable といった値は discrete (離散値) というカテゴリになる。

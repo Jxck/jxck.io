@@ -221,7 +221,7 @@ Style Query の条件に書けるものは、ほぼそのまま `if()` でも使
 
 このあたりの経緯は以下に詳しい。
 
-- Inline conditionals in CSS? • Lea Verou
+- Inline conditionals in CSS?
   - https://lea.verou.me/blog/2024/css-conditionals/
 
 
@@ -473,7 +473,7 @@ Chrome で以下の 2 つのフラグを有効にすると動作する。
     - https://wpt.fyi/results/css/css-mixins?label=experimental&label=master&aligned
 - DEMO
 - Blog
-  - Inline conditionals in CSS? • Lea Verou
+  - Inline conditionals in CSS?
     - https://lea.verou.me/blog/2024/css-conditionals/
 - Presentation
 - Issues

@@ -470,11 +470,11 @@ document.querySelectorAll("img.icon").forEach((img) => {
   - https://open-ui.org/components/popover-hint.research.explainer/
 - Invoker Commands (Explainer) | Open UI
   - https://open-ui.org/components/invokers.explainer/
-- Dialogs and popovers seem similar. How are they different? | hidde.blog
+- Dialogs and popovers seem similar. How are they different?
   - https://hidde.blog/dialog-modal-popover-differences/
-- Semantics and the popover attribute: which role to use when? | hidde.blog
+- Semantics and the popover attribute: which role to use when?
   - https://hidde.blog/popover-semantics/
-- Positioning anchored popovers | hidde.blog
+- Positioning anchored popovers
   - https://hidde.blog/positioning-anchored-popovers/
-- On popover accessibility: what the browser does and doesn't do | hidde.blog
+- On popover accessibility: what the browser does and doesn't do
   - https://hidde.blog/popover-accessibility/
