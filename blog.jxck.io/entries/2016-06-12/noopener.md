@@ -1,4 +1,4 @@
-# [html][security] リンクのへの rel=noopener 付与による Tabnabbing 対策
+# [html][security] リンクへの rel=noopener 付与による Tabnabbing 対策
 
 ## Intro
 

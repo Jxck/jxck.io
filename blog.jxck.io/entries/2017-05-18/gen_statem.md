@@ -266,7 +266,7 @@ NextState(timeout, Context, Data)
 NextState(state_timeout, Context, Data)
 ```
 
-どんな状態に遷移していもこのタイマーはキャンセルされる。
+どんな状態に遷移してもこのタイマーはキャンセルされる。
 
 
 ### Erlang Timer

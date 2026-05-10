@@ -51,7 +51,7 @@ navigator
 
 結果は Promise を返し、Share の成功可否によって変わる。
 
-また、Web Share は Share の発信だけで無く、受信についても視野に入れいている。
+また、Web Share は Share の発信だけで無く、受信についても視野に入れている。
 
 現状その API は議論中だが、同様に navigator を基本に拡張されていくと思われる。
 

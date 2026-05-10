@@ -129,7 +129,7 @@ $target.addEventListener('resize', ({detail: entries}) => {
 
 最後の変更検知は、ライブラリ内では Throttling 付きの `setInterval()` で行なっているため、ResizeObserver を用いた実装でかなり効率化できるだろう。
 
-CSS に持ってくるには、Houdini で策定中の [CSS Parser API](https://drafts.css-houdini.org/css-parser-api/) と [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om/#normalize-var) あたりが実装されるとネイティブで `@lement` を Custom At-Rules として実装できるようになるだろう。
+CSS に持ってくるには、Houdini で策定中の [CSS Parser API](https://drafts.css-houdini.org/css-parser-api/) と [CSS Typed OM Level 1](https://drafts.css-houdini.org/css-typed-om/#normalize-var) あたりが実装されるとネイティブで `@element` を Custom At-Rules として実装できるようになるだろう。
 
 
 ## Container Query
@@ -164,7 +164,7 @@ CSS に持ってくるには、Houdini で策定中の [CSS Parser API](https://
 
 擬似要素で行う場合にも、同じように Houdini の API が揃うと、別途自前でパースする必要もなく実装が可能になるだろう。
 
-いずれも提案自体はかなり前からあるが、実装の改善がかのうになりそうだ。
+いずれも提案自体はかなり前からあるが、実装の改善が可能になりそうだ。
 
 
 ## Outro
