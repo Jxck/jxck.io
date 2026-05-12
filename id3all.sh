@@ -2744,3 +2744,16 @@ eyeD3 --title "ep203 Monthly Platform 202604" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep204.mp3
+
+eyeD3 --title "ep204 Temporal" \
+      --track 212 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep204.mp3
+
+
+
