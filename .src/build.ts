@@ -817,7 +817,7 @@ async function podcast(files: string[]): Promise<void> {
   // set id3
   console.log("\n")
   console.log(
-    await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ../${latest.audio_file}`),
+    await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ${latest.audio_file}`),
   )
   console.log(
     await promisify(exec)(
@@ -830,7 +830,7 @@ async function podcast(files: string[]): Promise<void> {
       --add-image ../www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
       --to-v2.3 \
       --preserve-file-times \
-      ../${latest.audio_file}
+      ${latest.audio_file}
     `.trim(),
     ),
   )
