@@ -1,0 +1,234 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep205.mp3
+published_at: 2026-05-14
+guests:
+ - name: "@re-taro"
+   url: https://x.com/re_taro_
+ - name: "@yukukotani"
+   url: https://x.com/yukukotani
+ - name: "@syumai"
+   url: https://x.com/__syumai
+---
+
+# ep205 Monthly Ecosystem 202605
+
+## Theme
+
+第 205 回のテーマは 2026 年 5 月の Monthly Ecosystem です。
+
+## Show Note
+
+- Announcing TypeScript 7.0 Beta
+  - https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/
+  - `npm install -D @typescript/native-preview@beta`
+    - package 名は将来的に `typescript` になる予定
+  - 7.0 Beta はほぼ production-ready だが、安定したプラグラマブルな API が TypeScript 7.1 で使えるようになるまで数ヶ月かかる
+  - TS7 -> TS6 の移行のために `@typescript/typescript6` package が用意される
+    - TS7 は `tsc`、`@typescript/typescript6`は`tsc6`として使い分けできる
+  - 並列処理の制御機構がある
+    - `--checkers` で型チェックの並列性を制御
+    - `--builders` でモノレポの並列ビルド数を制御
+    - `--singleThreaded` で構文解析・コード生成も含めシングルスレッド化
+  - JSDoc のサポート内容に変更あり
+    - 制約が増える
+  - (前からあったやつ) VS Code の Native Preview 拡張が既に使える。まだ機能差異はある
+    - https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.native-preview
+  - 直近、`--watch` のパフォーマンス改善をリリース予定
+- TS7 の JS API が徐々に実装されつつありそう
+  - https://github.com/microsoft/typescript-go/tree/main/_packages/native-preview
+  - src 配下に api, ast などがある
+- Node.js - Node.js 26.0.0 (Current)
+  - https://nodejs.org/en/blog/release/v26.0.0
+  - Temporal enabled by default
+  - V8 14.6
+    - ​Weak/Map の`getOrInsert()`/`getOrInsertComputed()`や Iterator の`concat()`メソッドが追加
+  - Unidici 8.0
+  - 10 月までは Current (最新)
+  - 10 月からは LTS
+  - https://nodejs.org/en/about/previous-releases
+  - (過去の記事) Evolving the Node.js Release Schedule
+    - https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule
+- temporal-polyfill-lite
+  - https://zenn.dev/fabon/articles/84f7696cd8a2fb
+  - ふぁぼんさん作の Temporal polyfill
+- Release pnpm 11 · pnpm/pnpm
+  - https://github.com/pnpm/pnpm/releases/tag/v11.0.0
+  - (もう 11.1.1 まで出てる)
+  - Node 22 未満を drop
+  - `minimumReleaseAge` をデフォルト 1day
+  - `blockExoticSubdeps` をデフォルト true
+  - Global Install が Virutla Store で分離
+  - Publish に必要なコマンドが npm に移譲されなくなった
+  - pnpm audit が npm の bulk advisories を使うようになり `/security/audits` を使わなくなった
+  - `.npmrc` からは auth/registry のみを見て、それ以外は見ない
+  - 次のメジャーバージョンで engine 部分が Rust 製になることも示唆されてた
+    - https://pnpm.io/ja/benchmarks#pnpm-vs-pnpm-
+    - https://github.com/pnpm/pacquet
+- Announcing Rolldown 1.0 | VoidZero
+  - https://voidzero.dev/posts/announcing-rolldown-1-0
+  - 2 年かかって、ついに 1.0 Stable に
+  - Vite の開発時の esbuild の速度、プロダクションでの rollup のプラグインエコシステムを両立
+  - 今後の展望
+    - Vite full bundle mode
+      - 開発時もバンドルする
+    - Stabilize lazy barrel optimization
+      - barrel でもツリーシェイクする
+- Release v30.4.0 · jestjs/jest
+  - https://github.com/jestjs/jest/releases/tag/v30.4.0
+  - require esm サポート
+  - temporal 向け fake timer
+- Announcing Rspack 2.0 - Rspack
+  - https://rspack.rs/blog/announcing-2-0
+  - Pure ESM 移行
+  - RSC Support
+  - TanStack Start の Server Component
+    - https://tanstack.com/blog/react-server-components
+- oxlint v1.64.0 & oxfmt v0.49.0
+  - https://github.com/oxc-project/oxc/releases/tag/apps_v1.64.0
+  - Svelte の format がサポート
+- aube
+  - https://aube.en.dev/
+  - mise の作者が作ってる package manager
+  - workspace の機能なども載っていて pnpm からの replace を狙っていそう
+- Going Full Time on Open Source
+  - https://jdx.dev/posts/2026-04-17-going-full-time-on-open-source/
+  - mise の作者がフルタイム OSS ワーカーになった
+- Bun が Zig から Rust へ移行中
+  - https://www.publickey1.jp/blog/26/javascriptbunclaudezigrust.html
+  - 初めはお試しくらいだったが、感触が良かったので進めることにしたらしい
+- Inertia.js - The Modern Monolith
+  - https://inertiajs.com/
+  - 初回は SSR 、そこからは SPA を実現するライブラリ
+  - 現代版 Turbo (Links) 的なイメージ
+  - サーバ側のアダプタとライブラリ側のクライアントが両方ある
+  - 表は React, Vue, Svelte、裏は Laravel を公式サポート
+  - コミュニティベースで Rails や Hono もある
+- zero-native
+  - https://github.com/vercel-labs/zero-native
+  - Vercel 製の Desktop/Mobile App 開発フレームワーク
+  - UI が WebView (System WebView or Chromium)で、ネイティブ部分が Zig
+- react-doctor
+  - https://github.com/millionco/react-doctor
+  - React のベストプラクティススキャナー
+  - 0-100 のヘルススコアと修正提案
+- Behind the Scenes Hardening Firefox with Claude Mythos Preview - Mozilla Hacks - the Web developer blog
+  - https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/
+  - Mythos での脆弱性発見の裏側
+  - モデルも成長しているし、それを使ったハーネスの構築も劇的に改善し効率よく見つけられるようになった
+  - AI で見つかったバグのいくつかを、公開することにした
+    - https://bugzilla.mozilla.org/buglist.cgi?keywords=ai-involved
+    - サンドボックスエスケープバグが中心なので単体では使えない
+    - ファジングでの発見は難しい類のもの
+  - 同時に、これまで行ってきた対策が、AI でも突破できなかったことを確認できたのも大きな成果
+  - GPT4, Sonnet3.5 などでも解析はしたが、役に立たなかった
+    - しかしハーネスを組むようになって POC やフィルタリングなどが効率良くなった
+    - Opus 4.6 でサンドボックス回避のバグを探すようになった
+    - セキュリティバグのライフサイクルに統合して反復を繰り返して改善した
+  - これを作ったからこそ、Mythos の Preview が来た時すぐに動けた
+    - モデルを置き換えるだけ
+    - すぐに 271 のバグを見つけ、150 リリースで修正
+    - この修正とリリースにかなりの時間を費やした
+  - この資産はかなり重要
+    - プロジェクト固有では有るが、他のプロジェクトにも進めていく
+    - 今は、人間が指示した特定の領域を AI がフォーカスする方向でやっている
+    - 将来は、パッチが来たらすぐ評価する予定
+  - 今この瞬間は危険であると同時に、チャンスに満ちている
+- TeamPCP's Mini Shai-Hulud Is Back: A Self-Spreading Supply Chain Attack Compromises TanStack npm Packages - StepSecurity
+  - https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem
+  - TanStack のサプライチェーン攻撃
+  - `optionalDependencies` 経由で Bun をインストールして実行、`exit 1` して失敗を偽装
+  - クラウド認証情報、SSH、ウォレットなどを探しまくり、AWS API なども使って収集
+  - 偽装ドメイン(`git-tanstack.com`)や、Session Protocol、GitHub リポジトリなど複数ルートで窃取
+  - LaunchAgent/systemd に常駐し、発覚して GitHub トークンが失効した瞬間に `rm -rf ~/` 実行
+  - 盗んだ権限で増殖
+- Hacker One が新規受付を停止
+  - https://hackerone.com/ibb?type=team
+  - https://www.infoworld.com/article/4154210/internet-bug-bounty-program-hits-pause-on-payouts.html
+  - これまでは、"発見"に 80%、"修正"に 20% を割いてきた。
+  - しかし、報告のスピードが増え、そのバランスが変化した。
+  - この変化に対応するために IBB (Internet Bug Bounty) の受付を停止
+- Pwn2Own 2026 Capacity Overflow, Hackers Drop 0-Days Solo | Awesome Agents
+  - https://awesomeagents.ai/news/pwn2own-berlin-2026-capacity-overflow/
+  - 発見した脆弱性の PoC を公開するコンテスト
+  - 5/14-16 でベルリン開催を控えていたが、応募が殺到し枠が埋まった
+  - 参加できなかった研究者は、自分で 0-day エクスプロイトを公開し始めている
+- Summary of CVE-2026-23869 - Vercel
+  - https://vercel.com/changelog/summary-of-cve-2026-23869
+  - RSC の脆弱性
+- Vercel のセキュリティインシデント
+  - https://vercel.com/kb/bulletin/vercel-april-2026-security-incident
+  - [Context.ai](http://Context.ai)というサードパーティの AI ツールへの不正アクセスを起点に、Vercel の従業員の個人用 Google Workspace アカウントを乗っ取り、そこを起点に Vercel の環境へ侵入、限定的なグループの顧客の環境変数が列挙・復号された
+- Bitwarden CLI Compromised in Ongoing Checkmarx Supply Chain Campaign
+  - https://thehackernews.com/2026/04/bitwarden-cli-compromised-in-ongoing.html
+  - https://blog.flatt.tech/entry/bitwarden_compromise
+  - preinstall hook が起点
+  - Bitwarden の CLI を npm でインストールした人が影響対象
+- Agents have their own computers with Sandboxes GA
+  - https://blog.cloudflare.com/sandbox-ga/
+  - Cloudflare Container による隔離環境
+  - プロキシを使った Agent への認証情報挿入
+  - シミュレーションではなく実端末(PTY)
+  - Python などの実行状態(変数やインポート)をステップを跨いで永続化
+  - Preview URL
+  - `sandbox.watch()` による inotify 監視
+  - 依存関係やファイルのスナップショットを復元/複製できる(予定)
+- Cloudflare Email Service の public beta 開始
+  - https://blog.cloudflare.com/ja-jp/email-for-agents/
+  - $5 のプランでも月 3000 通は送れるらしい
+    - https://developers.cloudflare.com/email-service/platform/pricing/
+  - AI エージェント連携が売りらしい
+- Building for the future
+  - https://blog.cloudflare.com/building-for-the-future/
+  - Cloudflare で 1100 人レイオフ
+  - > 今回の措置はコスト削減や個人のパフォーマンス評価のためではなく、「Cloudflare がエージェント型 AI 時代において世界的にトップクラスの高成長企業として、どのように運営し価値を創出するか」を定義し直すためのものです。
+- kamae-ts
+  - https://iwasa-kosui.github.io/kamae-ts/
+  - サーバーサイド TypeScript における関数型ドメインモデリングのコーディングガイドライン・Skill
+- Google Workspace MCP Server がリリース
+  - https://developers.google.com/workspace/guides/configure-mcp-servers?hl=ja
+- Highlights from Git 2.54 - The GitHub Blog
+  - https://github.blog/open-source/git/highlights-from-git-2-54/
+  - `git history`: rebase せずに split/reword できる
+  - .gitconfig に hook コマンドが直接書けるようになった
+  - (mise に git は無いですね...)
+    - https://mise-versions.jdx.dev/?q=git
+- The DESIGN.md specification
+  - https://stitch.withgoogle.com/docs/design-md/specification
+  - デザインシステムを Markdown で管理する仕様
+  - YAML でトークンを書き、MD で説明
+- flue
+  - https://github.com/withastro/flue
+  - Fred K. Schott(Astro 作者)によるエージェントハーネスフレームワーク
+  - サンドボックスの 1st class support
+- WAF and framework adapter mitigations for React and Next.js vulnerabilities · Changelog
+  - https://developers.cloudflare.com/changelog/post/2026-05-06-react-nextjs-vulnerabilities/
+
+## Events
+
+- 4 月
+  - 17: #縦書き\_study
+    - https://web-study.connpass.com/event/387935/
+  - 22-24: RubyKaigi 2026
+    - https://rubykaigi.org/2026/
+- 5 月
+  - 9: フロントエンドカンファレンス名古屋
+    - https://fec-nagoya-org.github.io/2026/
+  - 19-20: Google I/O 2026
+    - https://io.google/2026/
+  - 22-23: TSKaigi 2026
+    - https://2026.tskaigi.org/
+  - 26: #rte_study
+    - https://web-study.connpass.com/event/391357/
+- 6 月
+  - 2-3: Microsoft Build
+    - https://build.microsoft.com/en-US/home
+  - 6: フロントエンド・PHP カンファレンス北海道 2026
+    - https://fortee.jp/frontend-phpcon-do-2026
+  - 10: Code with Claude
+    - https://claude.com/code-with-claude
+  - 11: Code w/ Claude: Extended
+    - https://claude.com/code-with-claude
+  - 23-25: Figma Config 2026
+    - https://config.figma.com/
