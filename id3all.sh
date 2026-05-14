@@ -2757,3 +2757,16 @@ eyeD3 --title "ep204 Temporal" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep205.mp3
+
+eyeD3 --title "ep205 Monthly Ecosystem 202605" \
+      --track 213 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep205.mp3
+
+
+

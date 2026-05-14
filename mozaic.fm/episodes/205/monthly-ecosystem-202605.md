@@ -4,12 +4,12 @@ tags: ["monthly ecosystem"]
 audio: https://files.mozaic.fm/mozaic-ep205.mp3
 published_at: 2026-05-14
 guests:
- - name: "@re-taro"
-   url: https://x.com/re_taro_
- - name: "@yukukotani"
-   url: https://x.com/yukukotani
- - name: "@syumai"
-   url: https://x.com/__syumai
+  - name: "@re-taro"
+    url: https://x.com/re_taro_
+  - name: "@yukukotani"
+    url: https://x.com/yukukotani
+  - name: "@syumai"
+    url: https://x.com/__syumai
 ---
 
 # ep205 Monthly Ecosystem 202605
