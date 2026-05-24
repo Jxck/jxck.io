@@ -1,7 +1,7 @@
 ---
 type: podcast
 tags: ["google i/o"]
-audio: https://files.mozaic.fm/mozaic-ep204.mp3
+audio: https://files.mozaic.fm/mozaic-ep206.mp3
 published_at: 2026-05-24
 guests:
   - name: "@saku"
