@@ -8,7 +8,7 @@
   <link rel=manifest  href=/manifest.webmanifest>
   <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
 
-  <link rel=canonical href=https://mozaic.fm/episodes/204/temporal.html>
+  <link rel=canonical href=https://mozaic.fm/episodes/206/google-io-2026.html>
   <!--
   <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
   -->
@@ -41,24 +41,23 @@
   <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
   <meta name=author              content=Jxck>
-  <meta name=description         content="第 204 回のテーマは Temporal です。9 年近くかけて策定し、やっと Stage 4 になったこの仕様は、これまでの JS における日付処理の積年の課題を解決する API として、注目されています。ところが、仕様が膨大で把握するのも難しく、何が具体的に良くなるの...">
-  <meta name=keywords            content="temporal">
+  <meta name=description         content="第 206 回のテーマは Google I/O 2026 です。現地サンフランシスコでの収録です。前半: 1 日目のセッション終了後、I/O 会場にあった Podcast Booth をお借りして収録。後半: 2 日目終了後に SFO まで移動中のドライブトーク。ドライブは...">
+  <meta name=keywords            content="google i/o">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
-  <meta property=og:url          content=https://mozaic.fm/episodes/204/temporal.html>
-  <meta property=og:title        content="ep204 Temporal | mozaic.fm">
+  <meta property=og:url          content=https://mozaic.fm/episodes/206/google-io-2026.html>
+  <meta property=og:title        content="ep206 Google I/O 2026 | mozaic.fm">
   <meta property=og:site_name    content=mozaic.fm>
-  <meta property=og:description  content="第 204 回のテーマは Temporal です。9 年近くかけて策定し、やっと Stage 4 になったこの仕様は、これまでの JS における日付処理の積年の課題を解決する API として、注目されています。ところが、仕様が膨大で把握するのも難しく、何が具体的に良くなるの...">
+  <meta property=og:description  content="第 206 回のテーマは Google I/O 2026 です。現地サンフランシスコでの収録です。前半: 1 日目のセッション終了後、I/O 会場にあった Podcast Booth をお借りして収録。後半: 2 日目終了後に SFO まで移動中のドライブトーク。ドライブは...">
   <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
   <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
 
 
-  <title>ep204 Temporal | mozaic.fm</title>
-  <link rel=prev href=https://mozaic.fm/episodes/203/monthly-platform-202604.html>
-  <link rel=next href=https://mozaic.fm/episodes/205/monthly-ecosystem-202605.html>
+  <title>ep206 Google I/O 2026 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/205/monthly-ecosystem-202605.html>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?260310_182656>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_013824>
   <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022018>
@@ -102,23 +101,27 @@
 
 <main>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/203/monthly-platform-202604.html>ep203 Monthly Platform 202604</a></span>
-    <span><a href=/episodes/205/monthly-ecosystem-202605.html>ep205 Monthly Ecosystem 202605</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/205/monthly-ecosystem-202605.html>ep205 Monthly Ecosystem 202605</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
   <article>
-    <h1><a href="">ep204 Temporal</a></h1>
+    <h1><a href="">ep206 Google I/O 2026</a></h1>
     <dl class=info>
       <div>
         <dt>published_at
-        <dd>2026-05-12
+        <dd>2026-05-24
       </div>
       <div>
         <dt>guest
-        <dd><a href="https://x.com/sajikix" target=_blank>Sajikix</a>
+        <dd><a href="https://x.com/sakupi01" target=_blank>@saku</a>
       </div>
       <div>
         <dt>guest
-        <dd><a href="https://x.com/syobon_hinata" target=_blank>ふぁぼん</a>
+        <dd><a href="https://x.com/yukukotani" target=_blank>@yukukotani</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/i_am_canalun" target=_blank>@canalun</a>
       </div>
       <div>
         <dt>toc
@@ -137,54 +140,40 @@
     </dl>
     <section>
       <h2 id="theme"><a href="#theme">Theme</a></h2>
-      <p>第 204 回のテーマは Temporal です。
-      <p>9 年近くかけて策定し、やっと Stage 4 になったこの仕様は、これまでの JS における日付処理の積年の課題を解決する API として、注目されています。
-      <p>ところが、仕様が膨大で把握するのも難しく、何が具体的に良くなるのか、自分のプロジェクトではこの API とどう向き合うべきかという点は、これからのエコシステムの課題になるでしょう。
-      <p>今回は「この API はなんで必要だったのか」「これから日付処理はどうしていけばよいのか」について整理し、これからの Web における日付時刻処理の未来について議論しました。
+      <p>第 206 回のテーマは Google I/O 2026 です。
+      <p>現地サンフランシスコでの収録です。
+      <ul>
+        <li>前半: 1 日目のセッション終了後、I/O 会場にあった Podcast Booth をお借りして収録。
+        <li>後半: 2 日目終了後に SFO まで移動中のドライブトーク。
+      </ul>
+      <p>ドライブは相変わらず音が悪いです。
+      <p>ピンマイク 4 人分持ってたのに、半分がうまく撮れてなかった。難しい。
     </section>
     <section>
       <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
       <ul>
         <li>
-          tc39/proposal-temporal: Provides standard objects and functions for working with dates and times.
+          Google I/O 2026
           <ul>
-            <li><a href="https://github.com/tc39/proposal-temporal" target=_blank>https://github.com/tc39/proposal-temporal</a>
+            <li><a href="https://io.google/2026/" target=_blank>https://io.google/2026/</a>
           </ul>
         </li>
         <li>
-          Temporal - JavaScript | MDN
+          Keynote
           <ul>
-            <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Temporal" target=_blank>https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Temporal</a>
+            <li><a href="https://io.google/2026/explore/google-keynote-1" target=_blank>https://io.google/2026/explore/google-keynote-1</a>
           </ul>
         </li>
         <li>
-          Intl - JavaScript | MDN
+          Developer Keynote
           <ul>
-            <li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl" target=_blank>https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl</a>
+            <li><a href="https://io.google/2026/explore/developer-keynote-1" target=_blank>https://io.google/2026/explore/developer-keynote-1</a>
           </ul>
         </li>
         <li>
-          Temporal: The 9-Year Journey to Fix Time in JavaScript | Bloomberg JS Blog
+          Google I/O で発表した製品や技術に関する最新のニュース
           <ul>
-            <li><a href="https://bloomberg.github.io/js-blog/post/temporal/" target=_blank>https://bloomberg.github.io/js-blog/post/temporal/</a>
-          </ul>
-        </li>
-        <li>
-          Unicode CLDR Project
-          <ul>
-            <li><a href="https://cldr.unicode.org/" target=_blank>https://cldr.unicode.org/</a>
-          </ul>
-        </li>
-        <li>
-          unicode-org/icu
-          <ul>
-            <li><a href="https://github.com/unicode-org/icu" target=_blank>https://github.com/unicode-org/icu</a>
-          </ul>
-        </li>
-        <li>
-          fabon-f/temporal-polyfill-lite
-          <ul>
-            <li><a href="https://github.com/fabon-f/temporal-polyfill-lite" target=_blank>https://github.com/fabon-f/temporal-polyfill-lite</a>
+            <li><a href="https://blog.google/intl/ja-jp/google-io-2026/" target=_blank>https://blog.google/intl/ja-jp/google-io-2026/</a>
           </ul>
         </li>
       </ul>
@@ -192,8 +181,8 @@
   </article>
   <portal id=preview></portal>
   <nav>
-    <span>&lt;&lt;&nbsp;<a href=/episodes/203/monthly-platform-202604.html>ep203 Monthly Platform 202604</a></span>
-    <span><a href=/episodes/205/monthly-ecosystem-202605.html>ep205 Monthly Ecosystem 202605</a>&nbsp;&gt;&gt;</span>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/205/monthly-ecosystem-202605.html>ep205 Monthly Ecosystem 202605</a></span>
+    <span>&nbsp;&gt;&gt;</span>
   </nav>
 </main>
 
@@ -207,8 +196,8 @@
 <mozaic-player>
   <audio
     slot=audio
-    src=https://files.mozaic.fm/mozaic-ep204.mp3
-    data-title="ep204 Temporal"
+    src=https://files.mozaic.fm/mozaic-ep206.mp3
+    data-title="ep206 Google I/O 2026"
     data-forward=+30
     data-back=-10>
   </audio>
