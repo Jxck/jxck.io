@@ -1,6 +1,6 @@
 ---
 type: podcast
-tags: ["privacy sandbox"]
+tags: ["temporal"]
 audio: https://files.mozaic.fm/mozaic-ep204.mp3
 published_at: 2026-05-12
 guests:
