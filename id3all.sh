@@ -2783,3 +2783,16 @@ eyeD3 --title "ep206 Google I/O 2026" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep207.mp3
+
+eyeD3 --title "ep207 Monthly Platform 202605" \
+      --track 215 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep207.mp3
+
+
+

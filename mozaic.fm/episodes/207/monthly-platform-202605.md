@@ -16,13 +16,11 @@ guests:
 
 第 207 回のテーマは 2026 年 5 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 149
-
 
 #### Updates
 
@@ -68,7 +66,6 @@ guests:
   - Prompt API
 - What's new in web extensions: I/O 2026 recap
   - https://developer.chrome.com/blog/extensions-io-2026
-
 
 ### Intents
 
@@ -207,7 +204,6 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/XVB3zvLmBOw
   - https://webengineshackfest.org/
 
-
 ### Other
 
 - web.dev
@@ -287,11 +283,9 @@ guests:
     - **All the news from the Google I/O 2026 Developer keynote**
       - https://developers.googleblog.com/all-the-news-from-the-google-io-2026-developer-keynote/
 
-
 ## Firefox 動向
 
 ### Stable: 151
-
 
 ### Updates
 
@@ -332,7 +326,6 @@ guests:
   - https://blog.mozilla.org/en/firefox/new-firefox-design/
 - **Mozilla and Adafruit bring Web Serial workflows to Firefox**
   - https://blog.mozilla.org/en/firefox/firefox-web-serial-adafruit/
-
 
 ### Intents
 
@@ -382,18 +375,15 @@ guests:
 - Removed Legacy Mirrors
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/t9LN4d9wNkk/
 
-
 ### Newsletter
 
 - https://fxdx.dev/
 - Firefox WebDriver Newsletter 151 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-151/
 
-
 ### MDN / Open Web Docs
 
 - https://developer.mozilla.org/en-US/blog/
-
 
 ### Standard Position
 
@@ -416,7 +406,6 @@ guests:
 - Withdrawn
   - Attribution Reporting API
     - https://github.com/mozilla/standards-positions/issues/791
-
 
 ### Other
 
@@ -453,11 +442,9 @@ guests:
   - 局所的な通信規制は、世界のインターネット全体の回復力や信頼性を損ない、分断を招く恐れがある。
   - Mozilla は Firefox のテレメトリデータを提供して障害の分析を支援し、開かれたウェブの維持を訴えている。
 
-
 ## Safari 動向
 
 ### Stable: 26.5
-
 
 ### Updates
 
@@ -560,7 +547,6 @@ guests:
   - WebGL
   - WebGPU
 
-
 ### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2026-05-01+
@@ -586,7 +572,6 @@ guests:
   - Document Subtitle
     - https://github.com/WebKit/standards-positions/issues/138
 
-
 ### Other
 
 - **explainers/css-spatial/explainer.md**
@@ -594,11 +579,9 @@ guests:
   - CSS Spatial Layout Module
   - positioning 系のプロパティを Z 軸方向でも扱えるように拡張
 
-
 ## Edge 動向
 
 ### Stable: 149
-
 
 ### Updates
 
@@ -619,7 +602,6 @@ guests:
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
-
 ### Other
 
 - Saved passwords in Edge memory: what we're changing and why | Microsoft Browser Vulnerability Research
@@ -632,7 +614,6 @@ guests:
   - 不均一な防御: 攻撃は水のように最も弱い隙間へ流れ込むため、すでに強固な壁をさらに高くする対策は無意味である。
   - 暗号化の課題: 秘密鍵の保護が前提であり、鍵自体の安全な管理が極めて困難であるため、暗号化のみでは不十分となる。
   - セキュア・エンクレーブの盲点: 隔離された安全な実行環境であっても、実装の未熟さにより攻撃者の要求をそのまま受け入れる「騙された代理人」になり得る。
-
 
 ## WHATWG/W3C 動向
 
@@ -665,7 +646,6 @@ guests:
     - 脅威源を分類や、サンドボックスや Origin など防御機能を説明する。
     - 仕様のレビューに活用する目的
 
-
 ### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -676,7 +656,6 @@ guests:
 - Meeting 42 for joint OpenUI-WHATWG/HTML-CSSWG task force on styleable form controls
   - https://github.com/whatwg/html/issues/12412
   - Interest Invokers, Customizable Select の filtering, multiple 系諸々
-
 
 ### WHATNOT
 
@@ -710,7 +689,6 @@ guests:
     - Opaque Range Interface (#11478)
     - Reference Target
 
-
 ### CSSWG
 
 - https://www.w3.org/blog/CSS/
@@ -729,7 +707,6 @@ guests:
   - https://github.com/w3c/csswg-drafts/issues/13860
   - 1 つの要素に、複数の ::before や ::after を作れるように
   - ::before(name) のようにして無限に名前付き擬似要素を生成可能にする
-
 
 ### Other
 
@@ -778,13 +755,11 @@ guests:
 - **New incubation: Device Bound Session Credentials for SSO**
   - https://lists.w3.org/Archives/Public/public-new-work/2026May/0005.html
 
-
 ## TC39/TC55 動向
 
 ### Meeting
 
 - なし
-
 
 ### Proposals Diff
 
@@ -796,23 +771,18 @@ guests:
 - 2.7->3
 - 3->4
 
-
 ### New Proposals
-
 
 ### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - 5 月はなし
 
-
 ### Other
-
 
 ## IETF 動向
 
 ### IETF
-
 
 ### WG
 
@@ -823,7 +793,6 @@ guests:
 - I-D Action: draft-ietf-httpbis-no-vary-search-05.txt
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2026AprJun/0044.html
 - Meeting
-
 
 ### Other
 
@@ -843,7 +812,6 @@ guests:
 - IETF | A new suite of modern tools coming RFCs are edited and published
   - https://www.ietf.org/blog/new-tools-coming-for-editing-and-publishing-rfcs/
   - 同上
-
 
 ## 周辺動向
 
@@ -902,9 +870,7 @@ guests:
   - キューバでは、国家電力網の 3 回の崩壊がインターネット接続に深刻な影響を及ぼした。
   - 中東では、軍事行動が Amazon Web Services のデータセンターに直接的な損害を与え、クラウドインフラに悪影響を及ぼした。
 
-
 ### セキュリティ動向
-
 
 ### Other
 
@@ -914,7 +880,6 @@ guests:
   - > Nordstjernen is an independent, lightweight web browser built entirely from scratch in C. A hardened,
   - > zero-JIT HTML5 / CSS / JavaScript rendering engine with a clean-room engine - not Blink, not WebKit, not Gecko.
   - "ノールチャーネン" らしい
-
 
 ## イベント
 
@@ -931,7 +896,6 @@ guests:
   - 20-23: TC39 Remote
     - https://github.com/tc39/agendas
 - 8 月
-
 
 ## Wrap Up
 
