@@ -1,0 +1,285 @@
+---
+type: podcast
+tags: ["monthly ecosystem"]
+audio: https://files.mozaic.fm/mozaic-ep208.mp3
+published_at: 2026-06-18
+guests:
+  - name: "@re-taro"
+    url: https://x.com/re_taro_
+  - name: "@yukukotani"
+    url: https://x.com/yukukotani
+  - name: "@syumai"
+    url: https://x.com/__syumai
+---
+
+# ep208 Monthly Ecosystem 202606
+
+## Theme
+
+第 208 回のテーマは 2026 年 6 月の Monthly Ecosystem です。
+
+## Show Note
+
+- Mini Shai-Hulud: The Worm Returns and Goes Public | Akamai
+  - https://www.akamai.com/blog/security-research/2026/may/mini-shai-hulud-worm-returns-goes-public
+- Next.js May 2026 security release - Vercel
+  - https://vercel.com/changelog/next-js-may-2026-security-release
+  - Next.js のセキュリティリリースが行われ、13 件の脆弱性が修正された。
+  - CVE-2026-23870 に関連する React Server Components の脆弱性が含まれている。
+  - 影響を受けるユーザーは、直ちにパッチ適用されたバージョンにアップグレードすることが推奨される。
+- mastra および `@mastra/*` の複数パッケージの改ざん(ソフトウェアサプライチェーン攻撃)が発生
+  - https://blog.flatt.tech/entry/mastra_compromise
+  - コントリビュータの npm アカウントを乗っ取った
+- Release v11.15.0 · npm/cli
+  - https://github.com/npm/cli/releases/tag/v11.15.0
+  - npm stage
+    - Staging にアップし、2FA 承認したメンテナが許可しないと Publish されない
+  - add permissions support to trust commands
+  - add allow-git/allow-file/allow-directory/allow-remote configs
+- pnpm 11.3 | pnpm
+  - https://pnpm.io/blog/releases/11.3
+  - `pnpm stage​`
+  - `trustLockfile​`
+  - Native pnpm pkg, pnpm repo, and pnpm set-script​
+  - `--skip-manifest-obfuscation` for pack and publish​
+- Upcoming breaking changes for npm v12
+  - https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/
+  - 次のメジャーバージョンの npm v12 で、セキュリティ関連のデフォルト設定として npm install の動作が変更
+  - allowScripts のデフォルト設定が無効化
+    - npm install で依存関係の preinstall、install、postinstall が実行されなくなる
+      - node-gyp ビルドも含む
+    - 信頼できるパッケージは `npm approve-scripts` で許可する
+    - 許可リストは package.json に記載される
+  - `--allow-git`のデフォルト値が none に変更
+    - 明示的に許可しないと Git による依存関係が解決されなくなる
+  - `--allow-remote`のデフォルト値が none に変更
+    - 明示的に許可しないと https 形式の tarball などリモート URL による依存関係が解決されなくなる
+  - v11.16.0 以降で警告付きで利用可能なので、アップグレード準備は事前に進められる
+  - v12 のリリース予定は 2026 年 7 月
+- Why pnpm no longer expands environment variables in a repository's .npmrc | pnpm
+  - https://pnpm.io/blog/2026/06/11/env-variables-in-repository-npmrc
+  - クローンしたリポジトリ内の `.npmrc` / `pnpm-workspace.yaml` での環境変数展開を停止
+  - シークレット流出を防ぐため、それらリポジトリ管理ファイルでの `${...}` 展開を停止
+- pnpm 11.7
+  - https://pnpm.io/blog/releases/11.7
+  - pnpm の Rust port (pacquet) で依存解決するようになった
+- React が facebook org から react org に移動した
+  - https://github.com/react
+  - Metro、Yoga、React Native も移動した
+- React Compiler の Rust 移植版がマージされた
+  - https://github.com/react/react/pull/36173
+  - Babel plugin としては 3 倍高速に動作、変換ロジックは 10 倍高速化された
+  - Oxc や SWC との統合を前提に実装されている
+  - Oxlint には統合済み
+    - https://github.com/oxc-project/oxc/pull/22942
+    - 本家が crate として未公開のため、Fork 版を利用
+  - `swc_ecma_react_compiler` crate の実装
+    - https://github.com/swc-project/swc/pull/11917
+    - 本家が crate として未公開のため、こちらも Fork 版を利用
+- Sandbox persistence is now GA - Vercel
+  - https://vercel.com/changelog/sandbox-persistence-is-now-ga
+  - セッション間でファイルシステムの状態を自動的に保存・復元する機能。
+  - デフォルトで有効、手動でスナップショットを管理する必要がない。
+  - 新しいサンドボックスの作成、取得、再開が可能で、各サンドボックスにはカスタマイズ可能なユニークな名前が付与される。
+- A Brand New Remix | Remix
+  - https://remix.run/blog/brand-new
+  - 最近 Remix の話ししてなかった
+- TanStack Table V9: Taking Form | TanStack Blog
+  - https://tanstack.com/blog/tanstack-table-v9-taking-form
+- Storybook 10.4
+  - https://storybook.js.org/blog/storybook-10-4/
+  - Automated setup
+    - Storybook の初期設定を AI でやる
+    - https://storybook.js.org/docs/ai/setup
+  - Change detection
+    - new, modified, related で diff を出す
+  - Quick sharing
+    - Chromatic 上に Publish する(無料)
+  - TanStack React framework
+  - Opinionated React Native setup and isolation
+  - React Component Meta for MCP (experimental)
+- react-redux が signals base の API PoC してた
+  - https://github.com/reduxjs/react-redux/pull/2318
+  - alien-signals と Proxy API で大規模な react-redux を使ったアプリケーションでの event emitter のコールバック回すコストを減らそうとしている
+- babel v8
+  - https://babeljs.io/blog/2026/06/16/8.0.0/
+  - v7 からの破壊的変更は一切ない
+  - モダナイズ
+    - ESM
+    - declaration types 同梱
+    - babel/preset-env への変更が多そう
+      - デフォルトのトランスパイル先が ES5 から Browserslist の defaults query 相当になった
+        - https://browsersl.ist/#q=defaults
+      - loose option 消える。
+      - polyfill の注入を babel-plugin-polyfill-corejs3 に切り出し
+- VoidZero is joining Cloudflare
+  - https://blog.cloudflare.com/voidzero-joins-cloudflare/
+  - Vite / Vitest / Rolldown / Oxc / Vite+ を開発する VoidZero が Cloudflare に参加し、チーム全員も Cloudflare に合流する。
+  - Vite などの OSS は今後も MIT ライセンス・ベンダー中立・コミュニティ主導を維持し、Cloudflare が方向性を支配することはない。
+  - Cloudflare は Vite エコシステムに 100 万ドルを拠出し、OSS 基盤への投資を強化する。
+  - Cloudflare と Vite はすでに Environment API や Cloudflare Vite plugin で深く連携しており、AI 時代の高速な開発ループに最適化されたツールチェーンとして需要が急増している。
+  - 今後は Cloudflare の CLI や開発者体験を Vite ベースに統合しつつ、Vite 自体は引き続きオープンなプロセスで開発される。
+- Deno 2.8 | Deno
+  - https://deno.com/blog/v2.8
+  - New subcommands
+    - `deno audit fix`
+    - `deno bump-version`
+    - `deno ci`
+    - `deno pack`
+    - `deno transpile`
+    - `deno why`
+  - Deno now defaults to npm:
+  - Node.js API compatibility
+  - Performance
+  - import defer
+  - TypeScript 6.0.3
+  - lib.node included by default
+  - Debugging
+    - CPU profiling
+  - Package and workspace management
+    - `catalog: protocol`
+    - Cross-platform npm installs
+    - `--prod` flag
+    - Hoisted node_modules
+    - .npmrc support
+    - file: and link: dependencies in npm packages
+    - `--package-json` flag
+    - Bug fixes
+  - deno compile updates
+    - Framework detection
+    - Other improvements
+  - OpenTelemetry
+    - Console exporter
+    - gRPC OTLP exporter
+    - Permission audits as OTel logs
+    - Other improvements
+  - Testing and coverage
+    - Sanitizers off by default
+    - Per-test timeouts
+    - Function coverage
+    - Other fixes
+  - Web APIs
+    - Canvas and geometry primitives
+    - Cloneable and transferable values
+    - Other fixes
+  - Task runner
+  - deno upgrade changes
+    - Delta updates
+    - Install from a PR
+  - Module loader hooks
+  - setTimeout and setInterval
+  - Miscellaneous
+  - V8 14.9
+  - Acknowledgments
+  - Open-source
+  - Products
+  - Deno Resources
+  - Company
+  - https://github.com/denoland/deno_ast/pull/331
+    - https://x.com/rough__sea/status/2062745217850302715
+- Apple Container
+  - https://github.com/apple/container
+  - WWDC で正式発表された Apple Silicon 向けの OCI 互換コンテナエンジン
+  - MicroVM でアイソレーションされてセキュア
+- JavaScript Pattern Matching with Flow | by George Zahariev | Flow | Jun, 2026 | Medium
+  - https://medium.com/flow-type/javascript-pattern-matching-with-flow-a2a143108897
+- Vitest Visual Testing sneak peek
+  - https://www.chromatic.com/blog/vitest-visual-testing-sneak-peek/
+- Fastly Joins the Agentic AI Foundation (AAIF) to Guide Edge AI Interoperability | Fastly
+  - https://www.fastly.com/blog/fastly-joins-agentic-ai-foundation-aaif-guide-edge-ai-interoperability
+  - Fastly は、AI の運用要求に適応するための重要なインフラストラクチャ層を提供している。
+  - Agentic AI Foundation(AAIF)に参加し、エージェント相互作用のプロトコルを現実の生産環境に最適化することを目指している。
+  - MCP とエージェントのサブタスクの安全な実行に焦点を当て、顧客が高頻度・低遅延のエッジ操作を活用できるよう支援している。
+- スペース X、プログラミング AI 開発の米新興 Cursor 買収 9.6 兆円 - 日本経済新聞
+  - https://www.nikkei.com/article/DGXZQOGN16BC70W6A610C2000000/
+- Cursor Origin
+  - https://cursor.com/ja/origin
+  - Cursor による Git ホスティング環境
+    - レビュー機能、コードのコラボレーション機能もあるらしい
+      - https://x.com/cursor_ai/status/2067012220832329782
+  - 秋にリリース予定
+    - 現状 Waitlist だけある
+- Composer 2.5
+  - https://cursor.com/ja/blog/composer-2-5
+  - Kimi K2.5 を基盤としている
+  - SpaceX (xAI) のインフラで学習させた
+    - https://cursor.com/ja/blog/spacex-model-training
+- OpenRouter Fusion API (Model Fusion)
+  - チャット形式で試せる
+    - https://openrouter.ai/fusion
+  - API でも呼べる
+    - https://openrouter.ai/docs/guides/features/server-tools/fusion
+  - 複数の LLM モデルを組み合わせてタスクを実行、安価なモデルの組み合わせでフロンティアモデルを超えるベンチマークスコアを記録
+  - Gemini 3 Flash, Kimi K2.6, and DeepSeek V4 Pro の組み合わせでは、GPT-5.5、Opus 4.8 をそれぞれ上回り、Fable 5 には 1%以内に迫りつつ価格は半分程度だった
+    - https://x.com/OpenRouter/status/2065856860435988482
+- Codex Sites
+  - https://openai.com/ja-JP/index/codex-for-every-role-tool-workflow/
+  - Codex で作成した Web アプリをホストする機能がリリース
+  - 裏側が Cloudflare らしく、D1 と R2 でデータの永続化が可能
+    - https://developers.openai.com/codex/sites
+  - 今は Business / Enterprise だけで使える
+- NVIDIA/SkillSpector
+  - https://github.com/NVIDIA/SkillSpector
+  - NVIDIA 製の Agent Skills のセキュリティスキャナー
+- Myth or Marvel: Claude Mythos and What it Means for Security | Fastly
+  - https://www.fastly.com/blog/myth-or-marvel-claude-mythos-what-it-means-for-security
+  - Claude Mythos は、脆弱性を発見しやすくし、攻撃者に有利な状況を生む可能性がある。
+  - コード分析とランタイム保護は異なるが補完的な役割を果たし、後者が必要不可欠である。
+  - 組織は、反応的なパッチ適用から継続的なレジリエンスへの移行が求められる。
+- Project Glasswing: what Mythos showed us
+  - https://blog.cloudflare.com/cyber-frontier-models/
+  - Mythos Preview の進化:
+    - Mythos Preview は、従来の一般的なモデルと異なるアプローチを採用しており、特に攻撃チェーンの構築や証明生成において優れた能力を発揮する。
+    - 複数の小さな攻撃原理を組み合わせて、実際の攻撃を模倣する能力がある。
+  - 証明生成の重要性:
+    - バグを見つけるだけでなく、それが実際に悪用可能であることを証明する機能を持つ。これにより、単なる推測に基づく発見を減少させる。
+  - モデルの拒否反応:
+    - Mythos Preview は、正当なセキュリティ研究に対して時折拒否反応を示すことがあり、その一貫性が欠けているため、追加の安全策が必要であると指摘。
+  - ノイズの問題:
+    - プログラミング言語やモデルのバイアスが、実際のバグと偽陽性の識別を難しくしている。
+    - Mythos Preview は、より高品質な出力を提供し、実際の問題に対する明確な再現手順を示すことができる。
+  - 効果的なハーネスの構築:
+    - 効率的な脆弱性発見のためには、狭い範囲のタスクを並行して処理することが重要。
+    - 複数のエージェントを使用して、異なる視点からのレビューを行うことで、ノイズを減少させ、より良い結果を得ることができる。
+  - セキュリティチームへの影響:
+    - Mythos Preview の導入により、スキャン速度やパッチ適用の迅速化が期待されるが、パイプラインの構造を見直す必要がある。
+    - 攻撃者のタイムラインが短縮される中で、防御側も迅速に対応する必要があるが、過剰な急ぎは新たな問題を引き起こす可能性がある。
+- Expanding Project Glasswing \ Anthropic
+  - https://www.anthropic.com/news/expanding-project-glasswing
+  - 150 の新組織へ拡大
+- Advancing Collective Defense with Project Glasswing | Akamai
+  - https://www.akamai.com/blog/security/2026/may/akamai-anthropic-collective-defense-project-glasswing
+  - Akamai が Glasswing に参加
+- Introducing Claude Opus 4.8 \ Anthropic
+  - https://www.anthropic.com/news/claude-opus-4-8
+  - Mythos レベル公開への準備
+- Claude Fable 5 and Claude Mythos 5 \ Anthropic
+  - https://www.anthropic.com/news/claude-fable-5-mythos-5
+  - Mythos のセーフガード版 Fable 公開
+- Statement on the US government directive to suspend access to Fable 5 and Mythos 5 \ Anthropic
+  - https://www.anthropic.com/news/fable-mythos-access
+  - Fable の Jail Break が発覚したことを受け、US 以外のアクセス禁止令が政府より出る
+  - US からのアクセスかを厳密に判定できないため、全アクセスをブロック
+- Open Letter on Transparent AI Cyber Protections
+  - https://freefable.org/
+- Patching as a Service | ソフトバンク
+  - https://www.softbank.jp/corp/news/press/sbkk/2026/20260616_02/
+  - GPT-5.5 Cyber ベースの診断サービスの提供を発表
+
+## Events
+
+- 6 月
+  - 2-3: Microsoft Build
+    - https://build.microsoft.com/en-US/home
+  - 6: フロントエンド・PHP カンファレンス北海道 2026
+    - https://fortee.jp/frontend-phpcon-do-2026
+  - 10: Code with Claude
+    - https://claude.com/code-with-claude
+  - 11: Code w/ Claude: Extended
+    - https://claude.com/code-with-claude
+  - 23-25: Figma Config 2026
+    - https://config.figma.com/
+- 7 月
+  - 30-31 Google Cloud Next Tokyo
+    - https://www.googlecloudevents.com/next-tokyo/
+- 8 月
