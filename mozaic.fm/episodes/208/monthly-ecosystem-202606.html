@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/208/monthly-ecosystem-202606.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065654></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 208 回のテーマは 2026 年 6 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/208/monthly-ecosystem-202606.html>
+  <meta property=og:title        content="ep208 Monthly Ecosystem 202606 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 208 回のテーマは 2026 年 6 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep208 Monthly Ecosystem 202606 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/207/monthly-platform-202605.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?260310_182656>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_013824>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022018>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?250125_014517>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?250125_012543>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?260217_213617>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154206         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_012959 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200413_030043 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/207/monthly-platform-202605.html>ep207 Monthly Platform 202605</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep208 Monthly Ecosystem 202606</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2026-06-18
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/re_taro_" target=_blank>@re-taro</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/yukukotani" target=_blank>@yukukotani</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__syumai" target=_blank>@syumai</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 208 回のテーマは 2026 年 6 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          Mini Shai-Hulud: The Worm Returns and Goes Public | Akamai
+          <ul>
+            <li><a href="https://www.akamai.com/blog/security-research/2026/may/mini-shai-hulud-worm-returns-goes-public" target=_blank>https://www.akamai.com/blog/security-research/2026/may/mini-shai-hulud-worm-returns-goes-public</a>
+          </ul>
+        </li>
+        <li>
+          Next.js May 2026 security release - Vercel
+          <ul>
+            <li><a href="https://vercel.com/changelog/next-js-may-2026-security-release" target=_blank>https://vercel.com/changelog/next-js-may-2026-security-release</a>
+            <li>Next.js のセキュリティリリースが行われ、13 件の脆弱性が修正された。
+            <li>CVE-2026-23870 に関連する React Server Components の脆弱性が含まれている。
+            <li>影響を受けるユーザーは、直ちにパッチ適用されたバージョンにアップグレードすることが推奨される。
+          </ul>
+        </li>
+        <li>
+          mastra および <code translate=no>@mastra/*</code> の複数パッケージの改ざん(ソフトウェアサプライチェーン攻撃)が発生
+          <ul>
+            <li><a href="https://blog.flatt.tech/entry/mastra_compromise" target=_blank>https://blog.flatt.tech/entry/mastra_compromise</a>
+            <li>コントリビュータの npm アカウントを乗っ取った
+          </ul>
+        </li>
+        <li>
+          Release v11.15.0 · npm/cli
+          <ul>
+            <li><a href="https://github.com/npm/cli/releases/tag/v11.15.0" target=_blank>https://github.com/npm/cli/releases/tag/v11.15.0</a>
+            <li>
+              npm stage
+              <ul>
+                <li>Staging にアップし、2FA 承認したメンテナが許可しないと Publish されない
+              </ul>
+            </li>
+            <li>add permissions support to trust commands
+            <li>add allow-git/allow-file/allow-directory/allow-remote configs
+          </ul>
+        </li>
+        <li>
+          pnpm 11.3 | pnpm
+          <ul>
+            <li><a href="https://pnpm.io/blog/releases/11.3" target=_blank>https://pnpm.io/blog/releases/11.3</a>
+            <li><code translate=no>pnpm stage​</code>
+            <li><code translate=no>trustLockfile​</code>
+            <li>Native pnpm pkg, pnpm repo, and pnpm set-script​
+            <li><code translate=no>--skip-manifest-obfuscation</code> for pack and publish​
+          </ul>
+        </li>
+        <li>
+          Upcoming breaking changes for npm v12
+          <ul>
+            <li><a href="https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/" target=_blank>https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/</a>
+            <li>次のメジャーバージョンの npm v12 で、セキュリティ関連のデフォルト設定として npm install の動作が変更
+            <li>
+              allowScripts のデフォルト設定が無効化
+              <ul>
+                <li>
+                  npm install で依存関係の preinstall、install、postinstall が実行されなくなる
+                  <ul>
+                    <li>node-gyp ビルドも含む
+                  </ul>
+                </li>
+                <li>信頼できるパッケージは <code translate=no>npm approve-scripts</code> で許可する
+                <li>許可リストは package.json に記載される
+              </ul>
+            </li>
+            <li>
+              <code translate=no>--allow-git</code>のデフォルト値が none に変更
+              <ul>
+                <li>明示的に許可しないと Git による依存関係が解決されなくなる
+              </ul>
+            </li>
+            <li>
+              <code translate=no>--allow-remote</code>のデフォルト値が none に変更
+              <ul>
+                <li>明示的に許可しないと https 形式の tarball などリモート URL による依存関係が解決されなくなる
+              </ul>
+            </li>
+            <li>v11.16.0 以降で警告付きで利用可能なので、アップグレード準備は事前に進められる
+            <li>v12 のリリース予定は 2026 年 7 月
+          </ul>
+        </li>
+        <li>
+          Why pnpm no longer expands environment variables in a repository&apos;s .npmrc | pnpm
+          <ul>
+            <li><a href="https://pnpm.io/blog/2026/06/11/env-variables-in-repository-npmrc" target=_blank>https://pnpm.io/blog/2026/06/11/env-variables-in-repository-npmrc</a>
+            <li>クローンしたリポジトリ内の <code translate=no>.npmrc</code> / <code translate=no>pnpm-workspace.yaml</code> での環境変数展開を停止
+            <li>シークレット流出を防ぐため、それらリポジトリ管理ファイルでの <code translate=no>${...}</code> 展開を停止
+          </ul>
+        </li>
+        <li>
+          pnpm 11.7
+          <ul>
+            <li><a href="https://pnpm.io/blog/releases/11.7" target=_blank>https://pnpm.io/blog/releases/11.7</a>
+            <li>pnpm の Rust port (pacquet) で依存解決するようになった
+          </ul>
+        </li>
+        <li>
+          React が facebook org から react org に移動した
+          <ul>
+            <li><a href="https://github.com/react" target=_blank>https://github.com/react</a>
+            <li>Metro、Yoga、React Native も移動した
+          </ul>
+        </li>
+        <li>
+          React Compiler の Rust 移植版がマージされた
+          <ul>
+            <li><a href="https://github.com/react/react/pull/36173" target=_blank>https://github.com/react/react/pull/36173</a>
+            <li>Babel plugin としては 3 倍高速に動作、変換ロジックは 10 倍高速化された
+            <li>Oxc や SWC との統合を前提に実装されている
+            <li>
+              Oxlint には統合済み
+              <ul>
+                <li><a href="https://github.com/oxc-project/oxc/pull/22942" target=_blank>https://github.com/oxc-project/oxc/pull/22942</a>
+                <li>本家が crate として未公開のため、Fork 版を利用
+              </ul>
+            </li>
+            <li>
+              <code translate=no>swc_ecma_react_compiler</code> crate の実装
+              <ul>
+                <li><a href="https://github.com/swc-project/swc/pull/11917" target=_blank>https://github.com/swc-project/swc/pull/11917</a>
+                <li>本家が crate として未公開のため、こちらも Fork 版を利用
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Sandbox persistence is now GA - Vercel
+          <ul>
+            <li><a href="https://vercel.com/changelog/sandbox-persistence-is-now-ga" target=_blank>https://vercel.com/changelog/sandbox-persistence-is-now-ga</a>
+            <li>セッション間でファイルシステムの状態を自動的に保存・復元する機能。
+            <li>デフォルトで有効、手動でスナップショットを管理する必要がない。
+            <li>新しいサンドボックスの作成、取得、再開が可能で、各サンドボックスにはカスタマイズ可能なユニークな名前が付与される。
+          </ul>
+        </li>
+        <li>
+          A Brand New Remix | Remix
+          <ul>
+            <li><a href="https://remix.run/blog/brand-new" target=_blank>https://remix.run/blog/brand-new</a>
+            <li>最近 Remix の話ししてなかった
+          </ul>
+        </li>
+        <li>
+          TanStack Table V9: Taking Form | TanStack Blog
+          <ul>
+            <li><a href="https://tanstack.com/blog/tanstack-table-v9-taking-form" target=_blank>https://tanstack.com/blog/tanstack-table-v9-taking-form</a>
+          </ul>
+        </li>
+        <li>
+          Storybook 10.4
+          <ul>
+            <li><a href="https://storybook.js.org/blog/storybook-10-4/" target=_blank>https://storybook.js.org/blog/storybook-10-4/</a>
+            <li>
+              Automated setup
+              <ul>
+                <li>Storybook の初期設定を AI でやる
+                <li><a href="https://storybook.js.org/docs/ai/setup" target=_blank>https://storybook.js.org/docs/ai/setup</a>
+              </ul>
+            </li>
+            <li>
+              Change detection
+              <ul>
+                <li>new, modified, related で diff を出す
+              </ul>
+            </li>
+            <li>
+              Quick sharing
+              <ul>
+                <li>Chromatic 上に Publish する(無料)
+              </ul>
+            </li>
+            <li>TanStack React framework
+            <li>Opinionated React Native setup and isolation
+            <li>React Component Meta for MCP (experimental)
+          </ul>
+        </li>
+        <li>
+          react-redux が signals base の API PoC してた
+          <ul>
+            <li><a href="https://github.com/reduxjs/react-redux/pull/2318" target=_blank>https://github.com/reduxjs/react-redux/pull/2318</a>
+            <li>alien-signals と Proxy API で大規模な react-redux を使ったアプリケーションでの event emitter のコールバック回すコストを減らそうとしている
+          </ul>
+        </li>
+        <li>
+          babel v8
+          <ul>
+            <li><a href="https://babeljs.io/blog/2026/06/16/8.0.0/" target=_blank>https://babeljs.io/blog/2026/06/16/8.0.0/</a>
+            <li>v7 からの破壊的変更は一切ない
+            <li>
+              モダナイズ
+              <ul>
+                <li>ESM
+                <li>declaration types 同梱
+                <li>
+                  babel/preset-env への変更が多そう
+                  <ul>
+                    <li>
+                      デフォルトのトランスパイル先が ES5 から Browserslist の defaults query 相当になった
+                      <ul>
+                        <li><a href="https://browsersl.ist/#q=defaults" target=_blank>https://browsersl.ist/#q=defaults</a>
+                      </ul>
+                    </li>
+                    <li>loose option 消える。
+                    <li>polyfill の注入を babel-plugin-polyfill-corejs3 に切り出し
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          VoidZero is joining Cloudflare
+          <ul>
+            <li><a href="https://blog.cloudflare.com/voidzero-joins-cloudflare/" target=_blank>https://blog.cloudflare.com/voidzero-joins-cloudflare/</a>
+            <li>Vite / Vitest / Rolldown / Oxc / Vite+ を開発する VoidZero が Cloudflare に参加し、チーム全員も Cloudflare に合流する。
+            <li>Vite などの OSS は今後も MIT ライセンス・ベンダー中立・コミュニティ主導を維持し、Cloudflare が方向性を支配することはない。
+            <li>Cloudflare は Vite エコシステムに 100 万ドルを拠出し、OSS 基盤への投資を強化する。
+            <li>Cloudflare と Vite はすでに Environment API や Cloudflare Vite plugin で深く連携しており、AI 時代の高速な開発ループに最適化されたツールチェーンとして需要が急増している。
+            <li>今後は Cloudflare の CLI や開発者体験を Vite ベースに統合しつつ、Vite 自体は引き続きオープンなプロセスで開発される。
+          </ul>
+        </li>
+        <li>
+          Deno 2.8 | Deno
+          <ul>
+            <li><a href="https://deno.com/blog/v2.8" target=_blank>https://deno.com/blog/v2.8</a>
+            <li>
+              New subcommands
+              <ul>
+                <li><code translate=no>deno audit fix</code>
+                <li><code translate=no>deno bump-version</code>
+                <li><code translate=no>deno ci</code>
+                <li><code translate=no>deno pack</code>
+                <li><code translate=no>deno transpile</code>
+                <li><code translate=no>deno why</code>
+              </ul>
+            </li>
+            <li>Deno now defaults to npm:
+            <li>Node.js API compatibility
+            <li>Performance
+            <li>import defer
+            <li>TypeScript 6.0.3
+            <li>lib.node included by default
+            <li>
+              Debugging
+              <ul>
+                <li>CPU profiling
+              </ul>
+            </li>
+            <li>
+              Package and workspace management
+              <ul>
+                <li><code translate=no>catalog: protocol</code>
+                <li>Cross-platform npm installs
+                <li><code translate=no>--prod</code> flag
+                <li>Hoisted node_modules
+                <li>.npmrc support
+                <li>file: and link: dependencies in npm packages
+                <li><code translate=no>--package-json</code> flag
+                <li>Bug fixes
+              </ul>
+            </li>
+            <li>
+              deno compile updates
+              <ul>
+                <li>Framework detection
+                <li>Other improvements
+              </ul>
+            </li>
+            <li>
+              OpenTelemetry
+              <ul>
+                <li>Console exporter
+                <li>gRPC OTLP exporter
+                <li>Permission audits as OTel logs
+                <li>Other improvements
+              </ul>
+            </li>
+            <li>
+              Testing and coverage
+              <ul>
+                <li>Sanitizers off by default
+                <li>Per-test timeouts
+                <li>Function coverage
+                <li>Other fixes
+              </ul>
+            </li>
+            <li>
+              Web APIs
+              <ul>
+                <li>Canvas and geometry primitives
+                <li>Cloneable and transferable values
+                <li>Other fixes
+              </ul>
+            </li>
+            <li>Task runner
+            <li>
+              deno upgrade changes
+              <ul>
+                <li>Delta updates
+                <li>Install from a PR
+              </ul>
+            </li>
+            <li>Module loader hooks
+            <li>setTimeout and setInterval
+            <li>Miscellaneous
+            <li>V8 14.9
+            <li>Acknowledgments
+            <li>Open-source
+            <li>Products
+            <li>Deno Resources
+            <li>Company
+            <li>
+              <a href="https://github.com/denoland/deno_ast/pull/331" target=_blank>https://github.com/denoland/deno_ast/pull/331</a>
+              <ul>
+                <li><a href="https://x.com/rough__sea/status/2062745217850302715" target=_blank>https://x.com/rough__sea/status/2062745217850302715</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Apple Container
+          <ul>
+            <li><a href="https://github.com/apple/container" target=_blank>https://github.com/apple/container</a>
+            <li>WWDC で正式発表された Apple Silicon 向けの OCI 互換コンテナエンジン
+            <li>MicroVM でアイソレーションされてセキュア
+          </ul>
+        </li>
+        <li>
+          JavaScript Pattern Matching with Flow | by George Zahariev | Flow | Jun, 2026 | Medium
+          <ul>
+            <li><a href="https://medium.com/flow-type/javascript-pattern-matching-with-flow-a2a143108897" target=_blank>https://medium.com/flow-type/javascript-pattern-matching-with-flow-a2a143108897</a>
+          </ul>
+        </li>
+        <li>
+          Vitest Visual Testing sneak peek
+          <ul>
+            <li><a href="https://www.chromatic.com/blog/vitest-visual-testing-sneak-peek/" target=_blank>https://www.chromatic.com/blog/vitest-visual-testing-sneak-peek/</a>
+          </ul>
+        </li>
+        <li>
+          Fastly Joins the Agentic AI Foundation (AAIF) to Guide Edge AI Interoperability | Fastly
+          <ul>
+            <li><a href="https://www.fastly.com/blog/fastly-joins-agentic-ai-foundation-aaif-guide-edge-ai-interoperability" target=_blank>https://www.fastly.com/blog/fastly-joins-agentic-ai-foundation-aaif-guide-edge-ai-interoperability</a>
+            <li>Fastly は、AI の運用要求に適応するための重要なインフラストラクチャ層を提供している。
+            <li>Agentic AI Foundation(AAIF)に参加し、エージェント相互作用のプロトコルを現実の生産環境に最適化することを目指している。
+            <li>MCP とエージェントのサブタスクの安全な実行に焦点を当て、顧客が高頻度・低遅延のエッジ操作を活用できるよう支援している。
+          </ul>
+        </li>
+        <li>
+          スペース X、プログラミング AI 開発の米新興 Cursor 買収 9.6 兆円 - 日本経済新聞
+          <ul>
+            <li><a href="https://www.nikkei.com/article/DGXZQOGN16BC70W6A610C2000000/" target=_blank>https://www.nikkei.com/article/DGXZQOGN16BC70W6A610C2000000/</a>
+          </ul>
+        </li>
+        <li>
+          Cursor Origin
+          <ul>
+            <li><a href="https://cursor.com/ja/origin" target=_blank>https://cursor.com/ja/origin</a>
+            <li>
+              Cursor による Git ホスティング環境
+              <ul>
+                <li>
+                  レビュー機能、コードのコラボレーション機能もあるらしい
+                  <ul>
+                    <li><a href="https://x.com/cursor_ai/status/2067012220832329782" target=_blank>https://x.com/cursor_ai/status/2067012220832329782</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              秋にリリース予定
+              <ul>
+                <li>現状 Waitlist だけある
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Composer 2.5
+          <ul>
+            <li><a href="https://cursor.com/ja/blog/composer-2-5" target=_blank>https://cursor.com/ja/blog/composer-2-5</a>
+            <li>Kimi K2.5 を基盤としている
+            <li>
+              SpaceX (xAI) のインフラで学習させた
+              <ul>
+                <li><a href="https://cursor.com/ja/blog/spacex-model-training" target=_blank>https://cursor.com/ja/blog/spacex-model-training</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          OpenRouter Fusion API (Model Fusion)
+          <ul>
+            <li>
+              チャット形式で試せる
+              <ul>
+                <li><a href="https://openrouter.ai/fusion" target=_blank>https://openrouter.ai/fusion</a>
+              </ul>
+            </li>
+            <li>
+              API でも呼べる
+              <ul>
+                <li><a href="https://openrouter.ai/docs/guides/features/server-tools/fusion" target=_blank>https://openrouter.ai/docs/guides/features/server-tools/fusion</a>
+              </ul>
+            </li>
+            <li>複数の LLM モデルを組み合わせてタスクを実行、安価なモデルの組み合わせでフロンティアモデルを超えるベンチマークスコアを記録
+            <li>
+              Gemini 3 Flash, Kimi K2.6, and DeepSeek V4 Pro の組み合わせでは、GPT-5.5、Opus 4.8 をそれぞれ上回り、Fable 5 には 1%以内に迫りつつ価格は半分程度だった
+              <ul>
+                <li><a href="https://x.com/OpenRouter/status/2065856860435988482" target=_blank>https://x.com/OpenRouter/status/2065856860435988482</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Codex Sites
+          <ul>
+            <li><a href="https://openai.com/ja-JP/index/codex-for-every-role-tool-workflow/" target=_blank>https://openai.com/ja-JP/index/codex-for-every-role-tool-workflow/</a>
+            <li>Codex で作成した Web アプリをホストする機能がリリース
+            <li>
+              裏側が Cloudflare らしく、D1 と R2 でデータの永続化が可能
+              <ul>
+                <li><a href="https://developers.openai.com/codex/sites" target=_blank>https://developers.openai.com/codex/sites</a>
+              </ul>
+            </li>
+            <li>今は Business / Enterprise だけで使える
+          </ul>
+        </li>
+        <li>
+          NVIDIA/SkillSpector
+          <ul>
+            <li><a href="https://github.com/NVIDIA/SkillSpector" target=_blank>https://github.com/NVIDIA/SkillSpector</a>
+            <li>NVIDIA 製の Agent Skills のセキュリティスキャナー
+          </ul>
+        </li>
+        <li>
+          Myth or Marvel: Claude Mythos and What it Means for Security | Fastly
+          <ul>
+            <li><a href="https://www.fastly.com/blog/myth-or-marvel-claude-mythos-what-it-means-for-security" target=_blank>https://www.fastly.com/blog/myth-or-marvel-claude-mythos-what-it-means-for-security</a>
+            <li>Claude Mythos は、脆弱性を発見しやすくし、攻撃者に有利な状況を生む可能性がある。
+            <li>コード分析とランタイム保護は異なるが補完的な役割を果たし、後者が必要不可欠である。
+            <li>組織は、反応的なパッチ適用から継続的なレジリエンスへの移行が求められる。
+          </ul>
+        </li>
+        <li>
+          Project Glasswing: what Mythos showed us
+          <ul>
+            <li><a href="https://blog.cloudflare.com/cyber-frontier-models/" target=_blank>https://blog.cloudflare.com/cyber-frontier-models/</a>
+            <li>
+              Mythos Preview の進化:
+              <ul>
+                <li>Mythos Preview は、従来の一般的なモデルと異なるアプローチを採用しており、特に攻撃チェーンの構築や証明生成において優れた能力を発揮する。
+                <li>複数の小さな攻撃原理を組み合わせて、実際の攻撃を模倣する能力がある。
+              </ul>
+            </li>
+            <li>
+              証明生成の重要性:
+              <ul>
+                <li>バグを見つけるだけでなく、それが実際に悪用可能であることを証明する機能を持つ。これにより、単なる推測に基づく発見を減少させる。
+              </ul>
+            </li>
+            <li>
+              モデルの拒否反応:
+              <ul>
+                <li>Mythos Preview は、正当なセキュリティ研究に対して時折拒否反応を示すことがあり、その一貫性が欠けているため、追加の安全策が必要であると指摘。
+              </ul>
+            </li>
+            <li>
+              ノイズの問題:
+              <ul>
+                <li>プログラミング言語やモデルのバイアスが、実際のバグと偽陽性の識別を難しくしている。
+                <li>Mythos Preview は、より高品質な出力を提供し、実際の問題に対する明確な再現手順を示すことができる。
+              </ul>
+            </li>
+            <li>
+              効果的なハーネスの構築:
+              <ul>
+                <li>効率的な脆弱性発見のためには、狭い範囲のタスクを並行して処理することが重要。
+                <li>複数のエージェントを使用して、異なる視点からのレビューを行うことで、ノイズを減少させ、より良い結果を得ることができる。
+              </ul>
+            </li>
+            <li>
+              セキュリティチームへの影響:
+              <ul>
+                <li>Mythos Preview の導入により、スキャン速度やパッチ適用の迅速化が期待されるが、パイプラインの構造を見直す必要がある。
+                <li>攻撃者のタイムラインが短縮される中で、防御側も迅速に対応する必要があるが、過剰な急ぎは新たな問題を引き起こす可能性がある。
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Expanding Project Glasswing \ Anthropic
+          <ul>
+            <li><a href="https://www.anthropic.com/news/expanding-project-glasswing" target=_blank>https://www.anthropic.com/news/expanding-project-glasswing</a>
+            <li>150 の新組織へ拡大
+          </ul>
+        </li>
+        <li>
+          Advancing Collective Defense with Project Glasswing | Akamai
+          <ul>
+            <li><a href="https://www.akamai.com/blog/security/2026/may/akamai-anthropic-collective-defense-project-glasswing" target=_blank>https://www.akamai.com/blog/security/2026/may/akamai-anthropic-collective-defense-project-glasswing</a>
+            <li>Akamai が Glasswing に参加
+          </ul>
+        </li>
+        <li>
+          Introducing Claude Opus 4.8 \ Anthropic
+          <ul>
+            <li><a href="https://www.anthropic.com/news/claude-opus-4-8" target=_blank>https://www.anthropic.com/news/claude-opus-4-8</a>
+            <li>Mythos レベル公開への準備
+          </ul>
+        </li>
+        <li>
+          Claude Fable 5 and Claude Mythos 5 \ Anthropic
+          <ul>
+            <li><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target=_blank>https://www.anthropic.com/news/claude-fable-5-mythos-5</a>
+            <li>Mythos のセーフガード版 Fable 公開
+          </ul>
+        </li>
+        <li>
+          Statement on the US government directive to suspend access to Fable 5 and Mythos 5 \ Anthropic
+          <ul>
+            <li><a href="https://www.anthropic.com/news/fable-mythos-access" target=_blank>https://www.anthropic.com/news/fable-mythos-access</a>
+            <li>Fable の Jail Break が発覚したことを受け、US 以外のアクセス禁止令が政府より出る
+            <li>US からのアクセスかを厳密に判定できないため、全アクセスをブロック
+          </ul>
+        </li>
+        <li>
+          Open Letter on Transparent AI Cyber Protections
+          <ul>
+            <li><a href="https://freefable.org/" target=_blank>https://freefable.org/</a>
+          </ul>
+        </li>
+        <li>
+          Patching as a Service | ソフトバンク
+          <ul>
+            <li><a href="https://www.softbank.jp/corp/news/press/sbkk/2026/20260616_02/" target=_blank>https://www.softbank.jp/corp/news/press/sbkk/2026/20260616_02/</a>
+            <li>GPT-5.5 Cyber ベースの診断サービスの提供を発表
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          6 月
+          <ul>
+            <li>
+              2-3: Microsoft Build
+              <ul>
+                <li><a href="https://build.microsoft.com/en-US/home" target=_blank>https://build.microsoft.com/en-US/home</a>
+              </ul>
+            </li>
+            <li>
+              6: フロントエンド・PHP カンファレンス北海道 2026
+              <ul>
+                <li><a href="https://fortee.jp/frontend-phpcon-do-2026" target=_blank>https://fortee.jp/frontend-phpcon-do-2026</a>
+              </ul>
+            </li>
+            <li>
+              10: Code with Claude
+              <ul>
+                <li><a href="https://claude.com/code-with-claude" target=_blank>https://claude.com/code-with-claude</a>
+              </ul>
+            </li>
+            <li>
+              11: Code w/ Claude: Extended
+              <ul>
+                <li><a href="https://claude.com/code-with-claude" target=_blank>https://claude.com/code-with-claude</a>
+              </ul>
+            </li>
+            <li>
+              23-25: Figma Config 2026
+              <ul>
+                <li><a href="https://config.figma.com/" target=_blank>https://config.figma.com/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          7 月
+          <ul>
+            <li>
+              30-31 Google Cloud Next Tokyo
+              <ul>
+                <li><a href="https://www.googlecloudevents.com/next-tokyo/" target=_blank>https://www.googlecloudevents.com/next-tokyo/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>8 月
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/207/monthly-platform-202605.html>ep207 Monthly Platform 202605</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright>
+    <small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small>
+    <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+  </p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep208.mp3
+    data-title="ep208 Monthly Ecosystem 202606"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
