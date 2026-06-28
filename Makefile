@@ -27,12 +27,10 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 ##########################
 # Aggregate
 ##########################
-# 全体の差分ビルド
+# 既定ターゲット: 直接ビルドは禁止し、用途別ターゲットへ誘導する
 all:
-	$(MAKE) blog
-	$(MAKE) podcast
-	$(MAKE) dict
-	$(MAKE) comp
+	@echo "run 'make blog' or 'make podcast'" >&2
+	@exit 1
 
 # blog/podcast の md を formatter にかけて整形
 fmt: fmt-blog fmt-podcast
@@ -67,8 +65,9 @@ mtime-blog:
 	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
 	@touch $@
 
-# index/rss/sitemap/tags の更新
+# index/rss/sitemap/tags を更新し、最後に comp で .br/.dcb を生成する
 blog: ./blog.jxck.io/index.html
+	$(MAKE) comp
 
 # blog のフルビルド
 blog-all:
@@ -260,12 +259,13 @@ $(DICT_CONF): $(DICT_ACTIVE)
 	    $<
 
 # 辞書を再生成する
-# 配信用の hash.dict.br と全 html.dcb を更新する
+# 配信用の hash.dict.br と全 html.dcb を更新し、Link ヘッダ反映のため reload する
 dict:
 	@$(MAKE) -B $(DICT_ACTIVE)
 	@dict_name=$$(readlink $(DICT_ACTIVE)); \
 	  $(MAKE) -B "$(DICT_DIR)/$$dict_name.br"
 	@$(MAKE) -B dcb
+	$(MAKE) reload
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
