@@ -314,6 +314,7 @@ distclean: clean blog-clean podcast-clean
 # 依存インストール
 install:
 	npm install
+	cargo install cdt-toolkit
 ifeq ($(shell uname -s),Linux)
 	.h2o/install.sh
 else
@@ -324,6 +325,7 @@ endif
 update:
 	ncu --cooldown 7 --upgrade
 	npm install
+	cargo install cdt-toolkit
 ifeq ($(shell uname -s),Linux)
 	.h2o/install.sh
 else
