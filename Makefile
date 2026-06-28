@@ -265,7 +265,11 @@ dict:
 	@dict_name=$$(readlink $(DICT_ACTIVE)); \
 	  $(MAKE) -B "$(DICT_DIR)/$$dict_name.br"
 	@$(MAKE) -B dcb
+ifeq ($(shell uname -s),Linux)
 	$(MAKE) reload
+else
+	@printf '\033[31mSKIP H2O RELOAD ON $(shell uname -s)\033[0m\n'
+endif
 
 # dcb 差分生成 (単独実行可)
 dcb: $(BLOG_DCB)
