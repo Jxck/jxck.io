@@ -314,13 +314,21 @@ distclean: clean blog-clean podcast-clean
 # 依存インストール
 install:
 	npm install
+ifeq ($(shell uname -s),Linux)
 	.h2o/install.sh
+else
+	@printf '\033[31mSKIP H2O INSTALL ON $(shell uname -s)\033[0m\n'
+endif
 
 # 依存更新
 update:
 	ncu --cooldown 7 --upgrade
 	npm install
+ifeq ($(shell uname -s),Linux)
 	.h2o/install.sh
+else
+	@printf '\033[31mSKIP H2O INSTALL ON $(shell uname -s)\033[0m\n'
+endif
 
 # .systemd unit 一覧
 systemd-list:
