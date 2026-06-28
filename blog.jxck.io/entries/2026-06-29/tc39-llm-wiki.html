@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-06-29/tc39-llm-wiki.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Web 標準の議論を長いこと追ってきたが、追えば追うほど、追うべきものは増えていく。また、最新の情報を追うこと自体は比較的簡単でも、なぜそうなったのかといった経緯を過去にさかのぼって調べるのは、なかなか難しい。これを LLM-Wiki を使うことで大幅に改善することができた。">
+  <meta name=keywords            content="llm-wiki,tc39">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-06-29/tc39-llm-wiki.html>
+  <meta property=og:title        content="Web 標準の議論を LLM-Wiki で追う | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Web 標準の議論を長いこと追ってきたが、追えば追うほど、追うべきものは増えていく。また、最新の情報を追うこと自体は比較的簡単でも、なぜそうなったのかといった経緯を過去にさかのぼって調べるのは、なかなか難しい。これを LLM-Wiki を使うことで大幅に改善することができた。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-06-29/tc39-llm-wiki.html"
+    },
+    "headline": "Web 標準の議論を LLM-Wiki で追う | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-06-29T00:00:00+09:00",
+    "dateModified": "2026-06-29T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Web 標準の議論を長いこと追ってきたが、追えば追うほど、追うべきものは増えていく。また、最新の情報を追うこと自体は比較的簡単でも、なぜそうなったのかといった経緯を過去にさかのぼって調べるのは、なかなか難しい。これを LLM-Wiki を使うことで大幅に改善することができた。"
+  }
+  </script>
+
+  <title>Web 標準の議論を LLM-Wiki で追う | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-06-29>2026-06-29</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-06-29>2026-06-29</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#llm-wiki">llm-wiki</a>
+              <li><a href="/tags#tc39">tc39</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#標準化の議論">標準化の議論</a>
+              <li><a href="#tc39-の追い方">TC39 の追い方</a>
+              <li><a href="#llm-wiki">LLM-Wiki</a>
+              <li><a href="#tc39-llm-wiki">TC39 LLM-Wiki</a>
+              <ol>
+                <li><a href="#ingest-知識の取り込みと更新">Ingest: 知識の取り込みと更新</a>
+                <li><a href="#lint-既存知識の整合性チェックと更新">Lint: 既存知識の整合性チェックと更新</a>
+                <li><a href="#summarise-ミーティング議事録の要約">Summarise: ミーティング議事録の要約</a>
+                <li><a href="#families-関連仕様のグルーピング">Families: 関連仕様のグルーピング</a>
+                <li><a href="#query-既存-wiki-からの知識抽出">Query: 既存 Wiki からの知識抽出</a>
+                <li><a href="#既存手法との違い">既存手法との違い</a>
+              </ol>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">Web 標準の議論を LLM-Wiki で追う</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Web 標準の議論を長いこと追ってきたが、追えば追うほど、追うべきものは増えていく。
+        <p>また、最新の情報を追うこと自体は比較的簡単でも、なぜそうなったのかといった経緯を過去にさかのぼって調べるのは、なかなか難しい。
+        <p>これを LLM-Wiki を使うことで大幅に改善することができた。
+      </section>
+      <section>
+        <h2 id="標準化の議論"><a href="#標準化の議論">標準化の議論</a></h2>
+        <p>Web 標準はある日突然降って湧くわけではない。
+        <p>然るべきところで誰かがアイデアを出し、それを長い時間かけて議論し、実装しながら仕様を詰め、フィールドトライアルし、完成品が開発者の手元に届く。
+        <p>最初に誰かが出すアイデアにも、「こういう問題がある」といったきっかけがある。それが今までできなかった理由も、標準化していける理由も、それ以前の議論と線形に流れる文脈の上にある。その文脈の中で、否定され消えていったものもたくさんある。
+        <p>追うだけなら完成品と API だけを見ればよい。しかし、「なぜこうなったのか」「アレは今どうなったのか」「なぜアレはダメでコレは良かったのか」などを含め高い解像度で理解するには、議論の経緯を追う以外の方法はない。
+        <p>議論は、Mailing List や Chat で行われることもあれば、GitHub で行われることもある。オフラインやオンラインのミーティングで行われ、議事録が公開されることもある。
+        <p>全部を追うのは無理なので、筆者は IETF, W3C, ECMA などを中心に、興味のある WG の議論を追うことで、なんとかキャッチアップしてきた。
+        <p>細かい議論は追っているときは把握できても、どんどん忘れていってしまう。そこで「忘れるため」にまとめているのがこのブログだ。それも、興味の範囲のほんの一握りしかできていない。
+        <p>常に触れていれば、ざっくりしたトピックへのフックは自分の中にある。しかし、改めて「で、今どうなってたっけ」を調べ直すのは、それなりのコストがかかる。
+      </section>
+      <section>
+        <h2 id="tc39-の追い方"><a href="#tc39-の追い方">TC39 の追い方</a></h2>
+        <p>JS 関連の仕様は、完成品であれば MDN などで API を把握し叩くだけで十分だ。書いてある通りに動くだろう。多くの人はそれで足りる。
+        <p>しかし、「どうしてこういう API になったのか」などを知りたい場合は、ECMAScript の策定を担う TC39 の議論を追う必要がある。
+        <p>各 API のリポジトリでも Issue の議論などはあるが、基本的には定期的に開催されている F2F のミーティングに議論が集約される。
+        <p>その議事録は以下で公開されている。
+        <ul>
+          <li>
+            tc39/notes: TC39 meeting notes
+            <ul>
+              <li><a href="https://github.com/tc39/notes" target=_blank>https://github.com/tc39/notes</a>
+            </ul>
+          </li>
+        </ul>
+        <p>かなりきちんと「文字起こし」に近い markdown の議事録が、2012-05 から積まれている。
+        <p>ミーティングは 2 ヶ月ごとに実施され、1 ヶ月遅れくらいで議事録の PR が出される。
+        <p>筆者は、この PR のタイミングで「TC39 の minutes を読む」という会を有志と X の Spaces で行い、議論を把握するように努めてきた。
+        <p>
+          <picture>
+            <source type=image/avif srcset=tc39_minutes.avif?260629_033918>
+            <source type=image/webp srcset=tc39_minutes.webp?260629_033859>
+            <img loading=lazy decoding=async src=tc39_minutes.png?260629_033858 alt="TC39_minutes" width=469 height=319>
+          </picture>
+        </p>
+        <ul>
+          <li>
+            TC39 Minutes を読む - Google ドキュメント
+            <ul>
+              <li><a href="https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU" target=_blank>https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU</a>
+            </ul>
+          </li>
+        </ul>
+        <p>最初のころは原文を読みながら、手で要約を書き、それに基づいて議論してきた。最近では NotebookLM などで要約を生成し、それを基に議論するなど運用はかなり変わっている。
+        <p>同じトピックの継続議論の場合、「これって今どうなってたっけ?」は、この Docs やリポジトリを検索し、過去の該当する議論を振り返るといった形で振り返ってきていた。
+        <p>本来話すのが 3 回目のはずのトピックを全く覚えていなかったり、前回とまったく同じことをもう一度調べることも少なくない。
+        <p>本来、ミーティングに参加している Champion は、自分が担当している範囲に集中すれば良い。それを全部追おうとすること自体が無茶なのは、10 年以上前からわかっている。
+        <p>それでも、知りたいと思ってしまったのだ。
+      </section>
+      <section>
+        <h2 id="llm-wiki"><a href="#llm-wiki">LLM-Wiki</a></h2>
+        <p>コストが高いまま続けると、疲れて辞めてしまう。
+        <p>一度やめれば、そのまま引き離され、もう二度と追いつくことはできないだろうということは、ひしひしと感じている。
+        <p>なんとか精度を維持したまま負荷を下げ、「(本来の意味での)さわり」だけでも抑えておきたい。
+        <p>そこで LLM-Wiki を用いて AI の力を借りることにした。
+        <p>LLM-Wiki は、Andrej Karpathy が提案した手法だ。
+        <p>RAG などと同じく、既存の知識を整理し、活用するためのナレッジベースを作るフレームワークだ。
+        <ul>
+          <li>
+            LLM-Wiki
+            <ul>
+              <li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target=_blank>https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f</a>
+            </ul>
+          </li>
+        </ul>
+        <p>Obsidian の構築を AI に依頼するのに近いイメージで、雑に突っ込んだ論文やドキュメントを整理するといったユースケースがある。
+        <p>今回は、これを TC39 の議事録に応用する。
+        <p>といっても、この Gist の <code translate=no>llm-wiki.md</code> を Repo Root に置き、「これを実現して」と言うだけで AGENT.md などができる。
+        <p>オリジナルの LLM-Wiki の前提と少し変わるため、コマンドはかなりカスタマイズして使っている。
+      </section>
+      <section>
+        <h2 id="tc39-llm-wiki"><a href="#tc39-llm-wiki">TC39 LLM-Wiki</a></h2>
+        <p>LLM-Wiki は、基本的に <code translate=no>/raw</code> に情報ソースを追加し、それを解析させることで既存の知識と結合させ、育てていく。
+        <p>今回は、この <code translate=no>/raw</code> の中に、以下の関連リポジトリをまるっと投入した。
+        <ul>
+          <li>
+            <a href="https://github.com/tc39/agendas" target=_blank>https://github.com/tc39/agendas</a>
+            <ul>
+              <li>ミーティング前に作られる議題などのまとめ
+            </ul>
+          </li>
+          <li>
+            <a href="https://github.com/tc39/notes" target=_blank>https://github.com/tc39/notes</a>
+            <ul>
+              <li>ミーティング後に作られる議事録のまとめ
+            </ul>
+          </li>
+          <li>
+            <a href="https://github.com/tc39/proposals" target=_blank>https://github.com/tc39/proposals</a>
+            <ul>
+              <li>ミーティングで議論されている仕様のハブ
+            </ul>
+          </li>
+        </ul>
+        <p>2012-05 以降全ての議論が残っている。議事録は、トピックごとに節立てて整理され、重要な決定事項があれば記録されている。非常に質の良いソースだ。
+        <p>仕様ごとの細かい Issue/PR が個別のリポジトリで運用されていても、それを定期的にここでまとめており、特に重要な点のみが議論されるため、非常に高品質に圧縮されている。
+        <p>これが残っている時点で、もう勝ったも同然だ。AI があっても、これがなければ苦労することになる。
+        <p>「古い議論を残しておいたって、誰も見やしない」などと切り捨てず、すべての議論をきちんと残してきた TC39 のメンバーには、本当に感謝したい。
+        <p><code translate=no>/raw</code> に入れたら、あとは AI に LLM-Wiki のコンセプトに則って構築を依頼するだけだ。口頭でも頼めばやってくれるが、一応ショートハンドとしてコマンドが定義されている。
+        <section>
+          <h3 id="ingest-知識の取り込みと更新"><a href="#ingest-知識の取り込みと更新">Ingest: 知識の取り込みと更新</a></h3>
+          <p>本来 <code translate=no>/raw</code> 以下のソースは少しずつ増やし、追加するたびに既存の知識と繋いで Wiki 全体を更新していく。これが <code translate=no>Ingest</code> だ。
+          <p>しかし、今回は初手で 14 年分の議事録があるため、いきなり全部の Proposal を解析するとトークンが枯渇する。
+          <p>そこで、最初は「構造の把握と土台の構築」のみを依頼した。
+          <p>以降、この Wiki における <code translate=no>Ingest</code> は、「Temporal についてまとめて」などと Proposal 単位で依頼し、過去の議論から &quot;Temporal&quot; を軸に議論をまとめてもらう。その結果を保存(File back)するという意味にした。
+          <p>少しカスタマイズし、この出力には以下のような情報を含めてもらっている。
+          <ul>
+            <li>誰の発言かという名前へのリンク
+            <li>ステージ移動の mermaid グラフ
+            <li>議論が行われた議事録へのリンク
+          </ul>
+          <p>サンプルとして Temporal についてのまとめは以下だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=temporal.avif?260629_033919>
+              <source type=image/webp srcset=temporal.webp?260629_033858>
+              <img loading=lazy decoding=async src=temporal.png?260629_033858 alt="proposals/temporal.md" width=594 height=691>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              tc39-llm-wiki/wiki/proposals/temporal.md at main · Jxck/tc39-llm-wiki
+              <ul>
+                <li><a href="https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/proposals/temporal.md" target=_blank>https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/proposals/temporal.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>TC39 の議事録は、発言者に対して 3 文字の短縮名を決め、それを議事録で使っている。
+          <p>この短縮名ごとに <code translate=no>/people</code> ページにエントリを作らせ、「この人はどこの誰で、どんな仕様の Champion か」なども整理した。
+          <p>Temporal の Champion である Igalia の Philip Chimento (PFC) のまとめは以下だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=pfc.avif?260629_033915>
+              <source type=image/webp srcset=pfc.webp?260629_033856>
+              <img loading=lazy decoding=async src=pfc.png?260629_033856 alt="people/PFC.md" width=513 height=545>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              tc39-llm-wiki/wiki/people/PFC.md at main · Jxck/tc39-llm-wiki
+              <ul>
+                <li><a href="https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/people/PFC.md" target=_blank>https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/people/PFC.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これも <code translate=no>Ingest</code> 時に作られ、誰が何をしているのかがわかりやすくなった。
+          <p>以降、自分が調べたいときに <code translate=no>Ingest</code> を発行すれば、新たにまとめができ、Wiki が育っていく。
+          <p>使えば使うほど、充実していく構成だ。
+        </section>
+        <section>
+          <h3 id="lint-既存知識の整合性チェックと更新"><a href="#lint-既存知識の整合性チェックと更新">Lint: 既存知識の整合性チェックと更新</a></h3>
+          <p><code translate=no>Lint</code> では、すでにある知識の矛盾などを更新することができる。
+          <p>もし <code translate=no>/raw</code> 以下を submodule update してから <code translate=no>Lint</code> を実行すれば、最新の議論を踏まえたうえで既存の <code translate=no>/proposals</code> や <code translate=no>/people</code> を更新できる。
+          <p>更新の差分を見れば、何が変わったのかがわかりやすい。
+        </section>
+        <section>
+          <h3 id="summarise-ミーティング議事録の要約"><a href="#summarise-ミーティング議事録の要約">Summarise: ミーティング議事録の要約</a></h3>
+          <p>新しいミーティングの議事録が出たら、それを要約し、「トピックごとの議論」や意思決定のまとめを作成していた。
+          <p>フォーマットとしてはこうだ。
+          <ul>
+            <li>ミーティングの各日ごとに
+            <li>トピックごとの要約を
+            <li>3 ~ 5 行でまとめ
+            <li>スライドがあればそのリンクを
+          </ul>
+          <p>以前は、都度ファイルを NotebookLM などにソースとして渡していたが、これを <code translate=no>Summarise</code> コマンドにまとめた。
+          <p><code translate=no>raw/notes</code> の PR を pull してからコマンドを実行すれば、以下のように議事録のまとめができる。
+          <p>
+            <picture>
+              <source type=image/avif srcset=meeting.avif?260629_033921>
+              <source type=image/webp srcset=meeting.webp?260629_033904>
+              <img loading=lazy decoding=async src=meeting.png?260629_033904 alt="meetings/2026-05" width=524 height=396>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              tc39-llm-wiki/wiki/meetings/2026-05 at main · Jxck/tc39-llm-wiki
+              <ul>
+                <li><a href="https://github.com/Jxck/tc39-llm-wiki/tree/main/wiki/meetings/2026-05" target=_blank>https://github.com/Jxck/tc39-llm-wiki/tree/main/wiki/meetings/2026-05</a>
+              </ul>
+            </li>
+          </ul>
+          <p>これが、「TC39 minutes を読む会」で使っていたフォーマットにまとめてくれるため、読む会の準備が非常に捗る。
+          <p>読んだ結果の感想などをメモとして追加し <code translate=no>Ingest</code> する仕組みができれば、より自分色の Wiki にできるだろう。
+        </section>
+        <section>
+          <h3 id="families-関連仕様のグルーピング"><a href="#families-関連仕様のグルーピング">Families: 関連仕様のグルーピング</a></h3>
+          <p>非公式な概念だが、仕様には &quot;Family&quot; がある。
+          <p>例えば最近では、Iterator 関連の仕様が多くあり、Champion が同じで議論がつながることも多い。
+          <p>逆に、Module 関連の異なる仕様をまとめて、Module Harmony として議論をまとめることもある。
+          <p>これを「Iterator Family についてまとめて」といった粒度で集計するコマンドを <code translate=no>Families</code> として定義した。
+          <p>以下のような結果だ。
+          <p>
+            <picture>
+              <source type=image/avif srcset=iterator.avif?260629_033917>
+              <source type=image/webp srcset=iterator.webp?260629_033902>
+              <img loading=lazy decoding=async src=iterator.png?260629_033902 alt="families/iterator.md" width=523 height=393>
+            </picture>
+          </p>
+          <ul>
+            <li>
+              tc39-llm-wiki/wiki/families/iterator.md at main · Jxck/tc39-llm-wiki
+              <ul>
+                <li><a href="https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/families/iterator.md" target=_blank>https://github.com/Jxck/tc39-llm-wiki/blob/main/wiki/families/iterator.md</a>
+              </ul>
+            </li>
+          </ul>
+          <p>今まで、「なんか最近 Iterator 周り多いね」くらいで終わっていたところから、一歩踏み込むことが容易になった。
+        </section>
+        <section>
+          <h3 id="query-既存-wiki-からの知識抽出"><a href="#query-既存-wiki-からの知識抽出">Query: 既存 Wiki からの知識抽出</a></h3>
+          <p>知識が十分にあるため、雑に聞いても色々答えが得られる。
+          <p>雑な質問は <code translate=no>Query</code> として解釈され、既存の wiki の中から結果を抽出してくれる。
+          <p>例えば「Decorator ってずっと Stage フラフラしてるけど、結局誰が欲しいの?」といった質問でも、議論を踏まえて答えを得られるのだ。
+          <p>自分で調べるのも難しく、TC39 の特定のメンバーに会って直接聞くのも微妙で、たとえ聞いたとしてもその人の主観での答えになりがちだ。
+          <p>議論を追っているため「仕様策定者は頑張っているが、ブラウザが実装したがらず、全然話が進まないまま数年経った」くらいの解像度で理解している。
+          <p>しかし、この Wiki があれば「誰が欲しいのか」「どのブラウザが否定的なのか」「いつからこの議論をやっているのか」「ステージの変遷はどうか」などが、議事録をベースに細かく把握できる。
+          <p>そして、Query の結果が有用なものであれば、File back して追記することで、さらに Wiki を育てることができるのだ。
+          <p>この Wiki を Claude Remote で開いておいて、出先で「あれどうなったっけ?」と思ったらスマホで質問するだけで、自分の知識も Wiki も育つ。
+        </section>
+        <section>
+          <h3 id="既存手法との違い"><a href="#既存手法との違い">既存手法との違い</a></h3>
+          <p>RAG はあらかじめ情報を分析し、ベクトルとして保存する。そこから毎回知識をつなぎ合わせて、回答を出力している。もし今回のソースであれば、全てを一旦解析する必要があり、トークンコストは大きかっただろう。
+          <p>そして、筆者の興味が及ばない 9 割以上のデータには、触れずに終わっていたと思う。
+          <p>LLM-Wiki は本来、<code translate=no>Ingest</code> するたびに知識を繋いでいき、そこから回答を得る。知識を追加するたびに Wiki を育て、そこを検索するという複利効果が生まれる。
+          <p>今回はソースが先にありながら、<code translate=no>Query</code> / <code translate=no>Ingest</code> で擬似的に知識が追加されたようなイメージになる。今後は、議事録が出るたびに <code translate=no>Summarise</code> をしてから読む会をするため、最新の知識はかなり網羅され、必要に応じて過去のことも調べられるという、この用途に最適なフレームワークと言える。
+          <p>何より、AI Agent 以外何もいらないし、トークンコストもそこまでではないという点が、非常に扱いやすい。
+        </section>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>「この中のどこかにある」を検索だけで探し、繋ぐのには限界があり、何より時間がかかっていた。
+        <p>詳しい人を知っていても、何度も聞くのははばかられる。誰かに聞けば、その人のバイアスもある。
+        <p>だから自分で調べるしかない、そこには価値がある。が、一度それを「面倒くさい」と感じてしまったら最後、疑問を持つことを諦めてしまうだろう。その怖さとの戦いがあったように思う。
+        <p>AI を用いた要約作成も色々試したが、どれも精度や手間など、しっくりくるところまでいけなかった。
+        <p>しかし、「全議事録」という宝の山に、LLM-Wiki という少しのコンセプトを振りかけただけで、かなり良いレベルでやりたいことを実現できた。
+        <p>調べるコストが下がったことで、各提案や議論を読むこと、そしてその背景を感じることに、より時間を割けるようになる。Ship されてから出す解説ブログにも、かなり精度の高いソースを載せることができる。
+        <p>今は扱いやすい TC39 でやっているが、同じことは CSSWG や HTTPBis などの WG でもできる。
+        <p>それらを集め、mozaic.fm でスコープにしているような、「プラットフォームの変化全体」まで広げることも不可能ではないだろう。
+        <p>しかし、今くらいのスコープの狭さの方が、精度的にはちょうどよいようにも思う。
+        <p>先人が残してくれた遺産をありがたく使わせて頂きながら、Query を繰り返してどんどん育て、より高い解像度で Web を理解できるよう活用していきたい。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
