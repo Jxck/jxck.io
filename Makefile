@@ -233,7 +233,7 @@ mtime-comp:
 
 # entries html から配信用辞書と active dict metadata を更新する
 $(DICT_ACTIVE): $(BLOG_HTML)
-	@rm -f $(DICT_DIR)/*.dict
+	@rm -f $(DICT_DIR)/*.dict $(DICT_DIR)/*.dict.br
 	@dict_path=$$($(DICT_GENERATOR) -d $(DICT_DIR) $(BLOG_HTML)); \
 	  dict_name=$${dict_path##*/}; \
 	  ln -snf "$$dict_name" $(DICT_ACTIVE); \
