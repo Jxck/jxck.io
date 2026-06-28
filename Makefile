@@ -112,8 +112,14 @@ mtime-image:
 	@git restore-mtime $(BLOG_IMAGE)
 
 # 全画像の最適化
+# 元画像の最適化 (optipng 等) は webp pass でのみ in-place に行い、avif pass は
+# 最適化済みの元画像から変換する。webp -> avif の順に直列化することで、同じ元画像へ
+# 最適化が二重に走るのも、並列実行で衝突して "Can't back up the input file" になるのも
+# 防ぐ。mtime はビルド順で派生物が常に元画像より後になり古くならないため、ここでは
+# 触らない。コミット時刻への正規化は commit 後に make mtime (mtime-image) で行う。
 image:
-	$(MAKE) webp avif
+	$(MAKE) webp
+	$(MAKE) avif
 
 # PNG を optipng で最適化
 OPTIPNG := optipng -o7
@@ -139,23 +145,20 @@ WEBP_FILES := $(BLOG_PNG:.png=.webp)
 WEBP_FILES += $(BLOG_JPEG:.jpeg=.webp)
 WEBP_FILES += $(BLOG_GIF:.gif=.webp)
 
-# PNG -> webp 変換
+# PNG -> webp 変換 (元 PNG も optipng で最適化する)
 %.webp: %.png
 	$(OPTIPNG) $<
 	$(CWEBP) $< -o $@
-	touch -r $< $@
 
-# JPEG -> webp 変換
+# JPEG -> webp 変換 (元 JPEG も jpegtran で最適化する)
 %.webp: %.jpeg
 	$(JPEGTRAN) -outfile $< $<
 	$(CWEBP) $< -o $@
-	touch -r $< $@
 
-# GIF -> webp 変換
+# GIF -> webp 変換 (元 GIF も gifsicle で最適化する)
 %.webp: %.gif
 	$(GIFSICLE) $< -o $<
 	$(GWEBP) $< -o $@
-	touch -r $< $@
 
 # webp 差分ビルド
 webp: $(WEBP_FILES)
@@ -168,23 +171,17 @@ AVIF_FILES := $(BLOG_PNG:.png=.avif)
 AVIF_FILES += $(BLOG_JPEG:.jpeg=.avif)
 AVIF_FILES += $(BLOG_GIF:.gif=.avif)
 
-# PNG -> avif 変換
+# PNG -> avif 変換 (元 PNG の最適化は webp pass 済みのため行わない)
 %.avif: %.png
-	$(OPTIPNG) $<
 	$(AVIFENC) -o $@ $<
-	touch -r $< $@
 
-# JPEG -> avif 変換
+# JPEG -> avif 変換 (元 JPEG の最適化は webp pass 済みのため行わない)
 %.avif: %.jpeg
-	$(JPEGTRAN) -outfile $< $<
 	$(AVIFENC) -o $@ $<
-	touch -r $< $@
 
-# GIF -> avif 変換
+# GIF -> avif 変換 (元 GIF の最適化は webp pass 済みのため行わない)
 %.avif: %.gif
-	$(GIFSICLE) $< -o $<
 	ffmpeg -i $< -pix_fmt yuv420p -f yuv4mpegpipe - | $(AVIFENC) --stdin $@
-	touch -r $< $@
 
 # avif 差分ビルド
 avif: $(AVIF_FILES)
