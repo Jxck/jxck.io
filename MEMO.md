@@ -86,9 +86,9 @@ image の記法で video に展開される。
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `make blog` で記事の差分ビルドと `index.html` 更新 (テスト用、 `.dcb` は作らない)
-- `make all` (= `make blog && make podcast && make dict && make comp`) で全体の変換・圧縮を一式行う
+- `make blog` で記事の差分ビルド + `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` まで生成する
   - これで build 結果をコミットしたら終わり
+  - `make all` は廃止 (引数なしの `make` はエラーになる)。辞書を更新したいときだけ別途 `make dict` を実行する
 - ビルドの中心は `Makefile` と `.src/build.ts`
 
 
@@ -163,14 +163,14 @@ html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 - .br は brotli コマンドで事前に作る
 - .gz は h2o のオンデマンドで作る
 
-これは `make comp` でできるが、 `make all` に入ってるため、もろもろ準備できたら最後の build で実行。
+これは `make comp` でできるが、 `make blog` の最後で呼ばれるため、通常は個別実行しなくてよい。
 
 
 ### Compression Dictionary Transport (CDT)
 
 加えて、 entries 配下の HTML は CDT で `.dcb` も生成して配信している。
 
-- `make dict` で `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、 `active.dict` と `h2o.dict.conf` を更新
+- `make dict` で古い `*.dict` / `*.dict.br` を掃除しつつ `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、 `active.dict` と `h2o.dict.conf` を更新し、全 `.html.dcb` を作り直したうえで `make reload` まで行う
 - `make comp` で記事の `.html.dcb` を生成 (辞書は再生成せず既存辞書を使用)
 - 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、 mruby 側では `"entries"` のように quote を含めて比較する
@@ -191,7 +191,6 @@ https://github.com/Jxck/jxck.io/tree/main/mozaic.fm
 - 原稿を md で記述
 - episodes 以下にエピソード番号のディレクトリを作りそこに置く
 - `make podcast` で html と RSS (`feed.mozaic.fm/index.{xml,json}`) が同時に生成される
-- `make all` で全体の変換や圧縮のなどを一式行う
 
 
 ### md

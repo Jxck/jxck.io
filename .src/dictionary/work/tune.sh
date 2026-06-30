@@ -21,15 +21,20 @@ BEST_PARAMS=${WORK_DIR}/best.params
 : ${FREQ_GRID:="2 3 4"}
 : ${DICT_SIZE:=262144}
 
+CDT=${CDT:-cdt}
+if ! command -v "${CDT}" >/dev/null 2>&1; then
+  print -u2 -- "error: missing ${CDT} on PATH (install: cargo install cdt-toolkit)"
+  exit 1
+fi
+
 mkdir -p "${WORK_DIR}" "${TMP_DIR}"
 rm -f "${RESULTS}" "${BEST_DICT}" "${BEST_PARAMS}"
 rm -rf "${TMP_DIR}"/*
 
-templates=(${REPO_ROOT}/.src/template/*.ejs)
 entries=(${BLOG_ROOT}/entries/**/*.html)
 
-if (( ${#templates} == 0 || ${#entries} == 0 )); then
-  print -u2 -- "error: missing template or entry files"
+if (( ${#entries} == 0 )); then
+  print -u2 -- "error: no entry files"
   exit 1
 fi
 
@@ -55,7 +60,7 @@ ruby -rdigest -e '
   File.write(eval_list, evals.join("\n") + "\n")
 ' "${REPO_ROOT}" "${TRAIN_LIST}" "${EVAL_LIST}" "${entries[@]}"
 
-train_files=("${templates[@]}" "${(@f)$(<"${TRAIN_LIST}")}")
+train_files=("${(@f)$(<"${TRAIN_LIST}")}")
 eval_files=("${(@f)$(<"${EVAL_LIST}")}")
 
 if (( ${#eval_files} == 0 )); then
@@ -80,7 +85,7 @@ for slice_length in ${(z)SLICE_GRID}; do
       bro_total=0
       zstd_total=0
 
-      if ruby "${ROOT}/dict-generator.rb" \
+      if "${CDT}" dictionary \
         -o "${dict_path}" \
         -s "${DICT_SIZE}" \
         -l "${slice_length}" \
