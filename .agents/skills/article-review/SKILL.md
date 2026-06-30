@@ -7,7 +7,7 @@ description: Proofread and review articles under blog.jxck.io/entries following 
 
 このリポジトリの記事原稿をレビュー/校正するときの共通ルールである。
 
-記事レビュー/校正に関する正本ルールはこの skill に集約する。  
+記事レビュー/校正に関する正本ルールはこの skill に集約する。
 `AGENTS.md` には skill を使うことだけを書き、詳細なレビュー規約はここに置く。
 
 ## 起動時にやること
@@ -31,7 +31,10 @@ description: Proofread and review articles under blog.jxck.io/entries following 
 - まず明確な誤字脱字を直す
 - 次に、意味を変えずに不自然な表現を直す
 - 次に、同一記事内の表記ゆれをそろえる
-- 最後に、長すぎて読みにくい一文だけを分割する
+- 次に、長すぎて読みにくい一文だけを分割する
+- 最後に、読点(、)の配分を直す
+  - 長過ぎる場合、読点を入れて分を分割する
+  - 入れる場所のバランスがおかしい場合、適切な場所に修正する
 
 ## What To Fix
 
