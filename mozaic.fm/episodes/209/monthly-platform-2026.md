@@ -16,13 +16,11 @@ guests:
 
 第 209 回のテーマは 2026 年 6 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 149
-
 
 #### Updates
 

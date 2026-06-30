@@ -2809,3 +2809,16 @@ eyeD3 --title "ep208 Monthly Ecosystem 202606" \
 
 
 
+eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep209.mp3
+
+eyeD3 --title "ep209 Monthly Platform 202606" \
+      --track 217 \
+      --artist 'Jxck' \
+      --album 'mozaic.fm' \
+      --genre 'Podcast' \
+      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
+      --to-v2.3 \
+      ../files.mozaic.fm/mozaic-ep209.mp3
+
+
+
