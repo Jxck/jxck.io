@@ -36,3 +36,9 @@
 
 - 記事のレビュー/校正ルールの正本は `.agents/skills/article-review/SKILL.md` に置く
 - 記事をレビューまたは校正する場合は、必ず `article-review` skill を使う
+
+
+## Commit Message Policy
+
+- commit message のルールの正本は `.agents/skills/commit-message/SKILL.md` に置く
+- commit message を書く場合は、必ず `commit-message` skill を使う
