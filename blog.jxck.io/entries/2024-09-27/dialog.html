@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-27T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-27>2024-09-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -490,12 +490,12 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'dialog'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">close</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
-          <p>この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> することも可能だ。それについては後述する。
+          <p>この要件だけでなく、Popover の Light Dismiss 相当を必要とする場合は、<code translate=no>&lt;dialog&gt;</code> を <code translate=no>popover</code> することも可能だ。それについては後述する。
         </section>
         <section>
           <h3 id="キーボード操作"><a href="#キーボード操作">キーボード操作</a></h3>
           <p><code translate=no>&lt;button&gt;</code> を置く以外に、キーボード操作の対応もネイティブで行われている。これは、Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
-          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
+          <p>non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりできる。
           <p>なお、Modal Dialog を ESC で閉じると、<code translate=no>cancel</code> -&gt; <code translate=no>close</code> の順でイベントが発火する。
         </section>
       </section>

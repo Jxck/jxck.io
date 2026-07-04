@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-02-05T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-05>2026-02-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -188,7 +188,7 @@
       <section>
         <h2 id="gpc"><a href="#gpc">GPC</a></h2>
         <p>GPC は W3C の Privacy WG によって、2020 年頃から策定が進められてきた仕様だ。
-        <p>メンバーには大学やメディア、EFF(電子フロンティア財団)などのメンバーが名を連ねている。
+        <p>メンバーには大学やメディア、EFF(電子フロンティア財団)などが名を連ねている。
         <ul>
           <li>
             Global Privacy Control - Take Control Of Your Privacy
@@ -202,7 +202,7 @@
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Sec-GPC</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 1</span></span></code></pre>
         <p>DNT と何も変わっていない。
         <p>最大の違いは、このヘッダは最初から「<strong>法的な効力</strong>」を念頭に策定されている点だ。
-        <p>つまり、大事なのはこのヘッダ仕様そのものというより、それを参照する各プライバシー法案の方にある。
+        <p>つまり、大事なのはこのヘッダ仕様そのものというより、それを参照する各プライバシー法案の方だ。
       </section>
       <section>
         <h2 id="法的な効力"><a href="#法的な効力">法的な効力</a></h2>
@@ -240,7 +240,7 @@
           </p>
           <p>&mdash; <cite><a href="https://oag.ca.gov/privacy/ccpa/gpc" target=_blank>https://oag.ca.gov/privacy/ccpa/gpc</a></cite>
         </blockquote>
-        <p>すでに 2022 年には、Sephora 社は GPC を無視したとして $120 万ドルの罰金を科された事例がある。
+        <p>すでに 2022 年には、Sephora 社は GPC を無視したとして 120 万ドルの罰金を科された事例がある。
         <ul>
           <li><a href="https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-settlement-sephora-part-ongoing-enforcement" target=_blank>https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-settlement-sephora-part-ongoing-enforcement</a>
         </ul>
@@ -261,7 +261,7 @@
         <h2 id="どう遵守すべきか"><a href="#どう遵守すべきか">どう遵守すべきか</a></h2>
         <p>ここで勘違いしないほうがいいのは、「GPC が送られてきたら 3rd Party Cookie でトラッキングしなければいい」ではないという点だ。
         <p>目的は 3rd Party Cookie やその使い方という「技術」や「実装」からのオプトアウトではないからだ。
-        <p>そのユーザが置かれている状況で、適用される法律が保証するプライバシーのコントロールを、ユーザが行使できているかどうかだ。
+        <p>そのユーザが置かれている状況で、適用される法律が保障するプライバシーのコントロールを、ユーザが行使できているかどうかだ。
         <p>「収集」や「共有」や「販売」と記された条文が、どの処理にあたるのかも、Ask your Lawyer になるだろう。
         <p>サービスが保有しているユーザデータももちろん対象になるため、例えばサードパーティーのアナリティクスツールを入れている場合「ツールが対応するのを待つだけで、自分たちがやることはない」とも限らないのだ。
       </section>
@@ -325,7 +325,7 @@
         <p>結果、多くのサイトが以下を前提に、すでに対応をデプロイし始めている。
         <pre><code translate=no>GPC: 1 // 非標準だが互換のため
 Sec-GPC: 1</code></pre>
-        <p>今から仕様を変更すると、<code translate=no>=== &quot;1&quot;</code> で判定している多くのサービスが「法律違反」な実装とみなされるリスクを考えると、やるとしても別のヘッダを作るしかなくなる。
+        <p>今から仕様を変更すると、<code translate=no>=== &quot;1&quot;</code> で判定している多くのサービスが「法律違反」な実装とみなされるリスクがある。それを考えると、やるとしても別のヘッダを作るしかなくなる。
         <p>するとまた、法との兼ね合いも増えてくる。もういじることはできないだろう。
         <ul>
           <li>
@@ -374,9 +374,9 @@ GET /session/{session_id}/privacy</code></pre>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>法律にガイドラインが参照される事例がなかったわけではない。しかし、単体の Web 標準 API が法律で言及され、ましてやブラウザベンダによる実装が法的に強制されるのは、これが初めてだろう。
         <p>W3C の Recommendation プロセス自体は、現実の運用と乖離があるとはいえ、Working Draft の段階で実装され始め、使われ、全ブラウザの実装が確約されるのも、Web のプラットフォームにとってみれば新しい展開だ。
-        <p>Web および Web ブラウザ自体が、ユーザ(消費者)とサービス(事業者)を繋ぐ存在として、法律上も重要な立ち位置になる時代まで来たという現れだろう。
+        <p>Web および Web ブラウザ自体が、ユーザ(消費者)とサービス(事業者)を繋ぐ存在として、法律上も重要な立ち位置になる時代まで来たという表れだろう。
         <p>そして 2027 年までに、そのまま「全てのブラウザが実装」した場合、サービスは「全てのユーザは Opt-Out の手段を有している」という世界になる。それはもともと Web が求めていた、「あるべき姿」だったと言えるかもしれない。
-        <p><code translate=no>Sec-GPC: 1</code> というシンプルな文字列は、人類が Web のプライバシーについて取り組んできた歴史の、集大成が詰まっていると言っても過言ではない。
+        <p><code translate=no>Sec-GPC: 1</code> というシンプルな文字列には、人類が Web のプライバシーについて取り組んできた歴史の集大成が詰まっていると言っても過言ではない。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

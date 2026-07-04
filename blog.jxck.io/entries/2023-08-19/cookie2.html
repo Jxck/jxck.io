@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-08-19T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-08-19>2023-08-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -212,7 +212,7 @@
           <li>Proxy を経由する際の挙動
         </ul>
         <p>ドメインの判定についても、まだ当時は Public Suffix List はなかった。代わりに TLD も少なかったため、当時のルールは &quot;ドメインに含まれるドットの数&quot; で判定していた。
-        <p>基本は <code translate=no>Domain=example.co.jp</code> のようにドットが 2 つ入るが、以下の特別な 7 つの TLD のみ <code translate=no>Domain=example.com</code> のようにドットが 1 つで良かった。今のように TLD が乱立し eTLD を判定しないでも良かった からできたロジックだ。
+        <p>基本は <code translate=no>Domain=example.co.jp</code> のようにドットが 2 つ入るが、以下の特別な 7 つの TLD のみ <code translate=no>Domain=example.com</code> のようにドットが 1 つで良かった。今のように TLD が乱立しておらず、eTLD を判定しないでも良かったからできたロジックだ。
         <ul>
           <li>&quot;.com&quot;
           <li>&quot;.edu&quot;
@@ -313,20 +313,20 @@
         </ul>
         <p>結果、誰も使ってない <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は最初のドラフトの時点から削除され、<code translate=no>Comment</code> / <code translate=no>Version</code> 属性も同様に削除された。新規ではあったが、実装が広まり互換が保たれていた <code translate=no>Max-Age</code> については仕様に残り、仕様には無かったが実際に使われていた <code translate=no>HttpOnly</code> が追加されることになる。
         <p>&quot;Unverifiable Transaction&quot; が &quot;3rd Party Cookie&quot; に変わるのもここからだ。内容もガラッと変わっている。
-        <p>Lou のブログの方では、1996 年ごろから Double Click などが行っていた 3rd Party Cookie による広告のトラッキングが、すでに問題になっていたことが触れられている。ここで Lou は 3rd Party Cookie をブロックするかどうかの決断を委ねられ、数週間悩んだ結果、以下の理由で残すことにしたとしている。(意訳)
+        <p>Lou のブログの方では、1996 年ごろから DoubleClick などが行っていた 3rd Party Cookie による広告のトラッキングが、すでに問題になっていたことが触れられている。ここで Lou は 3rd Party Cookie をブロックするかどうかの決断を委ねられ、数週間悩んだ結果、以下の理由で残すことにしたとしている。(意訳)
         <ol>
           <li>追跡は可能でも、追跡していることを隠すことはできない。一般市民はそれを実施する企業自身、および規制を作り実施する政府双方に圧力をかける、自然なフィードバックメカニズムが機能する。
           <li>もし 3rd Party Cookie を無効にしても、広告会社は別の方法でトラッキングを実現するだけであり問題の先送りにしかならない。また、その方法は Cookie 以上に観測/無効化が難しいものである可能性がある。
         </ol>
         <p>また、3rd Party Cookie 全体を無効にすることで、トラッキング以外のユースケースも壊れるという現実もあり、現時点に続く 3rd Party Cookie のある Web という世界線にシフトした。その現実を反映するため、RFC 2965 に書かれていた理想的な 3rd Party Cookie のあり方も、現実に即して書き直されている。
-        <p>(今世界が直面し、総出で作業を進めている課題を、たった一人で決断しなくてはならなかった当時の Lou の心中は、察するに余りある。)
+        <p>(今世界が直面し、総出で作業を進めている課題を、たった 1 人で決断しなくてはならなかった当時の Lou の心中は、察するに余りある。)
         <p>こうして、現在の Cookie の礎となる「ちゃんとした仕様」が RFC 6265 としてまとめられ、その過程で Cookie2 は消えていった。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>脱線も多かったが、以上が Cookie という超メジャーな仕様に 10 年以上定義されていたヘッダでありながら、全くと言って良いほど使われなかった Cookie2 という仕様が、どうやって出てきてどうして消えていったかの経緯だ。
         <p>この資料からは、本当に定義すべき仕様のありかた、そして実世界を無視した策定の盛大なしくじり、有り体に言えば「<em>Web における仕様策定の難しさ</em>」を学ぶことができる。今標準化の文脈で「IETF はどのようなフィロソフィーで仕様を策定するのか」というベストプラクティスはよく語られるが、そうなった背景にこうした失敗があったことを知ると、より深く理解できるだろう。
-        <p>この RFC 6265 からも 10 年ほど経過し、Web を取り巻く状況や、そこに求められる基準も大きく変わった今、Cookie の仕様は RFC 6265bis (&quot;bis&quot; は &quot;もう一回&quot; の意味) として、改定作業が進められている。当時からまたブラウザの顔ぶれは代わり、加えて新たに CDN からのメンバーも目立つようになった。
+        <p>この RFC 6265 からも 10 年ほど経過し、Web を取り巻く状況や、そこに求められる基準も大きく変わった今、Cookie の仕様は RFC 6265bis (&quot;bis&quot; は &quot;もう一回&quot; の意味) として、改定作業が進められている。当時からまたブラウザの顔ぶれは変わり、加えて新たに CDN からのメンバーも目立つようになった。
         <p>当時と違い、テストは WPT を中心に拡充され、互換性を上げるために Interop の取り組みも徐々に成果を出している。そして基盤の整備や、エコシステムによる研究の成果もあり、単なる共通部分の合意だけではなく、SameSite や Cookie Prefix といった新しい仕様の追加も進んでいる。そして、世界はまた 3rd Party Cookie について見直しを強く求め、「壊れるからそのまま」とも言ってられなくなり、30 年来の Deprecation 実現に向けて、標準化団体、実装者、ユーザ、政府などが、一丸となって作業を進めている。
         <p>今また大きな転換期を迎えている Cookie だが、この荒波の中で Cookie2 のような過ちを繰り返すことなく、今の時代が求める新たな Cookie のあり方に着地してくれることを願いたい。
         <p>以上をもって、2023 年夏休みの自由研究とする。

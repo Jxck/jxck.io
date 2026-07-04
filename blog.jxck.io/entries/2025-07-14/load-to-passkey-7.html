@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-07-14T00:00:00+09:00",
-    "dateModified": "2025-07-23T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-14>2025-07-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-07-23>2025-07-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -159,7 +159,7 @@
         <h2 id="passkey-と-fido"><a href="#passkey-と-fido">Passkey と FIDO</a></h2>
         <p>Passkey は Apple のサービスとして始まったが、単なるいちベンダのサービスでは終わらなかった。
         <p>もともと生体認証を牽引していた FIDO を中心にこの方式についての議論が行われ、最終的には業界全体が Passkey を用いて Password-Less を目指す方向で概ね合意することになる。
-        <p>Apple 以外のパスワードマネージャも Passkey に対応(つまり、秘密鍵を登録しそれを共有する)ようになり、様々な場所で Passkey への移行が啓蒙されるようになった。
+        <p>Apple 以外のパスワードマネージャも Passkey に対応する(つまり、秘密鍵を登録しそれを共有する)ようになり、様々な場所で Passkey への移行が啓蒙されるようになった。
         <p>ちょうどコロナ禍と重なるくらいの時期だ。
         <p>ちなみに、ここまで WebAuthn の鍵と言っているものは、FIDO では &quot;FIDO(2) の Credential&quot; という呼称になる。
         <p>ところが、FIDO の中では「Passkey」=「共有された FIDO Credential」ではないことになった。
@@ -170,7 +170,7 @@
         <h2 id="username-less"><a href="#username-less">Username-Less</a></h2>
         <p>安い YubiKey や Titan の Security Key には、単純に「秘密鍵の入ったデバイス」なものもある。こうしたデバイスは、スマホ/PC での保存を Platform Authenticator と呼ぶのに対して、Roaming Authenticator と呼び分ける。
         <p>Roaming Authenticator の場合、WebAuthn の API を使うと、その秘密鍵からサイトごとの公開鍵を作成し、サイトのドメインに紐づけて保存するが、このとき、自身は「どのサイトに使う鍵を保存しているか」は知らない場合がある。WebAuthn の API で、鍵の ID を知らされてそれを返すだけだ。
-        <p>しかし、このとき生成した鍵に紐づけて、「どのサイト用」「どのアカウント用」などの情報を紐づけて保存できると、以下のようにポップアップで「保存している Passkey」一覧を表示できるのだ。ここにアカウント名(Email など)が同時に表示されているため、選んでクリックするだけでログインできる。
+        <p>しかし、このとき生成した鍵に、「どのサイト用」「どのアカウント用」などの情報を紐づけて保存できると、以下のようにポップアップで「保存している Passkey」一覧を表示できるのだ。ここにアカウント名(Email など)が同時に表示されているため、選んでクリックするだけでログインできる。
         <p>
           <picture>
             <source type=image/avif srcset=username-less.avif?260421_002105>
@@ -220,7 +220,7 @@
         <p>Passkey の管理は、人間が記憶などに頼って行うことができない(させないのが目的)。
         <p>したがって、何かしらの Platform / Roaming Authenticator を用意する必要が出てくる。これらは Passkey の管理という面で、まとめて「Passkey Provider」と呼ばれたりもする。
         <p>中には、Passkey はパスワードマネージャが必須で、そこを握ればユーザの認証を大きく押さえることができるため、ベンダとしてはビジネス上有利になる。だからユーザを自社のパスワードマネージャに移行させようとしている、という論調もある。
-        <p>仮にビッグテックがユーザのアカウントを抑えることでロックインしたいと思うのであれば、抑えるべきは Passkey よりアカウントの源泉である「メール」の方だろう。パスワードが他者のパスワードマネージャに保存されても、特にデメリットはなかったのと同じだ。それが Passkey に置き換わったときに、ベンダの陰謀を持ち出す論調は少し雑がすぎると、少なくとも筆者は感じる。
+        <p>仮にビッグテックがユーザのアカウントを押さえることでロックインしたいと思うのであれば、押さえるべきは Passkey よりアカウントの源泉である「メール」の方だろう。パスワードが他者のパスワードマネージャに保存されても、特にデメリットはなかったのと同じだ。それが Passkey に置き換わったときに、ベンダの陰謀を持ち出す論調は少し雑がすぎると、少なくとも筆者は感じる。
         <p>あらゆるサービスが Passkey への移行を呼びかけるのは、<strong>いよいよ Password に限界が来ている</strong> からだ。そして、その保存先が何であれ Passkey に移行してもらわない限りは、サービスがユーザを守りきれるか怪しい局面まで来ていることの現れだと、素直に受け取ったところでユーザに大きなデメリットはない。
         <p>例えば、最近 <a href="https://news.yahoo.co.jp/articles/4156cd473dc89d7c650b7ef76d8af06844412d08" target=_blank>20 億を超えるユーザに対して移行を啓蒙している Gmail</a> にしてみれば、保存先が iCloud だろうとなんだろうと、とにかく Passkey を使ってもらうこと自体の方が優先度が高くなる。Gmail が攻撃されたときの被害に比べれば、別ベンダの Passkey Provider を使っている事実は些末なことだ。
         <p>もし、ビッグテックの Platform Authenticator が嫌なのであれば、好きな Passkey Provider を使えばよい。パスワードマネージャで同期されることに違和感を覚えるなら、Roaming Authenticator を買ってくれば良い。
@@ -235,7 +235,7 @@
           </li>
         </ul>
         <p>こうした仕様を議論する FIDO の円卓には、Google, Apple, MS といった Platform Authenticator 提供ベンダも並んでいるのだ。
-        <p>「ロックインされたくないから Passkey を使いたくない」という姿勢は、ロックインされない方法で Passkey を導入する方法を知らないことの表明でしかない。
+        <p>「ロックインされたくないから Passkey を使いたくない」という姿勢は、ロックインされない形で Passkey を導入する方法を知らないことの表明でしかない。
         <p>「Passkey はベンダの陰謀だ」とするのは自由だし、使わないのも自由だが、それはもう反ワクチンなどに近い論争に思える。
       </section>
       <section>
@@ -261,7 +261,7 @@
           </li>
         </ul>
         <p>人を狙うのは、機械よりも人間の方が騙しやすいからだ。企業には社員の数だけ脆弱性があり、攻撃者からすればそのどれか一人を落とせればよいだけなので、一度ターゲットにされれば基本的には逃げきれない。
-        <p>落とした一人を皮切りに、そこから社内に潜入し、全てのデータを暗号化した上で身代金を要求したり、仮想通貨をまるっと盗み出したり、顧客情報を全て盗んでダークネットで売り捌いたり、なんとでも攻撃はできる。翌日には新聞に載り、記者会見で頭を下げ、復旧作業のために数週間働き詰めになっても、「対策に問題はなかった」と言い切れるだろうか。
+        <p>落とした 1 人を皮切りに、そこから社内に潜入し、全てのデータを暗号化した上で身代金を要求したり、仮想通貨をまるっと盗み出したり、顧客情報を全て盗んでダークネットで売り捌いたり、なんとでも攻撃はできる。翌日には新聞に載り、記者会見で頭を下げ、復旧作業のために数週間働き詰めになっても、「対策に問題はなかった」と言い切れるだろうか。
         <p>何かに入られるということは、何らかの形で認証が突破されたということだ。もちろん、Passkey にしたら完璧な防御になるわけではない。むしろ、今後はやっていて当たり前の対策になっていく。これだけ攻撃が多様化していることを考えると、「TOTP 必須だから大丈夫」という認識がもう平成のものなのだ。
         <p>もうしばらくは、大きな企業被害が続き「原因は Passkey への移行をしなかったから」といった記事が出たり、より強制力の強いガイドラインなどで必須にならない限り、この層を動かすのは啓蒙だけでは無理だろうと思う。
         <p>ただ、会社で必須でなくても、個人的に Passkey に移行するのは可能なサービスが多い。突破口に自分がならないために、Passkey に移行しておく、という自衛はあるだろう。そこで Passkey に移行できるように、パスワードマネージャなどを導入して基盤を整えておくのは、リテラシの範囲だ。
@@ -280,7 +280,7 @@
           <li><a href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html">Passkey への道 #7: そして Username-Less へ</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-16/load-to-passkey-9.html">Passkey への道 #9: ユーザに求められる令和のアカウントリテラシ</a>
-          <li><a href="https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html">Passkey への道 #10: 1Password 導入セミナ</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-23/load-to-passkey-10.html">Passkey への道 #10: 1Password 導入セミナー</a>
         </ul>
       </section>
     </article>

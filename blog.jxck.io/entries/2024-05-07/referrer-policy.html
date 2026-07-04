@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-07T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-07>2024-05-07</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -205,7 +205,7 @@ Referer: https://ec.example/product/0230596283
 Cookie: ${login-cookie}</code></pre>
         <p>この場合、SNS サイトはユーザの情報を持っているため、追加でユーザが何に興味を持っているのかを知ることができる。
         <p>この構造は、送信元/送信先サイトの組み合わせによってリスクが多様化する。趣味趣向、政治宗教観、疾病障害などのセンシティブな情報の漏洩リスクもゼロではない。
-        <p>このため、個人のレベルでも Referer を送らないような設定を行うユーザもおり、特にブラウザに Private Mode が搭載されるようになる前は、プライバシーリテラシーが高いユーザは拡張などで Referer を落としていた。
+        <p>このため、個人のレベルでも Referer を送らないような設定を行うユーザもおり、特にブラウザに Private Mode が搭載されるようになる前は、プライバシーリテラシが高いユーザは拡張などで Referer を落としていた。
       </section>
       <section>
         <h2 id="referrer-policy"><a href="#referrer-policy">Referrer-Policy</a></h2>
@@ -244,8 +244,8 @@ Cookie: ${login-cookie}</code></pre>
 Note: A request&apos;s Referer policy is taken into account for all fetches where the fetcher did not explicitly opt into sharing their origin with the server, e.g., via using the CORS protocol.
 
 --- https://fetch.spec.whatwg.org/#append-a-request-origin-header</code></pre>
-        <p>つまり、CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」場合は、<code translate=no>Referrer-Policy: no-referrer</code> を受けていた場合、<code translate=no>Origin: null</code> になってしまう。これは、「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
-        <p>これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、form の POST ようなケースで Origin ヘッダが <code translate=no>null</code> になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
+        <p>つまり、CORS のように明示的に Origin を確認させる場合はそちらを優先するが、「CORS ではない」かつ「GET/HEAD でない」リクエストは、<code translate=no>Referrer-Policy: no-referrer</code> を受けていた場合、<code translate=no>Origin: null</code> になってしまう。これは、「Referer を送らない」と設定しているのに、同等の情報が Origin ヘッダで送られては意味がないからだ。
+        <p>これは、いわゆる別サイトに出ていくリクエストだけでなく、同じサイト内でも送られなくなるため、form の POST のようなケースで Origin ヘッダが <code translate=no>null</code> になってしまい、同じサイトからのリクエストなのにその事実をサービスが確認できなくなるのだ。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /post </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> null</span></span>
@@ -358,7 +358,7 @@ Note: A request&apos;s Referer policy is taken into account for all fetches wher
         <p>他のディレクティブは互換性などのために仕様に起こされているだけで、「Referer が Path ごと送られることに依存し、それをチェックする実装」でも残ってない限り、特に明示する理由はないだろう。
         <p>また、1 はモダンブラウザでならデフォルトだ。Private Gist や Google Docs など「URL を知っている人のみアクセス可能」のアクセス制御も、多くは <code translate=no>strict-origin-when-cross-origin</code> を使っている。
         <p>デフォルトではないブラウザが意識されるケースのために、明示するプラクティスもまだ残っているが、IE はどちらにせよ <code translate=no>Referrer-Policy</code> 自体に対応していない。<code translate=no>Referrer-Policy</code> に対応したモダンブラウザでかつ、デフォルトが <code translate=no>no-referrer-when-downgrade</code> だったくらい古いバージョンのために明示したところで、そうしたブラウザの利用自体がリスクであるため、今日において <code translate=no>strict-origin-when-cross-origin</code> の明示が必須だとは筆者は考えてない。
-        <p>(なお、QPACK の static table にも無いので、QUIC でもそのまま 48byte の追加データになる)
+        <p>(なお、QPACK の static table にも無いので、QUIC でもそのまま 48 byte の追加データになる)
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>

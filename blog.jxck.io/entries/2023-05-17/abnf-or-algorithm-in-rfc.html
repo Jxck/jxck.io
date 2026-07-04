@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-05-17T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-05-17>2023-05-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -230,7 +230,7 @@
         <p>実際、筆者は SFV を実装する際に、Parsing Algorithm と ABNF 両方で実装し、ABNF 側の間違いを発見して Issue を立てたこともある(その Issue が RFC 化目前だったため、みんなで慌てて直したりした)。
         <p>SFV に限らず、割と色々な RFC の ABNF を実装してきたが、残念ながら ABNF は大抵間違っている。間違っているという表現が正しいかは難しいので正確に言うと、「そのまま機械的にパーサを生成すると、矛盾を生じる」ものがほとんどだ。そして、同様に壁に当たった先人の Errata がファイルされていても、何年も放置されている。
         <p>例えば IPv6 アドレスの ABNF なんかも矛盾があるが、それでも世の中回っているのだから、実装側もわざわざ ABNF から実装を起こしたりしてないことが伺える。ABNF から愚直に起こした実装なんて速いわけがないので、当たり前ではある。機械的にパースはできなくても生成は大抵できるので、ABNF から生成したテストケースをパスし、あとは相互接続して動けばそれはデプロイされるというのが実態だ。インターネットの実装は、基本そうやって動いてると思う。
-        <p>なんでそんなことになるかというと、おそらく多くの ABNF はおそらく勘で書かれている。実際にその ABNF からパーサを生成してテストしたりはされていない。ML やリポジトリや議事録を探っても、そういう検証をした記録や実装が出てきたのをほとんど見ない。だいたい、WG がリポジトリを持つようになったのも比較的最近だし、そこに実装者向けのテストケースを追加するようになったのも、ここ数年の話だ。
+        <p>なんでそんなことになるかというと、おそらく多くの ABNF は勘で書かれている。実際にその ABNF からパーサを生成してテストしたりはされていない。ML やリポジトリや議事録を探っても、そういう検証をした記録や実装が出てきたのをほとんど見ない。だいたい、WG がリポジトリを持つようになったのも比較的最近だし、そこに実装者向けのテストケースを追加するようになったのも、ここ数年の話だ。
         <p>筆者があえて、あまり実用的ではない ABNF からの愚直実装を作るのは、RFC 前にそれをやれば、ABNF を検証して直せるかもしれないという、それ自体が目的だからだ。
         <section>
           <h3 id="abnf-を消すかどうか"><a href="#abnf-を消すかどうか">ABNF を消すかどうか</a></h3>
@@ -242,7 +242,7 @@
             <p>I&apos;m happy to do that if the IESG wishes so.
             <p>&mdash; <cite><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html" target=_blank>https://lists.w3.org/Archives/Public/ietf-http-wg/2020AprJun/0175.html</a></cite>
           </blockquote>
-          <p>確かに、Parsing Algorithm が正であり、そこに ABNF があることで問題が生じるのであれば、ABNF を消してしまうのは理に叶っているように思う。
+          <p>確かに、Parsing Algorithm が正であり、そこに ABNF があることで問題が生じるのであれば、ABNF を消してしまうのは理にかなっているように思う。
           <blockquote>
             <p>Julian, you&apos;ve had many opportunities to bring this up before (having participated in the original issue about empty lists).
             <p>It would have been much more helpful if you&apos;d expressed your concerns earlier -- even during WGLC -- instead of after IETF LC.
@@ -291,7 +291,7 @@
           </li>
         </ul>
         <p>その議論の結果、折衷案として「ABNF は残すが Appendix に移す」となり、本文(Appendix 以前)の全ての項目から ABNF が消えて Parsing Algorithm のみが残ることになった。(mnot が押し切って、Julian はあまり納得してない感じがするが)
-        <p>少なくとも「実装をする開発者」にとって、ブレのない実装が行われることの期待と、「実装を持たない開発者」が SFV の姿を ABNF から想起するという二点は満たされているため、落とし所としては妥当なのかと思う。
+        <p>少なくとも「実装をする開発者」にとって、ブレのない実装が行われることの期待と、「実装を持たない開発者」が SFV の姿を ABNF から想起するという 2 点は満たされているため、落とし所としては妥当なのかと思う。
         <section>
           <h3 id="sfv-の参照"><a href="#sfv-の参照">SFV の参照</a></h3>
           <p>この変更は、SFV を参照する側にも多少の影響が出る。
@@ -302,7 +302,7 @@
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Foo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sf-list</span></span></code></pre>
           <p>これは、ABNF ではなく SFV で定義されているデータ型(この場合 &quot;List&quot;)で書く方が望ましいことになる。
-          <p>HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、Style Guide で定義されている。今回の変更も Style Guide に明記され、その基づいて先の例を書き直すと以下のようになる。
+          <p>HTTPWG では、新しく定義する Header Field は基本的に SFV を使うべきことが、Style Guide で定義されている。今回の変更も Style Guide に明記され、それに基づいて先の例を書き直すと以下のようになる。
           <blockquote>
             <p>The Foo header field&apos;s value is a List of Integers.
             <p>- <a href="https://httpwg.org/admin/editors/style-guide#structured-fields" target=_blank>https://httpwg.org/admin/editors/style-guide#structured-fields</a>
@@ -319,7 +319,7 @@
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>この流れは、IETF でも、少なくとも HTTPWG の仕様については、WHATWG の定義の仕方と近くなっていることを意味する。
-        <p>HTTPWG の仕様はブラウザで実装されることが多いため、ブラウザの互換性を防ぐ意味でも自然な流れと言えるが、IETF/WHATWG 両方の仕様を実装してきた筆者からすると、なかなか興味深い流れに感じる。
+        <p>HTTPWG の仕様はブラウザで実装されることが多いため、ブラウザの非互換を防ぐ意味でも自然な流れと言えるが、IETF/WHATWG 両方の仕様を実装してきた筆者からすると、なかなか興味深い流れに感じる。
         <p>今回の話だけで、「本当に ABNF は必要なのか」という議論自体に決着がついたわけではない。Julian の言うように、ABNF があることで仕様が読みやすくなる人は一定いるのも事実だろう。SFV くらい複雑になると、全てを Example で書き下すよりは、ワイヤーフォーマットを想起する方法として妥当ではあると思う。
         <p>問題はやはり「パースするための仕様」として ABNF を扱う部分だろう。実装してる身としても、「エラーにする」「無視する」などの細かい例外処理の表現については、どうしても ABNF よりも Parsing Algorithm に分があると感じる。
         <p>実装者は少なくとも &quot;仕様に明記されている通り&quot; Parsing Algorithm に基づいて実装を行うべきだろう。

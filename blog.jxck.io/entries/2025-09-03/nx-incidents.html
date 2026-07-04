@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-09-03T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-09-03>2025-09-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -231,7 +231,7 @@
           <p><code translate=no>github.event.pull_request.title</code> は、PR の「タイトル」を格納した変数だ。
           <p>この <code translate=no>echo</code> の後ろにはそのまま <code translate=no>${{}}</code> で埋め込まれているため、PR のタイトルが Shell スクリプト(e.g. <code translate=no>${{ cat ~/.ssh/id_rsa }}</code>) だったら、そのまま実行されるというものだ。
           <p>この PR がマージされたことを知った攻撃者は、そこを突いた PR を投げて、脆弱性を利用したことになる。もしかしたら、スキャナーなどを使って常にやらかすリポジトリを狙っていたのかもしれない。
-          <p>攻撃に使われた PR は、GitHub によってブロックされているため、実際どんなタイトルだったかは確認できない。該当期間で一個だけアクセスできなかったので、おそらく以下だ。
+          <p>攻撃に使われた PR は、GitHub によってブロックされているため、実際どんなタイトルだったかは確認できない。該当期間で 1 個だけアクセスできなかったので、おそらく以下だ。
           <p><a href="https://github.com/nrwl/nx/pull/32496" target=_blank>https://github.com/nrwl/nx/pull/32496</a>
           <p>しかし、任意の Shell が実行できるということは、例えば以下のようにすれば、何でもできる。
           <p>
@@ -417,7 +417,7 @@
             </li>
           </ul>
           <p>なので、もしローカルに <code translate=no>/tmp/inventory.txt</code> ファイルが残っていたり、GitHub の自分のアカウントに <code translate=no>s1ngularity-repository</code> というリポジトリが勝手に作られていたら、攻撃を受けていることになる。
-          <p>そして、最初の「ローカルの情報を集める」の部分が、ファイル名を指定して <code translate=no>find</code> などではなく AI を使って行っている。動いた環境の中に、Claude か Gemini か Q の CLI がインストールされていたら、そこに以下のプロンプトを実行させている。
+          <p>そして、最初の「ローカルの情報を集める」の部分を、ファイル名を指定して <code translate=no>find</code> などではなく AI を使って行っている。動いた環境の中に、Claude か Gemini か Q の CLI がインストールされていたら、そこに以下のプロンプトを実行させている。
           <pre><code translate=no>Recursively search local paths on Linux/macOS
 (starting from
  $HOME,
@@ -553,7 +553,7 @@
           <p>要するに、GitHub Actions と npm が OIDC で連携し、Publish ができるというものだ。
           <p>両者の間では非常に短命なトークンが自動的にやり取りされるので、ワークフローから <code translate=no>NPM_TOKEN</code> を消すことができる。また、Actions から直接 Publish するので、Provenance も付与される。
           <p>もし、パッケージを GitHub の Actions で <code translate=no>NPM_TOKEN</code> を渡して、自前で Publish しているなら移行するべきだろう。
-          <p>サプライチェーンを防ぐのは、「自分たちが被害にあわない」というよりも、「自分たちのせいで、他の人が被害に遭わない」ためでもあるので、npm パッケージを公開しているのであれば、やらない理由は無いだろう。
+          <p>サプライチェーン攻撃を防ぐのは、「自分たちが被害にあわない」というよりも、「自分たちのせいで、他の人が被害に遭わない」ためでもあるので、npm パッケージを公開しているのであれば、やらない理由は無いだろう。
         </section>
         <section>
           <h3 id="codeql"><a href="#codeql">CodeQL</a></h3>
@@ -591,7 +591,7 @@
             <li><a href="https://x.com/adnanthekhan/status/1958723681913385382" target=_blank>https://x.com/adnanthekhan/status/1958723681913385382</a>
             <li><a href="https://x.com/adnanthekhan/status/1961152614055207039" target=_blank>https://x.com/adnanthekhan/status/1961152614055207039</a>
           </ul>
-          <p>Adnan と Nx に、裏でのやり取りがあったのかはわからない。脆弱性情報は気軽に Issue を立てると Zero Day につながる可能性もあるため、報告は秘密裏に受けられるのが理想的だ。つまり「報告先」が明示されているのが大事になる。
+          <p>Adnan と Nx の間に、裏でのやり取りがあったのかはわからない。脆弱性情報は気軽に Issue を立てると Zero Day につながる可能性もあるため、報告は秘密裏に受けられるのが理想的だ。つまり「報告先」が明示されているのが大事になる。
           <p>このように「セキュリティ脆弱性を見つけたら、ここに連絡してほしい」と書くのが SECURITY.md ファイルだ。
           <p>中身は人間向けなため、どう書いても良いが、最低でもメールアドレスを書き、「脆弱性を発見した際に、報告を受け入れる体制がある」ことを明示するのが趣旨だ。Nx に追加されたのは以下のようなものだ。
           <ul>
@@ -607,7 +607,7 @@
             <p>Please do not report security vulnerabilities through public GitHub issues.
             <p>Instead, please report them to the Security Team at security@nrwl.io.
           </blockquote>
-          <p>(これを公開すると、雑にスキャナーをかけた結果をノールックで送りつけ、報奨金をよこせみたいなメールが沢山来ることになるため、そこに耐える忍耐は必要にはなるが...)
+          <p>(これを公開すると、雑にスキャナーをかけた結果をノールックで送りつけ、報奨金をよこせみたいなメールが沢山来ることになるため、そこに耐える必要はあるが...)
         </section>
         <section>
           <h3 id="その他の対策"><a href="#その他の対策">その他の対策</a></h3>

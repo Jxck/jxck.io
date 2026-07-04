@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-10-25T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-10-25>2022-10-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -162,7 +162,7 @@
         <p>CORB はもともと、Spectre に端を発する Site Isolation の走りとして始まった。
         <p>Spectre のサイドチャネル対策のためには、本来アクセスできてはならない Cross Origin のリソースが、同一のプロセスに展開されることを防ぐ必要がある。
         <p>CORS で行われるなら良いが、no-cors な読み込みが可能なリソースでは、その読み込みが安全かどうかは別途確認する必要がある。
-        <p>そこで、リソースをメモリ上に展開するためだけの、攻撃用途くらいしかあり得ないようなリソース読み込みをブロックする対策が行われた、これが CORB だ。
+        <p>そこで、リソースをメモリ上に展開するためだけの、攻撃用途くらいしかあり得ないようなリソース読み込みをブロックする対策が行われた。これが CORB だ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">&#x3C;!-- 通常はあり得ないがメモリ上にリソースを展開できるコード --></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com/secret.html"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
@@ -226,7 +226,7 @@
           </li>
         </ul>
         <p>また、これらの仕様は最終的には Fetch 側にマージされることになる。現状 CORB はすでに削除されており、ORB はまだレビュー中でマージされていない。
-        <p>CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、breaking changes になる。そこで Chrome は、まずは ORB v1.0 というサブセットを作り、そこから展開していく計画のようだ。
+        <p>CORB にしても ORB にしても、大抵は攻撃に使われるようなおかしな読み込みを防ぐという目的でありながら、それによって成り立っていた既存の実装があった場合に、breaking changes になる。そこで Chrome は、まずは ORB v0.1 というサブセットを作り、そこから展開していく計画のようだ。
         <ul>
           <li>
             Intent to Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1
@@ -241,7 +241,7 @@
         <p>CORB もそうだったが、ORB でも既に動いていたものが動かなくなる可能性をはらんでいる。
         <p>レスポンスするリソースに対し、適切な MIME を指定し、適切な方法(HTML タグなど)で読み込む。という基本的なことを実施できていれば、引っかかることは少ないと思われる。
         <p>逆を言えば、引っかかった場合は <code translate=no>Content-Type</code> の適切な指定がなかったり、なにかしら適切でない読み込みが行われている可能性があるため、配布/読み込みの方法を見直すとよさそうだ。
-        <p>また、CORB/ORB はあくまで「おかしな読み込み」を防ぐことを目的とし、正常な読み込みによって発生する攻撃は防げない。そこを防ぐためには、Opt-In での CORP/COOP/COEP などに Opt-In で対応していく必要があるだろう。
+        <p>また、CORB/ORB はあくまで「おかしな読み込み」を防ぐことを目的とし、正常な読み込みによって発生する攻撃は防げない。そこを防ぐためには、CORP/COOP/COEP などに Opt-In で対応していく必要があるだろう。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

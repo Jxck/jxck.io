@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-03T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-03>2023-12-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -174,7 +174,7 @@
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> id=31d4d96e407aad42</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;!doctype html></span></span></code></pre>
-        <p>一度 shop.example でログインしたら、あとでまた shop.example にアクセスしたときに、この Cookie を送り返す。
+        <p>1 度 shop.example でログインしたら、あとでまた shop.example にアクセスしたときに、この Cookie を送り返す。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">GET</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> shop.example</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> id=31d4d96e407aad42</span></span></code></pre>
@@ -202,7 +202,7 @@
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Accept</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> text/javascript</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> id=31d4d96e407aad42 # NOTICE!</span></span></code></pre>
         <p>ここで shop.example に送信されている Cookie に注目したい。
-        <p>「一度取得した Cookie は、そのサイトにアクセスするたびに自動で毎回送る」というルールだったが、これはいわゆる画面に表示される URL だけではなく、そのサブリソースにも適用される点が重要だ。
+        <p>「1 度取得した Cookie は、そのサイトにアクセスするたびに自動で毎回送る」というルールだったが、これはいわゆる画面に表示される URL だけではなく、そのサブリソースにも適用される点が重要だ。
         <p>したがって、全く関係ない blog.jxck.io にアクセスしても、そこに埋め込まれた JS を EC サイトに取得しに行くリクエストには shop.example で付与された Cookie が送られる。
         <p>この場合は JS だが、JS 以外にも例えば CSS, Image, iframe などでも同じように送られる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://shop.example/js/script.js</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">script</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>

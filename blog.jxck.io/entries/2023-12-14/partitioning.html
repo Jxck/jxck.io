@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-14T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-14>2023-12-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -166,7 +166,7 @@
       <section>
         <h2 id="partitioning"><a href="#partitioning">Partitioning</a></h2>
         <p>3rd Party Cookie を塞ぐ上で、「消す」以外にもう 1 つ「分割する」という手法がある。
-        <p>たとえば、ads.example の広告を a.example と b.example が <code translate=no>&lt;iframe&gt;</code> で埋め込む時、ads.example の 3rd Party Cookie により、埋め込んだ両サイトで同じ Cookie が送られることでトラッキングできるという仕組みだった。
+        <p>例えば、ads.example の広告を a.example と b.example が <code translate=no>&lt;iframe&gt;</code> で埋め込む時、ads.example の 3rd Party Cookie により、埋め込んだ両サイトで同じ Cookie が送られることでトラッキングできるという仕組みだった。
         <p>これを、Top Level Site ごとに分けてしまおうというのが、Partitioning の発想だ。
         <p>つまり、これまでは Cookie を保存したドメインの単一主キーで Cookie が保存されていたとする。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
@@ -218,7 +218,7 @@
         <h2 id="様々な-partitioning"><a href="#様々な-partitioning">様々な Partitioning</a></h2>
         <p>プライバシーを考慮すると、Partitioning した方がいいのは Cookie だけではない。
         <p>例えば、LocalStorage や IndexedDB などのストレージも同様に、<code translate=no>&lt;iframe&gt;</code> 間で共有されるとトラッキングに使用される可能性がある。
-        <p>また、HTTP の Cache もそうだ。Cache がヒットするということは、一度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング精度を高めることもできてしまう。
+        <p>また、HTTP の Cache もそうだ。Cache がヒットするということは、1 度訪れたことがあるという事実を 1bit の情報で示すため、この微小な情報を集積することでトラッキング精度を高めることもできてしまう。
         <p>したがって、基本的にはあらゆる Storage (情報を保存できる場所)は Partitioning されるべきであり、最近ではブラウザのさまざまな場面で Partitioning に関する議論が進んでいる。
         <p>HTTP Cache の Partitioning は <em>Network State Partitioning</em> や <em>Cache Partitioning</em> などと呼ばれ、だいたいのブラウザが似たような実装を進めている。
         <p>Cookie 含めた LocalStorage や IndexedDB その他もろもろは、<em>Storage Partitioning</em> と呼ばれ、この辺はブラウザによって微妙に異なる実装になっている。
@@ -265,7 +265,7 @@
           <p>例えば、サイトの右下に 3rd Party のサポートチャットを埋め込んでいるような場合を考えよう。もし 3rd Party Cookie がブロックされると、毎回新規の会話になってしまう。しかし、過去の会話の履歴はなんとか残したい。この場合は、同じサポートチャットを埋め込んでいる別のサービス間で、同じ履歴を共有したいわけではない。
           <p>この場合は、SAA で 3rd Party Cookie を使うよりも、Top Level ごとに異なる Partitioned Cookie で良いのだ。
           <p>確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、SAA の代替としてあっても良いだろうということになった。
-          <p>ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案したのが CHIPS (Cookie Having Independent Partitioned State) だ。
+          <p>ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案したのが CHIPS (Cookies Having Independent Partitioned State) だ。
           <ul>
             <li>
               privacycg/CHIPS: A proposal for a cookie attribute to partition cross-site cookies by top-level site

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-11-10T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-11-10>2025-11-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -205,7 +205,7 @@
           </picture>
         </p>
         <p>つまり最も権限が強いのは「所有者 (Owner)」だが、「管理者 (Admin)」との差分は支払い周りなので、いわゆる組織の運用上はあまり気にする必要はない。
-        <p>つまり、基本は「管理者」と「メンバー」がいると思えば良い。
+        <p>したがって、基本は「管理者」と「メンバー」がいると思えば良い。
         <p>Business アカウントを作ったら、まず最初にこの「管理者」Group に複数のアカウントを登録し、SPoF を防ぐのが重要だ。
         <section>
           <h3 id="管理用アカウントは必要か"><a href="#管理用アカウントは必要か">管理用アカウントは必要か</a></h3>
@@ -216,8 +216,8 @@
           <p>そもそも Owner は Group なので、管理担当者は個々に自分のメールアドレスを用いてアカウントを作り、それを Owner Group に追加するのが 1Password の運用方法になる。
           <p>このメリットは、「誰が Owner であるか」の管理が 1Password の Group を見ればわかる点だ。Admin アカウントをアイテムに入れて共有すると、ダッシュボードだけでなく、そのアイテムの共有範囲を別途管理する必要があり、二度手間なだけになる。
           <p>また、1Password のダッシュボードでは、アカウントごとのアクティビティも細かくログが残るため、重要な変更などを行った場合、そのアカウントの特定などが容易にできる。
-          <p>もし、ここで &quot;Admin&quot; アカウントでログが残ると、ではその 「&quot;Admin&quot; アカウントを使っていたのは誰なのか?」がわからなくなってしまう。
-          <p>個々がきちんと管理している、それぞれの Business アカウントを「管理者」Group に追加し、素直に運用するのが 1Password Business の機能を最も有効に使えるだろう。
+          <p>もし、ここで &quot;Admin&quot; アカウントでログが残ると、ではその「&quot;Admin&quot; アカウントを使っていたのは誰なのか?」がわからなくなってしまう。
+          <p>個々がきちんと管理している、それぞれの Business アカウントを「管理者」Group に追加し、素直に運用するのが、1Password Business の機能を最も有効に使う方法だろう。
         </section>
         <section>
           <h3 id="security-group"><a href="#security-group">Security Group</a></h3>
@@ -246,7 +246,7 @@
           <p>デフォルトでは、追加したユーザは全て「チームメンバー」Group に追加される。
           <p>組織が小さいうちはそれでも良いだろうが、大きくなってくるといくつかの問題が出るだろう。
           <ul>
-            <li>「管理者」だと権限が強すぎるため、ある程度の権限を保つ「マネージャ」ロールが欲しい
+            <li>「管理者」だと権限が強すぎるため、ある程度の権限を持つ「マネージャ」ロールが欲しい
             <li>組織にあるチームの実態に合わせて、Vault を管理したい
           </ul>
           <p>特に後者は、権限が同じだとしても、共有するアイテムが異なるため、Vault の単位を分けたくなる。このとき、Group も一緒に分けてしまうと、管理しやすくなる。
@@ -376,8 +376,8 @@
             <img loading=lazy decoding=async src=alice-to-vault.png?260309_235641 alt="Vault に Alice を追加する" width=522 height=258>
           </picture>
         </p>
-        <p>今回はチームにマネージャが一人なので、Vault に一人ずつ追加すればそれでも足りる。
-        <p>しかし、Frontend/Backend Vault 両方に Manager Group を追加することで、二人をマネージャとして機能させることもできる。この場合、例えば Bob が Frontend Vault も見えてしまう。
+        <p>今回はチームにマネージャが 1 人なので、Vault に 1 人ずつ追加すればそれでも足りる。
+        <p>しかし、Frontend/Backend Vault 両方に Manager Group を追加することで、2 人をマネージャとして機能させることもできる。この場合、例えば Bob にも Frontend Vault が見えてしまう。
         <p>この場合は、Team x Manager ごとの Group をまた作るなどが考えられる。しかし、そこまでいくとかなり煩雑になるため、Manager Group 単位の運用で足りるうちはそこに留めた方が良さそうだ。
       </section>
       <section>

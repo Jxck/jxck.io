@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-02-11T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-02-11>2026-02-11</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -184,7 +184,7 @@
         <h2 id="os-ごとの拡大"><a href="#os-ごとの拡大">OS ごとの拡大</a></h2>
         <p>viewport の小さいモバイル OS では、「拡大」をするための方法がいくつか提供されている。テキストや画像だけを拡大するものから、画面全体を拡大するもの、OS だけでなくブラウザごとに設定できるものなど、選択肢と組み合わせは多い。
         <p>ブラウザにおける <code translate=no>font-size</code> のベースは 16px がデフォルトであるため、この基本サイズに対してユーザが OS に指定した拡大率が反映され、<code translate=no>rem</code> / <code translate=no>em</code> を指定したサイズすべてに伝搬するのが理想だろう。
-        <p>今回検証するのは、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
+        <p>今回の検証は、iPhone 16e iOS 26.2 および Pixel 8a Android 16 の、以下の設定を対象とする。
         <p>
           <picture>
             <source type=image/avif srcset=setting.avif?260421_002105>
@@ -249,7 +249,7 @@
         </ul>
         <p>OS などで指定した拡大率を取得し、それをページ全体の基本サイズに反映できれば、そこに連動して <code translate=no>rem</code> や <code translate=no>em</code> で指定されたすべてのサイズに反映することができる。
         <p>そのために提案されたのが <code translate=no>preferred-text-scale</code> プロパティだ。
-        <p><code translate=no>env()</code> を用いて取得すると、OS にユーザが指定している拡大率が取得できるため、それを <code translate=no>:root</code> の <code translate=no>font-size</code> などに指定すれば、基本サイズに掛け合わせて拡大率を反映させることができる。
+        <p><code translate=no>env()</code> を用いると、OS にユーザが指定している拡大率が取得できるため、それを <code translate=no>:root</code> の <code translate=no>font-size</code> などに指定すれば、基本サイズに掛け合わせて拡大率を反映させることができる。
         <p>この状態でページ全体が <code translate=no>em</code> / <code translate=no>rem</code> を元に設計されていれば、ページ全体に反映することができる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* 1 はフォールバック */</span></span>
@@ -331,12 +331,12 @@
           </li>
         </ul>
         <p>これはまさしく、Apple が Dynamic Type で採用しているものだ。
-        <p>この変更では仕様上「OS/UA が非線形スケールを適用しても良い」という余地を導入するもので、<code translate=no>text-scale</code> を採用した場合に非線形のスケールが可能になるというものだ。
+        <p>この変更は仕様上「OS/UA が非線形スケールを適用しても良い」という余地を導入するもので、<code translate=no>text-scale</code> を採用した場合に非線形のスケールが可能になるというものだ。
         <p>実際にこれがどう反映されるか、または線形/非線形を切り替える新しい <code translate=no>text-scale</code> のプロパティができるかなどは、まだわからない。
       </section>
       <section>
         <h2 id="設計草案"><a href="#設計草案">設計草案</a></h2>
-        <p>ブラウザのデフォルトは、しばらくは <code translate=no>legacy</code> のままになるだろう。理想的には、どこかでデフォルトを <code translate=no>scale</code> にし、対応準備ができていないサイトだけ <code translate=no>legacy</code> で Opt-Out する運用が理想とはなるが、なかなか時間がかかると予想される。
+        <p>ブラウザのデフォルトは、しばらくは <code translate=no>legacy</code> のままになるだろう。どこかでデフォルトを <code translate=no>scale</code> にし、対応準備ができていないサイトだけ <code translate=no>legacy</code> で Opt-Out する運用が理想とはなるが、なかなか時間がかかると予想される。
         <p>したがって、標準化と実装が揃ったら、ページの状況に応じて明示的にこの値を付けていき、<code translate=no>legacy</code> なページを把握しつつ、<code translate=no>scale</code> に対応させていく移行作業を行っていくこととなるだろう。
         <p>そのうえでモバイルでの拡大を確認し、壊れるものは「とりあえず相対になっているだけ」ではないかを確認する。
         <p>例えば、文字が 2 倍になった時、border まで 2 倍に太くなり、margin も 2 倍の幅になる必要があるかというと、必ずしもそうではないだろう。

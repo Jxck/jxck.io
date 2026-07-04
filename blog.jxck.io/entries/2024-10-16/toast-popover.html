@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-16T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-16>2024-10-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -160,7 +160,7 @@
         <h2 id="toast"><a href="#toast">Toast</a></h2>
         <p>次は、Popover の源流にもなった、画面端にメッセージを表示するいわゆる Toast UI について考えてみる。想定するのは以下のようなものだ。
         <p>
-          <img loading=lazy decoding=async src=./toast.drawio.svg?241016_102938 alt="画面の右下に表示されるToast UI" width=400 height=400>
+          <img loading=lazy decoding=async src=./toast.drawio.svg?241016_102938 alt="画面の右下に表示される Toast UI" width=400 height=400>
         </p>
         <p>メッセージの性質によって、色やアイコンのスタイルを変えられ、同時に複数積み上げて表示できるといった仕様が一般的だ。
         <section>
@@ -196,7 +196,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"toast"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> role</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"status"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"manual"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">template</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
-          <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、<code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、UA を通じてユーザには直ちに内容が伝わる。逆を言えば、これは多用すべきではないため、最小限に留めるべきだろう。
+          <p>逆に「<em>ユーザにとって重要な通知</em>」であれば、<code translate=no>role=alert</code> を用いる。<code translate=no>aria-live=assertive</code> であり、UA を通じてユーザには直ちに内容が伝わる。ただし、これは多用すべきではないため、最小限に留めるべきだろう。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">template</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"toast"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> role</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"alert"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"manual"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
@@ -236,7 +236,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
           <p>注意点として、<code translate=no>transition</code> で <code translate=no>height</code> を指定しても、最終的な <code translate=no>height</code> が <code translate=no>auto</code> であると、従来はトランジションできなかった。
           <p>これは、<code translate=no>auto</code>, <code translate=no>min-content</code>, <code translate=no>max-content</code> のようなキーワードで指定され、内部のコンテンツを基準に値が決まる <code translate=no>intrinsic-size</code> については、トランジションに指定できないという制限があったからだ。
-          <p>そこで <code translate=no>auto</code> の代わりに具体的な値を指定するといった必要があったが、それではカバーできないケースがあるため、<code translate=no>intrinsic-size</code> へのアニメーションが可能になるように策定されたのが <code translate=no>interpolate-size</code> だ。値に <code translate=no>allow-keywords</code> を指定することで、キーワード指定のサイズを用いたトランジションが可能になる。
+          <p>そこで <code translate=no>auto</code> の代わりに具体的な値を指定するといった対応が必要だったが、それではカバーできないケースがあるため、<code translate=no>intrinsic-size</code> へのアニメーションが可能になるように策定されたのが <code translate=no>interpolate-size</code> だ。値に <code translate=no>allow-keywords</code> を指定することで、キーワード指定のサイズを用いたトランジションが可能になる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  interpolate-size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: allow-keywords;</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>

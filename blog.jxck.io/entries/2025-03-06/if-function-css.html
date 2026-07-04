@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-03-06T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-03-06>2025-03-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -377,7 +377,7 @@
           </ul>
           <p>結果としては実装上の都合で実現しなかったが、もし Observer 方式でやるとしたら、おそらく <code translate=no>if()</code> 以上に複雑な結果になっていたのではないかと筆者は感じる。
           <p>つまり <code translate=no>if()</code> の導入は、前提としてのコンポーネント設計がきちんと行われており、そのスタイルバリエーションを実現するために、Higher Level Custom Property の指定のみに集約できている状態が理想となる。
-          <p>思いつきで「ここは <code translate=no>if()</code> 使えば一行で書けるな」程度の無秩序な分岐を伴うコードは、あまり良い結果にならないだろう。
+          <p>思いつきで「ここは <code translate=no>if()</code> 使えば 1 行で書けるな」程度の無秩序な分岐を伴うコードは、あまり良い結果にならないだろう。
           <p>実際、現状はまだ Experimental であるため、DevTools のデバッグも特に支援はない。Syntax Highlight も Formatter も大体動かない。意図した挙動をしない場合に、何が悪いのかぱっとはわかりにくい。もちろん、開発環境はこれから整備されていくことにはなるが、それでも無秩序に「使えるところから使っていこう」では後悔するように思う。
           <p>では、どうやってその秩序を維持するかは、ここからエコシステム側が考えていくことになるだろう。
         </section>
@@ -412,7 +412,7 @@
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: l): --color(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">60</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  );</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
-        <p>ここまで、グローバル変数として <code translate=no>--color</code> を定義していたが、同じ名前のままカスタムファンクションになった。代わりに、定義が一箇所なので、それまで独立させていた基本色は、関数に直書きしているがこれはまあ、従来通り外に出しても良いだろう。
+        <p>ここまで、グローバル変数として <code translate=no>--color</code> を定義していたが、同じ名前のままカスタムファンクションになった。代わりに、定義が一箇所なので、それまで独立させていた基本色は、関数に直書きしているが、これはまあ従来通り外に出しても良いだろう。
         <p>使う側を見れば、何によるバリエーションがスタイルを変えているのかが、ある程度わかりやすくなっているとは思う。
         <p>他の例として、<code translate=no>light-dark(A, B)</code> のメディアクエリ版として、<code translate=no>--pc-mobile(A, B)</code> をカスタムファンクションとして考えてみよう。
         <p>960px を起点に、大きければ PC と判断し A を、小さければ Mobile と判断し B を返すようなイメージだ。
@@ -455,7 +455,7 @@
         <section>
           <h3 id="用途と注意_1"><a href="#用途と注意_1">用途と注意</a></h3>
           <p>こちらは、いわゆる DRY 的な文脈で処理を一元管理できるという点で、一定の簡素化につながるかもしれない。特にこれまで <code translate=no>var()</code> や <code translate=no>calc()</code> の連鎖でのみバリエーションを広げていく書き方をしていたのと比べると、コードもかなり減るだろう。プリプロセッサで展開されてコードが肥大していた頃よりは、ダイエットになる可能性は高い。
-          <p>しかし、こちらも何をどのレベルで関数化するのかといった側面にガバナンスが無いと、非常に複雑なコードの連鎖と化したコードが容易に想像できる。
+          <p>しかし、こちらも何をどのレベルで関数化するのかといった側面にガバナンスが無いと、非常に複雑な連鎖と化したコードが容易に想像できる。
           <p>今回の <code translate=no>if()</code> や <code translate=no>@function</code> の前提として、やはりコンポーネント指向の Web 開発は、分けては考えられないだろう。<code translate=no>@scope</code> や Container Query などは、HTML / JS と合わせて CSS を同梱したコンポーネントを基本に開発し、アプリとはそれを敷き詰めた実装であるというスタンスが前提にあるか、それとも古き良き HTML で組まれたサイトに、CSS ファイルを読み込み、そこにページ全体のスタイルが書かれているような作り方とでは、影響が変わってくるだろう。
           <p>コンポーネントに閉じるということは、ある程度スコープの狭い CSS だけを対象にすればよく、そこに当てたいスタイルそのものよりもその「コンポーネントが置かれている条件」のハンドリングの方が関心事として大きい。
           <p>汎用的な設計のコンポーネントは、それらを外から引数として注入され、その値に応じて形を変え、それ以上のこと(自分がコンテナ側でどう扱われるか)は呼び出した側(コンテナ)に任せるという発想に必然的に行き着く。
@@ -492,7 +492,7 @@
           </li>
         </ul>
         <p>筆者としても「やってるなぁ」と思った直後には Ship が出たので、非常に驚いた。
-        <p>さすがに、「重要な機能であるため、Ship を急がずにトライアルをもっと試した方が良い」というフィードバックがあり、少なくとも <code translate=no>@function</code> の Ship は 3 ヶ月延期された。
+        <p>流石に、「重要な機能であるため、Ship を急がずにトライアルをもっと試した方が良い」というフィードバックがあり、少なくとも <code translate=no>@function</code> の Ship は 3 ヶ月延期された。
         <p>しかし、それでも 3 ヶ月は流石に短いと感じる。昨今の CSS では、途中で名前や挙動を変えることが度々あり、Ship してから互換性の問題が見つかることもあったため、あまり焦ってリリースしない方が良いのは間違いない。一方で、ダラダラ議論しても先に進まないのも事実であり、互換性の問題は Ship してみないと見つかりにくいのも事実だ。もしかしたら、この Ship は意図して早急に出し周囲を急かす目的もあるのかもしれない。
         <p>なお、Firefox / Safari のポジションは現時点では出ていない。
         <p>一方、ドラスティックな提案でありながら TAG の反応は意外にもポジティブ寄りに見える。
@@ -502,7 +502,7 @@
         <p>議論の中期段階程度だが、詳細な仕様はどうあれ、CSS WG としては「やっていく」こと自体に一定の合意がある状態と言えるだろう。
         <p>ここまで CSS でできることが増えると、デザインシステムを作り始めていたころの前提ともかなり変わってくるだろう。
         <p>次の 10 年、CSS がどうなっていくのか、また全くわからなくなってきた。
-        <p>そんな重要な議論を、受け身で与えられてから仕様に文句を言っても遅いため、我々も、今この時点から「CSS における <code translate=no>if()</code> / <code translate=no>@function</code> がどうあるべきか」を考える必要があるのだ。
+        <p>そんな重要な議論は、受け身で与えられてから仕様に文句を言っても遅いため、我々も、今この時点から「CSS における <code translate=no>if()</code> / <code translate=no>@function</code> がどうあるべきか」を考える必要があるのだ。
         <p>その啓蒙の意味を込めて、仕様の詳細解説ではなく、議論の現状を解説した。
       </section>
       <section>

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-28T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-28>2023-12-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -216,7 +216,7 @@
         </ul>
         <p>Chrome はこれを読み込んで、ドメインの関連を認識するのだ。
         <p>一般に公開されることで、他の実装も使えること、そして衆目に晒すことで監視になることを目的としている。
-        <p>ちょっと前は 2,3 個しかなかったが、さすがに少し登録が増えてきたようだ。
+        <p>ちょっと前は 2, 3 個しかなかったが、さすがに少し登録が増えてきたようだ。
         <p>もちろん、無尽蔵に登録できるわけではなく、様々な制限はあるが、それでも全く無いよりは良いため、登録が増えているのだろう。
         <p>
           <picture>
@@ -232,7 +232,7 @@
         <p>RWS ではどうなるかというと、Storage Access API で prompt が出ずに Cookie を取得できるようになる。
         <p>もし RWS に対応していないブラウザでも、SAA に対応していれば prompt を経て Cookie が取得できる点で、互換性がある設計とは言えるだろう。
         <p>これで、例えば認証連携のような場合は <code translate=no>&lt;iframe&gt;</code> から SAA を呼ぶことで、ユースケースの継続ができる可能性が増える。
-        <p>一方、CDN から画像などを取得するケースでは、SAA が呼べない。そこで、Top Level Window 側で CDN のための SAA を取得するための拡張 API が追加されている。
+        <p>一方、CDN から画像などを取得するケースでは、SAA が呼べない。そこで、Top Level Window 側で CDN のための SAA を取得する拡張 API が追加されている。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">requestStorageAccessFor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://cdn.example.com"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
       </section>
       <section>
@@ -265,13 +265,13 @@
           <p>We think that is where the web platform should be.
         </blockquote>
         <p>確かに、多くのドメインを持つサービスにとって、すべての連携が切れるのは問題だろう。
-        <p>しかし、それを個別の API に落とし込むならまだしも、完全に迂回できる手段を用意するということは、他のブラウザにとって看過し難いことは容易に想像できる。
+        <p>しかし、それを個別の API に落とし込むならまだしも、完全に迂回できる手段を用意するということが、他のブラウザにとって看過し難いことは容易に想像できる。
         <p>したがって、この JSON が読み込まれる実装がこの先増えるかは疑問だ。
         <p>また、あらゆるサービスのドメインをリストにしていくというのは Public Suffix List と同等の運用になる。
         <p>PSL は Mozilla 発だが、今はコミュニティ運営されており、非常に負荷が高い割にクリティカルなソースなので度々問題になっている。
         <p>それを知っていながら、これと同じ運用を新たに行おうとすること自体が、うまくいくのかは個人的に疑問だ。
         <p>また、そのリポジトリが Google Chrome の下にあり、マージは Google の人間が行っていることになる。
-        <p>一つの組織が独自に審査し、それを特例として認めているとみなされかねないこの JSON の扱いは、これまでの Web の常識からすると、かなり特殊なものと感じられる。
+        <p>1 つの組織が独自に審査し、それを特例として認めているとみなされかねないこの JSON の扱いは、これまでの Web の常識からすると、かなり特殊なものと感じられる。
       </section>
     </article>
   </main>

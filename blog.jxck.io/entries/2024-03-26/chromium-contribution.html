@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-03-26T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-03-26>2024-03-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -362,7 +362,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           </ul>
           <p>とりあえずレビューを立てたら Description を書いて、コードをあげる。
           <p>Reviewers の下のペンボタンを押すと、コードのディレクトリの中にある OWNERS ファイルに書かれた人からサジェストされる。普通は先に issue があるはずなので、そこでコミュニケーションした人を選べば良い。
-          <p>選んだら Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
+          <p>選んで Start Review すると初めてリクエストが送られる。これをしないと誰も見てくれない気がする。
           <p>crrev には Patchset という概念があり、これは複数コミットがあっても <code translate=no>git cl upload</code> した単位でつく。
           <p>
             <picture>
@@ -558,7 +558,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">LOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(ERROR) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> __FILE__</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo"</span></span></code></pre>
           <p>レベルを分けることもできる
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="cpp"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// --enable-logging=stderr --v=1</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">DVLOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> __FILE__</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  &#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">DVLOG</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;&#x3C;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> __FILE__</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "Foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span></code></pre>
           <p>他にも色々用意されている。よく使う型なら良い感じに変換されるようになってる。
           <ul>
             <li>
@@ -634,7 +634,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <h3 id="unittest"><a href="#unittest">Unittest</a></h3>
           <p>unittest そのものをビルドして実行
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ autoninja -C out/Default unit_tests</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./out/Debug/base_unittests</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ./out/Default/base_unittests</span></span></code></pre>
         </section>
         <section>
           <h3 id="web-tests-layout-tests"><a href="#web-tests-layout-tests">Web Tests (Layout Tests)</a></h3>
@@ -726,10 +726,10 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
           <p>このフラグが外れる前は、A/B テスト的に一部のユーザ(1% とか)から徐々に有効にしていく場合がある。これを Finch という。
           <p>runtime_enabled_features.json5 に登録した名前がそのまま Finch の名前になり、その名前がコントロールする範囲に対して Kill Switch がある状態だ。
           <p>もし、ロールアウトして問題があったりした場合に、Chrome のリリースを伴わずに機能をリモートから無効にすることができる。
-          <p>別で Finch のコントロールを定義する場合は <code translate=no>base::Feature</code> のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビューターがやることはあまりないだろう。
+          <p>別で Finch のコントロールを定義する場合は <code translate=no>base::Feature</code> のインスタンスを作る必要があるが、その辺は Finch のシステムにアクセスできない外部コントリビュータがやることはあまりないだろう。
           <p>Finch がどうコントロールされているかは外にはでてこないが、これが自分の Chrome でヒットしているかどうかは chrome://version に以下のクエリをつけると見られる。
           <pre><code translate=no>chrome://version/?show-variations-cmd</code></pre>
-          <p>で表示される、一番下に <code translate=no>Command-line variations</code> が追加される。よくわからないフォーマットでワンラインにされているが、これを雑に <code translate=no>,</code> や <code translate=no>*</code> で改行すると、有効になってる機能が確認できるだろう。
+          <p>で表示すると、一番下に <code translate=no>Command-line variations</code> が追加される。よくわからないフォーマットでワンラインにされているが、これを雑に <code translate=no>,</code> や <code translate=no>*</code> で改行すると、有効になってる機能が確認できるだろう。
         </section>
         <section>
           <h3 id="git"><a href="#git">Git</a></h3>
@@ -827,7 +827,7 @@ Blink&gt;PerformanceAPIs&gt;ResourceTiming
               </ul>
             </li>
           </ul>
-          <p>これを作るコマンドがあるので、<code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると治る。
+          <p>これを作るコマンドがあるので、<code translate=no>src/compile_commands.json</code> を作ってから、起動しなおしたりすると直る。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ tools/clang/scripts/generate_compdb.py -p out/Default </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> compile_commands.json</span></span></code></pre>
         </section>
       </section>
@@ -919,7 +919,7 @@ sqlite&gt; select * from table</code></pre>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">Server running on wss://localhost:9444</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">WebTransportH3 server running on https://localhost:11000</span></span></code></pre>
           <p>とりあえず 8001 ポートにアクセスすれば試せる。
-          <p>テスト用のドメインとしては <code translate=no>web-platform.test</code> などのドメインが使われる。
+          <p>テスト用のドメインとしては <code translate=no>web-platform.test</code> などが使われる。
           <p>これを解決できないと実行できないテストがある場合は、<code translate=no>/etc/hosts</code> に追加する必要があるが、その自動構成スクリプトは以下にある。
           <ul>
             <li>
@@ -933,7 +933,7 @@ sqlite&gt; select * from table</code></pre>
         <section>
           <h3 id="expected--actual-file"><a href="#expected--actual-file">expected / actual file</a></h3>
           <p>WPT は網羅的にテストがあるが、Chromium は全部を通せるわけじゃない。(それを通るようにするのが Interop の目的)
-          <p>これは、WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行結果が生成する actual ファイルと一致するかどうかを見るような仕組みになっている。
+          <p>これは、WPT のテストケースに対して、通らないものは「落ちる結果」を expected ファイルに書いて、実行時に生成される actual ファイルと一致するかどうかを見るような仕組みになっている。
           <p>つまり、「意図した通りに落ちるか」をテストしているような感じだ。
           <ul>
             <li>
@@ -973,7 +973,7 @@ content_shell took too long to startup.
               </ul>
             </li>
           </ul>
-          <p>まず、普通にファイル (<code translate=no>/example/text.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
+          <p>まず、普通にファイル (<code translate=no>/example/test.html</code>) を置けば、それは静的ファイルとしてアクセスできる。
           <p>これにヘッダをつけたい場合は、.headers ファイルを作る(<code translate=no>/example/test.html.headers</code>)
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Access-Control-Allow-Origin</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> *</span></span></code></pre>
           <p>.asis ファイルを作ると、その中に書いたレスポンスがまるっとそのまま返る。(Apache As-Is という仕様らしい)
@@ -991,7 +991,7 @@ content_shell took too long to startup.
         </section>
         <section>
           <h3 id="https"><a href="#https">HTTPS</a></h3>
-          <p>注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、<code translate=no>${name}.https.${ext}</code> のように、ファイル名に https を入れる必要があります。
+          <p>注意点として、もしそのファイルに HTTPS でアクセスしたい場合は、<code translate=no>${name}.https.${ext}</code> のように、ファイル名に https を入れる必要がある。
           <p>特に、HTTPS でしか動かない機能のテストはこれを忘れると落ちるので注意。
           <p>その上で HTTP/2 が必要なら <code translate=no>${name}.h2.${ext}</code> とするなど、他のフラグもある。
         </section>
@@ -1032,7 +1032,7 @@ content_shell took too long to startup.
             <img loading=lazy decoding=async src=development-stages.jpeg?260309_235641 alt="Development Stages" width=894 height=308>
           </picture>
         </p>
-        <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューが終わらせる必要があるが、レビューには割と時間がかかるっぽい。
+        <p>以下のボタンから各種レビュー(Privacy, Security, Enterprise, Debuggability, Testing) をリクエストできる。Intent to Ship の前にこのレビューを終わらせる必要があるが、レビューには割と時間がかかるっぽい。
         <p>
           <picture>
             <source type=image/avif srcset=review-request.avif?260421_002105>

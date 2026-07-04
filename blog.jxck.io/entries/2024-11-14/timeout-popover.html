@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。">
+  <meta name=description         content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連の仕様を調べる中であった、これが WCAG 違反だという議論を紹介する。">
   <meta name=keywords            content="dialog,popover">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2024-11-14/timeout-popover.html>
   <meta property=og:title        content="Dialog と Popover #12 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。">
+  <meta property=og:description  content="Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連の仕様を調べる中であった、これが WCAG 違反だという議論を紹介する。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-11-14T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。"
+    "description": "Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?今回 Popover の一連の仕様を調べる中であった、これが WCAG 違反だという議論を紹介する。"
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-11-14>2024-11-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,7 +151,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Toast 相当を実装する場合、時間が経ったら自動で消えるタイムアウトを設定することがないだろうか?
-        <p>今回 Popover の一連を調べる中であった、これが WCAG 違反だという議論を紹介する。
+        <p>今回 Popover の一連の仕様を調べる中であった、これが WCAG 違反だという議論を紹介する。
       </section>
       <section>
         <h2 id="toast-の-timeout"><a href="#toast-の-timeout">Toast の Timeout</a></h2>
@@ -240,7 +240,7 @@
           <p>&mdash; <cite><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html" target=_blank>https://www.w3.org/WAI/WCAG22/Techniques/general/G5.html</a></cite>
         </blockquote>
         <p>WCAG のこの推奨は「ユーザにアクティビティを求めるような UI は、タスクの完了までに制限時間を設けるべきではない」といった趣旨のものだ。例に挙がっているのは、Web での「試験」や「ゲーム」や「オークション」といったものに対して、タスクの完了に時間がかかるようなユーザでも、タスクを完了できるようにという意図を含んでいる。
-        <p>今回の連載の文脈で言えば、例えば <code translate=no>&lt;dialog&gt;</code> はそもそもユーザに何か操作を求めるためにあるため、その <code translate=no>close()</code> を <code translate=no>setTimeout()</code> で呼ぶといった実装は避けるべきで、仮に素早くタスクを進められない状態のユーザでも、十分にタスクを完了できるように配慮すべきといった趣旨のものだ。
+        <p>今回の連載の文脈で言えば、例えば <code translate=no>&lt;dialog&gt;</code> はそもそもユーザに何か操作を求めるためにあるため、その <code translate=no>close()</code> を <code translate=no>setTimeout()</code> で呼ぶといった実装は避けるべきで、仮に素早くタスクを進められない状態のユーザでも、十分にタスクを完了できるように配慮すべきといった趣旨になる。
         <p>一方、勝手に消える <code translate=no>&lt;toast&gt;</code> が多いのは、必ずしもユーザに「アクティビティを求めていない」という暗黙の性質があり、OpenUI の調査の結果でも実世界の <code translate=no>&lt;toast&gt;</code> はそのように使われることが多く、そのため時間が経ったら消える実装が多用されていると考えられる。それどころか、明示的な「閉じる」ボタンを持たない <code translate=no>&lt;toast&gt;</code> もあるのではないだろうか? 主に通知に使われる <code translate=no>&lt;toast&gt;</code> が溜まって積み上がっていくのを防ぐ理由もあるだろう。別に数秒とかではなく、分単位のタイムアウトなどによる配慮をもった実装もあるように思う。
         <p>もちろん、OS の通知などもデフォルトでは時間と共に消え、明示的に消すまでは残すようなオプションを設定するといったものもあるだろう。
         <p>しかし、Keith の指摘ではタイムアウトする <code translate=no>&lt;toast&gt;</code> はこの推奨に違反するという判断らしい。
@@ -249,7 +249,7 @@
           <p>&mdash; <cite><a href="https://github.com/whatwg/html/issues/10428#issuecomment-2186785118" target=_blank>https://github.com/whatwg/html/issues/10428#issuecomment-2186785118</a></cite>
         </blockquote>
         <p>じゃあそもそも OpenUI の Explainer はなんだったんだ? という気持ちもするが、それはあくまでリアルワールドの実装を踏まえた Draft であり、議論を経たものではないため、一旦置いておこう。
-        <p>Keith の解釈は、推奨の言う「activity」は、表示されたコンポーネントがボタンクリックやフォームの入力等、明示的な操作を要求していない場合、つまりメッセージの表示だけであっても適用されるということになる。
+        <p>Keith の解釈では、推奨の言う「activity」は、表示されたコンポーネントがボタンクリックやフォームの入力等、明示的な操作を要求していない場合、つまりメッセージの表示だけであっても適用されるということになる。
         <p>「確認」も「Activity」だという解釈はわからなくもないが、実世界の <code translate=no>&lt;toast&gt;</code> 実装はそうなっていないところを考えると、Keith 独自の解釈なのか一般的に適用すべき解釈なのか判断が難しくもある。
         <p>「閉じた通知を確認できる UI」を提供する方が、「明示的に閉じていない通知」が溜まっていくよりも良い場合もあるだろうし、通知を残すかどうかをいちいちユーザに設定させるにしても、デフォルトは考えないといけないだろう。
       </section>
@@ -294,7 +294,7 @@
         <p>数秒は短いということを意識し、数分などの比較的長い時間を設定している実装はどうするべきか。
         <p>時間ではなく、他のイベントをフックして消える場合、それが短時間だったらどうするべきか。イベントが発生しても最低 N 秒は残すべき、とする場合、適切な N はいくつか。
         <p>考えることは多くある。
-        <p>あくまで今回議論する中で一人から得たフィードバックではあるが、現状 Popover や Dialog を利用して <code translate=no>&lt;toast&gt;</code> 相当を実装したり、すでに実装を持っている場合は、この議論を参考にしてみてほしい。
+        <p>あくまで今回議論する中で 1 人から得たフィードバックではあるが、現状 Popover や Dialog を利用して <code translate=no>&lt;toast&gt;</code> 相当を実装したり、すでに実装を持っている場合は、この議論を参考にしてみてほしい。
       </section>
     </article>
   </main>

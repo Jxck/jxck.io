@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-03-03T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-03-03>2025-03-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -158,8 +158,8 @@
         <p>一方、Session Cookie は、認証済みであることを示し(Proof of Authentication)、かつ持っているだけで効果を発揮する値(Bearer Token)であるため、Password 以上に盗む価値がある。
         <p>Session Cookie が盗まれれば、いかに Password を無くしていようが、Passkey をデプロイしていようが、何段階の認証にしようが、全ての努力は水の泡なのだ。
         <p>「Session Cookie を盗まれないようにする」のは、サービスにとってはもちろんだが、最近はむしろクライアントの方に攻撃が向いている。
-        <p>よく言われるのは、マルウェアをインストールさせ、ブラウザが保存する Cookie を盗む方法や、フィッシングサイトで入力させた値を本家サイトに転載し、払い出された Session Cookie を窃取する Proxy 型の攻撃だ。(DMM ビットコインの漏洩は、前者がとっかかりとなっていたとされる。)
-        <p>従って、本来であれば Cookie を「盗んでも使えない」値にするために、公開鍵暗号などの方式で送信者が意図したものかを確認する方式が理想であり、それが現在提案されている Device Bound Session Credentials に繋がる。
+        <p>よく言われるのは、マルウェアをインストールさせ、ブラウザが保存する Cookie を盗む方法や、フィッシングサイトで入力させた値を本家サイトに転送し、払い出された Session Cookie を窃取する Proxy 型の攻撃だ。(DMM ビットコインの漏洩は、前者がとっかかりとなっていたとされる。)
+        <p>従って、本来であれば Cookie を「盗んでも使えない」値にするために、公開鍵暗号などで送信者が意図したものかを確認する方式が理想であり、それが現在提案されている Device Bound Session Credentials に繋がる。
         <ul>
           <li>
             Cookie Theft 対策と Device Bound Session Credentials | blog.jxck.io

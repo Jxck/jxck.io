@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-04-21T00:00:00+09:00",
-    "dateModified": "2026-04-21T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-21>2026-04-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-21>2026-04-21</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -287,12 +287,12 @@ s:// [];tollplug(){
         </ul>
         <p>差分更新は、現代ではスタンダードな JS の Bundling でも効果が期待された。
         <p>我々は ESM を手に入れてからも、Native な <code translate=no>import</code> はほとんど使っていない。<code translate=no>import</code> 段階で、多くの依存を取得すると、オーバーヘッドが大きいため WebPack などで 1 ファイルにまとめて配布している。その中では Native な <code translate=no>import</code> は使っていない。<code translate=no>import</code> は Bundler が見るための構文としてしか使われていない現状があるのだ。
-        <p>従って、bundle された <code translate=no>main.js</code> の 1 箇所が修正されただけでも、更新されていない依存を含めた bundle.js 全体を再取得する必要があるのだ。これは非常に無駄が多い。
+        <p>したがって、bundle された <code translate=no>main.js</code> の 1 箇所が修正されただけでも、更新されていない依存を含めた bundle.js 全体を再取得する必要があるのだ。これは非常に無駄が多い。
         <p>そこで複数の JS を Bundle して bundle.js を作るのではなく、ばらばらのまま WebBundle で一括配布する。クライアントは、ばらばらに Fetch されたかのように import できる。そうすれば、JS の <code translate=no>import</code> 時に Fetch するのと異なり、ネットワークオーバーヘッドを減らして、生の <code translate=no>import</code> が使える。個別のキャッシュもできる。これが WebBundle に期待されたメリットだ。
         <p>問題は、WebBundle した中で <code translate=no>main.js</code> だけが更新された場合、それだけを取得できるようにするにはどうするか?という差分更新の API 設計だった。
         <p>単純に「これらのファイルを持っている」などのリストを素直に提示するのは、クライアントのキャッシュ状況を開示していることになる。そこまでエントロピーが高いと、Fingerprint や Tracking のベクターとなってしまう。また、この設計はどうしても IPC を挟み、パフォーマンスが出にくいという問題もあるようだった。
         <p>差分更新ができなければ、結局最新の WebBundle ファイルを毎回取得する必要があり、bundle.js と差がないことになる。そして、徐々に作業がなくなり、実質終わったコンセプトと言って良い状態になった。
-        <p>その後始まった Shared Brotli は、この「差分更新」のコンセプトを、辞書を用いて再始動するモチベーションがあったのだ。
+        <p>その後始まった Shared Brotli には、この「差分更新」のコンセプトを、辞書を用いて再始動するモチベーションがあったのだ。
       </section>
       <section>
         <h2 id="webfont-問題"><a href="#webfont-問題">WebFont 問題</a></h2>
@@ -340,7 +340,7 @@ s:// [];tollplug(){
             </ul>
           </li>
         </ul>
-        <p>CDT は、任意のコンテンツから辞書を作成し、それをサーバ/クライアント間で共有する 2 つの方式が提案されている。
+        <p>CDT では、任意のコンテンツから辞書を作成し、それをサーバ/クライアント間で共有する 2 つの方式が提案されている。
         <ul>
           <li>
             Delta Compression
@@ -522,7 +522,7 @@ s:// [];tollplug(){
       </section>
       <section>
         <h2 id="辞書の配布"><a href="#辞書の配布">辞書の配布</a></h2>
-        <p>作成した辞書は、<code translate=no>blog.jxck.io</code> 以下のすべてのパスで、<code translate=no>Link</code> ヘッダでアドバタイズしている。
+        <p>作成した辞書は、<code translate=no>blog.jxck.io</code> 以下の全てのパスで、<code translate=no>Link</code> ヘッダでアドバタイズしている。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Link</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> &#x3C;/dictionary/entries/&#x3C;sha256>.dict>; rel="compression-dictionary"</span></span></code></pre>
         <p>どこかしらにアクセスすれば辞書をバックグラウンドで取得できるので、次にアクセスする記事から圧縮に使える。
         <p>辞書の有効期限は、単純に辞書の <code translate=no>Cache-Control</code> で管理する。
@@ -583,7 +583,7 @@ If the request does not include an &quot;Origin&quot; request header, return FAL
 If the value of the &quot;Access-Control-Allow-Origin&quot; response header is &quot;*&quot;, return TRUE.
 If the value of the &quot;Access-Control-Allow-Origin&quot; response header matches the value of the &quot;Origin&quot; request header, return TRUE.
 Return FALSE.</code></pre>
-        <p>ただし、本サイトでは実装を小さくするため、このすべては実装していない。例えば、他のサイトから Origin をまたいで遷移してくる場合は、辞書の圧縮を行っていない。対応しなければ、従来通り <code translate=no>.html</code> や <code translate=no>.html.br</code> にフォールバックするだけだ。
+        <p>ただし、本サイトでは実装を小さくするため、この全ては実装していない。例えば、他のサイトから Origin をまたいで遷移してくる場合は、辞書の圧縮を行っていない。対応しなければ、従来通り <code translate=no>.html</code> や <code translate=no>.html.br</code> にフォールバックするだけだ。
       </section>
       <section>
         <h2 id="debug"><a href="#debug">Debug</a></h2>
@@ -622,7 +622,7 @@ Return FALSE.</code></pre>
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>Compression Dictionary Transport の検証のため、本サイトの HTML を事前辞書で圧縮し、検証を行った。
+        <p>Compression Dictionary Transport の検証のため、本サイトの HTML を事前辞書で圧縮する対応を行った。
         <p>本ブログでは 2023 年 7 月に、まだ策定段階の Compression Dictionary Transport について解説した。
         <ul>
           <li>
@@ -632,7 +632,7 @@ Return FALSE.</code></pre>
             </ul>
           </li>
         </ul>
-        <p>本ブログは、その更新版にあたる。
+        <p>本記事は、その更新版にあたる。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

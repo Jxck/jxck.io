@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-05-10T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-05-10>2024-05-10</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -195,7 +195,7 @@
           <li>Origin をインターネットから隠匿
           <li>後続の Origin クラスタへの負荷分散
           <li>DDoS をはじめとする攻撃の検出と排除
-          <li>コンテンツのキャッシュをし、Origin への負荷軽減
+          <li>コンテンツのキャッシュによる Origin への負荷軽減
           <li>A/B Testing や Blue-Green Deploy のサポート
           <li>Client IP の隠蔽(OHTTP)
           <li>etc etc etc
@@ -261,7 +261,7 @@
           <h3 id="origin-の隠蔽"><a href="#origin-の隠蔽">Origin の隠蔽</a></h3>
           <p>本来 CDN には、転送先である Origin の IP を教えておく必要がある。CDN が別事業者の場合は、Origin を固定 IP にし、それを CDN に登録するといった運用になるだろう。
           <p>クラウド的な構成なら、例えば AWS で EC2 に立てた Origin は専用のネットワーク内に閉じ込め、ELB だけが EC2 にアクセスするよくある構成になるが、この場合は Origin が固定 IP でインターネットに出ている必要がある。
-          <p>つまり、ネットワークが別れない構成では、この固定 IP が漏れると直接 DDoS は可能となるのだ。
+          <p>つまり、ネットワークが分かれない構成では、この固定 IP が漏れると直接 DDoS は可能となるのだ。
           <p>しかし、Reverse HTTP では、CDN はあくまで確立したコネクションに転送していくだけなので、「Origin が CDN のエンドポイントを知っている」だけでよいのだ。おそらく固定 IP である必要もないだろう。そして、ネットワーク的にも、あくまで Origin が CDN に接続できさえすれば良いので、Origin の隠蔽は従来よりも柔軟に行うことができそうだ。
         </section>
         <section>
@@ -284,8 +284,8 @@
         <section>
           <h3 id="ip-アドレス"><a href="#ip-アドレス">IP アドレス</a></h3>
           <p>固定 IP である必要は無くなったが、逆に IP の Leak を防ぐために「Origin の IP は定期的に変更する」ことが SHOULD として求められている。
-          <p>これは、CDN と Origin がネットワーク的に別れている構成だと面倒な気がする。
-          <p>やはり、従来のクラウドでのやり方のように、Origin が Private Network に並んでて CDN がその境界にいる構成の方が組みやすい気がするが、その場合は (EC2 - ELB/ALB みたいに) Reverse する旨みがあまりない気がするが、どうなんだろうか。
+          <p>これは、CDN と Origin がネットワーク的に分かれている構成だと面倒な気がする。
+          <p>やはり、従来のクラウドでのやり方のように、Origin が Private Network に並んでて CDN がその境界にいる構成の方が組みやすい気がする。ただ、その場合は (EC2 - ELB/ALB みたいに) Reverse する旨みがあまりない気がするが、どうなんだろうか。
         </section>
         <section>
           <h3 id="逆方向のトラフィック"><a href="#逆方向のトラフィック">逆方向のトラフィック</a></h3>
@@ -301,7 +301,7 @@
         <p>しかし、この仕様のスコープには、Browser 側に立つ Intermediaries も含まれている。例えば以下だ。
         <ul>
           <li>企業のネットワークに立ってる社内 Proxy
-          <li>Private Rely のような OHTTP Proxy
+          <li>Private Relay のような OHTTP Proxy
           <li>自分で立てるなんらかの用途の串
         </ul>
         <p>こうした Intermediaries に対しても Reverse HTTP を適用しても良いとされている。

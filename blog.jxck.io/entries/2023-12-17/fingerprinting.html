@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-17T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-17>2023-12-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -186,8 +186,8 @@
           <p>Mozilla や Brave は VPN を提供することで同等のことを実現している。
           <p>また、IP の秘匿を標準化するために、IETF では OHTTP という仕様の標準化作業を行っており、Chrome や Firefox が、Fastly などの Proxy との対応を進めていく予定を公開している。
           <p>注意点として、IP の置き換えもまた、さまざまなユースケースに影響を与える。
-          <p>例えば、ユーザの接続している国や地域は IP ベースで判断されることが多く、これはアクセス管理や、前述した GDPR の EU 判定などに使われる。こうした緩やかに国や地域を知ることができるよう、Private Relay は IP のリストを公開し、その情報は変わらないように情報提供がされている。
-          <p>もう一つは、犯罪対策だ。何かサイバー犯罪が起こった場合、犯人の特定は IP をプロバイダに問い合わせることで突き止めることが多いが、Proxy が挟まるとそれが困難になる。この問題がどのように対応されていくのかは、筆者もずっと気にしているが、まだ明確な指針は把握していない。
+          <p>例えば、ユーザの接続している国や地域は IP ベースで判断されることが多く、これはアクセス管理や、前述した GDPR の EU 判定などに使われる。こうしたケースでも緩やかに国や地域を知ることができるよう、Private Relay は IP のリストを公開し、その情報は変わらないように情報提供がされている。
+          <p>もう 1 つは、犯罪対策だ。何かサイバー犯罪が起こった場合、犯人の特定は IP をプロバイダに問い合わせることで突き止めることが多いが、Proxy が挟まるとそれが困難になる。この問題がどのように対応されていくのかは、筆者もずっと気にしているが、まだ明確な指針は把握していない。
         </section>
       </section>
       <section>
@@ -207,7 +207,7 @@
         <pre><code translate=no>Mozilla/1.22 (compatible; MSIE 2.0; Windows 95)</code></pre>
         <p>そうやって嘘を重ねた結果、今日に至る非常に長い UA 文字列が出来上がったのだ。
         <p>しかし、今では機能に対する分岐は Feature Detection が基本になるため、UA の蓄積は一掃したい負債でもあった。そこで、今ではこのヘッダのエントロピーを下げていくための取り組みが始まっている。
-        <p>Safari の場合は Version の値などを固定していくことで、以降のバージョンで文字列の変化する部分を減らすという &quot;Freezing User-Agent&quot; という取り組みが始まっている。もちろん、細かいバージョンが取れなくなると困るケースもあるが、大抵は特定バージョンのバグに起因する分岐であり、リリースサイクルが短くなったことでその影響も小さくなっている。
+        <p>Safari の場合は Version の値などを固定していくことで、以降のバージョンで文字列の変化する部分を減らす &quot;Freezing User-Agent&quot; という取り組みが始まっている。もちろん、細かいバージョンが取れなくなると困るケースもあるが、大抵は特定バージョンのバグに起因する分岐であり、リリースサイクルが短くなったことでその影響も小さくなっている。
         <p>他のブラウザも概ね同意しており、UA の代替としてもっと正確な情報を必要に応じて必要なだけ取る <code translate=no>Sec-CH-UA</code> を仕様化し、Chrome を筆頭に対応が進んでいる。これは、デフォルトのいくつか以外は勝手には送られず、またブラウザも絞った情報しか出さないといったことで、UA のようなことが起こらないようにしている。
       </section>
       <section>

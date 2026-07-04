@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-10-02T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-10-02>2024-10-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -464,7 +464,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  top: anchor(end);</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  right: anchor(</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">self-start</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@position-try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --end {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@position-try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> --second {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* .... */</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
         <p>これで、どんな要素に Invoke されても、Top Layer 上に表示されつつ、さらに画面内にしっかりと収まるような <code translate=no>popover</code> が表示できるのだ。
@@ -515,7 +515,7 @@
       </section>
       <section>
         <h2 id="html-anchor-attributes-の今後"><a href="#html-anchor-attributes-の今後">HTML Anchor Attributes の今後</a></h2>
-        <p>Invoker Relationship が暗黙的に作られる場合は、Anchor 名を明示する必要がなくなった。それでもなお、動的に <code translate=no>&lt;popover&gt;</code> を作り、JS で開くような場合は不便がある。
+        <p>Invoker Relationship が暗黙的に作られる場合は、Anchor 名を明示する必要がなくなった。それでもなお、動的に <code translate=no>&lt;div popover&gt;</code> を作り、JS で開くような場合は不便がある。
         <p>例えば、GitHub のリンクをマウスオーバーした場合、Issue なら概要、User ならプロフィールが Popover されるだろう。プロフィールの場合は、アイコンが Anchor になる。
         <p>
           <picture>
@@ -543,7 +543,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
         <p>対象のイベントで、動的に <code translate=no>anchor-name</code> を変更し、終わったら <code translate=no>anchor-name</code> を消す必要がある。消し忘れると、他とかぶって意図しない場所に表示される可能性もある。名前を変えても良いが、その場合は Popover 側の管理も必要になる。
-        <p>もし HTML で Anchor 要素が使えるのであれば、<code translate=no>&lt;a&gt;</code> が持つ ID を指定して、<code translate=no>&lt;div popover&gt;</code> 側を変えればよくなる。
+        <p>もし HTML で <code translate=no>anchor</code> 属性が使えるのであれば、Anchor となる要素の ID を指定して、<code translate=no>&lt;div popover&gt;</code> 側を変えればよくなる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">style</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  position-anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: --anchor;</span></span>

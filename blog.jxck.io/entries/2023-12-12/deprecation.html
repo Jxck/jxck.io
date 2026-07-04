@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-12-12T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-12-12>2023-12-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -189,7 +189,7 @@
           <h3 id="chrome-firefox-opera-etc."><a href="#chrome-firefox-opera-etc.">Chrome, Firefox, Opera, etc.</a></h3>
           <p>昔からプライバシー意識の高いユーザには、トラッキングから明示的にオプトアウトする機能へのニーズも多く、ブラウザは標準でそうした機能を提供してきた。
           <p>IE が一時期実施して失敗した、いわゆる Do Not Track List 形式のブロッキングは、やはりスケールしなかったため、最も広く普及したのは「Cookie の無効化」だ。
-          <p>設定から「すべての 3rd Party Cookie をブロックする」や、場合によっては「Cookie をブロックする」といったものもあった。トグルボタンで有効無効にするか、禁止レベルを設けて調整できるものもある。もちろん壊れるサイトが多く出るため、リテラシーの高いユーザが自己責任で使うものにとどまった。
+          <p>設定から「すべての 3rd Party Cookie をブロックする」や、場合によっては「Cookie をブロックする」といったものもあった。トグルボタンで有効無効にするか、禁止レベルを設けて調整できるものもある。もちろん壊れるサイトが多く出るため、リテラシの高いユーザが自己責任で使うものにとどまった。
           <p>少し視点を変えれば、広告ドメインとの通信自体を止めてしまう「広告ブロッカー」拡張や、ブロックはしないが閉じれば全て消える Private Mode のようなものも、広義には同じ問題への別のアプローチだろう。
           <p>いずれにせよ、全ユーザに対してブロック機能をデフォルトにすると、やはり多くのサービスが壊れるため、決してそれをデフォルトにはできなかった。
         </section>
@@ -202,11 +202,11 @@
           <h3 id="safari"><a href="#safari">Safari</a></h3>
           <p>Safari も 2016 年の時点で、デフォルトでブロックしていたとされる。
           <p>しかし、正確には 3rd Party Context での保存はブロックする。つまり、<code translate=no>&lt;iframe&gt;</code> で受信したレスポンスの <code translate=no>Set-Cookie</code> は無視するというものだ。
-          <p>一度そのサイトにアクセスして保存した Cookie は、3rd Party Cookie としての「送信はされる」という制限だったのだ。
-          <p>これは要するに、一度 Facebook や YouTube にログインしていれば、埋め込まれた「いいねボタン」は自分のアカウントでできるし、課金していれば埋め込み YouTube も広告が出ないということだ。
+          <p>1 度そのサイトにアクセスして保存した Cookie は、3rd Party Cookie としての「送信はされる」という制限だったのだ。
+          <p>これは要するに、1 度 Facebook や YouTube にログインしていれば、埋め込まれた「いいねボタン」は自分のアカウントでできるし、課金していれば埋め込み YouTube も広告が出ないということだ。
           <p>「トラッカーのサイトは直接アクセスされることはない」という点で、デフォルトでブロックしつつ、壊れる機能を極力減らすという、かなりバランスが取れた設計ではあったと筆者は感じる。
-          <p>埋め込んだログインフォームからログインし、そのまま認証に繋げるような認証連携などは壊れる場合はあったが、その場合はログインフォーム自体を認証プロバイダで出し、一度そこに遷移するといった実装によって解決された。
-          <p>また、後述するが、一旦ひっそりとトラッカーにリダイレクトし、Tracking Cookie を 1st Party Cookie として保存してから当初の目的地にリダイレクトするという、この仕様の秘孔をついた「バウンストラッキング」という手法も多用された。Twitter でリンクをクリックすると、一度 <code translate=no>t.co</code> に飛ばされてから目的地に行くのも、こうした理由がある。
+          <p>埋め込んだログインフォームからログインし、そのまま認証に繋げるような認証連携などは壊れる場合はあったが、その場合はログインフォーム自体を認証プロバイダで出し、1 度そこに遷移するといった実装によって解決された。
+          <p>また、後述するが、一旦ひっそりとトラッカーにリダイレクトし、Tracking Cookie を 1st Party Cookie として保存してから当初の目的地にリダイレクトするという、この仕様の秘孔をついた「バウンストラッキング」という手法も多用された。Twitter でリンクをクリックすると、1 度 <code translate=no>t.co</code> に飛ばされてから目的地に行くのも、こうした理由がある。
         </section>
       </section>
       <section>

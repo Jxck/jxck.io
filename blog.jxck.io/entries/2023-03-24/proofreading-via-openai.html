@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-03-24T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-03-24>2023-03-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -157,7 +157,7 @@
         <h2 id="文章校正と誤字脱字検出"><a href="#文章校正と誤字脱字検出">文章校正と誤字脱字検出</a></h2>
         <p>執筆を補助するツールは多々開発されているが、基本は形態素解析を用いた品詞分析の延長で行うものが多かった。
         <p>よくある「助詞の連続」、「漢字の開き閉じ」、「一文の長さ」などは、ある程度の精度で検出可能ではあるが、結局執筆時に一番検出して欲しいのは「<em>誤字脱字</em>」だ。
-        <p>文体をどんなに揃えたところで、誤字脱字があるとやはりクオリティが低く感じるし、そこさえ抑えられていれば、他のスタイル統一は訓練である程度なんとかなる。
+        <p>文体をどんなに揃えたところで、誤字脱字があるとやはりクオリティが低く感じるし、そこさえ押さえられていれば、他のスタイル統一は訓練である程度なんとかなる。
         <p>英語のスペルチェックはかなり進んでいるが、日本語においてはそこまで革新的なものが見当たらない。あらゆるツールを試したが、結局満足のいく精度が出る誤字脱字検出は「Word の校正機能」しかなかった。
         <p>そこで筆者は、書籍執筆などは Markdown で原稿を書き、ある程度まとまったら HTML でレンダリングしたものを Word に流し込んで校正していたが、これはあまりにも面倒くさい。
         <p>Word の校正機能だけ CLI にならないかと何度も夢みたが、それが叶うはずもなく。「紙に印刷して読んだ方が見つけられる」「音声読み上げしたら気づける」などのワークアラウンドでなんとか見つけだし、それを次の修正で誤字脱字だらけに戻しながら、たまに Word を行き来して今に至る。
@@ -165,7 +165,7 @@
       </section>
       <section>
         <h2 id="chatgpt-での校正"><a href="#chatgpt-での校正">ChatGPT での校正</a></h2>
-        <p>ChatGPT の Proofreading プロンプトは、頻出ユースケースの一つだ。そして、これは日本語でも動作する。
+        <p>ChatGPT の Proofreading プロンプトは、頻出ユースケースの 1 つだ。そして、これは日本語でも動作する。
         <p>筆者が求めているのは、ヒントから文章を書き上げて欲しいわけでも、丸っと書き直して欲しいわけでもなく、「誤字脱字だけ見つけて直してほしい」だけなので、指令はごくシンプルだ。
         <p>むしろ、細かく条件を加えた方が、ChatGPT が余計なことをしだすので、さまざまなプロンプトを試しながら、結局このシンプルなものに戻ってきた。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
@@ -220,7 +220,7 @@
       </section>
       <section>
         <h2 id="精度"><a href="#精度">精度</a></h2>
-        <p>試しに <a href="https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html">前回のブログ</a> の原稿を校正した(月一回は書きたいという個人的な目標を達成するために、月末に大急ぎで書いたため、誤字脱字だらけだった)。
+        <p>試しに <a href="https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html">前回のブログ</a> の原稿を校正した(月 1 回は書きたいという個人的な目標を達成するために、月末に大急ぎで書いたため、誤字脱字だらけだった)。
         <p>検出した Diff が以下だ。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="diff"><code translate="no"><span class="line"><span style="--shiki-light:#B31D28;--shiki-dark:#FDAEB7">- ブラウザがバースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">+ ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで</span></span>

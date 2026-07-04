@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-01-28T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-01-28>2024-01-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -218,7 +218,7 @@
       </section>
       <section>
         <h2 id="browser-engine-entitlement"><a href="#browser-engine-entitlement">Browser Engine Entitlement</a></h2>
-        <p>EU において、iOS17.4 から WebKit 以外のブラウザエンジンが利用可能になるというものだ。
+        <p>EU において、iOS 17.4 から WebKit 以外のブラウザエンジンが利用可能になるというものだ。
         <p>申請には、2 つの種類があるとされている。
         <dl>
           <div>
@@ -230,7 +230,7 @@
             <dd>埋め込み用途で利用する場合に通すべき申請
           </div>
         </dl>
-        <p>ここで認定されたデベロッパーに、ブラウザ開発に必要な API (JIT や Multi Process など) を解放する。
+        <p>ここで認定されたデベロッパーに、ブラウザ開発に必要な API (JIT や Multi Process など) を開放する。
         <p>今回は <em>Web Browser Engine Entitlement</em> の方に絞る。
       </section>
       <section>
@@ -286,7 +286,7 @@
             <li>Storage Partitioning を実施
             <li>アプリとの Cookie 共有禁止
             <li>デバイス識別子の提供にはジェスチャベースの権限取得必須
-            <li>App Privacy Report でのネットワークタグ付
+            <li>App Privacy Report でのネットワークタグ付け
             <li>Permission は一般的な Web 標準に準拠
           </ul>
           <p>Cookie や IDFA も、基本的に WebKit ベースのものを維持する。今回の緩和で Chrome のシェアがまた広がったとしても Cookie は ITP 相当を求めている。
@@ -298,7 +298,7 @@
         <section>
           <h3 id="secure-sdlc-software-development-lifecycle"><a href="#secure-sdlc-software-development-lifecycle">Secure SDLC (Software Development Lifecycle)</a></h3>
           <p>前半では、「Web コンテンツは悪意に満ちているため、読み込む際の注意が必要である」と述べており、セキュリティ面、脆弱性対応、セキュアコーディングに注意を払うよう求めている。
-          <p>後半は、メモリセーフに焦点を当てている。ここではメモリセーフな言語として Swift を挙げ、C++への注意や std::span の紹介などを行っている。
+          <p>後半は、メモリセーフに焦点を当てている。ここではメモリセーフな言語として Swift を挙げ、C++ への注意や std::span の紹介などを行っている。
           <p>とにかく、バグのあるブラウザが iPhone で動作することを防ぎたいという意志が伝わる。
         </section>
         <section>
@@ -327,7 +327,7 @@
       <section>
         <h2 id="所感"><a href="#所感">所感</a></h2>
         <p>いよいよ来たなという印象だ。
-        <p>細かい実装がどうなるのかは、実際に Chrome や Firefox が出てみないとわからないのが実際なので、実装面の制約についてはこれだけを見てもなんとも言えない。
+        <p>細かい実装がどうなるのかは、実際に Chrome や Firefox が出てみないとわからないため、実装面の制約についてはこれだけを見てもなんとも言えない。
         <p>しかし、WPT 90%, Test262 80% はハードルとしては非常に高いため、新しくブラウザエンジンを実装して参入しようとしても、そんなに簡単ではない。習作のブラウザを公開するといったことは不可能だろう。
         <p>また、もともとサイドローディングの根拠の 1 つに、Apple による審査を通じたユーザの安全確保が強調されていた通り、別エンジン実装を許すからといって、その側面を緩めないように強めの釘を打っていることを見て取れる。
         <p>つまり、仮に実装できても、体制の面で新規参入の敷居はやはり高い。
@@ -339,11 +339,11 @@
         <h2 id="ブラウザエンジンの多様性"><a href="#ブラウザエンジンの多様性">ブラウザエンジンの多様性</a></h2>
         <p>iPhone に Safari 以外のブラウザをわざわざインストールするユーザがどのくらい増えるかわからない。もし iPhone でも Chromium Chrome をインストールしてデフォルトブラウザにすることが一般的になれば、Safari シェアを支える最後の砦が崩れることにも繋がり得る。
         <p>そうなった場合に懸念されるのが、ブラウザエンジンの多様性だ。
-        <p>Edge, Opera, Brave, Vivaldi など Chromium をベースとした「ブラウザ」の多様性は増える一方、Trident/EdgeHTML を失って以降ブラウザエンジンの多様性とパワーバランスはかなり変わってしまっている。
-        <p>使っているユーザや、サービス開発者にとっては大きな問題を感じないかもしれないが、標準化などの場面で勢力の寡占は起こってしまうことには一定のリスクが指摘され続けている。
+        <p>Edge, Opera, Brave, Vivaldi など Chromium をベースとした「ブラウザ」の多様性は増える一方、Trident/EdgeHTML を失って以降、ブラウザエンジンの多様性とパワーバランスはかなり変わってしまっている。
+        <p>使っているユーザや、サービス開発者にとっては大きな問題を感じないかもしれないが、標準化などの場面で勢力の寡占が起こってしまうことには一定のリスクが指摘され続けている。
         <p>もちろん、EdgeHTML が無くなったことはネガティブな影響ばかりではなかった。MS のチームは Chrome チームがカバーしきれてない OpenUI などにリソースを増やし、HTML 周りの更新を推し進めているのも事実だ。また、リソースを Edge の UI に回せたからか、Collection, Vertical Tab, Split Screen, Bing Chat など、最近の Edge はブラウザとして非常に使いやすくなっているとも感じ、筆者はここ数年 Edge をメインブラウザ、Chrome を開発/検証用にしている。
         <p>問題の根幹は「ブラウザエンジンをゼロから作ることはもうできない」という点だ。多少はサードパーティのライブラリを入れたとしても、今から WPT 90% を達成するブラウザエンジンの開発を目指しても、達成に何年かかるかわからない。その間にも WPT の方が膨らみ、追いつくのは不可能と言っていいだろう。
-        <p>結果 Chromium のフォークがベースとなり、ベースに入る機能のイニシアチブは Google が握っていることになる。Linux カーネルのように、それをみんなでメンテするという考え方もあるが、Google が提唱し Mozilla/Apple の standard position で否定されている機能が少なくないことは、無視できない事実だ。
+        <p>結果、Chromium のフォークがベースとなり、ベースに入る機能のイニシアチブは Google が握っていることになる。Linux カーネルのように、それをみんなでメンテするという考え方もあるが、Google が提唱し Mozilla/Apple の standard position で否定されている機能が少なくないことは、無視できない事実だ。
         <p>では、ユーザがわざわざ iPhone に Chromium Chrome や Gecko Firefox を入れるモチベーションはあるだろうか? 一般的に見れば、ユーザ側が機能の有無などで積極的に選択するかというと怪しい。あっても、常用アカウントの連携などといった外的要因の方が多いと思われる。
         <p>むしろ最悪の想定は、Web サービスの開発者側が Chrome でしか見られないページなどを提供する可能性だ。iPhone でサイトを開いても、Store へ誘導しインストールを求めるのは、無料である点で PayWall よりは敷居が低い。その結果、Privacy Sandbox 系の API が動くなら、メディア系のサービスはそちらを強制したいかもしれないし、Fugu 系の API が動けばデバイス機能を活用したいサービスはそちらに誘導したい。そこまで積極的な理由でなくても、サービス開発者にとって iOS Safari の評判は決して良かったとは言えないため、単にサポートブラウザを減らすことは、コストメリットに繋がるのを否定できない。Interop は、こうしたバランスの調整のための活動であり、既に一定の成果が出ているが、それでもやはり複数ブラウザの対応に苦労している開発者がいるのも事実だ。
         <p>近年の Safari のアップデートには、それまで音沙汰なかった機能が続々と追加されたように思うが、これもそうしたギャップをなるべく埋めた上でこの日を迎えたかったのではないかという邪推もできる。しかし、API によっては Standard Position で否定され Safari には絶対に入らないことが決定済みなものもあるため、これを Chromium が提供できるとなると、その格差はスタンスよりも星取表で評価されてしまう可能性もあるだろう。

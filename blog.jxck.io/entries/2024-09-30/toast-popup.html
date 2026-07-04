@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-09-30T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-09-30>2024-09-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -200,7 +200,7 @@
           <li>Dismiss する方法がある
           <li>状態に応じた Event が発火し Callback が書ける
         </ul>
-        <p>ところが、この提案を実装する上で &quot;Intent to Implement&quot; には、<code translate=no>&lt;toast&gt;</code> もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
+        <p>ところが、この提案を実装する上で出した &quot;Intent to Implement&quot; には、<code translate=no>&lt;toast&gt;</code> もセマンティクスではなくスタイルの問題である点を指摘しつつ「Chrome がマーケット支配力を利用して、勝手に実装を標準にするな」といったような意見が出てきた。
         <ul>
           <li>
             Intent to Implement: Toast UI element
@@ -212,7 +212,7 @@
         <p>これは、「試しに実装してみるよ」の Intents が &quot;Intent to Implement&quot; という名前であり、その次は &quot;Intent to Ship&quot; という流れだったのもある。これはあくまでプロトタイプなんだということを強調するために、この後 &quot;Intent to Implement&quot; はなくなり、代わりに &quot;Intent to Prototype&quot; というステップに名前が変えられた。
         <p>この議論をしている 2019 年ごろは、Layered API という、頻出するパターンは共通する基盤を整備して、その上に実装できるようにしようといったコンセプトが一時的に流行っていた。(fetch, URL, FormData, Encoder... の頃)
         <p>その流れから、<code translate=no>&lt;std-toast&gt;</code> があれば、飛び出して他の要素の上に被さる系の UI は、全てその応用で実装可能というイメージで、それを <code translate=no>std-</code> をつけることで、カスタムコンポーネントのブラウザネイティブライブラリのような位置付けで実装する、という取り組みの流れを汲んだ最初で最後の HTML 提案だった。
-        <p>ちなみに、この &quot;Intent to Prototype&quot; は 2019 年で、Firefox が <code translate=no>&lt;dialog&gt;</code> をリリースするのは 2020 年だ。つまり、<code translate=no>&lt;toast&gt;</code> の議論時期的には <code translate=no>&lt;dialog&gt;</code> の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に <code translate=no>&lt;dialog&gt;</code> の作業を進める間一旦影をひそめ、一段落してから再度議論が盛り上がっていく。
+        <p>ちなみに、この &quot;Intent to Prototype&quot; は 2019 年で、Firefox が <code translate=no>&lt;dialog&gt;</code> をリリースするのは 2020 年だ。つまり、<code translate=no>&lt;toast&gt;</code> の議論時期的には <code translate=no>&lt;dialog&gt;</code> の実装がまだ Chrome くらいしかない頃から、並行して行われていたことがわかる。先に <code translate=no>&lt;dialog&gt;</code> の作業を進める間、一旦影をひそめ、一段落してから再度議論が盛り上がっていく。
       </section>
       <section>
         <h2 id="popup-要素"><a href="#popup-要素"><code translate=no>&lt;popup&gt;</code> 要素</a></h2>
@@ -242,7 +242,7 @@
           </p>
           <p><code translate=no>&lt;dialog&gt;</code> との大きな違いは、Light Dismiss で anchoring があって、Modal mode がないこと。
         </blockquote>
-        <p>ここで言っている Light Dismiss は、前回解説したものだ。初期は <code translate=no>&lt;popover&gt;</code> において大事な概念とされ、要するに「割と簡単に閉じられる」といった意味だった。この時点の仕様では以下のように書かれている。
+        <p>ここで言っている Light Dismiss は、前回解説したものだ。初期は <code translate=no>&lt;popup&gt;</code> において大事な概念とされ、要するに「割と簡単に閉じられる」といった意味だった。この時点の仕様では以下のように書かれている。
         <ul>
           <li>
             以下の場合に Light Dismiss になって暗黙的に閉じる
@@ -291,7 +291,7 @@
           </li>
         </ul>
         <p>もともとは History API にあったことがわかる。
-        <p>そう。これこそ Android の戻るボタン問題で、Android では「戻る」でも Modal を閉じることができた。それを実現するために、変に「戻る」をフックするために <code translate=no>keyup</code> や History をいじって実装しがちだが、新しく History API を整理する上で問題になった。という話を Domenic がしている。
+        <p>そう。これこそ Android の戻るボタン問題で、Android では「戻る」でも Modal を閉じることができた。それを実現するために、変に「戻る」をフックしようと <code translate=no>keyup</code> や History をいじって実装しがちだが、新しく History API を整理する上で問題になった。という話を Domenic がしている。
         <ul>
           <li>
             Domenic Denicola on Twitter / X
@@ -323,7 +323,7 @@
           <p>- a custom context menu;
           <p>- fullscreen mode.
         </blockquote>
-        <p>他にも OS が用意している Modal Close な操作が書かれており、iOS VoiceOver にある &quot;z&quot; ジェスチャーや、他にも将来的に何か新しいデバイスが出た際も、ここで吸収できる。
+        <p>他にも OS が用意している Modal Close な操作が書かれており、iOS VoiceOver にある &quot;z&quot; ジェスチャーや、将来的に何か新しいデバイスが出た際も、ここで吸収できる。
       </section>
       <section>
         <h2 id="popup-の問題"><a href="#popup-の問題"><code translate=no>&lt;popup&gt;</code> の問題</a></h2>
@@ -361,7 +361,7 @@
             </ul>
           </li>
         </ul>
-        <p>もともと、<code translate=no>&lt;popup&gt;</code> には「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。&quot;select menu&quot; と &quot;teaching ui&quot; が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
+        <p>もともと、<code translate=no>&lt;popup&gt;</code> は「select menu を出す」、「Teaching UI」など、浮かび上がる系の UI をカバーするという目的で考えられていたが、そのセマンティクスはなんなんだろう? というものだ。&quot;select menu&quot; と &quot;teaching ui&quot; が同じということはないだろう、しかし、それぞれの目的ごとに HTML 要素を作り続けるのだろうか?といったものだ。Intent to Implement を出した時の指摘も同じだ。
         <p>つまり &quot;popup&quot; というのは「動き」のことであり、その中にあるコンテンツの「意味(semantics)」とは別だということだ。ここをきちんと分離するためには、「意味」は既存の HTML / Role に任せ、その任意の HTML を Top Layer に表示したり Light Dismiss するための機能として &quot;popup&quot; するための属性にし、様々なユースケースに使える方が妥当という判断だ。
         <ul>
           <li>
@@ -374,7 +374,7 @@
       </section>
       <section>
         <h2 id="popup-属性"><a href="#popup-属性">popup 属性</a></h2>
-        <p>以上のように <code translate=no>&lt;popup&gt;</code> 要素から popup 属性に変更した、新しいプロポーサルができた。
+        <p>以上のように <code translate=no>&lt;popup&gt;</code> 要素から popup 属性に変更した、新しいプロポーザルができた。
         <ul>
           <li>
             mfreed7/popup: Alternative popup proposal
@@ -473,7 +473,7 @@
           </li>
         </ul>
         <p>Popup した要素は、Top Layer に表示されるため、例えば <code translate=no>&lt;button&gt;</code> をクリックして開いた時に、<code translate=no>&lt;button&gt;</code> の近くに表示することができない。(なぜなら、<code translate=no>&lt;button&gt;</code> は Top Layer にないから)
-        <p>これを解決するために、<code translate=no>&lt;button&gt;</code> を <code translate=no>popup</code> の Anchor として指定すると、そこからの相対位置で表示できるものだ。さらに、<code translate=no>popup</code> が画面をはみ出さないように、Viewport の大きさに合わせて自動で配置を変える、Anchoring のデモで必ず出てくる機能も、ここで既に考えられていたことがわかる。
+        <p>これを解決するために、<code translate=no>&lt;button&gt;</code> を <code translate=no>popup</code> の Anchor として指定すると、そこからの相対位置で表示できるというものだ。さらに、<code translate=no>popup</code> が画面をはみ出さないように、Viewport の大きさに合わせて自動で配置を変える、Anchoring のデモで必ず出てくる機能も、ここで既に考えられていたことがわかる。
         <p>今の <code translate=no>popover</code> に通じる考え方が、もうすでにだいぶ揃っている。
       </section>
       <section>

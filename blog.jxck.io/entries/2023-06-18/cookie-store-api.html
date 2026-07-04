@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-06-18T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-06-18>2023-06-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -165,7 +165,7 @@
       </section>
       <section>
         <h2 id="document.cookie"><a href="#document.cookie">document.cookie</a></h2>
-        <p><code translate=no>document.cookie</code> は、ブラウザの API における代表的な技術的負債の一つと言える。
+        <p><code translate=no>document.cookie</code> は、ブラウザの API における代表的な技術的負債の 1 つと言える。
         <ul>
           <li>
             HTML Standard
@@ -280,7 +280,7 @@
           <p>このイベントは Service Worker からも取得できる。
           <p>しかし、すべての Cookie の変更のたびに SW を起動するとコストが高いため、特定の Cookie の変更をあらかじめ Subscribe する必要がある。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">self.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"install"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">event</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  event.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">waitFor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  event.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">waitUntil</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> cookieStore.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">subscribeToChanges</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">([</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">        // "session" で始まる Cookie の変更を Subscribe</span></span>
@@ -288,7 +288,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">        matchType: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"starts-with"</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    ])</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })())</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">self.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"cookiechange"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">event</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>

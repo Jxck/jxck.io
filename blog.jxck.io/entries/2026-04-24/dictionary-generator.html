@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-04-24T00:00:00+09:00",
-    "dateModified": "2026-04-24T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-24>2026-04-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-24>2026-04-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -209,7 +209,7 @@
         <p>例えば、HTML がテンプレートから生成されているなら、そのテンプレートを結合するだけでも辞書にはなる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./template/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.ejs</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> template.dict</span></span></code></pre>
         <p>これによって共通部分の圧縮は可能になるが、テンプレート同士に共通の部分があれば、辞書の中に同じパターンが何度も出てきて無駄になる。
-        <p>また、テンプレートの中に埋め込むコンテツに共通部分があっても、この辞書ではそこの圧縮率を上げられない。
+        <p>また、テンプレートの中に埋め込むコンテンツに共通部分があっても、この辞書ではそこの圧縮率を上げられない。
         <p>したがって、対象となるデータから、圧縮効率が高く、なるべく小さい辞書を生成するのが望ましい。
         <section>
           <h3 id="brotli-dictionary_generator"><a href="#brotli-dictionary_generator">brotli dictionary_generator</a></h3>
@@ -239,7 +239,7 @@
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zstd</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -D</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> zstd</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> -D</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dcz.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> --decompress</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> index.html.zstd</span></span></code></pre>
-          <p>ところが、ここに一個落とし穴がある。
+          <p>ところが、ここに 1 個落とし穴がある。
           <p><code translate=no>zstd --train</code> は、独自ヘッダや Huffman Encoding の統計情報など、専用のメタデータが付与された辞書を作る。それは <code translate=no>zstd -D</code> コマンドで使うことが前提だ。
           <p>ところが、CDT が転送する辞書は &quot;raw dictionary&quot; なので、Train Mode でつけられたメタデータなどを解釈するわけではない。<code translate=no>zstd --patch-from</code> の方に相当する挙動だ。
           <p>つまり、<code translate=no>--train</code> で作った辞書は、CDT で使えない訳では無いが、独自ヘッダの後に続くコンテンツ部分が使われるだけで、ヘッダ部分はノイズにしかならない。
@@ -247,7 +247,7 @@
         <section>
           <h3 id="cdt-dictionary-generator"><a href="#cdt-dictionary-generator">CDT Dictionary Generator</a></h3>
           <p>CDT Toolkit であれば、以下のように渡したコンテンツを元に辞書を生成することができる。
-          <p>対象は HTML, CSS, JS などなんでもよい。コンテンツタイプごとに辞書を出し分けてもよいし、全部まとめて１つの辞書を作っても良い。
+          <p>対象は HTML, CSS, JS などなんでもよい。コンテンツタイプごとに辞書を出し分けても良いし、全部まとめて 1 つの辞書を作っても良い。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">cdt</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> dictionary</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  --output</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> html.dict</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> \</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  build/html/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.html</span></span></code></pre>
@@ -265,7 +265,7 @@
         </section>
         <section>
           <h3 id="dictionary-tuning-skill"><a href="#dictionary-tuning-skill"><code translate=no>dictionary-tuning</code> SKILL</a></h3>
-          <p>辞書を生成すパラメータは、圧縮対象のファイルによって変わる。
+          <p>辞書を生成するパラメータは、圧縮対象のファイルによって変わる。
           <p>そこで、これを自動で詰めることができる SKILL を同梱している。
           <ul>
             <li>
@@ -275,7 +275,7 @@
               </ul>
             </li>
           </ul>
-          <p>このスキルを AI に読ませることで、内部的には辞書の性能を詰めるためのスクリプトを実行しながら、対象のコンテンツを最も効率よく圧縮できる辞書を生成できる。
+          <p>この SKILL を AI に読ませることで、内部的には辞書の性能を詰めるためのスクリプトを実行しながら、対象のコンテンツを最も効率よく圧縮できる辞書を生成できる。
         </section>
       </section>
       <section>

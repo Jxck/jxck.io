@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Interop 2022 の目覚ましい成果の一つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の一つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれはそこま...">
+  <meta name=description         content="Interop 2022 の目覚ましい成果の 1 つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の 1 つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれ...">
   <meta name=keywords            content="css">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-02-28/jquery-has-forgiving-problem.html>
   <meta property=og:title        content="誇りを被った仕様の針に意図を通す | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Interop 2022 の目覚ましい成果の一つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の一つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれはそこま...">
+  <meta property=og:description  content="Interop 2022 の目覚ましい成果の 1 つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の 1 つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2023-02-28T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "Interop 2022 の目覚ましい成果の一つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の一つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれはそこま..."
+    "description": "Interop 2022 の目覚ましい成果の 1 つとして :has() の存在がある。これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の 1 つだろう。こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれ..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2023-02-28>2023-02-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -151,8 +151,8 @@
       <h1><a href="">誇りを被った仕様の針に意図を通す</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Interop 2022 の目覚ましい成果の一つとして <code translate=no>:has()</code> の存在がある。
-        <p>これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の一つだろう。
+        <p>Interop 2022 の目覚ましい成果の 1 つとして <code translate=no>:has()</code> の存在がある。
+        <p>これまでの CSS の限界を突破する、革新的な仕様であり、多くの開発者が期待を寄せる機能の 1 つだろう。
         <p>こうした仕様策定の裏には、必ずと言って良いほど互換性の問題がつきまとい、時にそれはそこまでの作業の蓄積を無に帰すレベルで影響を与える場合がある。
         <p>一方それらは Web 開発者が使う時点では解決されており、基本的に気にされることはない。
         <p>だからといって、気にする必要がないわけではない。ということを象徴する事件が、今回も裏で起こっていた。
@@ -171,7 +171,7 @@
           </li>
         </ul>
         <p>ギュッとすると jQuery との互換性に関する問題だ。jQuery は元々カスタムセレクタとして <code translate=no>:has()</code> や <code translate=no>:contains()</code> などを実装していた。そうしたセレクタを <code translate=no>$()</code> に渡した場合、一旦 <code translate=no>querySelectorAll()</code> に渡し、ブラウザがパースできなければ jQuery 側の Sizzle という独自パーサにフォールバックすることで、CSS の機能を上書きする実装になっていた。
-        <p>ブラウザに <code translate=no>:has()</code> が実装されることは、これまでエラーを挙げていた <code translate=no>querySelectorAll()</code> が結果を返すことで、単に Sizzle にフォールバックしなくなるだけという想定は、当時 Progressive Enhancement などと呼ばれていたマナーに則っていると言える。
+        <p>ブラウザに <code translate=no>:has()</code> が実装されれば、これまでエラーを上げていた <code translate=no>querySelectorAll()</code> が結果を返すことで、単に Sizzle にフォールバックしなくなるだけという想定は、当時 Progressive Enhancement などと呼ばれていたマナーに則っていると言える。
         <p>問題は、<code translate=no>:has(:contains(div))</code> のような場合だ。<code translate=no>:has()</code> が実装されても <code translate=no>:contains()</code> は実装されてないため、jQuery の想定では qSA が例外をあげて Sizzle に移れば問題ないはずだが、実際には例外が上がらなかった。
       </section>
       <section>
@@ -192,7 +192,7 @@
             </ul>
           </li>
         </ul>
-        <p>つまり、上の例は Firefox 以外の実装でも、前二つを無視して最後のクラスセレクタを引っ掛けることができるのだ。
+        <p>つまり、上の例は Firefox 以外の実装でも、前 2 つを無視して最後のクラスセレクタを引っ掛けることができるのだ。
         <p>この仕様のモチベーションは、以下のように記されている。
         <blockquote cite="https://w3c.github.io/csswg-drafts/selectors-4/#forgiving-selector">
           <p>For legacy reasons, the general behavior of a selector list is that if any selector in the list fails to parse
@@ -231,8 +231,8 @@
       </section>
       <section>
         <h2 id="エコシステムに求められる振る舞い"><a href="#エコシステムに求められる振る舞い">エコシステムに求められる振る舞い</a></h2>
-        <p>単に新しい機能が Stable に落ちてくるまで手をこまねいているだけでなく、普段使うブラウザにちょっと手を加え、それを日常的に使うことを開発者が心がけていれば、世界で誰か一人くらいは Ship 前にこの問題に気づけたかもしれない。
-        <p>そうした振る舞いは、仕様策定の議論や、実装へのパッチ提供のような直接的なものでないながらも、全ての開発者ができるであろう、最も手軽かつ重要な Web へのコントリビューションの一つだと思う。
+        <p>単に新しい機能が Stable に落ちてくるまで手をこまねいているだけでなく、普段使うブラウザにちょっと手を加え、それを日常的に使うことを開発者が心がけていれば、世界で誰か 1 人くらいは Ship 前にこの問題に気づけたかもしれない。
+        <p>そうした振る舞いは、仕様策定の議論や、実装へのパッチ提供のような直接的なものでないながらも、全ての開発者ができるであろう、最も手軽かつ重要な Web へのコントリビューションの 1 つだと思う。
         <p>こうした問題を見つけるにはエコシステムというスケールメリットが必要不可欠であり、その価値が最もわかりやすく発揮されるときだ。問題を発見する難しさと比べれば、それを反映するコードを書くこと自体は、全く大した問題ではない。
         <p>Web もかなり長い歴史を積み上げて今があり、一方で先進的な提案は日々なされていく。今後も、30 年近いランニングコードとの互換を保ちながら進歩するうえで、こうした問題は度々起きており、今後も何度も起きるだろう。
         <p>現存する古いコードや、古い実装が積み上げた歴史の延長に今があることを意識せず、「jQuery のせいだ」「古い実装が足を引っ張ってる」「仕様策定者は何をしてるんだ」などと吐き捨てるのは簡単だが、「(開発者の一端として)自分のせいだ」と思えるリテラシーをどのくらいの開発者が持てるのかは、今後の Web の進化がどのくらいスムーズに進むのかに与える Unforgiving な変数なのかもしれない。

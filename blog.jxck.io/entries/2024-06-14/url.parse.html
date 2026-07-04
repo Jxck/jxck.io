@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2024-06-14T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-04T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2024-06-14>2024-06-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -163,7 +163,7 @@
         <p>例外処理をするよりも、先に URL としてパース可能かどうかを知るための <code translate=no>URL.canParse()</code> が提案され、先に実装が進んだ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">canParse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// boolean</span></span></code></pre>
-        <p>しかし、これでは二回パースが必要になるため無駄が多い。
+        <p>しかし、これでは 2 回パースが必要になるため無駄が多い。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">canParse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str)) { </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 1 回目のパース</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(str) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 2 回目のパース</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
@@ -250,7 +250,7 @@
           </li>
         </ul>
         <p>仕様が小さいことも、ほぼ <code translate=no>URL.canParse()</code> と同じように実装できることがわかっていたので、自分で手を挙げたところアサインしてもらうことになり、実装に着手した。
-        <p>小さいパッチは投げたことはあっても、単体の機能を実装するのは初めてだった。また、crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
+        <p>小さいパッチを投げたことはあっても、単体の機能を実装するのは初めてだった。また、crrev などはちょっと使わないとすぐにわからなくなるので、中の人にはかなり手取り足取り教えてもらいながら進めることになった。
         <p>一度教えてもらったことを何度も聞かないで済むよう、この作業中に教わったことは全て以下にまとめている。
         <ul>
           <li>
@@ -305,7 +305,7 @@
             </ul>
           </li>
         </ul>
-        <p>Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサーである KURL という実装がある。
+        <p>Chromium の中には、ありとあらゆるリアルワールド URL をパースしてきた歴戦(Battle Tested)の URL パーサである KURL という実装がある。
         <p>これに、後から標準化された JS の URL API のために、ガワを被せて外に出す作りになっているため、実際は KURL を呼んだら終わりだ。
         <p>DOMURL のコンストラクタがそもそも例外を投げる実装になっているため、一旦 KURL でパースして IsValid() が true ならその KURL を元に DOMURL を生成できるコンストラクタを追加しただけだ。
         <p>つまり、全く難しくない。C++ 書いたことがなくても、見ればわかるくらいの変更だ。
@@ -324,8 +324,8 @@
         </ul>
         <p>これは、WPT の実行結果をそのまま保存したファイルになっており、「その結果が変わらないことをテストする」という仕組みになっている。つまり、実装前は「落ちることを期待する」というテストだった。
         <p>今回、実装して WPT が通るようになったことで、この expected ファイルは削除し今後は WPT の結果を直接見るようになる。
-        <p>このような expected テストはいたるところにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に <code translate=no>--reset-result</code> をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
-        <p>また、<code translate=no>--reset-result</code> する対象は、CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
+        <p>このような expected テストはいたるところにあるため、自分で一個一個探して書き直すのではなく、テストを流す時に <code translate=no>--reset-results</code> をつけて上書きし、その diff をチェックするのが基本らしい。それを知らずに、手作業でやっていたため、ここでかなり時間がかかった。
+        <p>また、<code translate=no>--reset-results</code> する対象は、CI (CQ DRY RUN) で全部のテストを流して、落ちるテストを UI で確認し、手元でそれだけを流して上書きするのが最も効率良い方法だ。
         <p>
           <picture>
             <source type=image/avif srcset=cq-dry-run-result.avif?260421_002105>
@@ -333,7 +333,7 @@
             <img loading=lazy decoding=async src=cq-dry-run-result.png?260309_235641 alt="CQ DRY RUN の結果" width=2804 height=1646>
           </picture>
         </p>
-        <p>しかし、CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-result</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
+        <p>しかし、CI (CQ DRY RUN) の実行は中の人しかできない上に、終わるまで 1,2 時間かかる。結果を見ながら <code translate=no>--reset-results</code> したパッチをあげて、また CI を実行して結果を待つ。実際もっとも時間がかかったのは、この辺だったと思う。
       </section>
       <section>
         <h2 id="api-review"><a href="#api-review">API Review</a></h2>
@@ -389,7 +389,7 @@
           <li>様々な修正
           <li>Intent to Ship
         </ol>
-        <p>本来、これを外部のコントリビューターが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。作業自体も年単位になるのが普通だ。
+        <p>本来、これを外部のコントリビュータが全て行うのは難しい。通常は中の人が行うのを手伝ったり、議論に参加したり、細かいバグを後から直したり、仕様の差分だけを実装したりと言ったコントリビュートが多いだろう。作業自体も年単位になるのが普通だ。
         <p>しかし、今回は仕様策定がすでに終わり、他のブラウザも Implement/Ship 済みだったため、全部すっ飛ばして実装と Ship だけを行えるという、社会科見学としては最高のタスクに運良く携わることができた。
         <p>Stable が 124 の時にマージし、今週リリースされた Chrome M126 が Stable に落ちてきて、無事 <code translate=no>URL.parse()</code> の挙動を確認することができたので、やっとタスクとして終了した実感がある。
         <p>
