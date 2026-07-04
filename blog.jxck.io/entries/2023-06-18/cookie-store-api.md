@@ -7,7 +7,7 @@ JS から Cookie を操作する `document.cookie` の改善を目的とした C
 
 ## document.cookie
 
-`document.cookie` は、ブラウザの API における代表的な技術的負債の一つと言える。
+`document.cookie` は、ブラウザの API における代表的な技術的負債の 1 つと言える。
 
 - HTML Standard
   - https://html.spec.whatwg.org/multipage/dom.html#dom-document-cookie
@@ -169,7 +169,7 @@ cookieStore.addEventListener("change", (event) => {
 
 ```js
 self.addEventListener("install", (event) => {
-  event.waitFor(async () => {
+  event.waitUntil((async () => {
     await cookieStore.subscribeToChanges([
       {
         // "session" で始まる Cookie の変更を Subscribe
@@ -177,7 +177,7 @@ self.addEventListener("install", (event) => {
         matchType: "starts-with"
       }
     ])
-  })
+  })())
 })
 
 self.addEventListener("cookiechange", (event) => {

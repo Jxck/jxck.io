@@ -32,7 +32,7 @@
 
 まず、ユーザが商品を見ると、その商品を見たという情報を保存する必要がある。
 
-これを "Interest Group" といい、JS に後に必要になる広告クリエイティブなどの情報を渡して、ブラウザに保存する形で行われる。
+これを "Interest Group" といい、後に必要になる広告クリエイティブなどの情報を JS に渡して、ブラウザに保存する形で行われる。
 
 ```js
 await navigator.joinAdInterestGroup(interestGroup)
@@ -81,7 +81,7 @@ await navigator.runAdAuction(auctionConfig)
 
 通常使える JS API が使えないどころか、Window 側が共通してアクセスできるサイズまで制限されているのは、全てそこを使って境界を跨いだ情報共有ができないようにするためだ。
 
-そして、`<iframe>` ではなく `<fencedframe>` の利用を強制するために、`runAdAuction` の結果は URL ではなく URN を返す。これで `<fencedframe>` を使わなければ表示ができなくしているのだ。
+そして、`<iframe>` ではなく `<fencedframe>` の利用を強制するために、`runAdAuction` の結果は URL ではなく URN を返す。これで `<fencedframe>` を使わなければ表示できなくしているのだ。
 
 ```html
 <fencedframe src="urn:uuid:c36973b5-e5d9-de59-e4c4-364f137b3c7a" mode="opaque-ads"></fencedframe>

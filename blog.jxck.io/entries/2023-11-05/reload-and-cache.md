@@ -105,15 +105,15 @@ Host: example.com
 Cache-Control: no-cache
 ```
 
-`no-cache` を用いているため、「Origin に Validation を強制」していることがわかるだろう。しかし、`If-Modified-Since` や `Last-Modified` が消えていることから、Conditional Request ではない。つまり、Validation ではなく「Origin から最新の Response を取得する」という挙動になることがわかる。
+`no-cache` を用いているため、「Origin に Validation を強制」していることがわかるだろう。しかし、`If-None-Match` や `If-Modified-Since` が消えていることから、Conditional Request ではない。つまり、Validation ではなく「Origin から最新の Response を取得する」という挙動になることがわかる。
 
 意訳: ブラウザに `max-age` の切れていないキャッシュがあってもヒットしないし、サーバからは 304 が返ることもなく、必ず 200 が返る。
 
-これこそが、「画面を最新の情報にする挙動」だろう、実際仕様的にもこれが最もそれに相応しい Request と言える。
+これこそが、「画面を最新の情報にする挙動」だろう。実際仕様的にもこれが最もそれに相応しい Request と言える。
 
 では、なぜ Reload は `max-age=0` なのかというと、`no-cache` が仕様化されたのは、ブラウザが登場してからかなり経ってからだからだ。それ以前は `max-age=0` が使われていたため、ブラウザのリロードの実装もそのころから `max-age=0` を使っていた。後に `no-cache` が登場したからといって Reload の実装を変えると、クライアントが `no-cache` を送ってくることを想定していないサービスにおいては、互換性が壊れる可能性があり、現状でもそのままの実装となっている。
 
-しかし、ブラウザが開発環境を兼ね、Devtools のような機能が入り、より複雑な開発が行われるようになると、より厳密な Reload である `no-cache` の実装が求められた。そこで、開発者向けに別途 Force Reload として実装された。Devtools に Disable Cache があるのは、Force Reload を強制するためだ。
+しかし、ブラウザが開発環境を兼ね、DevTools のような機能が入り、より複雑な開発が行われるようになると、より厳密な Reload である `no-cache` の実装が求められた。そこで、開発者向けに別途 Force Reload として実装された。DevTools に Disable Cache があるのは、Force Reload を強制するためだ。
 
 
 ## 正しい検証方法
@@ -129,7 +129,7 @@ HTTP/1.1 200 OK
 ...
 Cache-Control: max-age=100
 ETag: deadbeef
-If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
+Last-Modified: Sat, 11 Nov 2023 11:11:11 GMT
 
 <!doctype html>
 ...
@@ -137,7 +137,7 @@ If-Modified-Since: Sat, 11 Nov 2023 11:11:11 GMT
 
 このキャッシュがヒットするところが見たい場合は、以下のようなリンクをクリックし、そこに遷移すれば良い。もちろん、"Disable Cache" は無効にする。
 
-```css
+```html
 <a href="/home.html">Home</a>
 ```
 

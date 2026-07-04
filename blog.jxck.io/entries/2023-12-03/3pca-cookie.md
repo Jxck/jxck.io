@@ -35,7 +35,7 @@ Set-Cookie: id=31d4d96e407aad42
 <!doctype html>
 ```
 
-一度 shop.example でログインしたら、あとでまた shop.example にアクセスしたときに、この Cookie を送り返す。
+1 度 shop.example でログインしたら、あとでまた shop.example にアクセスしたときに、この Cookie を送り返す。
 
 ```http
 GET / HTTP/1.1
@@ -80,7 +80,7 @@ Cookie: id=31d4d96e407aad42 # NOTICE!
 
 ここで shop.example に送信されている Cookie に注目したい。
 
-「一度取得した Cookie は、そのサイトにアクセスするたびに自動で毎回送る」というルールだったが、これはいわゆる画面に表示される URL だけではなく、そのサブリソースにも適用される点が重要だ。
+「1 度取得した Cookie は、そのサイトにアクセスするたびに自動で毎回送る」というルールだったが、これはいわゆる画面に表示される URL だけではなく、そのサブリソースにも適用される点が重要だ。
 
 したがって、全く関係ない blog.jxck.io にアクセスしても、そこに埋め込まれた JS を EC サイトに取得しに行くリクエストには shop.example で付与された Cookie が送られる。
 

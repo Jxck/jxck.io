@@ -74,7 +74,7 @@ Request の処理が終わっても `rootController` のハンドラはクリー
 
 しかし、このミスは非常に頻繁に発生し、特に `AbortSignal` を連携する場面では、親が子の参照を保持することによるメモリーリークは珍しいことではないようだ。
 
-実際、Node.js でも`timer` の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために `maxListeners` というスレッショルドを実装するという Issue が、Microsoft の Benjamin によって立てられた。
+実際、Node.js でも `timer` の中でこの問題が発生しており、これを修正すると同時に、このようなバグを防ぐために `maxListeners` というスレッショルドを実装するという Issue が、Microsoft の Benjamin によって立てられた。
 
 - Warn on EventTarget maxListeners > THRESHOLD · Issue #35990 · nodejs/node
   - https://github.com/nodejs/node/issues/35990
@@ -170,7 +170,7 @@ function follow(perRequestController, rootSignal) {
     perRequestController.abort()
   }, {
     // once にすることで、Abort 時は自動でハンドラを削除
-    once: true
+    once: true,
     // 子が Abort したら親からハンドラを削除
     signal: perRequestController.signal
   })
@@ -193,7 +193,7 @@ function follow(perRequestController, rootSignal) {
 ところで、ずっと気になっているであろうタイムアウトの処理の方をもう少し見てみよう。
 
 ```js
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   const perRequestController = new AbortController()
   const perRequestSignal = perRequestController.signal
 
@@ -223,7 +223,7 @@ app.get("/entries", (req, res) => {
 これを使うと、以下のようにかなりすっきりと実装できる。
 
 ```js
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   // 1s でタイムアウト
   const timeoutSignal = AbortSignal.timeout(1000)
 
@@ -269,7 +269,7 @@ process.on("SIGINT", () => {
 })
 
 
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   const perRequestController = new AbortController()
   const perRequestSignal = perRequestController.signal
 
@@ -304,7 +304,7 @@ process.on("SIGINT", () => {
 })
 
 
-app.get("/entries", (req, res) => {
+app.get("/entries", async (req, res) => {
   // 1s でタイムアウト
   const timeoutSignal = AbortSignal.timeout(1000)
 

@@ -63,7 +63,7 @@ https://example.co.jp とそのサブドメインである https://admin.example
 
 ### SameSite=Strict
 
-たとえば https://example.co.jp で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に制限される。つまり https://example.co.jp とそのサブドメインにしか送られないという指定になるのだ。
+例えば https://example.co.jp で以下のような Set-Cookie を返した場合、この Cookie は厳密(Strict)に SameSite に制限される。つまり https://example.co.jp とそのサブドメインにしか送られないという指定になるのだ。
 
 ```http
 Set-Cookie: session_id=deadbeef; SameSite=Strict
@@ -160,7 +160,7 @@ app.use((req, res, next) => {
 
   // POST/PUT/DELETE は Write Cookie を要求
   if (["POST", "PUT", "DELETE"].includes(method)) {
-    const cookie = req.cookies["session_write"]
+    const cookie = req.cookies["__Host-session_write"]
     // 無ければエラー
     if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認
@@ -171,7 +171,7 @@ app.use((req, res, next) => {
 
   // GET は Read Cookie を要求
   if (method === "GET") {
-    const cookie = req.cookies["session_read"];
+    const cookie = req.cookies["__Host-session_read"];
     // 無ければエラー
     if (cookie === null) return res.sendStatus(400)
     // あれば値を Storage に確認

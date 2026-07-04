@@ -140,7 +140,7 @@ Google には、開発者の環境を育てる専門のチームがある。GitH
 
 <iframe src="https://www.youtube.com/embed/JEH8hc3poVw" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
 
-会場には Podcast を収録できるブースがあった。Press 向けだが、空いていれば自由に使って良いということなので、初日の終わりに借りて撮ってきた。
+会場には Podcast を収録できるブースがあった。Press 向けだが、空いていれば自由に使って良いということなので、初日の終わりに借りて録ってきた。
 
 Chrome チームのパーティーに参加した。懐かしい人とも挨拶できた。
 

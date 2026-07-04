@@ -45,7 +45,7 @@
 
 こうした Cookie は「必須の Cookie」とみなされ、合意取得の対象外と解釈されるのが一般的だ。
 
-例として、GitHub は 2022 年に全ての Cookie バナーを削除すると発表した。これは、必須 Cookie のみの利用にとどめたという意味だ。
+例として、GitHub は 2020 年に全ての Cookie バナーを削除すると発表した。これは、必須 Cookie のみの利用にとどめたという意味だ。
 
 - No cookie for you - The GitHub Blog
   - https://github.blog/2020-12-17-no-cookie-for-you/
@@ -107,7 +107,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 シンプルにまとめ、詳細は別ページにしている。
 
-そして、ボタンとしては `"Accept all cookies"` と `"Accept only essential cookies"` の二択となっている。後者が「必須 Cookie だけ許可する」にあたる。ここを "essential" じゃなくて "necessary" と表しているサイトもある。
+そして、ボタンとしては `"Accept all cookies"` と `"Accept only essential cookies"` の 2 択となっている。後者が「必須 Cookie だけ許可する」にあたる。ここを "essential" じゃなくて "necessary" と表しているサイトもある。
 
 このボタンを明示的に自分でクリックすることが、先ほど挙げたような条件を満たしているわけだ。ここで "Deny" だけあって "Deny" しなかった場合に同意とみなす実装や、あらかじめチェックボックスをチェックしておくような実装、"Accept" だけ表示して "Deny" はリンク先に隠すといった実装は、ガイドラインに違反していると判断されかねないだろう。
 
@@ -138,7 +138,7 @@ GDPR は「同意についてのガイドライン」を公開しており、個
 
 ![ドイツ連邦政府の Cookie Banner](bundesregierung.de.png#2348x1000)
 
-今回は少し複雑で、必須 Cookie だけがあらかじめチェックされている。そして、追加で Statistics を選ぶことができる作りだ。"Select all" を選択すると "Statistics" も選ばれるが、おそらくもっと多くの用途で Cookie があっても、選択肢が増やせる作りにあらかじめされているのだろう。
+今回は少し複雑で、必須 Cookie だけがあらかじめチェックされている。そして、追加で Statistics を選ぶことができる作りだ。"Select all" を選択すると "Statistics" も選ばれるが、おそらくもっと多くの用途で Cookie があっても、あらかじめ選択肢が増やせる作りにされているのだろう。
 
 "Confirm selection" をクリックするとバナーが消え、選択結果が JS で Cookie に保存される。
 
