@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろ...">
+  <meta name=description         content="脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律に検証をかけることができれば、脆弱性の発見や防止に役立つだろう...">
   <meta name=keywords            content="xss,trusted types,security">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2019-01-27/trusted-types.html>
   <meta property=og:title        content="安全な文字列であると型で検証する Trusted Types について | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろ...">
+  <meta property=og:description  content="脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律に検証をかけることができれば、脆弱性の発見や防止に役立つだろう...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-01-27T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろ..."
+    "description": "脆弱性の原因となる DOM 操作の代表例として elem.innerHTML や location.href などが既に知られている。こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律に検証をかけることができれば、脆弱性の発見や防止に役立つだろう..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-01-27>2019-01-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -167,7 +167,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>脆弱性の原因となる DOM 操作の代表例として <code translate=no>elem.innerHTML</code> や <code translate=no>location.href</code> などが既に知られている。
-        <p>こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律して検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
+        <p>こうした操作対象(sink) に対して、文字列ベースの代入処理を行う際に、一律に検証をかけることができれば、脆弱性の発見や防止に役立つだろう。
         <p>そこで処理前の文字列に対し、処理後の文字列を安全であるとして明示的に型付ける TrustedTypes という提案がされている。
         <p>まだ未解決の部分が多い提案だが、現時点での仕様と実装を元に、このアイデアについて解説する。
         <ul>
@@ -223,7 +223,7 @@
           <li>TrustedScript
         </ul>
         <p>各処理は、対象の DOMString をこれらの型に変換してから行う必要がある。
-        <p>逆に変更されてない DOMString は TypeError になるため、未処理の文字列が sink に流れるのを防ぐことができるのだ。
+        <p>逆に変換されてない DOMString は TypeError になるため、未処理の文字列が sink に流れるのを防ぐことができるのだ。
       </section>
       <section>
         <h2 id="trusted-types"><a href="#trusted-types">Trusted Types</a></h2>
@@ -351,7 +351,7 @@
           <h3 id="expose-が-boolean"><a href="#expose-が-boolean">expose が boolean</a></h3>
           <p><code translate=no>createPolicy()</code> の第三引数の expose が、現時点では boolean で定義されている。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">TrustedTypePolicy </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createPolicy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(DOMString policyName, TrustedTypeInnerPolicy policy, optional boolean expose </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
-          <p>これでは、仮にもう一つオプションを増やしたいという場合に、拡張に対して閉じてしまっている。
+          <p>これでは、仮にもう 1 つオプションを増やしたいという場合に、拡張に対して閉じてしまっている。
           <p>同じことは <a href="https://blog.jxck.io/entries/2016-06-09/passive-event-listeners.html#feature-detection">PassiveEventListener</a> でもあったため、基本的に最後のオプションはオブジェクトの方が良いだろう。
           <p>これは、<a href="https://github.com/WICG/trusted-types/issues/123" target=_blank>issue</a> を上げておいた。
         </section>
@@ -369,7 +369,7 @@
           <h3 id="csp-無効での利用"><a href="#csp-無効での利用">CSP 無効での利用</a></h3>
           <p>CSP によって有効になるのは、型が違う場合にエラーをあげることだけだ。
           <p>つまり Policy のメソッドを経由して DOMString を TrustedTypes に変換することは、CSP で有効にしなくても可能だ。
-          <p>これだけでも以下の二つのメリットが考えられる
+          <p>これだけでも以下の 2 つのメリットが考えられる。
           <ul>
             <li>標準化された型があることにより、WebIDL を参考に TypeScript などに導入し、型の検証に利用することができる。
             <li>これまで設計に依存していたエスケープの所在が標準化され、フレームワークやライブラリとの間で、安全な設計を共有する共通言語ができる。
@@ -393,9 +393,9 @@
         <p>特にユーザが拡張等を利用できなくなることは、脆弱性以上のデメリットをもたらす可能性もあるだろう。
         <p>一方、エスケープの所在の標準化や、標準型の導入による静的解析の支援などは、標準化に至ればエコシステムの共通言語として使われる可能性は無くはなさそうだ。
         <p>それを踏まえて、現状の設計を見直す際に、参考にするのは現状の適切な距離の取り方かもしれない。
-        <p>あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、CSP Report Only や off  でデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
+        <p>あとは、ビルド時の静的な型検査、ステージングなどでのランタイム検査の恩恵を受ければ、CSP Report Only や off でのデプロイでも一定の効果は予想され、当面はそこが現実的な気もする。
         <p>実際に TrustedTypes を使うかどうかを別としても、「型によるランタイム検証」の方針は W3C では新しい試みなので、この波が今後の API 設計にどう影響していくかは興味がある。
-        <p>それらを踏まえ、検証とフィードバックが行っていければと考える。
+        <p>それらを踏まえ、検証とフィードバックを行っていければと考える。
       </section>
       <section>
         <h2 id="demo"><a href="#demo">DEMO</a></h2>

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-01-31T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-01-31>2021-01-31</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -201,10 +201,10 @@
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> example.com</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> session_id=deadbeef; SameSite=Strict; Path=/; Secure; HttpOnly</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">content-security-policy: default-src 'self' https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Permission-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> syncxhr 'none' report-to=default-endpoint</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default-src 'self' https://jxck.io; child-src https://blog.jxck.io; connect-src wss://ws.jxck.io;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Permissions-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> syncxhr 'none' report-to=default-endpoint</span></span></code></pre>
           <p>HTTP の仕様では、この Header Name と Header Value をパースする部分が標準化されている。
-          <p>しかし、Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permission-Policy によって決められており、そのフォーマットはバラバラだ。
+          <p>しかし、Header Value の中身をどうパースするかは、それぞれのヘッダの仕様、ここでいう Cookie, CSP, Permissions-Policy によって決められており、そのフォーマットはバラバラだ。
           <p>それぞれのヘッダごとに仕様を定義するのも、それぞれパーサを書くのもあまりヘルシーではない。特にブラウザは新しいパーサを実装するとセキュリティ的なリスクがあるため、積極的には入れにくい。
           <p>そこで、この構造を共通化する作業として始まったのが Structured Headers だった。
         </section>
@@ -224,7 +224,7 @@
         </section>
         <section>
           <h3 id="json-encoding-for-field-values-jfv"><a href="#json-encoding-for-field-values-jfv">JSON Encoding for Field Values (JFV)</a></h3>
-          <p>既存のパーサを流用するという点で、わかりやすい方法の一つが Field Value を JSON にしてしまうという方針だ。
+          <p>既存のパーサを流用するという点で、わかりやすい方法の 1 つが Field Value を JSON にしてしまうという方針だ。
           <ul>
             <li><a href="https://tools.ietf.org/html/draft-reschke-http-jfv-12" target=_blank>draft-reschke-http-jfv-12 - A JSON Encoding for HTTP Header Field Values</a>
           </ul>
@@ -326,10 +326,10 @@
           <p>データ表現には基本的に Key/Value/Metadata の 3 つがあることが望ましい。
           <p>例えば XML/HTML のようなフォーマットは Attribute がメタデータを担うが、これを再現可能になる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> class</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"bar"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>hello&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">p</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
-          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// p="hello world";id="foo";class="bar"</span></span>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// p="hello";id="foo";class="bar"</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "p"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
-<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello world"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "value"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "params"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "id"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">   "class"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"bar"</span></span>
@@ -395,7 +395,7 @@
           <p>従って <code translate=no>Accept-CH</code> を受け取ったら <code translate=no>decodeList(value)</code> でパースするといった処理を書くことになるだろう。
           <p>これは、Field 値を入れればなんかしらデコードされて出てくる <code translate=no>decode()</code> を定義することはできないことを意味する。
           <p>Dict としてパースしてエラーになったら List で、、などはできなくはないが、それは非効率だ。
-          <p>通常、そうした場合は最初の一文字を見た時点で Item/List/Dict どれなのかを判定できるようにするが、この仕様はそうはなってない。
+          <p>通常、そうした場合は最初の 1 文字を見た時点で Item/List/Dict どれなのかを判定できるようにするが、この仕様はそうはなってない。
           <p>もし、自分が独自ヘッダで SFV を採用する際は、その点に注意する必要がある。
           <p>同じヘッダ名なのに Dict/List がバラバラだとパースできないし、もし Item だったのを List に変えるなどすると breaking change になる。
         </section>

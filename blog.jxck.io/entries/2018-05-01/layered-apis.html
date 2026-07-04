@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-05-01T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-05-01>2018-05-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -178,7 +178,7 @@
         <p>また、CustomElement など、ユーザが任意の拡張を行うことができる仕様も、こうした動きを加速させている。
         <p>しかし、実際にアプリケーションを開発する上では、その Low Level API の上に被せたライブラリや、それを束ねるフレームワークのコードが増える一方だった。
         <p>ブラウザが読み込むコードの総量は増え、ネットワークコストやブラウザでの実行コストも無視できないものとなる。
-        <p>ブラウザがネイティブに実装していれば、そうしたコストの大部分は削減されるため、当然のように High Level API も標準化要求は増える。
+        <p>ブラウザがネイティブに実装していれば、そうしたコストの大部分は削減されるため、当然のように High Level API の標準化要求も増える。
         <p>こうした High Level API の要求を、Low Level API にこそ注力すべきだと無視し続けることもできない。
         <p>Low Level API の整備が軌道に乗った今こそ、High Level API に対して標準化の側面からどういう態度を取るか、を考える時期でもある。
       </section>
@@ -202,7 +202,7 @@
         <p>別に難しいことではないが、これによりいくつかのメリットがある。
         <ul>
           <li>ブラウザが既に実装している Low Level API を使って Polyfill が可能
-          <li>既にレビューを通った Low Level API だけに依存するため、新たなプライバシー/セキュリティリスクを産みにくい
+          <li>既にレビューを通った Low Level API だけに依存するため、新たなプライバシー/セキュリティリスクを生みにくい
         </ul>
         <p>逆にもし Polyfill が不可能であれば、新たな Low Level API の可能性(Use Case)がそこに存在するとし、そちらを先に定義することになるだろう。
         <p>ここでは例として Async Local Storage (Local Storage の非同期版) を例に解説していく。
@@ -212,7 +212,7 @@
         <p>これまで Polyfill へのフォールバックは、様々な方法で行われてきた。
         <p>例えば以下のような例を考える。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (window.AsyncLocalStorage</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> undefined</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (window.AsyncLocalStorage </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> undefined</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // polyfill for async local storage</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
 <span class="line"></span>

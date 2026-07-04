@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、...">
+  <meta name=description         content="Web Font を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として...">
   <meta name=keywords            content="font metrics,web font">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2021-02-25/font-metrics-override.html>
   <meta property=og:title        content="Web Font のメトリクス上書きによる CLS の改善 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、...">
+  <meta property=og:description  content="Web Font を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-02-25T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として、..."
+    "description": "Web Font を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。これを防ぐ方法として..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-02-25>2021-02-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,7 +153,7 @@
       <h1><a href="">Web Font のメトリクス上書きによる CLS の改善</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>WebFont を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
+        <p>Web Font を読み込む際に、取得完了までのラグを、システムが持つフォールバックフォントで代替する場合がある。
         <p>このとき、フォールバックフォントと読み込んだ Web フォントで、高さに関する情報が異なる場合、Layout Shift が発生してしまう。
         <p>これを防ぐ方法として、CSS からフォントメトリクスの上書きを行う仕様の提案が行われているため、本サイトへの適用を目指し検証を行った。
         <p>なお、この仕様は Layout Shift ではなく、単純にテキストレイアウトスタイル用途での利用も考えられるが、そこはスコープ外としている。
@@ -192,7 +192,7 @@
       </section>
       <section>
         <h2 id="フォールバックフォントとのすり合わせ"><a href="#フォールバックフォントとのすり合わせ">フォールバックフォントとのすり合わせ</a></h2>
-        <p>本サイトは Noto Sans を Webfont として提供している。この Webfont ファイルが読み込まれる前にフォールバックとして表示されるローカルフォントを Osaka だとした場合、重ね合わせると以下のように差異が出る。
+        <p>本サイトは Noto Sans を Web Font として提供している。この Web Font ファイルが読み込まれる前にフォールバックとして表示されるローカルフォントを Osaka だとした場合、重ね合わせると以下のように差異が出る。
         <p>
           <picture>
             <source type=image/avif srcset=before.avif?260421_002105>
@@ -200,7 +200,7 @@
             <img loading=lazy decoding=async src=before.png?210518_024051 alt="Osaka と Noto Sans をデフォルトで表示した場合、高さに差がでてしまう" title="before" width=1610 height=1134>
           </picture>
         </p>
-        <p>ここで、Webfont 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
+        <p>ここで、Web Font 側に以下のようなスタイルを当てると、ある程度レイアウトの差分を減らすことができるとわかった。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --line-height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">23</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">px</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --letter-spacing</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">px</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
@@ -232,8 +232,8 @@
         <p>前述の方法は、先にフォールバックフォントとして Osaka が表示されることを前提とし、Noto Sans 側のスタイルをすり合わせた。
         <p>しかし、プラットフォームごとにフォールバックフォントは違うため、この方法では環境ごとに Noto Sans 側のスタイルを出し分ける必要が出てしまう。
         <p>恐らく、実運用を考えるのであれば、プラットフォームごとのフォールバックフォント側のスタイルを上書きしておくことになると思われる。
-        <p>例えば、以下のように WebFont である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: "Noto Sans Webfont", "Osaka", "Meiryo";</span></span></code></pre>
+        <p>例えば、以下のように Web Font である Noto Sans を優先しつつ、フォールバックとして 2 つのフォントを定義する場合を考える。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: "Noto Sans Web Font", "Osaka", "Meiryo";</span></span></code></pre>
         <p>読み込む Noto Sans の設定は固定できるので、それに合わせてフォールバックフォントの 2 つを上書きする。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --line-height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: xxpx;</span></span>
@@ -252,7 +252,7 @@
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@font-face</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Meiryo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
-<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Osaka"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">local</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"Meiryo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  ascent-override</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: xx%;</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  descent-override</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: xx%;</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  line-gap-override</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: xx%;</span></span>
@@ -276,8 +276,8 @@
       </section>
       <section>
         <h2 id="追加懸念"><a href="#追加懸念">追加懸念</a></h2>
-        <p>作業中に感じた別の懸念も記しておく。Webfont の読み込みに失敗しフォールバックのままになった場合だ。
-        <p>今回は WebFont とすり合わせるために、フォールバックフォントが本来持っている設定を無視して設定を上書きしている。無事 Web Font が読み込まれれば良いが、もし何らかの問題で Web Font の読み込みに失敗した場合は、その上書きした設定のまま読者はコンテンツを読むことになる。
+        <p>作業中に感じた別の懸念も記しておく。Web Font の読み込みに失敗しフォールバックのままになった場合だ。
+        <p>今回は Web Font とすり合わせるために、フォールバックフォントが本来持っている設定を無視して設定を上書きしている。無事 Web Font が読み込まれれば良いが、もし何らかの問題で Web Font の読み込みに失敗した場合は、その上書きした設定のまま読者はコンテンツを読むことになる。
         <p>すると、「上書きした状態がフォールバックフォントにとって読みやすい設定なのか?」という疑問が生まれる。
         <p>筆者は専門ではないが、ここにこだわりを持つ場合は、単にフォールバックフォントを Noto に近づけるのではなく、両者の間を取った値を設計し、Noto とフォールバックフォント両方をそれに近づけるように上書きするのが望ましいと考えられる。
         <p>フォールバックフォントをどこまで想定するかにもよるが、ページ間でのずれを合わせることすらできなかったにもかかわらず、さらにバリエーションが必要になるのかもしれない。

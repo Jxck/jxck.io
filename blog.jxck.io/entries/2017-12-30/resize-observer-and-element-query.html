@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-12-30T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-12-30>2017-12-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -177,7 +177,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">observe</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element)    </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 検知開始</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">unobserve</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element)  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 検知終了</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">disconnect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(element) </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 解放</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">resizeObserver.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">disconnect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()        </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 解放</span></span></code></pre>
         <p>基本的な Observer のインタフェースのため、使い方もそこまで難しくない。
         <ul>
           <li>DEMO: <a href="https://labs.jxck.io/resize-observer/basic.html" target=_blank>https://labs.jxck.io/resize-observer/basic.html</a>
@@ -241,7 +241,7 @@
           <li>DEMO: <a href="http://elementqueries.com/#min-width-in-pixels" target=_blank>http://elementqueries.com/#min-width-in-pixels</a>
         </ul>
         <p>この程度単純な用途であれば ResizeObserver のハンドラ内で CSS の class を toggle するくらいでも実現できる。
-        <p>しかし、EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、Media Query に習い Custom at-rule (<code translate=no>@element</code>) を定義している。
+        <p>しかし、EQ はあくまでスタイル定義を CSS 側で完結させるためのライブラリであるため、Media Query に倣い Custom at-rule (<code translate=no>@element</code>) を定義している。
         <p>これを実現するため、実装は以下のようなことを行なっている。
         <ul>
           <li>CSS の独自拡張
@@ -260,7 +260,7 @@
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    font-size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">10</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">pt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
-        <p>一方これを Pseudo Element で定義する提案もある。
+        <p>一方これを Pseudo Class で定義する提案もある。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:container(width </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">= 100px) {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* If its container is at least 100px wide */</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
@@ -272,14 +272,14 @@
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.element</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:container(</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">text-align</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> = right) {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* If its container has a right text-align */</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
-        <p>擬似要素で行う場合にも、同じように Houdini の API が揃うと、別途自前でパースする必要もなく実装が可能になるだろう。
+        <p>擬似クラスで行う場合にも、同じように Houdini の API が揃うと、別途自前でパースする必要もなく実装が可能になるだろう。
         <p>いずれも提案自体はかなり前からあるが、実装の改善が可能になりそうだ。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>ResizeObserver によって、単一要素のリサイズがとれるようになり、それを起点にしたよりレスポンシブなレイアウトが可能となった。
         <p>ここに Parser API や Custom At-Rule, Custom Pseudo Element が実装可能になれば、ライブラリとしての Element Query 実装もかなり改善されるだろう。
-        <p>より広範囲に渡るレイアウトについては、将来的には Layout API によって Worklet に落とした実装が可能なるかもしれないが、部分的な用途ではこうした方法も選択肢に入りそうだ。
+        <p>より広範囲に渡るレイアウトについては、将来的には Layout API によって Worklet に落とした実装が可能になるかもしれないが、部分的な用途ではこうした方法も選択肢に入りそうだ。
       </section>
     </article>
   </main>

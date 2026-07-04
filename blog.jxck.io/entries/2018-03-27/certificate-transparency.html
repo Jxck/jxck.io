@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-03-27T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-03-27>2018-03-27</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -223,7 +223,7 @@
                    +-----------+
                    | Eve(MITM) |
                    +-----------+</code></pre>
-        <p>これまでは、こうしたこと防ぐには、CA 自身が努力するしかなかった。
+        <p>これまでは、こうしたことを防ぐには、CA 自身が努力するしかなかった。
         <p>Google は、CA を信じ自分の知らないところで <code translate=no>google.com</code> の証明書が勝手に発行されていないことを祈るしか無い。
       </section>
       <section>
@@ -249,7 +249,7 @@
         <p>(本サイトでも、しばらく前からヘッダ自体を付与していない)
         <p>そこで HPKP の代替として、並行して議論されていた <em>CertificateTransparency(CT)</em> という仕組みを応用し、より運用負荷が低い形で同等のことを実現する方法が提案された。
         <p>それが Expect-CT ヘッダである。
-        <p>Chrome は既に、HPKP を Deprecate し Expect-CT への移行を促している
+        <p>Chrome は既に、HPKP を Deprecate し Expect-CT への移行を促している。
         <ul>
           <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/he9tr7p3rZ8/eNMwKPmUBAAJ" target=_blank>Intent To Deprecate And Remove: Public Key Pinning</a>
           <li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/ct-policy/sz_3W_xKBNY/6jq2ghJXBAAJ" target=_blank>Certificate Transparency in Chrome - Change to Enforcement Date</a>
@@ -297,7 +297,7 @@
         <p>自分たちが把握している発行が Log に登録されるのはもちろん問題ないし、把握していない Log が登録されれば、攻撃などで CA が誤発行を起こしたことがすぐにわかる。
         <p>攻撃は、発生していることがわかれば、対応ができる。これは、わからなかったころと比べるとかなりの進歩だ。
         <p>つまり、Monitor である Google の視点で言えば「<em>CA を監視する技術</em>」と言えなくもない。
-        <p>発行された Log が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
+        <p>発行された証明書が必ず登録されていることや、その Log が改ざんされていないことは、どう保証するのかは後述する。
       </section>
       <section>
         <h2 id="sctsigned-certificate-timestamp"><a href="#sctsigned-certificate-timestamp">SCT(Signed Certificate Timestamp)</a></h2>
@@ -358,7 +358,7 @@
         </section>
         <section>
           <h3 id="証明書が誤発行されlog-が登録されたが後から-log-を改ざんした"><a href="#証明書が誤発行されlog-が登録されたが後から-log-を改ざんした">証明書が誤発行され、Log が登録されたが、後から Log を改ざんした</a></h3>
-          <p>CT Log は Merkle Tree Hashes を用いているため、Log を改ざんすると不整合が発生する。
+          <p>CT Log は Merkle Hash Tree を用いているため、Log を改ざんすると不整合が発生する。
           <p>Monitor/Auditor は Log の整合性を監視/検証しているので、計算が合わないことで改ざんに気づくことができる。
           <pre><code translate=no>    +--------------+                     +--------------+   改ざん
     |              |                     |              | &lt;------- Eve
@@ -484,7 +484,7 @@
         </section>
         <section>
           <h3 id="expect-ct-header-による強制"><a href="#expect-ct-header-による強制">Expect-CT Header による強制</a></h3>
-          <p>誤発行に成功した証明書に置き換えられた場合、Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通っていまう。
+          <p>誤発行に成功した証明書に置き換えられた場合、Chrome での EV のように SCT のチェックが必須でない場合は、正しい証明書として通ってしまう。
           <pre><code translate=no>+------------+                       +-----------+
 |            |  DV+SCT        DV     |           | ブラウザが SCT のチェックを
 |   Google   |---------&gt;| |---------x|  Browser  | しなければ、普通の証明書
@@ -525,7 +525,7 @@
           <h3 id="merkle-tree"><a href="#merkle-tree">Merkle Tree</a></h3>
           <p>CT Log は、Merkle Tree という構造で保存されている。
           <p>これは、ビットコインのトランザクションの記録などにも使われており、やっていることも非常に似ている。
-          <p>仕組みはシンプルで、証明書の Hash を Leaf とし、Leaf/Node ペアの Hash を親とする二分技を構築する。
+          <p>仕組みはシンプルで、証明書の Hash を Leaf とし、Leaf/Node ペアの Hash を親とする二分木を構築する。
           <p>CT では Hash に SHA256 を使用する。
           <pre><code translate=no>              Sign
       Root  --------&gt;  STH
@@ -586,9 +586,9 @@ d0  d1  d2  d3  d4  d5  d6  d7</code></pre>
           <li>k, m を用いて、この 1 つ前までの Tree が改ざんされていないこと
           <li>その Tree に対して g, h を加えた木の Root が新しい STH と一致すること
         </ul>
-        <p>つまり、計算に必要なのは m, k g, h だけで済む。
+        <p>つまり、計算に必要なのは m, k, g, h だけで済む。
         <p>第三者がこれを検証し続ければ、Tree のどこかが意図的に書き換えられていないことが保証できる。
-        <p>こうして、CT Log は Merkle Hashe Tree を用いて <em>追記</em> しか出来ないことが暗号的に保証されている。
+        <p>こうして、CT Log は Merkle Hash Tree を用いて <em>追記</em> しか出来ないことが暗号的に保証されている。
         <section>
           <h3 id="log-の存在検証-merkle-audit-proofs"><a href="#log-の存在検証-merkle-audit-proofs">Log の存在検証 (Merkle Audit Proofs)</a></h3>
           <p>ある証明書が、Log に含まれていることを検証する。
@@ -763,7 +763,7 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
         <p>百歩譲って、SCT を「透かし」と捉えることもできなくはないかもしれないが、SCT は証明書に埋め込むだけでなく、ハンドシェイクや OCSP で渡しても良い。
         <p>また、CT の仕組み自体は SCT を発行するだけでなく、誤発行を検知することも含め、広く「CA がやっていることの透明性を高めよう(監視しよう)」というスコープだ。
         <p>以上より、もし訳すのであれば「証明書透かし」や「透かし入り証明書」ではなく「<em>証明書の透明性</em>」とするのが妥当だと考える。
-        <p>(また、普通「電子透かし」は Digital Wartermarking で、Transparency とは言わないかと思う)
+        <p>(また、普通「電子透かし」は Digital Watermarking で、Transparency とは言わないかと思う)
       </section>
       <section>
         <h2 id="本サイトへの適用"><a href="#本サイトへの適用">本サイトへの適用</a></h2>
@@ -778,7 +778,7 @@ d0  d1  d2 [d3] d4  d5  d6  d7</code></pre>
           </picture>
         </p>
         <p>また、<code translate=no>jxck.io</code> および <code translate=no>blog.jxck.io</code> に Expect-CT ヘッダを Enforce 無し(Report-Only 相当) で適用した。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Expect-Ct</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000, report-uri https://report-uri.example.com</span></span></code></pre>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Expect-CT</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> max-age=31536000, report-uri="https://report-uri.example.com"</span></span></code></pre>
         <p>HPKP をデプロイした時も、レポートなど来ないだろうと思っていたが、ある特定のサービスからレポートが頻繁に来ていた。
         <p>Expect-CT も、実際にどういうレポートが発生するのか未知であるため、知見を貯めていきたい。
       </section>

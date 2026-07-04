@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicatio...">
+  <meta name=description         content="長いこと行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた application/j...">
   <meta name=keywords            content="ietf,http,javascript">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2022-05-31/text-javascript.html>
   <meta property=og:title        content="JavaScript のメディアタイプと RFC 9239 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicatio...">
+  <meta property=og:description  content="長いこと行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた application/j...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-05-31T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた applicatio..."
+    "description": "長いこと行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。これにより、推奨される MIME タイプが text/javascript に統一されることになった。かつて推奨されていた application/j..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-05-31>2022-05-31</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -136,7 +136,7 @@
             <ol>
               <li><a href="#intro">Intro</a>
               <li><a href="#javascript-mime-types">JavaScript MIME Types</a>
-              <li><a href="#rfc-4329--scripting-media-types">RFC 4329  Scripting Media Types</a>
+              <li><a href="#rfc-4329-scripting-media-types">RFC 4329: Scripting Media Types</a>
               <li><a href="#html-standard">HTML Standard</a>
               <li><a href="#rfc-9239-updates-to-ecmascript-media-types">RFC 9239: Updates to ECMAScript Media Types</a>
               <li><a href="#encoding-charset">Encoding Charset</a>
@@ -155,7 +155,7 @@
       <h1><a href="">JavaScript のメディアタイプと RFC 9239</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>長いこと作業が行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。
+        <p>長いこと行われていた JavaScript の MIME タイプについての作業が完了し、RFC 9239 として公開された。
         <p>これにより、推奨される MIME タイプが <code translate=no>text/javascript</code> に統一されることになった。
         <p>かつて推奨されていた <code translate=no>application/javascript</code> ではなくなった経緯などを踏まえ、解説する。
       </section>
@@ -165,7 +165,7 @@
         <p>例えば HTML が <code translate=no>text/html</code> であったりするように、JS も内容はテキストなので <code translate=no>text/javascript</code> が自然に思える。
         <p>しかし、例えば MS が実装していた JS 互換の JScript は <code translate=no>text/jscript</code> となり、JS がまだ Netscape で LiveScript と呼ばれていた時代は <code translate=no>text/livescript</code> になる。
         <p>また、かつて Netscape は JS の実装にも他の言語のように Version を振っていた時代があり(これは ECMAScript のバージョンとは異なる)、そこでは <code translate=no>text/javascript1.0</code> などとなる。
-        <p>そんなこんなで、歴史的に様々な指定があったが、現在それらは ECMAScript として互換を吸収(全てではないが)し、単一の JS エンジンで実行されることとなった、要するに歴史的に JS の <code translate=no>Content-Type</code> には亜種がたくさんあるのだ。
+        <p>そんなこんなで、歴史的に様々な指定があったが、現在それらは ECMAScript として互換を吸収(全てではないが)し、単一の JS エンジンで実行されることとなった。要するに歴史的に JS の <code translate=no>Content-Type</code> には亜種がたくさんあるのだ。
         <ul>
           <li><code translate=no>text/ecmascript</code>
           <li><code translate=no>text/javascript</code>
@@ -194,9 +194,9 @@
         </ul>
       </section>
       <section>
-        <h2 id="rfc-4329--scripting-media-types"><a href="#rfc-4329--scripting-media-types">RFC 4329  Scripting Media Types</a></h2>
+        <h2 id="rfc-4329-scripting-media-types"><a href="#rfc-4329-scripting-media-types">RFC 4329: Scripting Media Types</a></h2>
         <p>このような乱立を踏まえ、2006 年に ECMAScript / JavaScript の MIME Type に対する Informational な RFC が公開された。
-        <p>この RFC では、「様々な MIME Type が適当に使われているが、その中できちんと推奨を決めて IANA に登録しよう」という趣旨のものだ。
+        <p>この RFC は、「様々な MIME Type が適当に使われているが、その中できちんと推奨を決めて IANA に登録しよう」という趣旨のものだ。
         <ul>
           <li>
             RFC 4329 - Scripting Media Types

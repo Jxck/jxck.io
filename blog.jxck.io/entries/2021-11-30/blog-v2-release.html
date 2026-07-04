@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-11-30T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-11-30>2021-11-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -314,7 +314,7 @@
         <section>
           <h3 id="adaptive-css"><a href="#adaptive-css">adaptive CSS</a></h3>
           <p><code translate=no>&lt;table&gt;</code> 用の CSS と <code translate=no>&lt;pre&gt;</code> のシンタックスハイライトは、他の要素に比べて CSS の量が多いのにもかかわらず、出現頻度が低い。
-          <p>そこで、<code translate=no>&lt;table&gt;</code> と <code translate=no>&lt;pre&gt;</code> の CSS はファイルを分け、HTML に出現する直前に CSS を一度だけ差し込むようにしている。
+          <p>そこで、<code translate=no>&lt;table&gt;</code> と <code translate=no>&lt;pre&gt;</code> の CSS はファイルを分け、HTML に出現する直前に CSS を 1 度だけ差し込むようにしている。
           <p>そのメリットは以下で解説している。
           <p><a href="https://blog.jxck.io/entries/2016-02-15/loading-css-over-http2.html">HTTP2 を前提とした HTML+CSS コンポーネントのレンダリングパス最適化について | blog.jxck.io</a>
         </section>
@@ -330,7 +330,7 @@
         <section>
           <h3 id="toc-の生成"><a href="#toc-の生成">TOC の生成</a></h3>
           <p>前述で生成した heading とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
-          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
+          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま TOC として AST と一緒に返すようにした。
           <p>この TOC は、blog のタイトル上に埋め込んでいる。
         </section>
         <section>
@@ -423,7 +423,7 @@
         </section>
         <section>
           <h3 id="traverser-plugin"><a href="#traverser-plugin">traverser plugin</a></h3>
-          <p>ここまでに上げたような本サイトに必要な機能は、1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
+          <p>ここまでに挙げたような本サイトに必要な機能は、1 つに盛り込んでも良かったが、最終的にはブラウザでの挙動も想定して作っておきたかった。
           <p>ブラウザで挙動させると問題になるのは、Cache Busting のためのファイル更新時間確認や、<code translate=no>&lt;pre&gt;</code> への外部ファイル埋め込みなどが動かないことだ。
           <p>やはり、Markdown ファイルだけを見て生成できる HTML と、そこに対するカスタマイズを分離することで、ブラウザ上でもプレビューなどが動くように保つ方が後々良いだろう。
           <p>そこで、AST を生成した後に、そこを Traverse する機能を用意し、Node をたどりながら好きな変更を入れられるようにすることで、そこを Plugin のフックポイントとすることにした。
@@ -485,7 +485,7 @@
           <li>Markdown -&gt; HTML 変換速度が上がった(きちんと測ってないが体感 1.5 倍)
           <li>コード量を大幅に減らし、見通しをよくできた
           <li>記法エラーを実装したことで、これまでの原稿を整形できた
-          <li>これまでの HTML の細かな問題、気に入らなかったところも全て精算できた
+          <li>これまでの HTML の細かな問題、気に入らなかったところも全て清算できた
           <li>Kramdown の依存が無くなったので、dependabot から警告が来ることが無くなった
           <li>ビルドプロセスに JS と Ruby が混ざっていたが、Ruby をなくし JS に一本化できた
           <li>溜まっていた負債を払った

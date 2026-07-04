@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-01-24T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-01-24>2020-01-24</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -256,14 +256,14 @@
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> option</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  title: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'title of download'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  downloadTotal: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">65535</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// size</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  icons: [{src: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'logo.png'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, sizes: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'256x256'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, type: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'image/webp'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  icons: [{src: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'logo.png'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, sizes: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'256x256'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, type: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'image/png'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}]</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> registration</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.serviceWorker.ready</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> task</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> registration.backgroundFetch.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(id, [html, mp3], option)</span></span></code></pre>
         </section>
         <section>
           <h3 id="foreground-event"><a href="#foreground-event">foreground event</a></h3>
-          <p>ダウンロードの進捗は window 側で progress イベントで上がる
+          <p>ダウンロードの進捗は window 側で progress イベントで上がる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">task.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'progress'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e.downloaded))</span></span></code></pre>
         </section>
         <section>
@@ -325,7 +325,7 @@
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // 特に何もする必要ないっぽい</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">error</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(e)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
-        <p>fail/abort は、タスクが消えるため特にリソースの開放などは必要なさそうだ。
+        <p>fail/abort は、タスクが消えるため特にリソースの解放などは必要なさそうだ。
       </section>
       <section>
         <h2 id="cache-hit"><a href="#cache-hit">Cache HIT</a></h2>

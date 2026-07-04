@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-10-08T00:00:00+09:00",
-    "dateModified": "2025-01-23T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-10-08>2018-10-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2025-01-23>2025-01-23</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -281,7 +281,7 @@
           <p>社内ネットワークに Proxy を立てている場合は、その Proxy で Referer ヘッダを落とす/書き換えるといった運用方法もある。
           <p>この場合、Referer に社内のドメインがある場合だけ落とすといった実装が可能なため、社外にあるサービスに対しての不具合は少ないだろう。
           <p>しかし、HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
-          <p>証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しだろう。
+          <p>証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しいだろう。
         </section>
         <section>
           <h3 id="referrer-policy"><a href="#referrer-policy">Referrer Policy</a></h3>
@@ -469,7 +469,7 @@
         </section>
         <section>
           <h3 id="policy-のまとめ"><a href="#policy-のまとめ">Policy のまとめ</a></h3>
-          <p>表にまとめるとこうなる
+          <p>表にまとめるとこうなる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
           <figure>
             <figcaption>Policy のまとめ</figcaption>
@@ -483,7 +483,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class=align-left>noreferrer</td>
+                  <td class=align-left>no-referrer</td>
                   <td class=align-right>必ず</td>
                   <td class=align-right>無し</td>
                 </tr>
@@ -564,7 +564,7 @@
           <p>は
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">a</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> href</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://example.com"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"noreferrer noopener"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> target</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"_blank"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>と同じ挙動となる。
-          <p>参考: <a href="https://blog.jxck.io/entries/2016-06-12/noopener.html">リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io</a>
+          <p>参考: <a href="https://blog.jxck.io/entries/2016-06-12/noopener.html">リンクへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io</a>
         </section>
         <section>
           <h3 id="referrerpolicy-属性"><a href="#referrerpolicy-属性">referrerpolicy 属性</a></h3>

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-09-01T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-09-01>2020-09-01</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -218,7 +218,7 @@
           </p>
           <p>ビデオの場合は VideoStreamTrack を取得するところから始まる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> stream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.mediaDevices.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getUserMedia</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({video:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, audio:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">videoTrack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> mediaStream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getVideoTracks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">videoTrack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getVideoTracks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
           <p>ここには、カメラからの生のストリームがあるようなイメージだ。そのままでは大きいため、多くの場合は圧縮を行う。その方式が VP8 や H.264 のようなコーデックになる。
           <p>VideoTrack をエンコードするには VideoEncoder を用いる。
           <p>初期化時に output コールバックを指定し、初期化後に <code translate=no>configure()</code> でエンコードの仕様を設定する。
@@ -234,20 +234,20 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> videoEncoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">configure</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  codec:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'vp8'</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  width:     </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">640</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  height:    </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">480</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  codec:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'vp8'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  width:     </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">640</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  height:    </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">480</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  framerate: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">30</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
-          <p>VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。
+          <p>VideoTrackReader を用いて MediaStream からビデオのデータを取り出す。
           <p>ここでの単位はフレームで、この VideoFrame を VideoEncoder の <code translate=no>encode()</code> に渡すとエンコードされる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoReader</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoTrackReader</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(videoTrack)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">videoReader.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">start</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">videoFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  videoEncoder.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">encode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(videoFrame)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>結果は VideoEncoder の初期化時に指定した output コールバックに渡り、これが vp8 でエンコードした結果の ArrayBuffer だ。
-          <p>デコードもほぼ同じ、まずは初期化し <code translate=no>configure()</code> を呼ぶ。
-          <p><code translate=no>encode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
+          <p>デコードもほぼ同じ。まずは初期化し <code translate=no>configure()</code> を呼ぶ。
+          <p><code translate=no>decode()</code> に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
           <p><code translate=no>createImageBitmap()</code> でビットマップに変換すれば Canvas に描画できる。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> ctx</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $canvas.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getContext</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'2d'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
 <span class="line"></span>
@@ -321,7 +321,7 @@
           <p>もしどこかで絵が壊れた場合は、明示的に <code translate=no>encode({keyFrame: true})</code> するとキーフレームが取得できる。
           <p>つまり、キーフレームを得るタイミングも自分で制御でき、逆を言えば今まで RTCP などでいい感じにやってくれていたことも自分でやらないといけない。
           <p>また、絵が壊れたところで Canvas がエラーを出してくれるわけではなく、帯域が狭くなったことやロスが増えたことも誰も教えてくれないため、フィードバック制御やリカバリを自分で考える必要がある。
-          <p>今回はとりあえず 10 回に一回 KeyFrame を送るようにしてみた。
+          <p>今回はとりあえず 10 回に 1 回 KeyFrame を送るようにしてみた。
         </section>
         <section>
           <h3 id="表示制御"><a href="#表示制御">表示制御</a></h3>
@@ -332,7 +332,7 @@
         </section>
         <section>
           <h3 id="webcodecs-と-webtransport-の繋ぎ"><a href="#webcodecs-と-webtransport-の繋ぎ">WebCodecs と WebTransport の繋ぎ</a></h3>
-          <p>WebCodecs の出力バイナリは、従来の WebRTC でいえば RTC 内の body 部分のみにあたる。
+          <p>WebCodecs の出力バイナリは、従来の WebRTC でいえば RTP 内の body 部分のみにあたる。
           <p>WebTransport の転送は、WebRTC でいうと DTLS-SRTP の部分のみだ。
           <p>WebRTC よりも軽いスタックでビデオ会議が実現可能になったが、逆を言えば前述のようなメディアの転送制御に関わる部分は別途自分で用意する必要がある。
           <p>「自分で用意する必要がある」は、ちょっと遊んでみたい素人にとっては負荷かもしれないが、WebRTC で困っていたサービス提供者にとっては「自分で提供することができる」と取れる場合もある。

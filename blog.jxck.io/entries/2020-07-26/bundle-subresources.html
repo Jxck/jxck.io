@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で...">
+  <meta name=description         content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を 1 回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
   <meta name=keywords            content="webbundle,webpackaging,performance">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2020-07-26/bundle-subresources.html>
   <meta property=og:title        content="Webbundle によるサブリソース取得の最適化 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で...">
+  <meta property=og:description  content="WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を 1 回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-07-26T00:00:00+09:00",
-    "dateModified": "2026-03-10T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御で..."
+    "description": "WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。これを用いると、複数サブリソースの取得を 1 回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-07-26>2020-07-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。
-        <p>これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
+        <p>これを用いると、複数サブリソースの取得を 1 回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
         <p>現時点での仕様と実装を解説する。
         <ul>
           <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/wYn13HabRN0/m/L4y4iY1-AgAJ" target=_blank>Intent to Prototype: Subresource loading with Web Bundles</a>
@@ -369,7 +369,7 @@
         <section>
           <h3 id="nested-bundling"><a href="#nested-bundling">Nested Bundling</a></h3>
           <p>前述の WebComponents を複数組み合わせたり、大きめなフレームワークを組み合わせて使うケースは既に多くある。
-          <p>これらを一つの WebBundle にするよりも、おそらく WebBundle に Webbundle を含むことになっていくだろう。
+          <p>これらを 1 つの WebBundle にするよりも、おそらく WebBundle に WebBundle を含むことになっていくだろう。
           <p>イメージとしては以下のような構成だ。
           <pre><code translate=no>- bundle.wbn
   - react.wbn
@@ -392,7 +392,7 @@
           <ul>
             <li><a href="https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit" target=_blank>Loading Performance with (Many) Modules: Summary as of Oct 7, 2017</a>
           </ul>
-          <p>この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
+          <p>この課題はすでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
           <p>結果、ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
           <p>筆者としては「せっかく ES Module が手に入ったのにブラウザから見れば恩恵はほとんど得られていない」と言う点に煮えきらなさを感じていた。
           <p>Bundle Subresource は、「ブラウザ上でも Module を分割して扱いながらも fetch は減らしたい」という 2 つの要求を繋ぐ仕様として期待することができる。

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-12-08T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-12-08>2021-12-08</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -211,7 +211,7 @@
       <section>
         <h2 id="srcset-と-client-hints"><a href="#srcset-と-client-hints">srcset と Client-Hints</a></h2>
         <p>画像を表示する際に、デバイスの DPR を意識して出し分けを行う場合を考えてみよう。ここでは DPR が x1, x2, x4 のサポートを想定する。
-        <p>まず <code translate=no>&lt;img&gt;</code> の <code translate=no>srcset</code> 属性を使えば、両方の画像を以下のように出し分けられる。
+        <p>まず <code translate=no>&lt;img&gt;</code> の <code translate=no>srcset</code> 属性を使えば、3 種類の画像を以下のように出し分けられる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> srcset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpeg,</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-600w.jpeg  2x,</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">             img-1200w.jpeg 4x"</span></span>
@@ -223,7 +223,7 @@
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># request</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DPR</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 2</span></span></code></pre>
         <p>このヘッダを用いれば、ブラウザが送ってくる DPR に応じてサーバ側で画像を出し分けることができる。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DPR ヘッダによって x1, x2, x3 が送られる</span></span>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DPR ヘッダによって x1, x2, x4 が送られる</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> dpr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> req.headers.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dpr"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (dpr </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"img-300w.jpg"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
@@ -240,7 +240,7 @@
         <p>さて、読者はどちらが好みだろうか?
         <p>サイト全体の <code translate=no>&lt;img&gt;</code> タグ実装を余すところなく直すのは一般的に大変なので、サーバ設定一発で対応できそうなヘッダ方式の実装は、導入が楽で好まれがちだ。実際に、そうした機能を提供する画像系 CDN サービスは複数存在し、パフォーマンス改善の文脈で導入されている。
         <p>ところで、<em>デバイス自体の DPR が 2 であることは、サーバが x2 の画像を返すべきことを本当に意味するだろうか?</em>
-        <p>仕様上はそのまま「DPR が 2 である」ことを意味する以上の定義はない。それを踏まえてどの画像を返すかをサーバが決めているだけだ、これも Push 型の実装ととらえることができる。
+        <p>仕様上はそのまま「DPR が 2 である」ことを意味する以上の定義はない。それを踏まえてどの画像を返すかをサーバが決めているだけだ。これも Push 型の実装ととらえることができる。
         <p>例えば、DPR が 4 の端末だが、月末で既にパケ死していて、帯域が制限されていたら、それでも x4 画像が表示されることをユーザは望むだろうか? これを明示的に示すために、同じく Client Hints に提案された <code translate=no>Save-Data</code> が一緒に送られてきたら、どっちをとるべきだろうか?
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># 何を返す?</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">DPR</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 4</span></span>
@@ -262,7 +262,7 @@
         <p>では、なぜ Push / Pull 両方が標準でサポートされているのだろうか? 標準 API を正しく用いたら Pull になるというわけではないのか?
         <p>ここでのすれ違いは、解釈の帰結先がずれていることによって起こっている。例えば、&quot;DPR: 2&quot; はまぎれもなくデバイスの DPR を伝えている。その情報を取得すること自体は Pull だ。問題は「DPR が 2」であることを「だから x2 の画像を送る」と帰結させてしまっている部分にある。クライアントは最初からそんなこと言ってないのだ。
         <p>最初に述べたように、Push / Pull とは実装の態度だ。仕様は基本的に Pull で考えられており、「特定のユースケースや特定の実装に向けて Push で使われる」だけだ。
-        <p>とはいえ、DPR の場合は、最初から画像を出し分けるというユースケースのために Iliya が提案したという経緯があり、当時「それって <code translate=no>srcset</code> の方が良いんじゃないの?」という話をしたところ、「こちらの方が上手く問題を解決できるケースがある」という話をされたのを覚えている。おそらく、前述のようにサイトに手を入れずに解決できなければ、スケール(普及)しないという実態に合わせた現実解だったんだろう。そして現在その方法は成果を出しており、世のページ表示が早くなるために貢献しているため、それは否定されることではない。
+        <p>とはいえ、DPR の場合は、最初から画像を出し分けるというユースケースのために Ilya が提案したという経緯があり、当時「それって <code translate=no>srcset</code> の方が良いんじゃないの?」という話をしたところ、「こちらの方が上手く問題を解決できるケースがある」という話をされたのを覚えている。おそらく、前述のようにサイトに手を入れずに解決できなければ、スケール(普及)しないという実態に合わせた現実解だったんだろう。そして現在その方法は成果を出しており、世のページ表示が速くなるために貢献しているため、それは否定されることではない。
         <p>このように Push と Pull は良い悪いで一刀両断できる話ではないのだ。
         <p>ただし、そのまま野放しにすると、コンテンツ提供者がそうした Push による実装をより正確にしたいがために、さまざまな情報を追加でクライアントに送らせたがり、それがエントロピーを上げ、Fingerprint ベクタになり、また新たな問題を生む可能性もある。Push の精度を上げるのは限界があり、Pull の場合はその情報をクライアント内に閉じることができるという点は、常に意識しておきたい。
       </section>
@@ -337,7 +337,7 @@
         </blockquote>
         <p>という解説になってしまう。これは「GET には GET のセマンティクスが、POST には POST のセマンティクスがあり、正しく使い分けろ」という抽象的な話以外はしてない。それは、初心者に向けた解説としてはあまりにも投げやりすぎるので、前述のように実利/実害ベースで教えるのは、理にかなってはいるだろう。DELETE ではなく GET で削除してはいけないのも、「Bot がクロール時に間違って消してしまうから」が本質ではないが、そう言われた方が理解しやすい。
         <p>一方で、そういう教育の延長で、その裏にある「GET には GET のセマンティクスが、POST には POST のセマンティクスがあり」の部分に向き合う機会がなく、セマンティクス実装の基本を「実利/実害や挙動に呼応する Push ベース」で考えてしまう、悪く言えば「Push ベースでしか考えられない」開発者がいるのも事実だと思う。このとき Push 型で考えているという事実自体に、気づくきっかけも、教えてくれる人も、実際は少ないのかもしれない。
-        <p>ここに、Web に対する理解の解像度の一つの壁があると筆者は感じる。
+        <p>ここに、Web に対する理解の解像度の 1 つの壁があると筆者は感じる。
       </section>
       <section>
         <h2 id="非機能要件の最適化と-push"><a href="#非機能要件の最適化と-push">非機能要件の最適化と Push</a></h2>
@@ -350,7 +350,7 @@
           <p>もともとは、例えば画像サーバが落ちており画像が取得できなかった場合に、その属性を表示することで何が表示されるべきだったかを示す役割が主流だった。しかし、スクリーンリーダーが一般的になって以降は、読み上げられない画像の代わりに読み上げる目的が注目されるようになった。以降「読み上げたときに不自然ではない」オーサリングがなされることも増えたように思う。
           <p>読み上げるための別の属性が存在すれば、そこに読み上げのための文字(つまりセリフ)を含むのは Pull だが、汎用的な代替表現を読み上げに最適化するのは、スクリーンリーダーに対する Push の実装といえる。読み上げることに最適化してオーサリングされた <code translate=no>alt</code> が、別のシチュエーションで <code translate=no>alt</code> を消費する実装にとって適切とは限らないからだ。
           <p>特に、a11y の文脈でよく言われる「読み上げなくて良い画像の alt は空で良い」というのも Push の典型的な一例だ。そこに画像がある以上、それがアイコンであろうと罫線であろうと存在することに変わりはない。読み上げると邪魔だから不要というのは、他の消費者(クライアント)に対する配慮を欠いている点で、それをアクセシブルと呼んで良いのか個人的には非常に疑問だ。特に、最近議論されている <a href="https://w3c.github.io/coga/content-usable/" target=_blank>COGA</a> のように、弱視以外の理由でサポートが必要な人々(e.g. 認知/認識に関する障害など)にとって、Screen Readerbility に最適化された <code translate=no>alt</code> がそのまま有効なのかについては、議論の余地があるだろう。
-          <p>本来それが contents ではなく style であるから不要、という理由であれば CSS でオーサリングすべきだし、読み上げと代替は別と考えるなら、適切な他の属性(e.g. Aria)を使うことで全てを Pull のまま実装することもできなくはない。しかし、<code translate=no>alt</code> 以外にも、様々な属性や実装方法に対して、スクリーンリーダーの挙動を起点に考えるプラクティスは多くある。仮にコンテンツが Pull で実装されているにも関わらず、それがスクリーンリーダーにうまく消費されないのだとしたら、治すべきは本来「標準仕様」か「スクリーンリーダー」であるはずだ。しかし、開発者でシェアされる多くのプラクティスやガイドラインは、コンテンツガイドライン、つまりコンテンツ側を特定のスクリーンリーダー実装に対し Push にするためのものが多い。
+          <p>本来それが contents ではなく style であるから不要、という理由であれば CSS でオーサリングすべきだし、読み上げと代替は別と考えるなら、適切な他の属性(e.g. Aria)を使うことで全てを Pull のまま実装することもできなくはない。しかし、<code translate=no>alt</code> 以外にも、様々な属性や実装方法に対して、スクリーンリーダーの挙動を起点に考えるプラクティスは多くある。仮にコンテンツが Pull で実装されているにも関わらず、それがスクリーンリーダーにうまく消費されないのだとしたら、直すべきは本来「標準仕様」か「スクリーンリーダー」であるはずだ。しかし、開発者でシェアされる多くのプラクティスやガイドラインは、コンテンツガイドライン、つまりコンテンツ側を特定のスクリーンリーダー実装に対し Push にするためのものが多い。
           <p>ここに accessibility と screen readerbility の境を見出すと、a11y は本来 Web のセマンティクスを正しく理解し、正しく実装する以上のものではない。そうならないならば、悪いのは仕様か実装であるはずだし、その世界においては a11y という明示的なラベルは本来不要だ。ただ、現実的にそうしたコンテンツを「正しくかつ適切に消費できるスクリーンリーダーの存在」は前提にできないため、コンテンツが歩み寄るしかない。つまり現状は Push するしかなく、その Push するベクトルに対して a11y というラベルがついている。
           <p>ただし、現状多くのサイトのコンテンツは、正しく Pull で実装されているわけでも、それによって Accessible なわけでもないのも事実だ。
           <p>このラベルがないと不利益を被る人がいることは、それだけ Web が力不足だということの裏返しとも言えるかもしれない。
@@ -363,7 +363,7 @@
           <p>それらを用いた改善によって、現に速くなっているのだから問題は無いように思える。しかし、無いとも言い切れない。
           <p>例えば、HTTP/1.1 はリクエストを多重化できないため、コネクションを 1 host につき 6 本張るという挙動が一般的だった。そこで、「6 つ以上のリソースがあるならドメインを分ければさらに 6 本張って並列取得できる」というプラクティスが、&quot;ドメインシャーディング&quot; として普及した。これが、挙動に対する Push の実装だったのは言うまでも無いだろう。
           <p>似たようなプラクティスは多々有り、当時パフォーマンス改善と呼ばれていたものの実態は、そうやって HTTP/1.1 の挙動に合わせてコンテンツを Push で実装することそのものでもあった。
-          <p>後に HTTP/1.1 自体を改善した HTTP/2 は、1 本の接続にリクエストを多重化するにとどまらず、RTT を減らし、Window Size も上がったところを維持でき、バイナリ化によってパースのコストを下げ、ヘッダ圧縮によって転送量も減らした。結果、ブラウザは「無駄に多くの接続を貼らなくても 1 本を効率良く使いまわせる API」である HTTP/2 を実装し、その接続は 1/6 になった。
+          <p>後に HTTP/1.1 自体を改善した HTTP/2 は、1 本の接続にリクエストを多重化するにとどまらず、RTT を減らし、Window Size も上がったところを維持でき、バイナリ化によってパースのコストを下げ、ヘッダ圧縮によって転送量も減らした。結果、ブラウザは「無駄に多くの接続を張らなくても 1 本を効率良く使いまわせる API」である HTTP/2 を実装し、その接続は 1/6 になった。
           <p>それがわかっていれば、HTTP/1.1 に最適化されたままのコンテンツを、そのまま HTTP/2 でデプロイしたところで、パフォーマンスが何倍にも速くなるはずがないことは、少し考えればわかるだろう。下手すれば、単純に接続が 1/6 になったせいで、遅くなるコンテンツも多くあるはずだ。逆に HTTP/1.1 に対する特別な Push を行わずに、ごくごくシンプルに作られていたコンテンツの方が、単純な置き換えでパフォーマンスが向上する可能性もある。ちょっと試して雑に h2 と h1 を比較計測した結果「こんなプロトコルは使い物にならない」という批判をするのは自由だが、それは単に「自分にはよく理解出来ずうまく使いこなせなかった」を曲解しているだけかもしれない。
           <p>「プラクティス」とは、その本質が理解できてない人にも、「こうすれば良い」というタスクを見いだせる点で便利ではあるが、自分が「何に対して Push しているのか」を自覚できていなければ、前提が変わったときに自分が本当に評価すべきものを見失うという危険性もはらんでいる。
           <p>さらに、その「プラクティス」を可視化する「スコアリング」は、気づかぬうちに「スコアをハックすること」にすり替わる点が恐ろしくもある。過度にスコアを追い求めた Push を重ねれば「そのスコアリングに最適化した結果」は比較的容易に得られるが、どんなスコアリングも所詮は補助ツールであり、実際にそれで非機能要件が改善できているかは別の話だ。スコアリングツールに Push を重ねただけでは、スコアが良くても遅いサイトや、スコアリング方法が変わったらグリーンだったものがレッドになるようなサイトが生まれないとも限らない。
@@ -381,7 +381,7 @@
           <p>例えば、<code translate=no>&lt;form&gt;</code> に One Time Token を能動的に仕込まずとも、今のブラウザは <code translate=no>&lt;form&gt;</code> からの POST には <code translate=no>Origin</code> ヘッダを付与するし(ちなみに <code translate=no>Origin</code> は出自を示すヘッダであるため、出自が意図しなかったら弾く実装は Push ではなく Pull だと解釈できる)、<code translate=no>SameSite=Lax</code> な Cookie は攻撃サイトからのリクエストに自動で付与されない。これらを用いれば CSRF を One Time Token 無しに Pull で防ぐことも可能だろう。(そうやって Pull で実装できても、セキュリティエンジニアにとっては任意のヘッダが仕込める拡張の脆弱性が脳裏に焼き付いているので、値が予想できるヘッダを信用せずに One Time Token を送り続けるかもしれないが)
           <p>今最も議論の的になる 3rd Party Cookie は事情が複雑だ。Cookie はセッションを維持するという建前がありそうで、実際には「クライアントが保存し、リクエストに付与する」という、挙動の側面しか標準化されていないため、3rd Party Cookie による Tracking は、Push のようで Pull だったと見ることもできるだろう。だから、それを防ぐには法や規制による対策しかなかったが、それが機能しないために、ブロックすることに踏み切ることになった。代わりに、それまで行われていたユースケースをカバーするために、代替の API が提案され、それらは個別のユースケースを Pull で実装できるように策定が進められている。
           <p>Pull で実装できれば、クライアントに選択肢があるため、例えばユーザに関する情報をどの粒度で、どういう頻度で、誰に対して提供するかなどをクライアントが調整できるようになる。これにより 3rd Party Cookie 時代に得られていた情報に比べれば自由度が減るために、他の挙動に対して Push しまくってなんとかしようとする。それが Fingerprint であり、対策として <code translate=no>User-Agent</code> を固定したり、IP を隠したりすることで Push の限界を下げる調整も、「ユーザの安全のため」に行われている。
-          <p>今行われている Security / Safety 系 API の歴史的な移行は、Push で行われていた負債を、API の Pull 化によって精算するプロセスと捉えることもできそうだ。
+          <p>今行われている Security / Safety 系 API の歴史的な移行は、Push で行われていた負債を、API の Pull 化によって清算するプロセスと捉えることもできそうだ。
         </section>
       </section>
       <section>

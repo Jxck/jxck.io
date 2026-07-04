@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-08-25T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-08-25>2022-08-25</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -182,8 +182,8 @@
           </li>
         </ul>
         <p>HPKE は、公開鍵暗号方式と共通鍵暗号方式を組み合わせて(ハイブリッド)任意の平文を暗号化するための、汎用的な枠組みとして標準化されている。
-        <p>この仕様は、多くのユースケースが想定されており、RFC になる前から ECH (Encrypted Client Hello), MLS (Message Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。
-        <p>本サイトで書く予定の他の記事でも HPKE は頻出する予定であり、今後より多くの場面でこの仕様を見ることになると思われるため、一度この仕様の概観について解説する。
+        <p>この仕様は、多くのユースケースが想定されており、RFC になる前から ECH (Encrypted Client Hello), MLS (Messaging Layer Security), OHTTP (Oblivious HTTP) など、さまざまな仕様から採用を検討されている。
+        <p>本サイトで書く予定の他の記事でも HPKE は頻出する予定であり、今後より多くの場面でこの仕様を見ることになると思われるため、1 度この仕様の概観について解説する。
         <p>(筆者は暗号の専門家ではないため、解釈や語彙使用の間違いがあるかもしれない。)
       </section>
       <section>
@@ -322,7 +322,7 @@
         <section>
           <h3 id="通信プロトコルではない"><a href="#通信プロトコルではない">通信プロトコルではない</a></h3>
           <p>行っていることが TLS などと同じであるにも関わらず、HPKE が策定された理由は、HPKE が汎用的であると言う点だ。
-          <p>例えば TLS1.2 の場合は、そこで行われる公開鍵暗号方式は、TCP 上でのハンドシェイクに強く依存しており、暗号化されるのも通信上のパケットだ。これは、例えば手元にある JSON のある 1 つのプロパティだけ暗号化し、特定の相手だけがそれを読めるようにしたいといったユースケースに、TLS を応用するには適さないことを意味する。
+          <p>例えば TLS 1.2 の場合は、そこで行われる公開鍵暗号方式は、TCP 上でのハンドシェイクに強く依存しており、暗号化されるのも通信上のパケットだ。これは、例えば手元にある JSON のある 1 つのプロパティだけ暗号化し、特定の相手だけがそれを読めるようにしたいといったユースケースに、TLS を応用するには適さないことを意味する。
           <p>HPKE は鍵の交換と暗号化の枠組みのみを標準化してはいるが、トランスポートプロトコルではないため、前述のようなユースケースもカバーできる。
           <p>逆を言えば HPKE を内部に用いる別のプロトコルの場合は、HPKE に必要なパラメータを交換する何らかの方法を考える必要がある。必ずしもオンデマンドのハンドシェイクではなく、自分が開発するシステムで採用しクライアントもサーバも自分で管理するような場合は、固定のパラメータに決め打ちし PSK を配布しておくといったこともできるだろう。
         </section>

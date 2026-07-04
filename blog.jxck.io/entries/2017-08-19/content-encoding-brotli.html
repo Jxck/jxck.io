@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-08-19T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-08-19>2017-08-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -171,7 +171,7 @@
         <p>brotli は Google が開発した新しい圧縮形式である。
         <p><a href="https://www.ietf.org/rfc/rfc7932.txt" target=_blank>Brotli Compressed Data Format</a>
         <p>LZ77 とハフマン符号化を合わせたものであり、元々は WOFF2 の仕様の一部として作られたものが、汎用化されたものである。
-        <p>過去に公開されている <a href="https://github.com/google/zopfli" target=_blank>zopfli</a> と比べても、さらに圧縮率が <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html" target=_blank>20-26%</a> 向上しており、解答速度は zlib 相当とされている。
+        <p>過去に公開されている <a href="https://github.com/google/zopfli" target=_blank>zopfli</a> と比べても、さらに圧縮率が <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html" target=_blank>20-26%</a> 向上しており、解凍速度は zlib 相当とされている。
         <p>この効果に寄与する特徴的な要因として、仕様に含まれる辞書が挙げられる。
       </section>
       <section>
@@ -180,12 +180,12 @@
         <p>ここで、頻出する一致部分を、対象とするコンテンツの中から探す場合は、探索する長さや範囲の広さなどによって結果が変わる。
         <p>もちろん、広い範囲を丁寧に探索すれば、効率よく圧縮が可能だとしても、それでは時間がかかってしまう。
         <p>そこで、コンテンツの種類に応じて、あらかじめ頻出する単語パターンを辞書として用意する方式が使用される場合がある。
-        <p>Brotli は、以下の要領で構築した 122MB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
+        <p>Brotli は、以下の要領で構築した 122KB にもなる辞書を仕様に含み、これによって特に Web コンテンツにおいて高い圧縮率を実現している。
         <blockquote cite="http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf">
           <p>Unlike other algorithms compared here, brotli includes a static dictionary. It contains 13&apos;504 words or syllables of English, Spanish, Chinese, Hindi, Russian and Arabic, as well as common phrases used in machine readable languages, particularly HTML and JavaScript. The total size of the static dictionary is 122&apos;784 bytes. The static dictionary is extended by a mechanism of transforms that slightly change the words in the dictionary. A total of 1&apos;633&apos;984 sequences, although not all of them unique, can be constructed by using the 121 transforms. To reduce the amount of bias the static dictionary gives to the results, we used a multilingual web corpus of 93 different languages where only 122 of the 1285 documents (9.5 %) are in languages supported by our static dictionary.
           <p>&mdash; <cite><a href="http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf" target=_blank>Comparison of Brotli, Deflate, Zopfli, LZMA, LZHAM and Bzip2 Compression Algorithms</a></cite>
         </blockquote>
-        <p>なお、仕様には HexString で辞書の全体が記載されているが、これを Ascii に変換したものを以下に置いた。
+        <p>なお、仕様には HexString で辞書の全体が記載されているが、これを ASCII に変換したものを以下に置いた。
         <p>これを見ると、引用したように HTML や JS などのコンテンツが強く圧縮されるだろうことが、想像できる。
         <p><a href="brotli-dict.txt">brotli dictionary ascii</a>
       </section>
@@ -229,7 +229,7 @@
         <p>zopfli は、以前の検証で出した <code translate=no>--i30</code> を採用している。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>当サイトの平均的なサンプルとして、<a href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html">一つ前の記事</a> の HTML を採用した。
+          <p>当サイトの平均的なサンプルとして、<a href="https://blog.jxck.io/entries/2017-08-15/universal-mjs-ecosystem.html">1 つ前の記事</a> の HTML を採用した。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
           <figure>
             <figcaption>圧縮形式ごとのサンプル HTML の圧縮率</figcaption>
@@ -335,7 +335,7 @@
         <section>
           <h3 id="web-font"><a href="#web-font">Web Font</a></h3>
           <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html">本サイト用にビルド</a> したフォントファイルを採用する。
-          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff" target=_blank>NotoSansCJKjp-Jxck-Regular.woff</a>
+          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf" target=_blank>NotoSansCJKjp-Jxck-Regular.otf</a>
           <figure>
             <figcaption>圧縮形式ごとのサンプル OTF の圧縮率</figcaption>
             <table>
@@ -365,7 +365,7 @@
               </tbody>
             </table>
           </figure>
-          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf" target=_blank>NotoSansCJKjp-Jxck-Regular.otf</a>
+          <p><a href="https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff" target=_blank>NotoSansCJKjp-Jxck-Regular.woff</a>
           <figure>
             <figcaption>圧縮形式ごとのサンプル WOFF の圧縮率</figcaption>
             <table>
@@ -395,8 +395,8 @@
               </tbody>
             </table>
           </figure>
-          <p>OTF は圧縮効果が高いが、WoFF は逆効果となっている。
-          <p>これは WoFF がそもそも圧縮を仕様に含んでいるからと考えられる。
+          <p>OTF は圧縮効果が高いが、WOFF は逆効果となっている。
+          <p>これは WOFF がそもそも圧縮を仕様に含んでいるからと考えられる。
         </section>
         <section>
           <h3 id="png"><a href="#png">PNG</a></h3>

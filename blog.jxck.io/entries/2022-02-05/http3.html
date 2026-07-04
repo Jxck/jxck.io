@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-02-05T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-02-05>2022-02-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -144,8 +144,8 @@
               <li><a href="#https-resource-record">HTTPS Resource Record</a>
               <ol>
                 <li><a href="#対応している-dns">対応している DNS</a>
-                <li><a href="#chrome-での-http-rr">Chrome での HTTP RR</a>
-                <li><a href="#firefox-での-http-rr">Firefox での HTTP RR</a>
+                <li><a href="#chrome-での-https-rr">Chrome での HTTPS RR</a>
+                <li><a href="#firefox-での-https-rr">Firefox での HTTPS RR</a>
               </ol>
               <li><a href="#結果">結果</a>
               <li><a href="#outro">Outro</a>
@@ -194,7 +194,7 @@
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "http3.jxck.io:80"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">    listen</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      port</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">80</span></span>
-<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      pathes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      paths</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">        "/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">      redirect</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">        status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">308</span></span>
@@ -372,7 +372,7 @@
       </section>
       <section>
         <h2 id="https-resource-record"><a href="#https-resource-record">HTTPS Resource Record</a></h2>
-        <p>折角の HTTP3 なのに、一度 HTTP2 で接続してからでないと使えないのは勿体ない。しかし、いきなり HTTP3 でリクエストしても UDP-QUIC が提供されているかわからないため、このような仕様になっている。
+        <p>折角の HTTP3 なのに、1 度 HTTP2 で接続してからでないと使えないのは勿体ない。しかし、いきなり HTTP3 でリクエストしても UDP-QUIC が提供されているかわからないため、このような仕様になっている。
         <p>もし最初のリクエストから HTTP3 で接続させたければ、リクエストよりも先に HTTP3 がサポートされている旨を知る必要がある。そこで使用できるのが DNS の HTTPS RR(Resource Record)だ。
         <ul>
           <li>
@@ -408,7 +408,7 @@
           </p>
         </section>
         <section>
-          <h3 id="chrome-での-http-rr"><a href="#chrome-での-http-rr">Chrome での HTTP RR</a></h3>
+          <h3 id="chrome-での-https-rr"><a href="#chrome-での-https-rr">Chrome での HTTPS RR</a></h3>
           <p>しかし、このレコードを追加しただけでは Chrome では HTTP3 が動かない。
           <p>まず、Chrome はこの HTTPS RR への対応を開始しているが、現段階では前述の HSTS 用途のみで、HTTP3 のアドバタイズには対応してないようだ。
           <ul>
@@ -422,9 +422,9 @@
           <p>したがって、現状 Chrome ではこれはできない。
         </section>
         <section>
-          <h3 id="firefox-での-http-rr"><a href="#firefox-での-http-rr">Firefox での HTTP RR</a></h3>
-          <p>代わりに Firefox は既に HTTP RR による HTTP3 に対応している。ところがこちらもデフォルトの設定のままではクエリが飛ばない。
-          <p>これは、<em>HTTP RR は DoH に対応している必要がある</em> というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
+          <h3 id="firefox-での-https-rr"><a href="#firefox-での-https-rr">Firefox での HTTPS RR</a></h3>
+          <p>代わりに Firefox は既に HTTPS RR による HTTP3 に対応している。ところがこちらもデフォルトの設定のままではクエリが飛ばない。
+          <p>これは、<em>HTTPS RR は DoH に対応している必要がある</em> というルールがあり、これが仕様なのか実装なのかは未確認だが、DoH に対応した DNS にクエリする場合のみ取得される。また、その設定も OS の DNS 設定を 1.1.1.1 などにするだけではなく、Firefox の設定画面から DoH を有効にする必要がある。DoH 有効時にプロバイダを選ばされ、ここでは Cloudflare を選択した。この時点で OS の DNS 設定は無視されているかもしれない。
           <p>
             <picture>
               <source type=image/avif srcset=enable-firefox-doh.avif?260421_002105>
@@ -459,14 +459,14 @@
           <li><code translate=no>Alt-Svc</code> ヘッダをレスポンスに追加
           <li>Firefox は DoH を有効化
         </ul>
-        <p>本サイトは blog.jxck.io は jxck.io の CNAME のようにサブドメインを CNAME で設定している。この場合 HTTPS RR を提供するのは大本の jxck.io のみになる。
+        <p>本サイトでは blog.jxck.io は jxck.io の CNAME のようにサブドメインを CNAME で設定している。この場合 HTTPS RR を提供するのは大本の jxck.io のみになる。
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>念願の HTTP3 対応を実現することができた。
         <p>HTTP3 はずっと検証したかったがドキュメントが更新されなかったため使い方がわからず、たまにドキュメントやリポジトリを &quot;http3&quot; で検索していたが、&quot;http/3&quot; で検索すればもっと早く気付けていたと思うと残念だ。
         <p>そろそろ h2o をやめて Nginx に引っ越して、そちらで検証するかと考えていたところなので、Issue で教えてくれた <a href="https://github.com/h2o/h2o/issues/2906#issuecomment-1026107729" target=_blank>inductor</a> には感謝しか無い。
-        <p>今後は HTTP RR Record 含め、より細かく挙動などを検証していきたい。
+        <p>今後は HTTPS RR 含め、より細かく挙動などを検証していきたい。
       </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>

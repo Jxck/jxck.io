@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-06-26T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-06-26>2021-06-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,10 +169,10 @@
           <li><a href="https://blog.jxck.io/entries/2016-02-01/amp-html.html">AMP HTML 対応 | blog.jxck.io</a>
         </ul>
         <p>当時は徐々にモバイルユーザが増え、モバイルファースト Web が叫ばれ始めてしばらく経った頃だ。一方リアルワールドでは PC 版をメディアクエリでスマホ対応したサイトが多く、過度にリッチな表現をビューポートに詰め込みつつ広告が張り巡らされた、とにかく重たいサイトが多かったと思う(今でもあるが)。
-        <p>当時まだ Google にいた <a href="https://twitter.com/igrigorik" target=_blank>Iliya</a> が <a href="https://hpbn.co/" target=_blank>HPBN</a> を出したのは 2013 年だった。もともと「SPDY の薄い本」になる予定だったと <a href="https://mozaic.fm/episodes/11/high-performance-browser-networking.html" target=_blank>mozaic</a> に出てくれた時話していたから、出た時期としては HTTP2 になりつつある頃だ。
-        <p>当時でもまだ Web 黎明期を引きずったエンジニアのノスタルジーによってバイブル視され続けていた <a href="https://www.oreilly.com/library/view/high-performance-web/9780596529307/" target=_blank>High Performance Web Site</a> のプラクティスが古いことを知らしめ、(当時の)モダンパフォーマンスチューニングの啓蒙を Iliya が一手に担っていたように思う。
+        <p>当時まだ Google にいた <a href="https://twitter.com/igrigorik" target=_blank>Ilya</a> が <a href="https://hpbn.co/" target=_blank>HPBN</a> を出したのは 2013 年だった。もともと「SPDY の薄い本」になる予定だったと <a href="https://mozaic.fm/episodes/11/high-performance-browser-networking.html" target=_blank>mozaic</a> に出てくれた時話していたから、出た時期としては HTTP2 になりつつある頃だ。
+        <p>当時でもまだ Web 黎明期を引きずったエンジニアのノスタルジーによってバイブル視され続けていた <a href="https://www.oreilly.com/library/view/high-performance-web/9780596529307/" target=_blank>High Performance Web Site</a> のプラクティスが古いことを知らしめ、(当時の)モダンパフォーマンスチューニングの啓蒙を Ilya が一手に担っていたように思う。
         <p>しかし、彼が一人で啓蒙を続けても、それが届くのはごく一部の意識の高いエンジニアのみで、実際にそのプラクティスが適用されるのも、ごく一部の意識の高い組織に留まる現実があった。
-        <p>AMP のモチベーションの一つに「Iliya 一人じゃスケールしないから」だと Alex Russel が言っていたみたいな話も、どっかで聞いたけどどこだったか覚えていない。
+        <p>AMP のモチベーションの 1 つに「Ilya 1 人じゃスケールしないから」だと Alex Russell が言っていたみたいな話も、どっかで聞いたけどどこだったか覚えていない。
       </section>
       <section>
         <h2 id="非機能要件から機能要件へ"><a href="#非機能要件から機能要件へ">非機能要件から機能要件へ</a></h2>
@@ -216,7 +216,7 @@
         <p>AMP の URL が google.com になる問題は、WebPackaging (というか SXG) で解決していくという話だ。そもそも WebPackaging (SXG + WebBundle) の話が出始めたのは 2016 か 2017 年くらいだったと思う。mozaic.fm の Monthly の初回 <a href="https://mozaic.fm/episodes/26/monthly-web-201708.html" target=_blank>ep26</a> ではすでにしているが、それより前は細かく覚えていない。確か、突然のように MHTML の標準化みたいな話が出てきて、あれよあれよと WebPackaging の話が IETF で始まっていた気がする。
         <p>IETF の draft 見ると、WebPackaging には PWA チームも興味があったようだけど、SXG はやはり AMP のモチベーションが大きかったんじゃないだろうか。今思えば、事前に WebPackaging の話を進めながら、なんとかなりそうという段階で Letter に合わせて Answer を出せるように調整していたようにも見える。
         <p>SXG を使って署名をすれば AMP Cache から配信しても Origin の URL が表示できるというのは、まさしく AMP のことだけを考えた Patching な仕様に見えてしまいそうだ。しかし、全体の構想として WebPackaging があり、そこには PWA など他の青写真も含まれていたことを知っていたため、その部品と見るならば妥当な方向性ではあると当時感じたのを覚えている。
-        <p>それでも SXG にはやはり賛否があり、ちょうど Mozilla が <a href="https://mozilla.github.io/standards-positions/" target=_blank>Standard Positions</a> を公開するようになったのもこの時期で、SXG は Standard Positions が公開されたほぼ最初から <a href="https://datatracker.ietf.org/doc/html/draft-yasskin-http-origin-signed-responses" target=_blank>Harmful</a> として表示されていた。なので筆者には Standard Position 自体が SXG に harmful と言うために始まったように見えた。
+        <p>それでも SXG にはやはり賛否があり、ちょうど Mozilla が <a href="https://mozilla.github.io/standards-positions/" target=_blank>Standard Positions</a> を公開するようになったのもこの時期で、SXG は Standard Positions が公開されたほぼ最初から <a href="https://datatracker.ietf.org/doc/html/draft-yasskin-http-origin-signed-responses" target=_blank>Harmful</a> として表示されていた。なので筆者には Standard Positions 自体が SXG に harmful と言うために始まったように見えた。
         <p>ちなみに、この harmful に対して、証明書に拡張を追加することで、いわゆる HTTPS に使う証明書が使い回されないような改善が行われた。ただ、その拡張に対応した証明書は Digicert しか発行しておらず、他の CA の対応の話はまだ聞かないため、SXG 普及のボトルネックの一つでもある。
         <p>Google としては Mozilla その他のフィードバックを含めて仕様の改善を重ね、2019 年には Chrome に SXG が実装され AMP で SXG に対応する AMP SXG がリリースされた。
         <ul>
@@ -248,8 +248,8 @@
         <p>つまり、同じ課題に対して AMP は「<em>手段</em>」を提供したが、CWV は「<em>指標</em>」を定義した。そして、ここに AMP と同様の人参をぶら下げることで、CWV のスコアを意識するインセンティブを提示したのだ。
         <p>実際 Page Experience として評価されるのは CWV だけでなく、HTTPS であることや、悪質な Ad がないことなどがあがっているが、他はもう前提のようなものと考えると、多くのメディアにとっては「SEO のために CWV を改善する」という OKR が出来上がる。一旦延期され、<a href="https://twitter.com/googlesearchc/status/1404886100087246848" target=_blank>6 月から徐々に展開され始めた</a> 変更に向けて、CWV の改善は各所で行われている。
         <p>CWV は Origin を速くすればよいため、わざわざドメインが変わる AMP や AMP SXG を運用する必要もなくなる。AMP が気に食わなかった開発者は AMP を離れて自分の力で改善をすれば良くなる。なんなら AMP 自体が突き詰めるとある一定以上速くするのが難しいという問題も解決して、AMP より速い Origin も実現できる。そこまでできない組織でも、CWV をとにかく定期的に監視する必要が出るため、一時的なハックではなく継続的な改善を余儀なくされる。
-        <p>唯一不満が上がりそうなケースは、既に自分たちで計測を行い、検討した結果 SpeedIndex などを Key Metrics として設定していたチームにとっては、いきなり「お前らが見るべきはそれじゃなくて CWV の 3 つだ」と突きつけられることに違和感があるかもしれない。かくいう筆者もそうだった。
-        <p>といっても、CWV の内容はこれで確定ではなく、見直されていくことが宣言されている。もし本当に SpeedIndex などが含まれるべきと思うなら、フィードバックすべきと話になるだろう。ただ、おそらく既に指標を適切に測定して改善を回せているなら、ある程度「遅くない」状態が維持できているか、維持できていなくても原因が把握できているくらいの状態ではあるだろう。そうであれば指標が CWV に変わったところで大して困らないし、今までやってきたことは無駄じゃないはずなので大した問題にはならないのではないかとも思う。
+        <p>唯一不満が上がりそうなケースとして、既に自分たちで計測を行い、検討した結果 SpeedIndex などを Key Metrics として設定していたチームにとっては、いきなり「お前らが見るべきはそれじゃなくて CWV の 3 つだ」と突きつけられることに違和感があるかもしれない。かくいう筆者もそうだった。
+        <p>といっても、CWV の内容はこれで確定ではなく、見直されていくことが宣言されている。もし本当に SpeedIndex などが含まれるべきと思うなら、フィードバックすべきという話になるだろう。ただ、おそらく既に指標を適切に測定して改善を回せているなら、ある程度「遅くない」状態が維持できているか、維持できていなくても原因が把握できているくらいの状態ではあるだろう。そうであれば指標が CWV に変わったところで大して困らないし、今までやってきたことは無駄じゃないはずなので大した問題にはならないのではないかとも思う。
         <p>逆に、パフォーマンスを改善するために指標を道具として利用するのではなく、指標そのものを改善対象にし始めると注意が必要だ。人間は数字を見るといとも簡単にとらわれ、その指標をハックし始めがちだ。「スコアは良いが別に速くない」という状態も無くはない。そうして、指標を対象にしてスコアの上昇をもってサイトを改善した気になっていると、将来 CWV の中身が別の指標になったり、スコアの算出方法が変わったりした場合に、破綻する可能性もある。数値は数値でそういう怖さがある。
         <p>すでに初期の CWV (LCP, FID, CLS) の内容は追加や算出方法の変更が予定されており、今年の Google I/O でも、初期表示だけでなくユーザが操作した後の UX に関わる部分も測れるように、CWV を更新していくという話が出ていた。現状の数値だけをごまかしているサイトは、そのうちボロが出る可能性があるため、本質的な改善が求められることになる。
       </section>
@@ -272,7 +272,7 @@
         <p>実際、トーンダウンしているのは Google の検索結果の中での話であって、AMP HTML が役目を終えたのかというとそれはまた別の話だと筆者は考える。
         <p>そもそも CWV を改善し、グリーンスコアを維持し続けるのは、言うほど簡単ではない。新しく作るサイトならまだしも、運用中のサイトを CWV の測定だけで改善していくのは骨の折れる仕事だ。そういう改善を指揮する人なら、誰かが知らないところで無思慮に入れる変更を見つけては直していく過程で、制限をつけて未然に防ぎたいと思うだろう。それが AMP だ。AMP には、Linter や Checker のように使う上で必要なものは揃っている。自分でイチからルールを積み上げて周知徹底するくらいなら、AMP という選択肢は十分にありえるだろう。
         <p>あと、あまり話題にならないが、AMP は現状「<em>世界でもっとも普及した WebComponents ベースのフレームワーク</em>」ということができるのではないだろうか。<code translate=no>&lt;img&gt;</code> を <code translate=no>&lt;amp-img&gt;</code> にするだけで「画像読み込みのベストプラクティス」が適用されるが、その内部実装を気にする必要はない、というのは WebComponents が目指していた世界そのものであり、AMP はそれを周辺エコシステムと様々な実装知見と合わせて、すでに 5 年程度の運用実績がある。AMP のその点はもっと評価されてもいいと思う。
-        <p>「検索結果で優遇されるための要件」という責務の降りた AMP も、この「<a href="https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites" target=_blank>WebComponent ベースのフレームワーク</a>」としていまだ健在だ。そこで、この Web Components ベースのフレームワークとしての AMP (AMP as Framework) をより汎用的に使えるように、Web サイトを作る際に Next.js や Lit HTML などと並んで選択肢に上がるようなフレームワークにする、というのが AMP Project 自体が次に目指す方向として動き出しており、その目的地が Bento AMP だ。
+        <p>「検索結果で優遇されるための要件」という責務の降りた AMP も、この「<a href="https://amp.dev/documentation/guides-and-tutorials/start/bento_guide/?format=websites" target=_blank>WebComponent ベースのフレームワーク</a>」としていまだ健在だ。そこで、この WebComponents ベースのフレームワークとしての AMP (AMP as Framework) をより汎用的に使えるように、Web サイトを作る際に Next.js や Lit HTML などと並んで選択肢に上がるようなフレームワークにする、というのが AMP Project 自体が次に目指す方向として動き出しており、その目的地が Bento AMP だ。
         <ul>
           <li><a href="https://blog.amp.dev/2021/01/28/bento/" target=_blank>Use AMP Components everywhere - Announcing Bento Developer Preview - The AMP Blog</a>
         </ul>

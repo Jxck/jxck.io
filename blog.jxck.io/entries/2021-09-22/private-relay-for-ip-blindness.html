@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-09-22T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-09-22>2021-09-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -192,7 +192,7 @@
             </ul>
           </li>
         </ul>
-        <p>ここからさらに、HTTP の <code translate=no>Accept</code> ヘッダや <code translate=no>If-Non-Match</code> を含めたり、JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社が凌ぎを削っている。
+        <p>ここからさらに、HTTP の <code translate=no>Accept</code> ヘッダや <code translate=no>If-None-Match</code> を含めたり、JS でさまざまな API を叩いて Canvas や Font などデバイス固有な挙動をするものを探し、精度を上げるために各社がしのぎを削っている。
         <p>そこで、ブラウザベンダ各社は、これらの情報量を減らすことで Fingerprint の精度を下げるために議論と検証を進めていた。具体的には以下のようなものだ。
         <ul>
           <li>IP アドレスを隠蔽する
@@ -201,7 +201,7 @@
         </ul>
         <p>特にこうした取り組みを先導しているのが Apple で、ITP や Freezing User-Agent の作業を先んじて進め、他のブラウザもそれに追従しているのは周知の通りだ。
         <p>IP Blindness についても、Google が <a href="https://github.com/bslassey/ip-blindness" target=_blank>Willful IP Blindness</a> を提案したり、IETF では <a href="https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html" target=_blank>Oblivious HTTP</a> として標準化に向けた議論が始まったばかりだった。そんな中、いつも通り Apple が先行して実施した、それが Private Relay だ。
-        <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするという、よくも悪くも Apple らしいやり方なので、Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何者でもないとも言える。
+        <p>独自の規格/仕様かつオープンな実装ではなく iCloud サービスの一環としてリリースするという、よくも悪くも Apple らしいやり方なので、Apple が突然また過激なことを言い出したと思う人もいるかもしれないが、この流れがわかっていれば、順当以外の何物でもないとも言える。
         <p>という背景を踏まえて中身を見ていこう。
       </section>
       <section>
@@ -233,7 +233,7 @@
             <img loading=lazy decoding=async src=private-relay.png?230731_162734 alt="Private Relay のシーケンス図 - IETF の資料より" width=2164 height=1624>
           </picture>
         </p>
-        <p>Apple の資料によれば、Private Relay が有効になると、Ingress Proxy(前段) と Egress Proxy(後段) という 2 つ Proxy が割り当てられる。
+        <p>Apple の資料によれば、Private Relay が有効になると、Ingress Proxy(前段) と Egress Proxy(後段) という 2 つの Proxy が割り当てられる。
         <p>これらをどう使うかというと、まず Client は Egress Proxy (後段)と TLS を確立する。つまり全てのパケットは Client と Egress 間で暗号化されるのだ。
         <p>Client は Server に送りたいパケットを、(それが Server との TLS で暗号化されていても) Egress との TLS で暗号化して Ingress に送る。Ingress はそれをそのまま Egress に送る。Egress は Client との TLS を解いて Server に転送する。
         <p>これによって Ingress と Egress が知り得る情報は以下になる。
@@ -284,7 +284,7 @@
       </section>
       <section>
         <h2 id="懸念点"><a href="#懸念点">懸念点</a></h2>
-        <p>Private Relay および今後 IP blindness を実現する技術が出てきた場合に、起こる懸念をまとめる。
+        <p>Private Relay および今後 IP Blindness を実現する技術が出てきた場合に、起こる懸念をまとめる。
         <section>
           <h3 id="ip-ジオロケーション"><a href="#ip-ジオロケーション">IP ジオロケーション</a></h3>
           <p>IP アドレスがあると、そこからおおよその位置情報がわかるため、「どの地域からのアクセスが多いのか」という情報を得ることができる。これは、アナリティクスツールではおおよそサポートされ、マーケティングなどで重宝されている。

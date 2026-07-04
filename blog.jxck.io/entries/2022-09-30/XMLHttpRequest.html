@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を残す。">
+  <meta name=description         content="Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を記す。">
   <meta name=keywords            content="">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2022-09-30/XMLHttpRequest.html>
   <meta property=og:title        content="XMLHttpRequest とはなんだったのか | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を残す。">
+  <meta property=og:description  content="Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を記す。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-09-30T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を残す。"
+    "description": "Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を記す。"
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-09-30>2022-09-30</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -154,7 +154,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Fetch API の実装が広まり、IE もリタイアを迎えたことで、今後忘れ去られていくことになるだろう XMLHttpRequest について。
-        <p>どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を残す。
+        <p>どのように始まり、どのように広まり、どのように使われなくなっていくのか。その間に残した多大な功績を記す。
       </section>
       <section>
         <h2 id="xmlhttprequest-の始まり"><a href="#xmlhttprequest-の始まり">XMLHttpRequest の始まり</a></h2>
@@ -183,7 +183,7 @@
       <section>
         <h2 id="dhtml"><a href="#dhtml">DHTML</a></h2>
         <p>信じられないかもしれないが、昔の Web サイトは HTML と CSS だけで作るのが基本であり、ろくに「動き」はなかった。
-        <p>あっても、文字を左から右にアニメーションさせる <code translate=no>&lt;marquee&gt;</code> や、点滅される <code translate=no>&lt;blink&gt;</code> 、あとは  gif アニメくらいのもので、ゲームなどは Flash プラグインを入れてやるのが基本だ。
+        <p>あっても、文字を左から右にアニメーションさせる <code translate=no>&lt;marquee&gt;</code> や、点滅させる <code translate=no>&lt;blink&gt;</code> 、あとは gif アニメくらいのもので、ゲームなどは Flash プラグインを入れてやるのが基本だ。
         <p>次第に JavaScript が普及し、様々な動きが付けられるようになる。個人のホームページではオブジェクトを動かしたり、クリックしたら大きさや色が変わったり、マウスカーソルの後ろにキャラクターのアイコンがついて来たりといったものが多かった。一方、プロの作るサイトでは、フォームのバリデーションや Tab UI など、適切に導入して UX を向上したサイトも多くあった。
         <p>JS を用いた DOM 操作は、今でこそ普通のことだが、当時はそれまでの Static HTML と比して <em>Dynamic HTML(DHTML)</em> と特筆して呼ばれるような新しい技術だった。この DHTML によって、JS から触れる DOM API の重要性が高まり、そうやって作られたサイトがどのブラウザでも同じく動くように、細部まで標準化が重ねられていく。
         <p>今と決定的に違うのは、「表示された DOM をいじる」ことしかできないことだ。あくまでも、静的サイトの味付けのために行われていた。
@@ -254,7 +254,7 @@
         </ul>
         <p>ここにあるのは、非常にざっくりとした枠組みだ。Link Click や Form Submit 以外でも、XHR, <code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;script&gt;</code>, <code translate=no>background-image</code>, <code translate=no>@font-face</code> etc etc etc と、様々なところでリソースは取得されるが、それらが実際にどう挙動すべきかは Well-Defined とは言えない状況であり、実装差もあった。
         <p>リダイレクトはフォローするか? Basic 認証があったらどうするか? ステータスコードが 700 だったら? 指定されたのが <code translate=no>data:</code> や <code translate=no>about:</code> だったら? Referer ヘッダに載せる値は? など、一見簡単そうに見えて実はかなり複雑なのだ。
-        <p>(ということが、Ann のブログに書かれていたのだが、このブログはもう消えてしまった。これに至っては WebArchive にもない。Google 検索のキャッシュがあるので一応リンクを貼っておこう。それがいつまで見られるかはわからないが。)
+        <p>(ということが、Anne のブログに書かれていたのだが、このブログはもう消えてしまった。これに至っては WebArchive にもない。Google 検索のキャッシュがあるので一応リンクを貼っておこう。それがいつまで見られるかはわからないが。)
         <ul>
           <li>
             Fetching URLs - Anne&apos;s Blog
@@ -265,7 +265,7 @@
           </li>
         </ul>
         <p>特に Ajax によるマッシュアップの隆盛が、Origin を跨いだ連携を必要としながら、現実解が JSONP しかない状態は問題があったため、明示的に Origin を跨ぐ CORS が策定されていくことになるが、その仕様をそのまま HTML5 の仕様に追加していくのは実際かなり複雑だった。その後には、接続先を制限する CSP のマージも考えないといけない。
-        <p>そこで Ann は、「<em>ブラウザがリソースを取得するとはどういうことか</em>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
+        <p>そこで Anne は、「<em>ブラウザがリソースを取得するとはどういうことか</em>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
         <ul>
           <li>
             Fetch Standard
@@ -315,7 +315,7 @@
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> xhr</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> XMLHttpRequest</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"load"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">this</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.responseText)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(xhr.responseText)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">open</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"GET"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">xhr.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">send</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span></code></pre>
@@ -332,7 +332,7 @@
         <p>「こう実装すれば良いだけじゃないか」と想像するのは簡単だ。問題は、「全てのブラウザが全く同じように挙動する」ことを保証する部分だ。きちんと仕様を定義し、実装もそれを遵守する必要がある。それは想像ほど簡単なことではない。
         <p>また、JS では当たり前に使われているイベントリスナによるイベントハンドリングは、終わったら剥がさないとメモリリークする可能性がある。イベントリスナの掃除は面倒だ。イベント名を指定するだけで消えるなどの API ならまだ良いが、ブラウザではどこから取得した JS でも同じスコープで実行されるため、他人の貼ったイベントリスナを消せてしまうと問題がある。そこで、削除対象のコールバックの参照を指定させることで、追加した人にしか消せない設計になっている。理屈はわかるが丁寧にそのクリーンアップを実装するのは面倒だ。
         <p><code translate=no>fetch()</code> は、Request を受け取り Response を返す単なる関数だ。だから良かったのだ。
-        <p>結果を非同期にするためには、既に策定されていた Promise を使えば成功か失敗で表現できる。Resolve/Reject されるのは一度だけであり、<code translate=no>then</code>/<code translate=no>catch</code> に渡されたコールバックも一回しか呼ばれないし、状態が確定すればその Promise は終わりだ。この設計は、前述のような問題を起こしにくい。
+        <p>結果を非同期にするためには、既に策定されていた Promise を使えば成功か失敗で表現できる。Resolve/Reject されるのは 1 度だけであり、<code translate=no>then</code>/<code translate=no>catch</code> に渡されたコールバックも 1 回しか呼ばれないし、状態が確定すればその Promise は終わりだ。この設計は、前述のような問題を起こしにくい。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  .</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">then</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">res</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(res)</span></span>
@@ -356,7 +356,7 @@
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">setTimeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(() </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  controller.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">abort</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(req, { signal })</span></span></code></pre>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { signal })</span></span></code></pre>
         <p>最近の新しい DOM API も、<code translate=no>onopen</code> などの単発イベントの代わりに Promise を返し、<code translate=no>ondata</code> のような連続するイベントの代わりに Stream を使うものもみるようになった。(Service Worker, WebTransport etc)
         <p>DOM に限らず、インスタンスを持たずに純粋な関数に保つという思想は、その後のフロントエンドではかなり浸透しているだろう。React が Hooks に移行したのも同じような理由だ。返す値を Promise で包むだけで非同期の世界に持ち込めるのも、それを AbortSignal や Stream で制御するのも、今のフロントエンドのパラダイムに少なからず影響を与えていると思う。
       </section>
@@ -373,7 +373,7 @@
           </li>
         </ul>
         <p>Node の HTTP Module は、http_parser の部分をガッツリと C で書いており、メンテの問題は以前からあった。さらに H2, H3 を合わせてメンテしていくには、あまりにメンテナが不足していた。
-        <p>そこで llhttp に注目が集まる。これは、node の http_parser を llparse に移植したもの。llparse は JS で書いて LLVM IR を出力できるため、JS/TS でコードベースがメンテ可能になるのだ。C でメンテするよりも楽になるだけではなく、速くなったという話もある。
+        <p>そこで llhttp に注目が集まる。これは、Node の http_parser を llparse に移植したもの。llparse は JS で書いて LLVM IR を出力できるため、JS/TS でコードベースがメンテ可能になるのだ。C でメンテするよりも楽になるだけではなく、速くなったという話もある。
         <p>この llhttp を使ったクライアントライブラリが undici で、イタリア語で 11 という意味だ。HTTP/1.1 のライブラリであることを意味している。
         <p>Next-10 で議論されたのは、ものすごく雑にまとめると「undici を入れてしまえばいいのではないか?」という話だ。それだけ出来が良かったということだろう。
         <p>すると当然 undici の API を Node から全部出すのか? という話になる。しかし、触れるところを増やすのは後に響く問題になりやすいし、直接 socket を触りたい時もあるが、大抵はリクエストを投げてレスポンスを受け取れればいいだろう。結果「程よく抽象化され、かつ適切に制御ができる必要十分な API」が必要となる。そこで白羽の矢が立ったのが <code translate=no>fetch()</code> だったのだ。

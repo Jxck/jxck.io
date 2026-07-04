@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-10-13T00:00:00+09:00",
-    "dateModified": "2026-03-10T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-10-13>2019-10-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -228,7 +228,7 @@
         <p>恐らく検証するための妥当な文字や、ブラウザの実装などといった変数もあるだろうが、その辺まで網羅するのはコストが高い。
         <p>そこで、適当なサンプル文章をベースに、プロパティを切り替えながら、明らかに見た目が変わる指定を把握するところまで行った。
         <ul>
-          <li>aalt: Access
+          <li>aalt: Access All Alternates
           <li>dlig: Discretionary Ligatures
           <li>fwid: Full Widths
           <li>halt: Alternate Half Widths
@@ -255,8 +255,8 @@
         <p>結果は以下である。
         <ul>
           <li>353.1K: 従来
-          <li>606.6K: <code translate=no>layout-feature=&apos;*&apos;</code>
-          <li>293.9K: <code translate=no>layout-feature=&apos;palt&apos;</code>
+          <li>606.6K: <code translate=no>layout-features=&apos;*&apos;</code>
+          <li>293.9K: <code translate=no>layout-features=&apos;palt&apos;</code>
         </ul>
         <p>サブセット生成のロジックを変えたため、不要な文字も減り、トータルでは layout-features を入れても、改善前より小さくなっている。
         <p>またこのヒントを有効にするため、CSS に以下を追加した。
@@ -279,7 +279,7 @@
           <li>不要文字をコードブロックに移すように記事を更新
           <li>subset 対象の文字を記事から取得
           <li>pyftsubset でサブセット生成を自動化
-          <li>layout-feature を検証し palt を採用
+          <li>layout-features を検証し palt を採用
           <li>css に font-feature-settings を追加
         </ul>
         <p>正直フォントについては素人であり、色々と雰囲気でやっているところもあるが、新しい機能を採用するという点ではよい改修ができた。
@@ -287,7 +287,7 @@
       </section>
       <section>
         <h2 id="related"><a href="#related">Related</a></h2>
-        <p>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
+        <p>その他 Web Font に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
       </section>
     </article>
   </main>

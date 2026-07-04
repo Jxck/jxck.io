@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-05-20T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-05-20>2019-05-20</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -202,7 +202,7 @@
         <dl>
           <div>
             <dt>lazyload
-            <dd>ネットワーク専有の優先度を下げる(ネットワークが空けばロードはされる)
+            <dd>ネットワーク占有の優先度を下げる(ネットワークが空けばロードはされる)
           </div>
           <div>
             <dt>postpone
@@ -244,13 +244,13 @@
         </dl>
         <p>省略時は auto とみなされる。
         <p>この仕様について注意したいのは、ブラウザの裁量が大きいことだ。
-        <p>例えば lazy 属性はあくまでも遅延ロードを許容する/可能であることをブラウザに伝えるものであり、仕様上はブラウザに挙動を矯正するものではない。
+        <p>例えば lazy 属性はあくまでも遅延ロードを許容する/可能であることをブラウザに伝えるものであり、仕様上はブラウザに挙動を強制するものではない。
         <p>極端に言えば、ネットワークや表示の状況などをふまえてそれらの指定を上書きする余地も残っている。
         <p>またデフォルトが auto であることも重要だ。
         <p>基本的には全ての画像はペイロードが大きいため、必要になったタイミングで取得されるのが望ましいと考えれば、<code translate=no>&lt;img&gt;</code> はデフォルトで lazy であるのが理想だ。
         <p>ブラウザもそのような実装に向けて実験を繰り返していたが、壊れる既存コンテンツの存在もあり一筋縄ではいかない状況があるようだ。
         <p>もしここでデフォルトを eager にしてしまうと、実装の改善によって挙動を変える余地が無くなってしまう。
-        <p>将来的にブラウザ側に知見が蓄積されれば、既存のコンテンツであっても、その構成などを解析し、壊れるものは eager 可能なものは lazy に読むといった取り分けができる可能性も有る。
+        <p>将来的にブラウザ側に知見が蓄積されれば、既存のコンテンツであっても、その構成などを解析し、壊れるものは eager、可能なものは lazy に読むといった取り分けができる可能性も有る。
         <p>そこで、そのようなブラウザの裁量を残すためにデフォルト時の挙動を仕様で規定しきらず、実装に任せる判断にしていると解釈ができる。
       </section>
       <section>
@@ -268,7 +268,7 @@
             <picture>
               <source type=image/avif srcset=eagerload.avif?260421_002105>
               <source type=image/webp srcset=eagerload.webp?260421_002105>
-              <img loading=lazy decoding=async src=eagerload.png?200901_002432 alt="Eager Load で複数画像を読み込んだ場合の挙動を Dev Tools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
+              <img loading=lazy decoding=async src=eagerload.png?200901_002432 alt="Eager Load で複数画像を読み込んだ場合の挙動を DevTools の Network タブで見たところ" title="eager loading images" width=1366 height=768>
             </picture>
           </p>
         </section>
@@ -283,7 +283,7 @@
             <picture>
               <source type=image/avif srcset=lazyload-above.avif?260421_002105>
               <source type=image/webp srcset=lazyload-above.webp?260421_002105>
-              <img loading=lazy decoding=async src=lazyload-above.png?200901_002432 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
+              <img loading=lazy decoding=async src=lazyload-above.png?200901_002432 alt="Lazy Load で複数画像を読み込んだ場合の挙動を Above the Fold に注目して DevTools の Network タブで見たところ" title="lazyloading images focusing above the fold" width=1366 height=768>
             </picture>
           </p>
           <p>あとは、スクロールに従って残りの <code translate=no>&lt;img&gt;</code> が Viewport に近づくと、その画像の全体を再度取得する。
@@ -291,7 +291,7 @@
             <picture>
               <source type=image/avif srcset=lazyload-below.avif?260421_002105>
               <source type=image/webp srcset=lazyload-below.webp?260421_002105>
-              <img loading=lazy decoding=async src=lazyload-below.png?191119_151451 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して Dev Tools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
+              <img loading=lazy decoding=async src=lazyload-below.png?191119_151451 alt="Lazy Load で複数画像を読み込んだ場合の挙動をスクロール後の Below the Fold に注目して DevTools の Network タブで見たところ" title="lazyloading images focusing below the fold" width=1366 height=768>
             </picture>
           </p>
           <p>同じ検証の動画を以下に付記しておく。
@@ -307,7 +307,7 @@
         <section>
           <h3 id="range--full-request-rtt"><a href="#range--full-request-rtt">Range + Full request RTT</a></h3>
           <p>まず、全てのリクエストが Range + Full で 2 回発生しているため、特に最初は従来よりも RTT が増えることになる。
-          <p>これは Above / Blow 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、Lazy をつけると無駄に RTT が増えるだけであることを意味する。
+          <p>これは Above / Below 関係なく発生しているため、もし全ての画像が Above the Fold に収まっていた場合は、Lazy をつけると無駄に RTT が増えるだけであることを意味する。
           <p>仮に、最初の Range で取得した 2.0KB のレスポンスに合成するために 2.0KB 以降から If-Range などで Conditional GET し、結合するという実装も考えられなくはないが、そうはなっていないようだ。
           <p><a href="https://tools.ietf.org/html/rfc7233#section-4.3" target=_blank>RFC 7233 - Hypertext Transfer Protocol (HTTP/1.1): Range Requests 4.3 Combining Ranges</a>
         </section>
@@ -320,7 +320,7 @@
         </section>
         <section>
           <h3 id="above-the-fold"><a href="#above-the-fold">Above the Fold</a></h3>
-          <p>ブラウザは内部で View Port の情報を持っているため、正確に Above the Fold を割り出し、必要な img のみを読むことは不可能ではないだろう。
+          <p>ブラウザは内部で Viewport の情報を持っているため、正確に Above the Fold を割り出し、必要な img のみを読むことは不可能ではないだろう。
           <p>そこに加えて、スクロールした場合を考えて、直近の画像を読んでおくというのは妥当な選択と考えられる。
           <p>しかし、Below the Fold のために取得するリクエストが、筆者が思った以上には多く有る。
           <p>本サイトで検証したところ、かなり長いページを除き、画像がある多くのページは、遅延されず最初に読み込まれてしまっている。
@@ -332,10 +332,10 @@
           <p><a href="https://docs.google.com/document/d/1691W7yFDI1FJv69N2MEtaSzpnqO2EqkgGD3T0O-pQ08/" target=_blank>Design Doc: Image Replacement in Blink (public)</a>
           <p>2.0KB 分、画像のヘッダを取得することにより、画像のサイズ情報が取得できるため、<code translate=no>&lt;img&gt;</code> のサイズが決まるということだ。
           <p>ただし、2.0KB は、決して小さくない。
-          <p>これをどこまで小さくできるは事前にはわからず、小さくしすぎて欲しい情報が入っていなければ、無駄足になる。
+          <p>これをどこまで小さくできるかは事前にはわからず、小さくしすぎて欲しい情報が入っていなければ、無駄足になる。
           <p>サイズを知りたいだけなら <code translate=no>&lt;img&gt;</code> に width/height もしくは intrinsic size を指定すれば問題なさそうだが、明示してもヘッダの取得は走るようだ。
           <p>逆に width/height などから <code translate=no>&lt;img&gt;</code> のサイズが確定できれば、将来この Range リクエストは不要にできる可能性があると考えている。
-          <p>しかし、それでは HTML に手を入れられないコンテンツで lazyload をしたいと場合に、2.0KB リクエストは防げないことになる。
+          <p>しかし、それでは HTML に手を入れられないコンテンツで lazyload をしたい場合に、2.0KB リクエストは防げないことになる。
           <p>素人考えだと、HTTP HEAD リクエストを発行させる属性を <code translate=no>&lt;img&gt;</code> に追加し、<code translate=no>Image-Size: 200x300</code> などのヘッダを返すといったこともできなく無い気がするがどうなのだろうか。
           <p>この辺は、もう少し勉強してから、必要があれば issue などで議論したい。
         </section>
@@ -360,7 +360,7 @@
           <li><a href="https://github.com/w3c/webappsec-feature-policy/blob/master/policies/loading-frame-default-eager.md" target=_blank>loading-frame-default-eager</a>
           <li><a href="https://github.com/w3c/webappsec-feature-policy/issues/193" target=_blank>Feature Policy: lazyload - Issue #193</a>
         </ul>
-        <p>一括で挙動を変えると、Analytics で動的に埋め込む <code translate=no>&lt;img&gt;</code> でリクエストが二回発生し、測定がずれるといった問題も想像される。
+        <p>一括で挙動を変えると、Analytics で動的に埋め込む <code translate=no>&lt;img&gt;</code> でリクエストが 2 回発生し、測定がずれるといった問題も想像される。
         <p>Blink では、こうしたケースを <a href="https://docs.google.com/document/d/1jF1eSOhqTEt0L1WBCccGwH9chxLd9d1Ez0zo11obj14/edit#heading=h.cx8y0v73akfi" target=_blank>ヒューリスティックに解析し回避する</a> といったことも書かれているが、結果は実装に依存するだろう。
       </section>
       <section>
@@ -391,7 +391,7 @@
         <p>また、<code translate=no>&lt;article&gt;</code> 外で必ず Above the Fold に入る <code translate=no>&lt;header&gt;</code> に並んでいる画像については <code translate=no>lazyload</code> を付与していなかったが、今回の更新を受け全てに <code translate=no>loading=eager</code> を明示的に付与した。
         <p>HTML を AMP 用に変換して運用しているが、ここは lazyload 時代から不要なものとされているため、無視してくれれば良いものをわざわざ削っている。
         <ul>
-          <li><a href="ampproject/amphtml https://github.com/ampproject/amphtml/issues/19443">lazyload for <code translate=no>&lt;amp-iframe&gt;</code></a>
+          <li><a href="https://github.com/ampproject/amphtml/issues/19443" target=_blank>lazyload for <code translate=no>&lt;amp-iframe&gt;</code> - ampproject/amphtml</a>
         </ul>
         <p>この状態で、今後も挙動を検証していくこととする。
       </section>

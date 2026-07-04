@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-10-26T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-10-26>2018-10-26</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -196,7 +196,7 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">msg</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>hello&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">submit</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>post&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
-          <p>この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう
+          <p>この form を submit した時に送信される HTTP Request の概観は以下のようになるだろう。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">POST</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> /posts </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">HTTP</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">/</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1.1</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Host</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> sns.example.com</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deadbeef</span></span>
@@ -204,7 +204,7 @@
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Referer</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> https://sns.example.com/posts/new</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">msg=hello</span></span></code></pre>
-          <p>サーバは、Cookie の正当性を確認し、正ければ投稿を受け付ける。
+          <p>サーバは、Cookie の正当性を確認し、正しければ投稿を受け付ける。
           <p>ここで、攻撃者は <code translate=no>https://darkside.jxck.io/csrf</code> に以下のような HTML を仕込んだ罠ページを用意する。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> action</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">https://sns.example.com/posts/new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">post</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">msg</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">>こんにちはこんにちは&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">textarea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
@@ -225,7 +225,7 @@
           <p>これが、商品の購入や送金、パスワードの変更だった場合は、さらに被害が大きくなるだろう。
           <p>対策としては、まず Origin ヘッダや Referer ヘッダの確認が思いつく。
           <p>ところが、Referer を送らないように設定するユーザもいることが知られており、Referer が無かったらリクエストを弾くという実装は現実的ではない。
-          <p>罠サイトは Referrer Policy を用いることで、Referer が送らないように設定できるため、Referer をベースとした対策は万全とは言い難い。
+          <p>罠サイトは Referrer Policy を用いることで、Referer を送らないように設定できるため、Referer をベースとした対策は万全とは言い難い。
           <p>Origin ヘッダは、そもそもが生成元の Origin を通知するためのものなので、この検証用途で使うには妥当と言える。
           <p>しかし、valid な値が推測可能なため、もしブラウザからのリクエストに <em>任意のヘッダを追加できる脆弱性</em> が別で存在した場合には、簡単に偽装できてしまう。
           <p>そして、残念ながら近年も <a href="https://insert-script.blogspot.jp/2018/05/adobe-reader-pdf-client-side-request.html" target=_blank>そうした脆弱性</a> が見つかっているため、追加で別の対策が求められているのが現状だ。
@@ -271,14 +271,14 @@
           <p>直近では Twitter に報告された Silhouette (シルエット攻撃)が、まさしくこれにあたる。
           <p><a href="https://blog.twitter.com/engineering/en_us/topics/insights/2018/twitter_silhouette.html" target=_blank>Protecting user identity against Silhouette</a>
           <p>こうした攻撃の推測精度を下げるため、performance.now の精度を落とすという施策がブラウザベンダによってなされることもある。
-          <p>しかしこの場合も、罠サイトからのリクエストに Cookie 送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
+          <p>しかしこの場合も、罠サイトからのリクエストに Cookie が送信されなければ、毎回ログインページのレスポンスが返ることになり攻撃が成立しない。
         </section>
         <section>
           <h3 id="side-channel-attack"><a href="#side-channel-attack">Side Channel Attack</a></h3>
           <p>CRIME/BEAST/BREACH は、TLS の暗号化や圧縮に関わるロジックを逆手に取り、ペイロードを推測していく Side Channel Attack の亜種である。
           <p>こうした攻撃は TLS のプロトコルレベルでの解決(暗号方式の変更や圧縮の無効など)によって防ぐことが基本となるうえ、攻撃が成立した場合 Cookie 以外の情報も抜くことは可能である。
-          <p>しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生し、自動で付与される Cookie を推測するというものが多い。
-          <p>例えば CRIME の場合は、Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい、イメージとしては以下のような感じだ。
+          <p>しかし、代表的な攻撃シナリオはやはり、ターゲットを罠サイトなどに誘導し、微妙にペイロードを操作しながら連続でリクエストを発生させ、自動で付与される Cookie を推測するというものが多い。
+          <p>例えば CRIME の場合は、Cookie の値が一致すれば圧縮が効きパケットが小さくなることを観測するだけでよい。イメージとしては以下のような感じだ。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  word </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> `ここを変えて行く`</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://sns.example.com/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
@@ -314,7 +314,7 @@
           <h3 id="lax"><a href="#lax">Lax</a></h3>
           <p>CrossSite のリクエストでは、Top Level Navigation 以外は Cookie を送らない。
           <p>これにより、別サイトからの遷移でもログイン状態が維持できるため、既存の Session 管理にも導入しやすい。
-          <p>POST では Cookie が送られないため、後述する CSRF のような攻撃への耐性が高まる。
+          <p>POST では Cookie が送られないため、前述した CSRF のような攻撃への耐性が高まる。
           <p>また、XHR/fetch() や <code translate=no>&lt;img&gt;</code> を用いて発生させる GET は Top Level Navigation ではないため Cookie がつかない。
           <p>従って、JS からリクエストを生成し、時間を測るタイプの攻撃への耐性もある。
           <p>しかし、Popup Window や <code translate=no>&lt;link rel=prerender&gt;</code> などは Top Level Navigation となるため、いくつかの攻撃には依然として耐性が無い点に注意したい。
@@ -374,12 +374,12 @@
       </section>
       <section>
         <h2 id="samesite-cookie-の導入"><a href="#samesite-cookie-の導入">SameSite Cookie の導入</a></h2>
-        <p>実際に Same Site Cookie の導入する方法は、大きく 2 つある。
+        <p>実際に Same Site Cookie を導入する方法は、大きく 2 つある。
         <section>
           <h3 id="既存の-cookie-に対する-lax-の付与"><a href="#既存の-cookie-に対する-lax-の付与">既存の Cookie に対する Lax の付与</a></h3>
           <p>既存のセッション管理が単体の Session Cookie で運用されている場合、そこに Strict を付けるのは難しい。
           <p>他のサイトから遷移した場合に毎回ログインを要求してしまうため、利便性の観点から問題が出る。
-          <p>そこで、互換性を崩さずに導入するためには、すでに運用されている Session Cookie に lax を付与するのが安全かつ導入しやすいだろう。
+          <p>そこで、互換性を崩さずに導入するためには、すでに運用されている Session Cookie に Lax を付与するのが安全かつ導入しやすいだろう。
           <p>これにより、典型的な POST での CSRF や一部の Timing Attack は防ぐことができる。
           <p>しかし、Top Level Navigation を用いた攻撃があった場合は効果がない。
         </section>
@@ -393,7 +393,7 @@
           <dl>
             <div>
               <dt>Read Cookie
-              <dd>ユーザのセッション維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
+              <dd>ユーザのセッションを維持するための Cookie 。これが送られればユーザがログイン状態と見なされる。しかし、それ以上の操作についてはこの Cookie では許可されない。
             </div>
             <div>
               <dt>Write Cookie
@@ -404,7 +404,7 @@
           <p>Read Cookie は、副作用を起こす能力がなくなっているのであれば、Lax でも SameSite 無しでも良い。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> read=zxcv; Path=/; Secure; HttpOnly;</span></span>
 <span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Set-Cookie</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> write=asdf; Path=/; Secure; HttpOnly; SameSite=Strict</span></span></code></pre>
-          <p>もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しだろう。
+          <p>もし新規の開発や改修が可能であるならば、こうした構成も可能かもしれないが、既存のサービスのほとんどはここまで手を入れるのは難しいだろう。
           <p>また、HTTP Method に関わらず、副作用を起こす操作を全て Strict にしているため、例えば前述の足跡や既読のように、別ドメインからの Top Level Navigation で遷移しただけで副作用を起こす設計では、この構成は難しい。
           <p>例えば、既読を write cookie にしか許さない場合、ユーザページのリンクを別のサイトで踏んで遷移してきたユーザの既読がつかない。
           <p>Redirect を挟むのは Write Cookie を分けた意味がないため、一旦別のページを挟んでリンクを踏ませるなどし、Same Site Request に誘導してやる必要がある。

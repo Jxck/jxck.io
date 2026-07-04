@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-08-15T00:00:00+09:00",
-    "dateModified": "2026-05-10T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-08-15>2017-08-15</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-05-10>2026-05-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -169,7 +169,7 @@
         <h2 id="es-modules"><a href="#es-modules">ES Modules</a></h2>
         <p>徐々に揃いつつある ES Modules(ESM) の仕様は TC39 で行われており、その仕様については主に以下のような部分になる。
         <ul>
-          <li><code translate=no>import</code> や <code translate=no>export</code> と行った構文
+          <li><code translate=no>import</code> や <code translate=no>export</code> といった構文
           <li>module 内はデフォルト strict mode
           <li>module でスコープを閉じる
           <li>module 内の <code translate=no>this</code> は <code translate=no>undefined</code>
@@ -192,7 +192,7 @@
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> foo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> require</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"./foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">module</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">exports</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { message: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello world"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ex modules</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// es modules</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> foo </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "./foo"</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { message: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello world"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span></code></pre>
         <p>CJS は ESM 以前の JS の範囲で実装されていたため、<code translate=no>require</code> 関数や <code translate=no>modules</code> オブジェクトへの操作を特別扱いすることで実現していた。
@@ -209,7 +209,7 @@
         <p>これでは、実行してからでないと、<code translate=no>foo.v1</code>, <code translate=no>foo.v2</code> どちらで依存解決すべきかわからない。
         <p>したがって browserify などは、こうした書き方はしないという前提でビルドを行なっていた。
         <p>ESM は、関数やオブジェクトではなく、新しく「構文(syntax)」を用意することによって、この問題を解決している。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// ex modules</span></span>
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// es modules</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> foo </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "./foo"</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { message: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"hello world"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }</span></span></code></pre>
         <p>構文を定義することで、パースを行なった時点で曖昧な書かれ方をしている部分を Syntax Error として弾くことができる。
@@ -220,7 +220,7 @@
         <h2 id="実行環境における-esm-の扱い"><a href="#実行環境における-esm-の扱い">実行環境における ESM の扱い</a></h2>
         <p>TC39 の責任範囲は、JS ファイル内に書かれる構文が中心であり、そのファイルが実際にどう扱われるかは、実行環境の責務となる。
         <p>特に実行環境がどう扱うかについて、もっとも重要なのが、<em>そもそもそのファイルが CJS か ESM か</em> の判別である。
-        <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate=no>this</code> を <code translate=no>undefined</code> と扱うと行った処理ができなくなるからである。
+        <p>判別が正しく行えなければ、先述のデフォルト strict mode や、トップレベルの <code translate=no>this</code> を <code translate=no>undefined</code> と扱うといった処理ができなくなるからである。
         <p>(ここでの CJS は、<code translate=no>require()</code> や <code translate=no>module</code> を使っているかというよりも、単に ESM ではないという意味が強い)
         <section>
           <h3 id="modules-on-browser"><a href="#modules-on-browser">Modules on Browser</a></h3>
@@ -232,7 +232,7 @@
           <p>詳しくは以下の記事で解説している。
           <p><a href="https://blog.jxck.io/entries/2017-06-21/nomodule-attribute.html">ES Modules への橋渡しとしての nomodule 属性</a>
           <p>このように、ブラウザは読み込む前にそのファイルを Script/Module どちらとしてパースするかを判断することができる。
-          <p>パースが正しく終われば、依存を解決のために追加の Fetch を以下のように行う。
+          <p>パースが正しく終われば、依存解決のために追加の Fetch を以下のように行う。
           <p>
             <img loading=lazy decoding=async src=https://html.spec.whatwg.org/images/asyncdefer.svg alt="ブラウザによる ESM の依存解決と Parse/Fetch の順番" title="async-defer-module <script> parsing/fetching timeline" width=1000 height=245>
           </p>
@@ -242,7 +242,7 @@
       <section>
         <h2 id="modules-on-node.js"><a href="#modules-on-node.js">Modules on Node.js</a></h2>
         <p>Node.js においては、パース時にそのファイルが ESM/CJS どちらなのかを判別する方法を長く議論していた。
-        <p>いくつかの案があったが、代別すると 2 種類ある。
+        <p>いくつかの案があったが、大別すると 2 種類ある。
         <ul>
           <li>
             パースする前にわかる
@@ -272,11 +272,11 @@
         <p>議論の中でもあったデメリットとして、これまでの多くのツール、ライブラリ、ミドルウェアなどの対応は懸念される。
         <section>
           <h3 id="ツール"><a href="#ツール">ツール</a></h3>
-          <p>暗黙的に <code translate=no>.js</code> というファイルを JS ファイルと判断しているツールに取っては <code translate=no>.mjs</code> は単に未知のファイルとなってしまう。
+          <p>暗黙的に <code translate=no>.js</code> というファイルを JS ファイルと判断しているツールにとっては <code translate=no>.mjs</code> は単に未知のファイルとなってしまう。
           <p>特に <code translate=no>*.js</code> といった正規表現には <code translate=no>.mjs</code> は引っかからないため、注意が必要となる。
           <p>しかし、あえて <code translate=no>.jsm</code> ではなく <code translate=no>.mjs</code> が採択されたのは、こうした従来のツールが誤って CJS として ESM を扱わないようにしているという部分もある。
           <p>今後は、明示的に <code translate=no>.mjs</code> を新しい拡張子として認識するように対応を進める必要がある。
-          <p>シンタックスハイライトなどは、拡張子を認識しても <code translate=no>import</code> や <code translate=no>export</code> といった構文の対応や依存解決の表示と行った周辺の挙動も合わせて対応が必要になる。
+          <p>シンタックスハイライトなどは、拡張子を認識しても <code translate=no>import</code> や <code translate=no>export</code> といった構文の対応や依存解決の表示といった周辺の挙動も合わせて対応が必要になる。
         </section>
         <section>
           <h3 id="ライブラリ"><a href="#ライブラリ">ライブラリ</a></h3>
@@ -304,7 +304,7 @@
       </section>
       <section>
         <h2 id="universal-js-の今後"><a href="#universal-js-の今後">Universal JS の今後</a></h2>
-        <p>仕様策定側も、最終的にはモジュールベースの ESM が基本となっている正解を想定している。
+        <p>仕様策定側も、最終的にはモジュールベースの ESM が基本となっている世界を想定している。
         <p>特にブラウザが、複数の JS を同一スコープで連結するといった挙動も、黎明期の JS ではまだしも、十分発展した現在の JS においては不要となりつつある。
         <p>よって、今後開発される JS は基本的に ESM を基本としていくべきである。
         <p>この時、前述の通りブラウザは拡張子ではなく <code translate=no>&lt;script type=module&gt;</code> で判断しているため、<code translate=no>.mjs</code> である必要はない。
@@ -312,7 +312,7 @@
         <p>また、今後 Node 以外で ESM に対応した実行環境が出た場合、サーバから Fetch しても <code translate=no>Content-Type</code> では判断できない以上、この拡張子を手がかりにする実装になることが予想される。
         <p>結果、<code translate=no>.mjs</code> で書いておくことは、前方互換性にも寄与する可能性がある。
         <p>また、これまで CJS をバンドルしていたビルドプロセスが不要になることで、<code translate=no>.mjs</code> をそのままサーブするデプロイが進むだろう。
-        <p>この場合、キャッシュなどの設定はこれまでの <code translate=no>bundle.js</code> ファイル一つの設定とは別の最適化が行われていくだろう。
+        <p>この場合、キャッシュなどの設定はこれまでの <code translate=no>bundle.js</code> ファイル 1 つの設定とは別の最適化が行われていくだろう。
         <p>こうした最適化のためにも、<code translate=no>.js</code> と明示的に分離するための <code translate=no>.mjs</code> を使っていく方がメリットが享受しやすくなると思われる。
       </section>
       <section>

@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2022-04-22T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2022-04-22>2022-04-22</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -272,7 +272,7 @@ after
         </section>
         <section>
           <h3 id="spa-第三期-router-library-と-ssr"><a href="#spa-第三期-router-library-と-ssr">SPA 第三期: Router Library と SSR</a></h3>
-          <p>しかし、History API には多くの問題があったことは、この API と向き合った開発者なら一度は感じたことがあるだろう。
+          <p>しかし、History API には多くの問題があったことは、この API と向き合った開発者なら 1 度は感じたことがあるだろう。
           <p>この API の問題点は以下にまとまっている。
           <ul>
             <li>
@@ -331,7 +331,7 @@ after
         <section>
           <h3 id="navigation.navigate"><a href="#navigation.navigate">navigation.navigate()</a></h3>
           <p>History API でいう <code translate=no>history.pushState()</code> に相当するのが <code translate=no>navigation.navigate()</code> だ。URL に紐づけて State を保存し、Entry List を操作する。
-          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, info: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"shortcut"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finish</span></span></code></pre>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, info: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"shortcut"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finished</span></span></code></pre>
           <p><code translate=no>state</code> は any だが、シリアライズ可能なものに限る。<code translate=no>history</code> は <code translate=no>&quot;push&quot;</code> なら追記、<code translate=no>&quot;replace&quot;</code> なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は <code translate=no>info</code> で送ることができる。
           <p>戻り値は <code translate=no>{ committed, finished }</code> という 2 つの Promise だ。<code translate=no>committed</code> は <code translate=no>navigate()</code> 開始と共に即座に Resolve し、<code translate=no>finished</code> は <code translate=no>navigate()</code> が完了したら Resolve する。
         </section>
@@ -354,7 +354,7 @@ after
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 実際には pushState してない場合は永続化されない</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(history.state.count); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 2</span></span></code></pre>
           <p><code translate=no>getState()</code> は、常に Entry の Clone を返すため、そこを変更してもブラウザには反映されない。
-          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finish</span></span>
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigation.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">navigate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/foo"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, { state: {count: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}, history: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"push"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> }).finished</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// 取得した値はクローンなので直感に反した更新はされない</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">navigation.currentEntry.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getState</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">().count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
@@ -566,7 +566,7 @@ after
             <li><a href="https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296" target=_blank>https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296</a>
           </ul>
           <p>
-            <video title="mozaic.fm で音声再生しながらエピソード間を遷移する" width=43584 height=2240 controls playsinline>
+            <video title="mozaic.fm で音声再生しながらエピソード間を遷移する" width=3584 height=2240 controls playsinline>
               <source type=video/mp4 src=mozaic-spa-by-navigation.mp4?220422_062239>
               <source type=video/webm src=mozaic-spa-by-navigation.webm?220422_062239>
             </video>

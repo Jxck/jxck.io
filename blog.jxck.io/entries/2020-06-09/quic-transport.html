@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-06-09T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-06-09>2020-06-09</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -228,7 +228,7 @@
         </section>
         <section>
           <h3 id="uri-scheme"><a href="#uri-scheme">URI Scheme</a></h3>
-          <p>また、プロトコルには新しくスキーマが定義されている。
+          <p>また、プロトコルには新しくスキームが定義されている。
           <p>仕様にも注意書きがあるが、仮の定義として現状は <code translate=no>quic-transport</code> になっており、将来変わる可能性が有る。
           <p>ここに指定された Origin + Path が前述の Client Indication で通知されることになる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
@@ -332,13 +332,13 @@ connected -&gt; failed</code></pre>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">QuicTransport includes WebTransport;</span></span></code></pre>
           <p>Http3Transport も同じように 4 つ includes している。
           <p>そもそも WebTransport interface が 3 つ includes すれば良さそうだが、これは将来別の Transport パターンが実装されることがあった場合の拡張性だろうか。
-          <p>UnidirectionalStreamTransport は以下のような定義だ。
+          <p>UnidirectionalStreamsTransport は以下のような定義だ。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">interface</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> mixin</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> UnidirectionalStreamsTransport</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  Promise</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">SendStream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> createSendStream</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">optional</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> SendStreamParameters</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70"> parameters</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {});</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ReadableStream </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">receiveStreams</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">};</span></span></code></pre>
           <p>クライアントからサーバに対する 1 方向の場合は <code translate=no>createSendStream</code> を、逆は <code translate=no>receiveStreams()</code> によって、必要な Stream が得られる。
-          <p>一方 BidirectionalStreamTransport の定義はこうだ。
+          <p>一方 BidirectionalStreamsTransport の定義はこうだ。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">interface</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> mixin</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> BidirectionalStreamsTransport</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  Promise</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">BidirectionalStream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">></span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> createBidirectionalStream</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  ReadableStream </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">receiveBidirectionalStreams</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
@@ -369,7 +369,7 @@ connected -&gt; failed</code></pre>
         <p>さて、これを何に使うかという点について考える。
         <section>
           <h3 id="media-stream"><a href="#media-stream">Media Stream</a></h3>
-          <p>まず、このブログでも以前紹介したように、WebRTC を比較対象に挙がるのであれば、メディアの転送がどうなのかという問題になる。
+          <p>まず、このブログでも以前紹介したように、WebRTC が比較対象に挙がるのであれば、メディアの転送がどうなのかという問題になる。
           <p>現状 QuicTransport の転送単位は Uint8Array を基本としているため、getUserMedia の結果からバイナリを取得するなどができれば、ビデオ会議なども可能になるポテンシャルはあるだろう。
           <p>しかし、現状 getUserMedia した MediaStream API は、前述した WHATWG Stream を指すのではなく、たんなるメディアの抽象化という意味で、Pipe しても流れるわけではない。
           <p>Canvas 経由で ImageBitmap を取る、WASM でエンコードする、別の Peer とつないだ PeerConnection から InsertableStream で抜くなどの方法は無くはないが、正攻法でいうと WebCodecs を待つことになる。

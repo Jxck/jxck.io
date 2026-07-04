@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-05T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-05>2018-01-05</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -179,8 +179,8 @@
       <section>
         <h2 id="plan-b"><a href="#plan-b">Plan B</a></h2>
         <p><a href="https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00" target=_blank>Plan B: a proposal for signaling multiple media sources in WebRTC</a>
-        <p>例えば、複数のマイクからの音声を送る場合、&quot;m=&quot; line をマイクごとに記述にする。
-        <p>しかし、各 &quot;m=&quot; line 対して別トランスポートを割り当てたいとは限らない。
+        <p>例えば、複数のマイクからの音声を送る場合、&quot;m=&quot; line をマイクごとに記述する。
+        <p>しかし、各 &quot;m=&quot; line に対して別トランスポートを割り当てたいとは限らない。
         <p>多重化する場合は、トランスポートは 1 つで良い。
         <p>そこで、トランスポートに対して &quot;m=&quot; line は 1 つにし、それを &quot;envelope&quot; とする。
         <p>その中に、マイクごとの定義を、&quot;a=ssrc&quot; で記述する。
@@ -215,7 +215,7 @@
       <section>
         <h2 id="sdpsemantics"><a href="#sdpsemantics">SdpSemantics</a></h2>
         <p>Chrome は、まず WebRTCUnifiedPlan というフラグを用意するとしている。
-        <p>このフラグを有効にすると、RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティを定義される。
+        <p>このフラグを有効にすると、RTCConfiguration に <code translate=no>&quot;sdpSemantics&quot;</code> という独自プロパティが定義される。
         <p>デフォルトは <code translate=no>&quot;plan-b&quot;</code> であり、明示的に <code translate=no>&quot;unified-plan&quot;</code> を指定すれば切り替えられる。
         <p>後にデフォルトを &quot;unified-plan&quot; に変更し、<code translate=no>&quot;plan-b&quot;</code> が十分に減れば値自体が削除される。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> RTCPeerConnection</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({sdpSemantics: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"unified-plan"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>

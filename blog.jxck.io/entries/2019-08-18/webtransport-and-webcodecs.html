@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-08-18T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-08-18>2019-08-18</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -510,7 +510,7 @@
           <h3 id="api_1"><a href="#api_1">API</a></h3>
           <p>基本はブラウザが内部で持っているコーデック/コンテナの実装に対する API を提供する。
           <p>要素ごとに WHATWG Stream ベースの API とし、終端が MediaStreamTrack となることで、他の API(WebTransport, WebRTC, Audio/Video Element etc) と接続する。
-          <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、Encoder/Decoder が TransferStream として提供される。
+          <p>音声は AudioPackets 、映像は VideoFrames を最小単位とし、Encoder/Decoder が TransformStream として提供される。
           <p>MediaStreamTrack との繋ぎは、TrackReader/Writer が提供され、Stream を流していけば他と繋がるという設計だ。
           <p>例えば、映像の送受信は Camera -&gt; Encode -&gt; Transport -&gt; Decode -&gt; VideoElement となるため、以下のようになる。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
@@ -519,11 +519,11 @@
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> */</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> stream</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> navigator.mediaDevices.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getUserMedia</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({video:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoTracks</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getVideoTrack</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoTracks</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> stream.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">getVideoTracks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// MediaStreamTrack を DecodedVideoFrame の ReadableStream に変換</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoTrackReader</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoTrackReader</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(videoTracks[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">]);</span></span>
-<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DecodedVideoFrame を EncodedVideoFrame にする TransferStream</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DecodedVideoFrame を EncodedVideoFrame にする TransformStream</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoEncoder</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoEncoder</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  codec:         </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"vp8"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  bitsPerSecond: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1000000</span></span>
@@ -537,7 +537,7 @@
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> * 受信して Video タグに出す</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> */</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// EncodedVideoFrame を DecodedVideoFrame にする TransferStream</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// EncodedVideoFrame を DecodedVideoFrame にする TransformStream</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoDecoder</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoDecoder</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({codec: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"vp8"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">});</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">// DecodedVideoFrame の WritableStream を MediaStreamTrack に変換</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> videoTrackWriter</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> VideoTrackWriter</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">();</span></span>
@@ -563,8 +563,8 @@
           <p>時期的にも「Stadia を WebRTC/QUIC ベースでやるのが大変だったんだろうな」が、6 月にあった <a href="https://www.w3.org/2018/12/games-workshop/report.html#webtransport" target=_blank>Web Games Workshop</a> での <a href="https://vimeo.com/350908362" target=_blank>Peter のトーク</a> を見た最初の感想だった。
           <p>確かに WebRTC は Web に UDP の API を初めてもたらしたが、その前提が P2P でのビデオチャットに寄りすぎており、ブラウザが持つコーデックで音声/映像が送れることを重視している。
           <p>DTLS - SRTP というツギハギな仕組みも、もう少しスッキリすればなと個人的にも思う。
-          <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが産まれるのは想像に難くない。
-          <p>WebRTC の Peer をサーバに実装し Global IP を降れば、Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
+          <p>DataChannel で任意のバイナリをやりとりできるとしても、前提として Client-Server で提供したいという要求がある以上、インピーダンスミスマッチが生まれるのは想像に難くない。
+          <p>WebRTC の Peer をサーバに実装し Global IP を振れば、Client-Server のようにデプロイすることも可能だが、やりたいことに対してやるべきことが複雑すぎる結果となる。
           <p>かといって、直接 RawSocket を触りたいという TCP/UDP Socket API を入れたとしても、その上に必要なスタックは自前で実装することになる。せっかくアクティブにメンテされる枯れた実装がブラウザ内部にあるのに、必要なプロトコルとコーデックを WASM でビルドすればいいと言われても、片手落ちだろう。
           <p>そうした全ての、ある程度ユースケースが前提とされ始まった各仕様を一旦フラットにし、ここまでの経験(これは振り返って失敗と見えるかもしれないが、振り返る前は成功だった)を踏まえて再スタートするという点で、野心的だと言える。
         </section>

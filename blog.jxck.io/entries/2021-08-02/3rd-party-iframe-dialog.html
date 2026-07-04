@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2021-08-02T00:00:00+09:00",
-    "dateModified": "2026-04-02T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2021-08-02>2021-08-02</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-04-02>2026-04-02</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -211,7 +211,7 @@
           <picture>
             <source type=image/avif srcset=3rd-prompt.avif?260421_002105>
             <source type=image/webp srcset=3rd-prompt.webp?260421_002105>
-            <img loading=lazy decoding=async src=3rd-prompt.png?230731_162734 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io sayz" と表示される" width=1260 height=700>
+            <img loading=lazy decoding=async src=3rd-prompt.png?230731_162734 alt="Cross Origin iframe で prompt() を呼んだ場合 "An embedded page at lab2.jxck.io says" と表示される" width=1260 height=700>
           </picture>
         </p>
         <p>ユーザにとってこの表示の意味を理解するのは必ずしも容易ではない。ただの <code translate=no>alert()</code> であれば得られる情報はないが、<code translate=no>prompt()</code> の場合はユーザに入力を求め、それを JS で取得することができてしまう。
@@ -327,7 +327,7 @@
         <section>
           <h3 id="iframe-を直接提供している場合"><a href="#iframe-を直接提供している場合">iframe を直接提供している場合</a></h3>
           <p><code translate=no>&lt;iframe&gt;</code> を提供し、コンテンツがその <code translate=no>&lt;iframe&gt;</code> を直接埋め込んでいる場合は、もうその <code translate=no>&lt;iframe&gt;</code> 内でなんとかするしかないだろう。
-          <p><code translate=no>&lt;iframe&gt;</code> が領域を広めに確保していれば、その中で出せる範囲のダイアログを出すしか無いし、<code translate=no>&lt;iframe&gt;</code> が十分な領域を持ってない場合(ボタンだけなど)の場合はできることは少ないだろう。
+          <p><code translate=no>&lt;iframe&gt;</code> が領域を広めに確保していれば、その中で出せる範囲のダイアログを出すしか無いし、<code translate=no>&lt;iframe&gt;</code> が十分な領域を持ってない場合(ボタンだけなど)はできることは少ないだろう。
           <p>サイト側に <code translate=no>&lt;iframe&gt;</code> からのメッセージを送り、それを受け取って何かをするようにサイト側の JS を直してもらえるならなんとかなるが、そうでない場合は <code translate=no>&lt;iframe&gt;</code> での提供をやめて前述の JS 提供の形態に変えるか、もしくはダイアログ自体を諦めて仕様を変えるしか無いように思う。
           <p>もちろん筆者が見落としている実装方法があるかもしれないので、良い方法があれば共有すると良いだろう。
         </section>
@@ -341,7 +341,7 @@
         <p>例えば Spectre の登場により Shared Array Buffer が無効になるのも、Cookie のデフォルトが SameSite=Lax になるのも、HTTPS でないと URL バーが赤くなるのも、全ては時代とともに高度になる潜在的な危険から、ユーザを守るために「互換性を壊してでも直すべきだ」とされて起こる変更だ。
         <p>そして、そうした変更は Opt-In で提供しても実装が変わらないと浸透せず、多くの実装はいつまでたっても変わらないために、ブラウザがデフォルトとしてリリースすることで、変更を実装に強制するということを、分かった上で積極的に行っていく時代に既になっている。
         <p>Web がそうなっている以上、その変更に合わせてユーザが安全に使えるように実装を更新するのも、開発者およびサービス/コンテンツ提供者の使命といっても、過言でないのではないだろうか。
-        <p>一方で、Reverse Origin Trials があるとはいえ、Google のアナウンスが適切であったかについては、筆者も疑問に思わなくない。一次情報として blink-dev の話はあるが、それ以外にもう少しアナウンスがあっても良さそうには思う。
+        <p>一方で、Reverse Origin Trials があるとはいえ、Google のアナウンスが適切であったかについては、筆者も疑問に思わなくもない。一次情報として blink-dev の話はあるが、それ以外にもう少しアナウンスがあっても良さそうには思う。
         <p>本サイトや、筆者が行っている <a href="https://mozaic.fm" target=_blank>mozaic.fm</a> の Monthly Web が少しでもそうした情報の提供に役立てば幸いだ。
       </section>
       <section>

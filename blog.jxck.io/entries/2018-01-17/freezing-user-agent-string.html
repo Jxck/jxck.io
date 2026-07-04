@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web co...">
+  <meta name=description         content="少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目が奪われている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web compat...">
   <meta name=keywords            content="user-agent,safari">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2018-01-17/freezing-user-agent-string.html>
   <meta property=og:title        content="Safari による User-Agent 固定化と Web における Feature Detection | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web co...">
+  <meta property=og:description  content="少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目が奪われている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web compat...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2018-01-17T00:00:00+09:00",
-    "dateModified": "2026-03-07T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web co..."
+    "description": "少し前に Safari Technology Preview 46 がリリースされた。Service Worker のアナウンスに目が奪われている一方、しれっと以下の一文がある。Froze the user-agent string to reduce web compat..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2018-01-17>2018-01-17</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -153,8 +153,8 @@
                 </ol>
                 <li><a href="#content-negotiation">Content Negotiation</a>
                 <li><a href="#protocol">Protocol</a>
-                <li><a href="#outro">Outro</a>
               </ol>
+              <li><a href="#outro">Outro</a>
             </ol>
           </nav>
         </dd>
@@ -179,7 +179,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>少し前に Safari Technology Preview 46 がリリースされた。
-        <p>Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
+        <p>Service Worker のアナウンスに目が奪われている一方、しれっと以下の一文がある。
         <blockquote cite="https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/">
           <p>Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
           <p>&mdash; <cite><a href="https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/" target=_blank>Release Notes for Safari Technology Preview 46</a></cite>
@@ -255,7 +255,7 @@
         <p>その後、いわゆる HTML5 期、IE を外した Chrome や Safari のみに提供するサービス実装も登場したため、後発の Edge は UA に <code translate=no>Chrome</code> や <code translate=no>Safari</code> を含むこととなった。
         <p>現在、多くのブラウザが <code translate=no>Mozilla...</code> で始まり、他の実装名を含む、ぱっと見なんなのかわからない文字列となっているのは、こうした歴史的な経緯がある。
         <p>つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
-        <p>こうしたことは、歴史が長いソフトウェアではよくある話だ、Windows 9 が出なかった理由も同様の理由と言われている。
+        <p>こうしたことは、歴史が長いソフトウェアではよくある話だ。Windows 9 が出なかったのも同様の理由と言われている。
         <p>ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
         <p>その時点でのブラウザが望む機能を持っていなかったとしても、リリースが進めば改善される可能性がある。
         <p>基本的に、開発者は <em>UA ではなく、依存したい機能そのものの有無を確認し、処理を分岐すべきである</em> 。
@@ -293,7 +293,7 @@
         <section>
           <h3 id="css"><a href="#css">CSS</a></h3>
           <p>CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、Progressive Enhancement で進めてきた。
-          <p>しかし、CSS の API も複雑になってきたため最近では <code translate=no>@support</code> を用いた Detection がサポートされている。
+          <p>しかし、CSS の API も複雑になってきたため最近では <code translate=no>@supports</code> を用いた Detection がサポートされている。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@supports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">display</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">flex</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* flexbox supported */</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
@@ -341,14 +341,14 @@
           <p>従って、サーバ側で Feature Detection = Handshake なので、他の情報から機能の有無を類推するような方法はあまり取られない。
           <p>一方このレイヤでは、ブラウザのバージョンというより、そのプロトコル実装そのもののバージョン(ex, openssl)が問題になる場合はある。
         </section>
-        <section>
-          <h3 id="outro"><a href="#outro">Outro</a></h3>
-          <p>現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
-          <p>しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
-          <p>User-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
-          <p>UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
-          <p>それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。
-        </section>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
+        <p>しかし、Feature Detection の方法は UA に頼らずともかなり選択肢があり、よほど細かい部分の挙動差でもない限り、基本的にはカバーされている。
+        <p>User-Agent を元にした Detection は、さらに未知の User Agent の User-Agent 文字列がどうなるのか予想ができないという点で、歴史的にも負債を残してきた。
+        <p>UA で分岐するような実装がある場合は本当にそれが妥当か見直すべきだろう。
+        <p>それを踏まえた上で、アップデートが自動化し、仕様も Living Standard になった現状、メジャーブラウザについて細かくバージョンを把握するニーズがどのくらいあるのかは、今一度考え直すタイミングかもしれない。
       </section>
     </article>
   </main>

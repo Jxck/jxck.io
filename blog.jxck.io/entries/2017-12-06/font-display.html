@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2017-12-06T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2017-12-06>2017-12-06</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
         <h2 id="update"><a href="#update">Update</a></h2>
         <ul>
           <li>この検証から 2 年程のちに、First Paint/First Contentful Paint を重視するため、全ての display プロパティは swap に統一した。
-          <li>その他 WebFont に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
+          <li>その他 Web Font に関連する検証は <a href="https://blog.jxck.io/tags/web%20font.html">web font</a> タグにまとまっている。
         </ul>
       </section>
       <section>
@@ -215,7 +215,7 @@
             <dd>表示されているテキストのフォントが、(swap period 中)突然入れ替わる現象
           </div>
         </dl>
-        <p>こうした現象を防ぐためには、JavaScript でフォントの読み込み/表示を制御するのライブラリが使われることが多い。
+        <p>こうした現象を防ぐためには、JavaScript でフォントの読み込み/表示を制御するライブラリが使われることが多い。
         <ul>
           <li><a href="https://github.com/typekit/webfontloader" target=_blank>https://github.com/typekit/webfontloader</a>
           <li><a href="https://github.com/bramstein/fontfaceobserver" target=_blank>https://github.com/bramstein/fontfaceobserver</a>
@@ -262,7 +262,7 @@
           <p>block period を <code translate=no>100ms</code> 以下(推奨)、swap period を <code translate=no>0s</code> にする。
           <p>FOIT を極力避けつつも、swap period が無いため block period を過ぎると FOUT も起こらない。
           <p>しかし、ファイルの取得を完全に断念するかは UA が決め、非常に低い priority で取得を継続する場合がある。
-          <p>これにより、次回以降のアクセスでフォントがキャッシュされていれば、初回含め FOIT/FOUT 共に解決する
+          <p>これにより、次回以降のアクセスでフォントがキャッシュされていれば、初回含め FOIT/FOUT 共に解決する。
           <p>つまり、<code translate=no>optional</code> は、最初に訪れたユーザには素早くレンダリングすることを優先し、フォントの取得は UA の判断を尊重する。
           <p>スタイルよりも内容を重要視しつつ、次回以降のアクセスで付加価値として Web Font での表示を提供するという方針に使うことができる。
         </section>
@@ -273,7 +273,7 @@
         <p><a href="https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html#まとめ">Noto Sans の Web Font 対応とサブセットによる最適化</a>
         <p>フォントのサイズはギリギリまで削っているが、それでも回線次第では FOIT/FOUT などの可能性は否定できない。
         <p>しかし、やはり重要視したいのは内容であり、フォントによるスタイル自体の重要度は低く考えている。
-        <p>また、一旦取得されたフォントファイルには、<code translate=no>immutable</code> キャッシュを指定しており、二回以降のアクセスでは Cache Hit が期待できる。
+        <p>また、一旦取得されたフォントファイルには、<code translate=no>immutable</code> キャッシュを指定しており、2 回目以降のアクセスでは Cache Hit が期待できる。
         <p><a href="https://blog.jxck.io/entries/2016-07-12/cache-control-immutable.html">Cache-Control の Immutable 拡張によるリロード時のキャッシュ最適化</a>
         <p>今日ではブラウザのキャッシュ領域は取り合いであり、<a href="https://code.facebook.com/posts/964122680272229/web-performance-cache-efficiency-exercise/" target=_blank>次回のアクセスでもキャッシュがヒットすることは期待しづらい</a>が、それでもページ遷移などでは Web Font を FOIT 無しで適用できる可能性もある。
         <p>個人的には、ネットワークが著しく遅い環境で「ブラウザのフォント取得がどうなるか」や「別のページに遷移すると書体が変わる」という状況が、どういう UX になるかには興味があるため、実験の意味も含めて <code translate=no>font-display: optional</code> をページ全体に適用することとした。

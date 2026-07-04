@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-01-19T00:00:00+09:00",
-    "dateModified": "2024-11-15T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-01-19>2019-01-19</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2024-11-15>2024-11-15</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -164,7 +164,7 @@
           <li>
             mozilla standard position に RFP を上げたところ「実装はしないが仕様については <em>non-harmful</em>」となりそうだ。
             <ul>
-              <li><a href="https://github.com/mozilla/standards-positions/issues/131" target=_blank>PFP: Cache Digest Issue #131 mozilla/standards-positions</a>
+              <li><a href="https://github.com/mozilla/standards-positions/issues/131" target=_blank>RFP: Cache Digest Issue #131 mozilla/standards-positions</a>
             </ul>
           </li>
         </ul>
@@ -183,7 +183,7 @@
         <p><a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-05" target=_blank>draft-ietf-httpbis-cache-digest-05 - Cache Digests for HTTP/2</a>
         <p>究極には、ブラウザが保存しているコンテンツのリストを送ってくれば、正確に Push が可能だが、その方法は問題しかない。
         <p>現代の Web でそれをやるとサイズが大きすぎるし、Fingerprint などの問題も懸念される。
-        <p>そこで、Filtercuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
+        <p>そこで、Cuckoo Filter という Bloom Filter に似た確率的データ構造を用いるのがこの提案だ。
         <p>「このコンテンツは絶対にキャッシュされてない」ことはわかるので、その場合は Push を行う。
         <p>「このコンテンツはキャッシュされているかもしれないが、されてないかもしれない」こともわかるので、その場合は Push しない。
         <p>これにより、もし後者で実際にはキャッシュがなかった場合は、ブラウザが普段通り Fetch すればよいため、「無駄な Push は無くせる」という効果が期待された。
@@ -196,7 +196,7 @@
         <p>直近の IETF 103 の minutes でも、「実装さえあれば WGLC にできる、無いんだけど」というログのみが残っている。
         <p><a href="https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md#cache-digests-for-http2" target=_blank>HTTP Working Group Minutes - IETF103 Bangkok</a>
         <p>あるブラウザの開発者から「実装が難しすぎる」という話をちょっと聞いたことがあったが、やはり内部のキャッシュを総ざらいしてハッシュを付与するという実装は、負荷が高かったのかもしれない。
-        <p>実際、主なブラウザにおいて積極的な実装のシグナルは確認できておらず、仕様は中に浮いた状態だっという印象だ。
+        <p>実際、主なブラウザにおいて積極的な実装のシグナルは確認できておらず、仕様は宙に浮いた状態だったという印象だ。
         <p>そして、先日 httpwg の mnot から、以下の投稿が ML にあった。
         <p><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0033.html" target=_blank>Cache Digests status from Mark Nottingham</a>
         <p>要約するとこうだ。
@@ -213,7 +213,7 @@
         <p><a href="https://blog.jxck.io/entries/2016-12-16/103-early-hints.html">HTTP の新しいステータスコード 103 Early Hints | blog.jxck.io</a>
         <p>簡単に言えば、Main Resource の Status Code が決定する前に、確定している Sub Resource を Status Code 103 として送るための仕組みだ。
         <p>これは、Push を CDN に移譲したりといった一部のユースケースを満たすが、依然として Client が何を Cache しているかはわからない。
-        <p>もう一つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
+        <p>もう 1 つ、ちょうど先月提案されたのが Prefer-Push という仕組みだ。
         <ul>
           <li><a href="https://lists.w3.org/Archives/Public/ietf-http-wg/2018OctDec/0144.html" target=_blank>Prefer-Push, a HTTP extension</a>
           <li><a href="https://github.com/evert/push-please/" target=_blank>evert/push-please: A proposal for a HTTP-client suggested push by link-relation</a>
@@ -244,7 +244,7 @@
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>Cache Digest が実装されず、仕様が文字通り瀕死の状態だ。
         <p>このまま実装が進まなければ、対ブラウザの Push は、かなり狭い範囲でしか使えない。実質使い物にならないだろうと筆者は考える。
-        <p>他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、h2 が最初にユースケースで上げていた話では使いにくくなる。
+        <p>他のプロトコルなどのためのスタックとしての用途は残るかもしれないが、h2 が最初にユースケースで挙げていた話では使いにくくなる。
         <p>Client Initiate な negotiation を経ずに Server が何かするということ自体がやはり限界で、対ブラウザの Push は夢のまま終わりそうだ。
       </section>
       <section>

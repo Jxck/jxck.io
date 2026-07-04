@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2020-04-23T00:00:00+09:00",
-    "dateModified": "2026-03-06T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2020-04-23>2020-04-23</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-06>2026-03-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -192,12 +192,12 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }())</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
           <p>このイベントをフックして、タスクを実行すれば良い。
-          <p>コードは単純だ、ただしこの API がそのまま制限なく使えてしまうと、セキュリティ上の問題が生まれる。
+          <p>コードは単純だ。ただしこの API がそのまま制限なく使えてしまうと、セキュリティ上の問題が生まれる。
         </section>
       </section>
       <section>
         <h2 id="securityprivacy-consideration"><a href="#securityprivacy-consideration">Security/Privacy Consideration</a></h2>
-        <p>まず、定期的に SW を起動できるため、そこで Crypt Mining などのリソース消費が可能になる。
+        <p>まず、定期的に SW を起動できるため、そこで Crypto Mining などのリソース消費が可能になる。
         <p>また、PBS で Server に対して Fetch を行えば、Server は Client の IP を定期的に知ることができる。
         <p>一度 SW が登録されたら、ユーザがアプリを開いてないところでも、ユーザが認識できない形でトラッキングが可能ということになってしまう。
         <p>
@@ -207,11 +207,11 @@
             <img loading=lazy decoding=async src=ip-tracking.png?200901_002432 alt="定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能" title="IP Tracking by Periodic Background Sync" width=2032 height=1084>
           </picture>
         </p>
-        <p>また、PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、Bot Net の構築に応用可能であることも指摘されている。
+        <p>また、PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDoS を行う、Bot Net の構築に応用可能であることも指摘されている。
         <ul>
           <li><a href="https://github.com/WICG/BackgroundSync/issues/169" target=_blank>Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync</a>
         </ul>
-        <p>これらは、Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
+        <p>これらは、Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は PBS に加え、従来の Background Sync も Considered Harmful と表明した。
         <p>
           <picture>
             <source type=image/avif srcset=mozilla-standard-position-for-sync.avif?260421_002105>
@@ -274,7 +274,7 @@
             </picture>
           </p>
           <p>この値が高ければ PBS は minInterval に近い値で発火し、そうでなければほとんど発火しない。
-          <p>開発時は、自分でこの値を調整して発火されることもできる。
+          <p>開発時は、自分でこの値を調整して発火させることもできる。
         </section>
         <section>
           <h3 id="known-network"><a href="#known-network">Known Network</a></h3>

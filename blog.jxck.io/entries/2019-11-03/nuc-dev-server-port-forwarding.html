@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2019-11-03T00:00:00+09:00",
-    "dateModified": "2026-03-10T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2019-11-03>2019-11-03</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-10>2026-03-10</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,9 +146,7 @@
                 <li><a href="#.sshconfig">~/.ssh/config</a>
                 <li><a href="#autossh">autossh</a>
                 <li><a href="#systemd">systemd</a>
-              </ol>
-              <li><a href="#known_hosts">known_hosts</a>
-              <ol>
+                <li><a href="#known_hosts">known_hosts</a>
                 <li><a href="#sshd_config">sshd_config</a>
                 <li><a href="#ufw">UFW</a>
                 <li><a href="#authorized_keys">authorized_keys</a>
@@ -176,7 +174,7 @@
         <p>自宅では長らく Mac を使ってきたが、やはり Linux 環境があったほうが良いということで、数年ぶりにラップトップ以外の PC の購入を検討した。
         <p>自宅サーバとして使えれば、宅内オートメーションや、さまざまな用途にも流用できて、遊ぶ上でも良いだろう。
         <p>今は mini PC も色々出ており、選択肢も多く、比較的安価に、場所をとらないサーバが組めるようになった。
-        <p>これを期に、高い Mac の買い替え更新をやめ、Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
+        <p>これを機に、高い Mac の買い替え更新をやめ、Air などの持ち運び用途に特化したものを選び、メインリソースとしてどこからもアクセスできる自宅サーバを組むことにした。
       </section>
       <section>
         <h2 id="要件"><a href="#要件">要件</a></h2>
@@ -225,7 +223,7 @@
             RAM
             <ul>
               <li>特に発熱はあまり関係なさそう
-              <li>とりあえず 16G を 1 枚指しておいて不足ならもう 16G 買い足す
+              <li>とりあえず 16G を 1 枚挿しておいて不足ならもう 16G 買い足す
             </ul>
           </li>
         </ul>
@@ -237,7 +235,7 @@
           <li><a href="https://www.amazon.co.jp/dp/B077PPN5NN" target=_blank>Crucial SSD 500GB MX500</a>
           <li><a href="https://www.amazon.co.jp/dp/B014GLJJ32" target=_blank>BUFFALO 電源ケーブル</a>
         </ul>
-        <p>組み立ても、開けて指すだけなので特に難しいところは無かった。
+        <p>組み立ても、開けて挿すだけなので特に難しいところは無かった。
         <p>Ubuntu 19.10 eoan を入れたが、これもすんなり入った。
       </section>
       <section>
@@ -257,13 +255,13 @@
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># nuc から vps</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ssh user@vps -NR 22222:localhost:22</span></span></code></pre>
           <p>これを繋ぎっぱなしにする。
-          <p>次に、外出した laptop から vps につなぐ、これは普通の SSH
+          <p>次に、外出した laptop から vps につなぐ。これは普通の SSH。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># laptop から vps</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ssh user@vps</span></span></code></pre>
-          <p>最後に、入った VPS の上で、localhost:22222 に対して SSH する
+          <p>最後に、入った VPS の上で、localhost:22222 に対して SSH する。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># vps に入ったあと vps から nuc</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ ssh user@localhost -p 22222</span></span></code></pre>
-          <p>最初に VPS の 22222 ポートへの通信を、NUC の 22 に転送するように SSH を貼っている。
+          <p>最初に VPS の 22222 ポートへの通信を、NUC の 22 に転送するように SSH を張っている。
           <p>NUC 上で sshd が動いていれば、VPS 上で 22222 に対して SSH すると、NUC に入れるという仕組みだ。
           <p>これを、いつでも接続できるようにしておく。
         </section>
@@ -284,7 +282,7 @@
         </section>
         <section>
           <h3 id="autossh"><a href="#autossh">autossh</a></h3>
-          <p>まず NUC から VPS への reverse ssh は、常に貼っておかないと使いたいとき使えない。
+          <p>まず NUC から VPS への reverse ssh は、常に張っておかないと使いたいとき使えない。
           <p>もし接続が落ちても自動で再接続する必要がある。
           <p>これは autossh というツールを使うと、簡単にできるらしいので入れてみる。
           <p>autossh は ssh と同じコマンドで使うと、ssh プロセスをフォークして監視し、ssh が落ちたら再度フォークしてくれるツールだ。
@@ -328,16 +326,16 @@
           <p>これで一応 ssh 接続は維持できた。
           <p>若干の不安もあるので、制限を色々かけておく。
         </section>
-      </section>
-      <section>
-        <h2 id="known_hosts"><a href="#known_hosts">known_hosts</a></h2>
-        <p>known_hosts には接続相手の履歴が残っている。
-        <p>初回はここにエントリを追加し、次からは既存のエントリが参照される。
-        <p>サーバの IP などが変わったりすると、DNS が書き換えられていると判定されエラーになることがある。
-        <p>systemd で起動した autossh は <code translate=no>/root/.ssh/known_hosts</code> にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
-        <p>しかし、systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># systemd に書いた ExecStart 相当</span></span>
+        <section>
+          <h3 id="known_hosts"><a href="#known_hosts">known_hosts</a></h3>
+          <p>known_hosts には接続相手の履歴が残っている。
+          <p>初回はここにエントリを追加し、次からは既存のエントリが参照される。
+          <p>サーバの IP などが変わったりすると、DNS が書き換えられていると判定されエラーになることがある。
+          <p>systemd で起動した autossh は <code translate=no>/root/.ssh/known_hosts</code> にエントリを追加するため、もしエラーになったら一旦ここをクリアする。
+          <p>しかし、systemd での起動ではエントリが足されないようなので、先に一旦手動で同等のコマンドを打っておくと良い。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"># systemd に書いた ExecStart 相当</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ sudo /usr/bin/autossh reverse-ssh -NTR 22222:localhost:22</span></span></code></pre>
+        </section>
         <section>
           <h3 id="sshd_config"><a href="#sshd_config">sshd_config</a></h3>
           <p>NUC には、VPS からの key を用いた ssh のみを許可したい。
@@ -356,13 +354,13 @@
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> deny</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> incoming</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> outgoing</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">vsp_ip</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">to</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> any</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> port</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 22</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> allow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> from</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> $(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">vps_ip</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">to</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> any</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> port</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 22</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> enable</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> reload</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">ufw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> status</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> numbered</span></span></code></pre>
           <p>変更があったら、このスクリプトを更新して叩き直せばリセットして再設定できる。
-          <p>(デフォルトの UFW の設定を全部すっ飛ばしたが、デフォルトがなにやっているのかよくわからなかったので、困ったら自力で治す)
+          <p>(デフォルトの UFW の設定を全部すっ飛ばしたが、デフォルトがなにやっているのかよくわからなかったので、困ったら自力で直す)
         </section>
         <section>
           <h3 id="authorized_keys"><a href="#authorized_keys">authorized_keys</a></h3>
@@ -370,7 +368,7 @@
           <p>今回は、VPS からの forwarding しか受け付けない設定にしたい。
           <p>この場合、NUC には localhost からアクセスしていることになるため、NUC の <code translate=no>~/.ssh/authorized_keys</code> で、該当行の先頭に以下を追加する。
           <pre><code translate=no>from=&quot;127.0.0.1&quot; ssh-xxx xxxxxxxxxxxxxxxxx</code></pre>
-          <p>これで、経路が VPS の Port Forwarding を用いた経路一択になったはずだ。
+          <p>これで、VPS の Port Forwarding を用いた経路一択になったはずだ。
         </section>
       </section>
       <section>
