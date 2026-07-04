@@ -63,10 +63,10 @@
 
 ```html
 <article autofocus>
-</section>
+</article>
 ```
 
-もし、これより手前に `autofocus` すべきコントローラがある場合は、`<section>` には `autofocus` をつけないだろう。しかし、ただの `<section>` はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザは対応していないため、現状は `tabindex=0` を指定しておくのが良いだろう。
+もし、これより手前に `autofocus` すべきコントローラがある場合は、`<section>` には `autofocus` をつけないだろう。しかし、ただの `<section>` はフォーカスができないため、キーボードでの操作などが不便になる。この実装を修正し、スクロールする要素をフォーカス可能にする流れがあるが、全ブラウザが対応しているわけではないため、現状は `tabindex=0` を指定しておくのが良いだろう。
 
 ```html
 <article autofocus tabindex="0">
@@ -90,7 +90,7 @@
 しかし、このフォームでは同意以外の道がないため、キャンセルボタンを用意しよう。
 
 ```html
-<form method="post" action="term.html">
+<form method="post" action="/term">
   <button type="submit">確認</button>
   <button formmethod="dialog" value="cancel">キャンセル</button>
 </form>
@@ -108,7 +108,7 @@
       <p>長い長い</p>
       <p>利用規約</p>
       <p>スクロールあり</p>
-    </section>
+    </article>
     <form method="post" action="/term">
       <label for="agree">
         <input id="agree" type="checkbox" name="agree">
@@ -121,7 +121,7 @@
 </dialog>
 ```
 
-`<dialog>` は普通に閉じて、JS でリクエストする場合は、シンプルに `form[method=dialog]` にして、JS で分岐で良いだろう。
+`<dialog>` は普通に閉じて、JS でリクエストする場合は、シンプルに `form[method=dialog]` にして、JS で分岐すれば良いだろう。
 
 ここではあくまで同意取得だが、よりクリティカルな同意、例えば「このまま遷移すると保存されてない内容は消えます」といったアラートの性質を持たせたい場合は、デフォルトの `role=dialog` を `role=alertdialog` に上書きするといった応用ができる。
 
@@ -208,7 +208,7 @@ dialog {
 }
 ```
 
-ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、`display` が `none` から `block` に変化して DOM が表示されるまで、他のプロパティ値が計算されないためアニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
+ただし、これでは「非表示」の方はアニメーションはできても、「表示」の方はアニメーションが効かない。理由は、`display` が `none` から `block` に変化して DOM が表示されるまで、他のプロパティ値が計算されず、アニメーションできないからだ。(「非表示」にする際は、すでに DOM が表示され計算されたプロパティがあるため可能)
 
 そこで、`display: none` の状態で DOM が無くとも初期値がわかるように、`@starting-style` に初期値を明示しておく。
 

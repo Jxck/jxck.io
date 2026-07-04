@@ -159,7 +159,7 @@ APG にも Tooltip についてのパターンがある。
 
 さて、この場合 `role=tooltip` を用いていいのだろうか?
 
-実は、もともとの `role=tooltip` が追加された当初は、コントローラを含められる目的だった。
+実は、`role=tooltip` が追加された当初は、コントローラを含められる目的だった。
 
 > Back when we added role=tooltip, the assumption was that role=tooltip could allow interactive content.
 > --- https://github.com/w3c/aria/issues/979#issuecomment-1131900402

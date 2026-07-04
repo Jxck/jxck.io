@@ -45,7 +45,7 @@ HTML の注意点は、前回の規約と大きくは変わらない。
 
 次に CSS を考える。(`<dialog>` と関係ない部分は省略)
 
-まず、配置としては画面の右下に固定配置するため、`position: absolute` で配置する。
+まず、画面の右下に固定するため、`position: absolute` で配置する。
 
 ```css
 dialog {
@@ -63,9 +63,9 @@ dialog {
 /* transition style */
 dialog:not([open]) {
   opacity: 0;
-  transition: 
-    display var(--duration) allow-discrete, 
-    overlay var(--duration) allow-discrete, 
+  transition:
+    display var(--duration) allow-discrete,
+    overlay var(--duration) allow-discrete,
     opacity var(--duration);
 }
 ```
@@ -96,5 +96,5 @@ document.querySelector("dialog").addEventListener("close", (e) => {
 
 動作する DEMO を以下に用意した。
 
-- Term Dialog DEMO | labs.jxck.io
+- Cookie Dialog DEMO | labs.jxck.io
   - https://labs.jxck.io/dialog/cookie.html

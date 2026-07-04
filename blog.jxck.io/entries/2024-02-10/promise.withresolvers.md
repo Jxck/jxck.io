@@ -104,7 +104,7 @@ async function request() {
 例えば以下のように使えば、EventTarget を継承した API の Promise 化もできる。
 
 ```js
-async function readFile(file: File) {
+async function readFile(file) {
   const { promise, resolve, reject } = Promise.withResolvers()
   const reader = new FileReader()
   reader.onload = resolve

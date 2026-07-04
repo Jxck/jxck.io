@@ -167,7 +167,7 @@ history = {
 }
 ```
 
-これにより、全く異なる `https://x.com` に `https://example.com` のリンクがあっても、これまで二回閲覧しているにもかかわらず、リンクの色が変わらない。
+これにより、全く異なる `https://x.com` に `https://example.com` のリンクがあっても、これまで 2 回閲覧しているにもかかわらず、リンクの色が変わらない。
 
 そして、もっというと `<iframe>` で埋め込んだ場合を考えないといけない。
 
@@ -208,7 +208,7 @@ history = {
 
 本ブログでも何回か言及しているが、Partitioning しているのは History だけでなく、Cookie や Cache その他様々なものが対象となっているため、順当な流れと見ることができる。
 
-この実装を、2024 年までに Phase 1, 2 の二段階でテストしてきた。
+この実装を、2024 年までに Phase 1, 2 の 2 段階でテストしてきた。
 
 - Intent to Experiment: Partitioning :visited links history Phase 1
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/U5AX0OXaxM8

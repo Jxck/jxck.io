@@ -30,7 +30,7 @@ IETF がホストする RFC は、tools.ietf.org だった。
 
 ![tools.ietf.org](tools.ietf.org.png#1500x1802)
 
-しかし、2021 年 tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
+しかし、2021 年に tools と xml2rfc/bibxml をメンテしていた Henrik 氏が引退し、それを機に刷新が行われることになった。
 
 - Clarifying the state of and the transition plan for tools.ietf.org
   - https://mailarchive.ietf.org/arch/msg/ietf/0n-6EXEmkTp3Uv_vj-5Vnm3o0bo/
@@ -197,7 +197,7 @@ https://doi.org/10.17487/RFC9110
 
 これにより、IETF がドメインを変えたり構成が変わっても、リダイレクト先を登録しなおせば参照が切れないという仕組みだ。
 
-そして、その DOI に登録されている(つまりリダイレクトされる先)は以下だ。
+そして、その DOI に登録されている(つまりリダイレクトされる)先は以下だ。
 
 ```
 https://www.rfc-editor.org/info/rfc9110
@@ -245,11 +245,11 @@ RFC の表記について、以下のスタイルガイドに言及がある。
 
 ### Draft
 
-rfc-editor は RFC はホストしているが、RFC になる前の draft については datatracker にしかない。
+rfc-editor は RFC をホストしているが、RFC になる前の draft については datatracker にしかない。
 
 - https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-p6-cache-26
 
-したがって、RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
+従って、RFC と Draft が並ぶ場合は、統一のために datatracker に寄せるのもありかもしれない。
 
 
 ### Inline Errata

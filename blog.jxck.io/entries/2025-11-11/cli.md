@@ -34,7 +34,7 @@ $ op signin
 
 ### 保存と取得
 
-よくあるユースケースは、NPM のアクセストークンのような値を 1Password に保存し、環境変数で使うケースだ。
+よくあるのは、NPM のアクセストークンのような値を 1Password に保存し、環境変数で使うケースだ。
 
 まず、取得した NPM のトークンを 1Password に保存する。
 
@@ -92,10 +92,10 @@ NPM_ACCESS_TOKEN="test_npm_access_token"
 1Password では、`op run` を用いると、以下のように実行することができる。
 
 ```sh
-$ op run --env-file="./.env_template" -- npm start
+$ op run --env-file="./.env.template" -- npm start
 ```
 
-これは、`.env_template` に値を埋め込み、それを環境変数に展開した状態で、後続の `npm start` を実行している。
+これは、`.env.template` に値を埋め込み、それを環境変数に展開した状態で、後続の `npm start` を実行している。
 
 後続のコマンドにだけ環境変数の値が見える状態になるため、今までどおりに実行できるうえに、環境変数が 1Password 以外のファイルに保存されない状態を作ることができる。
 

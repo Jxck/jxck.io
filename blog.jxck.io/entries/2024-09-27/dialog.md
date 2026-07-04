@@ -381,14 +381,14 @@ document.querySelector('dialog').addEventListener('click', (e) => {
 })
 ```
 
-この要件だけでなく、Popover 相当の Light Dismiss 相当を必要とする場合は、`<dialog>` を `popover` することも可能だ。それについては後述する。
+この要件だけでなく、Popover の Light Dismiss 相当を必要とする場合は、`<dialog>` を `popover` することも可能だ。それについては後述する。
 
 
 ### キーボード操作
 
 `<button>` を置く以外に、キーボード操作の対応もネイティブで行われている。これは、Cancel や Close を意味する操作を自動でフックする Close Watcher を内部で使うことで実現している。
 
-non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりができる。
+non-Modal Dialog の場合は、他の要素が操作できるためキーボードには反応しないが、Modal Dialog は Close Watcher が効いているため、ESC や端末固有の操作を紐づけて閉じたりできる。
 
 なお、Modal Dialog を ESC で閉じると、`cancel` -> `close` の順でイベントが発火する。
 

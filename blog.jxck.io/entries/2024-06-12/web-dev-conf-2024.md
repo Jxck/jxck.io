@@ -21,7 +21,7 @@ Session と LT の募集を fortee で今日から開始したので応募を待
 
 - 日程: 2024/09/07 (土) 12:00 - 20:00
 - 場所: サイボウズ
-- 募集: 100 人
+- 定員: 100 人
 - 募集: [Connpass](https://web-study.connpass.com/event/321711/)
 - CFP: Fortee
 - 配信/アーカイブなし
@@ -56,9 +56,9 @@ Caption: Time Table (仮)
 
 ## CFP
 
-CFP の募集には fortee を使ってみようと思います。まだ慣れてないので色々と失敗すると思いますが、多めにみてください。(参加募集は fortee ではなく、慣れてる connpass を使う予定です)
+CFP の募集には fortee を使ってみようと思います。まだ慣れてないので色々と失敗すると思いますが、大目にみてください。(参加募集は fortee ではなく、慣れてる connpass を使う予定です)
 
-また、採択は fortee のプロポーサルのスターを第一基準にするので、聞きたいのはスターしてください。(なので、多分応募は早い方が有利です)
+また、採択は fortee のプロポーザルのスターを第一基準にするので、聞きたいものはスターしてください。(なので、多分応募は早い方が有利です)
 
 - プロポーザル | Web Developer Conference 2024 - fortee.jp
   - https://fortee.jp/web-dev-conf-2024/proposal/all

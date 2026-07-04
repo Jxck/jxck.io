@@ -14,7 +14,7 @@
 
 ## Display and content-visibility animations
 
-`<dialog>` や `popover` された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、`display` / `content-visibility` の属性をアニメーションする必要がある。
+`<dialog>` や `popover` された要素は、基本的には現れたり消えたりするので、それをアニメーションするには、`display` / `content-visibility` のプロパティをアニメーションする必要がある。
 
 まずは消す方を以下のように `transition` でやってみよう。`opacity` を徐々に薄くし、最後に `display: none` する実装は以下のようになる。
 
@@ -29,8 +29,8 @@ div {
   display: none;
   transition: opacity 2s, display 2s;
 }
-/*アニメーションで実装 */
-.fade-out  {
+/* animation で実装 */
+.fade-out {
   animation: fade-out 0.5s forwards;
 }
 
@@ -44,7 +44,7 @@ div {
 
 この `.fade-out` class を追加したら、要素がゆっくり消える想定だが、実際には追加した瞬間に消えてしまう。これは `display` がもともと not animatable だったからだ。
 
-CSS のアニメーションでは、属性に対して 4 つの Animation Type が決まっている。
+CSS のアニメーションでは、プロパティに対して 4 つの Animation Type が決まっている。
 
 - not animatable
 - discrete
@@ -95,7 +95,7 @@ div {
 }
 
 /* animation で実装 */
-.fade-out  {
+.fade-out {
   animation: fade-out 0.5s forwards;
 }
 
@@ -109,7 +109,7 @@ div {
 
 fade-in させる時は少し考えることが増える。
 
-単純に、`display: none` を `block` にしてから, `opacity: 0` を `1` に遷移させればよさそうだ。
+単純に、`display: none` を `block` にしてから、`opacity: 0` を `1` に遷移させればよさそうだ。
 
 ```css
 div {
@@ -125,12 +125,12 @@ div {
 }
 
 /* animation で実装 */
-.fade-out  {
-  animation: fade-out 0.5s forwards;
+.fade-in {
+  animation: fade-in 0.5s forwards;
 }
 ```
 
-ところが、これでは `display` が変わった瞬間に要素が `opacity` を持つため、それが「0 である」という初期値が計算される前に、`opacity` が 1 になってしまうため、想定した挙動にならない。
+ところが、これでは `display` が変わった瞬間に要素が `opacity` を持つため、それが「0 である」という初期値が計算される前に、`opacity` が 1 になってしまい、想定した挙動にならない。
 
 ここでは、`display` が切り替わる時は、アニメーションする値の初期値を要素に反映し、その上で変化をさせる必要がある。以前はこれを「一旦 `display: block` に変えたら、`requestAnimationFrame()` で `opacity: 0` が計算されるのを待ってから、`opacity: 1` に遷移させる」や「`getBoundingClientRect()` で値の計算を確定させる処理を一旦呼んでから遷移させる」といった実装が必要だった。
 
@@ -144,7 +144,7 @@ div {
 - [selectors-4] Add syntax to establish before-change style for css-transitions on new elements. · Issue #8174 · w3c/csswg-drafts
   - https://github.com/w3c/csswg-drafts/issues/8174
 
-名前は紆余曲折を経て `@starting-style` というプロパティで書くことになった。
+名前は紆余曲折を経て `@starting-style` という形で書くことになった。
 
 ```css
 div {
@@ -196,7 +196,7 @@ div {
 
 そこで、同じように `allow-discrete` を設定したいわけだが、そもそも「Top Layer に表示されるかどうか」を制御する CSS のプロパティ自体は存在しない。そこで策定されたのが `overlay` だ。
 
-`overlay` は Top Layer に表示されている場合を示す `auto` と、そうではない `none` がある。しかし、この値は CSS で明示的に指定できるわけではなく、ブラウザが内部的に設定しており、`show()` などの裏で自動的に設定されるのだ。
+`overlay` には Top Layer に表示されている場合を示す `auto` と、そうではない `none` がある。しかし、この値は CSS で明示的に指定できるわけではなく、ブラウザが内部的に設定しており、`show()` などの裏で自動的に設定されるのだ。
 
 しかし、このプロパティを `transition` に指定することは可能だ。`allow-discrete` を合わせて指定すれば、ブラウザが内部でこの離散値のトグルをするタイミングを制御できる。
 
@@ -217,10 +217,10 @@ div {
 
 ## Prefer Reduced Motion
 
-`<dialog>` / `popover` とは直接関係ないが、`prefer-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
+`<dialog>` / `popover` とは直接関係ないが、`prefers-reduced-motion` が指定されていたら、アニメーションは無効にしたい。
 
 ```css
-@media(prefers-reduced-motion: no-preference) {
+@media(prefers-reduced-motion: reduce) {
   .fade-in, .fade-out {
     transition: none;
   }
