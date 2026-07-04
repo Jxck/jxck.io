@@ -118,9 +118,9 @@ export function alt(fns) {
 // ALPHA / DIGIT
 const alpha_digit = alt([alpha, digit])
 alpha_digit("aaa")
-// { ok: true, value: 'aaa', rest: '' }
+// { ok: true, value: 'a', rest: 'aa' }
 alpha_digit("111")
-// { ok: true, value: '111', rest: '' }
+// { ok: true, value: '1', rest: '11' }
 alpha_digit("?")
 // { ok: false, rest: '?' }
 ```
@@ -161,7 +161,7 @@ export function list(fns) {
 // CRLF  =  CR LF
 const crlf = list([token(/\r/), token(/\n/)])
 crlf("\r\n")
-// { ok: true, value: [ '\n', '\r' ], rest: '' }
+// { ok: true, value: [ '\r', '\n' ], rest: '' }
 ```
 
 

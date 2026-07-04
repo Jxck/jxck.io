@@ -4,7 +4,7 @@
 
 WebBundle を用いてサブリソースのみを Bundle する、Subresource Bundle の策定と実装が進んでいる。
 
-これを用いると、複数サブリソースの取得を一回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
+これを用いると、複数サブリソースの取得を 1 回の fetch で行うことができ、RTT を減らしつつも個別に取得したかのようにキャッシュを制御できる。
 
 現時点での仕様と実装を解説する。
 
@@ -253,7 +253,7 @@ $ ls profile-card
 
 前述の WebComponents を複数組み合わせたり、大きめなフレームワークを組み合わせて使うケースは既に多くある。
 
-これらを一つの WebBundle にするよりも、おそらく WebBundle に Webbundle を含むことになっていくだろう。
+これらを 1 つの WebBundle にするよりも、おそらく WebBundle に WebBundle を含むことになっていくだろう。
 
 イメージとしては以下のような構成だ。
 
@@ -283,7 +283,7 @@ $ ls profile-card
 
 - [Loading Performance with (Many) Modules: Summary as of Oct 7, 2017](https://docs.google.com/document/d/1ds9EEkcDGnt-iR8SAN-_7nsOfw7gsMfhZjzZ_QAIyjM/edit)
 
-この課題は すでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
+この課題はすでに広く普及した webpack などのビルドツールにより解決されていたので、開発の現場ではあまり体感することはなかったかもしれない。
 
 結果、ES Module の import はブラウザがランタイムで依存解決するためではなく、ビルドツールが変換に使うための placeholder として使われて、多くの依存を bundle.js にまとめ、その中の 1byte でも変わったらバンドルし直して再取得させる運用が通常となっている。
 

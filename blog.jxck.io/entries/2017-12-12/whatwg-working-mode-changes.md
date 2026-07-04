@@ -4,7 +4,7 @@
 
 WHATWG が IPR Policy と Governance Structure についての更新を発表した。
 
-おおまかな流れと、これによって引き起されそうな変化について解説する。
+おおまかな流れと、これによって引き起こされそうな変化について解説する。
 
 
 ## Working Mode Changes
@@ -144,6 +144,6 @@ HTML は、過去に Apple が保有する Canvas の特許を巡るパテント
 
 (それでも、W3C 内でのコンセンサスによる diff の行き場としてのこるかもしれないが、そこは Steering Group の手腕に期待したい)
 
-先日 HTML5.2 の PR を期に [Travis Leithead, Arron Eicholz, Alex Danilo の 3 人がエディタから退いた](https://lists.w3.org/Archives/Public/public-html/2017Nov/0001.html) ことも記憶に新しい。
+先日 HTML5.2 の PR を機に [Travis Leithead, Arron Eicholz, Alex Danilo の 3 人がエディタから退いた](https://lists.w3.org/Archives/Public/public-html/2017Nov/0001.html) ことも記憶に新しい。
 
-TPAC では HTML5.3 の話も始まっていたが、来年の HTML どうなるだろうか。
+TPAC では HTML5.3 の話も始まっていたが、来年の HTML はどうなるだろうか。

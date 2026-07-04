@@ -142,7 +142,7 @@ javascript:location.href = document.querySelector('link[rel="canonical"]').href.
 
 一旦、最後のページまで自動で遷移させ、全ページ読み込みが終わったあたりで頭から読んでいる。
 
-最後のページまで読むと次のスライドに映るという悪仕様があるため、手前で止めている。
+最後のページまで読むと次のスライドに移るという悪仕様があるため、手前で止めている。
 
 ```js
 javascript: function loop(n) {

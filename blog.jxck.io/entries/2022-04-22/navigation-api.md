@@ -109,7 +109,7 @@ after
 
 ### SPA 第三期: Router Library と SSR
 
-しかし、History API には多くの問題があったことは、この API と向き合った開発者なら一度は感じたことがあるだろう。
+しかし、History API には多くの問題があったことは、この API と向き合った開発者なら 1 度は感じたことがあるだろう。
 
 この API の問題点は以下にまとまっている。
 
@@ -187,7 +187,7 @@ navigation.entries()
 History API でいう `history.pushState()` に相当するのが `navigation.navigate()` だ。URL に紐づけて State を保存し、Entry List を操作する。
 
 ```js
-await navigation.navigate("/foo", { state: {count: 1}, info: "shortcut", history: "push" }).finish
+await navigation.navigate("/foo", { state: {count: 1}, info: "shortcut", history: "push" }).finished
 ```
 
 `state` は any だが、シリアライズ可能なものに限る。`history` は `"push"` なら追記、`"replace"` なら現在の Entry を置き換える。その遷移だけで用いるエフェメラルな値は `info` で送ることができる。
@@ -225,7 +225,7 @@ console.log(history.state.count); // 2
 `getState()` は、常に Entry の Clone を返すため、そこを変更してもブラウザには反映されない。
 
 ```js
-await navigation.navigate("/foo", { state: {count: 2}, history: "push" }).finish
+await navigation.navigate("/foo", { state: {count: 2}, history: "push" }).finished
 
 // 取得した値はクローンなので直感に反した更新はされない
 navigation.currentEntry.getState().count = 3;
@@ -493,7 +493,7 @@ window?.navigation?.on("navigate", async (e) => {
 
 - https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296
 
-![mozaic.fm で音声再生しながらエピソード間を遷移する](mozaic-spa-by-navigation.mp4#43584x2240 "mozaic spa by navigation api")
+![mozaic.fm で音声再生しながらエピソード間を遷移する](mozaic-spa-by-navigation.mp4#3584x2240 "mozaic spa by navigation api")
 
 
 ## Outro

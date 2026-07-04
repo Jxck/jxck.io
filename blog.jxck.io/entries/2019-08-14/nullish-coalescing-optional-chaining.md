@@ -48,7 +48,7 @@ param = param || 'default' // 'default'
 
 つまり、本来は null/undefined の厳密な判定を行わなくてはいけないわけだが、プロパティごとにそれを行うのは面倒だ。
 
-そこで提案されたのが `??` という Null Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
+そこで提案されたのが `??` という Nullish Coalescing Operator だ。(日本語だと Null 結合演算子になるのだろうか?)
 
 これを使うと、null/undefined であった場合のみ上書きができる。(名前に反して null だけではない点に注意)
 
@@ -110,7 +110,7 @@ if (a !== null) {
 const result = (a !== null) ? a.b() : undefined
 ```
 
-このショートハンドとしてアクセサの直前に `?` を書くことができるようなるのがこの提案だ。
+このショートハンドとしてアクセサの直前に `?` を書くことができるようになるのがこの提案だ。
 
 ```js
 a?.b   // a == null ? undefined : a.b
@@ -219,10 +219,10 @@ Optional Chaining を使うと以下のようになる。
   </code>
 </body>
 <script>
-const lang = document.querySelector('code')? // node が無ければ null
-                     .classList.item(1)?     // 2 つめの class が無ければ null
-                     .split('-')[1]?         // 2 つめの 分割結果が無ければ undefined
-                     .toUpperCase()
+const lang = document.querySelector('code') // node が無ければ null
+                     ?.classList.item(1)     // 2 つめの class が無ければ null
+                     ?.split('-')[1]         // 2 つめの分割結果が無ければ undefined
+                     ?.toUpperCase()
 
 if (lang === undefined) {
   console.error('something wrong')
@@ -241,10 +241,10 @@ if (lang === undefined) {
 もしこのケースで、存在しない場合の lang をデフォルトで `"TEXT"` にしたい場合は、前述の Nullish Coalescing と組み合わせると以下のように書ける。
 
 ```js
-const lang = document.querySelector('code')? // node が無ければ null
-                     .classList.item(1)?     // 2 つめの class が無ければ null
-                     .split('-')[1]?         // 2 つめの 分割結果が無ければ undefined
-                     .toUpperCase()          // どこかで失敗していれば undefined
+const lang = document.querySelector('code') // node が無ければ null
+                     ?.classList.item(1)     // 2 つめの class が無ければ null
+                     ?.split('-')[1]         // 2 つめの分割結果が無ければ undefined
+                     ?.toUpperCase()         // どこかで失敗していれば undefined
                      ?? 'TEXT'               // undefined だった場合のデフォルト値
 
 console.log(lang) // "JS" or "TEXT"
@@ -252,7 +252,7 @@ console.log(lang) // "JS" or "TEXT"
 
 どこまでを一連の Optional でくくるか、途中の処理の結果の型は何か、といった設計に注意すればかなり便利に使えるだろう。
 
-他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らない部分も多だろうが、無いことろ比べればだいぶマシになりそうだ。
+他の言語で、何かしら似たような、そしておそらくもっと高機能な機能と比べれば至らない部分も多いだろうが、無いころと比べればだいぶマシになりそうだ。
 
 
 ## 実装

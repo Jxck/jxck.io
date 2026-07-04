@@ -81,7 +81,7 @@ stream.getTracks().forEach((track) => {
 
 ```js
 const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
-const [videoTrack] = mediaStream.getVideoTracks()
+const [videoTrack] = stream.getVideoTracks()
 ```
 
 ここには、カメラからの生のストリームがあるようなイメージだ。そのままでは大きいため、多くの場合は圧縮を行う。その方式が VP8 や H.264 のようなコーデックになる。
@@ -105,14 +105,14 @@ const videoEncoder = new VideoEncoder({
   }
 })
 await videoEncoder.configure({
-  codec:     'vp8'
-  width:     640
-  height:    480
+  codec:     'vp8',
+  width:     640,
+  height:    480,
   framerate: 30
 })
 ```
 
-VideoTrackReader を用いて  MediaStream からビデオのデータを取り出す。
+VideoTrackReader を用いて MediaStream からビデオのデータを取り出す。
 
 ここでの単位はフレームで、この VideoFrame を VideoEncoder の `encode()` に渡すとエンコードされる。
 
@@ -125,9 +125,9 @@ videoReader.start((videoFrame) => {
 
 結果は VideoEncoder の初期化時に指定した output コールバックに渡り、これが vp8 でエンコードした結果の ArrayBuffer だ。
 
-デコードもほぼ同じ、まずは初期化し `configure()` を呼ぶ。
+デコードもほぼ同じ。まずは初期化し `configure()` を呼ぶ。
 
-`encode()` に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
+`decode()` に vp8 の chunk を渡せばデコードしたフレームが取り出せる。
 
 `createImageBitmap()` でビットマップに変換すれば Canvas に描画できる。
 
@@ -223,7 +223,7 @@ CBOR はストリーミングっぽい仕組みがあった気がするため、
 
 また、絵が壊れたところで Canvas がエラーを出してくれるわけではなく、帯域が狭くなったことやロスが増えたことも誰も教えてくれないため、フィードバック制御やリカバリを自分で考える必要がある。
 
-今回はとりあえず 10 回に一回 KeyFrame を送るようにしてみた。
+今回はとりあえず 10 回に 1 回 KeyFrame を送るようにしてみた。
 
 
 ### 表示制御
@@ -239,7 +239,7 @@ CBOR はストリーミングっぽい仕組みがあった気がするため、
 
 ### WebCodecs と WebTransport の繋ぎ
 
-WebCodecs の出力バイナリは、従来の WebRTC でいえば RTC 内の body 部分のみにあたる。
+WebCodecs の出力バイナリは、従来の WebRTC でいえば RTP 内の body 部分のみにあたる。
 
 WebTransport の転送は、WebRTC でいうと DTLS-SRTP の部分のみだ。
 

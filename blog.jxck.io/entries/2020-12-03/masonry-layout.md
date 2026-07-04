@@ -45,7 +45,7 @@ img {
   width: 10vw;
 }
 </style>
-<div class=masonry>
+<div class=grid>
   <img>
   <img>
   <img>

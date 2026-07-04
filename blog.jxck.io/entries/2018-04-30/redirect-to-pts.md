@@ -18,7 +18,7 @@ Linux では、pts を経由すれば、ある shell の出力を簡単に別の
 ```js:hello_world
 ```
 
-ターミナル上では stdout/stderror の出力は同じ画面上に出る。
+ターミナル上では stdout/stderr の出力は同じ画面上に出る。
 
 ```console
 $ ./hello_world
@@ -41,7 +41,7 @@ $ ./hello_world 1> ./success.log 2> ./error.log
 
 ```console
 # pane1 for stdout
-$ tail -f access.log
+$ tail -f success.log
 ```
 
 ```console
@@ -64,7 +64,7 @@ $ tty
 ...
 ```
 
-紐付いている pts の実態は `/dev/pts/2` である。
+紐付いている pts の実体は `/dev/pts/2` である。
 
 試しに、別の pane からこの pts に対して書き込みをすると、結果が表示されることがわかるだろう。
 
@@ -92,14 +92,14 @@ $ # ここでの入力は奪われる
 
 つまり、pts への書き込みは pane に表示され、pane への入力は pts から読み出せる。
 
-pts は疑似端末であり、tmux と shell に間に挟まった中継役のようなものだと思えば良い。
+pts は疑似端末であり、tmux と shell の間に挟まった中継役のようなものだと思えば良い。
 
 例えば、実行結果の stdout を pane1 に、stderr を pane2 に分岐して出力したい場合。
 
-もし pane1 が `/dev/pts2/` に、pane2 が `/dev/pts5/` に紐づくとすると。
+もし pane1 が `/dev/pts/2` に、pane2 が `/dev/pts/5` に紐づくとすると。
 
 ```console
-$ ./hello_world 1> /dev/pts2 2> /dev/pts5
+$ ./hello_world 1> /dev/pts/2 2> /dev/pts/5
 ```
 
 これで、結果を 2 つの pane に分けて出力することができる。

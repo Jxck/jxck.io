@@ -133,7 +133,7 @@ const html = 'https://files.example.com/ep01.html'
 const option = {
   title: 'title of download',
   downloadTotal: 65535, // size
-  icons: [{src: 'logo.png', sizes: '256x256', type: 'image/webp'}]
+  icons: [{src: 'logo.png', sizes: '256x256', type: 'image/png'}]
 }
 const registration = await navigator.serviceWorker.ready
 const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)
@@ -142,7 +142,7 @@ const task = await registration.backgroundFetch.fetch(id, [html, mp3], option)
 
 ### foreground event
 
-ダウンロードの進捗は window 側で progress イベントで上がる
+ダウンロードの進捗は window 側で progress イベントで上がる。
 
 ```js
 task.addEventListener('progress', (e) => console.log(e.downloaded))
@@ -215,7 +215,7 @@ self.addEventListener('backgroundfetchabort', (e) => {
 })
 ```
 
-fail/abort は、タスクが消えるため特にリソースの開放などは必要なさそうだ。
+fail/abort は、タスクが消えるため特にリソースの解放などは必要なさそうだ。
 
 
 ## Cache HIT

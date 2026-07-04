@@ -13,7 +13,7 @@
 後援
 : [法政大学情報科学部](http://cis.k.hosei.ac.jp/)
 配信
-: [Youtube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
+: [YouTube](https://www.youtube.com/channel/UCFq8UHBXg8YNHCeaGmtSFEw)
 募集
 : [Connpass](https://nextwebconf.connpass.com/event/103056/)
 参加費
@@ -39,7 +39,7 @@ connpass
 
 そして、スライドなどを用いて何かを「発表する」ニュアンスではなく、進化の早い Web で「*今何が起こっているか?*」と「*これからどうなっていくのか?*」という、答えの無いもの、でもみんなが気になり考えていること、今だからこそ考えないといけないことを真っ向から議論する場というのが、もっとあっても良いのではないかと考えていました。
 
-今回開催するカンファレンスは、この「*議論*」だけからなるものです、それ以外のことはしません。
+今回開催するカンファレンスは、この「*議論*」だけからなるものです。それ以外のことはしません。
 
 この趣旨に賛同してくださった、各分野のプロフェッショナルに協力頂き、「*次世代 Web カンファレンス*」として、開催させていただくことになりました。
 
@@ -102,7 +102,7 @@ connpass
 - *connpass の受付票がない限り、どんな理由があっても参加できません。*
 - 勧誘・宣伝・取材目的の参加を禁止します。
 - 主催・登壇者に内々に問い合わせても参加枠などは融通できません。
-- トーク中の移動は議論を妨げになるので控えてください。
+- トーク中の移動は議論の妨げになるので控えてください。
 - 実施形態に納得できない場合は参加しないでください。
 
 
@@ -258,7 +258,7 @@ togetter
 : [#nwc_css](https://togetter.com/li/1270529)
 
 
-## WebMusic ([#nwc_music](https://twitter.com/search?q=%23nwc_music))
+### WebMusic ([#nwc_music](https://twitter.com/search?q=%23nwc_music))
 
 speaker
 : [@okunokentaro](https://twitter.com/okunokentaro)
@@ -270,7 +270,7 @@ togetter
 : [#nwc_music](https://togetter.com/li/1277061)
 
 
-## Design ([#nwc_design](https://twitter.com/search?q=%23nwc_design))
+### Design ([#nwc_design](https://twitter.com/search?q=%23nwc_design))
 
 speaker
 : [@nobsato](https://twitter.com/nobsato)

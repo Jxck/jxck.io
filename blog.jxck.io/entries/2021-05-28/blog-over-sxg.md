@@ -71,7 +71,7 @@ $ webpkgserver --config webpkgserver.toml
 
 ほとんどデフォルトが使えるため、Port と SXG 用の証明書、Domain あたりを気をつければ良いだろう。
 
-```yaml
+```toml
 [Listen]
   Port = 11000
 
@@ -113,7 +113,7 @@ dump-signedexchange -i dump.sxg
 
 ## Content Negotiation
 
-基本的にはリクエストヘッダに `Accept: application/signed-exchange;v=b3` が付与されている場合、Web Package Server に転送すれば良い。
+基本的にはリクエストヘッダに `Accept: application/signed-exchange;v=b3` が付与されている場合、Web Packager Server に転送すれば良い。
 
 しかし、Google の Bot だけでなく、Chrome も現状このヘッダをデフォルトで付与しているため、単にこのヘッダの有無だけを見てルーティングすると、ブラウザからのリクエストにも SXG を返すことになる。
 

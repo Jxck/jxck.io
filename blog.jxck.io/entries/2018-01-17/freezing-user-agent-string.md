@@ -19,7 +19,7 @@
 
 少し前に Safari Technology Preview 46 がリリースされた。
 
-Service Worker のアナウンスに目がそちらに盗まれている一方、しれっと以下の一文がある。
+Service Worker のアナウンスに目が奪われている一方、しれっと以下の一文がある。
 
 > Froze the user-agent string to reduce web compatibility risk and to prevent its use for fingerprinting
 > --- [Release Notes for Safari Technology Preview 46](https://webkit.org/blog/8042/release-notes-for-safari-technology-preview-46/)
@@ -128,7 +128,7 @@ if (UserAgent.match(/Mozilla.*/)) {
 
 つまり、「ブラウザを識別し処理を分岐したいサービス開発者」と「そうしたサービスと互換性を保持したいブラウザベンダ」のいたちごっこが原因と言える。
 
-こうしたことは、歴史が長いソフトウェアではよくある話だ、Windows 9 が出なかった理由も同様の理由と言われている。
+こうしたことは、歴史が長いソフトウェアではよくある話だ。Windows 9 が出なかったのも同様の理由と言われている。
 
 ブラウザが独自実装による差別化で戦争をしていた時代ならまだしも、今から処理の分岐条件に UA を用いるのは、あまり良い手ではない。
 
@@ -187,7 +187,7 @@ function supportsDynamicImport() {
 
 CSS はいわゆるプログラミング言語ではないため、基本的には Detection をするよりも、Progressive Enhancement で進めてきた。
 
-しかし、CSS の API も複雑になってきたため最近では `@support` を用いた Detection がサポートされている。
+しかし、CSS の API も複雑になってきたため最近では `@supports` を用いた Detection がサポートされている。
 
 ```css
 @supports (display: flex) {
@@ -271,7 +271,7 @@ HTTP2 や TLS1.3, QUIC その他プロトコルの対応は、基本的にはプ
 一方このレイヤでは、ブラウザのバージョンというより、そのプロトコル実装そのもののバージョン(ex, openssl)が問題になる場合はある。
 
 
-### Outro
+## Outro
 
 現時点では、この変更に乗っかる別のブラウザは確認していないため、将来的に全てのブラウザのマイナーアップデートで UA が固定される世界が来るかは未知だ。
 

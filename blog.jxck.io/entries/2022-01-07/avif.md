@@ -13,7 +13,7 @@
 3. [画像最適化戦略 WebP 編](https://blog.jxck.io/entries/2016-03-26/webp.html)
 4. [画像最適化戦略 SVG/Font 編](https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html)
 5. [画像最適化戦略 Lazy Loading 編](https://blog.jxck.io/entries/2019-05-20/lazyloading.html)
-6. [> 画像最適化戦略 AVIF 編](TODO)
+6. [> 画像最適化戦略 AVIF 編](https://blog.jxck.io/entries/2022-01-07/avif.html)
 
 
 ## AVIF
@@ -38,7 +38,7 @@ Safari は、AOM には参加しているようだが WebP の対応も割と最
 - lovell/avif-cli
   - https://github.com/lovell/avif-cli
 
-node の方が GIF にも対応してそうだったので、こちらを採用した。
+Node の方が GIF にも対応してそうだったので、こちらを採用した。
 
 ```console
 $ npx avif -h
@@ -98,7 +98,7 @@ $ ffmpeg -i $*.gif -pix_fmt yuv420p -f yuv4mpegpipe - | avifenc --stdin --fps 15
 
 動作する DEMO を作成した。
 
-- WebP DEMO | labs.jxck.io
+- AVIF DEMO | labs.jxck.io
   - https://labs.jxck.io/avif/
 
 この中で、いくつかパラメータを変えながら PNG/WebP とも比較を行なった。

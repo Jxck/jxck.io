@@ -51,12 +51,12 @@ self.addEventListener('periodicsync', (e) => {
 
 このイベントをフックして、タスクを実行すれば良い。
 
-コードは単純だ、ただしこの API がそのまま制限なく使えてしまうと、セキュリティ上の問題が生まれる。
+コードは単純だ。ただしこの API がそのまま制限なく使えてしまうと、セキュリティ上の問題が生まれる。
 
 
 ## Security/Privacy Consideration
 
-まず、定期的に SW を起動できるため、そこで Crypt Mining などのリソース消費が可能になる。
+まず、定期的に SW を起動できるため、そこで Crypto Mining などのリソース消費が可能になる。
 
 また、PBS で Server に対して Fetch を行えば、Server は Client の IP を定期的に知ることができる。
 
@@ -64,11 +64,11 @@ self.addEventListener('periodicsync', (e) => {
 
 ![定期的に IP を取得することで、国をまたいだ移動などをトラッキング可能](ip-tracking.png#2032x1084 "IP Tracking by Periodic Background Sync")
 
-また、PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDOS を行う、Bot Net の構築に応用可能であることも指摘されている。
+また、PBS 内での fetch 先を特定の攻撃対象に設定すれば、発生タイミングをある程度指定して DDoS を行う、Bot Net の構築に応用可能であることも指摘されている。
 
 - [Periodic Background Sync has serious security risks, which are not described or adequately mitigated - Issue #169 - WICG/BackgroundSync](https://github.com/WICG/BackgroundSync/issues/169)
 
-これらは、Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は従来の PBS に加え、従来の Background Sync も Considered Harmful と表明した。
+これらは、Periodic ではない従来の Background Sync でも同様であるため、現在 Mozilla は PBS に加え、従来の Background Sync も Considered Harmful と表明した。
 
 ![Mozilla は PBS/BS 双方に Harmful という Position を表明している](mozilla-standard-position-for-sync.png#2416x974 "Mozilla Standard Position for Periodic Background Sync & Background Sync")
 
@@ -147,7 +147,7 @@ Site Engagement は以下の URL で確認できる。
 
 この値が高ければ PBS は minInterval に近い値で発火し、そうでなければほとんど発火しない。
 
-開発時は、自分でこの値を調整して発火されることもできる。
+開発時は、自分でこの値を調整して発火させることもできる。
 
 
 ### Known Network

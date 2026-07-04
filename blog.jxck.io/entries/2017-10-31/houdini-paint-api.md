@@ -177,13 +177,13 @@ static get inputArguments() {
 
 ### registerProperty()
 
-CSS で指定した debug フラグは、`pain()` の引数ではなく、別のプロパティとして取得する。
+CSS で指定した debug フラグは、`paint()` の引数ではなく、別のプロパティとして取得する。
 
 このためには、まず Worklet がアクセス可能なプロパティとして `--debug` をメインスレッド側で `registerProperty()` を用いて登録する。
 
 [CSS Properties and Values API Level 1](https://drafts.css-houdini.org/css-properties-values-api/#registering-custom-properties)
 
-`--debug` は `true/false` を引数に取りたいが、Property Values の定義する Syntax List には `<boolean>` は無いため、`<custom-indent>` を利用し、文字列で代替することとした。
+`--debug` は `true/false` を引数に取りたいが、Property Values の定義する Syntax List には `<boolean>` は無いため、`<custom-ident>` を利用し、文字列で代替することとした。
 
 ```js
 CSS.registerProperty({
@@ -215,9 +215,9 @@ static get inputProperties() {
 `paint()` には Canvas Context と領域のサイズ、当たっているスタイル、先に解析した引数が渡る。
 
 ```js
-paint(ctx, size styleMap, arguments) {
+paint(ctx, size, styleMap, arguments) {
   // paint with canvas api
-})
+}
 ```
 
 
@@ -260,7 +260,7 @@ const DEBUG = styleMap.get('--debug').value
 
 ```js
 // paint(border-double-custom, orange, 3px, yellow, 5px, 1px);
-paint(ctx, size styleMap, arguments) {
+paint(ctx, size, styleMap, arguments) {
   // CSSKeywordValue {value: "orange"}
   // CSSUnitValue {value: 3, unit: "px", type: "length"}
   // CSSKeywordValue {value: "yellow"}
@@ -279,15 +279,15 @@ paint(ctx, size styleMap, arguments) {
 
 ```js
 paint(ctx, {width: w, height: h}, styleMap, [color]) {
-    ctx.strokeStyle = color
+    ctx.fillStyle = color
     ctx.fillRect(0, 0, w, h)
-})
+}
 ```
 
 
 ### 完成形
 
-あとは、`paint()` の中で要求を満たす二つの矩形を描画する処理を記述すれば良い。
+あとは、`paint()` の中で要求を満たす 2 つの矩形を描画する処理を記述すれば良い。
 
 ```html
 <style>
@@ -377,7 +377,7 @@ registerPaint('border-double-custom', class {
   rect(ctx, color, l, x, y, w, h) {
     ctx.strokeStyle = color
     ctx.lineWidth = l
-    // shit inside for half of line width
+    // shift inside for half of line width
     ctx.strokeRect(x+(l/2), y+(l/2), w-l, h-l)
   }
 })

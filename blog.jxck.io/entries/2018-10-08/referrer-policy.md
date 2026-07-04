@@ -155,7 +155,7 @@ Firefox の about:config や、Chrome のコマンドラインオプションな
 
 しかし、HTTPS 化が進んでいる昨今、実質的に MITM を行なっているこの方法は限界と言える。
 
-証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しだろう。
+証明書の運用次第では暗号化を解くこともできなくないかもしれないが、運用は難しいだろう。
 
 
 ### Referrer Policy
@@ -333,12 +333,12 @@ Policy を指定しないことを意味する。
 
 ### Policy のまとめ
 
-表にまとめるとこうなる
+表にまとめるとこうなる。
 
 Caption: Policy のまとめ
 | Policy                          | Condition      | Value  |
 |:--------------------------------|---------------:|-------:|
-| noreferrer                      |           必ず |   無し |
+| no-referrer                     |           必ず |   無し |
 | unsafe-url                      |           必ず |    URL |
 | origin                          |           必ず | Origin |
 | same-origin                     |    Same Origin |    URL |
@@ -391,7 +391,7 @@ Policy を適用する方法は 4 つある。
 
 と同じ挙動となる。
 
-参考: [リンクのへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
+参考: [リンクへの rel=noopener 付与による Tabnabbing 対策 | blog.jxck.io](https://blog.jxck.io/entries/2016-06-12/noopener.html)
 
 
 ### referrerpolicy 属性

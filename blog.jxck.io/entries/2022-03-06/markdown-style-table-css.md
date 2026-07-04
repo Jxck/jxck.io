@@ -42,7 +42,7 @@
 
 ### HTML
 
-まず、自作のパーサでは以下のような HTML が生成される。Align は HTML の `align` 要素が [Deprecated](https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align) だったため、`class` で実装している。
+まず、自作のパーサでは以下のような HTML が生成される。Align は HTML の `align` 属性が [Deprecated](https://developer.mozilla.org/ja/docs/Web/API/HTMLTableElement/align) だったため、`class` で実装している。
 
 ```html
 <table>

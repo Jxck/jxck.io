@@ -2,7 +2,7 @@
 
 ## Intro
 
-Web Authentication(WebAuthN) API の策定と実装が進んでいる。
+Web Authentication(WebAuthn) API の策定と実装が進んでいる。
 
 これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
 
@@ -83,11 +83,11 @@ const clientCredentialOption = {
     name: "labs.jxck.io",
   },
   user: {
-    id: crypto.randomBytes(32) // 一意な値、username を元に生成しても良い
+    id: crypto.randomBytes(32), // 一意な値、username を元に生成しても良い
     name: username,
     displayName: username,
   },
-  challenge: crypto.randomBytes(32)
+  challenge: crypto.randomBytes(32),
   pubKeyCredParams: [
     {type: "public-key", alg: -7 /*ES256*/}
   ],
@@ -109,7 +109,7 @@ req.session.username  = username // CAUTION!! this is only a sample
 
 ブラウザは、取得した値を元に `create()` を呼びクレデンシャルを生成する。
 
-YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
+YubiKey を挿している場合は、ここでタッチを求められ、タッチすると Resolve される。
 
 ```js
 // create() PublicKeyCredential
@@ -341,17 +341,17 @@ req.session.username  = username // CAUTION!! this is only a sample
 
 ブラウザは、取得した値を元に `get()` を呼びクレデンシャルを生成する。
 
-YubiKey を刺している場合は、ここでタッチを求められ、タッチすると Resolve される。
+YubiKey を挿している場合は、ここでタッチを求められ、タッチすると Resolve される。
 
 ```js
 // get() PublicKeyCredential
 const credential = await navigator.credentials.get({publicKey: option})
 
 const { id, rawId, response } = credential // id は rawId の base64url
-const { type, authenticatorData, signature, userHandle, clientDataJSON } // type = "public-key"
+const { type, authenticatorData, signature, userHandle, clientDataJSON } = response // type = "public-key"
 ```
 
-なお、credential.rawId は credential.id の base64url なので、id の方だけそのまま送れば良い。
+なお、credential.id は credential.rawId の base64url なので、id の方だけそのまま送れば良い。
 
 
 ### 3. サービスは中身を確認し、ユーザを認証する
@@ -397,7 +397,7 @@ const hash = crypto.createHash("sha256").update(clientDataJSON).digest()
 
 ここで使う PublicKey は、Registration でユーザに紐付けて保存した PublicKey だが、これを PEM にする場合は少しいじる必要が有る。
 
-結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64bit ごとに折り返せば良い。
+結論から言うと、以下のようなメタデータを付与する必要があり、それ以外は先の方法と同じく base64 を 64 文字ごとに折り返せば良い。
 
 (ここが一番ハマった)
 

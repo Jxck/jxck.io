@@ -2,7 +2,7 @@
 
 ## Intro
 
-Record を Map に変換するだけのマクロ
+Record を Map に変換するだけのマクロ。
 
 
 ## ?RtoM

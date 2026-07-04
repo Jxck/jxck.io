@@ -11,7 +11,7 @@ ECMAScript の Private Class Field の仕様策定と各ブラウザの実装が
 
 ## Class Field Declaration
 
-まず前提として、現状の Class の フィールドはコンストラクタで定義する必要がある。
+まず前提として、現状の Class のフィールドはコンストラクタで定義する必要がある。
 
 例えば count フィールドを持つ Counter クラスを定義した場合、以下のようになる。
 
@@ -331,7 +331,7 @@ const c = new Counter()
 c.increment()
 c.display() // 1
 console.log(c.equals(new Counter())) // false
-console.log(c.#count) // syntax error
+console.log(c.#count) // SyntaxError
 ```
 
 この構文の特徴は、JS では最後の `c.#count` という記法が許可されず Syntax Error になるということだ。
@@ -397,7 +397,7 @@ class Counter {
 }
 ```
 
-将来的にはこれは省略するショートハンドを定義する余地は残っている。
+将来的にはこれを省略するショートハンドを定義する余地は残っている。
 
 実現すればこう書けるだろう。
 
@@ -443,7 +443,7 @@ class X {
 
 ## Dynamic Access
 
-`this.#x` を `this.["#x"]` と書くことはできない。
+`this.#x` を `this["#x"]` と書くことはできない。
 
 まず、動的なアクセスの場合は `["#x"]` は今の JS でも valid だ。
 
@@ -455,7 +455,7 @@ o // {"#x": 10}
 
 これは既存のコードでもあり得るが、アクセス方法も `o["#x"]` しかなく、`.#x` でアクセスするコードは既存にはないので両方を許さなければ競合はしない。
 
-また、動的に Private にアクセスできるとうことは、以下のようなことができてしまうことを意味する。
+また、動的に Private にアクセスできるということは、以下のようなことができてしまうことを意味する。
 
 ```js
 class Dict {
@@ -513,7 +513,6 @@ class Point3D extends Point2D {
 const p1 = new Point2D(10, 20, 30)
 const p2 = new Point3D(10, 20, 30)
 console.log(p1.equals(p2))
-console.log(p1.display())
 ```
 
 

@@ -28,10 +28,10 @@ const fetches = [
 ]
 
 // 全ての fetch が Resolve したら Resolve する
-await Promise.all(fetched)
+await Promise.all(fetches)
 
-// 最初の一つが Resolve したら Resolve する
-await Promise.race(fetched)
+// 最初の 1 つが Resolve したら Resolve する
+await Promise.race(fetches)
 ```
 
 ただし、それは全ての Promise が Resolve することを前提とした場合である。
@@ -41,7 +41,7 @@ all/race ともに、そのうちの一部が Reject した場合を考えると
 
 ### all + reject
 
-all は、その中の一つでも Reject すると、全体が Reject してしまう。
+all は、その中の 1 つでも Reject すると、全体が Reject してしまう。
 
 ```js
 try {
@@ -56,9 +56,9 @@ try {
   ]
 
   // 全ての fetch が Resolve したら Resolve する
-  await Promise.all(fetched)
+  await Promise.all(fetches)
 } catch(err) {
-  // 一つでも Reject すると Reject する
+  // 1 つでも Reject すると Reject する
   console.error(err) // abort
 }
 ```
@@ -107,7 +107,7 @@ try {
 
 ## race + reject
 
-race の場合は、最初の一つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
+race の場合は、最初の 1 つが Resolve する前に Reject した Promise があると、そこで全体が Reject してしまう。
 
 ```js
 const fetches = [
@@ -174,7 +174,7 @@ Fulfilled か Rejected どちらかになった状態、つまり成功失敗に
 
 つまり、終わる条件が Settled なのかどうかで分類できることがわかる。
 
-この分類で行くと race はそもそも [anySettled](https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703) だったと言うことになる。
+この分類で行くと race はそもそも [anySettled](https://github.com/tc39/proposal-promise-any/issues/10#issuecomment-459134703) だったということになる。
 
 同じようにもし今名前を変えても良いのであれば、こうするとわかりやすいだろう。
 
