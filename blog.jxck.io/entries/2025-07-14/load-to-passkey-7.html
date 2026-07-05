@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
+  <meta name=description         content="Apple が突如発表した Passkey。実態は「WebAuthN の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
   <meta name=keywords            content="passkey">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html>
   <meta property=og:title        content="Passkey への道 #7: そして Username-Less へ | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
+  <meta property=og:description  content="Apple が突如発表した Passkey。実態は「WebAuthN の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-07-14T00:00:00+09:00",
-    "dateModified": "2026-07-04T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "Apple が突如発表した Passkey。実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。"
+    "description": "Apple が突如発表した Passkey。実態は「WebAuthN の秘密鍵を iCloud で共有」するサービスだった。そして、業界は本格的な Password-Less に向けて進んでいく。"
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-14>2025-07-14</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -152,7 +152,7 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Apple が突如発表した Passkey。
-        <p>実態は「WebAuthn の秘密鍵を iCloud で共有」するサービスだった。
+        <p>実態は「WebAuthN の秘密鍵を iCloud で共有」するサービスだった。
         <p>そして、業界は本格的な Password-Less に向けて進んでいく。
       </section>
       <section>
@@ -161,7 +161,7 @@
         <p>もともと生体認証を牽引していた FIDO を中心にこの方式についての議論が行われ、最終的には業界全体が Passkey を用いて Password-Less を目指す方向で概ね合意することになる。
         <p>Apple 以外のパスワードマネージャも Passkey に対応する(つまり、秘密鍵を登録しそれを共有する)ようになり、様々な場所で Passkey への移行が啓蒙されるようになった。
         <p>ちょうどコロナ禍と重なるくらいの時期だ。
-        <p>ちなみに、ここまで WebAuthn の鍵と言っているものは、FIDO では &quot;FIDO(2) の Credential&quot; という呼称になる。
+        <p>ちなみに、ここまで WebAuthN の鍵と言っているものは、FIDO では &quot;FIDO(2) の Credential&quot; という呼称になる。
         <p>ところが、FIDO の中では「Passkey」=「共有された FIDO Credential」ではないことになった。
         <p>これだけ「共有されることが革新だった」という話をしてきたが、厳密にはそれは FIDO の言う Passkey にとって必要条件ではない。
         <p>FIDO にとって大事なのは、どちらかというと Discoverable Credentials や Resident Key と呼ばれるものだ。
@@ -169,7 +169,7 @@
       <section>
         <h2 id="username-less"><a href="#username-less">Username-Less</a></h2>
         <p>安い YubiKey や Titan の Security Key には、単純に「秘密鍵の入ったデバイス」なものもある。こうしたデバイスは、スマホ/PC での保存を Platform Authenticator と呼ぶのに対して、Roaming Authenticator と呼び分ける。
-        <p>Roaming Authenticator の場合、WebAuthn の API を使うと、その秘密鍵からサイトごとの公開鍵を作成し、サイトのドメインに紐づけて保存するが、このとき、自身は「どのサイトに使う鍵を保存しているか」は知らない場合がある。WebAuthn の API で、鍵の ID を知らされてそれを返すだけだ。
+        <p>Roaming Authenticator の場合、WebAuthN の API を使うと、その秘密鍵からサイトごとの公開鍵を作成し、サイトのドメインに紐づけて保存するが、このとき、自身は「どのサイトに使う鍵を保存しているか」は知らない場合がある。WebAuthN の API で、鍵の ID を知らされてそれを返すだけだ。
         <p>しかし、このとき生成した鍵に、「どのサイト用」「どのアカウント用」などの情報を紐づけて保存できると、以下のようにポップアップで「保存している Passkey」一覧を表示できるのだ。ここにアカウント名(Email など)が同時に表示されているため、選んでクリックするだけでログインできる。
         <p>
           <picture>
@@ -194,7 +194,7 @@
         </ul>
         <p>なお、Username-Less で入れるということは、その Authenticator さえあれば他に何もなくログインできてしまう。したがって、必ず User Verification つまり、指紋や顔認証などを用いた「本人確認」が必要となる。スマホであれば何度も言っているアンロックプロセスがそれにあたり、Roaming Authenticator の場合も、単なるタッチではなくちゃんと指紋を登録し確認するタイプの Authenticator などであれば、Passkey と言えるのだ。
         <p>この User Verification が生体認証で行われている限りは、実質的に二要素認証と同等の安全性が見込めることも、Password/Username-Less が従来の Password+TOTP より安全である根拠にもなっている。つまり、Username-Less できる記憶領域があり、生体認証できるなら、パスワードマネージャと呼ばれるものではない、単体デバイスの Roaming Authenticator でも Passkey を保存することは可能だ。つまり、「Passkey にはパスワードマネージャが必要」ではないということだ。
-        <p>ところで、FIDO には Passkey について色々書かれており、公式ロゴっぽいものも公開しているが、FIDO が Passkey という標準を決めているわけではない。Password に仕様がないように、IETF や W3C を探しても &quot;Passkey&quot; という標準仕様は無いのだ。あくまで WebAuthn などの「ユースケース」であり、iCloud などのサービス固有の名前ではない「普通名詞」であり、従来の認証を次に進めていくための「ブランド」のような立ち位置になっている。
+        <p>ところで、FIDO には Passkey について色々書かれており、公式ロゴっぽいものも公開しているが、FIDO が Passkey という標準を決めているわけではない。Password に仕様がないように、IETF や W3C を探しても &quot;Passkey&quot; という標準仕様は無いのだ。あくまで WebAuthN などの「ユースケース」であり、iCloud などのサービス固有の名前ではない「普通名詞」であり、従来の認証を次に進めていくための「ブランド」のような立ち位置になっている。
         <p>「Passkey の定義は?」という質問に対する説明の歯切れが悪くなりがちなのは、こうした微妙な構図がある。したがって、一般ユーザの視点で言えば「何も入力せず、タップだけでログインできれば Passkey」くらいの認識で問題ないとも言える。
       </section>
       <section>
@@ -275,7 +275,7 @@
           <li><a href="https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html">Passkey への道 #2: 2FA/TOTP</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html">Passkey への道 #3: 手入力の限界</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html">Passkey への道 #4: 文字列の限界</a>
-          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthn</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthN</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html">Passkey への道 #6: タブーを破った Apple</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html">Passkey への道 #7: そして Username-Less へ</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a>

@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
+  <meta name=description         content="TOTP/WebAuthN は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
   <meta name=keywords            content="passkey">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html>
   <meta property=og:title        content="Passkey への道 #6: タブーを破った Apple | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
+  <meta property=og:description  content="TOTP/WebAuthN は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-07-13T00:00:00+09:00",
-    "dateModified": "2026-07-04T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス..."
+    "description": "TOTP/WebAuthN は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティス..."
   }
   </script>
 
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-13>2025-07-13</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -149,7 +149,7 @@
       <h1><a href="">Passkey への道 #6: タブーを破った Apple</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>TOTP/WebAuthn は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。
+        <p>TOTP/WebAuthN は、バックアップコードの適切な保管方法が示されないまま、移行だけが推し進められた。
         <p>YubiKey などの物理 Authenticator の扱いとして、「二本登録して、片方は普段使い、もう片方は貸金庫へ」などと、かなり無理のあるベストプラクティスが啓蒙されたりもしていた。
         <p>それらをスマホに移行して、登録は便利だが壊したら詰むでは、ユーザは安心して使えない。いや、正確には「よくわからないまま使って、詰んでから Apple のサポートに連絡する」という状態だったのだろう。
         <p>ここに解決策が提示されたのが、WWDC 2021 だった。
@@ -165,7 +165,7 @@
             </ul>
           </li>
         </ul>
-        <p>実態は、単なる WebAuthn の API を使った、秘密鍵での認証の話だ。つまり今までやってきた Platform Authenticator としての iPhone 認証と全く同じ。
+        <p>実態は、単なる WebAuthN の API を使った、秘密鍵での認証の話だ。つまり今までやってきた Platform Authenticator としての iPhone 認証と全く同じ。
         <p>異なるのは、その「iPhone の中に作られた鍵を iCloud Keychain で同期する」という点だ。
         <p>元をたどれば YubiKey のような、「鍵が絶対取り出せない」ことに意味のある Authenticator を、スマホに移して使っている状態だ。スマホの中に生成された鍵は、スマホから出てはならないのが、認証業界の常識であり鉄則であり前提だった。
         <p>それを、「取り出して同期してしまおう」そして「それを Passkey と呼ぼう」という発表を、何の標準化もなく、いきなり Apple サービスの機能として発表したのだ。
@@ -185,7 +185,7 @@
         <p>Apple は、OS、デバイス、ブラウザ、アプリストア、パスワードマネージャに至るまで、とにかく上から下まで全部揃える稀有なベンダだ。ここまで隙間ない垂直統合で、ここまで大きなシェアを持つのは、Google でも MS でも成し得ていない。
         <p>そして、Apple は CM でさんざんやっているように、ユーザの「セキュリティ」や「プライバシー」を非常に重視している。それはリリースしているサービスや、方針などからも明らかだ(同時期に ITP や Private Relay もリリースしている)。もちろん、ユーザが日々遭遇しているフィッシングやマルウェアといった脅威を、Apple は高い解像度で把握しているだろう。
         <p>そんな Apple が、既存の認証のボトルネックであったパスワードを終わりにし、フィッシング詐欺や Infostealer にも対策し、iPhone を落としても簡単に詰まないように考えた、理想的な認証手段の答えが Passkey だったと言える。
-        <p>そう、Passkey は、その実態がほぼただの WebAuthn でありながら、もはや二要素ではなく、それ単体でログインするための単要素として活用できる。ユーザが必要なのは、iCloud にログインしたデバイスで「Sign-in with Passkey」のボタンをタップすることだけになるのだ。
+        <p>そう、Passkey は、その実態がほぼただの WebAuthN でありながら、もはや二要素ではなく、それ単体でログインするための単要素として活用できる。ユーザが必要なのは、iCloud にログインしたデバイスで「Sign-in with Passkey」のボタンをタップすることだけになるのだ。
         <p>その要素としての「秘密鍵を共有する」という掟破りは、その後今に至る認証の常識を変えてしまった。業界にとっての大きなイノベーションだったと言って良いだろう。
       </section>
       <section>
@@ -206,7 +206,7 @@
         <p>例として、もし GitHub に Passkey を登録し、それを iPhone の iCloud Keychain に保存していたら、ログイン時は Face ID や Touch ID を求められるだろう。
         <p>しかし、これは「生体認証で GitHub にログインしている」わけではない。
         <p>ユーザはあくまで、iCloud Keychain に保存された Passkey でログインしている。つまり秘密鍵を用いた「所有」の認証だ。GitHub に登録されるのは指紋情報ではなく、対応する公開鍵だ。では、iPhone はなぜ Face/Touch ID を求めるのかというと、それはパスワードマネージャをアンロックするためだ。
-        <p>GitHub のサイトが WebAuthn の API を叩いた際に、Passkey のログインが勝手に行われてしまっては、ユーザの意図しないところでログインが成立してしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
+        <p>GitHub のサイトが WebAuthN の API を叩いた際に、Passkey のログインが勝手に行われてしまっては、ユーザの意図しないところでログインが成立してしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
         <p>本人確認を必要としているのはサービス(GitHub)ではなく、端末(iPhone)なのだ。このプロセスを User Verification という。何回か Touch/Face ID が失敗したら、いつもの iPhone の PIN コードで代替できるのは、それがあくまで iPhone に閉じた話だからだ。
         <p>したがって、iPhone/Android や Windows Hello などの機能は、生体情報が「デバイスの中に保存」されており、外には出ないようになっている。iPhone を買い直しても、指紋や顔の登録は同期されない。買うたびに PIN を設定するように、買うたびに顔と指紋を登録する必要があるのはこのためだ。
         <p>もちろん、生体認証はローカルに閉じ外には出ないというのは、ベンダの説明だ。Apple や Google や MS が、それらの情報をこっそりサーバに収集している可能性を疑うことも可能だ。疑わしいなら登録せずに PIN だけにすれば良い。PIN でも User Verification にはなり、マネージャはアンロックでき、Passkey は問題なく使える。
@@ -221,7 +221,7 @@
           <li><a href="https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html">Passkey への道 #2: 2FA/TOTP</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html">Passkey への道 #3: 手入力の限界</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html">Passkey への道 #4: 文字列の限界</a>
-          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthn</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthN</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html">Passkey への道 #6: タブーを破った Apple</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html">Passkey への道 #7: そして Username-Less へ</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a>

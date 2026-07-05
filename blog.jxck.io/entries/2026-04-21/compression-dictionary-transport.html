@@ -69,7 +69,7 @@
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2026-04-21T00:00:00+09:00",
-    "dateModified": "2026-07-04T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2026-04-21>2026-04-21</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -145,7 +145,7 @@
                 <li><a href="#差分辞書">差分辞書</a>
               </ol>
               <li><a href="#webbundle-の失敗">WebBundle の失敗</a>
-              <li><a href="#webfont-問題">WebFont 問題</a>
+              <li><a href="#web-font-問題">Web Font 問題</a>
               <li><a href="#web-における辞書共有">Web における辞書共有</a>
               <li><a href="#rfc-9842-compression-dictionary-transport">RFC 9842: Compression Dictionary Transport</a>
               <li><a href="#delta-compression">Delta Compression</a>
@@ -295,12 +295,12 @@ s:// [];tollplug(){
         <p>その後始まった Shared Brotli には、この「差分更新」のコンセプトを、辞書を用いて再始動するモチベーションがあったのだ。
       </section>
       <section>
-        <h2 id="webfont-問題"><a href="#webfont-問題">WebFont 問題</a></h2>
-        <p>これが最も効くユースケースは WebFont だろう。
+        <h2 id="web-font-問題"><a href="#web-font-問題">Web Font 問題</a></h2>
+        <p>これが最も効くユースケースは Web Font だろう。
         <p>Noto Sans JP の woff2 を配布したいが、全部は重い。かといって、そのページに必要な文字だけを送ったら、次のページでは足りない。全ページで必要な文字を事前に把握するのも難しい。
         <p>ページごとに毎回異なる woff2 を取得するのも重いし、ページ間の woff2 はほとんどが共通していることになる。これこそが、差分更新が求められる場面だ。
         <p>例えば、全てのページで「そのページに必要な文字だけ」の woff2 を用意し、ページごとに送る。しかし、転送は既に送っている woff2 を辞書として圧縮することで、「足りない文字だけを送る」に近い転送量に下げることができる。
-        <p>全ページで、そのページ用の woff2 を作っておく事前作業や、それを「クライアントにすでにある woff2」を辞書として圧縮するオーバーヘッドは残る。そもそも、1 ファイルの転送は残るため、ネットワークが遅ければフォント置換による FO(I/U)T は避けられないだろう。それでも、CJK で WebFont をどうしても使いたい開発者にとっては、縋れる藁ではあるだろう。
+        <p>全ページで、そのページ用の woff2 を作っておく事前作業や、それを「クライアントにすでにある woff2」を辞書として圧縮するオーバーヘッドは残る。そもそも、1 ファイルの転送は残るため、ネットワークが遅ければフォント置換による FO(I/U)T は避けられないだろう。それでも、CJK で Web Font をどうしても使いたい開発者にとっては、縋れる藁ではあるだろう。
         <p>残る問題は、「その辞書をどう共有するか」というプロトコルだ。
       </section>
       <section>

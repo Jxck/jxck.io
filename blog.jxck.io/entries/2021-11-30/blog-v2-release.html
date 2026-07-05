@@ -145,7 +145,7 @@
                 <li><a href="#img-のカスタマイズ">img のカスタマイズ</a>
                 <li><a href="#adaptive-css">adaptive CSS</a>
                 <li><a href="#table"><code translate=no>&lt;table&gt;</code></a>
-                <li><a href="#toc-の生成">TOC の生成</a>
+                <li><a href="#toc-の生成">ToC の生成</a>
                 <li><a href="#h1">h1</a>
                 <li><a href="#front-matter">Front Matter</a>
                 <li><a href="#dl"><code translate=no>&lt;dl&gt;</code></a>
@@ -156,7 +156,7 @@
               </ol>
               <li><a href="#技術負債の解消">技術負債の解消</a>
               <ol>
-                <li><a href="#脱-webfont">脱 WebFont</a>
+                <li><a href="#脱-web-font">脱 Web Font</a>
                 <li><a href="#html-header">HTML Header</a>
                 <li><a href="#favicon">Favicon</a>
                 <li><a href="#twitter-card">Twitter Card</a>
@@ -328,10 +328,10 @@
           <p>また、<code translate=no>&lt;table&gt;</code> の align は <code translate=no>align</code> 属性で指定も可能だが、もう deprecate されているため、CSS で align するために <code translate=no>class</code> をつけるようにしている。
         </section>
         <section>
-          <h3 id="toc-の生成"><a href="#toc-の生成">TOC の生成</a></h3>
+          <h3 id="toc-の生成"><a href="#toc-の生成">ToC の生成</a></h3>
           <p>前述で生成した heading とその ID を用いて、ページ内リンクの Table of Contents を生成して吐くようにした。
-          <p>TOC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま TOC として AST と一緒に返すようにした。
-          <p>この TOC は、blog のタイトル上に埋め込んでいる。
+          <p>ToC の生成は、後述する Traverser で欲しい人が自分でやるスタイルにしようかとも思ったが、前述の ID の重複検出をするには、どちらにせよパース時に Heading のリストを保持することになるので、それをそのまま ToC として AST と一緒に返すようにした。
+          <p>この ToC は、blog のタイトル上に埋め込んでいる。
         </section>
         <section>
           <h3 id="h1"><a href="#h1">h1</a></h3>
@@ -434,8 +434,8 @@
         <h2 id="技術負債の解消"><a href="#技術負債の解消">技術負債の解消</a></h2>
         <p>Markdown プロセッサを直すと同時に、それまで溜まっていた負債や、後回しにしていた改善も一気に入れることにした。
         <section>
-          <h3 id="脱-webfont"><a href="#脱-webfont">脱 WebFont</a></h3>
-          <p>鉄下駄として WebFont を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しいと考えてやめた。
+          <h3 id="脱-web-font"><a href="#脱-web-font">脱 Web Font</a></h3>
+          <p>鉄下駄として Web Font を入れていたが、もう試すことはだいたい試した上に、もう日本語フォントにこれ以上期待するのは難しいと考えてやめた。
           <ul>
             <li><a href="https://blog.jxck.io/tags/#web%20font">Tag: Web Font</a>
           </ul>

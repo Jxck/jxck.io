@@ -46,7 +46,7 @@
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html>
-  <meta property=og:title        content="Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io">
+  <meta property=og:title        content="Passkey への道 #5: 2FA/WebAuthN | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
   <meta property=og:description  content="Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。であれば、最初から文字列に頼らなけ...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
@@ -63,13 +63,13 @@
       "@type":"WebPage",
       "@id":"https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html"
     },
-    "headline": "Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io",
+    "headline": "Passkey への道 #5: 2FA/WebAuthN | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
     ],
     "datePublished": "2025-07-12T00:00:00+09:00",
-    "dateModified": "2026-07-04T00:00:00+09:00",
+    "dateModified": "2026-07-05T00:00:00+09:00",
     "author": {
       "@type": "Person",
       "name": "Jxck",
@@ -89,7 +89,7 @@
   }
   </script>
 
-  <title>Passkey への道 #5: 2FA/WebAuthn | blog.jxck.io</title>
+  <title>Passkey への道 #5: 2FA/WebAuthN | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
@@ -113,7 +113,7 @@
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
     <dl class=info>
       <div><dt>created_at</dt><dd><time class=created_at datetime=2025-07-12>2025-07-12</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
       <div>
         <dt>tags</dt>
         <dd>
@@ -146,12 +146,12 @@
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
-      <h1><a href="">Passkey への道 #5: 2FA/WebAuthn</a></h1>
+      <h1><a href="">Passkey への道 #5: 2FA/WebAuthN</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>Infostealer は、ユーザの権限でインストールされ、ユーザがアクセスできるあらゆる情報を盗んで去っていく。
         <p>そこから、どんなに暗号化して保存しても、使用時には平文にしないといけない「パスワード」という文字列を守り抜くのは非常に難しい。
-        <p>であれば、最初から文字列に頼らなければ良い。それが WebAuthn と FIDO だった。
+        <p>であれば、最初から文字列に頼らなければ良い。それが WebAuthN と FIDO だった。
       </section>
       <section>
         <h2 id="authenticator"><a href="#authenticator">Authenticator</a></h2>
@@ -165,33 +165,33 @@
         </p>
         <p>このメモリースティックのようなデバイスは、Security Key と呼ばれ、内部に取り出せない秘密鍵を保存している。
         <p>TOTP 用のデバイスと同じように秘密鍵を持っているが、乱数を表示するのではなく、この中にある秘密鍵そのもので認証を行うためのものだ。「所有」の要素であるため、社員証につけて首から下げている人もいるかもしれない。
-        <p>こうしたデバイスで認証するために、ブラウザには WebAuthn という API が標準化されている。デバイスを USB ポートに差し込み、サイトに登録する。ログイン時は、金属部分をタップすればログインできるのだ。
+        <p>こうしたデバイスで認証するために、ブラウザには WebAuthN という API が標準化されている。デバイスを USB ポートに差し込み、サイトに登録する。ログイン時は、金属部分をタップすればログインできるのだ。
         <p>TOTP とやっていることは非常に近いが、「文字列を入力する」という行為がない分、こちらの方式のほうが安全と言える。
-        <p>WebAuthn は、明示的に API を呼び出さなければ認証できない上に、ドメインが変われば反応しない。対応するサービスは、登録と利用でドメインが変わるといった実装ができないのだ。
+        <p>WebAuthN は、明示的に API を呼び出さなければ認証できない上に、ドメインが変われば反応しない。対応するサービスは、登録と利用でドメインが変わるといった実装ができないのだ。
         <p>物理的に盗まれれば別だが、例えば挿した USB ポートを経由して中の鍵を吸い出したり、すれ違いざまに鍵をスキャンするといった攻撃もできないよう設計されている。無理に開けて取り出そうとすれば、鍵が消えて壊れるという、耐タンパー性を持っている。
         <p>これを二要素認証に用いれば、TOTP よりもよっぽど堅牢な作りになるのだ。
         <p>しかし、情シスがしっかりした企業で配られて使っている社員か、セキュリティ意識が高くてわざわざ購入する少数のユーザがいるだけで、一般ユーザまで広く普及し、みんなが 1 つは持っているという状態にはならなかった。
         <p>何より人間は、こういったものを簡単に無くすし、簡単に壊す。登録できる鍵の数も制限があるため、しっかり使うと 1 個では足りなくなる。決して扱いやすいものではなかった。
-        <p>転機が訪れたのは、やはりスマホの対応だ。WebAuthn の API に反応し、スマホ内部に秘密鍵を生成できるようになったのだ。これを Platform Authenticator などと呼ぶ。
+        <p>転機が訪れたのは、やはりスマホの対応だ。WebAuthN の API に反応し、スマホ内部に秘密鍵を生成できるようになったのだ。これを Platform Authenticator などと呼ぶ。
         <p>スマホであればすでに普及し、みんなが肌身離さず持ち歩いている。容量も格段に多く、単体デバイスよりは壊れにくい。ユーザさえその気になれば普及するための基盤は整っていた。
         <p>しかし、普及の足かせとして、リカバリの問題が無視できなかった。
       </section>
       <section>
         <h2 id="2fa-のリカバリ"><a href="#2fa-のリカバリ">2FA のリカバリ</a></h2>
         <p>実は TOTP でもそうなのだが、リカバリはユーザにとって非常に重要な問題だ。
-        <p>パスワードを忘れたユーザは、メールアドレスでリカバリできるのが一般的だ。もしここで、TOTP や WebAuthn を登録したスマホを無くしたら、そのユーザはどうリカバリすべきだろうか?
-        <p>ここで、メールアドレスで TOTP/WebAuthn をリカバリできるとなれば、それは正規化するとメールで入っている単要素に集約される。メールが盗まれた時に、両方とも突破できるなら 2FA としての効能が薄い。
-        <p>そこで、TOTP/WebAuthn を登録したユーザには、通常以下のような乱数列が表示され、それを保存するように促される。これが「バックアップコード」と呼ばれるものだ。
+        <p>パスワードを忘れたユーザは、メールアドレスでリカバリできるのが一般的だ。もしここで、TOTP や WebAuthN を登録したスマホを無くしたら、そのユーザはどうリカバリすべきだろうか?
+        <p>ここで、メールアドレスで TOTP/WebAuthN をリカバリできるとなれば、それは正規化するとメールで入っている単要素に集約される。メールが盗まれた時に、両方とも突破できるなら 2FA としての効能が薄い。
+        <p>そこで、TOTP/WebAuthN を登録したユーザには、通常以下のような乱数列が表示され、それを保存するように促される。これが「バックアップコード」と呼ばれるものだ。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre><code translate=no>adsff-aoeif
 xpvge-fiqle
 o438d-fo2de
 ...
 ...</code></pre>
-        <p>もしスマホを忘れたり、壊れたりして、TOTP/WebAuthn ができなくなったら、このバックアップコードのうち 1 つを入力すれば、2FA を通ることができる。
+        <p>もしスマホを忘れたり、壊れたりして、TOTP/WebAuthN ができなくなったら、このバックアップコードのうち 1 つを入力すれば、2FA を通ることができる。
         <p>問題は、多くの一般ユーザにとって「これが何なのか」を理解するのが難しかったり、わかっていてもどう管理すればいいのかわからない状態で、2FA の登録だけが推し進められてしまったことだ。
         <p>エンジニアの中にも、GitHub が TOTP に対応したとき、勧められるまま Google Authenticator を入れたが、バックアップコードをスマホ内にダウンロードしたまま放置し、スマホが壊れた時に GitHub に入れなくなったという人がちらほら出た。
-        <p>そう、多くの人は「バックアップコード」など見向きもしないか、一応スマホの中にダウンロードしてそのままなのだ。その状態でスマホが壊れたり、機種変してしまうと、TOTP/WebAuthn は詰んでしまう。
+        <p>そう、多くの人は「バックアップコード」など見向きもしないか、一応スマホの中にダウンロードしてそのままなのだ。その状態でスマホが壊れたり、機種変してしまうと、TOTP/WebAuthN は詰んでしまう。
         <p>銀行や保険のように、本人確認という最終手段が使えたり、GitHub のように登録した SSH の鍵で確認できるサービスは良いが、そうでない一般サービスには「アカウントの乗っ取り」を防ぐためにリカバリプロセスが実施できなければ、安全側に倒すため「救済しない」ものもある。そのあたりが、機種変しても TOTP が途絶えないように、Authenticator アプリを入れさせるよりも、SMS に送りつけることを選び続けるサイトが残る理由でもあるだろう。
       </section>
       <section>
@@ -203,8 +203,8 @@ o438d-fo2de
       </section>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>それでも、TOTP は最終的に文字列を入力する。Autofill に頼るにしても、本来は文字列にしたくはない。2FA はできれば WebAuthn が望ましい。
-        <p>「WebAuthn も共有できればな」というのが、うっすらみんなの本音としてあるが、タブーなので決して口には出せない、そんな状態だったように思う。
+        <p>それでも、TOTP は最終的に文字列を入力する。Autofill に頼るにしても、本来は文字列にしたくはない。2FA はできれば WebAuthN が望ましい。
+        <p>「WebAuthN も共有できればな」というのが、うっすらみんなの本音としてあるが、タブーなので決して口には出せない、そんな状態だったように思う。
         <p>Apple が口火を切るまでは。
       </section>
       <section>
@@ -215,7 +215,7 @@ o438d-fo2de
           <li><a href="https://blog.jxck.io/entries/2025-07-09/load-to-passkey-2.html">Passkey への道 #2: 2FA/TOTP</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-10/load-to-passkey-3.html">Passkey への道 #3: 手入力の限界</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-11/load-to-passkey-4.html">Passkey への道 #4: 文字列の限界</a>
-          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthn</a>
+          <li><a href="https://blog.jxck.io/entries/2025-07-12/load-to-passkey-5.html">Passkey への道 #5: 2FA/WebAuthN</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-13/load-to-passkey-6.html">Passkey への道 #6: タブーを破った Apple</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-14/load-to-passkey-7.html">Passkey への道 #7: そして Username-Less へ</a>
           <li><a href="https://blog.jxck.io/entries/2025-07-15/load-to-passkey-8.html">Passkey への道 #8: サービスにとって「移行」のゴールは何か?</a>
