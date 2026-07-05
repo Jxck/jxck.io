@@ -258,7 +258,7 @@ Cache-Control: max-age=15768000, stale-while-revalidate=15768000
 
 ### 現状
 
-本サイトでは、現状 `Cache-Control` は [WebFont](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) 以外にはつけておらず、ETag による Conditional GET でのキャッシュを利用している。
+本サイトでは、現状 `Cache-Control` は [Web Font](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) 以外にはつけておらず、ETag による Conditional GET でのキャッシュを利用している。
 
 これは、ブログの記事や、JS/CSS などの *修正がいち早く反映されて欲しい* からである。
 

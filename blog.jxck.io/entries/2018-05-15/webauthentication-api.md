@@ -2,7 +2,7 @@
 
 ## Intro
 
-Web Authentication(WebAuthn) API の策定と実装が進んでいる。
+Web Authentication(WebAuthN) API の策定と実装が進んでいる。
 
 これを用いると、FIDO(Fast IDentity Online) U2F(Universal Second Factor) 認証が可能になる。
 

@@ -278,9 +278,9 @@ Caption: 文字範囲と文字数
 - NotoSansCJKjp-Jxck-Regular.otf (471.2K)
 
 
-### Woff 変換
+### WOFF 変換
 
-この OTF ファイルを、以下のツールを用い、Woff 形式に変換する。
+この OTF ファイルを、以下のツールを用い、WOFF 形式に変換する。
 
 [WOFF コンバータ](https://opentype.jp/woffconv.htm)
 
@@ -296,7 +296,7 @@ Caption: 文字範囲と文字数
 
 簡単にサイズの比較を行ってみる。
 
-比較は Woff で行い、フォントは Regular を使う。
+比較は WOFF で行い、フォントは Regular を使う。
 
 
 ### 漢字
@@ -416,4 +416,4 @@ Web Font もだいぶ一般的になってきたため、今後の Web 作成で
 
 こうした使いやすく優れたフォントが無料で提供されているのは、非常にありがたい。
 
-その他 WebFont に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。
+その他 Web Font に関連する検証は [web font](https://blog.jxck.io/tags/web%20font.html) タグにまとまっている。
