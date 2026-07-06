@@ -387,7 +387,7 @@ guests:
     - Closing the Loop Agentic Engineering in Chromium
     - Categorizing the Web LLMs and BigQuery ML
     - WPT Gen Automating Web Platform Tests with AI
-    - AI and the Web AI as Tech, Opportunity, and Thar be Dragons
+    - AI and the Web AI as Tech, Opportunity, and There be Dragons
     - The past, present, and future of Web standards Chris Wilson AMA
     - WebMCP and the Agentic Web
     - Browser Agent Security

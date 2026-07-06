@@ -332,7 +332,7 @@ guests:
 - **Prototype: `'step-up'` and `'step-down'` Invoker Commands**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/iwXoPUJhjIw
   - number, range, date などでの、値の増減ボタンを Invoker Command 化
-  - Invokee の `.setUp()` / `.setDown()` を呼ぶ
+  - Invokee の `.stepUp()` / `.stepDown()` を呼ぶ
   - https://open-ui.org/components/future-invokers.explainer/
 - Prototype: Document Policy in Dedicated Workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/l-3DhX_uCco

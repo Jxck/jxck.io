@@ -44,7 +44,7 @@ guests:
   - Temporal enabled by default
   - V8 14.6
     - ​Weak/Map の`getOrInsert()`/`getOrInsertComputed()`や Iterator の`concat()`メソッドが追加
-  - Unidici 8.0
+  - Undici 8.0
   - 10 月までは Current (最新)
   - 10 月からは LTS
   - https://nodejs.org/en/about/previous-releases
@@ -59,7 +59,7 @@ guests:
   - Node 22 未満を drop
   - `minimumReleaseAge` をデフォルト 1day
   - `blockExoticSubdeps` をデフォルト true
-  - Global Install が Virutla Store で分離
+  - Global Install が Virtual Store で分離
   - Publish に必要なコマンドが npm に移譲されなくなった
   - pnpm audit が npm の bulk advisories を使うようになり `/security/audits` を使わなくなった
   - `.npmrc` からは auth/registry のみを見て、それ以外は見ない
