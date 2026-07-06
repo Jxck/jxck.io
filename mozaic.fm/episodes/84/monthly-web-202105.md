@@ -805,5 +805,5 @@ guests:
 - CDN
   - CDN-Cache-Control
   - Cloudflare の Privacy Pass + WebAuthN に FIDO から反論
-- Secruity
+- Security
   - CAB Forum の update を globalsign がアナウンス

@@ -489,7 +489,7 @@ guests:
     - https://www.w3.org/TR/2018/WD-css-values-4-20180814/
   - Geolocation Sensor
     - https://www.w3.org/blog/news/archives/7259
-- Chartering (Working Group, Bussiness Group, etc)
+- Chartering (Working Group, Business Group, etc)
   - Immersive Web Working Group
     - https://lists.w3.org/Archives/Public/public-new-work/2018Aug/0006.html
 - Chartering (Community Group)

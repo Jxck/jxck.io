@@ -1068,7 +1068,7 @@ guests:
     - signature-based integrity
     - shadowrealm
     - shape()
-    - contentEncoding in Resouce Timing
+    - contentEncoding in Resource Timing
     - HSTS Tracking Prevention
   - web.dev
     - Baseline 2024
@@ -1077,7 +1077,7 @@ guests:
     - customizable select
     - text-box-trim
   - Chromium blog
-    - supporters of cr-baesd browsers
+    - supporters of cr-based browsers
   - other
     - Google セキュリティチームの退職時の password heist 文化
 - Firefox

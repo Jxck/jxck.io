@@ -821,7 +821,7 @@ guests:
   - ship HTTPS DNS record
   - prototype renderpriority
   - web.dev JS Event History
-  - web.dev specuration rules
+  - web.dev speculation rules
   - User Device Characteristics レポート
   - Manifest V3 移行
   - UA Reduction Timeline

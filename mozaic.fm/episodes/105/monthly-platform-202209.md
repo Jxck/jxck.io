@@ -694,7 +694,7 @@ guests:
     - OPFS on Android
   - Prototype
     - `lh` unit
-    - Same-site cross-origin prerendering by Speclation Rules
+    - Same-site cross-origin prerendering by Speculation Rules
     - Web Smart Card API
   - web.dev
     - Interop 2023 proposals
@@ -706,7 +706,7 @@ guests:
     - Chrome Root Program
 - Firefox
   - 105
-    - TextEncorderStream/TextDecoderStream
+    - TextEncoderStream/TextDecoderStream
     - OffscreenCanvas
   - Ship
     - COLRv1 fonts
@@ -721,7 +721,7 @@ guests:
     - non-animated AVIF
     - Shared Workers
   - TP 153
-    - Import Assetions and JSON modules
+    - Import Assertions and JSON modules
     - Imperative Slot API
     - aria-description
   - TP 154
@@ -733,7 +733,7 @@ guests:
     - Disable ShadowRealm
     - Prototype Declarative Shadow DOM
 - Edge
-  - Window Controlls Overlay で 30px のタイトルバー部分が使える
+  - Window Controls Overlay で 30px のタイトルバー部分が使える
 - W3C/WHATWG
   - TPAC
     - Breakout
@@ -751,9 +751,9 @@ guests:
   - other
     - TPAC で `:has` 問題の議論がふんわり終わってしまった
     - Permissions and User Consent の 2 回目を予定
-    - Tanteck による Sustinability CG Meeting まとめ
+    - Tantek による Sustainability CG Meeting まとめ
 - TC39
-  - proopsal-extractors
+  - proposal-extractors
   - Rust 実装の ICU4X1.0 リリースで FF Intl.Segmenter が進みそう
 - IETF
   - Alt-SVC デザインチームができた

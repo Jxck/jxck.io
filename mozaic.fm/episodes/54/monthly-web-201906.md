@@ -204,7 +204,7 @@ guests:
     - https://chromium.googlesource.com/chromium/src/+/766c2ad9b387457c4538cc702d4a0e5c73dc83f2
     - https://japan.cnet.com/article/35138001/
     - https://crbug.com/925965
-  - fix FileSystemAPI anti detect incognite
+  - fix FileSystemAPI anti detect incognito
     - https://9to5google.com/2019/06/13/google-chrome-76-beta/
     - https://chromium.googlesource.com/chromium/src/+/52b1b1e94dba734bda175cf96596f0a1d65e0b81
   - Making JavaScript and Google Search work together
@@ -252,7 +252,7 @@ guests:
     - GeckoView と使われているブラウザについて
   - **won't fix: New Firefox Preview for Android**
     - https://wontfix.blogspot.com/2019/06/new-firefox-preview-for-android.html
-    - GeckoView の概要と Fenix などで使われている Androdid Components について
+    - GeckoView の概要と Fenix などで使われている Android Components について
 - Intents
   - **Ship: JavaScript public fields**
     - https://groups.google.com/forum/#!msg/mozilla.dev.platform/GhSNChVLgZQ/rA2Ytc0TAgAJ

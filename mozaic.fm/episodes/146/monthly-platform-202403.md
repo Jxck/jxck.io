@@ -89,7 +89,7 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3lZDbHsRmO4
 - **Ship: Extending Storage Access API (SAA) to non-cookie storage**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/F5EV8I-j7Eg
-- Ship: Protected Audience: Split up large trusted signals fetches & deprectedReplaceInURN via auction config
+- Ship: Protected Audience: Split up large trusted signals fetches & deprecatedReplaceInURN via auction config
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/Z9v_94NhDME
 - Ship: SVG context-fill and context-stroke
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uH_CBc1O2kI
@@ -418,7 +418,7 @@ guests:
     - **setHTMLUnsafe**
     - **parseHTMLUnsafe**
     - CustomStateSet
-    - DOMMartixReadOnly
+    - DOMMatrixReadOnly
     - **AbortSignal.any()**
   - JavaScript
     - **Promise.withResolvers**

@@ -23,7 +23,7 @@ guests:
   - https://astro.build/blog/astro-150/
   - node/standalone が追加され、express とかのコード書かなくて良くなった + SSR の preview ができるようになった
   - tailwind/tsconfig の HMR 対応
-  - cookie のライブラリ buit-in
+  - cookie のライブラリ built-in
   - `:where` で css が出力されるようになった
 - **RFC: First class support for promises and async/await**
   - https://github.com/reactjs/rfcs/pull/229

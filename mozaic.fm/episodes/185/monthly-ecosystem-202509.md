@@ -65,7 +65,7 @@ guests:
   - ESM 化,CSF の型周り強化が入っている
 - feat: CSS variable tracking by nzakas · Pull Request #136 · eslint/rfcs
   - https://github.com/eslint/rfcs/pull/136
-  - ESLint の CSS Variabl の静的解析の機能追加
+  - ESLint の CSS Variable の静的解析の機能追加
 - Release Activity in Canary by rickhanlonii · Pull Request #34374 · facebook/react
   - https://github.com/facebook/react/pull/34374
   - `<Activity>` が Canary リリースへ

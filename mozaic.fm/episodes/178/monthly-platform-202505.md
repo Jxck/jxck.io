@@ -481,7 +481,7 @@ guests:
 - **「Firefox 138」のリリースノートにない日本人にとって重要な変更とは? - やじうまの杜 - 窓の杜**
   - https://forest.watch.impress.co.jp/docs/serial/yajiuma/2012339.html
   - NHK プラスは Firefox をサポート対象外にし、対象外というメッセージを出している
-  - ただこの表示は Picture-in-Picuture API の feature detection を使っているらしく、Firefox の compat shim 導入により NHK プラスが動くようになった
+  - ただこの表示は Picture-in-Picture API の feature detection を使っているらしく、Firefox の compat shim 導入により NHK プラスが動くようになった
   - ただ NHK が意図的に Firefox をブロックしている可能性があり、動き続けるかはわからないという話も
 
   ### Safari 動向
@@ -650,7 +650,7 @@ guests:
   - [command invokers] scroll command
   - https://github.com/openui/open-ui/issues/1220
   - `command`/`commandfor` で `::scroll-button` 相当のものを作りたいモチベーション
-  - 計 8 つの command を定義する方針: Phisical Direction(`up`/`down`/`left`/`right`)と Logical Direction(`block-start`/`block-end`/`inline-start`/`inline-end`)
+  - 計 8 つの command を定義する方針: Physical Direction(`up`/`down`/`left`/`right`)と Logical Direction(`block-start`/`block-end`/`inline-start`/`inline-end`)
   - 距離の指定は現時点では除外する方向
   - 動的な無効化(スクロール終端での無効化)をするかどうかについては検討中
 - [Range] update enhanced range slider to use the rangegroup element
@@ -834,7 +834,7 @@ guests:
 - Reading flow ships in Chrome 137 - Rachel Andrew
   - https://rachelandrew.co.uk/archives/2025/05/02/reading-flow-ships-in-chrome-137/
   - reading-flow, reading-order の実装の話
-- **Houdini Re-Revisted**
+- **Houdini Re-Revisited**
   - https://bkardell.com/blog/HoudiniReRe.html
   - BlinkOn での Bramus による CSS Parser Extensions を受けて。Houdini や Extensible Web に対する再考
     - CSS Parser Extensions // slidr.io
@@ -968,4 +968,4 @@ guests:
   - Other
     - Fit-to-Width の discussion
     - Carousels の a11y
-    - Houdini Re-Revisted
+    - Houdini Re-Revisited

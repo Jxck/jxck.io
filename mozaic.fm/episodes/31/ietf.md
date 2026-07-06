@@ -25,7 +25,7 @@ guests:
 - IETF100 Singapore
   - About https://www.ietf.org/meeting/100/index.html
   - Schedule https://datatracker.ietf.org/meeting/100/agenda.html
-- Working Gourps
+- Working Groups
   - HTTPBis https://datatracker.ietf.org/wg/httpbis/about/
   - QUIC https://datatracker.ietf.org/wg/quic/about/
   - TLS https://datatracker.ietf.org/wg/tls/about/

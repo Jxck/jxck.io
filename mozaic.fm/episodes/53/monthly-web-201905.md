@@ -20,7 +20,7 @@ guests:
 
 - mozaic bootcamp 2019
   - https://blog.jxck.io/entries/2019-05-12/mozaic-bootcamp-2019.html
-- lmozaic bootcamp に行ってきました - isyumi_net ブログ
+- mozaic bootcamp に行ってきました - isyumi_net ブログ
   - https://blog.isyumi.net/entry/2019/05/03/134854
 - mozaic bootcamp に参加して気づいた、自分に欠けていた Web 技術の知識メモ - ninjinkun's diary
   - https://ninjinkun.hatenablog.com/entry/mozaic-bootcamp
@@ -533,7 +533,7 @@ guests:
   - ポスト「意図しない逮捕」時代に Web エンジニアが見ておきたい話
 - **Google Online Security Blog: New research: How effective is basic account hygiene at preventing hijacking**
   - https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html
-  - 2FA の各手法ががアカウント乗っ取りにどれくらい有効なのかリサーチ
+  - 2FA の各手法がアカウント乗っ取りにどれくらい有効なのかリサーチ
   - セキュリティキーやオンスクリーンプロンプトはかなりブロックできる
   - SMS はまあまあ
 - Report from the curl bounty program

@@ -446,7 +446,7 @@ guests:
   - https://github.com/DavidSchinazi/webtrans-wg-materials
   - agenda
     - https://datatracker.ietf.org/meeting/111/materials/agenda-111-webtrans-02
-  - minuts
+  - minutes
     - https://datatracker.ietf.org/meeting/111/materials/minutes-111-webtrans-00
   - slide
     - https://datatracker.ietf.org/meeting/111/materials/slides-111-webtrans-ietf-111-webtrans-wg-slides-01

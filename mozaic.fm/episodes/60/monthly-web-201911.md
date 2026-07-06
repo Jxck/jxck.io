@@ -151,7 +151,7 @@ guests:
     - https://developers.google.com/web/updates/2019/10/chrome-79-deps-rems
     - `-webkit-appearance`
 - Intents
-  - Ship: getTransfrom() for OffscreenCanvasRenderingContext2D
+  - Ship: getTransform() for OffscreenCanvasRenderingContext2D
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/HT7REXjYLUM/qjnN8Bp5EAAJ
   - Ship: ARIA Attribute Reflection for Elements (without relationship properties)
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/882iPcdnNQs/UP-PI8H2DwAJ
@@ -493,7 +493,7 @@ guests:
       - https://github.com/quicwg/wg-materials/blob/master/ietf106/QUIC_Discard_Handshake_Keys_IETF_106.pdf
     - QUIC Version Negotiation
       - https://github.com/quicwg/wg-materials/blob/master/ietf106/QUIC_Version_Negotiation_IETF_106.pdf
-    - QUIC Interop Runnner
+    - QUIC Interop Runner
       - https://github.com/quicwg/wg-materials/blob/master/ietf106/quic-interop-runner.pdf
     - Quick QUIC Update
       - https://datatracker.ietf.org/meeting/106/materials/slides-106-tsvarea-quick-quic-update-mark-nottingham-00
@@ -528,7 +528,7 @@ guests:
       - 全体的にモチベーションが高い印象の議事録
     - An Unreliable Datagram Extension to QUIC
       - https://github.com/DavidSchinazi/webtrans-wg-materials/blob/master/ietf106/IETF106-WEBTRANS-Datagram.pdf
-    - Using HTTP/2 as a Transport for Arbitray Bytestreams
+    - Using HTTP/2 as a Transport for Arbitrary Bytestreams
       - https://github.com/DavidSchinazi/webtrans-wg-materials/blob/master/ietf106/IETF106-WEBTRANS-HTTP2Transport.pdf
     - WEBTRANS BOF IETF 106
       - https://github.com/DavidSchinazi/webtrans-wg-materials/blob/master/ietf106/IETF106_WEBTRANS_BOF.pdf

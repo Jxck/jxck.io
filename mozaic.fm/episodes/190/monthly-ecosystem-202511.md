@@ -214,7 +214,7 @@ guests:
   - https://cursor.com/ja/blog/2-0
   - Composer という速度早く、コーディングレベルもそこそこのモデルがでた
   - マルチエージェント機能で複数のモデルの回答を選べるように
-  - bult-in browser でブラウザから UI を指定して修正できるように
+  - built-in browser でブラウザから UI を指定して修正できるように
 - Storybook 10
   - https://storybook.js.org/blog/storybook-10/
   - ESM 専用への移行により、インストールサイズが 29%削減された。

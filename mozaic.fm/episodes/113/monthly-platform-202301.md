@@ -638,7 +638,7 @@ guests:
 - 2->3
   - Set Methods
   - Well-Formed Unicode Strings
-  - Interator Helpers
+  - Iterator Helpers
   - Explicit Resource Management
 - 3->4
   - Intl.Enumeration
@@ -938,7 +938,7 @@ guests:
     - :has() selectors list changed to unforgiving parsing
       - jQuery 3.6.2 and 3.6.3
 - TC39
-  - 262 Temporal の Purotype を 402 が拡張して良いのか問題
+  - 262 Temporal の Prototype を 402 が拡張して良いのか問題
   - Modules Harmony という計画があるらしい
   - Record/Tuples の費用対効果が合わないと白紙に戻りそう
 - IETF

@@ -821,7 +821,7 @@ guests:
   - 公共財としての Web を保持するための資金繰り
 - What if we just
   - https://bkardell.com/blog/WhatIfYouJustTellMe.html
-  - Well-kown URL に特定のフォーマットで Custom Element の情報を記述できるようにする
+  - Well-known URL に特定のフォーマットで Custom Element の情報を記述できるようにする
   - そうすれば、リアルワールドのデータに基づいた標準化作業ができるのでは
 
 ### イベント
@@ -858,7 +858,7 @@ guests:
   - PSA
   - other intents
   - web.dev
-    - pxiv のパスキー導入でログイン成功率が 99% になった話
+    - pixiv のパスキー導入でログイン成功率が 99% になった話
   - Google Developer Blog
     - Blink の `corner-shape` 実装について
   - Chrome Developers
@@ -923,7 +923,7 @@ guests:
     - [drafts.csswg.org](http://drafts.csswg.org) や [wiki.csswg.org](http://wiki.csswg.org) サーバ管理者問題と移行作業
   - Other
     - CSS Snapshot 2026 が出された
-    - Brian Kardell, Heatjer Flanagan が TAG に選任された
+    - Brian Kardell, Heather Flanagan が TAG に選任された
     - ACD の 2025 の取り組みについて Lola からレポート
 - TC39
   - Upsert Stage 4

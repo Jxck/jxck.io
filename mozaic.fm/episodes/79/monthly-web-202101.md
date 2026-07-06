@@ -37,7 +37,7 @@ guests:
   - https://blog.chromium.org/2021/01/privacy-sandbox-in-2021.html
 - **New in Chrome 88 - Chrome Developers**
   - https://developer.chrome.com/blog/new-in-chrome-88/
-  - maifest v3
+  - manifest v3
   - aspect-ratio for any element
   - throttle chained JavaScript timers for hidden pages
   - Play Billing in Trusted Web Activity.
@@ -876,9 +876,9 @@ guests:
   - https://blog.nic.ad.jp/2020/5545/
   - E2E に関する規制への署名の話の詳細
   - > 声明に署名した 7 ヶ国および EU が言っていることは、バックドアを作るか鍵を預けなさいということだと考えられます。ISOC が主張するように、E2EE を破ることは一般の人を脆弱にさらすことになり、声明署名国や EU が主張するような、プライバシーを守りつつ法執行機関が暗号化された通信コンテンツにアクセスできるようにする方法は、両立しないと考えます。とはいえ、犯罪被害者になり、E2EE のため犯人がつかまらない、となった場合、E2EE が絶対といえるか、と考えると難しいものがあります。
-- `content-visiblity` Without Jittery Scrollbars - Infrequently Noted
+- `content-visibility` Without Jittery Scrollbars - Infrequently Noted
   - https://infrequently.org/2020/12/content-visibility-scroll-fix/
-- Resize-Resilient `content-visiblity` Fixes - Infrequently Noted
+- Resize-Resilient `content-visibility` Fixes - Infrequently Noted
   - https://infrequently.org/2020/12/resize-resilient-deferred-rendering/
 - ソフトバンク・博報堂・トレジャーデータの合弁会社、3rd パーティクッキー依存しないソリューションを提供開始 | RTB SQUARE
   - https://rtbsquare.work/archives/34250
@@ -909,7 +909,7 @@ guests:
   - https://github.com/openwebdocs/
   - Open Collective で立ち上げた、Web のドキュメンテーションの支援組織
   - MDN を移行したり、別で立ち上げるのではなく、暫くは MDN(Yari) の支援が中心
-  - Igalia, Coil, Google, MS, Mozilla, Samsong, W3C などが参加
+  - Igalia, Coil, Google, MS, Mozilla, Samsung, W3C などが参加
   - 組織中立なので Mozilla 自身も参加者
   - 寄付は以下から
     - https://opencollective.com/open-web-docs

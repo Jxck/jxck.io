@@ -181,7 +181,7 @@ guests:
   - **Here's an update on our use of country code top-level domains.**
     - https://blog.google/products/search/country-code-top-level-domains/
     - Google 検索の URL についてすべての ccTLD (e.g. google.co.jp) が google.com へリダイレクトされることに
-  - **G̶o̶o̶g̶l̶e̶r̶… ex-Googler. April 10, 2025**
+  - **~Googler~... ex-Googler. April 10, 2025**
     - https://nerdy.dev/ex-googler
     - Adam Argyle がレイオフされた
   - **Anti-climax - Bram.us**
@@ -666,7 +666,7 @@ guests:
 - W3C/WHATWG
   - Draft
     - CSS Gap Decorations Module Level 1
-      - `colum-rule`, `row-rule`
+      - `column-rule`, `row-rule`
   - Open UI
     - menu
       - Navigation Menu に関する議論

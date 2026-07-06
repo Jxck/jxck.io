@@ -25,7 +25,7 @@ guests:
     - **beforeinstallprompt**
     - **Payment Handler API**
     - **iframe で top-level navigation する際に gesture を要求**
-    - **The Page Lifecycle API (freeze/resume event, wasDiscared)**
+    - **The Page Lifecycle API (freeze/resume event, wasDiscarded)**
     - **New customElements.upgrade()**
     - Accept two values in the CSS overflow shorthand
     - CSS position values with three parts
@@ -583,7 +583,7 @@ guests:
   - https://daniel.haxx.se/blog/2018/06/03/inside-firefoxs-doh-engine/
 - **Towards ever faster websites with early hints and priority hints**
   - https://www.fastly.com/blog/towards-ever-faster-websites-early-hints-and-priority-hints
-  - Fastly の Andrew による Priority Hints と Erly Hints
+  - Fastly の Andrew による Priority Hints と Early Hints
 
 ### イベント
 

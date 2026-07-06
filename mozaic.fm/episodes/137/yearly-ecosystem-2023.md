@@ -252,7 +252,7 @@ guests:
     - https://github.com/storybookjs/storybook/releases/tag/v7.0.0-rc.0
 - React.js: The Documentary
   - https://www.youtube.com/watch?v=8pDqJVdNa44
-  - Reactjs の開発ドキュメンタリー
+  - React.js の開発ドキュメンタリー
   - https://twitter.com/jordwalke
 - deno が package.json をサポート
   - https://deno.com/blog/v1.31
@@ -331,7 +331,7 @@ guests:
     - 単一のモジュールグラフを Server/Client で分割できるものがない
     - なので、Bundler 開発者と組んでやっていく
   - Asset Loading
-    - CSS, Font, Img を Suspence と統合していく
+    - CSS, Font, Img を Suspense と統合していく
   - Document Metadata
     - `<title>`, `<meta>`, `<link>` を任意の場所で書いて勝手に `<head>` に入るようにする
     - Next,js 13.2 に入ったやつ
@@ -344,7 +344,7 @@ guests:
     - React Conf 2021 の続報的なもの
       - https://www.youtube.com/watch?v=lGEMwh32soc
   - Offscreen Rendering
-    - content-visibliity の React 版
+    - content-visibility の React 版
     - ルータがバックグラウンドで prerendering したりできる
     - Meta 内部で実験中で、良い結果がでてる。今年後半には RFC 出す
   - Transition Trace
@@ -384,7 +384,7 @@ guests:
   - Astro の SPA の Client-side Routing に関する提案が出てる
 - Sass: Sass and Native Nesting
   - https://sass-lang.com/blog/sass-and-native-nesting
-  - Sass と CSS Nestting に関する違いと、今後のプラン
+  - Sass と CSS Nesting に関する違いと、今後のプラン
   - CSS だと `:is()` を使用するが、Sass は使用しないので、適用されるパターンに違いがある
   - `:is()` のシェアが 98%を超えたら、Sass も `:is()` を使用するプラン
 - layer - vanilla-extract
@@ -413,7 +413,7 @@ guests:
     - App Router の Stable
   - Improved support for Nuxt on Vercel
     - https://vercel.com/blog/nuxt-on-vercel
-    - Vercerl の Nuxt 対応
+    - Vercel の Nuxt 対応
     - Nuxt の nitro に対応が入っている
       - https://github.com/unjs/nitro/releases/tag/v2.4.0
   - Introducing storage on Vercel
@@ -424,7 +424,7 @@ guests:
   - Vercel Spaces
   - Visual Editing
   - server action
-- React の新しい experimental hoooks
+- React の新しい experimental hooks
   - useOptimistic
     - https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useoptimistic
   - useFormStatus
@@ -492,7 +492,7 @@ guests:
 
 - Turborepo 1.10 - Turbo
   - https://turbo.build/blog/turbo-1-10-0
-  - 実験段階だが、scafolding ができるようになる(copy, add, append, etc)
+  - 実験段階だが、scaffolding ができるようになる(copy, add, append, etc)
   - .env のよみとりができるようになった
   - 環境変数名でワイルドカードが使えるようになった
   - https://www.hygen.io/
@@ -593,7 +593,7 @@ guests:
   - https://www.electronjs.org/blog/electron-25-0
   - net.fetch
     - API のインターフェースは Node の fetch と同様
-    - Chromium が内部で URL ロードの様々な異なるモード(navigation 、subresouce 、worker)を区別しており、electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
+    - Chromium が内部で URL ロードの様々な異なるモード(navigation 、subresource 、worker)を区別しており、electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
       - Is there a webRequest handler that needs to be invoked?
       - Has any extension registered a chrome.webRequest handler? (This is not the same thing as webRequest.)
       - Is this a request to a custom protocol (registered with protocol.register\*Protocol)?

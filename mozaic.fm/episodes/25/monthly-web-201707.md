@@ -137,7 +137,7 @@ Web をより深く理解するために
   - https://blog.whatwg.org/developers-edition-comeback
 - WHATWG の spec が offline 対応
   - https://github.com/whatwg/resources.whatwg.org/commit/bd7900e6d3028954fb9e5fe3eca53eea82a59718
-- MDN redesing
+- MDN redesign
   - https://hacks.mozilla.org/2017/07/the-mdn-redesign-behind-the-scenes/
   - open sans から Zilla Slab
   - code samples を上の方に手作業で移していく

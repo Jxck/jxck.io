@@ -88,7 +88,7 @@ guests:
 - サイバーインシデントどうなっていくか
 - anchor attr どうなる?
 - DBSC どうなる?
-- Degital Credentials API / VC, Wallet, マイナカード, 法制度
+- Digital Credentials API / VC, Wallet, マイナカード, 法制度
 - Page Embedded Permission Control ?
 - CSS Functions and Mixins ?
 - Web MCP と Agent との共生 ?
@@ -126,7 +126,7 @@ guests:
     - customizable select
     - text-box-trim
   - Chromium blog
-    - supporters of cr-baesd browsers
+    - supporters of cr-based browsers
   - other
     - Google セキュリティチームの退職時の password heist 文化
 - Firefox
@@ -248,7 +248,7 @@ guests:
     - CSS カルーセル系擬似要素
     - Invoker Commands
     - Observable API
-    - :visited partiniting
+    - :visited partitioning
     - CSS @function
     - CSS if()
     - Nested View Transitions
@@ -297,7 +297,7 @@ guests:
       - anchor positioning
 - Edge
   - Incoming Call notifications
-  - application-title metatag
+  - application-title meta tag
   - Interop 2025 の透明性のなさなどにお気持ち
 - W3C/WHATWG
   - Draft
@@ -306,7 +306,7 @@ guests:
     - commands list
     - Press Button
     - openable
-    - keyboard inputs behaviour for interest invokers
+    - keyboard inputs behavior for interest invokers
     - Range Input Styling API
     - Range Input Dual Attribute
   - WHATNOT meeting
@@ -334,7 +334,7 @@ guests:
   - セキュリティ動向
     - ICP-Brasil による Google の証明書不正発行
     - Let's Encrypt の 6 日証明書発行開始
-    - Digiert の問題について訴訟
+    - DigiCert の問題について訴訟
   - Cookie 動向
   - Other
     - Perplexity 製のブラウザ Comet
@@ -380,7 +380,7 @@ guests:
     - `@function` delayed to 139
     - css carousels
   - other blogs
-    - HTTPS certificate security reqs
+    - HTTPS certificate security req's
     - v8 moving from turbofan to turboshaft
 - Firefox
   - 136
@@ -526,11 +526,11 @@ guests:
 - W3C/WHATWG
   - Draft
     - CSS Gap Decorations Module Level 1
-      - `colum-rule`, `row-rule`
+      - `column-rule`, `row-rule`
   - Open UI
     - menu
       - Navigation Menu に関する議論
-    - focusgroup が inactive propsals に
+    - focusgroup が inactive proposals に
   - WHATNOT meeting
   - Other
     - Breakouts Day 2025
@@ -672,7 +672,7 @@ guests:
   - Other
     - Fit-to-Width の discussion
     - Carousels の a11y
-    - Houdini Re-Revisted
+    - Houdini Re-Revisited
 
   ### 6 月
 
@@ -940,8 +940,8 @@ guests:
     - Upsert Stage3
     - Error.captureStackTrace をプロパティにするかアクセサにするか
     - Measure が Amount に
-    - Import Buffer (Uint8Arrray)
-    - `Object.propretyCount` / `Array.isSparse` テスト向け提案
+    - Import Buffer (Uint8Array)
+    - `Object.propertyCount` / `Array.isSparse` テスト向け提案
   - WinterTC
 - IETF123
   - Cookie Bis がまだこない
@@ -1041,7 +1041,7 @@ guests:
   - CookieBis が更新され RFC が遠のく
 - 周辺動向
   - ベンダー動向
-    - The Browser Company が Attlassian に買収
+    - The Browser Company が Atlassian に買収
     - Cloudflare で 1.1.1.1 の誤発行インシデント
     - Cloudflare が 1111 人のインターンを 2026 年にとる
   - セキュリティ動向
@@ -1050,7 +1050,7 @@ guests:
     - スマホ新法 12 月施行
     - fetch の progress 用に Observer を入れる
     - Great Firewall のコード漏洩
-    - Apple が Liquid Galss 用コードを WebView 向けに入れいていた
+    - Apple が Liquid Glass 用コードを WebView 向けに入れいていた
     - State of JS 開始
     - Tim Berners-Lee の回顧録が出版
     - AV2 が年末までにリリースされるとアナウンス
@@ -1079,7 +1079,7 @@ guests:
     - Customizable combobox
     - `text-justify`
   - Experiment
-    - digital credentials API (issurance)
+    - digital credentials API (issuance)
   - Deprecate and Remove
     - XSLT
   - Chrome Developers
@@ -1142,7 +1142,7 @@ guests:
 - 周辺動向
   - ベンダー動向
     - Servo 0.0.1 Release
-    - CMA が Google/Apple のモバイルプラットフォームを Storategic Market Status に指定
+    - CMA が Google/Apple のモバイルプラットフォームを Strategic Market Status に指定
   - セキュリティ動向
     - アサヒサイバー攻撃
     - アスクルサイバー攻撃

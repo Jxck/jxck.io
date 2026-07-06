@@ -550,7 +550,7 @@ guests:
     - https://www.w3.org/blog/news/archives/8238
   - **The WHATWG Blog - Considering accessibility**
     - https://blog.whatwg.org/considering-accessibility
-    - HTML 仕様に Accessiblity Considerations が追加/整備された
+    - HTML 仕様に Accessibility Considerations が追加/整備された
     - for authors/for implementers リンクなど
     - https://www.24a11y.com/2019/pouring-aria-into-the-html-element-specs/
 

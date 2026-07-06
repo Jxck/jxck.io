@@ -29,7 +29,7 @@ guests:
 - [spdylay](https://github.com/tatsuhiro-t/spdylay)
 - [wslay](https://github.com/tatsuhiro-t/wslay)
 - [NPN(Next Protocol Negotiation)](https://technotes.googlecode.com/git/nextprotoneg.html)
-- [ALPN(Application Layer Protocol Negotiaion)](http://tools.ietf.org/html/draft-ietf-tls-applayerprotoneg)
+- [ALPN(Application Layer Protocol Negotiation)](http://tools.ietf.org/html/draft-ietf-tls-applayerprotoneg)
 - [HPACK](http://tools.ietf.org/html/draft-ietf-httpbis-header-compression)
 - [HTTP Speed+Mobility](http://tools.ietf.org/html/draft-montenegro-httpbis-speed-mobility)
 - [Proposal for a Network-Friendly HTTP Upgrade](https://tools.ietf.org/html/draft-tarreau-httpbis-network-friendly)

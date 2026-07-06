@@ -232,7 +232,7 @@ guests:
     - トラッキング入りの個別の Signed package を送られやしないか?
 - TC39
   - Standard-lib をどういう粒度で入れるかの議論
-  - smooshgate の反省とアップデート (flattern)
+  - smooshgate の反省とアップデート (flatten)
 - IETF
   - (Joke) RFC 8565 - Hypertext Jeopardy Protocol
     - https://tools.ietf.org/html/rfc8565

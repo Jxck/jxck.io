@@ -21,7 +21,7 @@ guests:
 - Why AMP is Fast
   - [ampproject.org](https://www.ampproject.org/)
   - [ampproject/amphtml github](https://github.com/ampproject/amphtml)
-  - [Waht is AMP?](https://www.ampproject.org/docs/get_started/about-amp.html)
+  - [What is AMP?](https://www.ampproject.org/docs/get_started/about-amp.html)
   - [Why AMP is fast](https://medium.com/@cramforce/7d2ff1f48597)
   - [Publishers using AMP HTML](https://www.ampproject.org/who/)
 - AMP Cache
@@ -34,7 +34,7 @@ guests:
   - [sitemap.xml をクロールしてサイト内の全ページの AMP のバリデーションをしてくれるコマンドラインツールを作った](http://blog.sushi.money/entry/2016/06/23/154827)
 - PWA(Progressive Web Apps)
   - [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/)
-- Simillar Project
+- Similar Project
   - [Facebook Instant Articles](https://instantarticles.fb.com/)
   - [Apple News](http://www.apple.com/news/)
   - [Smart News SmartViewe/SmartFormat](https://www.smartnews.com/smartformat/ja/)

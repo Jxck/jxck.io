@@ -145,7 +145,7 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/8R6kvHjiqdw
   - もともと `document.visibilityState == 'prerendering'` が Ship されていた
   - しかし `hidden` でも `prerendering` な場合もあるため Unship
-  - 代わりにに `document.prerendering` が追加された
+  - 代わりに `document.prerendering` が追加された
   - prerender2 の準備っぽい
 - Prototype: App history API
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/R1D5xYccqb0
@@ -709,7 +709,7 @@ guests:
 - Compat 2021 で CSS Flexbox/Grid etc の改善着手
 - privacysandbox.com
 - FLoC OT
-- Android chrome/webivew 障害
+- Android chrome/webview 障害
 - Referer Policy Default change
 - ETP で built in shim へのフォールバック?
 - MDN Tier 1 locale unfrozen

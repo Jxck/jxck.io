@@ -948,7 +948,7 @@ guests:
     - Customizable combobox
     - `text-justify`
   - Experiment
-    - digital credentials API (issurance)
+    - digital credentials API (issuance)
   - Deprecate and Remove
     - XSLT
   - Chrome Developers
@@ -1011,7 +1011,7 @@ guests:
 - 周辺動向
   - ベンダー動向
     - Server 0.0.1 Release
-    - CMA が Google/Apple のモバイルプラットフォームを Storategic Market Status に指定
+    - CMA が Google/Apple のモバイルプラットフォームを Strategic Market Status に指定
   - セキュリティ動向
     - アサヒサイバー攻撃
     - アスクルサイバー攻撃

@@ -515,13 +515,13 @@ guests:
   - Joint Iteration for Stage 2.7
     - zipToArrays/zipToObjects
     - zipToArrays は zip に改名
-    - "shortest/longest/strinct
+    - "shortest/longest/strict
     - 2.7 へ
     - Demo
     - https://tc39.es/proposal-joint-iteration/demo/
   - **Temporal Stage 3 update and scope reduction**
     - Temporal.Calendar, Temporal.TimeZone などの仕様を削って範囲を狭める
-    - substract()/since() は削除されない
+    - subtract()/since() は削除されない
     - Stage 3 キープ
     - Temporal の近況(主に Scope を狭める話)
     - https://zenn.dev/cybozu_frontend/articles/temporal-reduces-scope
@@ -799,7 +799,7 @@ guests:
   - Prototype
     - CSS stretch keyword
   - MDN Blog
-    - MDN HTTP Obsevatory
+    - MDN HTTP Observatory
   - other
     - PPA の実験で炎上
 - Safari

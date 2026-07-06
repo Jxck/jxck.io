@@ -29,7 +29,7 @@ Monthly Web のモチベーションについては以下。
   - import()
   - Promise.finally()
   - async iterators (for-await-of)
-  - overscroll-behavior プロパティ(pull-to-reflesh やスクロール超過の効果を消せる)
+  - overscroll-behavior プロパティ(pull-to-refresh やスクロール超過の効果を消せる)
   - Android では Push 含めすべての許可ダイアログがモーダルに
 - Intent
   - Ship: saveData attribute in Network Information API
@@ -163,7 +163,7 @@ Monthly Web のモチベーションについては以下。
 - A 'navigation-to' CSP directive
   - https://lists.w3.org/Archives/Public/public-webappsec/2017Dec/0000.html
   - https://docs.google.com/document/d/1eMfw7sSIPtPPs9T3K2C8SfDi3Q7OXRTrRDdkGOLb19M/edit
-  - naviagtion する先の url を csp で制限
+  - navigation する先の url を csp で制限
 - W3C Technical Architecture Group Election
   - https://www.w3.org/2001/tag/
   - https://www.w3.org/blog/news/archives/6663
@@ -184,7 +184,7 @@ Monthly Web のモチベーションについては以下。
   - https://www.w3.org/blog/news/archives/6691
   - https://www.w3.org/TR/2017/CR-css-color-3-20171205/
   - すでに勧告された Color L3 に errata があったので、それを反映
-- [CSSWG] Minutes San Fransisco F2F 2017-11-06
+- [CSSWG] Minutes San Francisco F2F 2017-11-06
   - Part I: [css-sizing]: https://lists.w3.org/Archives/Public/www-style/2017Dec/0004.html
   - Part II:[css-backgrounds] [css-grid]: https://lists.w3.org/Archives/Public/www-style/2017Dec/0005.html
   - Part III: [css-flexbox] [css-overflow]: https://lists.w3.org/Archives/Public/www-style/2017Dec/0006.html

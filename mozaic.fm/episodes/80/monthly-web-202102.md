@@ -604,7 +604,7 @@ guests:
   - https://surma.dev/things/portrait-mode/
 - Adobe co-founds the Coalition for Content Provenance and Authenticity (C2PA) standards organization
   - https://blog.adobe.com/en/publish/2021/02/22/adobe-continues-content-authenticity-commitment-founder-c2pa-standards-org.html
-  - Microsoft, Truepic, Arm, Intel, BBC と共同で立ち上げた Contents Authenticity Initialtive
+  - Microsoft, Truepic, Arm, Intel, BBC と共同で立ち上げた Contents Authenticity Initiative
 
 ### イベント
 

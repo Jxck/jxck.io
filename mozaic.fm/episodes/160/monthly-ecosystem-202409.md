@@ -53,7 +53,7 @@ guests:
   - npm でダウンロードされている webpack plugins の上位 50 位の 80%以上を実行できるようになった
   - chunks, tree shaking, scope hoisting, mangle exports などの最適化アルゴリズムのサポート
   - module federation v2 のサポート
-  - Rspack Stack: Rspack/Rsbuild/Rslib/Rspress/Rsdctor
+  - Rspack Stack: Rspack/Rsbuild/Rslib/Rspress/Rsdoctor
   - Import attributes の JSON/CSS Modules は対応済み
   - webpack での css scripts
     - https://github.com/webpack/webpack/pull/18721

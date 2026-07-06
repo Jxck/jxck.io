@@ -25,7 +25,7 @@ guests:
     - App Router の Stable
   - Improved support for Nuxt on Vercel
     - https://vercel.com/blog/nuxt-on-vercel
-    - Vercerl の Nuxt 対応
+    - Vercel の Nuxt 対応
     - Nuxt の nitro に対応が入っている
       - https://github.com/unjs/nitro/releases/tag/v2.4.0
   - Introducing storage on Vercel
@@ -36,7 +36,7 @@ guests:
   - Vercel Spaces
   - Visual Editing
   - server action
-- React の新しい experimental hoooks
+- React の新しい experimental hooks
   - useOptimistic
     - https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions#experimental-useoptimistic
   - useFormStatus

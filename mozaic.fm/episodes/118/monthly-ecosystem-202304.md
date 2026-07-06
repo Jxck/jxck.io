@@ -47,7 +47,7 @@ guests:
     - 単一のモジュールグラフを Server/Client で分割できるものがない
     - なので、Bundler 開発者と組んでやっていく
   - Asset Loading
-    - CSS, Font, Img を Suspence と統合していく
+    - CSS, Font, Img を Suspense と統合していく
   - Document Metadata
     - `<title>`, `<meta>`, `<link>` を任意の場所で書いて勝手に `<head>` に入るようにする
     - Next,js 13.2 に入ったやつ
@@ -60,7 +60,7 @@ guests:
     - React Conf 2021 の続報的なもの
       - https://www.youtube.com/watch?v=lGEMwh32soc
   - Offscreen Rendering
-    - content-visibliity の React 版
+    - content-visibility の React 版
     - ルータがバックグラウンドで prerendering したりできる
     - Meta 内部で実験中で、良い結果がでてる。今年後半には RFC 出す
   - Transition Trace
@@ -98,7 +98,7 @@ guests:
   - Astro の SPA の Client-side Routing に関する提案が出てる
 - Sass: Sass and Native Nesting
   - https://sass-lang.com/blog/sass-and-native-nesting
-  - Sass と CSS Nestting に関する違いと、今後のプラン
+  - Sass と CSS Nesting に関する違いと、今後のプラン
   - CSS だと `:is()` を使用するが、Sass は使用しないので、適用されるパターンに違いがある
   - `:is()` のシェアが 98%を超えたら、Sass も `:is()` を使用するプラン
 - layer - vanilla-extract

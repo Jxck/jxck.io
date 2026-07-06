@@ -119,5 +119,5 @@ guests:
 ### 11 月
 
 - https://mozaic.fm/episodes/108/monthly-ecosystem-202211.html
-- jamstack survay の結果
+- jamstack survey の結果
   - https://jamstack.org/survey/2022/#smaller-frameworks-by-usage-and-satisfaction

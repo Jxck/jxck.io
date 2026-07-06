@@ -110,9 +110,9 @@ guests:
     - reporting api に送ると ReportingObserver に送られないのを修正
   - Implement and Ship: User Activation Delegation through postMessages
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/1twTm3WCwgQ/FRYZ9Cs0AgAJ
-  - **Implement and Ship: Simulcast with PeerConnection AddTranceiver API in WebRTC**
+  - **Implement and Ship: Simulcast with PeerConnection AddTransceiver API in WebRTC**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/N31xFKvgbck/h5G0a9RqAQAJ
-    - SDP をいじらず AddTranceiver することで Simulcast できるように
+    - SDP をいじらず AddTransceiver することで Simulcast できるように
   - Implement and Ship: SctpTransport in WebRTC
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/hs0xuxTrvrc/7hv3P0ZBAQAJ
   - Implement: Async Clipboard read/write with image support

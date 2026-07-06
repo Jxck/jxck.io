@@ -310,7 +310,7 @@ guests:
     - https://blogs.windows.com/windowsexperience/2020/02/05/announcing-windows-10-insider-preview-build-19559/
   - Bringing the Microsoft Edge DevTools to more languages
     - https://blogs.windows.com/msedgedev/2020/02/04/localizing-edge-devtools/
-  - implifying Microsoft Edge configuration profiles for Jamf Pro
+  - Simplifying Microsoft Edge configuration profiles for Jamf Pro
     - https://blogs.windows.com/msedgedev/2020/02/20/edge-profiles-jamf-applications-custom-settings/
   - **Protecting users from potentially unwanted applications in Microsoft Edge - Microsoft Edge Blog**
     - https://blogs.windows.com/msedgedev/2020/02/27/protecting-users-potentially-unwanted-apps/
@@ -372,7 +372,7 @@ guests:
     - TC39-news/tc39-02-2020.md at master · codehag/TC39-news
       - https://github.com/codehag/TC39-news/blob/master/meetings/tc39-02-2020.md
       - https://groups.google.com/forum/#!topic/mozilla.dev.platform/I_SBpSIh8CM
-      - Mozilla の Yulia Startsev による Meeeting のサマリ
+      - Mozilla の Yulia Startsev による Meeting のサマリ
 - Proposals Diff
   - https://github.com/tc39/proposals/compare/master@{2020-02-01}...master@{2020-03-01}
   - https://tc39.github.io/beta/

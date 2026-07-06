@@ -883,7 +883,7 @@ guests:
   - Chrome Developers
     - soft navigation
     - CrUX History API
-    - Style Quereis
+    - Style Queries
     - UA reduction
     - CSS anchor positioning
     - Lighthouse 10 (TTI → CLS)

@@ -602,7 +602,7 @@ guests:
     - Safari 15 IndexedDB Leaks
 - Edge
 - WHATWG/W3C
-  - Layers 含む Cascading & Inheritancs Lv5 が CR
+  - Layers 含む Cascading & Inheritances Lv5 が CR
   - WCAG 3.0 が WG Draft
   - CSS Snapshot 2021
   - Meta と Mozilla が Interoperable Private Attribution (IPA) を提出

@@ -32,7 +32,7 @@ guests:
 - [deku](https://github.com/segmentio/deku)
 - [virtual-dom](https://github.com/Matt-Esch/virtual-dom)
 - [ractive.js](http://www.ractivejs.org/)
-- [React's diff algorith](http://calendar.perfplanet.com/2013/diff/)
+- [React's diff algorithm](http://calendar.perfplanet.com/2013/diff/)
 
 ### Flux
 

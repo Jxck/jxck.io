@@ -680,9 +680,9 @@ guests:
   - Record & Tuple
     - isRecord/isTuple がなくなる
     - JSON.parseImmutable は別ドラフト
-    - Obejct を含むのはやめ WeakMap を使え
+    - Object を含むのはやめ WeakMap を使え
   - Iterator helpers を method ではなく function にする提案
-  - 分割代入時にロジックを挟む Extracotr Objects
+  - 分割代入時にロジックを挟む Extractor Objects
 - IETF
   - 特になし
 - CDN 動向
@@ -695,5 +695,5 @@ guests:
 - セキュリティ動向
   - PayPal が Passkey 対応
 - 周辺動向
-  - Facebok が Chromium-based WebView for Android
+  - Facebook が Chromium-based WebView for Android
   - Igalia の MPArch の記事

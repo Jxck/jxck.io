@@ -815,7 +815,7 @@ guests:
     - Subgrid
     - `text-wrap: pretty`
     - Array grouping
-    - Iteerator helpers
+    - Iterator helpers
     - deprecate `unload`
   - Ship
     - vertical form controls
@@ -825,7 +825,7 @@ guests:
   - Prototype
     - Document Render-Blocking
     - CJK punctuation kerning
-    - Sicky state container queries
+    - Sticky state container queries
     - Page-Embedded Permission Control
     - `form-sizing`
   - Experiment

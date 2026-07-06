@@ -145,7 +145,7 @@ guests:
   - Storage Access API
   - etc etc etc
   - ITP 1.1
-- Esge
+- Edge
   - Devtools Protocol Support 開始
   - Flash 対応の今後について
 - TC39
@@ -207,7 +207,7 @@ guests:
   - intent to implement Async Clipboard API(Firefox 63)
   - Shadow DOM on Nightly
 - Safari
-  - From-Orign や Cross-Origin-Options (was C-O-Window-Policy)
+  - From-Origin や Cross-Origin-Options (was C-O-Window-Policy)
 - Edge
   - MS Build
   - Credential Management API / WebP in development

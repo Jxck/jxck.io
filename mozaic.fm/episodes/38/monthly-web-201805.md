@@ -109,7 +109,7 @@ guests:
     - [blog](https://blog.jxck.io/entries/2018-05-15/webauthentication-api.html)
   - **Chromium Blog: Evolving Chrome's security indicators**
     - https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html
-    - Chrom 70 から HTTPS を緑にするのではなく、HTTP を赤(form input 時)にする
+    - Chrome 70 から HTTPS を緑にするのではなく、HTTP を赤(form input 時)にする
   - Beyond SPAs: alternative architectures for your PWA
     - https://developers.google.com/web/updates/2018/05/beyond-spa
 - Intents
@@ -744,7 +744,7 @@ guests:
     - https://deltavconf.com/
   - 10-11: Web5G Workshop
     - https://www.w3.org/2017/11/web5g-workshop/sponsorship
-    - ETSI work on Next Generaton Protocols for 5G
+    - ETSI work on Next Generation Protocols for 5G
       - https://www.w3.org/2018/Talks/web5g/NGP_for_Web5G_2018.pdf
     - Cloud integration - The Browser As An App Platform
       - https://www.w3.org/2018/Talks/dhm-browser-app-platform-web5g/

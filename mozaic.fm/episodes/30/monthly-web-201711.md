@@ -113,7 +113,7 @@ Monthly Web のモチベーションについては以下。
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/G29x6z_VkUs/7ickv4LGBgAJ
   - Experiment: CSS line-height-step property
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/rDbHXbrowN0/DVwqDZ14AQAJ
-    - Vertical Rythms を実現するプロパティ [blog](https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html)
+    - Vertical Rhythms を実現するプロパティ [blog](https://blog.jxck.io/entries/2017-10-09/css-rhythmic-sizing.html)
     - flag 付きで ship したが mozilla から疑問の声が
     - Origin Trials で出しなおして、よりフィードバックを集めたい
     - CSS の Origin Trials は未サポートで M64 から入るのでそこから
@@ -721,7 +721,7 @@ Monthly Web のモチベーションについては以下。
 - Testing standards - Anne's Blog
   - https://annevankesteren.nl/2017/11/testing-standards
   - Web を作る上でもテストは大事だという話 (WPT/TC39)
-- Monthly Web Development Update 11/2017: Browser News, KRACK and Vary Header Chaching
+- Monthly Web Development Update 11/2017: Browser News, KRACK and Vary Header Caching
   - https://www.smashingmagazine.com/2017/11/monthly-web-development-update-11-2017/
 - ESM についてのスレッド
   - Yehuda Katz on Twitter: "I'm ready to call it: ES2015 modules are way more useful as an authoring format than as a browser runtime feature. Expect tools that "stati...

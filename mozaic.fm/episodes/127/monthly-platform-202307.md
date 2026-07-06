@@ -305,7 +305,7 @@ guests:
 - **MDN can now automatically lie to people seeking technical information · Issue #9208 · mdn/yari**
   - https://github.com/mdn/yari/issues/9208
   - AI Help の hallucination が技術ドキュメントにふさわしくないという批判
-  - MDN の Steering Commitee にも伝えられず機能が追加されたという情報も
+  - MDN の Steering Committee にも伝えられず機能が追加されたという情報も
 - **Responsibly empowering developers with AI on MDN**
   - https://blog.mozilla.org/en/products/mdn/responsibly-empowering-developers-with-ai-on-mdn/
 - **Messaging Layer Security is now an internet standard**

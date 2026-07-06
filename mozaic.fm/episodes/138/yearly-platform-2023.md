@@ -43,7 +43,7 @@ guests:
   - Module Harmony
   - Post Quantum 時代
   - Privacy Sandbox GA
-  - AdSence で全画面広告増えた?
+  - AdSense で全画面広告増えた?
   - Passkey 普及
   - deprecating unload
   - ChatGPT と AI
@@ -321,7 +321,7 @@ guests:
   - Chrome Developers
     - soft navigation
     - CrUX History API
-    - Style Quereis
+    - Style Queries
     - UA reduction
     - CSS anchor positioning
     - Lighthouse 10 (TTI → CLS)
@@ -690,15 +690,15 @@ guests:
   - httpwg
     - SFbis の WGLC
       - ただし Unicode を入れるかで揉める
-    - proxy-status の WGCL
+    - proxy-status の WGLC
   - tlswg
-    - TLS1.3bis の WGCL
-    - IANA TLS Registory update で deprecate 列がつくのの WGLC
+    - TLS1.3bis の WGLC
+    - IANA TLS Registry update で deprecate 列がつくの WGLC
   - ohai
-    - SVCB で OHTTP アドバタイズ WGCL
+    - SVCB で OHTTP アドバタイズ WGLC
   - httpapi
-    - link-template が WGCL
-    - yaml-mediatype が WGCL
+    - link-template が WGLC
+    - yaml-mediatype が WGLC
   - Martin が IETF の Nomcom に
 - CDN 動向
   - Cloudflare が OSS Sponsor Ship の枠を広げる
@@ -897,7 +897,7 @@ guests:
     - Subgrid
     - `text-wrap: pretty`
     - Array grouping
-    - Iteerator helpers
+    - Iterator helpers
     - deprecate `unload`
   - Ship
     - vertical form controls
@@ -1103,7 +1103,7 @@ guests:
     - 1password
     - GitHub
     - D アカウント
-    - Windowns 11
+    - Windows 11
   - ドコモ口座ドメインオークション
 - 周辺動向
   - State of HTML
@@ -1294,7 +1294,7 @@ guests:
     - QUIC Address Discovery
     - NAT Traversal
   - httpwg
-    - QUIC Static Table Version TLS extention
+    - QUIC Static Table Version TLS extension
     - Reverse HTTP Transport
   - mnot 先生怒りのブログ 2 作
   - httpbisGPT

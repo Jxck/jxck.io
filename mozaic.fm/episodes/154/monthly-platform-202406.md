@@ -429,7 +429,7 @@ guests:
       - https://github.com/mozilla/standards-positions/issues/1039
     - improved styling of `<details>` and `<summary>` elements · Issue #1027
       - https://github.com/mozilla/standards-positions/issues/1027
-  - Nutral
+  - Neutral
     - Unsanitized HTML read/write in Async Clipboard API · Issue #769
       - https://github.com/mozilla/standards-positions/issues/769
   - Defer

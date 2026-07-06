@@ -86,7 +86,7 @@ guests:
 
 - Ship: Add Save Data Client Hint
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/HR7tWmewbSA/m/9UrOsc9AAAAJ
-  - [wekit-dev] がついてるがミス
+  - [webkit-dev] がついてるがミス
 - Ship: Block external protocol in sandboxed iframe.
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/-t-f7I6VvOI/m/Hu4J1brbDQAJ
 - Ship: Make 'true' a truthy value for window.open boolean features
@@ -127,7 +127,7 @@ guests:
 - **Prototype: @scope**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/O2xZZT_xCZM
   - CSS Cascade Level 6 で追加される Scoped styles の実装
-- **Protype: Back/Forward Cache NotRestoredReason API**
+- **Prototype: Back/Forward Cache NotRestoredReason API**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/leFmfcpSOGM
 - Prototype: Range API improvements for rendered text content
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/3yKF8pW6r_k
@@ -160,11 +160,11 @@ guests:
   - https://open-ui.org/components/popup.research.explainer
 - Change:
 - Unship:
-- FYI BFCacheing pages with dedicated workers
+- FYI BFCaching pages with dedicated workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/M7EPNSrzidk/m/nhcNwpNmAAAJ
 - Remove: Legacy Client Hint Mode
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PUymAUxfjVg/m/MqxeX7hAAAAJ
-  - [wekit-dev] がついてるがミス
+  - [webkit-dev] がついてるがミス
 - PSA: Secure context fix for dedicated workers
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PakSG9HrEgo/m/4HGmFZcRBAAJ
 - PSA: Enabling BroadcastChannel usage in opaque origin contexts
@@ -796,14 +796,14 @@ guests:
   - Cloudflare
     - DDR サポート on 1.1.1.1
     - ウクライナのトラフィック解析
-    - iColud Private Relay の Egress を担当している話
+    - iCloud Private Relay の Egress を担当している話
   - Akamai
-    - iColud Private Relay の Egress を担当している話
+    - iCloud Private Relay の Egress を担当している話
 - セキュリティ動向
   - Meta, MS, Google による Trusted Types の Rollout Report
   - SCT Auditing の Paper
 - 周辺動向
-  - Open Web Advocay
+  - Open Web Advocacy
   - PayPay 銀行 Firefox サポート終了
   - Interop 2022 の各社ブログ
   - Internet Society の「国境でアクセスを弾いたりしない」

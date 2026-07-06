@@ -260,7 +260,7 @@ guests:
   - https://www.mozilla.org/en-US/firefox/129.0/releasenotes/
   - HTTPS デフォルト化
   - HTTPS RR レコード
-  - コミュニティコントリビューターに Masataka Yakura
+  - コミュニティコントリビューターに myakura
 - **Firefox 129 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/129
   - @starting-style / transition-behavior
@@ -686,7 +686,7 @@ guests:
   - Chrome Developers
     - Chrome built-in AI experiment
   - other blogs
-    - Improvint security of Chrome cookies on Windows
+    - Improving security of Chrome cookies on Windows
     - Post-Quantum Cryptography
   - other
     - DOJ vs Google

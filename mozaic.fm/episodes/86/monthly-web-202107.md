@@ -100,8 +100,8 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/YoefXLTQsw0/m/NVoV6NcIAgAJ
   - `getDisplayMedia()` でユーザに Tab, Window, Display を選ばせる際に、Tab を推奨するための属性を追加
   - 別途 `getViewportMedia()` も提案されているがまだ策定初期段階なので属性を追加するもの
-  - `getDisplayMedia()` の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、Moziila は `harmful`
-- **Ship: Feature Policy: `diplay-capture`**
+  - `getDisplayMedia()` の仕様では「ソースの選択を制限するような実装をしてはいけない」という制約があるので、Mozilla は `harmful`
+- **Ship: Feature Policy: `display-capture`**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/pNPotQY92UY/m/thZ3h-zQAQAJ
   - `getDisplayMedia()` のための Policy
   - Safari/Firefox は実装済み

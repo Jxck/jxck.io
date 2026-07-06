@@ -475,7 +475,7 @@ guests:
     - https://github.com/WebKit/standards-positions/issues/51
   - **Navigation API**
     - https://github.com/WebKit/standards-positions/issues/34
-- Position Nutral
+- Position Neutral
   - border-boundary CSS property
     - https://github.com/WebKit/standards-positions/issues/201
 - Position Oppose
@@ -905,7 +905,7 @@ guests:
     - QUIC Address Discovery
     - NAT Traversal
   - httpwg
-    - QUIC Static Table Version TLS extention
+    - QUIC Static Table Version TLS extension
     - Reveres HTTP Transport
   - mnot 先生怒りのブログ 2 作
   - httpbisGPT

@@ -66,7 +66,7 @@ guests:
 - Hiroppy
   - cache
     - next.js
-  - registory
+  - registry
     - jsr
     - vlt
   - bundler
@@ -358,7 +358,7 @@ guests:
     - NG Conf 2024 で発表された
   - 将来的に Angular と Google の Internal Framework である Wiz を merge していくという発表
   - https://x.com/mgechev/status/1772685802511741409
-    - YouTtubeWiz が Polymer に取って変わるらしい
+    - YouTubeWiz が Polymer に取って変わるらしい
 - require(esm) in Node.js
   - https://joyeecheung.github.io/blog/2024/03/18/require-esm-in-node-js/
   - https://twitter.com/bradleymeck/status/1769722025952661664
@@ -433,7 +433,7 @@ guests:
     - 注意: server component 用の directive はなく、use server は server actions のもの
     - フレームワークはサーバー関数への参照を自動的に作成し、その参照をクライアント コンポーネントに渡す。その関数がクライアントで呼び出されると、React はサーバーにリクエストを送信して関数を実行し、結果を返す
   - forwardRef が不要に
-    - 今までは子供が fowardRef でラップされてないときには、ref は props として渡せなかったが、今後は渡せるようになった
+    - 今までは子供が forwardRef でラップされてないときには、ref は props として渡せなかったが、今後は渡せるようになった
   - createContext で作られる Context が Provider として直接利用可能になり、Context.Provider が不要になった
   - ref に useEffect と同じシンタックスのクリーンアップ関数が追加
     - return () => {}
@@ -515,17 +515,17 @@ guests:
 - JSR Is Not Another Package Manager
   - https://deno.com/blog/jsr-is-not-another-package-manager
   - npm はほぼ進歩してない
-  - かつて node で requre を採用し、のちに import ができたが、結局配布は複雑なまま
+  - かつて node で require を採用し、のちに import ができたが、結局配布は複雑なまま
   - JSR は ESM/TS ファーストで、設定要らずなシンプルなもの
   - JSR は npm を補完する。JSR パッケージは npm に依存できる
   - JSR 自体も npm としてアクセスできる(npm.jsr.io)
   - private registries も使える
-  - OIDC token を GH Action と連携し、SALSA に準拠した署名を Sigsotre に保存する
+  - OIDC token を GH Action と連携し、SLSA に準拠した署名を Sigstore に保存する
 - Node.js - Node.js 22 is now available!
   - https://nodejs.org/en/blog/announcements/v22-release-announce
   - v8 が 12.4 で Array.fromAsync や Set Methods、Iterator Helpers が入った
   - Maglev Compiler が入り短命な CLI 実行がはやくなった
-  - --experimental-require-module で reqire(esm)
+  - --experimental-require-module で require(esm)
   - node --run task のサポート
   - watch mode stable
   - websocket client default
@@ -973,7 +973,7 @@ guests:
   - npm でダウンロードされている webpack plugins の上位 50 位の 80%以上を実行できるようになった
   - chunks, tree shaking, scope hoisting, mangle exports などの最適化アルゴリズムのサポート
   - Rspack Stackmodule federation v2 のサポート
-  - Rspack Stack: Rspack/Rsbuild/Rslib/Rspress/Rsdctor
+  - Rspack Stack: Rspack/Rsbuild/Rslib/Rspress/Rsdoctor
   - Import attributes の JSON/CSS Modules は対応済み
   - webpack での css scripts
     - https://github.com/webpack/webpack/pull/18721

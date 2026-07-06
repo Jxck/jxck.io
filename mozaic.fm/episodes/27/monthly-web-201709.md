@@ -254,7 +254,7 @@ Monthly Web のモチベーションについては以下。
 - EdgeHTML
   - 16: https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/whats-new/edgehtml-16
     - unprefixed CSS Grid support
-    - objecgt-fit, object-position
+    - object-fit, object-position
       - アスペクト比保ったまま画像を拡縮したり、領域に収めたいときに使う
     - DevTools のリファクタリング
     - Rayment Request API update
@@ -522,7 +522,7 @@ Monthly Web のモチベーションについては以下。
 - 10 月
   - 10/3-5 QUIC interim
     - https://github.com/quicwg/wg-materials/blob/master/interim-17-10/agenda.md
-  - 10/13 WebRTC Vertial Interim
+  - 10/13 WebRTC Vertical Interim
     - TPAC の前にもう一回 CR blocker を整理する VI をやる
       - https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0045.html
   - 10/16 Meet the W3C AB London - Oct 2017

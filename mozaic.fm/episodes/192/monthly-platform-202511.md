@@ -132,7 +132,7 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/vgakGtfrJWY
   - Anchor Positioning はあくまで Visual Binding を作成するものとする
   - アクセシビリティツリーに Anchor Positioning の関係性を反映することはしない
-  - Popover API ではバインディングするが、Anchor Positioing はより汎用的なケースでも利用が考えられるので、ARIA はユースケースに依存させる
+  - Popover API ではバインディングするが、Anchor Positioning はより汎用的なケースでも利用が考えられるので、ARIA はユースケースに依存させる
   - CSS: handing the a11y of anchor positioning
     - https://github.com/w3c/html-aam/issues/545#issuecomment-3515548386
 - Web-Facing Change PSA: Respect overscroll-behavior for keyboard scrolls
@@ -539,7 +539,7 @@ guests:
   - https://jsconf.jp/2025/en/talks/technical-discussion-tc39
   - Pipeline Operator が長いこと Stage 2 のままなのは Hack language style と F# language style で揉めていてデッドロックしているから
   - Pattern Matching が Stage 1 のままなのは単に champion の時間が取れていない
-  - JSSuger / JS0 と分けることで提案の進行が早く進むのではないかという意見が出たが、進行スピードよりもセキュリティの方が重要で今のスピード感の方が安定して話が進められると返答された
+  - JSSugar / JS0 と分けることで提案の進行が早く進むのではないかという意見が出たが、進行スピードよりもセキュリティの方が重要で今のスピード感の方が安定して話が進められると返答された
   - Language Evolution - Google Slides
     - https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit?slide=id.p#slide=id.p
 

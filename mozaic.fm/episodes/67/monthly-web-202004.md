@@ -234,7 +234,7 @@ guests:
     - https://privacy.twitter.com/en/blog/2020/data-cache-firefox.html
     - Shared PC で、別アカウントの Cache が Firefox では残っていたと Twitter 発表。(Firefox の問題のような書かれ方)
     - https://blog.mozilla.org/blog/2020/04/03/what-you-need-to-know-about-twitter-on-firefox
-    - 実際は Content-Disposition が指定されて Cache-Control が指定されてないレスポンスが、Huristic Cache に載っていた問題。Huristic Cache は仕様にもあり実装にゆだねられているので、本来は明示的に Cache-Control: no-store を指定すべきだが、Twitter は Chrome/Safari の実装でしかテストしてなかった模様。
+    - 実際は Content-Disposition が指定されて Cache-Control が指定されてないレスポンスが、Heuristic Cache に載っていた問題。Heuristic Cache は仕様にもあり実装にゆだねられているので、本来は明示的に Cache-Control: no-store を指定すべきだが、Twitter は Chrome/Safari の実装でしかテストしてなかった模様。
     - Mozilla は仕様はこうした問題を解決するためにあるのに、正しく使われていないことによる問題を Firefox の問題のようにすり替えていることに遺憾。
     - Twitter Direct Message Caching and Firefox - Mozilla Hacks - the Web developer blog
     - https://hacks.mozilla.org/2020/04/twitter-direct-message-caching-and-firefox/

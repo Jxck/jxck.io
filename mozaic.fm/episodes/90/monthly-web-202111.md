@@ -599,7 +599,7 @@ guests:
     - https://web-eur.cvent.com/event/2b77fe3d-2536-467d-b71b-969b2e6419b5/websitePage:efc4b117-4ea4-4be5-97b4-c521ce3a06db
     - Second Screen WG/CG - TPAC 2021 agenda · Issue #3 · w3c/secondscreen-wg
       - https://github.com/w3c/secondscreen-wg/issues/3
-      - Multi-Screen WIndow Placemnet
+      - Multi-Screen Window Placement
       - Remote Playback
     - Agenda TPAC2021 · w3c/webpayments Wiki
       - https://github.com/w3c/webpayments/wiki/Agenda-TPAC2021
@@ -927,7 +927,7 @@ guests:
     - Sec-CH-UA-Full-Version-List
   - CDS
     - animation smoothness metrics
-    - resposiveness metrics
+    - responsiveness metrics
   - web.dev
     - UI fund
   - Search Central
@@ -938,7 +938,7 @@ guests:
 - Firefox
   - 94
     - `self.structuredClone()`
-    - `scriptElement.supoorts()`
+    - `scriptElement.supports()`
   - 95
     - site isolation rollout
     - `crypto.randomUUID()`

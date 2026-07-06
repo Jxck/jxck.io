@@ -445,7 +445,7 @@ Monthly Web のモチベーションについては以下。
 - ecmascript-do-generator
   - https://github.com/sebmarkbage/ecmascript-do-generator
   - do 記法で書かれた結果から generator を作る記法
-  - Array.from や spread operator と組み合わせ Array Comprehention (リスト内包表記)の代替に
+  - Array.from や spread operator と組み合わせ Array Comprehension (リスト内包表記)の代替に
 - String.prototype.codePoints proposal
   - https://github.com/RReverser/string-prototype-codepoints
   - codePointAt だとポジションがわかってないといけない
@@ -565,7 +565,7 @@ Monthly Web のモチベーションについては以下。
     - https://github.com/quicwg/wg-materials/tree/master/interim-17-10
     - https://github.com/quicwg/wg-materials/blob/master/interim-17-10/agenda.md
     - https://github.com/quicwg/wg-materials/blob/master/interim-17-10/minutes.md
-  - 10/13 WebRTC Vertial Interim
+  - 10/13 WebRTC Vertical Interim
     - TPAC の前にもう一回 CR blocker を整理する VI をやる
       - https://lists.w3.org/Archives/Public/public-webrtc/2017Sep/0045.html
     - Minutes

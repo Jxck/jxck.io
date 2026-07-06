@@ -132,7 +132,7 @@ guests:
 - SameSite Cookie Lax by default rollout again
 - Firefox ETP redirect tracking protection (cookie purging)
 - Declarative Shadow DOM OT
-- content-visiblity
+- content-visibility
 - Document Policy Ship
 - BFCache Android & opt-out JS API
 - Cache-Control in the wild
@@ -145,7 +145,7 @@ guests:
 - Client Hints Reliability
 - Import Assertions Rename
 - Record + Tuple
-- await opration
+- await operation
 - Rome Introduction
 
 ### 8 月

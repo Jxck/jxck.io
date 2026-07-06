@@ -470,7 +470,7 @@ guests:
     - RegExp の v flag
     - PopStateEvent's hasUAVisualTransition
     - subresource integrity in imported module
-    - Request, Response, Blob, PushMessageDate に `byets()`
+    - Request, Response, Blob, PushMessageDate に `bytes()`
     - `​​document.fragmentDirective`
   - Web API
     - URL.parse

@@ -641,7 +641,7 @@ guests:
   - TP 139
   - TP 140
     - `:has(:not(foo))`
-    - `form.requestSubtmit()`
+    - `form.requestSubmit()`
   - Origin Private File System
   - Intro Dialog Element
   - Other

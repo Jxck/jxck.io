@@ -408,7 +408,7 @@ guests:
   - LargestContentfulPaint API
 - **"URL" Gonna Want To Check This Out - These Weeks in Firefox: Issue 150 - Firefox Nightly News**
   - https://blog.nightly.mozilla.org/2023/12/04/url-gonna-want-to-check-this-out-these-weeks-in-firefox-issue-150/
-  - DevTools で遅い `:has()` に警告アイコンがが表示されるようになった
+  - DevTools で遅い `:has()` に警告アイコンが表示されるようになった
   - DevTools に難読化ツールが入れる `debugger` 文を無効にするトグルがついた
 - Better Searching in Firefox to close out 2023 - These Weeks in Firefox: Issue 151 - Firefox Nightly News
   - https://blog.nightly.mozilla.org/2023/12/14/better-searching-in-firefox-to-close-out-2023-these-weeks-in-firefox-issue-151/
@@ -900,7 +900,7 @@ guests:
 
 - Chrome
   - 121
-    - CSS Hightlight Inheritance
+    - CSS Highlight Inheritance
     - CSS scrollbars
     - CSS masking (unprefixed)
     - BFCache NotRestoredReason
@@ -925,7 +925,7 @@ guests:
     - good sign-out experience
     - Discoverable credentials deep dive
   - Chrome Developers
-    - revisiting installablity criteria
+    - revisiting installability criteria
     - Desktop UA on premium Android tablets
   - other
     - Rick Byers on Extensible Web Manifesto
@@ -978,7 +978,7 @@ guests:
 - W3C/WHATWG
   - Draft
     - WAI-ARIA 1.3 FPWD
-    - JSX as markup langage CG created
+    - JSX as markup language CG created
   - Open/UI
   - Other
     - TAG を外部から招聘する appointees

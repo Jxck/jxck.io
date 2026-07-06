@@ -984,7 +984,7 @@ guests:
     - 1password
     - GitHub
     - D アカウント
-    - Windowns 11
+    - Windows 11
   - ドコモ口座ドメインオークション
 - 周辺動向
   - State of HTML

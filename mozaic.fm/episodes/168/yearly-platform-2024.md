@@ -123,7 +123,7 @@ guests:
     - good sign-out experience
     - Discoverable credentials deep dive
   - Chrome Developers
-    - revisiting installablity criteria
+    - revisiting installability criteria
     - Desktop UA on premium Android tablets
   - other
     - Rick Byers on Extensible Web Manifesto
@@ -341,7 +341,7 @@ guests:
 - CDN 動向
 - セキュリティ動向
   - OpenGFW (Grate Firewall 実装)
-  - polyfiil.io 売却
+  - polyfill.io 売却
   - E2EE by Emily Stark
   - Avast が閲覧データ売却で罰金
 - 周辺動向

@@ -460,7 +460,7 @@ guests:
   - Outline algorithm がなくなる
   - セクションの入れ子ではなく見出しでアウトラインができる
   - hgroup のアルゴリズムが変わる
-    - `<p>` が sub-headding
+    - `<p>` が sub-heading
 
 ### TC39 動向
 

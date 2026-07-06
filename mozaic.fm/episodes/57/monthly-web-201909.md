@@ -79,7 +79,7 @@ guests:
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/r176Lvgxfys/4W4IGM4uAgAJ
   - Implement and Ship: ontransition{run, start, cancel} event handler attributes
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/dxDGBFKvO3A/A2gajDMjAwAJ
-  - Implement and Ship: ServiceWorkerGlobalScope#serviceWoker to get a service worker object corresponding to a worker itself
+  - Implement and Ship: ServiceWorkerGlobalScope#serviceWorker to get a service worker object corresponding to a worker itself
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pNru6E5rda4/3D0KDY5nBgAJ
   - Implement: IndexedDB relaxed durability transactions
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/aDDJXM8TZnk/xdhSlY-ZDwAJ
@@ -113,7 +113,7 @@ guests:
   - **Implement: [Intervention] Heavy Ad Intervention**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/pZq73q_Mc-c/chp8ssUKBgAJ
     - CPU やネットワークを使いすぎる Ad を unload
-      - Cyptominers
+      - Cryptominers
       - Ads that load large uncompressed image files
       - Ads that use javascript to decode video files
     - Ad Tagging を使う
@@ -373,7 +373,7 @@ guests:
     - 2.2 では link-decoration については既存サービスへの影響も考え弱くしていた
     - 具体的には JS 書き込みの Cookie を 24h に
     - 2.3 では、スクリプト制御可能なストレージ全部を 7 日で消すことに
-    - Refferer に識別子がある場合もあるので、その場合 eTLD+1 (same site) しか取得できなくなる
+    - Referrer に識別子がある場合もあるので、その場合 eTLD+1 (same site) しか取得できなくなる
     - その他 developer tools などの改善
 - Other
 

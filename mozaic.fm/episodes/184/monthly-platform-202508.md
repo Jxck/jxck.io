@@ -569,7 +569,7 @@ guests:
   - https://github.com/tc39/agendas/blob/main/2025/07.md
   - https://github.com/tc39/notes/pull/379
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU/
-  - Upesrt
+  - Upsert
     - Stage 3
   - Error.captureStackTrace
     - アクセサにするかデータプロパティにするか未定

@@ -191,7 +191,7 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/d8r15E2j73E
 - **Ship: Importmap integrity**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/mn0sRHwK7Dc
-  - importmap で sunresource integrity を追加できるように
+  - importmap で subresource integrity を追加できるように
   - PCI-DSS v4 で認証 + integrity が要件に入り、その実現に必要らしい
     - https://www.shopify.com/in/partners/blog/checkout-compliance
 - Ship: Unrestricted WebUSB (available only to Isolated Web Apps)
@@ -685,7 +685,7 @@ guests:
 - 3->4
   - Set Methods
   - duplicate named capture groups
-- Widthdrawn
+- Withdrawn
   - Array.last
 
 #### New Proposals
@@ -884,7 +884,7 @@ guests:
   - Standard Position
     - Support
       - Importmap Integrity
-      - ReadbelStream Async Iteration
+      - ReadableStream Async Iteration
       - supports() for @import
       - Compression Dictionary Transport
       - ORB

@@ -322,7 +322,7 @@ guests:
 
 #### Other
 
-- Engineering Effectiveness Newsleter (July 2022 Edition)
+- Engineering Effectiveness Newsletter (July 2022 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/R7ZXzdEXU4Q
 - Firefox Security Newsletter/FSN-2022-Q2 - MozillaWiki
   - https://wiki.mozilla.org/Firefox_Security_Newsletter/FSN-2022-Q2
@@ -466,7 +466,7 @@ guests:
     - Change Array By Copy Update (Issue 95)
       - TypedArray には splice がないので、toSpliced は無くす
       - TA は長さが変えられないから splice できない
-      - Bun が Change array by copy を使う最初の platoform
+      - Bun が Change array by copy を使う最初の platform
     - Well-formatted PDFs for TC39 Standards in 2022 and Beyond
       - 仕様の PDF をよくしていこう
     - Remove Order Check in NumberFormat v3 and ECMA402 DateTimeFormat

@@ -110,7 +110,7 @@ guests:
   - **Schemeful Same-Site**
     - https://web.dev/schemeful-samesite/
     - SameSite はこれまで Schemeless だった
-    - Schemefull がデフォルトになり https:// と http:// は Cross Site になる
+    - Schemeful がデフォルトになり https:// と http:// は Cross Site になる
   - Browser-level lazy-loading for CMSs
     - https://web.dev/browser-level-lazy-loading-for-cmss/
     - loading lazy を CMS につける場合の考慮事項まとめ
@@ -128,7 +128,7 @@ guests:
     - 動画の前半がセッション、後半は QA な録画
     - History of the Web
       - https://www.youtube.com/watch?v=__V7J2NgKZI
-      - Igaria / Google の 3 人によるセッション
+      - Igalia / Google の 3 人によるセッション
       - スライドなし、昔話
     - BFCache
       - https://www.youtube.com/watch?v=lzWQTN7E0HA
@@ -159,7 +159,7 @@ guests:
   - **Ship: Restrict "private network requests" for subresources to secure contexts.**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/cPiRNjFoCag
     - CORS-RFC1918 の第一歩
-    - public な攻撃サイトからの subresorce request で local/private に攻撃できる場合がある
+    - public な攻撃サイトからの subresource request で local/private に攻撃できる場合がある
     - とりあえず public -> private へのリクエストは https を必須にすることで緩和
   - Ship: Same-site back-forward cache on Android
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/XS9VnYQoaQE
@@ -235,7 +235,7 @@ guests:
   - **Extend Experiment: Beforematch event and hidden-matchable**
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/a76WF3Dfl3E
     - `content-visibility: hidden-matchable` すると非表示だが検索ができる
-    - Beforematch event はそのページ内検索や scoll to text したときに発火するイベント
+    - Beforematch event はそのページ内検索や scroll to text したときに発火するイベント
     - DEMO: https://github.com/WICG/display-locking/blob/master/explainers/images/beforematch.gif
   - Extend Origin Trial: WebCodecs
     - https://groups.google.com/a/chromium.org/g/blink-dev/c/3MNyU3OAacI
@@ -567,7 +567,7 @@ guests:
 - Devtools に機能がいっぱい
 - Puppetaria でテストをセマンティックに
 - Page Experience をランクに反映を 2020/5 に
-- Schemfull Samesite
+- Schemeful Samesite
 - BlinkOn / Chromium University
 - `<summary>` の CSS 改善
 - H2Push 削除

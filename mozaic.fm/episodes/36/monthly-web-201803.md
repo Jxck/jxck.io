@@ -313,7 +313,7 @@ guests:
     - https://webkit.org/blog/8165/release-notes-for-safari-technology-preview-52/
     - Flash 以外の NPAPI サポート削除
     - `<link rel=preconnect>`
-    - AOM の `accesibble*` event 対応
+    - AOM の `accessible*` event 対応
 - Other
   - **Intelligent Tracking Prevention 1.1**
     - https://webkit.org/blog/8142/intelligent-tracking-prevention-1-1/
@@ -466,7 +466,7 @@ guests:
     - `[].contains` が `.includes` になったのも mootools [blog](https://blog.jxck.io/entries/2017-02-17/polyfill-implementation-guideline.html)
     - #SmooshGate FAQ
       - https://developers.google.com/web/updates/2018/03/smooshgate
-      - なぜだめなのか、なぜ Mootls を直すのではいけないのか、などの解説
+      - なぜだめなのか、なぜ Mootools を直すのではいけないのか、などの解説
       - TC39 では公式見解がこの時点では出てなかった
     - 名前についてはまだやってる
   - TC39 proposal for Object.fromEntries
@@ -640,7 +640,7 @@ guests:
 - 4 月
   - 18-19: BlinkOn 9
 - 5 月
-  - 8-10: Goole I/O
+  - 8-10: Google I/O
     - https://events.google.com/io/
   - 10-11: Web5G Workshop
     - https://www.w3.org/2017/11/web5g-workshop/sponsorship

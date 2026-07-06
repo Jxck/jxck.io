@@ -451,15 +451,15 @@ guests:
   - httpwg
     - SFbis の WGLC
       - ただし Unicode を入れるかで揉める
-    - proxy-status の WGCL
+    - proxy-status の WGLC
   - tlswg
-    - TLS1.3bis の WGCL
-    - IANA TLS Registory update で deprecate 列がつくのの WGLC
+    - TLS1.3bis の WGLC
+    - IANA TLS Registry update で deprecate 列がつくの WGLC
   - ohai
-    - SVCB で OHTTP アドバタイズ WGCL
+    - SVCB で OHTTP アドバタイズ WGLC
   - httpapi
-    - link-template が WGCL
-    - yaml-mediatype が WGCL
+    - link-template が WGLC
+    - yaml-mediatype が WGLC
   - Martin が IETF の Nomcom に
 - CDN 動向
   - Cloudflare が OSS Sponsor Ship の枠を広げる

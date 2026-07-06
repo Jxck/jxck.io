@@ -579,7 +579,7 @@ guests:
 - Ch: Network State Partitioning
 - Ch: Net slipstream port 10080 blocking
 - Ch: WebTransport over H3 OT
-- Ch: Scroll Survay
+- Ch: Scroll Survey
 - Ch: SXG on Search Result
 - Ch: Page Experience Rollout が 6 月中旬
 - FF: window.name からの inforeak 対策

@@ -562,7 +562,7 @@ guests:
   - $8.99/month で Monitor Plus も
 - Retirement Announcement & Thank You!
   - https://www.mail-archive.com/dev-security-policy@mozilla.org/msg01510.html
-  - 2008 年から 16 年 Moziila の Root Store を運営していた Kathleen Wilson が定年退職
+  - 2008 年から 16 年 Mozilla の Root Store を運営していた Kathleen Wilson が定年退職
 - **Next steps for Mozilla and Trustworthy AI**
   - https://blog.mozilla.org/en/mozilla/ai/next-steps-for-mozilla-and-trustworthy-ai/
 - A New Chapter For Mozilla

@@ -751,7 +751,7 @@ guests:
     - https://docs.google.com/presentation/d/1b74GI-zHrG0wDzmwFs_yPWRli24KyVUNx3GeZt8JouA/edit#slide=id.p
 - Set methods: What to do about intersection order?
   - Set には内部的に順序がある
-  - 集合の Intercection をしたばあい、receive の順序を維持したまま後ろに追加されたい
+  - 集合の Intersection をしたばあい、receive の順序を維持したまま後ろに追加されたい
   - V8/SM はそれができるが、JSC は実装が linked list だからパフォーマンスが出ない
   - どうするか?
   - 引数とレシーバのサイズ(どっちが大きいか)によって結果が変わる
@@ -816,7 +816,7 @@ guests:
 
 - Shared Structs update
   - worker 間でシェアできる struct
-  - GC heap allocatited だから SAB にはできない(?)
+  - GC heap allocated だから SAB にはできない(?)
   - Google が MS と組んで Chromium にトライアルの開発をしている
 - Async Context
   - Async な Context
@@ -880,7 +880,7 @@ guests:
     - https://github.com/whatwg/dom/pull/1152
     - 同時に複数の signal を abort できる
     - 完成間近らしい
-  - **RedableStream.from(asyncIterable)**
+  - **ReadableStream.from(asyncIterable)**
     - https://github.com/whatwg/streams/pull/1083
   - Prioritization of Web Crypto Stream
 

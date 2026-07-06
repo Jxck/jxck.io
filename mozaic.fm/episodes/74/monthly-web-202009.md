@@ -199,7 +199,7 @@ guests:
 - Updates
   - **Firefox 81.0, See All New Features, Updates and Fixes**
     - https://www.mozilla.org/en-US/firefox/81.0/releasenotes/
-    - 米国とカナダででクレジットカードの自動入力機能がリリース
+    - 米国とカナダでクレジットカードの自動入力機能がリリース
     - WebP や AVIF ファイルを Firefox に関連付けられるように
     - キーボードのメディアキーに対応
   - Firefox 81 for developers - Mozilla
@@ -287,7 +287,7 @@ guests:
     - Fixed font loads quickly followed by navigations failing indefinitely (r265603)
     - Implemented Canvas.transferControlToOffscreen and OffscreenCanvasRenderingContext2D.commit (r265543)
     - Implemented createImageBitmap(ImageData) (r265360)
-    - Implemented PerfomanceObserverInit.buffered (r265390)
+    - Implemented PerformanceObserverInit.buffered (r265390)
     - **Added a special HID mapping for the Google Stadia controller (r265180)**
     - Added HID mapping for the Logitech F310/F710 controllers. (r265183)
 - Position
@@ -543,7 +543,7 @@ guests:
 - Other
   - Fwd: IETF WG state changed for draft-ietf-httpbis-http2-secondary-certs
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2020JulSep/0145.html
-    - secodary certs がクライアントの実装とか全然無くて策定停止
+    - secondary certs がクライアントの実装とか全然無くて策定停止
   - Re: New Version Notification for draft-snell-search-method-02.txt
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2020JulSep/0147.html
     - Search Method をまだやるか、皆興味あるかという話

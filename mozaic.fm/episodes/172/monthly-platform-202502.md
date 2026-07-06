@@ -817,7 +817,7 @@ guests:
     - CSS カルーセル系擬似要素
     - Invoker Commands
     - Observable API
-    - :visited partiniting
+    - :visited partitioning
     - CSS @function
     - CSS if()
     - Nested View Transitions
@@ -875,7 +875,7 @@ guests:
     - commands list
     - Press Button
     - openable
-    - keyboard inputs behaviour for interest invokers
+    - keyboard inputs behavior for interest invokers
     - Range Input Styling API
     - Range Input Dual Attribute
   - WHATNOT meeting

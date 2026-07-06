@@ -20,7 +20,7 @@ guests:
 
 - Turborepo 1.10 - Turbo
   - https://turbo.build/blog/turbo-1-10-0
-  - 実験段階だが、scafolding ができるようになる(copy, add, append, etc)
+  - 実験段階だが、scaffolding ができるようになる(copy, add, append, etc)
   - .env のよみとりができるようになった
   - 環境変数名でワイルドカードが使えるようになった
   - https://www.hygen.io/
@@ -121,7 +121,7 @@ guests:
   - https://www.electronjs.org/blog/electron-25-0
   - net.fetch
     - API のインターフェースは Node の fetch と同様
-    - Chromium が内部で URL ロードの様々な異なるモード(navigation, subresouce, worker)を区別している
+    - Chromium が内部で URL ロードの様々な異なるモード(navigation, subresource, worker)を区別している
     - electron ではそれらを気にすることが多く、コードが散らばってしまい一元化したいのでこのモジュールを追加
 
 ## Events

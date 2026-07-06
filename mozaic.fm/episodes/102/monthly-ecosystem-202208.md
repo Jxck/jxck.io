@@ -29,8 +29,8 @@ guests:
     - https://www.electronjs.org/blog/8-week-cadence
 - remix/streaming.md at deferred · remix-run/remix
   - https://github.com/remix-run/remix/blob/deferred/docs/guides/streaming.md
-  - React 18 の suspence で watarfall だと遅延するため parallel にしたい
-  - Loader 内で明示的に deffer で囲い Await で fallback を出す
+  - React 18 の Suspense で waterfall だと遅延するため parallel にしたい
+  - Loader 内で明示的に defer で囲い Await で fallback を出す
   - Next での Layout 相当
 - Vite 3.0
   - https://vitejs.dev/blog/announcing-vite3.html

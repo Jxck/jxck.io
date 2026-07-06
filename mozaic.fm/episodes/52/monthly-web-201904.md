@@ -126,7 +126,7 @@ guests:
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/nQ5Rd08Tfv0/kNVOPvqzBQAJ
   - **Ship: User Timing L3**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/CWN34Qo8icI/cpHrV7GPBgAJ
-    - mark と mesure に引数が追加
+    - mark と measure に引数が追加
     - 例えば CPU busy で click からハンドラ実行まで時間がかかる場合正確に測れない
     - start に e.timeStamp を渡せるようにし開始を正確にできる
     - detail などのメタデータを拡充
@@ -626,7 +626,7 @@ guests:
 - Other
   - **HTTP Testing Resources - httpwg/wiki Wiki**
     - https://github.com/httpwg/wiki/wiki/HTTP-Testing-Resources
-  - HTTP/2 and TLS 1.3 post-handshake authenication
+  - HTTP/2 and TLS 1.3 post-handshake authentication
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019AprJun/0001.html
   - Formalizing the HTTP State Tokens proposal.
     - https://lists.w3.org/Archives/Public/ietf-http-wg/2019JanMar/0249.html

@@ -84,7 +84,7 @@ guests:
   - Type Aware Linting 広まる?
 - tsgo に依存するライブラリが更新にどう追従するか?API は結局出るか?
 - swc などの transpile するライブラリはどうなっていくか?
-- Turbopack が Next 以外でも使われるか、Turporepo 相当が Vite Family にくるか?
+- Turbopack が Next 以外でも使われるか、Turborepo 相当が Vite Family にくるか?
 - Figma が AI とデザインの新しい可能性を見出せるのか?
   - Design Token Format 対応 / Make kit / npm package 読み込み etc は Figma に良い影響を与える?
 - app router はどうなるか?RCE 脆弱性の影響は?
@@ -521,7 +521,7 @@ guests:
 - Valibot
   - v1 - The 1 kB schema library
     - https://valibot.dev/blog/valibot-v1-the-1-kb-schema-library/
-- Cloudfalre
+- Cloudflare
   - Cloudflare "Just use Vite"… with the Workers runtime
     - https://blog.cloudflare.com/introducing-the-cloudflare-vite-plugin/
 - Deno
@@ -655,7 +655,7 @@ guests:
   - https://docs.cursor.com/background-agent
 - Cursor 0.5.0
   - https://www.cursor.com/ja/changelog/0-50
-  - background agend
+  - background agent
   - new tab mode
   - context for your entire code base
   - multiple workspaces
@@ -989,7 +989,7 @@ guests:
   - > If you read between the lines here, we're not using Preact as we originally intended to do.
 - remix-run/remix at v3
   - https://github.com/remix-run/remix/tree/v3
-  - Reamix v3 のレポジトリ
+  - Remix v3 のレポジトリ
 - Announcing the Apollo GraphOS Operator in Public Preview
   - https://www.apollographql.com/blog/announcing-the-apollo-graphos-operator-in-public-preview
 - Bun v1.2.20
@@ -1004,7 +1004,7 @@ guests:
   - https://blog.vlt.sh/blog/catalogs
 - Prisma ORM v6.14.0, Relationships for SQL Views, More Robust Management API & More
   - https://www.prisma.io/blog/prisma-orm-v6-14-0-relationships-for-sql-views-more-robust-management-api-and-more
-  - SQL ビューに `@unique` 属性を再導入し、relationship や pagenation を可能にした
+  - SQL ビューに `@unique` 属性を再導入し、relationship や pagination を可能にした
   - Prisma Client のミドルウェアを削除し、Prisma Client 拡張を使用するように変更
   - パフォーマンスの向上を図り、エディタの遅延を改善
 - Announcing TypeScript 5.9
@@ -1032,7 +1032,7 @@ guests:
     - Use GPT-5 in VS Code
     - Restore to a previous good state with chat checkpoints
   - Productivity
-    - Check out multiple branches simultaneously with Git worktrees
+    - Check out multiple branches simultaneously with Git worktree
     - Manage coding agent sessions in a dedicated view
 
 ### 9 月
@@ -1084,7 +1084,7 @@ guests:
   - ESM 化,CSF の型周り強化が入っている
 - feat: CSS variable tracking by nzakas · Pull Request #136 · eslint/rfcs
   - https://github.com/eslint/rfcs/pull/136
-  - ESLint の CSS Variabl の静的解析の機能追加
+  - ESLint の CSS Variable の静的解析の機能追加
 - Release Activity in Canary by rickhanlonii · Pull Request #34374 · facebook/react
   - https://github.com/facebook/react/pull/34374
   - `<Activity>` が Canary リリースへ
@@ -1505,7 +1505,7 @@ guests:
   - https://cursor.com/ja/blog/2-0
   - Composer という速度早く、コーディングレベルもそこそこのモデルがでた
   - マルチエージェント機能で複数のモデルの回答を選べるように
-  - bult-in browser でブラウザから UI を指定して修正できるように
+  - built-in browser でブラウザから UI を指定して修正できるように
 - Storybook 10
   - https://storybook.js.org/blog/storybook-10/
   - ESM 専用への移行により、インストールサイズが 29%削減された。

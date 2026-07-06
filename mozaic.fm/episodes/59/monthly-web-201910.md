@@ -161,7 +161,7 @@ guests:
   - AMP
   - **AMP is joining the OpenJS Foundation incubation program**
     - https://blog.amp.dev/2019/10/10/amp-is-joining-the-openjs-foundation-incubation-program/
-    - AMP が OpenJS Fundation に入った
+    - AMP が OpenJS Foundation に入った
     - 今後も Google からのアクティブな開発者が付く
   - **AMP Contributors Summit で Malte が AMP を React で書き直すと発表したらしい**
     - https://twitter.com/cramforce/status/1181926565791371265
@@ -387,7 +387,7 @@ guests:
     - Background fetch のプライバシー
       - ページを離れたずっと後で fetch が飛ぶと変更後の IP など情報が多すぎる
       - しかもユーザに見えないところで行われる
-      - Moziila / Apple は background fetch の方に満足している
+      - Mozilla / Apple は background fetch の方に満足している
       - Apple は background fetch を実装しているように見える
       - Mozilla は bgfetch か bgsync をユーザに見えるようにするだろう
     - Contents Index

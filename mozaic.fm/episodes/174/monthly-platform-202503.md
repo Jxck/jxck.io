@@ -784,7 +784,7 @@ guests:
     - 引数の順番で議論
     - 普通 `(val, min, max)` だが CSS だけ `(min, val, max)`
     - コンセンサスは前者
-    - ただし、Static Method か Protoype Method かは別途議論
+    - ただし、Static Method か Prototype Method かは別途議論
     - Number の Static Method なら Val がいらなくなる
   - `Number.isSafeNumeric`
     - 文字列が安全に数値に変換できるかテストする関数

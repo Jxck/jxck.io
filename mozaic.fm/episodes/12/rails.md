@@ -31,8 +31,8 @@ guests:
   - [Rails が時代に合わなくなってきた](http://qiita.com/kaiinui/items/2781219340d427543d08)
   - [「Rails が時代に合わなくなってきた」のフォロー](http://wazanova.jp/items/1361)
 - [DHH(David Heinemeier Hansson)](https://twitter.com/dhh) Rails の作者
-- [Jeremy Kemper](https://twitter.com/bitsweat) Rails Comitter
-- [Koichi Sasada](https://twitter.com/koichisasada) Ruby Comitter
+- [Jeremy Kemper](https://twitter.com/bitsweat) Rails Committer
+- [Koichi Sasada](https://twitter.com/koichisasada) Ruby Committer
 - [Coffee Script](http://coffeescript.org/)
 - [Sprockets](https://github.com/rails/sprockets-rails) Asset Pipeline のためのプリプロセッサライブラリ
 - [Merb](http://www.merbivore.com/) Rails と統合したフレームワーク

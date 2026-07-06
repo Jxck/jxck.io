@@ -39,7 +39,7 @@ guests:
   - [HTML5 勧告-オープン・ウェブ・プラットフォームの重要なマイルストーンを達成](http://www.w3.org/2014/10/html5-rec.html.ja)
   - [W3C Patent Policy](http://www.w3.org/Consortium/Patent-Policy/)
 - 15:10 ~ : WHATWG はどうしてできたか
-  - [WHATWG](https://whatwg.org/) (Web Hipertext Application Technology Working Group)
+  - [WHATWG](https://whatwg.org/) (Web Hypertext Application Technology Working Group)
   - [XHTML 1.0](http://www.w3.org/TR/xhtml1/), [XHTML 1.1](http://www.w3.org/TR/xhtml11/), [XHTML2](http://www.w3.org/TR/xhtml2/)
   - ブラウザベンダが HTML の発展的進化を訴えた 2004 年のワークショップ [The W3C Workshop on Web Applications and Compound Documents](http://www.w3.org/2004/04/webapps-cdf-ws/)
   - 当時 Opera だった Hixie が書いたドラフト [Web Forms 2](https://github.com/westonruter/webforms2)
@@ -62,7 +62,7 @@ guests:
   - [HTML5 と WHATWG と Google Chrome](https://plus.google.com/+HayatoIto/posts/axVAUzFEu4L)
 - 56:00 ~ : WHATWG と W3C の位置づけはこのままでいいのか?
 - 1:01:10 ~ : 仕様への提案や疑問はどこで誰に言えばいいか?
-  - 気軽に投稿してよい ML [Specifiction Discourse](http://discourse.specifiction.org/)
+  - 気軽に投稿してよい ML [Specification Discourse](http://discourse.specification.org/)
   - うなぎのタレ [W3C Issue Tracker](http://www.w3.org/2005/06/tracker/)
   - [Web Audio API](https://github.com/WebAudio/web-audio-api) の Github リポジトリ
   - [WebComponents](https://github.com/w3c/webcomponents/) の Github リポジトリ

@@ -72,7 +72,7 @@ guests:
     - https://www.tbray.org/ongoing/When/201x/2017/12/14/RFC-8259-STD-90
   - **Ship: Slots in flat tree**
     - https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/6UNwnk97lrE/LmW0ni0NCwAJ
-    - `<slot>` を falt tree に `display: contents` で参加させる
+    - `<slot>` を flat tree に `display: contents` で参加させる
     - incremental shadow dom でも必要
     - https://docs.google.com/document/d/1R9J8CVaSub_nbaVQwwm3NjCoZye4feJ7ft7tVe5QerM/edit
   - Ship: Media Capabilities: decoding

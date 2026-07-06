@@ -466,7 +466,7 @@ guests:
     - https://tools.ietf.org/html/draft-birrane-dtn-adm-bpsec-01
   - Concise Identities
     - https://tools.ietf.org/html/draft-birkholz-core-coid-00
-  - Babel Cryptographic Authentification
+  - Babel Cryptographic Authentication
     - https://tools.ietf.org/html/draft-do-babel-hmac-00
   - DNS Privacy Considerations
     - https://tools.ietf.org/html/draft-bortzmeyer-dprive-rfc7626-bis-00

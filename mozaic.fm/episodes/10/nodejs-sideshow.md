@@ -29,14 +29,14 @@ guests:
   - [Haskell の Thunk](http://www.haskell.org/haskellwiki/Thunk)
 - 7:30 ~ : 本当に Promise は必要なのか?
   - [Scala の Option](http://www.scala-lang.org/api/current/scala/Option.html)
-  - [jQuery の Deffered](http://api.jquery.com/category/deferred-object/)
+  - [jQuery の Deferred](http://api.jquery.com/category/deferred-object/)
   - [DOM の Promise](https://dom.spec.whatwg.org/%23promises)
 - 15:22 ~ : JS の Promise と Haskell の I/O モナド
   - [Haskell の I/O monad](http://www.haskell.org/haskellwiki/IO_inside%23Dark_side_of_IO_monad)
   - [Haskell の do 記法](http://en.wikibooks.org/wiki/Haskell/Syntactic_sugar%23Do_and_proc_notation)
-- 18:45 ~ : genrator ってどうなの?
+- 18:45 ~ : generator ってどうなの?
   - [function\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function%2A)
-- 20:50 ~ : generator と Go の groutine/channel
+- 20:50 ~ : generator と Go の goroutine/channel
   - [Go の Channel](http://golang.org/ref/spec%23Channel_types)
   - [Generator のスクリーンキャスト](http://jxck.hatenablog.com/entry/2014-01-12/generator-screencaset)
   - [koa](http://koajs.com/%2522%2522)

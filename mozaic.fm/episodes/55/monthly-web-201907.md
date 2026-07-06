@@ -543,8 +543,8 @@ guests:
   - https://www.ispa.org.uk/ispa-announces-finalists-for-2019-internet-heroes-and-villains-trump-and-mozilla-lead-the-way-as-villain-nominees/
   - https://jp.techcrunch.com/2019/07/06/2019-07-05-isp-group-mozilla-internet-villain-dns-privacy/
   - DoH を実装するとペアレンタルコントロールができなくなり、UK の ISP が義務を履行できない。
-  - ISPA (ISP 業界団体)から「Mozilla は悪(Villan)」 だと認定された。
-  - ちなみに他の Hero は Sir TBL, Villan は Trump
+  - ISPA (ISP 業界団体)から「Mozilla は悪(Villain)」 だと認定された。
+  - ちなみに他の Hero は Sir TBL, Villain は Trump
 - **An Analysis of Godlua Backdoor**
   - https://blog.netlab.360.com/an-analysis-of-godlua-backdoor-en/
   - https://japan.zdnet.com/article/35139444/

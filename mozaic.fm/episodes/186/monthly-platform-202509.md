@@ -998,7 +998,7 @@ guests:
   - CookieBis が更新され RFC が遠のく
 - 周辺動向
   - ベンダー動向
-    - The Browser Company が Attlassian に買収
+    - The Browser Company が Atlassian に買収
     - Cloudflare で 1.1.1.1 の誤発行インシデント
     - Cloudflare が 1111 人のインターンを 2026 年にとる
   - セキュリティ動向
