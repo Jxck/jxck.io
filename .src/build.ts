@@ -2,8 +2,9 @@
 process.chdir(import.meta.dirname)
 
 import { exec } from "child_process"
-import { readFileSync, statSync } from "fs"
-import { readFile as _readFile, writeFile, stat, glob } from "fs/promises"
+import { constants, readFileSync, statSync } from "fs"
+import { access, readFile as _readFile, writeFile, stat, glob, realpath } from "fs/promises"
+import { basename, dirname } from "path"
 import { promisify, styleText } from "util"
 
 import ejs from "ejs"
@@ -125,6 +126,31 @@ function short(str: string, n = 140): string {
   str = str.replaceAll(`\n`, ``)
   if (str.length <= n) return str
   return str.slice(0, n - 3) + `...`
+}
+
+/**
+ * files.mozaic.fm/ は git-annex 管理下にあり、locked な mp3 は symlink 経由で
+ * read-only な annex object を指す。id3 書き込み前に unlock して書き込み可能にする。
+ * annex 未導入 (移行後) の環境では書き込み可能なので何もしない。
+ */
+async function unlock_if_needed(audio_file: string): Promise<void> {
+  try {
+    await access(audio_file, constants.W_OK)
+    return
+  } catch {
+    // 書き込み不可 (locked annex file の可能性) -> unlock を試みる
+  }
+
+  try {
+    const dir = await realpath(dirname(audio_file))
+    await promisify(exec)(`git annex unlock ${JSON.stringify(basename(audio_file))}`, {
+      cwd: dir,
+    })
+    logger("yellow", "unlocked (git-annex):", audio_file)
+  } catch (e) {
+    console.error(e)
+    throw new Error(`cannot write to ${audio_file} and failed to unlock via git-annex`)
+  }
 }
 
 /**
@@ -815,6 +841,7 @@ async function podcast(files: string[]): Promise<void> {
   const latest = episodes.at(0)
 
   // set id3
+  await unlock_if_needed(latest.audio_file)
   console.log("\n")
   console.log(
     await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ${latest.audio_file}`),
