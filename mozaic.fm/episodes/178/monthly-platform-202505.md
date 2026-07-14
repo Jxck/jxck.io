@@ -123,7 +123,7 @@ guests:
 - What's New in WebGPU (Chrome 137)
   - https://developer.chrome.com/blog/new-in-webgpu-137
 
-  #### Intents
+#### Intents
 
 - **Ship: System accent color for accent-color property.**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uP9MI1IdZj8
@@ -265,7 +265,7 @@ guests:
 - Ready for Developer Testing: HTML in Canvas: drawElement
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LYJyOdLbOfY
 
-  #### Other
+#### Other
 
 - web.dev
   - New to the web platform in April
@@ -340,11 +340,11 @@ guests:
     - https://v8.dev/features/explicit-resource-management
 - other
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 139.1
+#### Stable: 139.1
 
-  #### Updates
+#### Updates
 
 - **Firefox 138.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/138.0/releasenotes/
@@ -375,7 +375,7 @@ guests:
 - Keep on Rolling with Profile Improvements - These Weeks in Firefox: Issue 180
   - https://blog.nightly.mozilla.org/2025/05/05/keep-on-rolling-with-profile-improvements-these-weeks-in-firefox-issue-180/
 
-  #### Intents
+#### Intents
 
 - Ship:
   - Ship: Dialog "closedby" attribute (Light Dismiss)
@@ -402,7 +402,7 @@ guests:
   - Unship: beforescriptexecute and afterscriptexecute events in early Beta
     - https://groups.google.com/a/mozilla.org/g/dev-platform/c/3qtHMYJ6paQ
 
-  #### Newsletter
+#### Newsletter
 
 - Firefox DevTools Newsletter - 137 - Firefox Developer Experience
   - https://fxdx.dev/firefox-devtools-newsletter-137/
@@ -411,12 +411,12 @@ guests:
 - Firefox WebDriver Newsletter 139 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-139/
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - Color models for humans and devices
   - https://developer.mozilla.org/en-US/blog/color-models-humans-devices/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-05-01+
 - Positive
@@ -439,7 +439,7 @@ guests:
   - **Global Privacy Control (GPC)**
     - https://github.com/mozilla/standards-positions/issues/867
 
-  #### Other
+#### Other
 
 - **Firefox Git Migration Update**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/f7c6YbLaToo
@@ -484,11 +484,11 @@ guests:
   - ただこの表示は Picture-in-Picture API の feature detection を使っているらしく、Firefox の compat shim 導入により NHK プラスが動くようになった
   - ただ NHK が意図的に Firefox をブロックしている可能性があり、動き続けるかはわからないという話も
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 18.5
+#### Stable: 18.5
 
-  #### Updates
+#### Updates
 
 - **Polishing your typography with line height units | WebKit**
   - https://webkit.org/blog/16831/line-height-units/
@@ -562,7 +562,7 @@ guests:
   - Web Inspector
   - WebRTC
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-05-01+
 - Support
@@ -572,15 +572,15 @@ guests:
   - CSP hash reporting keywords
     - https://github.com/WebKit/standards-positions/issues/430
 
-  #### Other
+#### Other
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable: 137
+#### Stable: 137
 
-  #### Updates
+#### Updates
 
-  #### Other
+#### Other
 
 - Attack Techniques: Fake Literally Everything! (Escrow Scam) - text/plain
   - https://textslashplain.com/2025/04/24/attack-techniques-fake-literally-everything/
@@ -612,9 +612,9 @@ guests:
 - Microsoft Edge Game Assist is now available - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/05/29/microsoft-edge-game-assist-is-now-available/
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### Draft
+#### Draft
 
 - Recommendation
 - Proposed Recommendation
@@ -632,7 +632,7 @@ guests:
   - **CSS Functions and Mixins Module**
     - https://www.w3.org/TR/2025/WD-css-mixins-1-20250515/
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - open-ui/meetings/telecon/2025-05-01
@@ -673,7 +673,7 @@ guests:
 - Upcoming WHATNOT meeting on 2025-05-29
   - https://github.com/whatwg/html/issues/11328
 
-  #### Other
+#### Other
 
 - Resolved: Start defining a `grid-collapse` property
   - https://github.com/w3c/csswg-drafts/issues/5813#issuecomment-2880870816
@@ -711,14 +711,14 @@ guests:
   - a11ysupport.io は aria 属性だけでこれも限定的。
   - Web 機能の AT とブラウザでの互換性データを含む、BCD に類似したデータセットを作成
 
-  ### TC39 動向
+### TC39 動向
 
-  #### Meeting
+#### Meeting
 
 - 2025-05
   - 来月
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-01-01}...main@{2025-02-01}
 - https://tc39.github.io/beta/
@@ -728,9 +728,9 @@ guests:
 - 2.7->3
 - 3->4
 
-  #### New Proposals
+#### New Proposals
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/wintercg/admin/issues?q=label%3A%22meeting%22%20
 - 2025-05-01 meeting agenda
@@ -755,24 +755,24 @@ guests:
     - globalThis: navigator, performance.now queueMicrotask, setInterval/setTimeout, structuredClone, atob/btoa
   - Continue going through the fetch spec (starting with [fetch response handover](https://fetch.spec.whatwg.org/#fetch-finale) algorithm, step 4) (30 mins?)
 
-  #### Other
+#### Other
 
-  ### IETF 動向
+### IETF 動向
 
-  #### WG
+#### WG
 
 - RFC
 - Work
 - Meeting
 
-  #### Other
+#### Other
 
 - IETF 125 booked for Shenzhen, China for March 14-20, 2026
   - https://mailarchive.ietf.org/arch/msg/ietf-announce/EZo3-65dvZkR1I3P2Aa0Bvee5xY/
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - Igalia WebKit Team | WebKit Igalia Periodical #22
   - https://blogs.igalia.com/webkit/blog/2025/wip-22/
@@ -795,7 +795,7 @@ guests:
     - https://www.diabrowser.com/
   -
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - インターネット取引サービスへの不正アクセス・不正取引による被害が急増しています:金融庁
   - https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html
@@ -808,9 +808,10 @@ guests:
   - 被害については顧客に保証の方針
 - 証券口座の乗っ取り防止、多要素認証を必須に 自民党が提言案 - 日本経済新聞
   - https://www.nikkei.com/article/DGXZQOUA2011F0Q5A520C2000000/
-- #### Cookie 動向
 
-- #### Other
+#### Cookie 動向
+
+#### Other
 
 - **Fit-to-Width Discussions & Feedback - Roma's Unpolished Posts**
   - https://blog.kizu.dev/fit-to-width-discussions-and-feedback/
@@ -847,7 +848,8 @@ guests:
   - https://www.watch.impress.co.jp/docs/news/2014680.html
 - **Resilient Import Maps - Better Theme Development and Beyond (2025) - Shopify**
   - https://shopify.engineering/resilient-import-maps
-- ### イベント
+
+### イベント
 
 - 6 月
   - 5-6: CSS Day
@@ -857,7 +859,7 @@ guests:
 - 7 月
 - 8 月
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - 136

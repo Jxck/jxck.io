@@ -57,7 +57,7 @@ guests:
     - Extend CSP script-src (also known as script-src-v2)
     - WebAssembly custom descriptors
 
-  #### Intents
+#### Intents
 
 - Ship: Custom property enumeration in `getComputedStyle()`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/ELhr0cJgb7E
@@ -222,7 +222,7 @@ guests:
 - Web-Facing Change PSA: Cross-Tab Region Capture
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/lMJIhP8D7Zs
 
-  #### Other
+#### Other
 
 - web.dev
   - https://web.dev/
@@ -305,11 +305,11 @@ guests:
     - Domenic が Google を退社
     - リタイアなので別の会社に行くとかではなさそう
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 143
+#### Stable: 143
 
-  #### Updates
+#### Updates
 
 - Firefox 143.0, See All New Features, Updates and Fixes
   - https://www.firefox.com/en-US/firefox/143.0/releasenotes/
@@ -324,7 +324,7 @@ guests:
 - Firefox 144 Highlights: Faster Add-ons, Smarter DevTools, and Tab Group Boosts
   - https://blog.nightly.mozilla.org/2025/09/22/firefox-144-highlights-faster-add-ons-smarter-devtools-and-tab-group-boosts-these-weeks-in-firefox-issue-189/
 
-  #### Intents
+#### Intents
 
 - Ship: Framebusting Intervention
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/c6SJ4fEnTQQ/m/6w7zabvuAAAJ
@@ -342,14 +342,14 @@ guests:
 - Unship: `PointerEvent.getCoalescedEvents()` in insecure context
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/dueCVbcrdKQ
 
-  #### Newsletter
+#### Newsletter
 
 - Firefox WebDriver Newsletter 143 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-143/
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-09-01+
 - Positive
@@ -388,7 +388,7 @@ guests:
   - CSS Import Once
     - https://github.com/mozilla/standards-positions/issues/939
 
-  #### Other
+#### Other
 
 - **Defending an open web: What the Google search ruling means for the future**
   - https://blog.mozilla.org/en/mozilla/internet-policy/defending-an-open-web/
@@ -415,11 +415,11 @@ guests:
 - Fast UDP I/O for Firefox in Rust | Max Inden
   - https://max-inden.de/post/fast-udp-io-in-firefox/
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 26
+#### Stable: 26
 
-  #### Updates
+#### Updates
 
 - Submit your ideas for Interop 2026 | WebKit
   - https://webkit.org/blog/17320/submit-your-ideas-for-interop-2026/
@@ -573,7 +573,7 @@ guests:
   - WebRTC
     - Added encrypted field to RTCRtpHeaderExtensionParameters.
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-09-01+
 - Support
@@ -591,16 +591,16 @@ guests:
   - Add `getSelectionBoundingClientRect()` for `<textarea>` and `<input>` elements
     - https://github.com/WebKit/standards-positions/issues/512
 
-  #### Other
+#### Other
 
 - iOS User Agent String will be frozen for the OS part to 18_6. · Issue #283 · whatwg/compat
   - https://github.com/whatwg/compat/issues/283#issue-3382725784
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable: 141
+#### Stable: 141
 
-  #### Updates
+#### Updates
 
 - https://blogs.windows.com/msedgedev/
   - **Unlock text editing use cases with highlightsFromPoint and other FromPoint APIs**
@@ -611,7 +611,7 @@ guests:
 - https://twitter.com/MSEdgeDev
   - これを見るしかない
 
-  #### Other
+#### Other
 
 - Calling for Interop 2026 proposals - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/09/04/calling-for-interop-2026-proposals/
@@ -621,9 +621,9 @@ guests:
   - Apple は独占的な影響力を行使し、ブラウザの選択肢を抑圧することで、ウェブとインターネットの標準を無効化する脅威をもたらしている。
   - インターネット標準機関はこの脅威を認識し、適切な対応を取る必要がある。
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### Draft
+#### Draft
 
 - https://www.w3.org/news/
 - Recommendation
@@ -636,7 +636,7 @@ guests:
     - https://www.w3.org/news/2025/first-public-working-draft-css-environment-variables-module-level-1/
     - `env()`, `preferred-text-scale`
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
   - **​​[interest invokers] Consider alternative approaches given WebKit opposition · Issue #1279 · openui/open-ui**
@@ -644,7 +644,7 @@ guests:
   - > colleagues and I think trying to standardize something around it is very much premature. As mentioned previously there's also no great way to expose this particular solution on spatial computing platforms without compromising end user privacy. We therefore remain opposed to this feature.
   - interest invokers に対して WebKit が oppose.
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
   - 2025-09-04
@@ -666,7 +666,7 @@ guests:
     - https://github.com/whatwg/html/issues/11696
     - Declarative CSS Modules
 
-  #### CSSWG
+#### CSSWG
 
 - https://www.w3.org/blog/CSS/
   - CSS WG Blog - Masonry Spec Update and Open Issues
@@ -687,7 +687,7 @@ guests:
     - Balanced packing - Item Flow, Part 1: A new unified concept for layout | WebKit
       - https://webkit.org/blog/16587/item-flow-part-1-a-new-unified-concept-for-layout/#item-pack
 
-  #### Other
+#### Other
 
 - **Request For Comments: new Resolver specification, groups & Aliases updates | Design Tokens Community Group**
   - https://www.w3.org/community/design-tokens/2025/09/12/request-for-comments-new-resolver-specification-groups-aliases-updates/
@@ -720,15 +720,15 @@ guests:
   - https://github.com/whatwg/html/issues/11711
   - TPAC 2025 での F2F
 
-  ### TC39/TC55 動向
+### TC39/TC55 動向
 
-  #### Meeting
+#### Meeting
 
 - 2025-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-01-01}...main@{2025-02-01}
 - https://tc39.github.io/beta/
@@ -738,9 +738,9 @@ guests:
 - 2.7->3
 - 3->4
 
-  #### New Proposals
+#### New Proposals
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - admin/meetings/2025-09-04.md
@@ -756,11 +756,11 @@ guests:
     - https://github.com/WinterTC55/admin/issues/137
   - import.meta.url
 
-  #### Other
+#### Other
 
-  ### IETF 動向
+### IETF 動向
 
-  #### WG
+#### WG
 
 - RFC
 - Work
@@ -769,11 +769,11 @@ guests:
     - CookieBis 更新される、、
 - Meeting
 
-  #### Other
+#### Other
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - **Welcoming The Browser Company to Atlassian - Work Life by Atlassian**
   - https://www.atlassian.com/blog/announcements/atlassian-acquires-the-browser-company
@@ -820,7 +820,7 @@ guests:
 - Content Signals
   - https://contentsignals.org/
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - Mis-issued TLS Certificates for 1.1.1.1 DNS Service Enable Attackers to Decrypt Traffic
   - https://cybersecuritynews.com/tls-certificates-1-1-1-1-dns-service/
@@ -828,7 +828,7 @@ guests:
   - https://www.mail-archive.com/dev-security-policy@mozilla.org/msg02229.html
   - Cloudflare の 1.1.1.1 誤発行についてのレポート
 
-  #### Other
+#### Other
 
 - グーグルは「クローム」売却不要、データは共有を－独禁法訴訟で判事 - Bloomberg
   - https://www.bloomberg.co.jp/news/articles/2025-09-02/T1Z9YIGOYMTN00
@@ -891,7 +891,7 @@ guests:
 - 🚀 Interop 2026 Reactions
   - https://foolip.github.io/interop-reactions/
 
-  ### イベント
+### イベント
 
 - 9 月
   - 22-25: TC39 110th
@@ -909,7 +909,7 @@ guests:
   - 18-20: TC39 111th
     - https://github.com/tc39/agendas/blob/main/2025/11.md
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - 140

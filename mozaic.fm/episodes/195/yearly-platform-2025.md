@@ -39,7 +39,7 @@ guests:
 - TLS 証明書どこまで短縮できるか
 - JSSugar / JS0
 
-  ### 今年のキーワード
+### 今年のキーワード
 
 - Jxck
   - サプライチェーン攻撃/大規模サイバー攻撃
@@ -79,7 +79,7 @@ guests:
   - スマホ新法
   - AI ブラウザーとウェブ
 
-  ### 2026 年のチェックポイント
+### 2026 年のチェックポイント
 
 - WCAG3 本格化どうなる?
 - スマホ新法でどうなる?シェアの変化 Chromium Chrome ? 代替 App Store
@@ -98,7 +98,7 @@ guests:
 - 新興のブラウザ(Dia, Atlas, Comet etc)/エンジン(Ladybird, Servo, Nova)どうなっていく?
 - HTML in Canvas が来たらどうなる?
 
-  ### 1 月
+### 1 月
 
 - Chrome
   - 132
@@ -236,7 +236,7 @@ guests:
     - Let's Encrypt 6 日証明書アナウンス
     - Let's Encrypt メール通知やめる
 
-  ### 2 月
+### 2 月
 
 - Chrome
   - 133
@@ -340,7 +340,7 @@ guests:
     - Perplexity 製のブラウザ Comet
     - Apple が UK から iCloud のバックドアを秘密裏に求められてた
 
-  ### 3 月
+### 3 月
 
 - Chrome
   - 134
@@ -471,7 +471,7 @@ guests:
     - Servo vs Ladybird は Ladybird の資金が潤沢
     - Apple, iTunes, Google が特定ソフトウェア事業者に指定
 
-  ### 4 月
+### 4 月
 
 - Chrome
   - 136
@@ -561,7 +561,7 @@ guests:
     - LLM のリクエストが Wikimedia を圧迫
     - OpenAI Chrome 買収意欲
 
-  ### 5 月
+### 5 月
 
 - Chrome
   - 136
@@ -674,7 +674,7 @@ guests:
     - Carousels の a11y
     - Houdini Re-Revisited
 
-  ### 6 月
+### 6 月
 
 - Chrome
   - 138
@@ -774,7 +774,7 @@ guests:
   - Cookie 動向
   - Other
 
-  ### 7 月
+### 7 月
 
 - Chrome
   - Ship
@@ -851,7 +851,7 @@ guests:
     - 欧州アクセシビリティ法完全施行
     - Chrome OS がシュリンクして Android とマージ?
 
-  ### 8 月
+### 8 月
 
 - Chrome
   - 139
@@ -952,7 +952,7 @@ guests:
   - Other
     - State of CSS 回答者減少
 
-  ### 9 月
+### 9 月
 
 - Chrome
   - 140
@@ -1055,7 +1055,7 @@ guests:
     - Tim Berners-Lee の回顧録が出版
     - AV2 が年末までにリリースされるとアナウンス
 
-  ### 10 月
+### 10 月
 
 - Chrome
   - 142
@@ -1151,7 +1151,7 @@ guests:
   - Other
     - ChatGPT Atlas
 
-  ### 11 月
+### 11 月
 
 - Chrome
   - 143

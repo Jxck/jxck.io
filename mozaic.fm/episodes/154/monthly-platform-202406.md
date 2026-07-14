@@ -650,7 +650,9 @@ guests:
   - **[select] as an alternative to split buttons and `<button type=popover>` #1063**
   - **[interest invokers] How to define/control the action on "losing interest" #1064**
   - **Introduction to Foundation for the Global Design System component library #1066[b]**
-- #### Other
+
+#### Other
+
 - Web Accessibility: removing barriers, designing a web for everyone | 2024 | Blog | W3C
   - https://www.w3.org/blog/2024/web-accessibility-removing-barriers-designing-a-web-for-everyone/
 - **Compression Standard**

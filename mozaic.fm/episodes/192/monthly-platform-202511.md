@@ -140,7 +140,7 @@ guests:
 - Web-Facing Change PSA: Throw exception when throttling pushState/replaceState
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/TyvBybEFIKU
 
-  #### Other
+#### Other
 
 - web.dev
   - https://web.dev/
@@ -195,11 +195,11 @@ guests:
     - W3C Community Group: Secure Web Application Guidelines (SWAG)
     - Auto-CSP in Angular
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 145
+#### Stable: 145
 
-  #### Updates
+#### Updates
 
 - Getting Better Every Day - These Weeks in Firefox: Issue 192
   - https://blog.nightly.mozilla.org/2025/11/24/getting-better-every-day-these-weeks-in-firefox-issue-192/
@@ -218,7 +218,7 @@ guests:
   - `WeakMap` and `WeakSet` now accept Symbol objects as keys
   - Navigation API
 
-  #### Intents
+#### Intents
 
 - **Ship: CSS Module Scripts**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/ynzRS-tLvmU
@@ -244,17 +244,17 @@ guests:
 - `text-decorationt-trim` renamed to text-decoration-inset
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/-chzNDktMCU
 
-  #### Newsletter
+#### Newsletter
 
 - Firefox WebDriver Newsletter 145 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-145/
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - Image formats: Codecs and compression tools
   - https://developer.mozilla.org/en-US/blog/image-formats-codecs-compression-tools/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-11-01+
 - Positive
@@ -270,7 +270,7 @@ guests:
   - Signature-based Integrity
     - https://github.com/mozilla/standards-positions/issues/1139
 
-  #### Other
+#### Other
 
 - Under the hood: How Firefox suggests tab groups with local AI
   - https://blog.mozilla.org/en/firefox/ai-tab-groups/
@@ -296,11 +296,11 @@ guests:
 - Celebrating the contributors that power Mozilla Support
   - https://blog.mozilla.org/en/firefox/contributors-mozilla-support/
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 26.1
+#### Stable: 26.1
 
-  #### Updates
+#### Updates
 
 - **Release Notes for Safari Technology Preview 232 | WebKit**
   - https://webkit.org/blog/17601/release-notes-for-safari-technology-preview-232/
@@ -317,7 +317,7 @@ guests:
 - Grid: how grid-template-areas offer a visual solution for your code | WebKit
   - https://webkit.org/blog/17620/grid-how-grid-template-areas-offer-a-visual-solution-for-your-code/
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-11-01+
 - Withdrawn
@@ -328,7 +328,7 @@ guests:
   - Opener Protections
     - https://github.com/WebKit/standards-positions/issues/277
 
-  #### Other
+#### Other
 
 - Igalia WebKit Team | WebKit Igalia Periodical #45
   - https://blogs.igalia.com/webkit/blog/2025/wip-45/
@@ -339,11 +339,11 @@ guests:
 - Igalia WebKit Team | WebKit Igalia Periodical #48
   - https://blogs.igalia.com/webkit/blog/2025/wip-48/
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable:
+#### Stable:
 
-  #### Updates
+#### Updates
 
 - https://blogs.windows.com/msedgedev/
   - Secure the browser your way with new Edge for Business connectors - Microsoft Edge Blog
@@ -368,7 +368,7 @@ guests:
 - MSEdgeExplainers/OfflineAudioContext/explainer.md at main · MicrosoftEdge/MSEdgeExplainers
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/OfflineAudioContext/explainer.md
 
-  #### Other
+#### Other
 
 - Defensive Technology: Ransomware Data Recovery - text/plain
   - https://textslashplain.com/2025/11/19/defensive-technology-ransomware-data-recovery/
@@ -376,7 +376,7 @@ guests:
   - Ransomware 攻撃を検知すると、Defender は攻撃を阻止し、バックアッププロバイダーに感染のタイムスタンプを通知する。
   - この機能は、3P セキュリティソフトウェアとクラウドバックアップソフトウェアが Windows Security Center と統合するためのインターフェースを提供する。
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
 #### TPAC
 
@@ -389,7 +389,7 @@ guests:
 - View 1 · CSS WG TPAC 2025 agenda
   - https://github.com/orgs/w3c/projects/213
 
-  #### Draft
+#### Draft
 
 - https://www.w3.org/news/
 - Recommendation
@@ -415,7 +415,7 @@ guests:
   - Authorized Translation of Verifiable Credentials Data Model v2.0 in Simplified Chinese
     - https://www.w3.org/news/2025/authorized-translation-of-verifiable-credentials-data-model-v2-0-in-simplified-chinese/
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - 2025-11-06
@@ -433,7 +433,7 @@ guests:
       - 全コンテンツをスクロールしないと要素に到達できない
     - CSS でやるか HTML でやるかが TPAC で話し合われた
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
 - WHATWG
@@ -444,7 +444,7 @@ guests:
   - Anchor Positioning - Anchor Positioning Inter Related Issues
     - Anchor Positioning はセマンティックバインディングを示さないという話
 
-  #### CSSWG
+#### CSSWG
 
 - https://www.w3.org/blog/CSS/
 - https://lists.w3.org/Archives/Public/www-style/
@@ -472,7 +472,7 @@ guests:
   - item-flow の column & row の値の解釈。
   - Masonry 全体の「形」を表すのか、はたまた item の「流れ」を表すかについての議論が TPAC で行われ、かなり白熱した
 
-  #### Other
+#### Other
 
 - W3C Advisory Committee Elects Technical Architecture Group
   - https://www.w3.org/news/2025/w3c-advisory-committee-elects-technical-architecture-group/
@@ -507,15 +507,15 @@ guests:
   - 今年の Web Almanac
   - もう結構みれる
 
-  ### TC39/TC55 動向
+### TC39/TC55 動向
 
-  #### Meeting
+#### Meeting
 
 - 2025-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-01-01}...main@{2025-02-01}
 - https://tc39.github.io/beta/
@@ -525,15 +525,15 @@ guests:
 - 2.7->3
 - 3->4
 
-  #### New Proposals
+#### New Proposals
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - minutes がマージされてない
 - かつ 11 月は TPAC なんでなかったぽい
 
-  #### Other
+#### Other
 
 - **Technical Discussion with TC39 (JSConf JP 2025)**
   - https://jsconf.jp/2025/en/talks/technical-discussion-tc39
@@ -543,9 +543,9 @@ guests:
   - Language Evolution - Google Slides
     - https://docs.google.com/presentation/d/1ylROTu3N6MyHzNzWJXQAc7Bo1O0FHO3lNKfQMfPOA4o/edit?slide=id.p#slide=id.p
 
-  ### IETF 動向
+### IETF 動向
 
-  #### WG
+#### WG
 
 - RFC
   - RFC 9875 on HTTP Cache Groups
@@ -553,15 +553,15 @@ guests:
 - Work
 - Meeting
 
-  #### Other
+#### Other
 
 - 新しい NTP DNS レコードの提案書を書いた - ASnoKaze blog
   - https://asnokaze.hatenablog.com/entry/2025/11/27/003215
   -
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - **Cloudflare outage on November 18, 2025**
   - https://blog.cloudflare.com/18-november-2025-outage/
@@ -570,7 +570,7 @@ guests:
   - https://blog.kagi.com/orion
   - WebKit ベース、プライバシーファーストなブラウザ Orion
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - **Second Sha1-Hulud Wave Affects 25,000+ Repositories via npm Preinstall Credential Theft**
   - https://thehackernews.com/2025/11/second-sha1-hulud-wave-affects-25000.html?m=1
@@ -584,7 +584,7 @@ guests:
   - https://xtech.nikkei.com/atcl/nxt/column/18/00001/11296/
   - 侵入経路が VPN だった可能性示唆
 
-  #### Other
+#### Other
 
 - The Performance Inequality Gap, 2026 - Infrequently Noted
   - https://infrequently.org/2025/11/performance-inequality-gap-2026/
@@ -592,7 +592,7 @@ guests:
   - https://thisisforeveryone.timbl.com/
   - https://www.amazon.co.jp/dp/0374612463
 
-  ### イベント
+### イベント
 
 - 12 月
   - 6: アクセシビリティカンファレンス福岡
@@ -600,7 +600,7 @@ guests:
 - 1 月
 - 2 月
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - 143

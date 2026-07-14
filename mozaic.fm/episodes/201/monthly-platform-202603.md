@@ -60,7 +60,7 @@ guests:
   - Deprecations and removals
     - Remove inline XSLT for production of SVG
 
-  #### Intents
+#### Intents
 
 - Ship: CSS `border-shape`
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/zSuB_Tc0-bY
@@ -193,7 +193,7 @@ guests:
 - Web-Facing Change PSA: Reuse no-store images on same-src reassignment
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/PM5W04h8-PM
 
-  #### Other
+#### Other
 
 - web.dev
   - https://web.dev/
@@ -269,11 +269,11 @@ guests:
     - Welcoming Wiz to Google Cloud: Redefining security for the AI era
       - https://cloud.google.com/blog/products/identity-security/google-completes-acquisition-of-wiz
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 149
+#### Stable: 149
 
-  #### Updates
+#### Updates
 
 - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases
 - Firefox 149
@@ -319,7 +319,7 @@ guests:
 - **A free VPN you can trust, now built into Firefox**
   - https://blog.mozilla.org/en/firefox/built-in-vpn/
 
-  #### Intents
+#### Intents
 
 - **Ship: `light-dark()` for CSS images**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/R9ksQx372_g
@@ -338,7 +338,7 @@ guests:
 - Change:
 - Remove:
 
-  #### Newsletter
+#### Newsletter
 
 - https://fxdx.dev/
 - Firefox WebDriver Newsletter 149 - Firefox Developer Experience
@@ -354,11 +354,11 @@ guests:
   - WebDriver BiDi では、ユーザープロンプトの自動処理、ダウンロード動作の設定、ワーカー領域のイベント追加などが行われた。
   - Marionette では、暗黙的およびページロードのタイムアウトをスクリプトタイムアウトに沿って処理する改善が行われた。
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - https://developer.mozilla.org/en-US/blog/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2026-03-01+
 - Support
@@ -375,16 +375,16 @@ guests:
     - https://github.com/mozilla/standards-positions/issues/336
 - Oppose
 
-  #### Other
+#### Other
 
 - Firefox Developer Edition and Beta: Try out Mozilla's .rpm package! - Mozilla Hacks - the Web developer blog
   - https://hacks.mozilla.org/2026/03/firefox-developer-edition-and-beta-try-out-mozillas-rpm-package/
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 26.4
+#### Stable: 26.4
 
-  #### Updates
+#### Updates
 
 - https://webkit.org/blog/
 - Release Notes for Safari Technology Preview 239
@@ -464,7 +464,7 @@ guests:
     - WebAssembly
     - WebGPU
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2026-03-01+
 - Support
@@ -475,7 +475,7 @@ guests:
   - Canvas place element
     - https://github.com/WebKit/standards-positions/issues/403
 
-  #### Other
+#### Other
 
 - 50 Years of Thinking Different - Apple
   - https://www.apple.com/50-years-of-thinking-different/
@@ -484,11 +484,11 @@ guests:
   - https://developer.apple.com/wwdc26/
   - June 8-12, 2026
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable:
+#### Stable:
 
-  #### Updates
+#### Updates
 
 - https://blogs.windows.com/msedgedev/
   - Making keyboard navigation effortless - Microsoft Edge Blog
@@ -499,19 +499,19 @@ guests:
 - https://twitter.com/MSEdgeDev
   - これを見るしか無い
 
-  #### Other
+#### Other
 
 - [CSSGapDecorations] Archive the explainer (#1266)
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/commit/28915c0675a4f76557d2cf1ca837a932e506ea4a
   - Edge が頑張っていた Gap Decorations が Graduate したのでアーカイブ
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### TPAC
+#### TPAC
 
 - なし
 
-  #### Draft
+#### Draft
 
 - https://www.w3.org/news/
 - Recommendation
@@ -528,7 +528,7 @@ guests:
     - https://www.w3.org/TR/2026/NOTE-llms-standards-20260324/
     - 標準化作業において、どんなケースで LLM が有用で、どんなケースで懸念されるか
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - 2026-03-05
@@ -547,7 +547,7 @@ guests:
     - https://github.com/openui/open-ui/issues/1389
     - gemini の議事録生成をやってみてたけど、過不足が多いので、結局 IRC に戻るらしい
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
 - 2026-03-05
@@ -571,7 +571,7 @@ guests:
   - Stage 2
     - HTML in Canvas
 
-  #### CSSWG
+#### CSSWG
 
 - https://www.w3.org/blog/CSS/
 - https://lists.w3.org/Archives/Public/www-style/
@@ -594,7 +594,7 @@ guests:
 - line-clamp がドバっと進んでいる
 - Overflow Lv4 を進めるため?
 
-  #### Other
+#### Other
 
 - Past, present and future: An update on W3C's Strategic Objectives on the 37th anniversary of the Web proposal
   - https://www.w3.org/blog/2026/past-present-and-future-an-update-on-w3cs-strategic-objectives-on-the-37th-anniversary-of-the-web-proposal/
@@ -622,15 +622,15 @@ guests:
   - LSP: Language server integration for editors and IDEs
   - Highlighting: Syntax highlighting support with Semantic Tokens
 
-  ### TC39/TC55 動向
+### TC39/TC55 動向
 
-  #### Meeting
+#### Meeting
 
 - 2026-01
   - https://github.com/tc39/agendas
   - https://github.com/tc39/notes
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2026-01-01}...main@{2026-02-01}
 - https://tc39.github.io/beta/
@@ -640,14 +640,14 @@ guests:
 - 2.7->3
 - 3->4
 
-  #### New Proposals
+#### New Proposals
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - 3 月はなし
 
-  #### Other
+#### Other
 
 - We deserve a better streams API for JavaScript | The Cloudflare Blog
   - https://blog.cloudflare.com/a-better-web-streams-api/
@@ -661,9 +661,9 @@ guests:
     - ただし仕様策定から 10 年たって振り返ると BYOB やバックプレッシャーなどの仕様が複雑になってしまったのは反省点だと認める。
   - 現代の Web 標準環境において、基礎的なプリミティブを改善するために予算やリソースを割いてもらうのは、2010 年代よりも遥かに難しい。
 
-  ### IETF 動向
+### IETF 動向
 
-  #### IETF125
+#### IETF125
 
 - IETF 125 全部録画されている
 - https://www.youtube.com/playlist?list=PLC86T-6ZTP5gi5EKPqJf3lneksxOTPetP
@@ -698,7 +698,7 @@ guests:
     - PAKE も ML-KEM も、単なる仕様整備より「本当に安全性を示せているか」が最大論点で、特に形式検証・安全性分析の不足が強く指摘された。
     - 結論として、どちらも formal analysis や security analysis を十分に揃えないと前に進めない、という空気がかなり強い。
 
-  #### WG
+#### WG
 
 - RFC
   - RFC 9849 on TLS Encrypted Client Hello
@@ -706,7 +706,7 @@ guests:
 - Work
 - Meeting
 
-  #### Other
+#### Other
 
 - Using AI to Evaluate Internet Standards (Part Two)
   - https://www.mnot.net/blog/2026/03/25/using_ai
@@ -714,9 +714,9 @@ guests:
     - https://pypi.org/project/ietf-notebook/
   - 膨大な記録を NotebookLM で検索できるようにして、標準化議論への参入障壁を下げる試み
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - **About | Bloomberg JS Blog**
   - https://bloomberg.github.io/js-blog/about/
@@ -749,16 +749,16 @@ guests:
 - Opera One integrates Gemini to the sidebar - Blog | Opera News
   - https://blogs.opera.com/news/2026/03/opera-one-adds-gemini-and-google-translate-to-the-sidebar/
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - **Bringing more transparency to post-quantum usage, encrypted messaging, and routing security**
   - https://blog.cloudflare.com/radar-origin-pq-key-transparency-aspa/
 - Post-Quantum Cryptography Beyond TLS: Remain Quantum Safe | Akamai
   - https://www.akamai.com/blog/security/2026/mar/post-quantum-cryptography-beyond-tls
 
-  #### Other
+#### Other
 
-  ### イベント
+### イベント
 
 - 4 月
   - 20-21: BlinkOn
@@ -772,7 +772,7 @@ guests:
   - 8-12: WWDC
     - https://developer.apple.com/wwdc26/
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - Chrome 147 beta

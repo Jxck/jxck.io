@@ -107,7 +107,6 @@ guests:
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/OR0poFdzEpo
 - Ship: WebHID exclusionFilters option in requestDevice()
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/DPAaLnuaOH4
-
 - Prototype and Ship: font-palette and custom @font-palette-values palettes
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/clspafOtM4Y
 - Prototype and Ship: WebUSB SameObject

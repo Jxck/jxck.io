@@ -98,7 +98,7 @@ guests:
     - Deprecate getters of Intl Locale Info
     - Deprecate XSLT
 
-  #### Intents
+#### Intents
 
 - **Ship: @scroll-state scrolled support**
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/FBParkAZ0-U
@@ -301,7 +301,7 @@ guests:
 - Vertical tabs feature status
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/LZ5SKUz1iso
 
-  #### Other
+#### Other
 
 - web.dev
   - September 2025 Baseline monthly digest
@@ -420,11 +420,11 @@ guests:
     - Twitter ではまあまあ肯定的だが、Bluesky や Mastodon では否定的
     - どうせ AI の話だろうという反応が多い
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 144.0.2
+#### Stable: 144.0.2
 
-  #### Updates
+#### Updates
 
 - Firefox 144.0, See All New Features, Updates and Fixes
   - https://www.firefox.com/en-US/firefox/144.0/releasenotes/
@@ -441,7 +441,7 @@ guests:
 - Extensions UI Improvements and More - These Weeks in Firefox: Issue 191
   - https://blog.nightly.mozilla.org/2025/10/27/extensions-ui-improvements-and-more-these-weeks-in-firefox-issue-191/
 
-  #### Intents
+#### Intents
 
 - Ship: PerformanceEventTiming.interactionId (for INP)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/xvv6sxJZc4U/
@@ -477,7 +477,7 @@ guests:
 - Change:
 - Remove:
 
-  #### Newsletter
+#### Newsletter
 
 - Engineering Effectiveness Newsletter (Q3 2025 Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/EuR5chAF5fI/m/W0ctQqzlAwAJ
@@ -486,7 +486,7 @@ guests:
 - Firefox Security & Privacy Newsletter - Q3 2025
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/Ur5QJd_Y6e8/m/gk4cPOZDAQAJ
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - **Sovereign Tech Fund invests in Web Security and Privacy docs**
   - https://openwebdocs.org/content/posts/stf-investment-2025/
@@ -499,7 +499,7 @@ guests:
 - **A beginner-friendly guide to view transitions in CSS**
   - https://developer.mozilla.org/en-US/blog/view-transitions-beginner-guide/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-10-01+
 - Positive
@@ -509,7 +509,7 @@ guests:
   - Cache sharing for extremely-pervasive scripts
     - https://github.com/mozilla/standards-positions/issues/1231
 
-  #### Other
+#### Other
 
 - Celebrate the power of browser choice with Firefox. Join us live.
   - https://blog.mozilla.org/en/firefox/firefox-celebrates-browser-choice-house-blend-events/
@@ -525,11 +525,11 @@ guests:
   - 検索文字列のクエリで関連キーワードをサジェストする機能
   - Fastly のリレーサーバーに OHTTP を利用
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 26.1
+#### Stable: 26.1
 
-  #### Updates
+#### Updates
 
 - Position-area: Clear and explicit or short and sweet? | WebKit
   - https://webkit.org/blog/17417/position-area-clear-and-explicit-or-short-and-sweet/
@@ -615,7 +615,7 @@ guests:
     - WebKit API
     - WebRTC
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-10-01+
 - Support
@@ -636,13 +636,13 @@ guests:
   - **Probabilistic Reveal Tokens**
     - https://github.com/WebKit/standards-positions/issues/529'
 
-  #### Other
+#### Other
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable: 142
+#### Stable: 142
 
-  #### Updates
+#### Updates
 
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
@@ -657,7 +657,7 @@ guests:
 - Considerations for Safe Agentic Browsing - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2025/10/23/considerations-for-safe-agentic-browsing/
 
-  #### Other
+#### Other
 
 - Add explainer on DataTransfer for input events (#1149) · MicrosoftEdge/MSEdgeExplainers@ba19187
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/commit/ba191875c8e286f74fa6b3a244e4067a43aa537f
@@ -670,9 +670,9 @@ guests:
 - Archive IndexedDB `getAllRecords()` proposal (#1120) · MicrosoftEdge/MSEdgeExplainers@c62408a
   - https://github.com/MicrosoftEdge/MSEdgeExplainers/commit/c62408a1e6e43cbff353f0e343a9ad5cc0d02351
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### Draft
+#### Draft
 
 - https://www.w3.org/news/
 - Recommendation
@@ -685,7 +685,7 @@ guests:
 - **Web Content Accessibility Guidelines (WCAG) 2.2 Approved as ISO/IEC International Standard**
   - https://www.w3.org/news/2025/web-content-accessibility-guidelines-wcag-2-2-approved-as-iso-iec-international-standard/
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - 2025-10-02
@@ -712,7 +712,7 @@ guests:
 - 2025-10-30
   - https://github.com/openui/open-ui/blob/main/meetings/telecon/2025-10-30.md
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
 - 2025-10-02
@@ -749,7 +749,7 @@ guests:
   - `::scroll-button()` ではなく、Bring Your Own 形式で任意のボタンを要素のスクロールに使える
   - デザインシステムなど既成のボタンを Scroll Button 化しやすくなる
 
-  #### CSSWG
+#### CSSWG
 
 - https://www.w3.org/blog/CSS/
 - https://lists.w3.org/Archives/Public/www-style/
@@ -760,7 +760,7 @@ guests:
   - Masonry display 値の bikeshed
   - Poll Response: https://docs.google.com/forms/d/e/1FAIpQLSdAqh74IyRa_YM81XPj0rjJCDuC4rO-k8krT7TBlEUu2c4QOA/viewanalytics
 
-  #### Other
+#### Other
 
 - **The World Wide Web Consortium (W3C) adopts a new logo to signal positive changes**
   - https://www.w3.org/press-releases/2025/new-logo/
@@ -811,16 +811,16 @@ guests:
   - 10 月分の取りこぼし
   - web-platform-tests の歴史や意義について関係者にインタビュー
 
-  ### TC39/TC55 動向
+### TC39/TC55 動向
 
-  #### Meeting
+#### Meeting
 
 - 2025-09
   - https://github.com/tc39/agendas/blob/main/2025/09.md
   - https://github.com/tc39/notes/pull/384/files
   - https://docs.google.com/document/d/1qXUf4QRTbexUj0fg2sgYTxWwOT2v_q7lmjR282BOWLU/edit?tab=t.zc07zu27hobo#heading=h.48sttkksahs2
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-09-01}...main@{2025-11-04}
 - https://tc39.github.io/beta/
@@ -836,9 +836,9 @@ guests:
   - non-extensible applies to private
 - 3->4
 
-  #### New Proposals
+#### New Proposals
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/WinterTC55/admin/tree/main/meetings
 - admin/meetings/2025-09-04.md
@@ -853,23 +853,23 @@ guests:
   - Brainstorming HTTP server API
   - Runtime keys
 
-  #### Other
+#### Other
 
-  ### IETF 動向
+### IETF 動向
 
-  #### WG
+#### WG
 
 - RFC
 - Work
 - Meeting
 
-  #### Other
+#### Other
 
 - IETF 142 開催中
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - **Servo 0.0.1 Release**
   - https://servo.org/blog/2025/10/20/servo-0.0.1-release/
@@ -883,7 +883,7 @@ guests:
 - State of the post-quantum Internet in 2025
   - https://blog.cloudflare.com/pq-2025/
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - サイバー攻撃によるシステム障害発生 について (第 4 報)|ニュースルーム|アサヒグループホールディングス
   - https://www.asahigroup-holdings.com/newsroom/detail/20251014-0103.html
@@ -894,7 +894,7 @@ guests:
 - AWS、長時間に及ぶ大規模障害の全貌:DNS 問題が招いた混乱の連鎖 | XenoSpectrum
   - https://xenospectrum.com/aws-outage-cascading-failure-dns-ec2-analysis/
 
-  #### Other
+#### Other
 
 - **Introducing ChatGPT Atlas | OpenAI**
   - https://openai.com/index/introducing-chatgpt-atlas/
@@ -908,7 +908,7 @@ guests:
   - Samsung Internet の Windows 版が登場
   - 韓国と米国で展開
 
-  ### イベント
+### イベント
 
 - 10 月
   - 28-29 WebKit Contributors Meeting
@@ -924,7 +924,7 @@ guests:
     - https://github.com/tc39/agendas/blob/main/2025/11.md
 - 12 月
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - 142

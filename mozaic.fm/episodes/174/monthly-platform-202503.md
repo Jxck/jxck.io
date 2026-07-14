@@ -98,7 +98,7 @@ guests:
 - Chrome 135 | Release notes | Chrome for Developers
   - https://developer.chrome.com/release-notes/135
 
-  #### Intents
+#### Intents
 
 - Ship: Explicit Compile Hints with Magic Comments
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/uNUWZ14SYJI
@@ -267,7 +267,7 @@ guests:
 - Ready for Developer Testing: CSS find-in-page highlight pseudos
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/dcmserL50FM
 
-  #### Other
+#### Other
 
 - web.dev
   - https://web.dev/
@@ -362,11 +362,11 @@ guests:
   - Project Zero: Blasting Past Webp
     - https://googleprojectzero.blogspot.com/2025/03/blasting-past-webp.html
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 136.0.3
+#### Stable: 136.0.3
 
-  #### Updates
+#### Updates
 
 - **Firefox 136.0, See All New Features, Updates and Fixes**
   - https://www.mozilla.org/en-US/firefox/136.0/releasenotes/
@@ -397,7 +397,7 @@ guests:
     - Mozilla が利用規約の更新に対する批判を受け Firefox の利用規約を再度更新
     - ユーザーの入力内容の所有権は主張しないと明記、CCPA などの法律での「販売」という用語に対応するように FAQ を更新
 
-  #### Intents
+#### Intents
 
 - Ship RTCDegradationPreference
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/W308XfoORIA
@@ -419,7 +419,7 @@ guests:
   - Chromium も deprecate し、console エラーが出たり、Lighthouse でもスコアが下がったりするようになる
     - https://github.com/whatwg/html/issues/7867#issuecomment-2711538791
 
-  #### Newsletter
+#### Newsletter
 
 - Firefox WebDriver Newsletter 136 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-136/
@@ -436,7 +436,7 @@ guests:
 - SpiderMonkey Newsletter (Firefox 135-137) | SpiderMonkey JavaScript/WebAssembly Engine
   - https://spidermonkey.dev/blog/2025/03/17/newsletter-firefox-135-137.html
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - **Implications of Global Privacy Control | MDN Blog**
   - https://developer.mozilla.org/en-US/blog/global-privacy-control/
@@ -445,7 +445,7 @@ guests:
 - **Bloomberg Joins Open Web Docs**
   - https://openwebdocs.org/content/posts/bloomberg/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-03-01+
 - Positive
@@ -467,7 +467,7 @@ guests:
   - Focusgroup
     - https://github.com/mozilla/standards-positions/issues/631
 
-  #### Other
+#### Other
 
 - Browser choice? Here's how EU's DMA is helping make it real
   - https://blog.mozilla.org/en/products/firefox/eu-digital-markets-act/
@@ -509,11 +509,11 @@ guests:
 - 4 accessibility tools to try in Firefox
   - https://blog.mozilla.org/en/products/firefox/accessibility-extensions/
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 18.4
+#### Stable: 18.4
 
-  #### Updates
+#### Updates
 
 - Safari Technology Preview 215 | WebKit
   - https://webkit.org/blog/16523/release-notes-for-safari-technology-preview-215/
@@ -586,14 +586,14 @@ guests:
   - What if I can't send the notification description through the internet?
   - Standards work
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-03-01+
 - Support
   - Add MediaStreamTrack support to the Web Speech API
     - https://github.com/WebKit/standards-positions/issues/438
 
-  #### Other
+#### Other
 
 - **Item Flow, Part 1: A new unified concept for layout | WebKit**
   - https://webkit.org/blog/16587/item-flow-part-1-a-new-unified-concept-for-layout/
@@ -609,11 +609,11 @@ guests:
   - The Overall Plan
   - この概念についてフィードバックを募集
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable:
+#### Stable:
 
-  #### Updates
+#### Updates
 
 - https://blogs.windows.com/msedgedev/
   - ここがメイン
@@ -622,7 +622,7 @@ guests:
 - https://twitter.com/MSEdgeDev
   - これを見るしかない
 
-  #### Other
+#### Other
 
 - Debugging Chromium - text/plain
   - https://textslashplain.com/2025/03/25/debugging-chromium/
@@ -633,9 +633,9 @@ guests:
   - https://blogs.windows.com/msedgedev/2025/03/19/minding-the-gaps-a-new-way-to-draw-separators-in-css/
   - Grid や Flexbox のみならず、将来的には Masonry などでも使えるように `column-rule` を拡張し、横方向用に `row-rule` を新設することで、コンテナレイアウトでも縦横不問の Separator を実現したい
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### Draft
+#### Draft
 
 - Recommendation
 - Proposed Recommendation
@@ -651,7 +651,7 @@ guests:
     - 主に疑似要素の定義の集約から
     - Open Issues: https://github.com/w3c/csswg-drafts/issues?q=is%3Aissue%20state%3Aopen%20label%3Acss-forms-1
 
-  #### Open UI
+#### Open UI
 
 - https://github.com/openui/open-ui/tree/main/meetings/telecon
 - open-ui/meetings/telecon/2025-03-06.md
@@ -684,7 +684,7 @@ guests:
     - https://open-ui.org/components/enhanced-range-input.explainer/
     - 先月取り上げた range の拡張の explainer が公開
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
 - Meeting 17 for joint OpenUI-WHATWG/HTML-CSSWG task force on styleable form controls
@@ -701,7 +701,7 @@ guests:
 - Upcoming WHATNOT meeting on 2025-03-20
   - https://github.com/whatwg/html/issues/11131
 
-  #### Other
+#### Other
 
 - W3C Breakouts Day 2025
   - https://www.w3.org/2025/03/breakouts-day-2025/
@@ -753,9 +753,9 @@ guests:
     - コンテナの幅いっぱいにテキストを表示させたい
     - > RESOLVED: Start work on this in Fonts 5 and begin incubating.
 
-  ### TC39 動向
+### TC39 動向
 
-  #### Meeting
+#### Meeting
 
 - 2025-02
   - https://github.com/tc39/agendas/blob/main/2025/02.md
@@ -805,7 +805,7 @@ guests:
     - 提案ブロックには 5% or 2 名以上の賛同などのルールがあったほうがいいのでは?
     - 結論は出ないが今後継続
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-02-01}...main@{2025-04-01}
 - https://tc39.github.io/beta/
@@ -824,12 +824,12 @@ guests:
   - RegExp.escape
   - Float16Array
 
-  #### New Proposals
+#### New Proposals
 
 - **Release ES2025 Candidate March 31st 2025 · tc39/ecma262**
   - https://github.com/tc39/ecma262/releases/tag/es2025-candidate-2025-03-31
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/wintercg/admin/issues?q=label%3A%22meeting%22%20
 - 2025-03-06 meeting agenda · Issue #99 · wintercg/admin
@@ -839,14 +839,14 @@ guests:
   - https://github.com/wintercg/admin/issues/108
   - 特に無し
 
-  #### Other
+#### Other
 
 - Summary of the February 2025 TC39 plenary
   - https://blogs.igalia.com/compilers/2025/03/27/summary-of-the-february-2025-tc39-plenary/
 
-  ### IETF 動向
+### IETF 動向
 
-  #### IETF122
+#### IETF122
 
 - HTTP Working Group Minutes - IETF 122
   - https://httpwg.org/wg-materials/ietf122/minutes.html
@@ -869,7 +869,7 @@ guests:
     - **Delete-Cookie and \_HttpOnly Prefix: Yoav Weiss, presenting remotely**
     - **Cookies: HTTP State Management Mechanism: Johann Hofmann, presenting remotely**
 
-  #### WG
+#### WG
 
 - RFC
 - RFC 9745: The Deprecation HTTP Response Header Field
@@ -877,14 +877,14 @@ guests:
 - Work
 - Meeting
 
-  #### Other
+#### Other
 
 - **aipref WG IETF122 Chair Slides - slides-122-aipref-chair-slides-00.pdf**
   - https://datatracker.ietf.org/meeting/122/materials/slides-122-aipref-chair-slides-00
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - Igalia WebKit Team | WebKit Igalia Periodical #15
   - https://blogs.igalia.com/webkit/blog/2025/wip-15/
@@ -909,7 +909,7 @@ guests:
   - Cloudflare の Lisbon オフィスにできた新しいエントロピーの壁について
     - 波を発生させてそれを使う。名前を募集中
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - **Troy Hunt: A Sneaky Phish Just Grabbed my Mailchimp Mailing List**
   - https://www.troyhunt.com/a-sneaky-phish-just-grabbed-my-mailchimp-mailing-list/
@@ -917,12 +917,12 @@ guests:
     - Mailchimp が解約者のメールアドレスも保存していたので被害にあった人数が増えてしまった
     - 奇しくもパスキーの重要性について話をしたあとだった
 
-  #### Cookie 動向
+#### Cookie 動向
 
 - My cookie spec problem | daniel.haxx.se
   - https://daniel.haxx.se/blog/2025/03/01/my-cookie-spec-problem/
 
-  #### Other
+#### Other
 
 - Google Being Forced To Sell Chrome is Not Good for the Web - Chris Coyier
   - https://chriscoyier.net/2025/03/14/google-being-forced-to-sell-chrome-is-not-good-for-the-web/
@@ -947,7 +947,7 @@ guests:
 - Opera、AI がウェブ操作を代行「Browser Operator」 - Impress Watch
   - https://www.watch.impress.co.jp/docs/news/1667787.html
 
-  ### イベント
+### イベント
 
 - 3 月
   - 15-21: IETF 122 Bangkok
@@ -964,7 +964,7 @@ guests:
   - 9-13: WWDC '25
     - https://developer.apple.com/wwdc25/
 
-  ### Wrap Up
+### Wrap Up
 
 - Chrome
   - 134

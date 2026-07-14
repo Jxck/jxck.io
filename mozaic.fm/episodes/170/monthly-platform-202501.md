@@ -67,7 +67,7 @@ guests:
     - **Remove `<link rel=prefetch>` five-minute rule**
     - Remove Chrome Welcome page triggering with initial prefs first run tabs
 
-  #### Intents
+#### Intents
 
 - Ship: CSS dynamic-range-limit property
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/cG_ZCeQaWQs
@@ -156,7 +156,7 @@ guests:
 - FYI: Planning to change layout tests on Mac-ARM from using Skia-Ganesh to using Skia-Graphite imminently
   - https://groups.google.com/a/chromium.org/g/blink-dev/c/p96GK5F89QA
 
-  #### Other
+#### Other
 
 - web.dev
   - New to the web platform in November
@@ -254,11 +254,11 @@ guests:
     - https://opensource.googleblog.com/2025/01/introducing-eclipsa-audio-immersive-audio-for-everyone.html
     - AOMedia の空間オーディオフォーマット
 
-  ### Firefox 動向
+### Firefox 動向
 
-  #### Stable: 134.0.2
+#### Stable: 134.0.2
 
-  #### Updates
+#### Updates
 
 - **Firefox 134 for developers - Mozilla | MDN**
   - https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/134
@@ -275,7 +275,7 @@ guests:
 - New Year New Tab - These Weeks in Firefox: Issue 175
   - https://blog.nightly.mozilla.org/2025/01/24/new-year-new-tab-these-weeks-in-firefox-issue-175/
 
-  #### Intents
+#### Intents
 
 - **Ship: High-precision coordinates, i.e., fractional coordinates, of PointerEvents in Nightly builds**
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/eXuAe5aDsLU
@@ -300,7 +300,7 @@ guests:
 - Inquiry Regarding Firefox's Handling of Multiple CA Certificates in Chain Building
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/zoElyUK20bE
 
-  #### Newsletter
+#### Newsletter
 
 - Engineering Effectiveness Newsletter (October / November Edition)
   - https://groups.google.com/a/mozilla.org/g/dev-platform/c/7cOaVfhv5mU
@@ -309,7 +309,7 @@ guests:
 - Firefox WebDriver Newsletter 134 - Firefox Developer Experience
   - https://fxdx.dev/firefox-webdriver-newsletter-134/
 
-  #### MDN / Open Web Docs
+#### MDN / Open Web Docs
 
 - A new learning experience on MDN
   - https://developer.mozilla.org/en-US/blog/curriculum-learn-web-development/
@@ -325,7 +325,7 @@ guests:
 - JavaScript Temporal is coming
   - https://developer.mozilla.org/en-US/blog/javascript-temporal-is-coming/
 
-  #### Standard Position
+#### Standard Position
 
 - https://github.com/mozilla/standards-positions/issues?q=closed%3A%3E2025-01-01+
 - Positive
@@ -334,7 +334,7 @@ guests:
   - CSS Scoping :has-slotted pseudo
     - https://github.com/mozilla/standards-positions/issues/1079
 
-  #### Other
+#### Other
 
 - Announcing Faster, Lighter Firefox Downloads for Linux with .tar.xz Packaging!
   - https://blog.nightly.mozilla.org/2024/11/28/announcing-faster-lighter-firefox-downloads-for-linux-with-tar-xz-packaging/
@@ -369,11 +369,11 @@ guests:
 - Running Inference In Web Extensions
   - https://blog.mozilla.org/en/mozilla/ai/ai-tech/running-inference-in-web-extensions/
 
-  ### Safari 動向
+### Safari 動向
 
-  #### Stable: 18.2
+#### Stable: 18.2
 
-  #### Updates
+#### Updates
 
 - Release Notes for Safari Technology Preview 209 | WebKit
   - https://webkit.org/blog/16296/release-notes-for-safari-technology-preview-209/
@@ -518,7 +518,7 @@ guests:
   - Web Inspector
     - Exposed cookie Partition Key in Web Inspector.
 
-  #### Standard Positions
+#### Standard Positions
 
 - https://github.com/WebKit/standards-positions/issues?q=is%3Aissue+closed%3A%3E2025-01-01+
 - Supported
@@ -527,16 +527,16 @@ guests:
   - CSSPageRule to inherit from CSSGroupingRule
     - https://github.com/WebKit/standards-positions/issues/346
 
-  #### Other
+#### Other
 
 - **Apple Explains Why It Doesn't Plan to Create a Search Engine - MacRumors**
   - https://www.macrumors.com/2024/12/24/apple-explains-why-it-wont-make-search-engine/
 
-  ### Edge 動向
+### Edge 動向
 
-  #### Stable: 132
+#### Stable: 132
 
-  #### Updates
+#### Updates
 
 - **2024 Year-in-Review: A look back at your year with Microsoft Edge - Microsoft Edge Blog**
   - https://blogs.windows.com/msedgedev/2024/12/19/2024-year-in-review-a-look-back-at-your-year-with-microsoft-edge/
@@ -559,15 +559,15 @@ guests:
 - Introducing Microsoft Edge Game Assist (Preview)-a seamless, full-featured in-game browser - Microsoft Edge Blog
   - https://blogs.windows.com/msedgedev/2024/11/22/introducing-microsoft-edge-game-assist-preview/
 
-  #### Other
+#### Other
 
 - **Bing tries to trick you into thinking you're using Google [Video]**
   - https://9to5google.com/2025/01/15/bing-trick-users-google/
   - Edge で Google と検索すると Google っぽい見た目の Bing が表示され、deceptive パターンとして顰蹙を買った
 
-  ### WHATWG/W3C 動向
+### WHATWG/W3C 動向
 
-  #### Draft
+#### Draft
 
 - Recommendation
 - Proposed Recommendation
@@ -575,7 +575,7 @@ guests:
 - Working Draft
 - First Public Working Draft
 
-  #### Open UI
+#### Open UI
 
 - openui/open-ui:
   - https://github.com/openui/open-ui/tree/main/meetings/telecon
@@ -623,7 +623,7 @@ guests:
 - [meta] Should we have an openui bluesky account? · Issue #1142 · openui/open-ui
   - https://github.com/openui/open-ui/issues/1142
 
-  #### WHATNOT
+#### WHATNOT
 
 - https://github.com/whatwg/html/issues?q=%20WHATNOT%20meeting%20
 - Upcoming WHATNOT meeting on 2024-12-05
@@ -746,7 +746,7 @@ guests:
 - Upcoming WHATNOT meeting on 2025-01-30
   - https://github.com/whatwg/html/issues/10941
 
-  #### Other
+#### Other
 
 - [css-ui-4] Add 'interactivity' property, per #10711 by tabatkins · Pull Request #11178 · w3c/csswg-drafts
   - https://github.com/w3c/csswg-drafts/pull/11178
@@ -763,9 +763,9 @@ guests:
 - Loading CSS asynchronously without FoUC · Issue #195 · WICG/proposals
   - https://github.com/WICG/proposals/issues/195
 
-  ### TC39 動向
+### TC39 動向
 
-  #### Meeting
+#### Meeting
 
 - 2024-12
   - https://github.com/tc39/agendas/blob/main/2024/12.md
@@ -785,7 +785,7 @@ guests:
     - 2 つを分けてススメそう
     - アクセサだけだとすごく小さくなりそう
 
-  #### Proposals Diff
+#### Proposals Diff
 
 - https://github.com/tc39/proposals/compare/main@{2025-01-01}...main@{2025-02-01}
 - 0->1
@@ -800,14 +800,14 @@ guests:
 - 3->4
   - Intl.DurationFormat
 
-  #### New Proposals
+#### New Proposals
 
 - Stabilize
   - https://github.com/tc39/proposal-stabilize
 - Sync Imports
   - https://github.com/tc39/proposal-import-sync
 
-  #### WinterTC
+#### WinterTC
 
 - https://github.com/wintercg/admin/issues?q=label%3A%22meeting%22%20
 - **Goodbye WinterCG, welcome WinterTC**
@@ -844,14 +844,14 @@ guests:
 - 2024-01-23 meeting agenda · Issue #92 · wintercg/admin
   - https://github.com/wintercg/admin/issues/92
 
-  #### Other
+#### Other
 
 - Oracle が JavaScript の商標を素直には手放さないとの回答
   - https://fosstodon.org/@deno_land/113793964751001617
 
-  ### IETF 動向
+### IETF 動向
 
-  #### WG
+#### WG
 
 - RFC
 - Work
@@ -868,7 +868,7 @@ guests:
     - `https://` を `s://` にしようという提案
 - Meeting
 
-  #### Other
+#### Other
 
 - **New Cookies Draft from Johann Hofmann**
   - https://lists.w3.org/Archives/Public/ietf-http-wg/2024OctDec/0278.html
@@ -876,9 +876,9 @@ guests:
   - https://datatracker.ietf.org/doc/draft-annevk-johannhof-httpbis-cookies/
   - RFC6265bis の後の新しい Cookie のドラフト
 
-  ### 周辺動向
+### 周辺動向
 
-  #### ベンダー動向
+#### ベンダー動向
 
 - Cloudflare 2024 Year in Review
   - https://blog.cloudflare.com/radar-2024-year-in-review/
@@ -964,7 +964,7 @@ guests:
   - https://x.com/erikcorry/status/1869795043705532466
   - Cloudflare で V8 のエンジニアを募集中
 
-  #### セキュリティ動向
+#### セキュリティ動向
 
 - 1934361 - ICP-Brasil: Mis-issued certificate
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1934361
@@ -1019,9 +1019,9 @@ guests:
 - Hackers target dozens of VPN and AI extensions for Google Chrome to compromise data | The Record from Recorded Future News
   - https://therecord.media/hackers-target-vpn-ai-extensions-google-chrome-malicious-updates
 
-  #### Cookie 動向
+#### Cookie 動向
 
-  #### Other
+#### Other
 
 - C2PA Is Not Going To Fix Our Misinformation Problem
   - https://lowentropy.net/posts/c2pa/
@@ -1041,7 +1041,7 @@ guests:
 - Dia from The Browser Company
   - https://www.diabrowser.com/
 
-  ### イベント
+### イベント
 
 - 1 月
 - 2 月
