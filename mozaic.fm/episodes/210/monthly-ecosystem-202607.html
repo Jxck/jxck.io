@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate type=application/rss+xml href=http://feed.mozaic.fm title=mozaic.fm>
+
+  <link rel=canonical href=https://mozaic.fm/episodes/210/monthly-ecosystem-202607.html>
+  <!--
+  <link rel=preload type=text/html  as=fetch crossorigin href=/assets/template/mozaic-player.html>
+  -->
+
+  <script type=module src=/assets/js/mozaic.js?220808_010014></script>
+  <script type=module src=/assets/js/sw.js?220803_065654></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://mozaic.fm/assets/img/mozaic.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://mozaic.fm/assets/img/mozaic.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://mozaic.fm/assets/img/mozaic.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://mozaic.fm/assets/img/mozaic.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://mozaic.fm/assets/img/mozaic.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://mozaic.fm/assets/img/mozaic.3000x3000.webp>
+  <meta name=author              content=Jxck>
+  <meta name=description         content="第 210 回のテーマは 2026 年 7 月の Monthly Ecosystem です。">
+  <meta name=keywords            content="monthly ecosystem">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://mozaic.fm/episodes/210/monthly-ecosystem-202607.html>
+  <meta property=og:title        content="ep210 Monthly Ecosystem 202607 | mozaic.fm">
+  <meta property=og:site_name    content=mozaic.fm>
+  <meta property=og:description  content="第 210 回のテーマは 2026 年 7 月の Monthly Ecosystem です。">
+  <meta property=og:image        content=https://mozaic.fm/assets/img/mozaic.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <title>ep210 Monthly Ecosystem 202607 | mozaic.fm</title>
+  <link rel=prev href=https://mozaic.fm/episodes/209/monthly-platform-202606.html>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/body.css?260310_182656>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/header.css?250125_013824>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/main.css?250125_022018>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/info.css?250125_014517>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/article.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/footer.css?250125_012543>
+  <link rel=stylesheet property=stylesheet type=text/css href=/assets/css/mozaic.css?260217_213617>
+
+  <template id=shortcut_diag>
+    <style>
+    dialog.shortcut {
+      font-family: monospace;
+      padding: 1em;
+    }
+    </style>
+    <dialog class=shortcut>
+      <dl>
+        <dt>&crarr;</dt><dd>play/pause</dd>
+        <dt>&larr;</dt><dd>back</dd>
+        <dt>&rarr;</dt><dd>forward</dd>
+        <dt>&#47;</dt><dd>shortcut</dd>
+      </dl>
+    </dialog>
+  </template>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href=https://mozaic.fm                                                         target=_blank><img width=30 height=30 loading=eager src=/assets/img/mozaic.svg?220803_154206         title=mozaic.fm        alt="mozaic.fm logo" class=logo></a>
+      <li><a href=https://itunes.apple.com/jp/podcast/mozaic.fm/id851914495                 target=_blank><img width=30 height=30 loading=eager src=/assets/img/itunes.svg?160831_002319         title=itunes           alt=itunes           ></a>
+      <li><a href="https://www.google.com/podcasts?feed=aHR0cHM6Ly9mZWVkLm1vemFpYy5mbS8%3D" target=_blank><img width=30 height=30 loading=eager src=/assets/img/google-podcast.svg?180621_012959 title="google podcast" alt="google podcast" ></a>
+      <li><a href=https://open.spotify.com/show/6dDtbcRlUVKssaNmkuFu5K                      target=_blank><img width=30 height=30 loading=eager src=/assets/img/spotify.svg?200412_191420        title=spotify          alt=spotify          ></a>
+      <li><a href=http://feed.mozaic.fm                                                     target=_blank><img width=30 height=30 loading=eager src=/assets/img/podcast.svg?160831_002319        title="rss feed"       alt="rss feed"       ></a>
+      <li id=install class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/install.svg?200413_030043 title=install alt=install></button>
+      <li id=share   class=disabled><button><img width=30 height=30 loading=eager src=/assets/img/share.svg?190331_012905   title=share   alt=share  ></button>
+      <li id=search><a href=/search        ><img width=30 height=30 loading=eager src=/assets/img/search.svg?190421_130410  title=search  alt=search ></a>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/209/monthly-platform-202606.html>ep209 Monthly Platform 202606</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+  <article>
+    <h1><a href="">ep210 Monthly Ecosystem 202607</a></h1>
+    <dl class=info>
+      <div>
+        <dt>published_at
+        <dd>2026-07-14
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/yukukotani" target=_blank>@yukukotani</a>
+      </div>
+      <div>
+        <dt>guest
+        <dd><a href="https://x.com/__syumai" target=_blank>@syumai</a>
+      </div>
+      <div>
+        <dt>toc
+        <dd>
+          <details>
+            <summary>headings</summary>
+            <nav>
+              <ol>
+                <li><a href="#theme">Theme</a>
+                <li><a href="#show-note">Show Note</a>
+                <li><a href="#events">Events</a>
+              </ol>
+            </nav>
+          </details>
+        </dd>
+      </div>
+    </dl>
+    <section>
+      <h2 id="theme"><a href="#theme">Theme</a></h2>
+      <p>第 210 回のテーマは 2026 年 7 月の Monthly Ecosystem です。
+    </section>
+    <section>
+      <h2 id="show-note"><a href="#show-note">Show Note</a></h2>
+      <ul>
+        <li>
+          TypeScript 7.0 Release
+          <ul>
+            <li><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/" target=_blank>https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/</a>
+            <li>RC からの大きな変更は特になさそう
+            <li>JS API は以前からの計画通り、TypeScript 7.1 でのリリースを想定
+            <li>Vue, MDX, Astro, Svelte などでは、現時点では TS 7 を活かしきれない可能性が高い
+            <li>
+              VS Code 向けの Native preview plugin の名前が「TypeScript 7」になっていた
+              <ul>
+                <li><a href="https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.native-preview" target=_blank>https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.native-preview</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Vite 8.1
+          <ul>
+            <li><a href="https://vite.dev/blog/announcing-vite8-1" target=_blank>https://vite.dev/blog/announcing-vite8-1</a>
+            <li>Vite 8.1 の中心的な新機能は、実験的な<strong>Bundled Dev Mode</strong>。
+            <li>以前「Full Bundle Mode」と呼ばれていた機能で、開発時にもアプリ全体をある程度まとめてバンドルする。
+            <li>通常の Vite はソースモジュールを個別に配信するが、巨大なアプリではモジュール数そのものがボトルネックになる。
+            <li>Bundled Dev Mode は、数千〜数万モジュールを持つ大規模アプリでの起動やページ再読み込みを高速化する。
+          </ul>
+        </li>
+        <li>
+          pnpr
+          <ul>
+            <li><a href="https://pnpm.io/pnpr/" target=_blank>https://pnpm.io/pnpr/</a>
+            <li>pnpr は、<strong>Rust で実装された pnpm 互換の npm レジストリサーバー</strong>。
+            <li>npm Registry Protocol を実装しており、pnpm だけでなく npm や Yarn からも利用できる。
+            <li>組織内のプライベートパッケージをホストする用途に使える。
+            <li>
+              <a href="http://npmjs.org" target=_blank>npmjs.org</a>などの外部レジストリをプロキシし、取得したパッケージをキャッシュできる。
+              <ul>
+                <li>上流レジストリが停止した場合でも、キャッシュ済みパッケージを利用できるため耐障害性が上がる。
+                <li>上流レジストリの認証トークンをサーバー側に保持し、クライアントへ直接配布しない credential gateway として使える。
+              </ul>
+            </li>
+            <li>pnpm CLI とは独立した製品であり、pnpm を使わずに pnpr だけを利用することも、その逆も可能。
+          </ul>
+        </li>
+        <li>
+          Rspack 2.1
+          <ul>
+            <li><a href="https://rspack.rs/blog/announcing-2-1" target=_blank>https://rspack.rs/blog/announcing-2-1</a>
+            <li>Rspack 2.1 では、Rust 版 React Compiler を組み込みの SWC loader から直接利用できる。
+            <li>従来は主に<code translate=no>babel-loader</code>経由だったため、React Compiler 以外に Babel 変換のオーバーヘッドが発生していた。
+            <li>Rspack のベンチマークでは、Rust 版 React Compiler は Babel 版より約 7〜13 倍高速。
+            <li>開発ビルドでは 10.6 秒から 0.7 秒、プロダクションビルドでは 9.3 秒から 1.2 秒になったとしている。TypeScript 7 への対応が追加された。
+          </ul>
+        </li>
+        <li>
+          oxc_type_checker
+          <ul>
+            <li><a href="https://github.com/oxc-project/oxc/tree/main/crates/oxc_type_checker" target=_blank>https://github.com/oxc-project/oxc/tree/main/crates/oxc_type_checker</a>
+            <li>Oxc のチームが tsgo を Rust に port しようとしているっぽい
+          </ul>
+        </li>
+        <li>
+          Vite+ Beta
+          <ul>
+            <li><a href="https://voidzero.dev/posts/announcing-vite-plus-beta" target=_blank>https://voidzero.dev/posts/announcing-vite-plus-beta</a>
+          </ul>
+        </li>
+        <li>
+          Deno 2.9
+          <ul>
+            <li><a href="https://deno.com/blog/v2.9" target=_blank>https://deno.com/blog/v2.9</a>
+            <li>deno desktop コマンドなど
+          </ul>
+        </li>
+        <li>
+          konsistent
+          <ul>
+            <li><a href="https://vercel.com/changelog/enforce-consistent-code-for-agents-and-humans-with-konsistent" target=_blank>https://vercel.com/changelog/enforce-consistent-code-for-agents-and-humans-with-konsistent</a>
+            <li>Vercel Labs 製の TypeScript 向け Linter
+            <li>ESLint などと異なり、プロジェクトの構造を検査する
+          </ul>
+        </li>
+        <li>
+          Vercel が Better Auth を買収
+          <ul>
+            <li><a href="https://vercel.com/blog/vercel-acquires-better-auth" target=_blank>https://vercel.com/blog/vercel-acquires-better-auth</a>
+          </ul>
+        </li>
+        <li>
+          eve
+          <ul>
+            <li><a href="https://vercel.com/eve" target=_blank>https://vercel.com/eve</a>
+          </ul>
+        </li>
+        <li>
+          <strong>Cloudflare の Workers Cache</strong>
+          <ul>
+            <li><a href="https://blog.cloudflare.com/workers-cache/" target=_blank>https://blog.cloudflare.com/workers-cache/</a>
+            <li>
+              これまで Cloudflare Workers は前段に Cache を置けなかったが、置けるようになったらしい
+              <ul>
+                <li>Cache を返すにも、Workers の Cache API で読み書きする必要があった
+                <li>Workers Cache なら Worker の CPU / メモリを消費しない
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ant
+          <ul>
+            <li><a href="https://antjs.org/" target=_blank>https://antjs.org/</a>
+            <li>Ant is a lightweight, high-performance JavaScript runtime built from scratch.
+            <li>バイナリサイズが 9MB、単一ファイルとして配布可能
+          </ul>
+        </li>
+        <li>
+          Yuku
+          <ul>
+            <li><a href="https://yuku.fyi/" target=_blank>https://yuku.fyi/</a>
+            <li>Zig 製の JS/TS Toolchain。いまのところパーサーと codegen と意味解析器がある
+            <li>oxc より速いらしい。
+            <li>
+              VoidZero の Boshen も言及していた
+              <ul>
+                <li><a href="https://x.com/boshen_c/status/2076523616876011666?" target=_blank>https://x.com/boshen_c/status/2076523616876011666?</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Rewriting Bun in Rust
+          <ul>
+            <li><a href="https://bun.com/blog/bun-in-rust" target=_blank>https://bun.com/blog/bun-in-rust</a>
+            <li>
+              アンサー記事 by Zig 作者
+              <ul>
+                <li><a href="https://andrewkelley.me/post/my-thoughts-bun-rust-rewrite.html" target=_blank>https://andrewkelley.me/post/my-thoughts-bun-rust-rewrite.html</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          GLM 5.2
+          <ul>
+            <li><a href="https://docs.z.ai/guides/llm/glm-5.2" target=_blank>https://docs.z.ai/guides/llm/glm-5.2</a>
+            <li>Z.AI の新モデル
+          </ul>
+        </li>
+        <li>
+          Claude Code Artifacts
+          <ul>
+            <li><a href="https://claude.com/blog/artifacts-in-claude-code" target=_blank>https://claude.com/blog/artifacts-in-claude-code</a>
+          </ul>
+        </li>
+        <li>
+          Claude Sonnet 5
+          <ul>
+            <li><a href="https://www.anthropic.com/news/claude-sonnet-5" target=_blank>https://www.anthropic.com/news/claude-sonnet-5</a>
+            <li>Fable が再度使えるようになる直前
+          </ul>
+        </li>
+        <li>
+          Redeploying Fable 5
+          <ul>
+            <li><a href="https://www.anthropic.com/news/redeploying-fable-5" target=_blank>https://www.anthropic.com/news/redeploying-fable-5</a>
+            <li>Fable 再開
+            <li>
+              週次利用枠の 50% までが Fable 枠
+              <ul>
+                <li><a href="https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access" target=_blank>https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Claude Fable 5 のサブスク利用延長 (1 回目)
+          <ul>
+            <li><a href="https://x.com/claudeai/status/2074548242386178258" target=_blank>https://x.com/claudeai/status/2074548242386178258</a>
+            <li>7/12 まで延長
+          </ul>
+        </li>
+        <li>
+          GPT-5.6 (Sol / Terra / Luna) リリース
+          <ul>
+            <li><a href="https://openai.com/ja-JP/index/gpt-5-6/" target=_blank>https://openai.com/ja-JP/index/gpt-5-6/</a>
+            <li>
+              <strong>モデル構成</strong>
+              <ul>
+                <li>GPT-5.6 は、高性能な <strong>Sol</strong>、低コストでバランス型の <strong>Terra</strong>、最速・最安の <strong>Luna</strong> の 3 層で提供。
+                <li>必要に応じて推論量を増やす <code translate=no>max</code> と、複数エージェントを並列実行する <code translate=no>ultra</code> を利用できる。
+              </ul>
+            </li>
+            <li>
+              <strong>コーディング</strong>
+              <ul>
+                <li>OpenAI 史上最も高性能なコーディングモデルとされ、実際のコードベースや長時間のターミナル作業に強い。
+                <li>少ない指示でも、調査、実装、デバッグ、検証まで継続して進める能力が向上した。
+              </ul>
+            </li>
+            <li>
+              <strong>安全対策</strong>
+              <ul>
+                <li>モデル内の保護機能、リアルタイム検査、監視、アカウント単位の制御を組み合わせた多層構造。
+                <li>サイバーセキュリティ・生物学の能力は向上したが、OpenAI の評価上はいずれも「Critical」のしきい値を超えていない。
+              </ul>
+            </li>
+            <li>
+              <strong>提供先</strong>
+              <ul>
+                <li>ChatGPT、ChatGPT Work、Codex、OpenAI API で提供。
+                <li>無料・Go ユーザーは主に Terra、有料プランでは Sol、Terra、Luna や高度な推論設定を利用できる。
+              </ul>
+            </li>
+            <li>
+              <strong>API 料金</strong>
+              <ul>
+                <li>100 万トークン当たり <strong>入力/出力</strong>
+                <li>Sol: <strong>$5/$30</strong>
+                <li>Terra: <strong>$2.50/$15</strong>
+                <li>Luna: <strong>$1/$6</strong>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Grok 4.5 リリース
+          <ul>
+            <li><a href="https://x.ai/news/grok-4-5" target=_blank>https://x.ai/news/grok-4-5</a>
+            <li>SpaceXAI (旧: xAI) に買収された Cursor のチームが一緒に訓練したモデル
+            <li>
+              高速さが売り
+              <ul>
+                <li>80 TPS
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Claude Fable 5 のサブスク利用延長 (2 回目)
+          <ul>
+            <li><a href="https://x.com/claudeai/status/2076351399999557669" target=_blank>https://x.com/claudeai/status/2076351399999557669</a>
+            <li>7/19 まで延長
+          </ul>
+        </li>
+        <li>
+          CursorBench 3.2
+          <ul>
+            <li><a href="https://cursor.com/en-US/cursorbench" target=_blank>https://cursor.com/en-US/cursorbench</a>
+            <li>Fable 5 に加えて Grok 4.5、GPT-5.6 が追加されている
+            <li>一番賢いのは引き続き Fable 5
+            <li>Grok 4.5 のコスト対性能がかなり良さそう
+            <li>GPT-5.6 も健闘
+          </ul>
+        </li>
+        <li>
+          Design Arena の Frontend アプリケーション構築ベンチマーク「Web Dev (Non-Agentic)」で GPT-5.6 Sol が一位に
+          <ul>
+            <li><a href="https://x.com/Designarena/status/2076391367446860249" target=_blank>https://x.com/Designarena/status/2076391367446860249</a>
+            <li>
+              <a href="https://intelligence.ai/leaderboard" target=_blank>https://intelligence.ai/leaderboard</a>
+              <ul>
+                <li>
+                  多様なタスクにおけるモデルの能力を総合的に評価
+                  <ul>
+                    <li>Web サイト、UI コンポーネント、ゲーム開発、データビジュアライゼーション、3D モデリング等
+                  </ul>
+                </li>
+                <li>コーディング能力の総合的なパフォーマンスを計測
+              </ul>
+            </li>
+            <li>Fable 5 を上回った
+            <li>GLM 5.2 も Fable 超え
+          </ul>
+        </li>
+        <li>
+          Cloudflare proudly joins the UK government&apos;s Cyber Resilience Pledge
+          <ul>
+            <li><a href="https://blog.cloudflare.com/cloudflare-joins-uk-cyber-resilience-pledge/" target=_blank>https://blog.cloudflare.com/cloudflare-joins-uk-cyber-resilience-pledge/</a>
+            <li>英国政府がサイバー・レジリエンス・プレッジを発表した。
+            <li>Cloudflare が創設メンバーとして参加し、サイバーセキュリティの向上に貢献する。
+            <li>プレッジの柱は、セキュリティの民主化、リーダーシップの責任、透明性である。
+            <li>サイバーセキュリティは企業の重要な優先事項であり、全ての組織が基準を満たすべきである。
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2 id="events"><a href="#events">Events</a></h2>
+      <ul>
+        <li>
+          6 月
+          <ul>
+            <li>
+              23-25: Figma Config 2026
+              <ul>
+                <li><a href="https://config.figma.com/" target=_blank>https://config.figma.com/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          7 月
+          <ul>
+            <li>
+              11: Google I/O Extended Tokyo 2026
+              <ul>
+                <li><a href="https://gdg-tokyo.connpass.com/event/394136/" target=_blank>https://gdg-tokyo.connpass.com/event/394136/</a>
+              </ul>
+            </li>
+            <li>
+              27: [初心者歓迎] #雑 LT_study - connpass
+              <ul>
+                <li><a href="https://web-study.connpass.com/event/396644/" target=_blank>https://web-study.connpass.com/event/396644/</a>
+              </ul>
+            </li>
+            <li>
+              30-31 Google Cloud Next Tokyo
+              <ul>
+                <li><a href="https://www.googlecloudevents.com/next-tokyo/" target=_blank>https://www.googlecloudevents.com/next-tokyo/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          8 月
+          <ul>
+            <li>
+              17: Ginza.js#11
+              <ul>
+                <li><a href="https://ginzajs.connpass.com/event/398379/" target=_blank>https://ginzajs.connpass.com/event/398379/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          9 月
+          <ul>
+            <li>
+              11: Go Conference 2026
+              <ul>
+                <li><a href="https://gocon.jp/2026/" target=_blank>https://gocon.jp/2026/</a>
+              </ul>
+            </li>
+            <li>
+              12: Frontend Conference Fukuoka 2026
+              <ul>
+                <li><a href="https://frontend-conf.fukuoka.jp/2026/?hl=ja" target=_blank>https://frontend-conf.fukuoka.jp/2026/?hl=ja</a>
+              </ul>
+            </li>
+            <li>
+              26: Platform Engineering Kaigi 2026
+              <ul>
+                <li><a href="https://www.cnia.io/pek2026/" target=_blank>https://www.cnia.io/pek2026/</a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </article>
+  <portal id=preview></portal>
+  <nav>
+    <span>&lt;&lt;&nbsp;<a href=/episodes/209/monthly-platform-202606.html>ep209 Monthly Platform 202606</a></span>
+    <span>&nbsp;&gt;&gt;</span>
+  </nav>
+</main>
+
+<footer>
+  <p class=copyright>
+    <small>Copyright &copy; 2016 <a href=/>mozaic.fm</a>. All Rights Reserved. Redistribute, Transcript are not allowed.</small>
+    <strong>全ての出演者の発言は個人のものであり、組織/団体を代表するものではありません。</strong>
+  </p>
+</footer>
+
+<mozaic-player>
+  <audio
+    slot=audio
+    src=https://files.mozaic.fm/mozaic-ep210.mp3
+    data-title="ep210 Monthly Ecosystem 202607"
+    data-forward=+30
+    data-back=-10>
+  </audio>
+</mozaic-player>
+
+</body>
+</html>
