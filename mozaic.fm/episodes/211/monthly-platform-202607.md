@@ -16,13 +16,11 @@ guests:
 
 第 211 回のテーマは 2026 年 7 月の Monthly Platform です。
 
-
 ## Show Note
 
 ### Chrome 動向
 
 #### Stable: 151
-
 
 #### Updates
 
