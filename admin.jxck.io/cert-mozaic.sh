@@ -8,6 +8,9 @@ sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   --force-renewal \
   --cert-name mozaic.fm \
   -d mozaic.fm \
+  -d www.mozaic.fm \
   -d files.mozaic.fm \
   -d feed.mozaic.fm \
-  -d labs.mozaic.fm
+  -d labs.mozaic.fm \
+  -d wiki.mozaic.fm \
+  -d vtt.mozaic.fm
