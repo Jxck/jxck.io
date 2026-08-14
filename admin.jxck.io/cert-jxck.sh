@@ -1,9 +1,10 @@
 sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   -n \
-  --webroot \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials /etc/letsencrypt/jxck.io.ini \
+  --dns-cloudflare-propagation-seconds 30 \
   --agree-tos \
   --email jxck@jxck.io \
-  -w ../www.jxck.io \
   --expand \
   --force-renewal \
   --preferred-profile shortlived \
