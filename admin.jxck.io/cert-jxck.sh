@@ -21,9 +21,7 @@ sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   -d lab2.jxck.io \
   -d api.jxck.io \
   -d ws.jxck.io \
-  -d zenn.jxck.io \
   -d reporting.jxck.io \
   -d http3.jxck.io \
   -d ipv6.jxck.io \
-  -d ipv4.jxck.io \
-  -d note.jxck.io
+  -d ipv4.jxck.io
