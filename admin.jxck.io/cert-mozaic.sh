@@ -1,11 +1,13 @@
 sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
   -n \
-  --webroot \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials /etc/letsencrypt/mozaic.fm.ini \
+  --dns-cloudflare-propagation-seconds 30 \
   --agree-tos \
   --email jxck@jxck.io \
-  -w ../mozaic.fm \
   --expand \
   --force-renewal \
+  --preferred-profile shortlived \
   --cert-name mozaic.fm \
   -d mozaic.fm \
   -d www.mozaic.fm \
