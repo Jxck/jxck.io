@@ -1,11 +1,10 @@
 .PHONY: all
 .PHONY: dict dcb
 .PHONY: blog blog-all
-.PHONY: podcast
-.PHONY: fmt fmt-blog fmt-podcast
-.PHONY: mtime mtime-blog mtime-podcast mtime-image mtime-comp
+.PHONY: fmt fmt-blog
+.PHONY: mtime mtime-blog mtime-image mtime-comp
 .PHONY: image png jpeg gif webp avif image-clean
-.PHONY: comp clean blog-clean podcast-clean distclean
+.PHONY: comp clean blog-clean distclean
 .PHONY: install update systemd-list systemd-status
 .PHONY: start stop status kill restart reload test logf
 .PHONY: _start _stop _restart
@@ -29,14 +28,14 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 ##########################
 # 既定ターゲット: 直接ビルドは禁止し、用途別ターゲットへ誘導する
 all:
-	@echo "run 'make blog' or 'make podcast'" >&2
+	@echo "run 'make blog'" >&2
 	@exit 1
 
-# blog/podcast の md を formatter にかけて整形
-fmt: fmt-blog fmt-podcast
+# blog の md を formatter にかけて整形
+fmt: fmt-blog
 
 # 全ファイルの mtime を最終コミット時刻に戻す
-mtime: mtime-blog mtime-podcast mtime-image mtime-comp
+mtime: mtime-blog mtime-image mtime-comp
 
 
 ##########################
@@ -74,26 +73,6 @@ blog-all:
 	$(MAKE) fmt-blog
 	$(NODE) .src/build.ts blog $(BLOG_MD)
 	$(NODE) .src/build.ts blog_index $(BLOG_JSON)
-
-
-##########################
-# Podcast
-##########################
-PODCAST_MD   := $(shell find ./mozaic.fm/episodes -name '*.md')
-PODCAST_HTML := $(PODCAST_MD:.md=.html)
-
-# podcast の fmt
-fmt-podcast:
-	@printf '%s\n' $(PODCAST_MD) | parallel -X -j $(CORES) $(PRETTIER) -w --log-level error
-
-# podcast の mtime を戻す
-mtime-podcast:
-	@git restore-mtime $(PODCAST_MD)
-
-# podcast のフルビルド
-podcast:
-	$(MAKE) fmt-podcast
-	$(NODE) .src/build.ts podcast
 
 
 ##########################
@@ -213,8 +192,7 @@ COMP_EXCLUDE := \
 
 COMP_WWW     := $(filter-out $(COMP_EXCLUDE), $(shell find ./www.jxck.io  -xtype f ! -path '*/.*'))
 COMP_BLOG    := $(filter-out $(COMP_EXCLUDE), $(shell find ./blog.jxck.io -xtype f ! -path '*/.*' ! -path '*/drafts/*' ! -path '*/dictionary/*'))
-COMP_MOZAIC  := $(filter-out $(COMP_EXCLUDE), $(shell find ./mozaic.fm    -xtype f ! -path '*/.*'))
-COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG) $(COMP_MOZAIC)
+COMP_TARGETS := $(COMP_WWW) $(COMP_BLOG)
 
 COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
@@ -300,16 +278,8 @@ blog-clean:
 	@rm -f ./blog.jxck.io/feeds/sitemap.xml
 	@rm -f ./blog.jxck.io/tags/index.html
 
-# podcast の生成ファイルを削除
-podcast-clean:
-	@rm -fv $(PODCAST_HTML)
-	@rm -f ./mozaic.fm/index.html
-	@rm -f ./feed.mozaic.fm/index.xml
-	@rm -f ./feed.mozaic.fm/index.json
-	@rm -f ./id3all.sh
-
 # 全生成ファイルを削除 (画像は除く)
-distclean: clean blog-clean podcast-clean
+distclean: clean blog-clean
 
 
 ##########################
