@@ -290,6 +290,17 @@ HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という�
 
 DEMO: https://labs.jxck.io/color/#palette-comparison
 
+Tailwind v4 は既に OKLCH に移行しており、それに追従するように shadcn/ui も移行している。といっても、互換性維持のために既存の色を OKLCH で焼き直すところから始めているようだ。
+
+> HSL colors are now converted to OKLCH.
+
+- Tailwind CSS v4.0 - Tailwind CSS
+  - https://tailwindcss.com/blog/tailwindcss-v4
+- Tailwind v4 - shadcn/ui
+  - https://ui.shadcn.com/docs/tailwind-v4
+
+ただ表現を変えるだけでは意味がないので、そのうち破壊的変更を伴って、色設計を変えることもあるのかもしれない。
+
 - CSS Color Module Level 4 - 9.4. Specifying Oklab and Oklch: the oklab() and oklch() functional notations
   - https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch
 
@@ -306,10 +317,11 @@ background-color: rgb(from var(--primary) r g b / 20%);
 
 これを `oklch()` と組み合わせれば、さらにバリエーションが作りやすい。
 
-例えば、Hover 時に少し暗い色にしたい場合は、L を `calc()` で落とせば良い。
+例えば、Hover 時に少し暗い色にしたい場合は L を、Disabled のために彩度だけ下げたい場合は C を `calc()` で落とせば良い。
 
 ```css
 background-color: oklch(from var(--primary) calc(l - 0.1) c h);
+background-color: oklch(from var(--primary) l calc(c * 0.3) h)
 ```
 
 また、`calc(1 - l)` にすると L を反転することができるため、ダークモード用の色を算出するといった使い方もできる。
@@ -381,6 +393,25 @@ DEMO: https://labs.jxck.io/color/#color-mix
 
 Light Mode では、淡い青の背景に濃い青の前景が混ざり、少し濃い青になる。Dark Mode ではその逆。つまり、どちらでも「背景色を少し前景色に近づけた」値になる。
 
+なお、「混ぜる(mix)」とは、色空間の中で 2 つの色を結んだ中間点を取る操作となる。したがって、「どのような色空間を使っているか」によって、混ぜ方が変わるのだ。
+
+
+`color-mix()` の最初の引数 `in oklab` は OKLab の色空間で混ぜる指定であり、他にも `in srgb` や `in oklch` で混ぜることもできる。
+
+しかし、一般的に `srgb` では中間が濁った色になりやすく、`oklch` では別の色相を経由するため、それぞれ結果が変わる。例えば青と黄を混ぜると、`in srgb` では RGB 値の単純な平均になるため完全なグレーになり、極座標の `in oklch` は色相環を回るため、鮮やかなまま中間の色相(この場合は緑)を通る。`in oklab` では視覚特性的に自然な混色が表現できるのだ。
+
+​```css
+background-color: color-mix(in srgb,  blue, yellow); /* rgb(50% 50% 50%) のグレー */
+background-color: color-mix(in oklab, blue, yellow); /* 明度が自然な中間色 */
+background-color: color-mix(in oklch, blue, yellow); /* 鮮やかな緑を経由 */
+​```
+
+![color-mix-space](color-mix-space.png#530x182)
+
+DEMO: https://labs.jxck.io/color/#color-mix-space
+
+こうした性質から、`in` を省略した場合のデフォルトは OKLab と定められているため、 `in oklab` は省略可能だ。
+
 また、`currentColor` を用いれば、今どういう色が表示されているかを知らなくても、アルゴリズミックに色を算出することも可能だ。
 
 例えば以下のようにすれば「親から継承した文字色を、背景方向に 20% 沈めた色」を作ることができるため、例えば脚注用に「薄い色」を作るといったことも可能になる。
@@ -394,7 +425,7 @@ Web Components のように、どういう色で表示されるかは利用側�
 ちなみに、Relative Color Syntax より少し前に `color-mix()` の実装があったため、透明度のバリエーションは `color-mix()` で transparent を混ぜる方式が使われている場面がある。
 
 ```css
-background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+background-color: color-mix(in oklab, var(--primary) 20%, transparent);
 ```
 
 しかし、透明度だけを変えるなら、RCS でいいだろう。
@@ -430,6 +461,8 @@ color: color-contrast(var(--bg) vs #eee, #333, #111);
 ```css
 color: contrast-color(var(--bg)); /* white / black */
 ```
+
+こちらはすでに全ブラウザで実装されており、2026 年 4 月に Baseline (Newly Available) となっている。
 
 ![contrast-color](contrast-color.png#704x127)
 
