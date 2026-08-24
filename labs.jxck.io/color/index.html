@@ -1006,6 +1006,29 @@
           <code>color(display-p3 0 1 0)</code>
         </figure>
       </div>
+      <p>Display P3 では出せるが、sRGB では出せない色のパレット。上段が <code>color(display-p3 ...)</code>、下段がそれを sRGB に丸めた色 (gamut clip)。P3 対応ディスプレイでは上段の方が鮮やかに見え、sRGB ディスプレイでは上下が同じに見える。</p>
+      <div class="demo-group">
+        <h3>display-p3</h3>
+        <ul class="demo-palette">
+          <li style="--color: color(display-p3 0 1 0)"><code>p3 0 1 0</code></li>
+          <li style="--color: color(display-p3 0 1 0.5)"><code>p3 0 1 0.5</code></li>
+          <li style="--color: color(display-p3 0.6 1 0)"><code>p3 0.6 1 0</code></li>
+          <li style="--color: color(display-p3 1 0 0)"><code>p3 1 0 0</code></li>
+          <li style="--color: color(display-p3 1 0.5 0)"><code>p3 1 0.5 0</code></li>
+          <li style="--color: color(display-p3 1 0 0.5)"><code>p3 1 0 0.5</code></li>
+        </ul>
+      </div>
+      <div class="demo-group">
+        <h3>sRGB で表現できる限界 (gamut clip)</h3>
+        <ul class="demo-palette">
+          <li style="--color: #00ff00"><code>#00ff00</code></li>
+          <li style="--color: #00ff6e"><code>#00ff6e</code></li>
+          <li style="--color: #71ff00"><code>#71ff00</code></li>
+          <li style="--color: #ff0000"><code>#ff0000</code></li>
+          <li style="--color: #ff7600"><code>#ff7600</code></li>
+          <li style="--color: #ff0080"><code>#ff0080</code></li>
+        </ul>
+      </div>
     </section>
   </main>
 </body>
