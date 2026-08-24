@@ -387,7 +387,7 @@ background-color:
 background-color: color-mix(in oklab, var(--fg) 20%, var(--bg));
 ```
 
-![color-mix()](color-mix.png#684x463)
+![color-mix](color-mix.png#684x463)
 
 DEMO: https://labs.jxck.io/color/#color-mix
 
@@ -395,22 +395,21 @@ Light Mode では、淡い青の背景に濃い青の前景が混ざり、少し
 
 なお、「混ぜる(mix)」とは、色空間の中で 2 つの色を結んだ中間点を取る操作となる。したがって、「どのような色空間を使っているか」によって、混ぜ方が変わるのだ。
 
-
 `color-mix()` の最初の引数 `in oklab` は OKLab の色空間で混ぜる指定であり、他にも `in srgb` や `in oklch` で混ぜることもできる。
 
 しかし、一般的に `srgb` では中間が濁った色になりやすく、`oklch` では別の色相を経由するため、それぞれ結果が変わる。例えば青と黄を混ぜると、`in srgb` では RGB 値の単純な平均になるため完全なグレーになり、極座標の `in oklch` は色相環を回るため、鮮やかなまま中間の色相(この場合は緑)を通る。`in oklab` では視覚特性的に自然な混色が表現できるのだ。
 
-​```css
+```css
 background-color: color-mix(in srgb,  blue, yellow); /* rgb(50% 50% 50%) のグレー */
 background-color: color-mix(in oklab, blue, yellow); /* 明度が自然な中間色 */
 background-color: color-mix(in oklch, blue, yellow); /* 鮮やかな緑を経由 */
-​```
+```
 
 ![color-mix-space](color-mix-space.png#530x182)
 
 DEMO: https://labs.jxck.io/color/#color-mix-space
 
-こうした性質から、`in` を省略した場合のデフォルトは OKLab と定められているため、 `in oklab` は省略可能だ。
+こうした性質から、`in` を省略した場合のデフォルトは OKLab と定められているため、`in oklab` は省略可能だ。
 
 また、`currentColor` を用いれば、今どういう色が表示されているかを知らなくても、アルゴリズミックに色を算出することも可能だ。
 

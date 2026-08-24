@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-08-24/color-over-web.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="Web における「色」を扱う API は、気づいたら色々増えている。デザインシステムの中で、デザイントークンとして色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。今の Web の API を用いると、どういった色の設計や管...">
+  <meta name=keywords            content="css,color">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-08-24/color-over-web.html>
+  <meta property=og:title        content="CSS Color Module v6 ベースの色設計 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="Web における「色」を扱う API は、気づいたら色々増えている。デザインシステムの中で、デザイントークンとして色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。今の Web の API を用いると、どういった色の設計や管...">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-08-24/color-over-web.html"
+    },
+    "headline": "CSS Color Module v6 ベースの色設計 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-08-24T00:00:00+09:00",
+    "dateModified": "2026-08-24T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "Web における「色」を扱う API は、気づいたら色々増えている。デザインシステムの中で、デザイントークンとして色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。今の Web の API を用いると、どういった色の設計や管..."
+  }
+  </script>
+
+  <title>CSS Color Module v6 ベースの色設計 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?160301_214955   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?220803_154206   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-08-24>2026-08-24</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-08-24>2026-08-24</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#css">css</a>
+              <li><a href="/tags#color">color</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#named-color">Named Color</a>
+              <li><a href="#rgb">RGB</a>
+              <li><a href="#hsl">HSL</a>
+              <li><a href="#hwb">HWB</a>
+              <li><a href="#lab">LAB</a>
+              <li><a href="#lch">LCH</a>
+              <li><a href="#oklaboklch">OKLAB/OKLCH</a>
+              <li><a href="#relative-color-syntax">Relative Color Syntax</a>
+              <li><a href="#color-mix">Color Mix</a>
+              <li><a href="#contrast-color">Contrast-Color</a>
+              <li><a href="#wide-gamut-広色域">Wide Gamut (広色域)</a>
+              <li><a href="#その他">その他</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">CSS Color Module v6 ベースの色設計</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>Web における「色」を扱う API は、気づいたら色々増えている。
+        <p>デザインシステムの中で、デザイントークンとして色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。
+        <p>今の Web の API を用いると、どういった色の設計や管理が可能なのか、Web における色の指定を棚卸しする。
+        <p>中心は CSS Color Module Level 4 ~ 6 だ。
+        <ul>
+          <li><a href="https://drafts.csswg.org/css-color-4/" target=_blank>https://drafts.csswg.org/css-color-4/</a>
+          <li><a href="https://drafts.csswg.org/css-color-5/" target=_blank>https://drafts.csswg.org/css-color-5/</a>
+          <li><a href="https://drafts.csswg.org/css-color-6/" target=_blank>https://drafts.csswg.org/css-color-6/</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="named-color"><a href="#named-color">Named Color</a></h2>
+        <p>CSS のキーワードとして登録されている 148 色は、Named Color と呼ばれる。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: red;</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=named-colors.avif?260824_182422>
+            <source type=image/webp srcset=named-colors.webp?260824_182412>
+            <img loading=lazy decoding=async src=named-colors.png?260824_182412 alt="Named Colors" width=633 height=323>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#named-colors" target=_blank>https://labs.jxck.io/color/#named-colors</a>
+        <p>仕様に書かれている通り、これらは初期のブラウザが動作環境としていた X11 の実装する色名を、そのままブラウザに移植したところから始まる。
+        <blockquote>
+          <p>For historical reasons, this is also referred to as the X11 color set.
+        </blockquote>
+        <p>X11 以外にもいくつかの経路で集約されたため、<code translate=no>gray</code> (米国綴り)と <code translate=no>grey</code> (英国綴り)が両方あったり、<code translate=no>aqua</code> と <code translate=no>cyan</code> が同じだったりするため、色自体は 139 色だ。
+        <p>そして、この &quot;Named Color&quot; が &quot;Web Safe Color&quot; だと誤解されることがある。
+        <p>Web Safe Color は、モニターが 256 色しか再現できなかった時代に、その範囲を超えないように指定し、再現性を保つための色とされる。
+        <p>要するに RGB をそれぞれ 16 進数にしたとき、<code translate=no>00</code>, <code translate=no>33</code>, <code translate=no>66</code>, <code translate=no>99</code>, <code translate=no>CC</code>, <code translate=no>FF</code> の 6 つを組み合わせた 6^3 = 216 色を指す。ちなみに、連続する数字はまとめられるので <code translate=no>#FFCC33</code> は <code translate=no>#FC3</code> と書ける。
+        <p>
+          <picture>
+            <source type=image/avif srcset=web-safe-colors.avif?260824_182421>
+            <source type=image/webp srcset=web-safe-colors.webp?260824_182406>
+            <img loading=lazy decoding=async src=web-safe-colors.png?260824_182406 alt="Web Safe Colors" width=636 height=134>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#web-safe-colors" target=_blank>https://labs.jxck.io/color/#web-safe-colors</a>
+        <p>例えば Named Color の <code translate=no>skyblue</code> は <code translate=no>#87CEEB</code> と半端な値が含まれるため、Web Safe Color ではなく、最も近いのは <code translate=no>#99CCFF</code> になる。
+        <p>現在 Named Color を、プロダクションの色設計で用いる積極的な理由はない。
+        <p>また、一般的な閲覧環境に &quot;Web Safe Color&quot; の再現性を求める必要もない。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 6.1. Named Colors
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#named-colors" target=_blank>https://drafts.csswg.org/css-color-4/#named-colors</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="rgb"><a href="#rgb">RGB</a></h2>
+        <p>色の指定として最初に思いつき、もっとも使われているのが RGB だろう。三原色である Red / Green / Blue の割合を指定する手法だ。
+        <p>指定方法は、それぞれを 16 進数にして並べた方法が一般的だ。Alpha を加えて 8 桁にすることもできる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#aabbcc;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">   /* rgb */</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#aabbccdd;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"> /* rgba */</span></span></code></pre>
+        <p><code translate=no>rgb()</code> を用いると、それぞれを 10 進数や、割合(%)で表現することができる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: rgb(30 40 50 / 60%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: rgb(10% 20% 70% / 60%);</span></span></code></pre>
+        <p>DOM API で色情報を取得する際、<code translate=no>[30, 40, 50]</code> のように RGB 形式を用いるものがあるため、そこと連携する際は <code translate=no>rgb()</code> が使いやすい。また、昔は <code translate=no>rgb(30, 40, 50)</code> のようにカンマ区切りだったが、今は区切る必要はない。
+        <p>また Alpha を指定するために <code translate=no>rgba()</code> も定義されたが、<code translate=no>rgb()</code> が拡張されて Alpha が取れるようになったため、<code translate=no>rgba()</code> は <code translate=no>rgb()</code> のエイリアスとなっている。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 5.1. The RGB functions: rgb() and rgba()
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#rgb-functions" target=_blank>https://drafts.csswg.org/css-color-4/#rgb-functions</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="hsl"><a href="#hsl">HSL</a></h2>
+        <p>RGB は、ディスプレイが赤・緑・青を発光し、その混ぜ合わせで色を作るモデルを、そのまま数値に落とし込んだものだ。つまり、ディスプレイに対する、低レイヤーな命令と言える。
+        <p>このモデルは、機械にとって都合が良くても、人間にとって都合が良いとは言えない。
+        <p>例えば、以下の 2 つでどちらの方が「鮮やか」か、ぱっと分かるだろうか?
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#f53d65;</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#ff335f;</span></span></code></pre>
+        <p>こうした問題を解決するために、「人間の知覚」に近い表現ができるモデルが、複数作られた。
+        <p>その 1 つが HSL だ。HSL は Hue(色相) / Saturation(彩度) / Lightness(明度) の 3 つで色を表す方式だ。
+        <p>先程の 2 つの色を HSL で表すとこうなる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(347 90% 60%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(347 100% 60%);</span></span></code></pre>
+        <p>こう比較すると、両者は色相/明度は全く同じで、彩度だけが変わっていることが一目瞭然となる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=hsl-comparison.avif?260824_182418>
+            <source type=image/webp srcset=hsl-comparison.webp?260824_182403>
+            <img loading=lazy decoding=async src=hsl-comparison.png?260824_182403 alt="HSL で S だけを変えた比較" width=607 height=309>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#hsl-comparison" target=_blank>https://labs.jxck.io/color/#hsl-comparison</a>
+        <p>この特徴を用いれば、例えば L, S を固定して H を変えれば、「明るさ」「鮮やかさ」を統一した異なる色を選ぶことができるため、統一したカラーパレットを作ることができる。アルゴリズミックな色定義が可能ということだ。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(220 90% 50%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(250 90% 50%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(280 90% 50%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(310 90% 50%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl(340 90% 50%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hsl( 10 90% 50%);</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=hsl-components.avif?260824_182420>
+            <source type=image/webp srcset=hsl-components.webp?260824_182404>
+            <img loading=lazy decoding=async src=hsl-components.png?260824_182404 alt="hsl-components" width=583 height=153>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#hsl-components" target=_blank>https://labs.jxck.io/color/#hsl-components</a>
+        <p>Web においても、HSL を採用する事例は決して少なくはなく、shadcn/ui などでは、HSL の成分を定義して、そこから色を生成する方式を取っていた。
+        <ul>
+          <li>
+            &quot;I recommend using HSL colors for theming but you can also use other color formats if you prefer.&quot;
+            <ul>
+              <li><a href="https://github.com/shadcn-ui/ui/blob/eeb17545a16824e11d09149a5ecab9fca570c448/apps/www/content/docs/theming.mdx#other-color-formats" target=_blank>https://github.com/shadcn-ui/ui/blob/eeb17545a16824e11d09149a5ecab9fca570c448/apps/www/content/docs/theming.mdx#other-color-formats</a>
+            </ul>
+          </li>
+        </ul>
+        <p>d3.js も色の操作に <code translate=no>d3.hsl()</code> API を提供している。
+        <ul>
+          <li>
+            d3-color | D3 by Observable
+            <ul>
+              <li><a href="https://d3js.org/d3-color#hsl" target=_blank>https://d3js.org/d3-color#hsl</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ところが、H を変えていく場合、L が同じでも「黄色が眩しく、青が暗い」と感じる問題が知られていた。
+        <p>
+          <picture>
+            <source type=image/avif srcset=hsl-uniformity.avif?260824_182421>
+            <source type=image/webp srcset=hsl-uniformity.webp?260824_182405>
+            <img loading=lazy decoding=async src=hsl-uniformity.png?260824_182405 alt="hsl-uniformity" width=641 height=282>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#hsl-uniformity" target=_blank>https://labs.jxck.io/color/#hsl-uniformity</a>
+        <p>したがって現在は、「人間の知覚特性に合わせた変化」をさせやすい性質(Perceptual Uniformity:知覚均等性)をもつよう、改善された方式が使われるようになっている。
+        <p>つまり、Web において今から新規に HSL を用いる積極的な理由はない。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 7. HSL Colors: hsl() and hsla() functions
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#the-hsl-notation" target=_blank>https://drafts.csswg.org/css-color-4/#the-hsl-notation</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="hwb"><a href="#hwb">HWB</a></h2>
+        <p>HWB は Hue(色相) / Whiteness(白の混合率) / Blackness(黒の混合率)で色を指定する方式だ。
+        <p>「選択した純色に対し、白と黒をどれだけ混ぜるか」という、絵の具の混色に近いメンタルモデルで、色を設計することができる。
+        <p>先程の 2 色の場合は以下のようになる。1 つめの方が、白と黒が多く混ざっているため、2 つめの方が純色に近いことがわかる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hwb(347 24% 4%);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: hwb(347 20% 0%);</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=hwb-comparison.avif?260824_182417>
+            <source type=image/webp srcset=hwb-comparison.webp?260824_182403>
+            <img loading=lazy decoding=async src=hwb-comparison.png?260824_182403 alt="hwb-comparison" width=597 height=301>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#hwb-comparison" target=_blank>https://labs.jxck.io/color/#hwb-comparison</a>
+        <p>HSL は、明度・彩度のパラメータがそれぞれ独立していることにメリットがあった。
+        <p>しかし、人間が色を作る上では、対象となる色を「淡くする」「くすませる」といった操作の方が直感的であり、カラーピッカーの UI とも相性が良い。そのため、デザインツールではこの HWB と近いモデルの HSV/HSB が使われており、そことの親和性も高いとされた(全く一緒ではない)。
+        <p>考案者がペイントツールを作っていた Alvy Ray Smith (後に Pixar を共同創業)であることを考えても、その特徴に納得がいく。
+        <p>ところが、HSL と同様に知覚均等性はなく、アルゴリズミックな色定義がしやすいわけでもなかったため、Web の世界ではあまり使われている話を聞かない。今後も、積極的に採用する理由はないだろう。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 8. HWB Colors: hwb() function
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#the-hwb-notation" target=_blank>https://drafts.csswg.org/css-color-4/#the-hwb-notation</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="lab"><a href="#lab">LAB</a></h2>
+        <p>LAB は、色の見た目を数値化し、感覚的な違いを共有するような場面で広く使われ、CIE (国際照明委員会)によって策定された色空間であり、CIELAB とも呼ばれる。
+        <p>Lightness, a, b の 3 次元で指定され、a が赤~緑、b が青~黄の間の値を指定する。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lab(50% 40 20 / 80%);</span></span></code></pre>
+        <p>例えば L を 10 から 20 にしたときも、50 から 60 にしたときも、「同じくらい明るくなった」と感じやすいという、知覚均等性を持つため、グラデーションやシェードの設計がしやすいとされる。
+        <p>しかし、a と b の調整は難しく、「彩度だけ変えたい」といった場合の計算が複雑になる。
+        <p>例えば、先程の 2 色は HSL では彩度だけ変わっていたが、LAB だと以下のようになる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lab(56.5% 70</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 22</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lab(57.4% 75</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 27</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.9</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=lab-comparison.avif?260824_182417>
+            <source type=image/webp srcset=lab-comparison.webp?260824_182403>
+            <img loading=lazy decoding=async src=lab-comparison.png?260824_182403 alt="lab-comparison" width=601 height=294>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#lab-comparison" target=_blank>https://labs.jxck.io/color/#lab-comparison</a>
+        <p>明度が近いことはわかるが、彩度の差はここからだと読み取るのは難しい。
+        <p>L はよくても、a, b をアルゴリズミックに設計するのが難しいため、LAB もそのまま Web で採用されることは少ない。
+        <p>したがって、LAB も新規で積極的に入れる理由はないだろう。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 9.3. Specifying Lab and LCH: the lab() and lch() functional notations
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#specifying-lab-lch" target=_blank>https://drafts.csswg.org/css-color-4/#specifying-lab-lch</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="lch"><a href="#lch">LCH</a></h2>
+        <p>人間の視覚は「明度(Lightness)」「彩度(Chroma)」「色相(Hue)」という 3 つの要素で、色を認識している。
+        <p>これをそのまま落とし込んだのが LCH だ。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lch(60% 50 250 / 80%);</span></span></code></pre>
+        <p>色相(H)だけを変えていけば、同じ明るさ・鮮やかさのカラーパレットを作ることができる。
+        <p>明度だけを変えて Hover 時の色を出したり、彩度だけ変えて Disable 時の色を出したりと、状態に応じたバリエーションも作りやすい。
+        <p>ただし、青の色相においては、明度や彩度だけを変えても明らかに赤みを帯びて紫っぽくなり、色相が変わって見える現象が知られている。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lch(30% 130 300); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 起点 */</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: lch(50% 130 300); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 赤紫が入る */</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=lch-hue-shift.avif?260824_182419>
+            <source type=image/webp srcset=lch-hue-shift.webp?260824_182403>
+            <img loading=lazy decoding=async src=lch-hue-shift.png?260824_182403 alt="lch-hue-shift" width=537 height=152>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#lch-hue-shift" target=_blank>https://labs.jxck.io/color/#lch-hue-shift</a>
+        <p>これは実は LAB でも起こっており、LCH は LAB を直交座標から極座標に変換しただけ(つまり表し方を変えただけ)なので、LAB の問題を引き継いだ形になる。
+        <p>したがって、LCH も新規で積極的に入れる理由はないだろう。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 9.3. Specifying Lab and LCH: the lab() and lch() functional notations
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#specifying-lab-lch" target=_blank>https://drafts.csswg.org/css-color-4/#specifying-lab-lch</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="oklaboklch"><a href="#oklaboklch">OKLAB/OKLCH</a></h2>
+        <p>LAB/LCH の持っていた「青が紫にシフトする」問題を数学的に解決したのが OKLAB/OKLCH だ。
+        <ul>
+          <li>
+            A perceptual color space for image processing
+            <ul>
+              <li><a href="https://bottosson.github.io/posts/oklab/" target=_blank>https://bottosson.github.io/posts/oklab/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <picture>
+            <source type=image/avif srcset=oklch-hue-stability.avif?260824_182420>
+            <source type=image/webp srcset=oklch-hue-stability.webp?260824_182403>
+            <img loading=lazy decoding=async src=oklch-hue-stability.png?260824_182403 alt="oklch-hue-stability" width=531 height=146>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#oklch-hue-stability" target=_blank>https://labs.jxck.io/color/#oklch-hue-stability</a>
+        <p>ブログによると、OK とは良いという意味そのままの OK のようだ。
+        <blockquote>
+          <p>It is called the Oklab color space, because it is an OK Lab color space.
+        </blockquote>
+        <p>これにより、色相・明度・彩度の独立性が高く、ある要素の調整が他の要素に影響しづらい色空間を手に入れたことになる。
+        <p>つまり、LCH かつ OK な OKLCH を使って、カラーパレットやグラデーション、状態ごとのバリエーションなどを定義するのが、現代の Web における色の設計手法の理想と言って良い。
+        <p>例えば、L, C を固定し H を変えていけば、明るさ/鮮やかさが揃ったカラーパレットが作れる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* 明度(L) と 彩度(C) の共通設定 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-l</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.74</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.125</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* Hue を変えることで、トーンが揃ったカラーパレットが定義できる */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-blue</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:   </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-l</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">263</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 青 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-green</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:  </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-l</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">148</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 緑 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-purple</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-l</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">314</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 紫 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --brand-red</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:    </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-l</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--brand-c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)  </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 赤 */</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+        <p>HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば知覚的に揃ったパレットを作ることができる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=palette-comparison.avif?260824_182421>
+            <source type=image/webp srcset=palette-comparison.webp?260824_182408>
+            <img loading=lazy decoding=async src=palette-comparison.png?260824_182408 alt="HSL/OKLCH Color Palette" width=650 height=682>
+          </picture>
+        </p>
+        <p>知覚均等性の差は、パレットをグレースケールするとよくわかる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=palette-comparison-grayscale.avif?260824_182421>
+            <source type=image/webp srcset=palette-comparison-grayscale.webp?260824_182405>
+            <img loading=lazy decoding=async src=palette-comparison-grayscale.png?260824_182405 alt="HSL/OKLCH Color Palette Grayscale" width=643 height=682>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#palette-comparison" target=_blank>https://labs.jxck.io/color/#palette-comparison</a>
+        <p>Tailwind v4 は既に OKLCH に移行しており、それに追従するように shadcn/ui も移行している。といっても、互換性維持のために既存の色を OKLCH で焼き直すところから始めているようだ。
+        <blockquote>
+          <p>HSL colors are now converted to OKLCH.
+        </blockquote>
+        <ul>
+          <li>
+            Tailwind CSS v4.0 - Tailwind CSS
+            <ul>
+              <li><a href="https://tailwindcss.com/blog/tailwindcss-v4" target=_blank>https://tailwindcss.com/blog/tailwindcss-v4</a>
+            </ul>
+          </li>
+          <li>
+            Tailwind v4 - shadcn/ui
+            <ul>
+              <li><a href="https://ui.shadcn.com/docs/tailwind-v4" target=_blank>https://ui.shadcn.com/docs/tailwind-v4</a>
+            </ul>
+          </li>
+        </ul>
+        <p>ただ表現を変えるだけでは意味がないので、そのうち破壊的変更を伴って、色設計を変えることもあるのかもしれない。
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 9.4. Specifying Oklab and Oklch: the oklab() and oklch() functional notations
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch" target=_blank>https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="relative-color-syntax"><a href="#relative-color-syntax">Relative Color Syntax</a></h2>
+        <p>Relative Color Syntax は、すでに定義された色を元に、別の色を作ることができる。
+        <p>たとえば、既存の色の Alpha だけを変えたいといった場合に、以下のように書くことができる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: rgb(from var(--primary) r </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">g</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D"> b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> / 20%);</span></span></code></pre>
+        <p>これを <code translate=no>oklch()</code> と組み合わせれば、さらにバリエーションが作りやすい。
+        <p>例えば、Hover 時に少し暗い色にしたい場合は L を、Disabled のために彩度だけ下げたい場合は C を <code translate=no>calc()</code> で落とせば良い。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: oklch(from var(--primary) calc(l - 0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) c h);</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: oklch(from var(--primary) l calc(c </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) h)</span></span></code></pre>
+        <p>また、<code translate=no>calc(1 - l)</code> にすると L を反転することができるため、ダークモード用の色を算出するといった使い方もできる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: oklch(from var(--primary) calc(1 - l) c h);</span></span></code></pre>
+        <p>カラーパレットも、適当に H を決めるのではなく、ある基準の色を決め、そこから色角度を加算(Hue Shifting)することで、調和の取れたカラーパレットを出すこともできる。
+        <p>よく使われるのは、色相環を分割する角度の採用だ。つまり 2 分割する 180 度を追加した補色。3 分割する 120, 240 度を追加したトライアド。30,60 度などを追加した類似色などを、必要に応じて増やしていく設計だ。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* 統一感のあるバリエーション */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --primary-shift-120</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(from </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--primary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) l c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">calc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 120</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --primary-shift-240</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(from </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--primary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) l c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">calc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 240</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* 同系色の追加 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --primary-shift-30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(from </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--primary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) l c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">calc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --primary-shift-60</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(from </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--primary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) l c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">calc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 60</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  /* 補色 */</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --primary-shift-180</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(from </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">var</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">--primary</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) l c </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">calc</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(h </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 180</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=relative-colors.avif?260824_182418>
+            <source type=image/webp srcset=relative-colors.webp?260824_182403>
+            <img loading=lazy decoding=async src=relative-colors.png?260824_182403 alt="Relative Color Syntax で Hue Shifting" width=646 height=154>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#relative-colors" target=_blank>https://labs.jxck.io/color/#relative-colors</a>
+        <p>ここまで来ると、<code translate=no>--primary</code> 一色だけを決めたら、あとは全て自動で算出することができる。
+        <p>テーマ変更を可能にする UI などでは、<code translate=no>--primary</code> のバリエーションさえ提供すれば、大きく破綻のない UI を提供できる、といった設計も可能だろう。
+        <p>もちろん、このシステマチックな方式だけでは満たせない表現は多々あり、連動した他のパラメータの細かな調整ノウハウはある。
+        <p>それでも、現代の Web の色設計の基本は OKLCH をベースとしたこの設計が中心と考えて良さそうだ。
+        <ul>
+          <li>
+            CSS Color Module Level 5 - 4.2. Relative Color Syntax
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-5/#relative-colors" target=_blank>https://drafts.csswg.org/css-color-5/#relative-colors</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="color-mix"><a href="#color-mix">Color Mix</a></h2>
+        <p><code translate=no>color-mix()</code> を用いると 2 つの色を混ぜて、新しい色を宣言的に作ることができる。
+        <p>例えば Hover 時のように、状態に応じた色変化を作る場合、OKLCH で L を変えれば、Light Mode は減少、Dark Mode は増加の方向に切り替える必要が出る。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  light-dark(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    oklch(from var(--primary) calc(l - 0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) c h),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    oklch(from var(--primary) calc(l </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) c h)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  );</span></span></code></pre>
+        <p><code translate=no>light-dark()</code> は色を取るが、色以外のパラメータなどを取らないため、色を全部書く必要がある(本当は <code translate=no>light-dark(-0.1, +0.1)</code> などと書けると嬉しいができないという話)。
+        <p>そこで視点を変えて、「背景色と前景色を混ぜる」ことで Hover の色を設計することを考えよう。たとえば、背景に前景を 20% 混ぜるとこうなる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color-mix(in oklab, var(--fg) 20%, var(--bg));</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=color-mix.avif?260824_182421>
+            <source type=image/webp srcset=color-mix.webp?260824_182404>
+            <img loading=lazy decoding=async src=color-mix.png?260824_182404 alt="color-mix" width=684 height=463>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#color-mix" target=_blank>https://labs.jxck.io/color/#color-mix</a>
+        <p>Light Mode では、淡い青の背景に濃い青の前景が混ざり、少し濃い青になる。Dark Mode ではその逆。つまり、どちらでも「背景色を少し前景色に近づけた」値になる。
+        <p>なお、「混ぜる(mix)」とは、色空間の中で 2 つの色を結んだ中間点を取る操作となる。したがって、「どのような色空間を使っているか」によって、混ぜ方が変わるのだ。
+        <p><code translate=no>color-mix()</code> の最初の引数 <code translate=no>in oklab</code> は OKLab の色空間で混ぜる指定であり、他にも <code translate=no>in srgb</code> や <code translate=no>in oklch</code> で混ぜることもできる。
+        <p>しかし、一般的に <code translate=no>srgb</code> では中間が濁った色になりやすく、<code translate=no>oklch</code> では別の色相を経由するため、それぞれ結果が変わる。例えば青と黄を混ぜると、<code translate=no>in srgb</code> では RGB 値の単純な平均になるため完全なグレーになり、極座標の <code translate=no>in oklch</code> は色相環を回るため、鮮やかなまま中間の色相(この場合は緑)を通る。<code translate=no>in oklab</code> では視覚特性的に自然な混色が表現できるのだ。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color-mix(in srgb,  blue, yellow); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* rgb(50% 50% 50%) のグレー */</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color-mix(in oklab, blue, yellow); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 明度が自然な中間色 */</span></span>
+<span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color-mix(in oklch, blue, yellow); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* 鮮やかな緑を経由 */</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=color-mix-space.avif?260824_182420>
+            <source type=image/webp srcset=color-mix-space.webp?260824_182404>
+            <img loading=lazy decoding=async src=color-mix-space.png?260824_182404 alt="color-mix-space" width=530 height=182>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#color-mix-space" target=_blank>https://labs.jxck.io/color/#color-mix-space</a>
+        <p>こうした性質から、<code translate=no>in</code> を省略した場合のデフォルトは OKLab と定められているため、<code translate=no>in oklab</code> は省略可能だ。
+        <p>また、<code translate=no>currentColor</code> を用いれば、今どういう色が表示されているかを知らなくても、アルゴリズミックに色を算出することも可能だ。
+        <p>例えば以下のようにすれば「親から継承した文字色を、背景方向に 20% 沈めた色」を作ることができるため、例えば脚注用に「薄い色」を作るといったことも可能になる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">color: color-mix(in oklab, currentColor, var(--bg) 20%);</span></span></code></pre>
+        <p>Web Components のように、どういう色で表示されるかは利用側に委ねるが、そこからの彩色ルールだけ提供したいといった設計も可能になる(実際は非常に難しいため、変数を提供して指定できるようにした方が楽だろうが)。
+        <p>ちなみに、Relative Color Syntax より少し前に <code translate=no>color-mix()</code> の実装があったため、透明度のバリエーションは <code translate=no>color-mix()</code> で transparent を混ぜる方式が使われている場面がある。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color-mix(in oklab, var(--primary) 20%, transparent);</span></span></code></pre>
+        <p>しかし、透明度だけを変えるなら、RCS でいいだろう。
+        <ul>
+          <li>
+            CSS Color Module Level 5 - 3. Mixing Colors: the color-mix() Function
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-5/#color-mix" target=_blank>https://drafts.csswg.org/css-color-5/#color-mix</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="contrast-color"><a href="#contrast-color">Contrast-Color</a></h2>
+        <p>色の設計で最も注意したいのは、組み合わせによってコントラストが担保されず、読みにくくなってしまうことだ。
+        <p>アルゴリズミックに算出するのであれば、「最終的に算出された背景に対して、文字色がコントラストを満たしているのか」を確信する方法が欲しくなる。
+        <p>そこで、最初に提案されたのが <code translate=no>color-contrast()</code> だ。
+        <p>複数の色を渡すと、対象色に対して最もコントラストの高いものを採用してくれる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">color: color-contrast(var(--bg) vs </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">#eee</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#333</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic">#111</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span></code></pre>
+        <p>非常に便利そうだ。
+        <p>ところが、この「コントラストの算出」に対して、業界が非常に揺れている。
+        <p>広く採用される WCAG2 のコントラスト計算は、知覚特性を考慮しきれていないと指摘されることも多く、その対案として提案された APCA は、WCAG3 で採用されるという触れ込みだったが、すでにドラフトからは落とされている。
+        <p>その議論のさなかの提案だったため、Safari は実装に着手しつつも、標準化は難航し、現在仕様は取り下げられている。
+        <p>代わりに提案されたのが <code translate=no>contrast-color()</code> だ。これは単純に、「指定した色と白・黒を比べ、コントラストの高い方を返す」というものだ。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">color: contrast-color(var(--bg)); </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">/* white / black */</span></span></code></pre>
+        <p>こちらはすでに全ブラウザで実装されており、2026 年 4 月に Baseline (Newly Available) となっている。
+        <p>
+          <picture>
+            <source type=image/avif srcset=contrast-color.avif?260824_182418>
+            <source type=image/webp srcset=contrast-color.webp?260824_182404>
+            <img loading=lazy decoding=async src=contrast-color.png?260824_182404 alt="contrast-color" width=704 height=127>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#contrast-color" target=_blank>https://labs.jxck.io/color/#contrast-color</a>
+        <p>もし <code translate=no>color-contrast()</code> を使ったとしても、フォールバックに白/黒相当を渡すだろうという想定もあるので、そこだけを切り抜いたイメージだ。
+        <p>出てくる色は、<code translate=no>#000000</code> か <code translate=no>#ffffff</code> と極端なので、これをさらに RCS で調和する色味に調整する必要がありそうだ。しかし、調整したらコントラストが達成される保証はない。これを使っていれば安心とも限らない。
+        <p>非常に便利そうでありながら、同時に使うのはかなり難しいというイメージが筆者にはある。
+        <ul>
+          <li>
+            CSS Color Module Level 6 - 2. Computing a Contrasting Color: the contrast-color() function
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-6/#colorcontrast" target=_blank>https://drafts.csswg.org/css-color-6/#colorcontrast</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="wide-gamut-広色域"><a href="#wide-gamut-広色域">Wide Gamut (広色域)</a></h2>
+        <p>近年のディスプレイは表現能力がかなり向上しており、それとともに表現できる色の範囲が増えた。
+        <p>従来のディスプレイで表現できた色の領域を sRGB (Standard RGB)と言うのに対して、これらを Wide Gamut と総称する。
+        <p>Web では、CSS Color Module Level 4 で、Wide Gamut 系の色空間を CSS で指定できるようになっている。
+        <ul>
+          <li>srgb: 従来の RGB 領域
+          <li>display-p3: Apple が策定したプロファイル。赤や緑方向に拡張し、iPhone / Mac などで表現できる。
+          <li>a98-rgb: Adobe が策定した Adobe RGB というプロファイル。緑~青緑方向に拡張し、CMYK への変換向き。
+          <li>prophoto-rgb: Kodak が策定したプロファイル。自然界にあるほとんどの色をカバーできるが、人間には知覚できない領域を含む。
+          <li>rec2020: 4K/8K テレビ放送などに対応するプロファイル。一般的なディスプレイでは再現できない領域を、将来のために確保している。
+        </ul>
+        <p>したがって、Web 開発では意識するとしても <code translate=no>display-p3</code> だ。ただし、Display P3 にしかない色は、基本的に彩度の強い色なので、それを使わない範囲であれば意識する必要はない。
+        <p>Wide Gamut を指定する場合は、<code translate=no>color()</code> を使い、その色域の中での割合を RGBA で指定する。
+        <p>例えば、以下のようにすると sRGB よりも外にある Display P3 領域において、もっとも鮮やかな緑を出すことができる。
+        <p>その色を発色できないディスプレイでは、表現できる色域に丸め込まれる(gamut mapping)。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: color(</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">display-p3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 0% 100% 0%);</span></span></code></pre>
+        <p>
+          <picture>
+            <source type=image/avif srcset=display-p3.avif?260824_182417>
+            <source type=image/webp srcset=display-p3.webp?260824_182403>
+            <img loading=lazy decoding=async src=display-p3.png?260824_182403 alt="display-p3" width=596 height=297>
+          </picture>
+        </p>
+        <p>DEMO: <a href="https://labs.jxck.io/color/#wide-gamut" target=_blank>https://labs.jxck.io/color/#wide-gamut</a>
+        <p><code translate=no>rgb()</code> が表現する色空間は sRGB であるため、<code translate=no>display-p3</code> などの広い色域は表現できない。
+        <p>しかし、<code translate=no>oklch()</code> は C(彩度)の指定が段階や割合ではないため、理論上は上限がない。
+        <p>そのため、以下のようにこの明るい緑を、Wide Gamut を意識せずに再現できる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: oklch(0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.86</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 0</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">.3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> 142);</span></span></code></pre>
+        <p>したがって、やはり <code translate=no>oklch</code> を使って実装をしておけば、仮に何らかの UI でネオンカラーのような彩度の強い色が必要になっても、シームレスに取り入れることができる。
+        <p>もし丸め込みによる色の差し替えが許容できない場合は、Media Query を用いて分岐もできる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="css"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">:root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">  --accent</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.86</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0.2</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 142</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">@media</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (color-gamut: display-p3) {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  :root</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">    --accent</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">oklch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0.86</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 0.3</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 142</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+        <ul>
+          <li>
+            CSS Color Module Level 4 - 10. Predefined Color Spaces
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-4/#predefined" target=_blank>https://drafts.csswg.org/css-color-4/#predefined</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="その他"><a href="#その他">その他</a></h2>
+        <p>Color Module v6 では他にも、2 色の補間を出す <code translate=no>color-mix()</code> に対して、合成(Alpha Blending)を行う <code translate=no>color-layers()</code> が提案されている。
+        <p>また <code translate=no>contrast-color()</code> も、白/黒だけではなく候補リストを渡してそこから選択し、その選択のためのコントラストアルゴリズムを指定できるよう拡張されるなど、<code translate=no>color-contrast()</code> 時代のモチベーションに戻す方向の議論もある。
+        <p>もちろん、それらは全て提案段階で、また白紙に戻る可能性が大いにあるが、今後も色の指定に関する API は増えていきそうだ。
+        <ul>
+          <li>
+            CSS Color Module Level 6 - 3. Layering Multiple Colors: the color-layers() function
+            <ul>
+              <li><a href="https://drafts.csswg.org/css-color-6/#color-layers" target=_blank>https://drafts.csswg.org/css-color-6/#color-layers</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>もちろん、基本となるデザインが LAB や HWB などで行われており、それをそのまま Web に移植するといった場面はあるだろう。その場合は、用意された関数をそのまま使えば良い。
+        <p>しかし、Web を前提にデザインし、Web で実装し、Web のもつポテンシャルを引き出すのであれば、OKLCH を基本にし、その他機能を踏まえながら実装するのが素直だろう。
+        <p>単に <code translate=no>oklch()</code> 関数で色を出すだけではなく、そこで使われるパラメータを整理して、アルゴリズミックに色を算出することができれば、色の管理はかなり容易になり、テーマや状態が増えても破綻しにくい土台を作ることができるだろう。
+        <p>デザインシステムや、そこで定義されるデザイントークンが、デザイナーが感覚で決めた Hex の集約になっているのであれば、こうした知見を活かして設計を見直してみると良いかもしれない。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
