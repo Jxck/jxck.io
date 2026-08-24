@@ -23,7 +23,7 @@ CSS のキーワードとして登録されている 148 色は、Named Color �
 background-color: red;
 ```
 
-![Named Colors](named-colors.png)
+![Named Colors](named-colors.png#633x323)
 
 DEMO: https://labs.jxck.io/color/#named-colors
 
@@ -39,7 +39,7 @@ Web Safe Color は、モニターが 256 色しか再現できなかった時代
 
 要するに RGB をそれぞれ 16 進数にしたとき、`00`, `33`, `66`, `99`, `CC`, `FF` の 6 つを組み合わせた 6^3 = 216 色を指す。ちなみに、連続する数字はまとめられるので `#FFCC33` は `#FC3` と書ける。
 
-![Web Safe Colors](web-safe-colors.png)
+![Web Safe Colors](web-safe-colors.png#636x134)
 
 DEMO: https://labs.jxck.io/color/#web-safe-colors
 
@@ -105,7 +105,7 @@ background-color: hsl(347 100% 60%);
 
 こう比較すると、両者は色相/明度は全く同じで、彩度だけが変わっていることが一目瞭然となる。
 
-![HSL で S だけを変えた比較](hsl-comparison.png)
+![HSL で S だけを変えた比較](hsl-comparison.png#607x309)
 
 DEMO: https://labs.jxck.io/color/#hsl-comparison
 
@@ -120,7 +120,7 @@ background-color: hsl(340 90% 50%);
 background-color: hsl( 10 90% 50%);
 ```
 
-![hsl-components](hsl-components.png)
+![hsl-components](hsl-components.png#583x153)
 
 DEMO: https://labs.jxck.io/color/#hsl-components
 
@@ -136,7 +136,7 @@ d3.js も色の操作に `d3.hsl()` API を提供している。
 
 ところが、H を変えていく場合、L が同じでも「黄色が眩しく、青が暗い」と感じる問題が知られていた。
 
-![hsl-uniformity](hsl-uniformity.png)
+![hsl-uniformity](hsl-uniformity.png#641x282)
 
 DEMO: https://labs.jxck.io/color/#hsl-uniformity
 
@@ -161,7 +161,7 @@ background-color: hwb(347 24% 4%);
 background-color: hwb(347 20% 0%);
 ```
 
-![hwb-comparison](hwb-comparison.png)
+![hwb-comparison](hwb-comparison.png#597x301)
 
 DEMO: https://labs.jxck.io/color/#hwb-comparison
 
@@ -198,7 +198,7 @@ background-color: lab(56.5% 70.8 22.8);
 background-color: lab(57.4% 75.8 27.9);
 ```
 
-![lab-comparison](lab-comparison.png)
+![lab-comparison](lab-comparison.png#601x294)
 
 DEMO: https://labs.jxck.io/color/#lab-comparison
 
@@ -233,7 +233,7 @@ background-color: lch(30% 130 300); /* 起点 */
 background-color: lch(50% 130 300); /* 赤紫が入る */
 ```
 
-![lch-hue-shift](lch-hue-shift.png)
+![lch-hue-shift](lch-hue-shift.png#537x152)
 
 DEMO: https://labs.jxck.io/color/#lch-hue-shift
 
@@ -252,7 +252,7 @@ LAB/LCH の持っていた「青が紫にシフトする」問題を数学的に
 - A perceptual color space for image processing
   - https://bottosson.github.io/posts/oklab/
 
-![oklch-hue-stability](oklch-hue-stability.png)
+![oklch-hue-stability](oklch-hue-stability.png#531x146)
 
 DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 
@@ -282,11 +282,11 @@ DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 
 HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば知覚的に揃ったパレットを作ることができる。
 
-![HSL/OKLCH Color Palette](palette-comparison.png)
+![HSL/OKLCH Color Palette](palette-comparison.png#650x682)
 
 知覚均等性の差は、パレットをグレースケールするとよくわかる。
 
-![HSL/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png)
+![HSL/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png#643x682)
 
 DEMO: https://labs.jxck.io/color/#palette-comparison
 
@@ -337,7 +337,7 @@ background-color: oklch(from var(--primary) calc(1 - l) c h);
 }
 ```
 
-![Relative Color Syntax で Hue Shifting](relative-colors.png)
+![Relative Color Syntax で Hue Shifting](relative-colors.png#646x154)
 
 DEMO: https://labs.jxck.io/color/#relative-colors
 
@@ -375,7 +375,7 @@ background-color:
 background-color: color-mix(in oklab, var(--fg) 20%, var(--bg));
 ```
 
-![color-mix()](color-mix.png)
+![color-mix()](color-mix.png#684x463)
 
 DEMO: https://labs.jxck.io/color/#color-mix
 
@@ -431,7 +431,7 @@ color: color-contrast(var(--bg) vs #eee, #333, #111);
 color: contrast-color(var(--bg)); /* white / black */
 ```
 
-![contrast-color](contrast-color.png)
+![contrast-color](contrast-color.png#704x127)
 
 DEMO: https://labs.jxck.io/color/#contrast-color
 
@@ -471,7 +471,7 @@ Wide Gamut を指定する場合は、`color()` を使い、その色域の中�
 background-color: color(display-p3 0% 100% 0%);
 ```
 
-![display-p3](display-p3.png)
+![display-p3](display-p3.png#596x297)
 
 DEMO: https://labs.jxck.io/color/#wide-gamut
 
