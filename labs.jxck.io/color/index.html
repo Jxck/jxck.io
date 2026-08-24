@@ -297,6 +297,7 @@
       min-height: 8rem;
       padding: 1rem;
       background: var(--bg);
+      color: var(--fallback, CanvasText);
       color: contrast-color(var(--bg));
       font-weight: bold;
     }
@@ -838,7 +839,7 @@
 
     <section id="oklch-hue-stability">
       <h2>OKLCH Hue Stability</h2>
-      <p>同じ <code>lch(30% 130 300)</code> を起点に、OKLCH では C = 0.31, H = 264 を固定して L を 0.1 ずつ増やす。明るくしても青の色相が保たれる。</p>
+      <p>同じ <code>lch(30% 130 300)</code> を起点に、OKLCH では C = 0.31, H = 264 を固定して L を 0.1 ずつ増やす。C が色域を超えた分は丸められるが、色相が保たれるため、明るくしても青のままになる。</p>
       <ul class="demo-palette">
         <li style="--color: lch(30% 130 300)"><code>lch(30% 130 300)</code></li>
         <li style="--color: oklch(0.55 0.31 264)"><code>oklch(0.55 0.31 264)</code></li>
@@ -968,12 +969,12 @@
 
     <section id="contrast-color">
       <h2>contrast-color()</h2>
-      <p>背景色ごとに、文字色を白または黒から自動的に選択する。</p>
+      <p>背景色ごとに、文字色を白または黒から自動的に選択する。未対応のブラウザでは、同じ結果を手書きしたフォールバック色で表示している。</p>
       <div class="comparison">
-        <div class="contrast-sample" style="--bg: #f5d442">contrast-color<br>#f5d442</div>
-        <div class="contrast-sample" style="--bg: #173f8a">contrast-color<br>#173f8a</div>
-        <div class="contrast-sample" style="--bg: #d9579b">contrast-color<br>#d9579b</div>
-        <div class="contrast-sample" style="--bg: #246b45">contrast-color<br>#246b45</div>
+        <div class="contrast-sample" style="--bg: #f5d442; --fallback: black">contrast-color<br>#f5d442</div>
+        <div class="contrast-sample" style="--bg: #173f8a; --fallback: white">contrast-color<br>#173f8a</div>
+        <div class="contrast-sample" style="--bg: #d9579b; --fallback: black">contrast-color<br>#d9579b</div>
+        <div class="contrast-sample" style="--bg: #246b45; --fallback: white">contrast-color<br>#246b45</div>
       </div>
     </section>
 
