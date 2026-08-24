@@ -26,10 +26,9 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 ##########################
 # Aggregate
 ##########################
-# 既定ターゲット: 直接ビルドは禁止し、用途別ターゲットへ誘導する
-all:
-	@echo "run 'make blog'" >&2
-	@exit 1
+# 既定ターゲット: blog の一式 (差分ビルド + 画像 + 圧縮)
+# 辞書の再生成と h2o reload を伴う make dict だけは明示的に実行する
+all: blog image
 
 # blog の md を formatter にかけて整形
 fmt: fmt-blog
