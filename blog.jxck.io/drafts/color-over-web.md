@@ -4,11 +4,15 @@
 
 Web における「色」を扱う API は、気づいたら色々増えている。
 
-デザインシステムのなかでデザイントークンとして、色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。
+デザインシステムの中で、デザイントークンとして色を一元管理するといった構成は増えているが、その先の定義が RGB Hex なことはまだ多いだろう。
 
 今の Web の API を用いると、どういった色の設計や管理が可能なのか、Web における色の指定を棚卸しする。
 
-https://drafts.csswg.org/css-color-6/
+中心は CSS Color Module Level 4 ~ 6 だ。
+
+- https://drafts.csswg.org/css-color-4/
+- https://drafts.csswg.org/css-color-5/
+- https://drafts.csswg.org/css-color-6/
 
 
 ## Named Color
@@ -19,6 +23,8 @@ CSS のキーワードとして登録されている 148 色は、Named Color �
 background-color: red;
 ```
 
+DEMO: https://labs.jxck.io/color/#named-colors
+
 仕様に書かれている通り、これらは初期のブラウザが動作環境としていた X11 の実装する色名を、そのままブラウザに移植したところから始まる。
 
 > For historical reasons, this is also referred to as the X11 color set.
@@ -28,6 +34,8 @@ background-color: red;
 Web Safe Color は、モニターが 256 色しか再現できなかった時代に、その範囲を超えないように指定する色とされる。
 
 要するに RGB をそれぞれ 16 進数にしたとき、`00`, `33`, `66`, `99`, `CC`, `FF` の 6 つを組み合わせた 6^3 = 216 色を指す。ちなみに、連続する数字はまとめられるので `#FFCC33` は `#FC3` と書ける。
+
+DEMO: https://labs.jxck.io/color/#web-safe-colors
 
 例えば Named Color の `skyblue` は `#87CEEB` と半端な値が含まれるため、Web Safe Color ではなく、最も近いのは `#99CCFF` になる。
 
@@ -57,11 +65,9 @@ background-color: rgb(30 40 50 / 60%);
 background-color: rgb(10% 20% 70% / 60%);
 ```
 
-昔は `rgb(30, 40, 50)` のようにカンマ区切りだったが、今は区切る必要はない。
+DOM API で色情報を取得する際、`[30, 40, 50]` のように RGB 形式を用いるものがあるため、そこと連携する際は `rgb()` が使いやすい。また、昔は `rgb(30, 40, 50)` のようにカンマ区切りだったが、今は区切る必要はない。
 
 また Alpha を指定するために `rgba()` も定義されたが、`rgb()` が拡張されて Alpha が取れるようになったため、`rgba()` は `rgb()` のエイリアスとなっている。
-
-DOM API で色情報を取得する際、`[30, 40, 50]` のように RGB 形式を用いるものがあるため、そこと連携する際は `rgb()` が使いやすい。
 
 - CSS Color Module Level 4 - 5.1. The RGB functions: rgb() and rgba()
   - https://drafts.csswg.org/css-color-4/#rgb-functions
@@ -93,18 +99,17 @@ background-color: hsl(347 100% 60%);
 
 こう比較すると、両者は色相/明度は全く同じで、彩度だけが変わっていることが一目瞭然となる。
 
+DEMO: https://labs.jxck.io/color/#hsl-comparison
+
 この特徴を用いれば、例えば L, S を固定して H を変えれば、「明るさ」「鮮やかさ」を統一した異なる色を選ぶことができるため、統一したカラーパレットを作ることができる。アルゴリズミックな色定義が可能ということだ。
 
-Windows のカラーダイアログは、古くから HSL の指定がサポートされている。
-
-![Windows Color Picker](windows-color-picker.png)
-
-- Color Dialog Box - Win32 apps | Microsoft Learn
-  - https://learn.microsoft.com/en-us/windows/win32/dlgbox/color-dialog-box
+DEMO: https://labs.jxck.io/color/#hsl-components
 
 Web においても、HSL を採用する事例は決して少なくはなく、shadcn/ui などでは、HSL の成分を定義して、そこから色を生成する方式を取っていた。d3.js も色の操作に `d3.hsl()` API を提供していた。
 
 ところが、H を変えていく場合、L が同じでも「黄色が眩しく、青が暗い」と感じる問題が知られていた。
+
+DEMO: https://labs.jxck.io/color/#hsl-uniformity
 
 したがって現在は、「人間の知覚特性に合わせた変化」をさせやすい性質(Perceptual Uniformity:知覚特性均等性)をもつよう、改善された方式が使われるようになっている。
 
@@ -126,6 +131,8 @@ HWB は Hue(色相) / Whiteness(白の混合率) / Blackness(黒の混合率)で
 background-color: hwb(347 24% 4%);
 background-color: hwb(347 20% 0%);
 ```
+
+DEMO: https://labs.jxck.io/color/#hwb-comparison
 
 HSL は、明度・彩度のパラメータがそれぞれ独立していることにメリットがあった。
 
@@ -160,6 +167,8 @@ background-color: lab(56.5% 70.8 22.8);
 background-color: lab(57.4% 75.8 27.9);
 ```
 
+DEMO: https://labs.jxck.io/color/#lab-comparison
+
 明度が近いことはわかるが、彩度の差はここからだと読み取るのは難しい。
 
 L はよくても、a, b をアルゴリズミックに設計するのが難しいため、LAB もそのまま Web で採用されることは少ない。
@@ -187,9 +196,11 @@ background-color: lch(60% 50 250 / 80%);
 ただし、青の色相においては、明度や彩度だけを変えても明らかに赤みを帯びて紫っぽくなり、色相が変わって見える現象が知られている。
 
 ```css
-background-color: lch(30% 130 300); /* #0012ff 青 */
-background-color: lch(70% 130 300); /* #b181ff 薄紫になってしまう */
+background-color: lch(30% 130 300); /* 起点 */
+background-color: lch(50% 130 300); /* 赤紫が入る */
 ```
+
+DEMO: https://labs.jxck.io/color/#lch-hue-shift
 
 これは実は LAB でも起こっており、LCH は LAB を直交座標から極座標に変換しただけ(つまり表し方を変えただけ)なので、LAB の問題を引き継いだ形になる。
 
@@ -205,6 +216,8 @@ LAB/LCH の持っていた「青が紫にシフトする」問題を数学的に
 
 - A perceptual color space for image processing
   - https://bottosson.github.io/posts/oklab/
+
+DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 
 ブログによると、OK とは良いという意味そのままの OK のようだ。
 
@@ -231,6 +244,8 @@ LAB/LCH の持っていた「青が紫にシフトする」問題を数学的に
 ```
 
 HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば視覚特性的に揃ったパレットを作ることができる。
+
+DEMO: https://labs.jxck.io/color/#palette-comparison
 
 - CSS Color Module Level 4 - 9.4. Specifying Oklab and Oklch: the oklab() and oklch() functional notations
   - https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch
@@ -279,6 +294,8 @@ background-color: oklch(from var(--primary) calc(1 - l) c h);
 }
 ```
 
+DEMO: https://labs.jxck.io/color/#relative-colors
+
 ここまで来ると、`--primary` 一色だけを決めたら、あとは全て自動で算出することができる。
 
 テーマ変更を可能にする UI などでは、`--primary` のバリエーションさえ提供すれば、大きく破綻のない UI を提供できる、といった設計も可能だろう。
@@ -305,6 +322,8 @@ background-color:
   );
 ```
 
+DEMO: https://labs.jxck.io/color/#light-dark
+
 `light-dark()` は色を取るが、色以外のパラメータなどを取らないため、色を全部書く必要がある(本当は `light-dark(-0.1, +0.1)` などと書けると嬉しいができないという話)。
 
 そこで視点を変えて、「背景色と前景色を混ぜる」ことで Hover の色を設計することを考えよう。たとえば、背景に前景を 20% 混ぜるとこうなる。
@@ -312,6 +331,8 @@ background-color:
 ```css
 background-color: color-mix(in oklab, var(--fg) 20%, var(--bg));
 ```
+
+DEMO: https://labs.jxck.io/color/#color-mix
 
 Light Mode では、白背景に文字の黒を少し混ぜたグレーになり、Dark Mode では、その逆になる。つまり、どちらでも「背景色を少し前景色に近づけた」値になる。
 
@@ -365,6 +386,8 @@ color: color-contrast(var(--bg) vs #eee, #333, #111);
 color: contrast-color(var(--bg)); /* white / black */
 ```
 
+DEMO: https://labs.jxck.io/color/#contrast-color
+
 もし `color-contrast()` を使ったとしても、フォールバックに白/黒相当を渡すだろうという想定もあるので、そこだけを切り抜いたイメージだ。
 
 出てくる色は、`#000000` か `#ffffff` と極端なので、これをさらに RCS で調和する色味に調整する必要がありそうだ。しかし、調整したらコントラストが達成される保証はない。これを使っていれば安心とも限らない。
@@ -400,6 +423,8 @@ Wide Gamut を指定する場合は、`color()` を使い、指定はその色�
 ```css
 background-color: color(display-p3 0% 100% 0%);
 ```
+
+DEMO: https://labs.jxck.io/color/#wide-gamut
 
 `rgb()` が表現する色空間は sRGB であるため、`display-p3` などの広い色域は表現できない。
 
