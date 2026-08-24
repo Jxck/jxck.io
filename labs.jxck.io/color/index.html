@@ -321,6 +321,7 @@
         <li><a href="#palette-comparison">HSL / OKLCH</a></li>
         <li><a href="#relative-colors">Relative Colors</a></li>
         <li><a href="#color-mix">color-mix()</a></li>
+        <li><a href="#color-mix-space">color-mix() Color Space</a></li>
         <li><a href="#contrast-color">contrast-color()</a></li>
         <li><a href="#wide-gamut">Wide Gamut</a></li>
       </ul>
@@ -964,6 +965,22 @@
           </div>
           <button type="button" class="mix-button">Hover Me</button>
         </div>
+      </div>
+    </section>
+
+    <section id="color-mix-space">
+      <h2>color-mix() Color Space</h2>
+      <p>同じ blue と yellow を、異なる色空間で混ぜた比較。<code>in srgb</code> は完全なグレーに濁り、<code>in oklab</code> は明度の自然な中間色になる。極座標の <code>in oklch</code> は、色相環を経由するため鮮やかなまま混ざる。<code>in</code> を省略した場合のデフォルトは oklab。</p>
+      <div class="comparison">
+        <figure class="sample" style="--color: color-mix(in srgb, blue, yellow)">
+          <code>color-mix(in srgb, blue, yellow)</code>
+        </figure>
+        <figure class="sample" style="--color: color-mix(in oklab, blue, yellow)">
+          <code>color-mix(in oklab, blue, yellow)</code>
+        </figure>
+        <figure class="sample" style="--color: color-mix(in oklch, blue, yellow)">
+          <code>color-mix(in oklch, blue, yellow)</code>
+        </figure>
       </div>
     </section>
 
