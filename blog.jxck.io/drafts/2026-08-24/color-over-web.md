@@ -31,7 +31,7 @@ DEMO: https://labs.jxck.io/color/#named-colors
 
 > For historical reasons, this is also referred to as the X11 color set.
 
-X11 以外にもいくつかの経由で集約されたたため、 `gray` (米国綴り)と `grey` (英国綴り)が両方あったり、 `aqua` と `cyan` が同じだったりするため、色自体は 139 色だ。
+X11 以外にもいくつかの経由で集約されたたため、`gray` (米国綴り)と `grey` (英国綴り)が両方あったり、`aqua` と `cyan` が同じだったりするため、色自体は 139 色だ。
 
 そして、この "Named Color" が "Web Safe Color" だと誤解されることがある。
 
@@ -160,6 +160,7 @@ HWB は Hue(色相) / Whiteness(白の混合率) / Blackness(黒の混合率)で
 background-color: hwb(347 24% 4%);
 background-color: hwb(347 20% 0%);
 ```
+
 ![hwb-comparison](hwb-comparison.png)
 
 DEMO: https://labs.jxck.io/color/#hwb-comparison
@@ -231,6 +232,7 @@ background-color: lch(60% 50 250 / 80%);
 background-color: lch(30% 130 300); /* 起点 */
 background-color: lch(50% 130 300); /* 赤紫が入る */
 ```
+
 ![lch-hue-shift](lch-hue-shift.png)
 
 DEMO: https://labs.jxck.io/color/#lch-hue-shift
@@ -267,14 +269,14 @@ DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 ```css
 :root {
   /* 明度(L) と 彩度(C) の共通設定 */
-  --brand-l: 0.60;
-  --brand-c: 0.10;
+  --brand-l: 0.74;
+  --brand-c: 0.125;
 
   /* Hue を変えることで、トーンが揃ったカラーパレットが定義できる */
-  --brand-blue:   oklch(var(--brand-l) var(--brand-c) 250); /* 青 */
-  --brand-green:  oklch(var(--brand-l) var(--brand-c) 140); /* 緑 */
-  --brand-purple: oklch(var(--brand-l) var(--brand-c) 300); /* 紫 */
-  --brand-red:    oklch(var(--brand-l) var(--brand-c)  20);  /* 赤 */
+  --brand-blue:   oklch(var(--brand-l) var(--brand-c) 263); /* 青 */
+  --brand-green:  oklch(var(--brand-l) var(--brand-c) 148); /* 緑 */
+  --brand-purple: oklch(var(--brand-l) var(--brand-c) 314); /* 紫 */
+  --brand-red:    oklch(var(--brand-l) var(--brand-c)  32); /* 赤 */
 }
 ```
 
@@ -282,13 +284,11 @@ HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という�
 
 ![HLS/OKLCH Color Palette](palette-comparison.png)
 
-
 知覚均等性の差は、パレットをグレースケールするとよくわかる。
 
 ![HLS/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png)
 
 DEMO: https://labs.jxck.io/color/#palette-comparison
-
 
 - CSS Color Module Level 4 - 9.4. Specifying Oklab and Oklch: the oklab() and oklch() functional notations
   - https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch
@@ -337,6 +337,8 @@ background-color: oklch(from var(--primary) calc(1 - l) c h);
 }
 ```
 
+![Relative Color Syntax で Hue Shifting](relative-colors.png)
+
 DEMO: https://labs.jxck.io/color/#relative-colors
 
 ここまで来ると、`--primary` 一色だけを決めたら、あとは全て自動で算出することができる。
@@ -365,8 +367,6 @@ background-color:
   );
 ```
 
-DEMO: https://labs.jxck.io/color/#light-dark
-
 `light-dark()` は色を取るが、色以外のパラメータなどを取らないため、色を全部書く必要がある(本当は `light-dark(-0.1, +0.1)` などと書けると嬉しいができないという話)。
 
 そこで視点を変えて、「背景色と前景色を混ぜる」ことで Hover の色を設計することを考えよう。たとえば、背景に前景を 20% 混ぜるとこうなる。
@@ -374,6 +374,8 @@ DEMO: https://labs.jxck.io/color/#light-dark
 ```css
 background-color: color-mix(in oklab, var(--fg) 20%, var(--bg));
 ```
+
+![color-mix()](color-mix.png)
 
 DEMO: https://labs.jxck.io/color/#color-mix
 
@@ -468,6 +470,8 @@ Wide Gamut を指定する場合は、`color()` を使い、指定はその色�
 ```css
 background-color: color(display-p3 0% 100% 0%);
 ```
+
+![display-p3](display-p3.png)
 
 DEMO: https://labs.jxck.io/color/#wide-gamut
 
