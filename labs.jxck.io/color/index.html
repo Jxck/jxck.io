@@ -232,7 +232,7 @@
     }
 
     .hue-shifting {
-      --primary: oklch(0.6 0.1 250);
+      --primary: oklch(0.7 0.15 250);
     }
 
     .force-light {
@@ -243,32 +243,53 @@
       color-scheme: dark;
     }
 
-    .mode-sample {
-      --primary: oklch(0.6 0.1 250);
-      --bg: Canvas;
-      --fg: CanvasText;
-      min-height: 10rem;
-      padding: 1rem;
+    .mix-demo {
+      --bg: light-dark(oklch(0.93 0.03 250), oklch(0.25 0.05 250));
+      --fg: light-dark(oklch(0.45 0.12 250), oklch(0.85 0.07 250));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+    }
+
+    .mix-equation {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mix-equation .op {
+      font-weight: bold;
+    }
+
+    .mix-chip {
+      display: grid;
+      width: 5rem;
+      height: 5rem;
+      align-items: end;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      border-radius: 0.4rem;
+      background: var(--color);
+    }
+
+    .mix-chip code {
+      text-align: center;
+    }
+
+    .mix-button {
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--fg);
+      border-radius: 0.4rem;
       background: var(--bg);
       color: var(--fg);
+      font: inherit;
+      cursor: pointer;
     }
 
-    .light-dark-color {
-      background: light-dark(
-        oklch(from var(--primary) calc(l - 0.1) c h),
-        oklch(from var(--primary) calc(l + 0.1) c h)
-      );
-    }
-
-    #light-dark .comparison {
-      grid-template-columns: repeat(2, max-content);
-    }
-
-    #light-dark code {
-      white-space: nowrap;
-    }
-
-    .mixed-color {
+    .mixed-color,
+    .mix-button:hover {
       background: color-mix(in oklab, var(--fg) 20%, var(--bg));
     }
 
@@ -298,7 +319,6 @@
         <li><a href="#oklch-hue-stability">OKLCH Hue Stability</a></li>
         <li><a href="#palette-comparison">HSL / OKLCH</a></li>
         <li><a href="#relative-colors">Relative Colors</a></li>
-        <li><a href="#light-dark">light-dark()</a></li>
         <li><a href="#color-mix">color-mix()</a></li>
         <li><a href="#contrast-color">contrast-color()</a></li>
         <li><a href="#wide-gamut">Wide Gamut</a></li>
@@ -904,7 +924,7 @@
 
     <section id="relative-colors" class="hue-shifting">
       <h2>Relative Color Syntax</h2>
-      <p><code>--primary: oklch(0.6 0.1 250)</code> を基準に Hue Shifting で生成した色。</p>
+      <p><code>--primary: oklch(0.7 0.15 250)</code> を基準に Hue Shifting で生成した色。</p>
       <ul class="demo-palette">
         <li style="--color: var(--primary)"><code>primary</code></li>
         <li style="--color: oklch(from var(--primary) l c calc(h + 30))"><code>h + 30</code></li>
@@ -915,29 +935,34 @@
       </ul>
     </section>
 
-    <section id="light-dark">
-      <h2>light-dark()</h2>
-      <p>同じ <code>light-dark()</code> を Light Mode と Dark Mode で評価した結果。</p>
-      <div class="comparison">
-        <figure class="sample mode-sample force-light light-dark-color">
-          <code>light: calc(l - 0.1)</code>
-        </figure>
-        <figure class="sample mode-sample force-dark light-dark-color">
-          <code>dark: calc(l + 0.1)</code>
-        </figure>
-      </div>
-    </section>
-
     <section id="color-mix">
       <h2>color-mix()</h2>
-      <p>背景色に前景色を 20% 混ぜた色を Light Mode と Dark Mode で比較する。</p>
-      <div class="comparison">
-        <figure class="sample mode-sample force-light mixed-color">
-          <code>color-mix(in oklab, var(--fg) 20%, var(--bg))</code>
-        </figure>
-        <figure class="sample mode-sample force-dark mixed-color">
-          <code>color-mix(in oklab, var(--fg) 20%, var(--bg))</code>
-        </figure>
+      <p>背景色に前景色を 20% 混ぜて、新しい色を作る。<code>color-mix(in oklab, var(--fg) 20%, var(--bg))</code> という同じ宣言のまま、Light / Dark 両方のモードに適応する。ボタンを hover すると、背景が混合色になる。</p>
+      <div class="demo-group">
+        <h3>Light Mode</h3>
+        <div class="force-light mix-demo">
+          <div class="mix-equation">
+            <figure class="mix-chip" style="--color: var(--bg)"><code>背景</code></figure>
+            <span class="op">+</span>
+            <figure class="mix-chip" style="--color: var(--fg)"><code>前景 20%</code></figure>
+            <span class="op">=</span>
+            <figure class="mix-chip mixed-color"><code>混合色</code></figure>
+          </div>
+          <button type="button" class="mix-button">Hover Me</button>
+        </div>
+      </div>
+      <div class="demo-group">
+        <h3>Dark Mode</h3>
+        <div class="force-dark mix-demo">
+          <div class="mix-equation">
+            <figure class="mix-chip" style="--color: var(--bg)"><code>背景</code></figure>
+            <span class="op">+</span>
+            <figure class="mix-chip" style="--color: var(--fg)"><code>前景 20%</code></figure>
+            <span class="op">=</span>
+            <figure class="mix-chip mixed-color"><code>混合色</code></figure>
+          </div>
+          <button type="button" class="mix-button">Hover Me</button>
+        </div>
       </div>
     </section>
 
