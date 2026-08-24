@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS Color DEMO</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: system-ui, sans-serif;
+      line-height: 1.5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    nav ul {
+      padding-inline-start: 2rem;
+    }
+
+    section {
+      margin-block: 3rem;
+      scroll-margin-block-start: 1rem;
+    }
+
+    h2 {
+      border-block-end: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      padding-block-end: 0.25rem;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+      gap: 0.5rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .palette li,
+    .sample {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      border-radius: 0.4rem;
+      background: var(--color);
+    }
+
+    .palette li {
+      display: grid;
+      min-height: 5rem;
+      align-items: end;
+    }
+
+    #named-colors .palette,
+    #web-safe-colors .palette {
+      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+      gap: 2px 0.5rem;
+    }
+
+    #named-colors .palette li,
+    #web-safe-colors .palette li {
+      display: flex;
+      min-height: 2rem;
+      align-items: center;
+      overflow: visible;
+      border: 0;
+      background: none;
+    }
+
+    #named-colors .palette li::before,
+    #web-safe-colors .palette li::before {
+      width: 2rem;
+      height: 2rem;
+      flex: 0 0 2rem;
+      border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      background: var(--color);
+      content: "";
+    }
+
+    #named-colors .palette code,
+    #web-safe-colors .palette code {
+      padding: 0.25rem 0.5rem;
+      background: none;
+    }
+
+    code {
+      overflow: hidden;
+      padding: 0.35rem 0.5rem;
+      background: color-mix(in srgb, Canvas 88%, transparent);
+      color: CanvasText;
+      font: 0.75rem ui-monospace, monospace;
+      text-overflow: ellipsis;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 12rem));
+      gap: 1rem;
+    }
+
+    .sample {
+      display: grid;
+      min-height: 12rem;
+      align-items: end;
+      margin: 0;
+    }
+
+    .sample code {
+      font-size: 0.9rem;
+    }
+
+    .hsl-90 {
+      --color: hsl(347 90% 60%);
+    }
+
+    .hsl-100 {
+      --color: hsl(347 100% 60%);
+    }
+
+    .demo-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(5rem, 6rem));
+      gap: 0.5rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .demo-palette li {
+      display: grid;
+      min-height: 8rem;
+      align-items: end;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      border-radius: 0.4rem;
+      background: var(--color);
+    }
+
+    .demo-group {
+      margin-block: 2rem;
+    }
+
+    #hsl-components .demo-group h3 {
+      margin-block-end: 0.25rem;
+    }
+
+    #hsl-components .demo-palette {
+      grid-template-columns: repeat(5, minmax(0, 6rem));
+      gap: 0.5rem;
+    }
+
+    #hsl-components .demo-palette li {
+      min-height: 8rem;
+      border-radius: 0.4rem;
+    }
+
+    #hsl-components .demo-palette code {
+      padding-inline: 0.25rem;
+      text-align: center;
+    }
+
+    .hue-shifting {
+      --primary: oklch(0.6 0.1 250);
+    }
+
+    .force-light {
+      color-scheme: light;
+    }
+
+    .force-dark {
+      color-scheme: dark;
+    }
+
+    .mode-sample {
+      --primary: oklch(0.6 0.1 250);
+      --bg: Canvas;
+      --fg: CanvasText;
+      min-height: 10rem;
+      padding: 1rem;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .light-dark-color {
+      background: light-dark(
+        oklch(from var(--primary) calc(l - 0.1) c h),
+        oklch(from var(--primary) calc(l + 0.1) c h)
+      );
+    }
+
+    .mixed-color {
+      background: color-mix(in oklab, var(--fg) 20%, var(--bg));
+    }
+
+    .contrast-sample {
+      min-height: 8rem;
+      padding: 1rem;
+      background: var(--bg);
+      color: contrast-color(var(--bg));
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CSS Color DEMO</h1>
+    <p>CSS の色指定を一覧で比較するためのデモ。</p>
+    <nav aria-label="デモ一覧">
+      <ul>
+        <li><a href="#named-colors">Named Colors</a></li>
+        <li><a href="#web-safe-colors">Web Safe Colors</a></li>
+        <li><a href="#hsl-comparison">HSL Comparison</a></li>
+        <li><a href="#hsl-components">HSL Components</a></li>
+        <li><a href="#hsl-uniformity">HSL Uniformity</a></li>
+        <li><a href="#hwb-comparison">HWB</a></li>
+        <li><a href="#lab-comparison">LAB</a></li>
+        <li><a href="#lch-hue-shift">LCH Hue Shift</a></li>
+        <li><a href="#oklch-hue-stability">OKLCH Hue Stability</a></li>
+        <li><a href="#palette-comparison">HSL / OKLCH</a></li>
+        <li><a href="#relative-colors">Relative Colors</a></li>
+        <li><a href="#light-dark">light-dark()</a></li>
+        <li><a href="#color-mix">color-mix()</a></li>
+        <li><a href="#contrast-color">contrast-color()</a></li>
+        <li><a href="#wide-gamut">Wide Gamut</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="named-colors">
+      <h2>Named Colors</h2>
+      <p>CSS で定義されている 148 色。別名を持つ同色も個別に表示する。</p>
+      <ul class="palette">
+        <li style="--color: aliceblue"><code>aliceblue</code></li>
+        <li style="--color: antiquewhite"><code>antiquewhite</code></li>
+        <li style="--color: aqua"><code>aqua</code></li>
+        <li style="--color: aquamarine"><code>aquamarine</code></li>
+        <li style="--color: azure"><code>azure</code></li>
+        <li style="--color: beige"><code>beige</code></li>
+        <li style="--color: bisque"><code>bisque</code></li>
+        <li style="--color: black"><code>black</code></li>
+        <li style="--color: blanchedalmond"><code>blanchedalmond</code></li>
+        <li style="--color: blue"><code>blue</code></li>
+        <li style="--color: blueviolet"><code>blueviolet</code></li>
+        <li style="--color: brown"><code>brown</code></li>
+        <li style="--color: burlywood"><code>burlywood</code></li>
+        <li style="--color: cadetblue"><code>cadetblue</code></li>
+        <li style="--color: chartreuse"><code>chartreuse</code></li>
+        <li style="--color: chocolate"><code>chocolate</code></li>
+        <li style="--color: coral"><code>coral</code></li>
+        <li style="--color: cornflowerblue"><code>cornflowerblue</code></li>
+        <li style="--color: cornsilk"><code>cornsilk</code></li>
+        <li style="--color: crimson"><code>crimson</code></li>
+        <li style="--color: cyan"><code>cyan</code></li>
+        <li style="--color: darkblue"><code>darkblue</code></li>
+        <li style="--color: darkcyan"><code>darkcyan</code></li>
+        <li style="--color: darkgoldenrod"><code>darkgoldenrod</code></li>
+        <li style="--color: darkgray"><code>darkgray</code></li>
+        <li style="--color: darkgreen"><code>darkgreen</code></li>
+        <li style="--color: darkgrey"><code>darkgrey</code></li>
+        <li style="--color: darkkhaki"><code>darkkhaki</code></li>
+        <li style="--color: darkmagenta"><code>darkmagenta</code></li>
+        <li style="--color: darkolivegreen"><code>darkolivegreen</code></li>
+        <li style="--color: darkorange"><code>darkorange</code></li>
+        <li style="--color: darkorchid"><code>darkorchid</code></li>
+        <li style="--color: darkred"><code>darkred</code></li>
+        <li style="--color: darksalmon"><code>darksalmon</code></li>
+        <li style="--color: darkseagreen"><code>darkseagreen</code></li>
+        <li style="--color: darkslateblue"><code>darkslateblue</code></li>
+        <li style="--color: darkslategray"><code>darkslategray</code></li>
+        <li style="--color: darkslategrey"><code>darkslategrey</code></li>
+        <li style="--color: darkturquoise"><code>darkturquoise</code></li>
+        <li style="--color: darkviolet"><code>darkviolet</code></li>
+        <li style="--color: deeppink"><code>deeppink</code></li>
+        <li style="--color: deepskyblue"><code>deepskyblue</code></li>
+        <li style="--color: dimgray"><code>dimgray</code></li>
+        <li style="--color: dimgrey"><code>dimgrey</code></li>
+        <li style="--color: dodgerblue"><code>dodgerblue</code></li>
+        <li style="--color: firebrick"><code>firebrick</code></li>
+        <li style="--color: floralwhite"><code>floralwhite</code></li>
+        <li style="--color: forestgreen"><code>forestgreen</code></li>
+        <li style="--color: fuchsia"><code>fuchsia</code></li>
+        <li style="--color: gainsboro"><code>gainsboro</code></li>
+        <li style="--color: ghostwhite"><code>ghostwhite</code></li>
+        <li style="--color: gold"><code>gold</code></li>
+        <li style="--color: goldenrod"><code>goldenrod</code></li>
+        <li style="--color: gray"><code>gray</code></li>
+        <li style="--color: green"><code>green</code></li>
+        <li style="--color: greenyellow"><code>greenyellow</code></li>
+        <li style="--color: grey"><code>grey</code></li>
+        <li style="--color: honeydew"><code>honeydew</code></li>
+        <li style="--color: hotpink"><code>hotpink</code></li>
+        <li style="--color: indianred"><code>indianred</code></li>
+        <li style="--color: indigo"><code>indigo</code></li>
+        <li style="--color: ivory"><code>ivory</code></li>
+        <li style="--color: khaki"><code>khaki</code></li>
+        <li style="--color: lavender"><code>lavender</code></li>
+        <li style="--color: lavenderblush"><code>lavenderblush</code></li>
+        <li style="--color: lawngreen"><code>lawngreen</code></li>
+        <li style="--color: lemonchiffon"><code>lemonchiffon</code></li>
+        <li style="--color: lightblue"><code>lightblue</code></li>
+        <li style="--color: lightcoral"><code>lightcoral</code></li>
+        <li style="--color: lightcyan"><code>lightcyan</code></li>
+        <li style="--color: lightgoldenrodyellow"><code>lightgoldenrodyellow</code></li>
+        <li style="--color: lightgray"><code>lightgray</code></li>
+        <li style="--color: lightgreen"><code>lightgreen</code></li>
+        <li style="--color: lightgrey"><code>lightgrey</code></li>
+        <li style="--color: lightpink"><code>lightpink</code></li>
+        <li style="--color: lightsalmon"><code>lightsalmon</code></li>
+        <li style="--color: lightseagreen"><code>lightseagreen</code></li>
+        <li style="--color: lightskyblue"><code>lightskyblue</code></li>
+        <li style="--color: lightslategray"><code>lightslategray</code></li>
+        <li style="--color: lightslategrey"><code>lightslategrey</code></li>
+        <li style="--color: lightsteelblue"><code>lightsteelblue</code></li>
+        <li style="--color: lightyellow"><code>lightyellow</code></li>
+        <li style="--color: lime"><code>lime</code></li>
+        <li style="--color: limegreen"><code>limegreen</code></li>
+        <li style="--color: linen"><code>linen</code></li>
+        <li style="--color: magenta"><code>magenta</code></li>
+        <li style="--color: maroon"><code>maroon</code></li>
+        <li style="--color: mediumaquamarine"><code>mediumaquamarine</code></li>
+        <li style="--color: mediumblue"><code>mediumblue</code></li>
+        <li style="--color: mediumorchid"><code>mediumorchid</code></li>
+        <li style="--color: mediumpurple"><code>mediumpurple</code></li>
+        <li style="--color: mediumseagreen"><code>mediumseagreen</code></li>
+        <li style="--color: mediumslateblue"><code>mediumslateblue</code></li>
+        <li style="--color: mediumspringgreen"><code>mediumspringgreen</code></li>
+        <li style="--color: mediumturquoise"><code>mediumturquoise</code></li>
+        <li style="--color: mediumvioletred"><code>mediumvioletred</code></li>
+        <li style="--color: midnightblue"><code>midnightblue</code></li>
+        <li style="--color: mintcream"><code>mintcream</code></li>
+        <li style="--color: mistyrose"><code>mistyrose</code></li>
+        <li style="--color: moccasin"><code>moccasin</code></li>
+        <li style="--color: navajowhite"><code>navajowhite</code></li>
+        <li style="--color: navy"><code>navy</code></li>
+        <li style="--color: oldlace"><code>oldlace</code></li>
+        <li style="--color: olive"><code>olive</code></li>
+        <li style="--color: olivedrab"><code>olivedrab</code></li>
+        <li style="--color: orange"><code>orange</code></li>
+        <li style="--color: orangered"><code>orangered</code></li>
+        <li style="--color: orchid"><code>orchid</code></li>
+        <li style="--color: palegoldenrod"><code>palegoldenrod</code></li>
+        <li style="--color: palegreen"><code>palegreen</code></li>
+        <li style="--color: paleturquoise"><code>paleturquoise</code></li>
+        <li style="--color: palevioletred"><code>palevioletred</code></li>
+        <li style="--color: papayawhip"><code>papayawhip</code></li>
+        <li style="--color: peachpuff"><code>peachpuff</code></li>
+        <li style="--color: peru"><code>peru</code></li>
+        <li style="--color: pink"><code>pink</code></li>
+        <li style="--color: plum"><code>plum</code></li>
+        <li style="--color: powderblue"><code>powderblue</code></li>
+        <li style="--color: purple"><code>purple</code></li>
+        <li style="--color: rebeccapurple"><code>rebeccapurple</code></li>
+        <li style="--color: red"><code>red</code></li>
+        <li style="--color: rosybrown"><code>rosybrown</code></li>
+        <li style="--color: royalblue"><code>royalblue</code></li>
+        <li style="--color: saddlebrown"><code>saddlebrown</code></li>
+        <li style="--color: salmon"><code>salmon</code></li>
+        <li style="--color: sandybrown"><code>sandybrown</code></li>
+        <li style="--color: seagreen"><code>seagreen</code></li>
+        <li style="--color: seashell"><code>seashell</code></li>
+        <li style="--color: sienna"><code>sienna</code></li>
+        <li style="--color: silver"><code>silver</code></li>
+        <li style="--color: skyblue"><code>skyblue</code></li>
+        <li style="--color: slateblue"><code>slateblue</code></li>
+        <li style="--color: slategray"><code>slategray</code></li>
+        <li style="--color: slategrey"><code>slategrey</code></li>
+        <li style="--color: snow"><code>snow</code></li>
+        <li style="--color: springgreen"><code>springgreen</code></li>
+        <li style="--color: steelblue"><code>steelblue</code></li>
+        <li style="--color: tan"><code>tan</code></li>
+        <li style="--color: teal"><code>teal</code></li>
+        <li style="--color: thistle"><code>thistle</code></li>
+        <li style="--color: tomato"><code>tomato</code></li>
+        <li style="--color: turquoise"><code>turquoise</code></li>
+        <li style="--color: violet"><code>violet</code></li>
+        <li style="--color: wheat"><code>wheat</code></li>
+        <li style="--color: white"><code>white</code></li>
+        <li style="--color: whitesmoke"><code>whitesmoke</code></li>
+        <li style="--color: yellow"><code>yellow</code></li>
+        <li style="--color: yellowgreen"><code>yellowgreen</code></li>
+      </ul>
+    </section>
+
+    <section id="web-safe-colors">
+      <h2>Web Safe Colors</h2>
+      <p>RGB の各成分を 00, 33, 66, 99, CC, FF から選ぶ 6<sup>3</sup> = 216 色。</p>
+      <ul class="palette">
+        <li style="--color: #000000"><code>#000000</code></li>
+        <li style="--color: #000033"><code>#000033</code></li>
+        <li style="--color: #000066"><code>#000066</code></li>
+        <li style="--color: #000099"><code>#000099</code></li>
+        <li style="--color: #0000CC"><code>#0000CC</code></li>
+        <li style="--color: #0000FF"><code>#0000FF</code></li>
+        <li style="--color: #003300"><code>#003300</code></li>
+        <li style="--color: #003333"><code>#003333</code></li>
+        <li style="--color: #003366"><code>#003366</code></li>
+        <li style="--color: #003399"><code>#003399</code></li>
+        <li style="--color: #0033CC"><code>#0033CC</code></li>
+        <li style="--color: #0033FF"><code>#0033FF</code></li>
+        <li style="--color: #006600"><code>#006600</code></li>
+        <li style="--color: #006633"><code>#006633</code></li>
+        <li style="--color: #006666"><code>#006666</code></li>
+        <li style="--color: #006699"><code>#006699</code></li>
+        <li style="--color: #0066CC"><code>#0066CC</code></li>
+        <li style="--color: #0066FF"><code>#0066FF</code></li>
+        <li style="--color: #009900"><code>#009900</code></li>
+        <li style="--color: #009933"><code>#009933</code></li>
+        <li style="--color: #009966"><code>#009966</code></li>
+        <li style="--color: #009999"><code>#009999</code></li>
+        <li style="--color: #0099CC"><code>#0099CC</code></li>
+        <li style="--color: #0099FF"><code>#0099FF</code></li>
+        <li style="--color: #00CC00"><code>#00CC00</code></li>
+        <li style="--color: #00CC33"><code>#00CC33</code></li>
+        <li style="--color: #00CC66"><code>#00CC66</code></li>
+        <li style="--color: #00CC99"><code>#00CC99</code></li>
+        <li style="--color: #00CCCC"><code>#00CCCC</code></li>
+        <li style="--color: #00CCFF"><code>#00CCFF</code></li>
+        <li style="--color: #00FF00"><code>#00FF00</code></li>
+        <li style="--color: #00FF33"><code>#00FF33</code></li>
+        <li style="--color: #00FF66"><code>#00FF66</code></li>
+        <li style="--color: #00FF99"><code>#00FF99</code></li>
+        <li style="--color: #00FFCC"><code>#00FFCC</code></li>
+        <li style="--color: #00FFFF"><code>#00FFFF</code></li>
+        <li style="--color: #330000"><code>#330000</code></li>
+        <li style="--color: #330033"><code>#330033</code></li>
+        <li style="--color: #330066"><code>#330066</code></li>
+        <li style="--color: #330099"><code>#330099</code></li>
+        <li style="--color: #3300CC"><code>#3300CC</code></li>
+        <li style="--color: #3300FF"><code>#3300FF</code></li>
+        <li style="--color: #333300"><code>#333300</code></li>
+        <li style="--color: #333333"><code>#333333</code></li>
+        <li style="--color: #333366"><code>#333366</code></li>
+        <li style="--color: #333399"><code>#333399</code></li>
+        <li style="--color: #3333CC"><code>#3333CC</code></li>
+        <li style="--color: #3333FF"><code>#3333FF</code></li>
+        <li style="--color: #336600"><code>#336600</code></li>
+        <li style="--color: #336633"><code>#336633</code></li>
+        <li style="--color: #336666"><code>#336666</code></li>
+        <li style="--color: #336699"><code>#336699</code></li>
+        <li style="--color: #3366CC"><code>#3366CC</code></li>
+        <li style="--color: #3366FF"><code>#3366FF</code></li>
+        <li style="--color: #339900"><code>#339900</code></li>
+        <li style="--color: #339933"><code>#339933</code></li>
+        <li style="--color: #339966"><code>#339966</code></li>
+        <li style="--color: #339999"><code>#339999</code></li>
+        <li style="--color: #3399CC"><code>#3399CC</code></li>
+        <li style="--color: #3399FF"><code>#3399FF</code></li>
+        <li style="--color: #33CC00"><code>#33CC00</code></li>
+        <li style="--color: #33CC33"><code>#33CC33</code></li>
+        <li style="--color: #33CC66"><code>#33CC66</code></li>
+        <li style="--color: #33CC99"><code>#33CC99</code></li>
+        <li style="--color: #33CCCC"><code>#33CCCC</code></li>
+        <li style="--color: #33CCFF"><code>#33CCFF</code></li>
+        <li style="--color: #33FF00"><code>#33FF00</code></li>
+        <li style="--color: #33FF33"><code>#33FF33</code></li>
+        <li style="--color: #33FF66"><code>#33FF66</code></li>
+        <li style="--color: #33FF99"><code>#33FF99</code></li>
+        <li style="--color: #33FFCC"><code>#33FFCC</code></li>
+        <li style="--color: #33FFFF"><code>#33FFFF</code></li>
+        <li style="--color: #660000"><code>#660000</code></li>
+        <li style="--color: #660033"><code>#660033</code></li>
+        <li style="--color: #660066"><code>#660066</code></li>
+        <li style="--color: #660099"><code>#660099</code></li>
+        <li style="--color: #6600CC"><code>#6600CC</code></li>
+        <li style="--color: #6600FF"><code>#6600FF</code></li>
+        <li style="--color: #663300"><code>#663300</code></li>
+        <li style="--color: #663333"><code>#663333</code></li>
+        <li style="--color: #663366"><code>#663366</code></li>
+        <li style="--color: #663399"><code>#663399</code></li>
+        <li style="--color: #6633CC"><code>#6633CC</code></li>
+        <li style="--color: #6633FF"><code>#6633FF</code></li>
+        <li style="--color: #666600"><code>#666600</code></li>
+        <li style="--color: #666633"><code>#666633</code></li>
+        <li style="--color: #666666"><code>#666666</code></li>
+        <li style="--color: #666699"><code>#666699</code></li>
+        <li style="--color: #6666CC"><code>#6666CC</code></li>
+        <li style="--color: #6666FF"><code>#6666FF</code></li>
+        <li style="--color: #669900"><code>#669900</code></li>
+        <li style="--color: #669933"><code>#669933</code></li>
+        <li style="--color: #669966"><code>#669966</code></li>
+        <li style="--color: #669999"><code>#669999</code></li>
+        <li style="--color: #6699CC"><code>#6699CC</code></li>
+        <li style="--color: #6699FF"><code>#6699FF</code></li>
+        <li style="--color: #66CC00"><code>#66CC00</code></li>
+        <li style="--color: #66CC33"><code>#66CC33</code></li>
+        <li style="--color: #66CC66"><code>#66CC66</code></li>
+        <li style="--color: #66CC99"><code>#66CC99</code></li>
+        <li style="--color: #66CCCC"><code>#66CCCC</code></li>
+        <li style="--color: #66CCFF"><code>#66CCFF</code></li>
+        <li style="--color: #66FF00"><code>#66FF00</code></li>
+        <li style="--color: #66FF33"><code>#66FF33</code></li>
+        <li style="--color: #66FF66"><code>#66FF66</code></li>
+        <li style="--color: #66FF99"><code>#66FF99</code></li>
+        <li style="--color: #66FFCC"><code>#66FFCC</code></li>
+        <li style="--color: #66FFFF"><code>#66FFFF</code></li>
+        <li style="--color: #990000"><code>#990000</code></li>
+        <li style="--color: #990033"><code>#990033</code></li>
+        <li style="--color: #990066"><code>#990066</code></li>
+        <li style="--color: #990099"><code>#990099</code></li>
+        <li style="--color: #9900CC"><code>#9900CC</code></li>
+        <li style="--color: #9900FF"><code>#9900FF</code></li>
+        <li style="--color: #993300"><code>#993300</code></li>
+        <li style="--color: #993333"><code>#993333</code></li>
+        <li style="--color: #993366"><code>#993366</code></li>
+        <li style="--color: #993399"><code>#993399</code></li>
+        <li style="--color: #9933CC"><code>#9933CC</code></li>
+        <li style="--color: #9933FF"><code>#9933FF</code></li>
+        <li style="--color: #996600"><code>#996600</code></li>
+        <li style="--color: #996633"><code>#996633</code></li>
+        <li style="--color: #996666"><code>#996666</code></li>
+        <li style="--color: #996699"><code>#996699</code></li>
+        <li style="--color: #9966CC"><code>#9966CC</code></li>
+        <li style="--color: #9966FF"><code>#9966FF</code></li>
+        <li style="--color: #999900"><code>#999900</code></li>
+        <li style="--color: #999933"><code>#999933</code></li>
+        <li style="--color: #999966"><code>#999966</code></li>
+        <li style="--color: #999999"><code>#999999</code></li>
+        <li style="--color: #9999CC"><code>#9999CC</code></li>
+        <li style="--color: #9999FF"><code>#9999FF</code></li>
+        <li style="--color: #99CC00"><code>#99CC00</code></li>
+        <li style="--color: #99CC33"><code>#99CC33</code></li>
+        <li style="--color: #99CC66"><code>#99CC66</code></li>
+        <li style="--color: #99CC99"><code>#99CC99</code></li>
+        <li style="--color: #99CCCC"><code>#99CCCC</code></li>
+        <li style="--color: #99CCFF"><code>#99CCFF</code></li>
+        <li style="--color: #99FF00"><code>#99FF00</code></li>
+        <li style="--color: #99FF33"><code>#99FF33</code></li>
+        <li style="--color: #99FF66"><code>#99FF66</code></li>
+        <li style="--color: #99FF99"><code>#99FF99</code></li>
+        <li style="--color: #99FFCC"><code>#99FFCC</code></li>
+        <li style="--color: #99FFFF"><code>#99FFFF</code></li>
+        <li style="--color: #CC0000"><code>#CC0000</code></li>
+        <li style="--color: #CC0033"><code>#CC0033</code></li>
+        <li style="--color: #CC0066"><code>#CC0066</code></li>
+        <li style="--color: #CC0099"><code>#CC0099</code></li>
+        <li style="--color: #CC00CC"><code>#CC00CC</code></li>
+        <li style="--color: #CC00FF"><code>#CC00FF</code></li>
+        <li style="--color: #CC3300"><code>#CC3300</code></li>
+        <li style="--color: #CC3333"><code>#CC3333</code></li>
+        <li style="--color: #CC3366"><code>#CC3366</code></li>
+        <li style="--color: #CC3399"><code>#CC3399</code></li>
+        <li style="--color: #CC33CC"><code>#CC33CC</code></li>
+        <li style="--color: #CC33FF"><code>#CC33FF</code></li>
+        <li style="--color: #CC6600"><code>#CC6600</code></li>
+        <li style="--color: #CC6633"><code>#CC6633</code></li>
+        <li style="--color: #CC6666"><code>#CC6666</code></li>
+        <li style="--color: #CC6699"><code>#CC6699</code></li>
+        <li style="--color: #CC66CC"><code>#CC66CC</code></li>
+        <li style="--color: #CC66FF"><code>#CC66FF</code></li>
+        <li style="--color: #CC9900"><code>#CC9900</code></li>
+        <li style="--color: #CC9933"><code>#CC9933</code></li>
+        <li style="--color: #CC9966"><code>#CC9966</code></li>
+        <li style="--color: #CC9999"><code>#CC9999</code></li>
+        <li style="--color: #CC99CC"><code>#CC99CC</code></li>
+        <li style="--color: #CC99FF"><code>#CC99FF</code></li>
+        <li style="--color: #CCCC00"><code>#CCCC00</code></li>
+        <li style="--color: #CCCC33"><code>#CCCC33</code></li>
+        <li style="--color: #CCCC66"><code>#CCCC66</code></li>
+        <li style="--color: #CCCC99"><code>#CCCC99</code></li>
+        <li style="--color: #CCCCCC"><code>#CCCCCC</code></li>
+        <li style="--color: #CCCCFF"><code>#CCCCFF</code></li>
+        <li style="--color: #CCFF00"><code>#CCFF00</code></li>
+        <li style="--color: #CCFF33"><code>#CCFF33</code></li>
+        <li style="--color: #CCFF66"><code>#CCFF66</code></li>
+        <li style="--color: #CCFF99"><code>#CCFF99</code></li>
+        <li style="--color: #CCFFCC"><code>#CCFFCC</code></li>
+        <li style="--color: #CCFFFF"><code>#CCFFFF</code></li>
+        <li style="--color: #FF0000"><code>#FF0000</code></li>
+        <li style="--color: #FF0033"><code>#FF0033</code></li>
+        <li style="--color: #FF0066"><code>#FF0066</code></li>
+        <li style="--color: #FF0099"><code>#FF0099</code></li>
+        <li style="--color: #FF00CC"><code>#FF00CC</code></li>
+        <li style="--color: #FF00FF"><code>#FF00FF</code></li>
+        <li style="--color: #FF3300"><code>#FF3300</code></li>
+        <li style="--color: #FF3333"><code>#FF3333</code></li>
+        <li style="--color: #FF3366"><code>#FF3366</code></li>
+        <li style="--color: #FF3399"><code>#FF3399</code></li>
+        <li style="--color: #FF33CC"><code>#FF33CC</code></li>
+        <li style="--color: #FF33FF"><code>#FF33FF</code></li>
+        <li style="--color: #FF6600"><code>#FF6600</code></li>
+        <li style="--color: #FF6633"><code>#FF6633</code></li>
+        <li style="--color: #FF6666"><code>#FF6666</code></li>
+        <li style="--color: #FF6699"><code>#FF6699</code></li>
+        <li style="--color: #FF66CC"><code>#FF66CC</code></li>
+        <li style="--color: #FF66FF"><code>#FF66FF</code></li>
+        <li style="--color: #FF9900"><code>#FF9900</code></li>
+        <li style="--color: #FF9933"><code>#FF9933</code></li>
+        <li style="--color: #FF9966"><code>#FF9966</code></li>
+        <li style="--color: #FF9999"><code>#FF9999</code></li>
+        <li style="--color: #FF99CC"><code>#FF99CC</code></li>
+        <li style="--color: #FF99FF"><code>#FF99FF</code></li>
+        <li style="--color: #FFCC00"><code>#FFCC00</code></li>
+        <li style="--color: #FFCC33"><code>#FFCC33</code></li>
+        <li style="--color: #FFCC66"><code>#FFCC66</code></li>
+        <li style="--color: #FFCC99"><code>#FFCC99</code></li>
+        <li style="--color: #FFCCCC"><code>#FFCCCC</code></li>
+        <li style="--color: #FFCCFF"><code>#FFCCFF</code></li>
+        <li style="--color: #FFFF00"><code>#FFFF00</code></li>
+        <li style="--color: #FFFF33"><code>#FFFF33</code></li>
+        <li style="--color: #FFFF66"><code>#FFFF66</code></li>
+        <li style="--color: #FFFF99"><code>#FFFF99</code></li>
+        <li style="--color: #FFFFCC"><code>#FFFFCC</code></li>
+        <li style="--color: #FFFFFF"><code>#FFFFFF</code></li>
+      </ul>
+    </section>
+
+    <section id="hsl-comparison">
+      <h2>HSL Comparison</h2>
+      <p>色相と明度を固定し、彩度だけを 90% から 100% に変えた比較。</p>
+      <div class="comparison">
+        <figure class="sample hsl-90">
+          <code>hsl(347 90% 60%) / #F53D65</code>
+        </figure>
+        <figure class="sample hsl-100">
+          <code>hsl(347 100% 60%) / #FF335F</code>
+        </figure>
+      </div>
+    </section>
+
+    <section id="hsl-components">
+      <h2>HSL Components</h2>
+      <p>H, S, L のうち 1 つだけを変えた場合の比較。</p>
+      <div class="demo-group">
+        <h3>Hue</h3>
+        <ul class="demo-palette">
+          <li style="--color: hsl(0 80% 50%)"><code>hsl(0 80% 50%)</code></li>
+          <li style="--color: hsl(72 80% 50%)"><code>hsl(72 80% 50%)</code></li>
+          <li style="--color: hsl(144 80% 50%)"><code>hsl(144 80% 50%)</code></li>
+          <li style="--color: hsl(216 80% 50%)"><code>hsl(216 80% 50%)</code></li>
+          <li style="--color: hsl(288 80% 50%)"><code>hsl(288 80% 50%)</code></li>
+        </ul>
+      </div>
+      <div class="demo-group">
+        <h3>Saturation</h3>
+        <ul class="demo-palette">
+          <li style="--color: hsl(220 0% 50%)"><code>hsl(220 0% 50%)</code></li>
+          <li style="--color: hsl(220 25% 50%)"><code>hsl(220 25% 50%)</code></li>
+          <li style="--color: hsl(220 50% 50%)"><code>hsl(220 50% 50%)</code></li>
+          <li style="--color: hsl(220 75% 50%)"><code>hsl(220 75% 50%)</code></li>
+          <li style="--color: hsl(220 100% 50%)"><code>hsl(220 100% 50%)</code></li>
+        </ul>
+      </div>
+      <div class="demo-group">
+        <h3>Lightness</h3>
+        <ul class="demo-palette">
+          <li style="--color: hsl(220 80% 10%)"><code>hsl(220 80% 10%)</code></li>
+          <li style="--color: hsl(220 80% 30%)"><code>hsl(220 80% 30%)</code></li>
+          <li style="--color: hsl(220 80% 50%)"><code>hsl(220 80% 50%)</code></li>
+          <li style="--color: hsl(220 80% 70%)"><code>hsl(220 80% 70%)</code></li>
+          <li style="--color: hsl(220 80% 90%)"><code>hsl(220 80% 90%)</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="hsl-uniformity">
+      <h2>HSL Perceptual Uniformity</h2>
+      <p>S = 100%, L = 50% を固定して H だけを変える。数値上の明度は同じでも、黄色は明るく、青は暗く見える。</p>
+      <ul class="demo-palette">
+        <li style="--color: hsl(0 100% 50%)"><code>0deg</code></li>
+        <li style="--color: hsl(30 100% 50%)"><code>30deg</code></li>
+        <li style="--color: hsl(60 100% 50%)"><code>60deg</code></li>
+        <li style="--color: hsl(90 100% 50%)"><code>90deg</code></li>
+        <li style="--color: hsl(120 100% 50%)"><code>120deg</code></li>
+        <li style="--color: hsl(150 100% 50%)"><code>150deg</code></li>
+        <li style="--color: hsl(180 100% 50%)"><code>180deg</code></li>
+        <li style="--color: hsl(210 100% 50%)"><code>210deg</code></li>
+        <li style="--color: hsl(240 100% 50%)"><code>240deg</code></li>
+        <li style="--color: hsl(270 100% 50%)"><code>270deg</code></li>
+        <li style="--color: hsl(300 100% 50%)"><code>300deg</code></li>
+        <li style="--color: hsl(330 100% 50%)"><code>330deg</code></li>
+      </ul>
+    </section>
+
+    <section id="hwb-comparison">
+      <h2>HWB Comparison</h2>
+      <p>同じ色相で、白と黒の混合率が異なる 2 色。</p>
+      <div class="comparison">
+        <figure class="sample" style="--color: hwb(347 24% 4%)"><code>hwb(347 24% 4%)</code></figure>
+        <figure class="sample" style="--color: hwb(347 20% 0%)"><code>hwb(347 20% 0%)</code></figure>
+      </div>
+    </section>
+
+    <section id="lab-comparison">
+      <h2>LAB Comparison</h2>
+      <p>HSL では彩度だけが異なっていた 2 色を LAB で表した比較。</p>
+      <div class="comparison">
+        <figure class="sample" style="--color: lab(56.5% 70.8 22.8)"><code>lab(56.5% 70.8 22.8)</code></figure>
+        <figure class="sample" style="--color: lab(57.4% 75.8 27.9)"><code>lab(57.4% 75.8 27.9)</code></figure>
+      </div>
+    </section>
+
+    <section id="lch-hue-shift">
+      <h2>LCH Hue Shift</h2>
+      <p><code>lch(30% 130 300)</code> を起点に、C = 130, H = 300 を固定して L を 10 ずつ増やす。明るくするにつれて赤紫が入って見える。</p>
+      <ul class="demo-palette">
+        <li style="--color: lch(30% 130 300)"><code>lch(30% 130 300)</code></li>
+        <li style="--color: lch(40% 130 300)"><code>lch(40% 130 300)</code></li>
+        <li style="--color: lch(50% 130 300)"><code>lch(50% 130 300)</code></li>
+        <li style="--color: lch(60% 130 300)"><code>lch(60% 130 300)</code></li>
+        <li style="--color: lch(70% 130 300)"><code>lch(70% 130 300)</code></li>
+      </ul>
+    </section>
+
+    <section id="oklch-hue-stability">
+      <h2>OKLCH Hue Stability</h2>
+      <p>同じ <code>lch(30% 130 300)</code> を起点に、OKLCH では C = 0.31, H = 264 を固定して L を 0.1 ずつ増やす。明るくしても青の色相が保たれる。</p>
+      <ul class="demo-palette">
+        <li style="--color: lch(30% 130 300)"><code>lch(30% 130 300)</code></li>
+        <li style="--color: oklch(0.55 0.31 264)"><code>oklch(0.55 0.31 264)</code></li>
+        <li style="--color: oklch(0.65 0.31 264)"><code>oklch(0.65 0.31 264)</code></li>
+        <li style="--color: oklch(0.75 0.31 264)"><code>oklch(0.75 0.31 264)</code></li>
+        <li style="--color: oklch(0.85 0.31 264)"><code>oklch(0.85 0.31 264)</code></li>
+      </ul>
+    </section>
+
+    <section id="palette-comparison">
+      <h2>HSL / OKLCH Palette</h2>
+      <p>HSL と OKLCH で明度・彩度を固定し、色相だけを変えたパレット。</p>
+      <div class="demo-group">
+        <h3>HSL: S = 80%, L = 60%</h3>
+        <ul class="demo-palette">
+          <li style="--color: hsl(0 80% 60%)"><code>0deg</code></li>
+          <li style="--color: hsl(60 80% 60%)"><code>60deg</code></li>
+          <li style="--color: hsl(120 80% 60%)"><code>120deg</code></li>
+          <li style="--color: hsl(180 80% 60%)"><code>180deg</code></li>
+          <li style="--color: hsl(240 80% 60%)"><code>240deg</code></li>
+          <li style="--color: hsl(300 80% 60%)"><code>300deg</code></li>
+        </ul>
+      </div>
+      <div class="demo-group">
+        <h3>OKLCH: L = 0.6, C = 0.1</h3>
+        <ul class="demo-palette">
+          <li style="--color: oklch(0.6 0.1 0)"><code>0deg</code></li>
+          <li style="--color: oklch(0.6 0.1 60)"><code>60deg</code></li>
+          <li style="--color: oklch(0.6 0.1 120)"><code>120deg</code></li>
+          <li style="--color: oklch(0.6 0.1 180)"><code>180deg</code></li>
+          <li style="--color: oklch(0.6 0.1 240)"><code>240deg</code></li>
+          <li style="--color: oklch(0.6 0.1 300)"><code>300deg</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="relative-colors" class="hue-shifting">
+      <h2>Relative Color Syntax</h2>
+      <p><code>--primary: oklch(0.6 0.1 250)</code> を基準に Hue Shifting で生成した色。</p>
+      <ul class="demo-palette">
+        <li style="--color: var(--primary)"><code>primary</code></li>
+        <li style="--color: oklch(from var(--primary) l c calc(h + 30))"><code>h + 30</code></li>
+        <li style="--color: oklch(from var(--primary) l c calc(h + 60))"><code>h + 60</code></li>
+        <li style="--color: oklch(from var(--primary) l c calc(h + 120))"><code>h + 120</code></li>
+        <li style="--color: oklch(from var(--primary) l c calc(h + 180))"><code>h + 180</code></li>
+        <li style="--color: oklch(from var(--primary) l c calc(h + 240))"><code>h + 240</code></li>
+      </ul>
+    </section>
+
+    <section id="light-dark">
+      <h2>light-dark()</h2>
+      <p>同じ <code>light-dark()</code> を Light Mode と Dark Mode で評価した結果。</p>
+      <div class="comparison">
+        <figure class="sample mode-sample force-light light-dark-color">
+          <code>light: calc(l - 0.1)</code>
+        </figure>
+        <figure class="sample mode-sample force-dark light-dark-color">
+          <code>dark: calc(l + 0.1)</code>
+        </figure>
+      </div>
+    </section>
+
+    <section id="color-mix">
+      <h2>color-mix()</h2>
+      <p>背景色に前景色を 20% 混ぜた色を Light Mode と Dark Mode で比較する。</p>
+      <div class="comparison">
+        <figure class="sample mode-sample force-light mixed-color">
+          <code>color-mix(in oklab, var(--fg) 20%, var(--bg))</code>
+        </figure>
+        <figure class="sample mode-sample force-dark mixed-color">
+          <code>color-mix(in oklab, var(--fg) 20%, var(--bg))</code>
+        </figure>
+      </div>
+    </section>
+
+    <section id="contrast-color">
+      <h2>contrast-color()</h2>
+      <p>背景色ごとに、文字色を白または黒から自動的に選択する。</p>
+      <div class="comparison">
+        <div class="contrast-sample" style="--bg: #f5d442">contrast-color(#f5d442)</div>
+        <div class="contrast-sample" style="--bg: #173f8a">contrast-color(#173f8a)</div>
+        <div class="contrast-sample" style="--bg: #d9579b">contrast-color(#d9579b)</div>
+        <div class="contrast-sample" style="--bg: #246b45">contrast-color(#246b45)</div>
+      </div>
+    </section>
+
+    <section id="wide-gamut">
+      <h2>Wide Gamut</h2>
+      <p>sRGB の緑と Display P3 の緑を比較する。P3 対応ディスプレイでは色域の差を確認できる。</p>
+      <div class="comparison">
+        <figure class="sample" style="--color: rgb(0 255 0)">
+          <code>rgb(0 255 0)</code>
+        </figure>
+        <figure class="sample" style="--color: color(display-p3 0 1 0)">
+          <code>color(display-p3 0 1 0)</code>
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
