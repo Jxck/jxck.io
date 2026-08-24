@@ -64,6 +64,27 @@
       gap: 2px 0.5rem;
     }
 
+    #web-safe-colors .palette {
+      width: max-content;
+      grid-template-columns: repeat(6, 1.5rem);
+      gap: 1px;
+    }
+
+    .color-planes {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+    }
+
+    .color-plane h3 {
+      margin-block: 0 0.25rem;
+      font: 0.8rem ui-monospace, monospace;
+    }
+
+    .color-plane {
+      flex: 0 0 auto;
+    }
+
     #named-colors .palette li,
     #web-safe-colors .palette li {
       display: flex;
@@ -72,6 +93,15 @@
       overflow: visible;
       border: 0;
       background: none;
+    }
+
+    #web-safe-colors .palette li {
+      position: relative;
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      min-height: 1.5rem;
+      background: var(--color);
     }
 
     #named-colors .palette li::before,
@@ -84,10 +114,33 @@
       content: "";
     }
 
+    #web-safe-colors .palette li::before {
+      display: none;
+    }
+
     #named-colors .palette code,
     #web-safe-colors .palette code {
       padding: 0.25rem 0.5rem;
       background: none;
+    }
+
+    #web-safe-colors .palette code {
+      position: absolute;
+      z-index: 1;
+      inset-block-start: 50%;
+      inset-inline-start: calc(100% + 0.5rem);
+      display: none;
+      overflow: visible;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+      border-radius: 0.25rem;
+      background: Canvas;
+      white-space: nowrap;
+      transform: translateY(-50%);
+    }
+
+    #web-safe-colors .palette li:hover code {
+      display: block;
     }
 
     code {
@@ -151,7 +204,7 @@
     }
 
     #hsl-components .demo-palette {
-      grid-template-columns: repeat(5, minmax(0, 6rem));
+      grid-template-columns: repeat(6, max-content);
       gap: 0.5rem;
     }
 
@@ -163,6 +216,19 @@
     #hsl-components .demo-palette code {
       padding-inline: 0.25rem;
       text-align: center;
+      white-space: nowrap;
+    }
+
+    #hsl-uniformity .demo-palette {
+      grid-template-columns: repeat(6, minmax(5rem, 6rem));
+    }
+
+    #palette-comparison .demo-palette {
+      grid-template-columns: repeat(6, minmax(5rem, 6rem));
+    }
+
+    .grayscale {
+      filter: grayscale(100%);
     }
 
     .hue-shifting {
@@ -192,6 +258,14 @@
         oklch(from var(--primary) calc(l - 0.1) c h),
         oklch(from var(--primary) calc(l + 0.1) c h)
       );
+    }
+
+    #light-dark .comparison {
+      grid-template-columns: repeat(2, max-content);
+    }
+
+    #light-dark code {
+      white-space: nowrap;
     }
 
     .mixed-color {
@@ -391,7 +465,11 @@
     <section id="web-safe-colors">
       <h2>Web Safe Colors</h2>
       <p>RGB の各成分を 00, 33, 66, 99, CC, FF から選ぶ 6<sup>3</sup> = 216 色。</p>
-      <ul class="palette">
+      <p>左から R = 00, 33, 66, 99, CC, FF の6ブロック。各ブロック内で G と B が変化する。</p>
+      <div class="color-planes">
+        <div class="color-plane">
+          <h3>R = 00</h3>
+          <ul class="palette">
         <li style="--color: #000000"><code>#000000</code></li>
         <li style="--color: #000033"><code>#000033</code></li>
         <li style="--color: #000066"><code>#000066</code></li>
@@ -428,6 +506,11 @@
         <li style="--color: #00FF99"><code>#00FF99</code></li>
         <li style="--color: #00FFCC"><code>#00FFCC</code></li>
         <li style="--color: #00FFFF"><code>#00FFFF</code></li>
+          </ul>
+        </div>
+        <div class="color-plane">
+          <h3>R = 33</h3>
+          <ul class="palette">
         <li style="--color: #330000"><code>#330000</code></li>
         <li style="--color: #330033"><code>#330033</code></li>
         <li style="--color: #330066"><code>#330066</code></li>
@@ -464,6 +547,11 @@
         <li style="--color: #33FF99"><code>#33FF99</code></li>
         <li style="--color: #33FFCC"><code>#33FFCC</code></li>
         <li style="--color: #33FFFF"><code>#33FFFF</code></li>
+          </ul>
+        </div>
+        <div class="color-plane">
+          <h3>R = 66</h3>
+          <ul class="palette">
         <li style="--color: #660000"><code>#660000</code></li>
         <li style="--color: #660033"><code>#660033</code></li>
         <li style="--color: #660066"><code>#660066</code></li>
@@ -500,6 +588,11 @@
         <li style="--color: #66FF99"><code>#66FF99</code></li>
         <li style="--color: #66FFCC"><code>#66FFCC</code></li>
         <li style="--color: #66FFFF"><code>#66FFFF</code></li>
+          </ul>
+        </div>
+        <div class="color-plane">
+          <h3>R = 99</h3>
+          <ul class="palette">
         <li style="--color: #990000"><code>#990000</code></li>
         <li style="--color: #990033"><code>#990033</code></li>
         <li style="--color: #990066"><code>#990066</code></li>
@@ -536,6 +629,11 @@
         <li style="--color: #99FF99"><code>#99FF99</code></li>
         <li style="--color: #99FFCC"><code>#99FFCC</code></li>
         <li style="--color: #99FFFF"><code>#99FFFF</code></li>
+          </ul>
+        </div>
+        <div class="color-plane">
+          <h3>R = CC</h3>
+          <ul class="palette">
         <li style="--color: #CC0000"><code>#CC0000</code></li>
         <li style="--color: #CC0033"><code>#CC0033</code></li>
         <li style="--color: #CC0066"><code>#CC0066</code></li>
@@ -572,6 +670,11 @@
         <li style="--color: #CCFF99"><code>#CCFF99</code></li>
         <li style="--color: #CCFFCC"><code>#CCFFCC</code></li>
         <li style="--color: #CCFFFF"><code>#CCFFFF</code></li>
+          </ul>
+        </div>
+        <div class="color-plane">
+          <h3>R = FF</h3>
+          <ul class="palette">
         <li style="--color: #FF0000"><code>#FF0000</code></li>
         <li style="--color: #FF0033"><code>#FF0033</code></li>
         <li style="--color: #FF0066"><code>#FF0066</code></li>
@@ -608,7 +711,9 @@
         <li style="--color: #FFFF99"><code>#FFFF99</code></li>
         <li style="--color: #FFFFCC"><code>#FFFFCC</code></li>
         <li style="--color: #FFFFFF"><code>#FFFFFF</code></li>
-      </ul>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section id="hsl-comparison">
@@ -626,35 +731,38 @@
 
     <section id="hsl-components">
       <h2>HSL Components</h2>
-      <p>H, S, L のうち 1 つだけを変えた場合の比較。</p>
+      <p><code>hsl(220 90% 50%)</code> の青を起点に、H, S, L のうち 1 つだけを変えたパレット。</p>
       <div class="demo-group">
         <h3>Hue</h3>
         <ul class="demo-palette">
-          <li style="--color: hsl(0 80% 50%)"><code>hsl(0 80% 50%)</code></li>
-          <li style="--color: hsl(72 80% 50%)"><code>hsl(72 80% 50%)</code></li>
-          <li style="--color: hsl(144 80% 50%)"><code>hsl(144 80% 50%)</code></li>
-          <li style="--color: hsl(216 80% 50%)"><code>hsl(216 80% 50%)</code></li>
-          <li style="--color: hsl(288 80% 50%)"><code>hsl(288 80% 50%)</code></li>
+          <li style="--color: hsl(220 90% 50%)"><code>hsl(220 90% 50%)</code></li>
+          <li style="--color: hsl(250 90% 50%)"><code>hsl(250 90% 50%)</code></li>
+          <li style="--color: hsl(280 90% 50%)"><code>hsl(280 90% 50%)</code></li>
+          <li style="--color: hsl(310 90% 50%)"><code>hsl(310 90% 50%)</code></li>
+          <li style="--color: hsl(340 90% 50%)"><code>hsl(340 90% 50%)</code></li>
+          <li style="--color: hsl(10 90% 50%)"><code>hsl(10 90% 50%)</code></li>
         </ul>
       </div>
       <div class="demo-group">
         <h3>Saturation</h3>
         <ul class="demo-palette">
-          <li style="--color: hsl(220 0% 50%)"><code>hsl(220 0% 50%)</code></li>
-          <li style="--color: hsl(220 25% 50%)"><code>hsl(220 25% 50%)</code></li>
-          <li style="--color: hsl(220 50% 50%)"><code>hsl(220 50% 50%)</code></li>
+          <li style="--color: hsl(220 90% 50%)"><code>hsl(220 90% 50%)</code></li>
           <li style="--color: hsl(220 75% 50%)"><code>hsl(220 75% 50%)</code></li>
-          <li style="--color: hsl(220 100% 50%)"><code>hsl(220 100% 50%)</code></li>
+          <li style="--color: hsl(220 60% 50%)"><code>hsl(220 60% 50%)</code></li>
+          <li style="--color: hsl(220 45% 50%)"><code>hsl(220 45% 50%)</code></li>
+          <li style="--color: hsl(220 30% 50%)"><code>hsl(220 30% 50%)</code></li>
+          <li style="--color: hsl(220 15% 50%)"><code>hsl(220 15% 50%)</code></li>
         </ul>
       </div>
       <div class="demo-group">
         <h3>Lightness</h3>
         <ul class="demo-palette">
-          <li style="--color: hsl(220 80% 10%)"><code>hsl(220 80% 10%)</code></li>
-          <li style="--color: hsl(220 80% 30%)"><code>hsl(220 80% 30%)</code></li>
-          <li style="--color: hsl(220 80% 50%)"><code>hsl(220 80% 50%)</code></li>
-          <li style="--color: hsl(220 80% 70%)"><code>hsl(220 80% 70%)</code></li>
-          <li style="--color: hsl(220 80% 90%)"><code>hsl(220 80% 90%)</code></li>
+          <li style="--color: hsl(220 90% 50%)"><code>hsl(220 90% 50%)</code></li>
+          <li style="--color: hsl(220 90% 60%)"><code>hsl(220 90% 60%)</code></li>
+          <li style="--color: hsl(220 90% 70%)"><code>hsl(220 90% 70%)</code></li>
+          <li style="--color: hsl(220 90% 80%)"><code>hsl(220 90% 80%)</code></li>
+          <li style="--color: hsl(220 90% 90%)"><code>hsl(220 90% 90%)</code></li>
+          <li style="--color: hsl(220 90% 100%)"><code>hsl(220 90% 100%)</code></li>
         </ul>
       </div>
     </section>
@@ -722,27 +830,74 @@
 
     <section id="palette-comparison">
       <h2>HSL / OKLCH Palette</h2>
-      <p>HSL と OKLCH で明度・彩度を固定し、色相だけを変えたパレット。</p>
+      <p>HSL は S, L を固定し、H を 30 度ずつシフトして色相環を一周するパレット。OKLCH は、その各色と同じ色相のまま、L と C を HSL 側 12 色の平均値に固定したもの。つまり、上下の列は同じ色相で、パレット全体の平均のトーンも同じ。違いは、色ごとのばらつきの有無だけになる。</p>
       <div class="demo-group">
-        <h3>HSL: S = 80%, L = 60%</h3>
+        <h3>HSL: S = 56%, L = 65%</h3>
         <ul class="demo-palette">
-          <li style="--color: hsl(0 80% 60%)"><code>0deg</code></li>
-          <li style="--color: hsl(60 80% 60%)"><code>60deg</code></li>
-          <li style="--color: hsl(120 80% 60%)"><code>120deg</code></li>
-          <li style="--color: hsl(180 80% 60%)"><code>180deg</code></li>
-          <li style="--color: hsl(240 80% 60%)"><code>240deg</code></li>
-          <li style="--color: hsl(300 80% 60%)"><code>300deg</code></li>
+          <li style="--color: hsl(220 56% 65%)"><code>220deg</code></li>
+          <li style="--color: hsl(250 56% 65%)"><code>250deg</code></li>
+          <li style="--color: hsl(280 56% 65%)"><code>280deg</code></li>
+          <li style="--color: hsl(310 56% 65%)"><code>310deg</code></li>
+          <li style="--color: hsl(340 56% 65%)"><code>340deg</code></li>
+          <li style="--color: hsl(10 56% 65%)"><code>10deg</code></li>
+          <li style="--color: hsl(40 56% 65%)"><code>40deg</code></li>
+          <li style="--color: hsl(70 56% 65%)"><code>70deg</code></li>
+          <li style="--color: hsl(100 56% 65%)"><code>100deg</code></li>
+          <li style="--color: hsl(130 56% 65%)"><code>130deg</code></li>
+          <li style="--color: hsl(160 56% 65%)"><code>160deg</code></li>
+          <li style="--color: hsl(190 56% 65%)"><code>190deg</code></li>
         </ul>
       </div>
       <div class="demo-group">
-        <h3>OKLCH: L = 0.6, C = 0.1</h3>
+        <h3>OKLCH: L = 0.74, C = 0.125 (上段 12 色の平均値)</h3>
         <ul class="demo-palette">
-          <li style="--color: oklch(0.6 0.1 0)"><code>0deg</code></li>
-          <li style="--color: oklch(0.6 0.1 60)"><code>60deg</code></li>
-          <li style="--color: oklch(0.6 0.1 120)"><code>120deg</code></li>
-          <li style="--color: oklch(0.6 0.1 180)"><code>180deg</code></li>
-          <li style="--color: oklch(0.6 0.1 240)"><code>240deg</code></li>
-          <li style="--color: oklch(0.6 0.1 300)"><code>300deg</code></li>
+          <li style="--color: oklch(0.74 0.125 263)"><code>263deg</code></li>
+          <li style="--color: oklch(0.74 0.125 289)"><code>289deg</code></li>
+          <li style="--color: oklch(0.74 0.125 314)"><code>314deg</code></li>
+          <li style="--color: oklch(0.74 0.125 334)"><code>334deg</code></li>
+          <li style="--color: oklch(0.74 0.125 0)"><code>0deg</code></li>
+          <li style="--color: oklch(0.74 0.125 32)"><code>32deg</code></li>
+          <li style="--color: oklch(0.74 0.125 84)"><code>84deg</code></li>
+          <li style="--color: oklch(0.74 0.125 117)"><code>117deg</code></li>
+          <li style="--color: oklch(0.74 0.125 136)"><code>136deg</code></li>
+          <li style="--color: oklch(0.74 0.125 148)"><code>148deg</code></li>
+          <li style="--color: oklch(0.74 0.125 170)"><code>170deg</code></li>
+          <li style="--color: oklch(0.74 0.125 212)"><code>212deg</code></li>
+        </ul>
+      </div>
+      <p>同じ 2 つのパレットを grayscale(100%) で見ると、HSL は数値上の L が同じでも実際の明るさがばらつき (輝度 0.50~0.80)、OKLCH は揃っている (輝度 0.62~0.67) ことがわかる。</p>
+      <div class="demo-group">
+        <h3>HSL: S = 56%, L = 65% + grayscale(100%)</h3>
+        <ul class="demo-palette grayscale">
+          <li style="--color: hsl(220 56% 65%)"><code>220deg</code></li>
+          <li style="--color: hsl(250 56% 65%)"><code>250deg</code></li>
+          <li style="--color: hsl(280 56% 65%)"><code>280deg</code></li>
+          <li style="--color: hsl(310 56% 65%)"><code>310deg</code></li>
+          <li style="--color: hsl(340 56% 65%)"><code>340deg</code></li>
+          <li style="--color: hsl(10 56% 65%)"><code>10deg</code></li>
+          <li style="--color: hsl(40 56% 65%)"><code>40deg</code></li>
+          <li style="--color: hsl(70 56% 65%)"><code>70deg</code></li>
+          <li style="--color: hsl(100 56% 65%)"><code>100deg</code></li>
+          <li style="--color: hsl(130 56% 65%)"><code>130deg</code></li>
+          <li style="--color: hsl(160 56% 65%)"><code>160deg</code></li>
+          <li style="--color: hsl(190 56% 65%)"><code>190deg</code></li>
+        </ul>
+      </div>
+      <div class="demo-group">
+        <h3>OKLCH: L = 0.74, C = 0.125 + grayscale(100%)</h3>
+        <ul class="demo-palette grayscale">
+          <li style="--color: oklch(0.74 0.125 263)"><code>263deg</code></li>
+          <li style="--color: oklch(0.74 0.125 289)"><code>289deg</code></li>
+          <li style="--color: oklch(0.74 0.125 314)"><code>314deg</code></li>
+          <li style="--color: oklch(0.74 0.125 334)"><code>334deg</code></li>
+          <li style="--color: oklch(0.74 0.125 0)"><code>0deg</code></li>
+          <li style="--color: oklch(0.74 0.125 32)"><code>32deg</code></li>
+          <li style="--color: oklch(0.74 0.125 84)"><code>84deg</code></li>
+          <li style="--color: oklch(0.74 0.125 117)"><code>117deg</code></li>
+          <li style="--color: oklch(0.74 0.125 136)"><code>136deg</code></li>
+          <li style="--color: oklch(0.74 0.125 148)"><code>148deg</code></li>
+          <li style="--color: oklch(0.74 0.125 170)"><code>170deg</code></li>
+          <li style="--color: oklch(0.74 0.125 212)"><code>212deg</code></li>
         </ul>
       </div>
     </section>
@@ -790,10 +945,10 @@
       <h2>contrast-color()</h2>
       <p>背景色ごとに、文字色を白または黒から自動的に選択する。</p>
       <div class="comparison">
-        <div class="contrast-sample" style="--bg: #f5d442">contrast-color(#f5d442)</div>
-        <div class="contrast-sample" style="--bg: #173f8a">contrast-color(#173f8a)</div>
-        <div class="contrast-sample" style="--bg: #d9579b">contrast-color(#d9579b)</div>
-        <div class="contrast-sample" style="--bg: #246b45">contrast-color(#246b45)</div>
+        <div class="contrast-sample" style="--bg: #f5d442">contrast-color<br>#f5d442</div>
+        <div class="contrast-sample" style="--bg: #173f8a">contrast-color<br>#173f8a</div>
+        <div class="contrast-sample" style="--bg: #d9579b">contrast-color<br>#d9579b</div>
+        <div class="contrast-sample" style="--bg: #246b45">contrast-color<br>#246b45</div>
       </div>
     </section>
 
