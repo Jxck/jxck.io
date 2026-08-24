@@ -23,17 +23,23 @@ CSS のキーワードとして登録されている 148 色は、Named Color �
 background-color: red;
 ```
 
+![Named Colors](named-colors.png)
+
 DEMO: https://labs.jxck.io/color/#named-colors
 
 仕様に書かれている通り、これらは初期のブラウザが動作環境としていた X11 の実装する色名を、そのままブラウザに移植したところから始まる。
 
 > For historical reasons, this is also referred to as the X11 color set.
 
-ちなみに、この 148 色が "Web Safe Color" だと誤解されることがある。
+X11 以外にもいくつかの経由で集約されたたため、 `gray` (米国綴り)と `grey` (英国綴り)が両方あったり、 `aqua` と `cyan` が同じだったりするため、色自体は 139 色だ。
 
-Web Safe Color は、モニターが 256 色しか再現できなかった時代に、その範囲を超えないように指定する色とされる。
+そして、この "Named Color" が "Web Safe Color" だと誤解されることがある。
+
+Web Safe Color は、モニターが 256 色しか再現できなかった時代に、その範囲を超えないように指定し、再現性を保つための色とされる。
 
 要するに RGB をそれぞれ 16 進数にしたとき、`00`, `33`, `66`, `99`, `CC`, `FF` の 6 つを組み合わせた 6^3 = 216 色を指す。ちなみに、連続する数字はまとめられるので `#FFCC33` は `#FC3` と書ける。
+
+![Web Safe Colors](web-safe-colors.png)
 
 DEMO: https://labs.jxck.io/color/#web-safe-colors
 
@@ -99,19 +105,42 @@ background-color: hsl(347 100% 60%);
 
 こう比較すると、両者は色相/明度は全く同じで、彩度だけが変わっていることが一目瞭然となる。
 
+![HSL で S だけを変えた比較](hsl-comparison.png)
+
 DEMO: https://labs.jxck.io/color/#hsl-comparison
 
 この特徴を用いれば、例えば L, S を固定して H を変えれば、「明るさ」「鮮やかさ」を統一した異なる色を選ぶことができるため、統一したカラーパレットを作ることができる。アルゴリズミックな色定義が可能ということだ。
 
+```css
+background-color: hsl(220 90% 50%);
+background-color: hsl(250 90% 50%);
+background-color: hsl(280 90% 50%);
+background-color: hsl(310 90% 50%);
+background-color: hsl(340 90% 50%);
+background-color: hsl( 10 90% 50%);
+```
+
+![hsl-components](hsl-components.png)
+
 DEMO: https://labs.jxck.io/color/#hsl-components
 
-Web においても、HSL を採用する事例は決して少なくはなく、shadcn/ui などでは、HSL の成分を定義して、そこから色を生成する方式を取っていた。d3.js も色の操作に `d3.hsl()` API を提供していた。
+Web においても、HSL を採用する事例は決して少なくはなく、shadcn/ui などでは、HSL の成分を定義して、そこから色を生成する方式を取っていた。
+
+- "I recommend using HSL colors for theming but you can also use other color formats if you prefer."
+  - https://github.com/shadcn-ui/ui/blob/eeb17545a16824e11d09149a5ecab9fca570c448/apps/www/content/docs/theming.mdx#other-color-formats
+
+d3.js も色の操作に `d3.hsl()` API を提供している。
+
+- d3-color | D3 by Observable
+  - https://d3js.org/d3-color#hsl
 
 ところが、H を変えていく場合、L が同じでも「黄色が眩しく、青が暗い」と感じる問題が知られていた。
 
+![hsl-uniformity](hsl-uniformity.png)
+
 DEMO: https://labs.jxck.io/color/#hsl-uniformity
 
-したがって現在は、「人間の知覚特性に合わせた変化」をさせやすい性質(Perceptual Uniformity:知覚特性均等性)をもつよう、改善された方式が使われるようになっている。
+したがって現在は、「人間の知覚特性に合わせた変化」をさせやすい性質(Perceptual Uniformity:知覚均等性)をもつよう、改善された方式が使われるようになっている。
 
 つまり、Web において今から新規に HSL を用いる積極的な理由はない。
 
@@ -131,6 +160,7 @@ HWB は Hue(色相) / Whiteness(白の混合率) / Blackness(黒の混合率)で
 background-color: hwb(347 24% 4%);
 background-color: hwb(347 20% 0%);
 ```
+![hwb-comparison](hwb-comparison.png)
 
 DEMO: https://labs.jxck.io/color/#hwb-comparison
 
@@ -156,7 +186,7 @@ Lightness, a, b の 3 次元で指定され、a が赤~緑、b が青~黄の間�
 background-color: lab(50% 40 20 / 80%);
 ```
 
-例えば L を 10 から 20 にしたときも、50 から 60 にしたときも、「同じくらい明るくなった」と感じやすいという、知覚均一性を持つため、グラデーションやシェードの設計がしやすいとされる。
+例えば L を 10 から 20 にしたときも、50 から 60 にしたときも、「同じくらい明るくなった」と感じやすいという、知覚均等性を持つため、グラデーションやシェードの設計がしやすいとされる。
 
 しかし、a と b の調整は難しく、「彩度だけ変えたい」といった場合の計算が複雑になる。
 
@@ -166,6 +196,8 @@ background-color: lab(50% 40 20 / 80%);
 background-color: lab(56.5% 70.8 22.8);
 background-color: lab(57.4% 75.8 27.9);
 ```
+
+![lab-comparison](lab-comparison.png)
 
 DEMO: https://labs.jxck.io/color/#lab-comparison
 
@@ -199,6 +231,7 @@ background-color: lch(60% 50 250 / 80%);
 background-color: lch(30% 130 300); /* 起点 */
 background-color: lch(50% 130 300); /* 赤紫が入る */
 ```
+![lch-hue-shift](lch-hue-shift.png)
 
 DEMO: https://labs.jxck.io/color/#lch-hue-shift
 
@@ -216,6 +249,8 @@ LAB/LCH の持っていた「青が紫にシフトする」問題を数学的に
 
 - A perceptual color space for image processing
   - https://bottosson.github.io/posts/oklab/
+
+![oklch-hue-stability](oklch-hue-stability.png)
 
 DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 
@@ -239,13 +274,21 @@ DEMO: https://labs.jxck.io/color/#oklch-hue-stability
   --brand-blue:   oklch(var(--brand-l) var(--brand-c) 250); /* 青 */
   --brand-green:  oklch(var(--brand-l) var(--brand-c) 140); /* 緑 */
   --brand-purple: oklch(var(--brand-l) var(--brand-c) 300); /* 紫 */
-  --brand-red:    oklch(var(--brand-l) var(--brand-c) 20);  /* 赤 */
+  --brand-red:    oklch(var(--brand-l) var(--brand-c)  20);  /* 赤 */
 }
 ```
 
-HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば視覚特性的に揃ったパレットを作ることができる。
+HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば知覚的に揃ったパレットを作ることができる。
+
+![HLS/OKLCH Color Palette](palette-comparison.png)
+
+
+知覚均等性の差は、パレットをグレースケールするとよくわかる。
+
+![HLS/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png)
 
 DEMO: https://labs.jxck.io/color/#palette-comparison
+
 
 - CSS Color Module Level 4 - 9.4. Specifying Oklab and Oklch: the oklab() and oklch() functional notations
   - https://drafts.csswg.org/css-color-4/#specifying-oklab-oklch
@@ -385,6 +428,8 @@ color: color-contrast(var(--bg) vs #eee, #333, #111);
 ```css
 color: contrast-color(var(--bg)); /* white / black */
 ```
+
+![contrast-color](contrast-color.png)
 
 DEMO: https://labs.jxck.io/color/#contrast-color
 
