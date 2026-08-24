@@ -31,7 +31,7 @@ DEMO: https://labs.jxck.io/color/#named-colors
 
 > For historical reasons, this is also referred to as the X11 color set.
 
-X11 以外にもいくつかの経由で集約されたたため、`gray` (米国綴り)と `grey` (英国綴り)が両方あったり、`aqua` と `cyan` が同じだったりするため、色自体は 139 色だ。
+X11 以外にもいくつかの経路で集約されたため、`gray` (米国綴り)と `grey` (英国綴り)が両方あったり、`aqua` と `cyan` が同じだったりするため、色自体は 139 色だ。
 
 そして、この "Named Color" が "Web Safe Color" だと誤解されることがある。
 
@@ -282,11 +282,11 @@ DEMO: https://labs.jxck.io/color/#oklch-hue-stability
 
 HSL では「黄色だけ眩しすぎる」「青だけ暗すぎる」という問題が起きるが、OKLCH であれば知覚的に揃ったパレットを作ることができる。
 
-![HLS/OKLCH Color Palette](palette-comparison.png)
+![HSL/OKLCH Color Palette](palette-comparison.png)
 
 知覚均等性の差は、パレットをグレースケールするとよくわかる。
 
-![HLS/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png)
+![HSL/OKLCH Color Palette Grayscale](palette-comparison-grayscale.png)
 
 DEMO: https://labs.jxck.io/color/#palette-comparison
 
@@ -357,7 +357,7 @@ DEMO: https://labs.jxck.io/color/#relative-colors
 
 `color-mix()` を用いると 2 つの色を混ぜて、新しい色を宣言的に作ることができる。
 
-例えば Hover 時のように、状態に応じた色変化を作る場合、LCH で L を変える場合は、Light Mode は減少、Dark Mode は増加の方向に切り替える必要が出る。
+例えば Hover 時のように、状態に応じた色変化を作る場合、OKLCH で L を変えれば、Light Mode は減少、Dark Mode は増加の方向に切り替える必要が出る。
 
 ```css
 background-color:
@@ -379,7 +379,7 @@ background-color: color-mix(in oklab, var(--fg) 20%, var(--bg));
 
 DEMO: https://labs.jxck.io/color/#color-mix
 
-Light Mode では、白背景に文字の黒を少し混ぜたグレーになり、Dark Mode では、その逆になる。つまり、どちらでも「背景色を少し前景色に近づけた」値になる。
+Light Mode では、淡い青の背景に濃い青の前景が混ざり、少し濃い青になる。Dark Mode ではその逆。つまり、どちらでも「背景色を少し前景色に近づけた」値になる。
 
 また、`currentColor` を用いれば、今どういう色が表示されているかを知らなくても、アルゴリズミックに色を算出することも可能だ。
 
@@ -421,9 +421,9 @@ color: color-contrast(var(--bg) vs #eee, #333, #111);
 
 ところが、この「コントラストの算出」に対して、業界が非常に揺れている。
 
-我々の多くが採用している、WCAG2 が採用しているコントラスト計算は、知覚特性を考慮しきれていないと指摘されることも多く、その対案として提案された APCA は、WCAG3 で採用されるという触れ込みだったが、すでにドラフトからは落とされている。
+広く採用される WCAG2 のコントラスト計算は、知覚特性を考慮しきれていないと指摘されることも多く、その対案として提案された APCA は、WCAG3 で採用されるという触れ込みだったが、すでにドラフトからは落とされている。
 
-その議論のさなかの提案だったため、Safari は実装に着手したが、標準化が難航したため、現在仕様は取り下げられている。
+その議論のさなかの提案だったため、Safari は実装に着手しつつも、標準化は難航し、現在仕様は取り下げられている。
 
 代わりに提案されたのが `contrast-color()` だ。これは単純に、「指定した色と白・黒を比べ、コントラストの高い方を返す」というものだ。
 
@@ -461,9 +461,9 @@ Web では、CSS Color Module Level 4 で、Wide Gamut 系の色空間を CSS �
 
 したがって、Web 開発では意識するとしても `display-p3` だ。ただし、Display P3 にしかない色は、基本的に彩度の強い色なので、それを使わない範囲であれば意識する必要はない。
 
-Wide Gamut を指定する場合は、`color()` を使い、指定はその色域の中での割合を RGBA で指定する。
+Wide Gamut を指定する場合は、`color()` を使い、その色域の中での割合を RGBA で指定する。
 
-例えば、以下のようにすると sRGB よりも外にある Display P3 領域において、もっとも明るい緑を出すことができる。
+例えば、以下のようにすると sRGB よりも外にある Display P3 領域において、もっとも鮮やかな緑を出すことができる。
 
 その色を発色できないディスプレイでは、表現できる色域に丸め込まれる(gamut mapping)。
 
