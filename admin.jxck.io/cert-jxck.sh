@@ -1,4 +1,4 @@
-sudo /home/linuxbrew/.linuxbrew/bin/certbot certonly \
+sudo /snap/bin/certbot certonly \
   -n \
   --dns-cloudflare \
   --dns-cloudflare-credentials /etc/letsencrypt/jxck.io.ini \

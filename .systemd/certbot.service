@@ -4,10 +4,12 @@ Description=Certbot renewal
 [Service]
 # 1回実行して終了(常駐しない)
 Type=oneshot
-# Homebrew 管理下に root-owned __pycache__ を生成しない
-Environment=PYTHONDONTWRITEBYTECODE=1
 # 期限が近い証明書を更新する
-ExecStart=/home/linuxbrew/.linuxbrew/bin/certbot renew --quiet
+# certbot は snap で導入する (2026-08-28 に brew から移行)。brew は sudo 実行で
+# root-owned ファイルが Homebrew 管理下に書かれ brew cleanup が壊れる問題があり、
+# apt は 2.9.0 と古く shortlived profile (--preferred-profile) に非対応のため。
+# root の PATH に /snap/bin が無い環境でも動くよう絶対 path で呼ぶ
+ExecStart=/snap/bin/certbot renew --quiet
 # 証明書更新後に h2o をリロードして新しい証明書を反映する
 # (証明書が更新されなかった場合も毎回 reload が走るが軽量なので問題ない)
 ExecStartPost=/bin/systemctl reload h2o
