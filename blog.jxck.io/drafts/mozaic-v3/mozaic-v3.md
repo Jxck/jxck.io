@@ -44,7 +44,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
 
 ## v3 でやったこと
 
-2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 72 本の plan として残っている。
+2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 79 本の plan として残っている。
 
 - 配信基盤を作り直した
   - Cloudflare Workers + Static Assets で一度作り切ったあと、全部 VPS へ戻した
@@ -52,6 +52,9 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   - deploy は `make deploy` の直線 1 本 (update -> check -> bundle -> restart -> smoke)。rollback 機構は持たない
   - 2026-08-17 に cutover 完了。apex の A レコードを消して Web 経路の IPv6 only 化が完成し、apex の :80 は redirect ではなく 403 で拒否する
   - 証明書は DNS-01 (dns-cloudflare) + shortlived profile (160 時間) へ移行し、port 80 / `.well-known` 依存を切った
+  - Web 経路 (apex / wiki / vtt) の TLS を 1.3 only + X25519MLKEM768 (ポスト量子ハイブリッド鍵交換) にした。podcast 経路 (www / files / feed) は互換性優先で TLS 1.2 のまま残し、TCP / QUIC 両方で実測して確認した
+  - certbot の導入元を brew (root 汚染) / apt (2.9.0 は ACME profile 非対応) から snap へ移した
+  - h2o (2.3.0-DEV) の host level header 指令が「自身も header 指令を持つ最初の path」にしか継承されない不具合を発見し、path-level への展開で回避した (upstream への報告も準備した)
 - サイト本体を静的 HTML から SSR + SPA にした
   - Inertia を採用したあと、自前 router の igniter (Navigation API) へ置き換えた
   - persistent layout と View Transitions で、遷移しても再生が途切れず画面も飛ばない
@@ -68,6 +71,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
 - LLM-Wiki を新設した
   - エピソードのトピックを ontology 付きで蓄積し、wiki.mozaic.fm として公開した
   - 公開 UI と client-side 検索を後から足した
+  - VTT の本文精度向上より先に wiki ingest を終わらせる順序に変えた。shownote の裏取りで show note の箇条書きだけでなく、wiki が読み込み済みの原文記事を直接参照できるようにした
 - デザインを token から作り直した
   - 色は全て OKLCH。意味色はコントラスト目標から導出し、機械検査で drift を止める
   - Display P3 のネオンアクセント 4 色を足し、再生系 UI とヘッダーの VU メーターを発光させた。sRGB 環境には gamut mapping の確定値を `@media (color-gamut: p3)` 分岐で配る
@@ -82,8 +86,11 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   - 「今どう作られているか」を現在形で書く公開ページ群。本文は HTML 直書き、CSS はサイト本体の実ファイルを build 時連結して token に自動追従する
   - CSP 違反・固定色・内部情報の混入を build gate で落とす (production でしか壊れない事故を build 時に検出する)
 - 品質の守りを敷いた
-  - unit 522、E2E 151 test を 3 engine、Page VRT 28 面、axe は WCAG AA 違反 0 を常時
+  - unit 545、E2E 151 test を 3 engine、Page VRT 28 面、axe は WCAG AA 違反 0 を常時
+  - unit test runner を tsx --test から Vitest へ移行した (収集契約と node:assert/strict を維持したまま)
   - 生成物は atomic publish、runtime に contract guard、CI に artifact hygiene / sink / baseline / 色の gate
+  - build:content は episode ごとの hash 差分で compile を skip する。221 episode 変更なしなら全件 cache hit
+  - episode 公開前のミス (monthly slug の月忘れ、published_at の書き間違い) を check:episodes で機械検査する
 - 開発体制そのものを設計した
   - README = AGENTS.md = CLAUDE.md の単一規約と、plan の WIP -> 相互レビュー -> Fixed の workflow
   - Claude と Codex を相互レビューに使い、確定した方針は skill に落として再利用する
@@ -135,6 +142,8 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   - アーキテクチャ / 色の設計 / runtime の使い分け等を現在形で説明する。開発者と agent 向け
 - mp3 の管理を git-annex 化 (実体は VPS 一箇所、保管 = 配信。GitHub には帳簿と symlink のみ)
   - 公開は `make mp3` の 1 操作。ID3 タグ (title/track/artist/album/cover) を annex 化前に自動で焼き、配信後に実タグを照合する読み取り専用検査もある
+  - 旧さくらサーバー解約に伴い、mp3 の耐久 2 copies を VPS + さくらから VPS + ローカルへ切り替えた。git remote の命名も端末を問わず `origin` = GitHub に統一した
+  - 新規 episode だけを VPS へ反映する軽量 deploy (`make preview`。bundle -> restart のみ、test 系なし) を追加した。アプリコード変更時は引き続き `make deploy` を使う
 - dark / light テーマ (light-dark() + data-theme。SSR は theme cookie で FOUC なし)
   - toggle は 2 状態。system か、押した瞬間の反対を具体値で pin するかで、
     pin 後に OS 設定が変わってもサイトの見た目は動かない
@@ -175,7 +184,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
 - Baseline Newly available 方針: polyfill なし
   (日付は temporal-polyfill-lite の ponyfill のみ。anchor() には静的 fallback)
 - テスト / リリースの守り
-  - Playwright E2E 151 test x 3 engine + axe (WCAG AA 違反 0 を CI で常時) + Page VRT + unit 522
+  - Playwright E2E 151 test x 3 engine + axe (WCAG AA 違反 0 を CI で常時) + Page VRT + unit 545
   - E2E は専用 port + fixture 隔離 (実ファイルを書かない)、VRT は fixture episodes で
     実データ非依存 (エピソード公開で baseline が割れない)
   - CI の e2e 失敗 trace が 1 バイトも保存されていなかった事故と修復
@@ -199,7 +208,8 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   カード meta の 1 行圧縮 ("2026-07-14: @guest")
 - a11y: focus ring 統一、hit 領域 24px (WCAG 2.5.8)、VTT 競合の error summary +
   aria-invalid、字幕は aria-hidden (transcript は VTT タブが担う)、
-  prefers-reduced-motion で marquee 停止、コントラストは全て実測で決定
+  prefers-reduced-motion で marquee 停止、コントラストは全て実測で決定、
+  Reference Target (Chrome 151) で shadow DOM を跨ぐ ARIA 参照に対応
 - 文字ポリシー (全角記号の機械検査) と oxfmt による全拡張子一括 format
 
 ## その他特筆すべき点
