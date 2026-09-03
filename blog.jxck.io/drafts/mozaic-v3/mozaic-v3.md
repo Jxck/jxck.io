@@ -1,4 +1,4 @@
-# mozaic.fm v3
+# mozaic.fm v3 Release Note #1 - Overview
 
 ## Intro
 
@@ -7,7 +7,46 @@ mozaic.fm v3 をリリースした。
 かなり大幅ななアップデートになる。
 
 
-## UI 刷新
+## はじめに
+
+URL 等は変わってない。
+
+https://mozaic.fm
+
+しかし、これを開くと接続できない人もいるだろう。決して落ちてるわけではない。
+
+その理由は次回以降、今回の技術的変更について解説する。
+
+サイトにアクセスできなくても、 Spotify や Apple のアプリでの視聴は誰でもできる。
+
+Podcast はそもそも Podcast アプリで聞くものなので、その範囲はこれまで通りの互換性を維持している。
+
+
+## 連載
+
+このブログ(blog.jxck.io)と mozaic.fm は、新しい技術を試す土台として活用してきた。
+
+しかし、主に静的サイトとして、高速化の技術を徹底的に詰め込んできており、ブログもポッドキャストも近いスタックだった。
+
+今回、 mozaic.fm はより動的なアプリケーションに舵を切ることで、静的サイトである本ブログでは試せないものをより詰め込んでいくことができた。
+
+実際に詰め込んだ技術スタックについては、連載の形で紹介したいと思う。
+
+1. ネットワーク編
+2. UI 編
+3. LLM-Wiki 編
+4. VTT 編
+
+
+一部はすでに mozaic.fm 自体で話しているが、そこに収まらなかった技術的な変更だ、まだまだ残っている。
+
+- ep213 mozaic.fm v3 release note | mozaic.fm
+  - https://mozaic.fm/episodes/213/mozaic-v3-release.html
+
+## Outro
+
+
+
 
 
 ## VTT 提供
@@ -44,7 +83,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
 
 ## v3 でやったこと
 
-2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 79 本の plan として残っている。
+2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 81 本の plan として残っている。
 
 - 配信基盤を作り直した
   - Cloudflare Workers + Static Assets で一度作り切ったあと、全部 VPS へ戻した
@@ -53,6 +92,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   - 2026-08-17 に cutover 完了。apex の A レコードを消して Web 経路の IPv6 only 化が完成し、apex の :80 は redirect ではなく 403 で拒否する
   - 証明書は DNS-01 (dns-cloudflare) + shortlived profile (160 時間) へ移行し、port 80 / `.well-known` 依存を切った
   - Web 経路 (apex / wiki / vtt) の TLS を 1.3 only + X25519MLKEM768 (ポスト量子ハイブリッド鍵交換) にした。podcast 経路 (www / files / feed) は互換性優先で TLS 1.2 のまま残し、TCP / QUIC 両方で実測して確認した
+  - wiki.mozaic.fm だけ HTTP/1.1 を捨て、専用 IPv6 上の QUIC/HTTP/3 only 配信にした。h2o は ALPN から h1.1 だけを選択的に外せないため、TCP listener ごと撤去した。HTTPS RR に `no-default-alpn` を足す当初案は、Chrome Dev が RFC 9460 の許容挙動として RRset 全体を無視し閉じた TCP へ fallback する事故を招いたため、`alpn="h3"` + ECH + ipv6hint だけの構成に戻した。Googlebot は HTTP/3 非対応で検索クロールを失うが、実測でトラフィックの大半が Google 系 bot だったこともあり許容した
   - certbot の導入元を brew (root 汚染) / apt (2.9.0 は ACME profile 非対応) から snap へ移した
   - h2o (2.3.0-DEV) の host level header 指令が「自身も header 指令を持つ最初の path」にしか継承されない不具合を発見し、path-level への展開で回避した (upstream への報告も準備した)
 - サイト本体を静的 HTML から SSR + SPA にした
@@ -66,12 +106,14 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
   - whisper のパイプライン (VAD / 用語 prompt / 辞書 / alignment / cue gap / 50 文字) を整えた
   - 誰でも直せる公開 VTT エディタをエピソードページのタブに統合した
   - 表示は native `::cue` をやめて自前描画にした
+  - エディタに未処理 cue (先頭 `★` マーカー) の可視化を追加した。色だけに頼らず、カードの強調表示・「未処理」ラベル・右上の常時 counter の 3 経路で伝える
 - 検索を新設した (旧サイトには無い)
   - build 時生成の静的 index を Orama で引き、結果は行ヒットまで出して該当行へ飛ばす
 - LLM-Wiki を新設した
   - エピソードのトピックを ontology 付きで蓄積し、wiki.mozaic.fm として公開した
   - 公開 UI と client-side 検索を後から足した
   - VTT の本文精度向上より先に wiki ingest を終わらせる順序に変えた。shownote の裏取りで show note の箇条書きだけでなく、wiki が読み込み済みの原文記事を直接参照できるようにした
+  - グラフがほぼ空 (426 ページ中 edge 39 本、degree 0 が 85%) だったため、並列 agent による proposal + evidence 検証の 2 相 backfill で 371 edge を追加し、degree 0 を 31% まで減らした
 - デザインを token から作り直した
   - 色は全て OKLCH。意味色はコントラスト目標から導出し、機械検査で drift を止める
   - Display P3 のネオンアクセント 4 色を足し、再生系 UI とヘッダーの VU メーターを発光させた。sRGB 環境には gamut mapping の確定値を `@media (color-gamut: p3)` 分岐で配る
