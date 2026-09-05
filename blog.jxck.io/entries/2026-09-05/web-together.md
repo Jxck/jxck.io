@@ -1,4 +1,4 @@
-# [w3c][web] W3C Japan 30 周年記念パネルのモデレートをした
+# [w3c][web] W3C Japan 30 周年記念パネルのモデレートをした #web_together
 
 ## Intro
 
