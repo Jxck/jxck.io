@@ -178,3 +178,19 @@ TLS/1.3 では、必須な Suite は `TLS_AES_128_GCM_SHA256` だ。
 > and TLS_CHACHA20_POLY1305_SHA256 [RFC8439] cipher suites (see Appendix B.4).
 >
 > --- https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1
+
+## no HTTP/1.1
+
+TCP を閉じた今、基本的に QUIC しか通らない。したがって HTTP/1.1 が疎通できる隙はもうない。
+
+そこで HTTP RR の中で、`alpn="h3" no-default-alpn` とし、 Default ALPN である http/1.1 を外し、 H3 のみ接続のアドバタイズを試した。
+
+ところが、 `no-default-alpn` があると Chrome が
+
+> To ensure consistency of behavior,
+> clients MAY reject the entire SVCB RRset
+> and fall back to basic connection establishment
+> if all of the compatible RRs indicate "no-default-alpn",
+> even if connection could have succeeded using a non-default ALPN protocol.
+>
+> --- https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2
