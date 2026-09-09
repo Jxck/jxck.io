@@ -10,80 +10,125 @@ mozaic.fm v3 をリリースした。
 
 Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。
 
+
 ## no IPv4
 
 まず、ずっとやってみたかった IPv6 Only にした。
 
 具体的には mozaic.fm ドメインの A レコードを提供を辞めている。
 
-従って、 IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
+従って、IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
 
 TODO: エラー画面
 
-IPv4 が枯渇すると騒がれてから数年、 CIDER などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
+IPv4 が枯渇すると騒がれてから数年、CIDER などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
 
-今年 4 月には、ブログの方でテストを行ったが、そのときは A は落とさず、 src ip が v4 だったらエラーにするものだった。
+今年 4 月には、ブログの方でテストを行ったが、そのときは A は落とさず、src ip が v4 だったらエラーにするものだった。
 
 - 本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io
   - https://blog.jxck.io/entries/2026-04-01/ipv6-only.html
 
-しかし、これだと色々なところにエラー画面がキャッシュされ、 OGP が壊れたりと言った状況になった。
+しかし、これだと色々なところにエラー画面がキャッシュされ、OGP が壊れたりと言った状況になった。
 
-それも中途半端なため、今回は A レコードを落とし、サーバもリッスンしないことで、完全に IPv4 を落とすことにした。
+それも中途半端なため、今回は A レコードを落とし、サーバもリッスンしないことで、完全に IPv4 を落とすことにした。加えて HTTP RR で `ipv6hint` も告知している。
 
 Happy Eyeball による僅かな遅延も気にする必要はなくなり、マンションの混んだ v4 トンネルに悩まされることもない。
 
-実は、筆者のマンションは、 v4 オンリーのマンションタイプであるため、サイトに接続することができない。
+実は、筆者のマンションは、v4 オンリーのマンションタイプであるため、サイトに接続することができない。
 
 検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしているため、同じ状況の人にはこれを推奨する。
 
 - 1.1.1.1
   - https://one.one.one.one/
 
+なお、ポッドキャストアプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、Dual Stack を維持しているため、Spotify などでの視聴には影響はない。
+
 
 ## no :80
 
 HTTPS Only というと、別に珍しくもないだろう。
 
-一般的には、 `http://` と `https://` を両方デプロイし、 `http://` の場合はリダイレクトをかけ、 HSTS で固着させるといった構成が基本だ。 Cookie に `Secure` がついれいれば、大きな被害はないだろうという落としどころだ。
+一般的には、`http://` と `https://` を両方デプロイし、`http://` の場合はリダイレクトをかけ、HSTS で固着させるといった構成が基本だ。Cookie に `Secure` がついれいれば、大きな被害はないだろうという落としどころだ。
 
 しかし、その最初のアクセスは平文が残り、ブラウザは HTTPS First Mode, Preload HSTS, HTTPS RR などを模索しながら、最初の平文通信も暗号化する方法を探っている。
 
-本サイトでは、`:443` のみを受けるようにするとともに、 `:80` を Listen するのを辞め、 ufw でも塞ぐことにした。
+本サイトでは、`:443` のみを受けるようにするとともに、`:80` を Listen するのを辞め、ufw でも塞ぐことにした。
 
 これにより、そもそも `:80` とは経路確立ができないため、平文にペイロードが露出することはない。
 
-しかし、 mozaic.fm 自体が 10 年以上やっているため、世の中には `http://mozaic.fm` なリンクもあるだろう。
+しかし、mozaic.fm 自体が 10 年以上やっているため、世の中には `http://mozaic.fm` なリンクもあるだろう。
 
 そこで DNS から HTTPS RR を提供することで、対応するクライアントが最初から HTTPS に Upgrade できるようアドバタイズしている。
 
-これにより、視聴者はどんなエピソードを聞いているか、完全に秘匿することが可能になる。
+`mozaic.fm` は、かなり以前から Chrome の Preload HSTS プログラムに登録しており、HSTS に `preload` も入れていた。しかし、HTTPS RR が普及したことも鑑み、`preload` はもうやめることにした。
 
-## no plain SNI
+```
+Strict-Transport-Security: max-age=63072000; includeSubDomains
+```
 
-HTTP のペイロードが暗号化されても、その手前には TLS のハンドシェイクが残っている。
+なお、ポッドキャストアプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、`:80` を維持しているため、Spotify などでの視聴には影響はない状態を維持したい。
 
-特に Client Hello にある SNI をみれば、どんなエピソードを聞いてるかはわからなくても、「mozaic.fm を聞いている」ということ自体が暴露してしまう。
+ところが、これを h2o で維持するのは、少しむずかしかった。
 
-そこで、 Encrypt Clinet Hello (ECH) を導入し、 HTTPS RR に対して公開鍵を提供している。
+例えば、`mozaic.fm` は `:80` を listen せず、`feed.mozaic.fm` は `:80` を listen する `h2o.conf` はこうなる。
 
-対応するブラウザは、この鍵を使い SNI を含めて最初のペイロードから暗号化できるため、 SNI を盗聴されて mozaic.fm を聞いているという事実がバレることはなくなる。
+```conf
+jxck.io:
+  listen:
+    port: 80
+mozaic.fm:
+  listen:
+    port: 443
+feed.mozaic.fm:
+  listen:
+    port: 80
+  listen:
+    port: 443
+```
 
-また、政府が mozaic.fm を有害 Podcast 指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
+ところが、h2o のインスタンスが listen しているアドレス自体が一緒だと、`mozaic.fm:80` のリクエストは、同じ IP/Port を listen している最初の定義(Default vhost)にフォールバックされてしまう。この h2o は mozaic.fm だけでなく jxck.io もホストしているため、そちらに落ちてエラーを返してしまうのだ。
+
+もともと使っていた Sakura VPS では、インスタンスに割り当てられる IPv6 アドレスがそれぞれ 1 つづつなので、h2o の制約を逃れることができなかった。
+
+ところが、`mozaic.fm` はすでに IPv4 をサポートしないことになっているので、IPv6 でアドレスを分ければ、フォールバックがおこらない。しかし、Sakura VPS は IPv6 も 1 個なのでそれもできない。
+
+そこで、長年利用していた Sakura VPS をやめ、IPv4 は 1 個だが、IPv6 が複数付与される Conoha VPS に移行することにした。
+
+このようにサブドメインごとに IPv6 を分けることで、`mozaic.fm` は専用 IPv6 の `:443` のみを Listen することで、フォールバックを防ぐことができた。
+
+```
+"mozaic.fm":
+  listen:
+    host: 2400:8500:2002:3327:a160:251:255:820
+    port: 443
+"feed.mozaic.fm:80":
+  listen:
+    host: 2400:8500:2002:3327:a160:251:255:825
+    port: 80
+  listen:
+    host: 160.251.255.82
+    port: 80
+```
+
+これにより、視聴者は常に `:443` で暗号化された経路を使うため、どんなエピソードを聞いているか、完全に秘匿することが可能になる。(mp3 は `:80` を維持しているためそちらを見ればわかるが。)
+
+10 年以上 mozaic.fm を支えてくれた Sakura VPS を卒業するのは名残惜しいが、リスナーの安全には変えることができない。今までありがとう。
+
 
 ## no plain DNS
 
-SNI が暗号化されても、その手前の DNS Query が平文だと、「mozaic.fm を名前解決した」という事実がネットワークに暴露してしまう。
+HTTP が暗号化されても、その手前の DNS Query が平文だと、「mozaic.fm を名前解決した」という事実がネットワークに暴露してしまう。
 
-そこで DNS over HTTPS を用いると、 DNS Query を HTTPS で暗号化することができる。
+そこで DNS over HTTPS を用いると、DNS Query を HTTPS で暗号化することができる。
 
-これについては、筆者が対応するのではなく、 DoH に対応した DNS をユーザが使ってもらう必要がある。
+これについては、筆者が対応するのではなく、DoH に対応した DNS をユーザが使ってもらう必要がある。
 
-先ほど紹介した Cloudflare WARP なら、 1.1.1.1 を用いてそれが可能だ。
+先ほど紹介した Cloudflare WARP なら、1.1.1.1 を用いてそれが可能だ。
+
 
 ## no DNS Poisoning
 
-ところが、 DoH で引いた値が Cache Poisoning などされていれば、攻撃者の DNS へとクエリが転送され、「mozaic.fm を解決しようとしている」ことが暴露する可能性がある。
+ところが、DoH で引いた値が Cache Poisoning などされていれば、偽のレコードで攻撃者サーバに接続させられる可能性は残る。
 
 そこで、筆者は DNSSEC を有効にし、レコードに署名をつけている。
 
@@ -92,13 +137,13 @@ SNI が暗号化されても、その手前の DNS Query が平文だと、「mo
 
 ## no Miss Issued Certificate
 
-ここまでで、 DNS から HTTP Request まで全て暗号化することができた。
+ここまでで、DNS から HTTP Request まで全て暗号化することができた。
 
 しかし、正規の CA から mozaic.fm の証明書が、筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
 
-そこで、筆者が使っている Let's Encrypt 以外が証明書を発行しないよう、 CAA レコードで対象を絞りつつ、それを無視する発行を検知するため、 CT Log の監視を行っていた。
+そこで、筆者が使っている Let's Encrypt 以外が証明書を発行しないよう、CAA レコードで対象を絞りつつ、それを無視する発行を検知するため、CT Log の監視を行っていた。
 
-以前、登録したドメインの CT Log が追加されると、 Facebook にメッセージが来るなぞの連携があったが、それはどうやらサ終してしまった。したがって CT Log 監視の別の方法を考えていたが、後述する Short Lived Cert に移行した。
+以前、登録したドメインの CT Log が追加されると、Facebook にメッセージが来るなぞの連携があったが、それはどうやらサ終してしまった。したがって CT Log 監視の別の方法を考えていたが、後述する Short Lived Cert に移行した。
 
 
 ## no Long Lived Certificate
@@ -111,13 +156,14 @@ Let's Encrypt は 6 日期限の短命証明書を提供している。
 
 本サイトは、この短命証明書に移行した。
 
-Cloudflare の Access Token を Certbot に渡し、 DNS-01 で更新を行っている。
+もともと Certbot の更新は HTTP ベース(HTTP-01) で行っていたが、`:80` を閉じることになったため、`http://mozaic.fm/.well-known` に接続できなくなった。そこで、Cloudflare の API Token を Certbot に渡し、DNS ベース(DNS-01)で更新を行うように移行した。
 
-Systemd Timer を Daily で起動し、毎日残期限をチェックしながら、 160 時間(6.7日)の半分 80時間(3.3日)を切ったら更新するようにしている。
+もともと Short Lived にする前は、Systemd Timer を 48 時間おきに起動していた。しかし、Short Lived の場合 Certbot は 80 時間を切ると更新をかける。もし 80 時間を切ったあとの起動で Certbot がミスしたら、2 日後の Timer 発火時には証明書がもう切れている可能性がある。そこで、Daily での起動に直し、毎日残期限をチェックしながら更新するようにしている。
 
 ACME のおかげで、この頻度での更新も可能になった。
 
-DNS-PERSIST-01 が来れば、 DNS-01 のレコード書き換えによるチェックも変わるため、提供されたらそちらも検証したい。
+DNS-PERSIST-01 が来れば、DNS-01 のレコード書き換えによるチェックも変わるため、提供されたらそちらも検証したい。
+
 
 ## no TLS/1.2
 
@@ -125,13 +171,14 @@ TLS は長いこと 1.2 をベースとして、ネゴシエーションが通�
 
 ところが TLS/1.2 には歴史的な蓄積が大きく、現在となっては非推奨な方式もサポートされており、設定を気をつけるしかなかった。
 
-そこで、本サイトでは、 1.3 以下を落とすことにした。
+そこで、本サイトでは、1.3 未満を落とすことにした。
 
-これにより、古い鍵交換や暗号化が全て落とされ、 Forward Secuecy が必須になり、 RTT も短縮される。
+これにより、古い鍵交換や暗号化が全て落とされ、Forward Secuecy が必須になり、RTT も短縮される。
 
 1.2 での接続自体ができなくなることで、ユーザが知らぬ間に非推奨な方式でハンドシェイクしてしまい、その隙をつかれて聴いているエピソードがバレてしまう心配がなくなる。
 
-## no Pre Quantum Cryptography
+
+## no Pre-Quantum Cipher Suite
 
 完璧に HTTPS をデプロイできても、暗号化が破られると問題だ。
 
@@ -141,37 +188,7 @@ TLS は長いこと 1.2 をベースとして、ネゴシエーションが通�
 
 これに対抗するため、現在は耐量子暗号(Post Quantum Cryptgraphy)が研究され、標準仕様も整備されてきた。
 
-そこで、本サイトでは耐量子性をもつ鍵交換 MLKEM を追加した。
-
-- X25519MLKEM768
-- secp256r1mlkem768
-- secp384r1mlkem1024
-
-最初の以外は、今のところサポートしているクライアントはかなり少なそうなので、多くは最初のハイブリッド方式が選択されるだろう。
-
-また、 Pico TLS ではハイブリッドではない PQC もサポートしている。
-
-- mlkem512
-- mlkem768
-- mlkem1024
-
-これらについては、「MLKEM がもし敗れらた場合、フォールバックがない」として、実績の少ない現時点で、安全なのかどうかの議論が続いてる方式でもある。
-
-しかし、入れたところで実装はなく、多くは `X25519MLKEM768` の有無くらいなのでとりあえず入れておいた。 MLKEM 単体が危殆化したら落とせばいいし、その場合どうせいハイブリッドな他のも見直す必要があるだろう。
-
-また、非耐量子である旧来の鍵交換は落とした。と言いたいところだが、 TLS/1.3 では `secp256r1` は必須実装となっているため、 `x25519` だけを落とすことにした。
-
-> A TLS-compliant application MUST support key exchange with secp256r1 (NIST P-256)
-> and SHOULD support key exchange with X25519 [RFC7748].
->
-> --- https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1
-
-これで、量子コンピュータが攻撃者の手にわたっても、どんなエピソードを聴いてるかを除かれる心配無く視聴できるだろう。
-
-
-## no Weak Cipher Suite
-
-TLS/1.3 では、必須な Suite は `TLS_AES_128_GCM_SHA256` だ。
+TLS/1.3 では、実装必須な Suite は `TLS_AES_128_GCM_SHA256` と定義されている。
 
 > A TLS-compliant application MUST implement the TLS_AES_128_GCM_SHA256 [GCM] cipher suite
 > and SHOULD implement the TLS_AES_256_GCM_SHA384 [GCM]
@@ -179,13 +196,103 @@ TLS/1.3 では、必須な Suite は `TLS_AES_128_GCM_SHA256` だ。
 >
 > --- https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1
 
+ところが、Grover のアルゴリズムにより、量子コンピュータを用いると鍵探索範囲を半減させられるという指摘がされている。つまり AES-128 は実質 64 bit 相当に落ちるというものだ。
+
+これにより、すぐ危殆化するわけではないが、NSA CNSA 2.0 においては、共通鍵暗号の鍵長は 256bit を推奨している。
+
+> Use 256-bit keys for all classification levels
+>
+> --- https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF
+
+RFC と競合するが、RFC 側は基本的には疎通(Interop)を重視しているため、セキュリティレベルだけを起点に書かれているわけではない。そして、全ての暗号化方式には危殆化のリスクがあるが、そのたびに RFC を更新するのも難しい。
+
+そこで、Mandatroy-to-Imeplement の節には以下の一文がある。
+
+> In the absence of an application profile standard specifying otherwise:
+>
+> --- https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1
+
+要するに、NSA CNSA のような国家の調達基準といった、別に定めるプロファイルによってこれを上書きする余地だ。疎通ができないリスクを飲んだ上で、AES-128 を落とし SHOULD である、AES-256 や CHACHA-POLY のみをサポートすることが認められる。
+
+当然、本サイトは実験サイトなので、あえて AES-128 を落としてみる設定を試そうとした。
+
+ところが、QUIC は Initial Packet の暗号化は `TLS_AES_128_GCM_SHA256` を用いることが規定されている。
+
+> Initial packets use AEAD_AES_128_GCM
+> with keys derived from the Destination Connection ID field
+> of the first Initial packet sent by the client;
+>
+> --- https://www.rfc-editor.org/info/rfc9001/#section-5
+
+実際に、h2o.conf で落としてみたところ、h2o の使っている quicly が `SIGSEGV` してしまった。RFC の規定の外を想定してない挙動であるため、バグと言えるような言えないような微妙なところである。いずれにせよ h2o では QUIC の AES-128 を落とすことはできない。
+
+ところが、h2o では quic かどうかで設定を変えることができる。
+
+そこで、`cipher-preference: server` を指定し、Serve からの優先順位を提示することにした。QUIC では AES-128 を残し、Initial 以降では他の Suite を優先。TCP (H/1.1, H/2 etc) では AES-128 を落とすという指定に落ち着いている。
+
+
+## no Pre-Quantum Key Exchange
+
+鍵交換についても、同様に耐量子性をもつものを用いるのが望ましいだろう。
+
+NSA CNSA 2.0 では鍵交換は NIST にも追加された ML-KEM の利用を規定している。
+
+> ML-KEM-1024 for all classification levels.
+>
+> --- https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF
+
+picotls は、OpenSSL 3.5 以上を使ってビルドすると、以下の ML-KEM をサポートできる。
+
+- mlkem512
+- mlkem768
+- mlkem1024
+
+CNSA をとるのであれば、選ぶべきは `mlkem1024` 一択となる。ところが純粋な ML-KEM を実装するブラウザはなく、基本はハイブリッド方式を選択している。
+
+- X25519MLKEM768
+- secp256r1mlkem768
+- secp384r1mlkem1024
+
+これらについては、「MLKEM がもし敗れらた場合、単体ではフォールバックがない」とした視点で使われている。ML-KEM の実績の少ない現時点で、単体でも安全なのかどうかの議論が続いてることが原因だ。
+
+現状多くのブラウザは `X25519MLKEM768` を採用し、純粋な ML-KEM が実装されるのは先になりそうだ。そこで、ハイブリッド方式と純粋な ML-KEM を両方サポートしておくことにした。
+
+問題は、TLS/1.3 で MUST となっている `secp256r1` と SHULD な `x25519` だ。
+
+> A TLS-compliant application MUST support key exchange with secp256r1 (NIST P-256)
+> and SHOULD support key exchange with X25519 [RFC7748].
+>
+> --- https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1
+
+ところが、これも共通鍵暗号同様、疎通のための規定であり、危殆化した場合はプロファイルによる上書きが許可されている。
+
+`x25519` だけを落とすことも考えたが、やはりここは実験として `secp256r1` も両方落としてみることにした。
+
+モダンなブラウザであれば、しばらくは `X25519MLKEM768` での接続が大半となるだろう。
+
+これで、量子コンピュータが攻撃者の手にわたっても、どんなエピソードを聴いてるかを覗かれる心配無く視聴できる。
+
+
+## no TCP
+
+そうすると、今度は UDP のみにしたらどうなるだろう?という興味が出てくる。つまり ufw で TCP を落としてしまう方法だ。
+
+必然的に QUIC しか通らなくなるため、H/3 が前提となる。
+
+しかし、この設定を https://mozaic.fm 全体に指定すると、いよいよ自分でも環境の確認が難しくなってしまうことが判明した。
+
+そこで、後日解説する https://wiki.mozaic.fm という新設のドメインを、最初から UDP のみにすることにした。
+
+もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通ればとりあえず https://mozaic.fm は開く状態だ。
+
+
 ## no HTTP/1.1
 
-TCP を閉じた今、基本的に QUIC しか通らない。したがって HTTP/1.1 が疎通できる隙はもうない。
+TCP を閉じた wiki.mozaic.fm は、基本的に QUIC しか通らない。すると H/2 と H/1.1 は疎通できる隙はない。
 
-そこで HTTP RR の中で、`alpn="h3" no-default-alpn` とし、 Default ALPN である http/1.1 を外し、 H3 のみ接続のアドバタイズを試した。
+そこで HTTP RR の中で、`alpn="h3" no-default-alpn` とし、H3 のみを告知、H/2 は告知せず、Default ALPN である http/1.1 は落とすというアドバタイズが妥当に思える。
 
-ところが、 `no-default-alpn` があると Chrome が
+ところが、`no-default-alpn` があると Chrome で接続ができなくなる。これは、Chromee が `no-default-alpn` を見ると HTTPS RR 全体を無視するためだ。
 
 > To ensure consistency of behavior,
 > clients MAY reject the entire SVCB RRset
@@ -194,3 +301,60 @@ TCP を閉じた今、基本的に QUIC しか通らない。したがって HTT
 > even if connection could have succeeded using a non-default ALPN protocol.
 >
 > --- https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2
+>
+
+つまり、Chrome の現在の実装は `no-default-alpn` を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという、MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
+
+ここまで来ると、尖りすぎて Chrome も置き去りにしてしまうため、流石にもう接続できる人がいなくなる。そこで、`no-default-alpn` はあきらめることにした。
+
+```
+alpn="h3" ech="..." ipv6hint="..."
+```
+
+つまり HTTP/1.1 は暗黙的に広告されるが、実際には接続できない状態となる。
+
+
+## no plain SNI
+
+HTTP のペイロードが暗号化されても、その手前には TLS のハンドシェイクが残っている。
+
+特に Client Hello にある SNI をみれば、どのドメインに接続しているのかはわかってしまう。
+
+そこで、Encrypt Clinet Hello (ECH) を導入し、HTTPS RR に対して公開鍵を提供すれば、SNI を盗聴されることはなくなる。
+
+例えば、Cloudflare でこの設定を行えば、以下のように Cloudflare を経由しているという Public Name だけが露出し、裏にある何万もの Origin (Anonymity Set)のどれにフォワードされるかはわからないという構成が取れるのだ。
+
+```
+public-name=cloudflare-ech.com
+```
+
+ところが、`:80` を閉じたり、TCP を閉じたりしている、真っ当ではない mozaic.fm は、もはや Cloudflare Worker などにデプロイしたり、Cloudlfare でプロキシすることはできない。
+
+そこで、mozaic.fm を Public Name として、自前で ECH をホストすることにした。
+
+```
+public-name=moziac.fm, config-id=11
+```
+
+対応するブラウザは、この鍵を使い SNI を含めて最初のペイロードから暗号化できるため、パケットを盗聴されても `public-name` しか見ることができない。
+
+したがって、同じ Public Name の裏にある `wiki.mozaic.fm` や `vtt.mozaic.fm` などの、どれに接続しているかはわからなくなるのだ。
+
+また、政府が `wiki.mozaic.fm` を有害 WiKi 指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
+
+(実は IPv4 を落とすために、ホストごとに IPv6 を振ったので、パケットを見れば接続先はわかるが。)
+
+
+## Outro
+
+mozaic.fm は、Web 技術について議論する Podcast であり、最新の技術の動向について、常に注視している。
+
+ただ、注視するだけでなく、それを実践する場として https://mozaic.fm を使っているが、今回の刷新で、これまで試せてなかった様々な技術を試すことができた。
+
+こうした実験場所を持っていると、プロダクションでは決してできないデプロイを試し、「理論上はあり得るが、実践したことがない」ことを実践できる。
+
+結果この mozaic.fm は、おそらく世界でも有数の尖ったデプロイで、それゆえに接続が非常に難しくなった。
+
+しかし、Podcast は Podcast アプリで聞く人がほとんどなので、Podcast アプリが必要とする feed, mp3, artwork については、従来通り配信しているため、視聴には問題ない。
+
+次回は、UI の刷新について紹介する。
