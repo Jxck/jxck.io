@@ -1,8 +1,8 @@
-# mozaic.fm v3 Release Note #2 - Network
+# mozaic.fm v4 Release Note #2 - Network
 
 ## Intro
 
-mozaic.fm v3 をリリースした。
+mozaic.fm v4 をリリースした。
 
 今回は、採用したネットワーク周りの変更について解説する。
 

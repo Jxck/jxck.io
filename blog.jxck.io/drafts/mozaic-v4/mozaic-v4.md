@@ -1,8 +1,8 @@
-# mozaic.fm v3 Release Note #1 - Overview
+# mozaic.fm v4 Release Note #1 - Overview
 
 ## Intro
 
-mozaic.fm v3 をリリースした。
+mozaic.fm v4 をリリースした。
 
 かなり大幅ななアップデートになる。
 
@@ -81,7 +81,7 @@ Monthly シリーズでは、月に一度 Web の更新についてまとめ、 
 
 
 
-## v3 でやったこと
+## v4 でやったこと
 
 2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 81 本の plan として残っている。
 
