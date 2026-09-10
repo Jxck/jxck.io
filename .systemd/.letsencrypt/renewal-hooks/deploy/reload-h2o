@@ -1,0 +1,15 @@
+#!/bin/sh
+# certbot の deploy hook (全 lineage 共通)。証明書が実際に発行・更新された
+# ときだけ certbot が呼ぶ。h2o は証明書をメモリに保持するため、reload しない
+# 限り新しい証明書は配信されない。
+#
+# かつては自前の certbot.timer (.systemd/) の ExecStartPost が 2 日おきに
+# reload していたが、実更新は snap.certbot.renew.timer (毎日 2 回) が先に踏む
+# ため、反映が最大 48h 遅れる構造だった。shortlived (160h) 証明書では margin を
+# 大きく食うため、2026-09-10 に timer を snap へ一本化し、reload はこの hook が
+# 担う (mozaic.fm repo の plan 20260910-1537 参照)。
+#
+# 実体はこのファイルで、/etc/letsencrypt/renewal-hooks/deploy/ から symlink する。
+# 配備は .systemd/slink.sh が systemd unit と一緒に張る
+set -eu
+exec systemctl reload h2o
