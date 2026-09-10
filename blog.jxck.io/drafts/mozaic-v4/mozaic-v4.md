@@ -70,17 +70,6 @@ VTT は、本来 `<video>` に対して `<track>` で提供すれば、ブラウ
 
 
 
-
-## LLM-Wiki
-
-Monthly シリーズでは、月に一度 Web の更新についてまとめ、 2.5h ほど話している。
-
-それが、 Platform 寄りと Monthly Ecosystem は、月に一回 Web の
-
-
-
-
-
 ## v4 でやったこと
 
 2026 年 5 月から 8 月の作業である。設計は `.agents/plan/` に 81 本の plan として残っている。
