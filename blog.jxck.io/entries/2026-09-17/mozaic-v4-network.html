@@ -175,7 +175,13 @@
         <p>まず、ずっとやってみたかった IPv6 Only にした。
         <p>具体的には mozaic.fm ドメインの A レコードの提供をやめている。
         <p>従って、IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
-        <p>TODO: エラー画面
+        <p>
+          <picture>
+            <source type=image/avif srcset=DNS_PROBE_FINISHED_NXDOMAIN.avif?260917_134248>
+            <source type=image/webp srcset=DNS_PROBE_FINISHED_NXDOMAIN.webp?260917_134248>
+            <img loading=lazy decoding=async src=DNS_PROBE_FINISHED_NXDOMAIN.png?260917_134248 alt="Chrome の DNS_PROBE_FINISHED_NXDOMAIN エラー画面" width=444 height=236>
+          </picture>
+        </p>
         <p>IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
         <p>今年 4 月には、ブログの方でテストを行ったが、そのときは A レコードは落とさず、src IP が v4 だったらエラーにするものだった。
         <ul>
