@@ -25,7 +25,7 @@ Podcast アプリを通しての視聴には影響がないため、これまで
 
 従って、IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
 
-TODO: エラー画面
+![Chrome の DNS_PROBE_FINISHED_NXDOMAIN エラー画面](DNS_PROBE_FINISHED_NXDOMAIN.png#444x236)
 
 IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
 
