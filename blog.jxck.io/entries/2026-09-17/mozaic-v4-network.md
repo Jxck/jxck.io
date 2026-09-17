@@ -23,7 +23,7 @@ TODO: エラー画面
 
 IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
 
-今年 4 月には、ブログの方でテストを行ったが、そのときは A は落とさず、src IP が v4 だったらエラーにするものだった。
+今年 4 月には、ブログの方でテストを行ったが、そのときは A レコードは落とさず、src IP が v4 だったらエラーにするものだった。
 
 - 本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io
   - https://blog.jxck.io/entries/2026-04-01/ipv6-only.html
@@ -34,9 +34,9 @@ IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命も�
 
 Happy Eyeballs による僅かな遅延も気にする必要はなくなり、マンションの混んだ v4 トンネルに悩まされることもない。
 
-実は、筆者のマンションは、v4 オンリーのマンションタイプであるため、サイトに接続することができない。
+実は、筆者のマンションは v4 オンリーのマンションタイプネットワークであるため、サイトに接続することができない。
 
-検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしているため、同じ状況の人にはこれを推奨する。
+検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしており、同じ状況の人にはこれを推奨する。
 
 - 1.1.1.1
   - https://one.one.one.one/
@@ -66,7 +66,7 @@ HTTPS Only というと、別に珍しくもないだろう。
 Strict-Transport-Security: max-age=63072000; includeSubDomains
 ```
 
-なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、`:80` を維持しているため、Spotify などでの視聴に影響がない状態を維持したい。
+なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストでは、Spotify などでの視聴に影響が出ないよう、`:80` を維持したい。
 
 ところが、これを h2o で維持するのは、少しむずかしかった。
 
@@ -139,7 +139,7 @@ HTTP が暗号化されても、その手前の DNS Query が平文だと、「m
 
 ここまでで、DNS から HTTP Request まで全て暗号化することができた。
 
-しかし、正規の CA から、mozaic.fm の証明書が筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
+しかし、正規の CA から mozaic.fm の証明書が筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
 
 そこで、筆者が使っている Let's Encrypt 以外が証明書を発行しないよう、CAA レコードで対象を絞りつつ、それを無視した発行を検知するため、CT Log の監視を行っていた。
 
@@ -150,7 +150,7 @@ HTTP が暗号化されても、その手前の DNS Query が平文だと、「m
 
 ## no Long Lived Certificate
 
-Let's Encrypt は、有効期間が 160 時間(6 日)の短命証明書を提供している。
+Let's Encrypt は、有効期間が 160 時間 (6 日) の短命証明書を提供している。
 
 これは、仮に誤発行が発覚しても、適切に失効するのは非常に難しく、仮に失効できてもその事実をクライアントに伝えるのが難しいという問題への緩和策だ。
 
@@ -218,7 +218,7 @@ RFC と競合するが、RFC 側は基本的には疎通 (Interop) を重視し�
 
 本サイトはなんらかの Standard Profile を適用しているわけではないが、実験を目的とした構成として、あえて AES-128 を落とした設定を試した。
 
-ところが、実際に h2o.conf で `TLS_AES_128_GCM_SHA256` を落としてみたところ、h2o の使っている quicly が `SIGSEGV` してしまった。
+ところが、実際に h2o.conf で `TLS_AES_128_GCM_SHA256` を落としてみたところ、h2o が使っている quicly が `SIGSEGV` してしまった。
 
 QUIC の方では、Initial Packet の保護に `AES_128` が使われることが明示されている。
 
@@ -230,7 +230,7 @@ QUIC の方では、Initial Packet の保護に `AES_128` が使われること�
 
 しかし、これは Initial Packet のみの話であり、後続の TLS ネゴシエーションで選ばれる Cipher Suite とは関係ないはずだ。
 
-ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからなくて落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
+ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからずに落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
 
 いずれにせよ現状 h2o では QUIC の AES-128 を落とすことはできない。
 
@@ -289,7 +289,7 @@ CNSA をとるのであれば、選ぶべきは `mlkem1024` 一択となる。�
 
 そこで、後日解説する https://wiki.mozaic.fm という新設のドメインを、最初から UDP のみにすることにした。
 
-もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通ればとりあえず https://mozaic.fm は開く状態だ。
+もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通れば、とりあえず https://mozaic.fm は開く状態だ。
 
 
 ## no HTTP/1.1
@@ -298,7 +298,7 @@ TCP を閉じた wiki.mozaic.fm は、基本的に QUIC しか通らない。す
 
 そこで HTTPS RR の中で、`alpn="h3" no-default-alpn` とし、H/3 のみを告知し、H/2 は告知せず、Default ALPN である http/1.1 は落とすというアドバタイズが妥当に思える。
 
-ところが、`no-default-alpn` があると Chrome では接続できなくなる。これは、Chrome が、`no-default-alpn` の指定された HTTPS RR 全体を無視するためだ。
+ところが、`no-default-alpn` があると Chrome では接続できなくなる。これは、Chrome が `no-default-alpn` の指定された HTTPS RR 全体を無視するためだ。
 
 > To ensure consistency of behavior,
 > clients MAY reject the entire SVCB RRset
@@ -308,7 +308,7 @@ TCP を閉じた wiki.mozaic.fm は、基本的に QUIC しか通らない。す
 >
 > --- https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2
 
-つまり、Chrome の現在の実装は `no-default-alpn` を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという、MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
+つまり、Chrome の現在の実装は `no-default-alpn` を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
 
 ここまで来ると、尖りすぎて Chrome も置き去りにしてしまうため、流石にもう接続できる人がいなくなる。そこで、`no-default-alpn` はあきらめることにした。
 
@@ -345,7 +345,7 @@ public-name=mozaic.fm, config-id=11
 
 したがって、同じ Public Name の裏にある `wiki.mozaic.fm` や `vtt.mozaic.fm` などの、どれに接続しているかはわからなくなるのだ。
 
-また、政府が `wiki.mozaic.fm` を有害 Wiki 指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
+また、政府が `wiki.mozaic.fm` を有害 Wiki に指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
 
 (実は IPv4 を落とすために、ホストごとに IPv6 を振ったので、パケットを見れば接続先はわかるが。)
 
