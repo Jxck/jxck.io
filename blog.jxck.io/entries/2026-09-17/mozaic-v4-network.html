@@ -40,7 +40,7 @@
   <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
 
   <meta name=author              content=Jxck>
-  <meta name=description         content="mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。">
+  <meta name=description         content="mozaic.fm v4 をリリースした。概要編ネットワーク編UI 編VTT 編LLM-Wiki 編今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通して...">
   <meta name=keywords            content="mozaic.fm,podcast">
   <meta name=theme-color         content=#000000>
 
@@ -48,7 +48,7 @@
   <meta property=og:url          content=https://blog.jxck.io/entries/2026-09-17/mozaic-v4-network.html>
   <meta property=og:title        content="mozaic.fm v4 リリースノート #2 - ネットワーク編 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
-  <meta property=og:description  content="mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。">
+  <meta property=og:description  content="mozaic.fm v4 をリリースした。概要編ネットワーク編UI 編VTT 編LLM-Wiki 編今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通して...">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
 
   <meta name="Hatena::Bookmark" content="nocomment">
@@ -85,7 +85,7 @@
         "width": 120
       }
     },
-    "description": "mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。"
+    "description": "mozaic.fm v4 をリリースした。概要編ネットワーク編UI 編VTT 編LLM-Wiki 編今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通して..."
   }
   </script>
 
@@ -97,12 +97,12 @@
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_142647   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_141212   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_142647   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_140034   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -159,6 +159,13 @@
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>mozaic.fm v4 をリリースした。
+        <ol>
+          <li><a href="/entries/2026-09-16/mozaic-v4.html">概要編</a>
+          <li>ネットワーク編
+          <li>UI 編
+          <li>VTT 編
+          <li>LLM-Wiki 編
+        </ol>
         <p>今回は、採用したネットワーク周りの変更について解説する。
         <p>ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。
         <p>Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。
@@ -170,7 +177,7 @@
         <p>従って、IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
         <p>TODO: エラー画面
         <p>IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
-        <p>今年 4 月には、ブログの方でテストを行ったが、そのときは A は落とさず、src IP が v4 だったらエラーにするものだった。
+        <p>今年 4 月には、ブログの方でテストを行ったが、そのときは A レコードは落とさず、src IP が v4 だったらエラーにするものだった。
         <ul>
           <li>
             本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io
@@ -182,8 +189,8 @@
         <p>しかし、これだと色々なところにエラー画面がキャッシュされ、OGP が壊れたりといった状況になった。
         <p>それも中途半端なため、今回は A レコードを落とし、サーバもリッスンしないことで、完全に IPv4 を落とすことにした。加えて HTTPS RR で <code translate=no>ipv6hint</code> も告知している。
         <p>Happy Eyeballs による僅かな遅延も気にする必要はなくなり、マンションの混んだ v4 トンネルに悩まされることもない。
-        <p>実は、筆者のマンションは、v4 オンリーのマンションタイプであるため、サイトに接続することができない。
-        <p>検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしているため、同じ状況の人にはこれを推奨する。
+        <p>実は、筆者のマンションは v4 オンリーのマンションタイプネットワークであるため、サイトに接続することができない。
+        <p>検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしており、同じ状況の人にはこれを推奨する。
         <ul>
           <li>
             1.1.1.1
@@ -206,7 +213,7 @@
         <p><code translate=no>mozaic.fm</code> は、かなり以前に Chrome の Preload HSTS プログラムに登録しており、HSTS に <code translate=no>preload</code> も入れていた。しかし、HTTPS RR が普及したことも鑑み、<code translate=no>preload</code> はもうやめることにした(リストへの削除申請はしていない)。
         <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
         <pre><code translate=no>Strict-Transport-Security: max-age=63072000; includeSubDomains</code></pre>
-        <p>なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、<code translate=no>:80</code> を維持しているため、Spotify などでの視聴に影響がない状態を維持したい。
+        <p>なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストでは、Spotify などでの視聴に影響が出ないよう、<code translate=no>:80</code> を維持したい。
         <p>ところが、これを h2o で維持するのは、少しむずかしかった。
         <p>例えば、<code translate=no>mozaic.fm</code> は <code translate=no>:80</code> を listen せず、<code translate=no>feed.mozaic.fm</code> は <code translate=no>:80</code> を listen する <code translate=no>h2o.conf</code> はこうなる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="conf"><code translate="no"><span class="line"><span>jxck.io:</span></span>
@@ -255,14 +262,14 @@
       <section>
         <h2 id="no-mis-issued-certificate"><a href="#no-mis-issued-certificate">no Mis-issued Certificate</a></h2>
         <p>ここまでで、DNS から HTTP Request まで全て暗号化することができた。
-        <p>しかし、正規の CA から、mozaic.fm の証明書が筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
+        <p>しかし、正規の CA から mozaic.fm の証明書が筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
         <p>そこで、筆者が使っている Let&apos;s Encrypt 以外が証明書を発行しないよう、CAA レコードで対象を絞りつつ、それを無視した発行を検知するため、CT Log の監視を行っていた。
         <p>以前、登録したドメインの証明書が CT Log に追加されると、Facebook にメッセージが来るなぞの連携があったが、それはどうやらサ終してしまった。
         <p>そこで Cloudflare の Certificate Transparency Monitoring に移行し、メールで通知を受け取る運用に変えた。無料で使えるため、非常にありがたい。
       </section>
       <section>
         <h2 id="no-long-lived-certificate"><a href="#no-long-lived-certificate">no Long Lived Certificate</a></h2>
-        <p>Let&apos;s Encrypt は、有効期間が 160 時間(6 日)の短命証明書を提供している。
+        <p>Let&apos;s Encrypt は、有効期間が 160 時間 (6 日) の短命証明書を提供している。
         <p>これは、仮に誤発行が発覚しても、適切に失効するのは非常に難しく、仮に失効できてもその事実をクライアントに伝えるのが難しいという問題への緩和策だ。
         <p>要するに、誤発行された証明書を失効させるより、そもそもすぐに期限切れで無効になれば良いという考え方だ。
         <p>本サイトでは、この短命証明書に移行した。
@@ -312,7 +319,7 @@
         </blockquote>
         <p>要するに、NSA CNSA のような国家の調達基準など、別に定める Standard Profile によってこれを上書きする余地を残しているのだ。疎通ができないリスクを飲んだ上で、AES-128 を落とし SHOULD である AES-256 や ChaCha20-Poly1305 のみをサポートする要件が定義されることもある。
         <p>本サイトはなんらかの Standard Profile を適用しているわけではないが、実験を目的とした構成として、あえて AES-128 を落とした設定を試した。
-        <p>ところが、実際に h2o.conf で <code translate=no>TLS_AES_128_GCM_SHA256</code> を落としてみたところ、h2o の使っている quicly が <code translate=no>SIGSEGV</code> してしまった。
+        <p>ところが、実際に h2o.conf で <code translate=no>TLS_AES_128_GCM_SHA256</code> を落としてみたところ、h2o が使っている quicly が <code translate=no>SIGSEGV</code> してしまった。
         <p>QUIC の方では、Initial Packet の保護に <code translate=no>AES_128</code> が使われることが明示されている。
         <blockquote cite="https://www.rfc-editor.org/info/rfc9001/#section-5">
           <p>Initial packets use AEAD_AES_128_GCM
@@ -323,7 +330,7 @@
           <p>&mdash; <cite><a href="https://www.rfc-editor.org/info/rfc9001/#section-5" target=_blank>https://www.rfc-editor.org/info/rfc9001/#section-5</a></cite>
         </blockquote>
         <p>しかし、これは Initial Packet のみの話であり、後続の TLS ネゴシエーションで選ばれる Cipher Suite とは関係ないはずだ。
-        <p>ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからなくて落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
+        <p>ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからずに落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
         <p>いずれにせよ現状 h2o では QUIC の AES-128 を落とすことはできない。
         <p>ところが、h2o では QUIC かどうかで設定を変えることができる。そこで、QUIC では AES-128 を残し、Initial 以降では他の Suite を優先する。TCP (H/1.1, H/2 etc) では AES-128 を落とす。加えて <code translate=no>cipher-preference: server</code> を追加し、Server 側の優先順位で選択する。この指定に落ち着いている。
       </section>
@@ -370,13 +377,13 @@
         <p>必然的に QUIC しか通らなくなるため、H/3 が前提となる。
         <p>しかし、この設定を <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> 全体に指定すると、いよいよ自分でも環境の確認が難しくなってしまうことが判明した。
         <p>そこで、後日解説する <a href="https://wiki.mozaic.fm" target=_blank>https://wiki.mozaic.fm</a> という新設のドメインを、最初から UDP のみにすることにした。
-        <p>もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通ればとりあえず <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> は開く状態だ。
+        <p>もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通れば、とりあえず <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> は開く状態だ。
       </section>
       <section>
         <h2 id="no-http1.1"><a href="#no-http1.1">no HTTP/1.1</a></h2>
         <p>TCP を閉じた wiki.mozaic.fm は、基本的に QUIC しか通らない。すると H/2 と H/1.1 で疎通できる余地はない。
         <p>そこで HTTPS RR の中で、<code translate=no>alpn=&quot;h3&quot; no-default-alpn</code> とし、H/3 のみを告知し、H/2 は告知せず、Default ALPN である http/1.1 は落とすというアドバタイズが妥当に思える。
-        <p>ところが、<code translate=no>no-default-alpn</code> があると Chrome では接続できなくなる。これは、Chrome が、<code translate=no>no-default-alpn</code> の指定された HTTPS RR 全体を無視するためだ。
+        <p>ところが、<code translate=no>no-default-alpn</code> があると Chrome では接続できなくなる。これは、Chrome が <code translate=no>no-default-alpn</code> の指定された HTTPS RR 全体を無視するためだ。
         <blockquote cite="https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2">
           <p>To ensure consistency of behavior,
           <p>clients MAY reject the entire SVCB RRset
@@ -387,7 +394,7 @@
           </p>
           <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2" target=_blank>https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2</a></cite>
         </blockquote>
-        <p>つまり、Chrome の現在の実装は <code translate=no>no-default-alpn</code> を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという、MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
+        <p>つまり、Chrome の現在の実装は <code translate=no>no-default-alpn</code> を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
         <p>ここまで来ると、尖りすぎて Chrome も置き去りにしてしまうため、流石にもう接続できる人がいなくなる。そこで、<code translate=no>no-default-alpn</code> はあきらめることにした。
         <pre><code translate=no>alpn=&quot;h3&quot; ech=&quot;...&quot; ipv6hint=&quot;...&quot;</code></pre>
         <p>つまり HTTP/1.1 は暗黙的に広告されるが、実際には接続できない状態となる。
@@ -404,7 +411,7 @@
         <pre><code translate=no>public-name=mozaic.fm, config-id=11</code></pre>
         <p>対応するブラウザは、この鍵を使い、SNI を含めて最初のペイロードから暗号化できるため、パケットを盗聴されても <code translate=no>public-name</code> しか見ることができない。
         <p>したがって、同じ Public Name の裏にある <code translate=no>wiki.mozaic.fm</code> や <code translate=no>vtt.mozaic.fm</code> などの、どれに接続しているかはわからなくなるのだ。
-        <p>また、政府が <code translate=no>wiki.mozaic.fm</code> を有害 Wiki 指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
+        <p>また、政府が <code translate=no>wiki.mozaic.fm</code> を有害 Wiki に指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
         <p>(実は IPv4 を落とすために、ホストごとに IPv6 を振ったので、パケットを見れば接続先はわかるが。)
       </section>
       <section>
