@@ -230,9 +230,9 @@ QUIC の方では、Initial Packet の保護に `AES_128` が使われること�
 
 しかし、これは Initial Packet のみの話であり、後続の TLS ネゴシエーションで Cipher Suite とは関係ないはずだ。
 
-ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからなくて落ちているように見える。
+ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからなくて落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
 
-やっていることが尖りすぎているため、悪いのはどちらかというと難しいところだが、想定していたとしたら `SIGSEGV` で落ちていることは無いと思うため、後で問題を整理してレポートしたい。いずれにせよ現状 h2o では QUIC の AES-128 を落とすことはできない。
+いずれにせよ現状 h2o では QUIC の AES-128 を落とすことはできない。
 
 ところが、h2o では QUIC かどうかで設定を変えることができる。そこで、QUIC では AES-128 を残し、Initial 以降では他の Suite を優先する。TCP (H/1.1, H/2 etc) では AES-128 を落とす。加えて `cipher-preference: server` を追加し、Server 側の優先順位で選択する。この指定に落ち着いている。
 
