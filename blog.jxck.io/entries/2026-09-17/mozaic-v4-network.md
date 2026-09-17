@@ -1,4 +1,4 @@
-# mozaic.fm v4 Release Note #2 - Network
+# [mozaic.fm][podcast] mozaic.fm v4 リリースノート #2 - ネットワーク編
 
 ## Intro
 
