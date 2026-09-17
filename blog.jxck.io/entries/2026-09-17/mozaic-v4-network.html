@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-09-17/mozaic-v4-network.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。">
+  <meta name=keywords            content="mozaic.fm,podcast">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-09-17/mozaic-v4-network.html>
+  <meta property=og:title        content="mozaic.fm v4 リリースノート #2 - ネットワーク編 | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-09-17/mozaic-v4-network.html"
+    },
+    "headline": "mozaic.fm v4 リリースノート #2 - ネットワーク編 | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-09-17T00:00:00+09:00",
+    "dateModified": "2026-09-17T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "mozaic.fm v4 をリリースした。今回は、採用したネットワーク周りの変更について解説する。ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。"
+  }
+  </script>
+
+  <title>mozaic.fm v4 リリースノート #2 - ネットワーク編 | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_142647   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_142647   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-09-17>2026-09-17</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-09-17>2026-09-17</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#mozaic.fm">mozaic.fm</a>
+              <li><a href="/tags#podcast">podcast</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#no-ipv4">no IPv4</a>
+              <li><a href="#no-80">no :80</a>
+              <li><a href="#no-plain-dns">no plain DNS</a>
+              <li><a href="#no-dns-poisoning">no DNS Poisoning</a>
+              <li><a href="#no-mis-issued-certificate">no Mis-issued Certificate</a>
+              <li><a href="#no-long-lived-certificate">no Long Lived Certificate</a>
+              <li><a href="#no-tls1.2">no TLS/1.2</a>
+              <li><a href="#no-pre-quantum-cipher-suite">no Pre-Quantum Cipher Suite</a>
+              <li><a href="#no-pre-quantum-key-exchange">no Pre-Quantum Key Exchange</a>
+              <li><a href="#no-tcp">no TCP</a>
+              <li><a href="#no-http1.1">no HTTP/1.1</a>
+              <li><a href="#no-plain-sni">no plain SNI</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">mozaic.fm v4 リリースノート #2 - ネットワーク編</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>mozaic.fm v4 をリリースした。
+        <p>今回は、採用したネットワーク周りの変更について解説する。
+        <p>ずっとやってみたかった実験を多分に入れているため、場合によっては接続すらできないだろう。
+        <p>Podcast アプリを通しての視聴には影響がないため、これまで通りアプリで楽しんで欲しい。
+      </section>
+      <section>
+        <h2 id="no-ipv4"><a href="#no-ipv4">no IPv4</a></h2>
+        <p>まず、ずっとやってみたかった IPv6 Only にした。
+        <p>具体的には mozaic.fm ドメインの A レコードの提供をやめている。
+        <p>従って、IPv4 のみの環境からアクセスすると以下のようにエラーが出るだろう。
+        <p>TODO: エラー画面
+        <p>IPv4 が枯渇すると騒がれてから数年、CIDR などによる延命もあり、良くてデュアル、場合によっては v4 のみの環境が未だに多い。
+        <p>今年 4 月には、ブログの方でテストを行ったが、そのときは A は落とさず、src IP が v4 だったらエラーにするものだった。
+        <ul>
+          <li>
+            本サイトの IPv4 アクセスをブロックするテスト | blog.jxck.io
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2026-04-01/ipv6-only.html">https://blog.jxck.io/entries/2026-04-01/ipv6-only.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>しかし、これだと色々なところにエラー画面がキャッシュされ、OGP が壊れたりといった状況になった。
+        <p>それも中途半端なため、今回は A レコードを落とし、サーバもリッスンしないことで、完全に IPv4 を落とすことにした。加えて HTTPS RR で <code translate=no>ipv6hint</code> も告知している。
+        <p>Happy Eyeballs による僅かな遅延も気にする必要はなくなり、マンションの混んだ v4 トンネルに悩まされることもない。
+        <p>実は、筆者のマンションは、v4 オンリーのマンションタイプであるため、サイトに接続することができない。
+        <p>検証は毎回 Cloudflare WARP を入れ、トンネリングしてアクセスしているため、同じ状況の人にはこれを推奨する。
+        <ul>
+          <li>
+            1.1.1.1
+            <ul>
+              <li><a href="https://one.one.one.one/" target=_blank>https://one.one.one.one/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、Dual Stack を維持しているため、Spotify などでの視聴に影響はない。
+      </section>
+      <section>
+        <h2 id="no-80"><a href="#no-80">no :80</a></h2>
+        <p>HTTPS Only というと、別に珍しくもないだろう。
+        <p>一般的には、<code translate=no>http://</code> と <code translate=no>https://</code> を両方デプロイし、<code translate=no>http://</code> の場合はリダイレクトをかけ、HSTS で固着させるといった構成が基本だ。Cookie に <code translate=no>Secure</code> がついていれば、大きな被害はないだろうという落としどころだ。
+        <p>しかし、その最初のアクセスには平文通信が残り、ブラウザは HTTPS First Mode, Preload HSTS, HTTPS RR などを模索しながら、最初の通信から暗号化する方法を探っている。
+        <p>本サイトでは、<code translate=no>:443</code> のみを受けるようにするとともに、<code translate=no>:80</code> を listen するのをやめ、ufw でも塞ぐことにした。
+        <p>これにより、そもそも <code translate=no>:80</code> とは接続を確立できないため、平文でペイロードが露出することはない。
+        <p>しかし、mozaic.fm 自体が 10 年以上やっているため、世の中には <code translate=no>http://mozaic.fm</code> なリンクもあるだろう。
+        <p>そこで DNS から HTTPS RR を提供することで、対応するクライアントが最初から HTTPS に Upgrade できるようアドバタイズしている。
+        <p><code translate=no>mozaic.fm</code> は、かなり以前に Chrome の Preload HSTS プログラムに登録しており、HSTS に <code translate=no>preload</code> も入れていた。しかし、HTTPS RR が普及したことも鑑み、<code translate=no>preload</code> はもうやめることにした(リストへの削除申請はしていない)。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre><code translate=no>Strict-Transport-Security: max-age=63072000; includeSubDomains</code></pre>
+        <p>なお、Podcast アプリでの視聴に必要な feed, mp3, artwork を提供するホストについては、<code translate=no>:80</code> を維持しているため、Spotify などでの視聴に影響がない状態を維持したい。
+        <p>ところが、これを h2o で維持するのは、少しむずかしかった。
+        <p>例えば、<code translate=no>mozaic.fm</code> は <code translate=no>:80</code> を listen せず、<code translate=no>feed.mozaic.fm</code> は <code translate=no>:80</code> を listen する <code translate=no>h2o.conf</code> はこうなる。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="conf"><code translate="no"><span class="line"><span>jxck.io:</span></span>
+<span class="line"><span>  listen:</span></span>
+<span class="line"><span>    port: 80</span></span>
+<span class="line"><span>mozaic.fm:</span></span>
+<span class="line"><span>  listen:</span></span>
+<span class="line"><span>    port: 443</span></span>
+<span class="line"><span>feed.mozaic.fm:</span></span>
+<span class="line"><span>  listen:</span></span>
+<span class="line"><span>    port: 80</span></span>
+<span class="line"><span>  listen:</span></span>
+<span class="line"><span>    port: 443</span></span></code></pre>
+        <p>ところが、h2o のインスタンスが listen しているアドレス自体が一緒だと、<code translate=no>mozaic.fm:80</code> のリクエストは、同じ IP/Port を listen している最初の定義 (Default vhost) にフォールバックされてしまう。この h2o は mozaic.fm だけでなく jxck.io もホストしているため、そちらに落ちて意図しないレスポンスを返してしまうのだ。
+        <p>もともと使っていた Sakura VPS では、インスタンスに割り当てられる IPv6 アドレスがそれぞれ 1 つずつなので、h2o の制約を逃れることができなかった。
+        <p>ところが、<code translate=no>mozaic.fm</code> はすでに IPv4 をサポートしないことになっているので、IPv6 でアドレスを分ければ、フォールバックがおこらない。しかし、Sakura VPS は IPv6 も 1 個なのでそれもできない。
+        <p>そこで、長年利用していた Sakura VPS をやめ、IPv4 は 1 個だが、IPv6 が複数付与される ConoHa VPS に移行することにした。
+        <p>このようにサブドメインごとに IPv6 を分け、<code translate=no>mozaic.fm</code> は専用 IPv6 の <code translate=no>:443</code> のみを listen することで、フォールバックを防ぐことができた。
+        <pre><code translate=no>&quot;mozaic.fm&quot;:
+  listen:
+    host: 2400:8500:2002:3327:a160:251:255:820
+    port: 443
+&quot;feed.mozaic.fm:80&quot;:
+  listen:
+    host: 2400:8500:2002:3327:a160:251:255:825
+    port: 80
+  listen:
+    host: 160.251.255.82
+    port: 80</code></pre>
+        <p>これにより、視聴者は常に <code translate=no>:443</code> で暗号化された経路を使うため、どんなエピソードを聞いているか、完全に秘匿することが可能になる。(mp3 は <code translate=no>:80</code> を維持しているためそちらを見ればわかるが。)
+        <p>10 年以上 mozaic.fm を支えてくれた Sakura VPS を卒業するのは名残惜しいが、リスナーの安全には代えることができない。今までありがとう。
+      </section>
+      <section>
+        <h2 id="no-plain-dns"><a href="#no-plain-dns">no plain DNS</a></h2>
+        <p>HTTP が暗号化されても、その手前の DNS Query が平文だと、「mozaic.fm を名前解決した」という事実がネットワーク上に露出してしまう。
+        <p>そこで DNS over HTTPS を用いると、DNS Query を HTTPS で暗号化することができる。
+        <p>これについては、筆者が対応するのではなく、DoH に対応した DNS をユーザに使ってもらう必要がある。
+        <p>先ほど紹介した Cloudflare WARP なら、1.1.1.1 を用いてそれが可能だ。
+      </section>
+      <section>
+        <h2 id="no-dns-poisoning"><a href="#no-dns-poisoning">no DNS Poisoning</a></h2>
+        <p>ところが、DoH で引いた値が Cache Poisoning されていれば、偽のレコードで攻撃者サーバに接続させられる可能性は残る。
+        <p>そこで、筆者は DNSSEC を有効にし、レコードに署名をつけている。
+        <p>これによって、署名のチェーンを辿ればレコードが改ざんされていることを検知できるため、安心して名前解決して欲しい。
+      </section>
+      <section>
+        <h2 id="no-mis-issued-certificate"><a href="#no-mis-issued-certificate">no Mis-issued Certificate</a></h2>
+        <p>ここまでで、DNS から HTTP Request まで全て暗号化することができた。
+        <p>しかし、正規の CA から、mozaic.fm の証明書が筆者の知らないところで発行され、それを使って偽サイトを立てられると、不正確な Web の情報や、フェイクオーディオを聴かされる可能性がある。
+        <p>そこで、筆者が使っている Let&apos;s Encrypt 以外が証明書を発行しないよう、CAA レコードで対象を絞りつつ、それを無視した発行を検知するため、CT Log の監視を行っていた。
+        <p>以前、登録したドメインの証明書が CT Log に追加されると、Facebook にメッセージが来るなぞの連携があったが、それはどうやらサ終してしまった。
+        <p>そこで Cloudflare の Certificate Transparency Monitoring に移行し、メールで通知を受け取る運用に変えた。無料で使えるため、非常にありがたい。
+      </section>
+      <section>
+        <h2 id="no-long-lived-certificate"><a href="#no-long-lived-certificate">no Long Lived Certificate</a></h2>
+        <p>Let&apos;s Encrypt は、有効期間が 160 時間(6 日)の短命証明書を提供している。
+        <p>これは、仮に誤発行が発覚しても、適切に失効するのは非常に難しく、仮に失効できてもその事実をクライアントに伝えるのが難しいという問題への緩和策だ。
+        <p>要するに、誤発行された証明書を失効させるより、そもそもすぐに期限切れで無効になれば良いという考え方だ。
+        <p>本サイトでは、この短命証明書に移行した。
+        <p>もともと Certbot の更新は HTTP ベース (HTTP-01) で行っていたが、<code translate=no>:80</code> を閉じることになったため、<code translate=no>http://mozaic.fm/.well-known</code> に接続できなくなった。そこで、Cloudflare の API Token を Certbot に渡し、DNS ベース (DNS-01) で更新を行うように移行した。
+        <p>もともと Short Lived にする前は、Certbot を systemd timer で 48 時間おきに起動していた。しかし、Short Lived の場合、Certbot は残り 80 時間を切ると更新をかける。もし 80 時間を切ったあとの起動で Certbot が失敗したら、2 日後の timer 発火時には証明書がすでに切れている可能性がある。そこで毎日起動するように直し、残りの有効期間を毎日チェックしながら更新するようにしている。
+        <p>ACME のおかげで、この頻度での更新も可能になった。
+        <p>DNS-PERSIST-01 が来れば、DNS-01 のレコード書き換えによるチェックも変わるため、提供されたらそちらも検証したい。
+      </section>
+      <section>
+        <h2 id="no-tls1.2"><a href="#no-tls1.2">no TLS/1.2</a></h2>
+        <p>TLS は長いこと 1.2 をベースとして、ネゴシエーションが通れば 1.3 を使うという運用が主だった。
+        <p>ところが TLS/1.2 には歴史的な蓄積が大きく、現在となっては非推奨な方式もサポートされており、設定に気をつけるしかなかった。
+        <p>そこで、本サイトでは、1.3 未満を落とすことにした。
+        <p>これにより、古い鍵交換や暗号化が全て落とされ、Forward Secrecy が必須になり、RTT も短縮される。
+        <p>1.2 での接続自体ができなくなることで、ユーザが知らぬ間に非推奨な方式でハンドシェイクしてしまい、その隙をつかれて聴いているエピソードがバレてしまう心配がなくなる。
+      </section>
+      <section>
+        <h2 id="no-pre-quantum-cipher-suite"><a href="#no-pre-quantum-cipher-suite">no Pre-Quantum Cipher Suite</a></h2>
+        <p>完璧に HTTPS をデプロイできても、暗号化が破られると問題だ。
+        <p>特に量子コンピュータによって、従来安全とされていたアルゴリズムが危殆化した場合の影響が大きい。
+        <p>リスナーの通信パケットを全て溜め込んでおき、量子コンピュータを使ってじっくり暗号を解読したら、「このリスナーがこのエピソードを聞いていた」という事実が、さかのぼって暴露される可能性がある。
+        <p>これに対抗するため、現在は耐量子暗号 (Post-Quantum Cryptography) が研究され、標準仕様も整備されてきた。
+        <p>TLS/1.3 では、実装必須の Suite は <code translate=no>TLS_AES_128_GCM_SHA256</code> と定義されている。
+        <blockquote cite="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1">
+          <p>A TLS-compliant application MUST implement the TLS_AES_128_GCM_SHA256 [GCM] cipher suite
+          <p>and SHOULD implement the TLS_AES_256_GCM_SHA384 [GCM]
+          <p>and TLS_CHACHA20_POLY1305_SHA256 [RFC8439] cipher suites (see Appendix B.4).
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1" target=_blank>https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1</a></cite>
+        </blockquote>
+        <p>ところが、Grover のアルゴリズムにより、量子コンピュータを用いると鍵探索コストを削減できると指摘されている。AES-128 は概ね 2^64 相当に落ちるというものだ。
+        <p>これにより、すぐ危殆化するわけではないが、NSA CNSA 2.0 においては、共通鍵暗号の鍵長は 256bit を推奨している。
+        <blockquote cite="https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF">
+          <p>Use 256-bit keys for all classification levels
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF" target=_blank>https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF</a></cite>
+        </blockquote>
+        <p>RFC と競合するが、RFC 側は基本的には疎通 (Interop) を重視しているため、セキュリティレベルだけを起点に書かれているわけではない。そして、全ての暗号化方式には危殆化のリスクがあるが、そのたびに RFC を更新するのも難しい。
+        <p>そこで、Mandatory-to-Implement の節には以下の一文がある。
+        <blockquote cite="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1">
+          <p>In the absence of an application profile standard specifying otherwise:
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1" target=_blank>https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1</a></cite>
+        </blockquote>
+        <p>要するに、NSA CNSA のような国家の調達基準など、別に定める Standard Profile によってこれを上書きする余地を残しているのだ。疎通ができないリスクを飲んだ上で、AES-128 を落とし SHOULD である AES-256 や ChaCha20-Poly1305 のみをサポートする要件が定義されることもある。
+        <p>本サイトはなんらかの Standard Profile を適用しているわけではないが、実験を目的とした構成として、あえて AES-128 を落とした設定を試した。
+        <p>ところが、実際に h2o.conf で <code translate=no>TLS_AES_128_GCM_SHA256</code> を落としてみたところ、h2o の使っている quicly が <code translate=no>SIGSEGV</code> してしまった。
+        <p>QUIC の方では、Initial Packet の保護に <code translate=no>AES_128</code> が使われることが明示されている。
+        <blockquote cite="https://www.rfc-editor.org/info/rfc9001/#section-5">
+          <p>Initial packets use AEAD_AES_128_GCM
+          <p>with keys derived from the Destination Connection ID field
+          <p>of the first Initial packet sent by the client;
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/info/rfc9001/#section-5" target=_blank>https://www.rfc-editor.org/info/rfc9001/#section-5</a></cite>
+        </blockquote>
+        <p>しかし、これは Initial Packet のみの話であり、後続の TLS ネゴシエーションで選ばれる Cipher Suite とは関係ないはずだ。
+        <p>ところが、quicly は Initial Packet 保護に必要なアルゴリズムも、h2o.conf に指定した Cipher Suite の一覧から探し、見つからなくて落ちているように見える。やっていることが尖りすぎて秘孔をついたようなので、後で問題を整理してレポートしたい。
+        <p>いずれにせよ現状 h2o では QUIC の AES-128 を落とすことはできない。
+        <p>ところが、h2o では QUIC かどうかで設定を変えることができる。そこで、QUIC では AES-128 を残し、Initial 以降では他の Suite を優先する。TCP (H/1.1, H/2 etc) では AES-128 を落とす。加えて <code translate=no>cipher-preference: server</code> を追加し、Server 側の優先順位で選択する。この指定に落ち着いている。
+      </section>
+      <section>
+        <h2 id="no-pre-quantum-key-exchange"><a href="#no-pre-quantum-key-exchange">no Pre-Quantum Key Exchange</a></h2>
+        <p>鍵交換についても、同様に耐量子性をもつものを用いるのが望ましいだろう。
+        <p>NSA CNSA 2.0 では鍵交換は NIST にも採用された ML-KEM の利用を規定している。
+        <blockquote cite="https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF">
+          <p>ML-KEM-1024 for all classification levels.
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF" target=_blank>https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF</a></cite>
+        </blockquote>
+        <p>picotls は、OpenSSL 3.5 以上を使ってビルドすると、以下の ML-KEM をサポートできる。
+        <ul>
+          <li>mlkem512
+          <li>mlkem768
+          <li>mlkem1024
+        </ul>
+        <p>CNSA をとるのであれば、選ぶべきは <code translate=no>mlkem1024</code> 一択となる。ところが純粋な ML-KEM を実装するブラウザはなく、基本はハイブリッド方式を選択している。
+        <ul>
+          <li>X25519MLKEM768
+          <li>secp256r1mlkem768
+          <li>secp384r1mlkem1024
+        </ul>
+        <p>これらについては、「ML-KEM がもし破られた場合、単体ではフォールバックがない」という観点から使われている。これは、ML-KEM の実績が少ない現時点で、単体でも安全かどうかの議論が続いているためだ。
+        <p>現状、多くのブラウザは <code translate=no>X25519MLKEM768</code> を採用し、純粋な ML-KEM が実装されるのは先になりそうだ。そこで、ハイブリッド方式と純粋な ML-KEM を両方サポートしておくことにした。
+        <p>問題は、TLS/1.3 で MUST となっている <code translate=no>secp256r1</code> と SHOULD な <code translate=no>x25519</code> だ。
+        <blockquote cite="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1">
+          <p>A TLS-compliant application MUST support key exchange with secp256r1 (NIST P-256)
+          <p>and SHOULD support key exchange with X25519 [RFC7748].
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1" target=_blank>https://www.rfc-editor.org/rfc/rfc9846.html#section-9.1</a></cite>
+        </blockquote>
+        <p>ところが、これも共通鍵暗号同様、疎通のための規定であり、危殆化した場合はプロファイルによる上書きが許可されている。
+        <p><code translate=no>x25519</code> だけを落とすことも考えたが、やはりここは実験として <code translate=no>secp256r1</code> も含め両方とも外してみることにした。
+        <p>モダンなブラウザであれば、しばらくは <code translate=no>X25519MLKEM768</code> での接続が大半となるだろう。
+        <p>これで、量子コンピュータが攻撃者の手にわたっても、どんな Show Note を見ているかを覗かれる心配が無くなる。
+      </section>
+      <section>
+        <h2 id="no-tcp"><a href="#no-tcp">no TCP</a></h2>
+        <p>そうすると、今度は UDP のみにしたらどうなるだろう? という興味が出てくる。つまり ufw で TCP を落としてしまう方法だ。
+        <p>必然的に QUIC しか通らなくなるため、H/3 が前提となる。
+        <p>しかし、この設定を <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> 全体に指定すると、いよいよ自分でも環境の確認が難しくなってしまうことが判明した。
+        <p>そこで、後日解説する <a href="https://wiki.mozaic.fm" target=_blank>https://wiki.mozaic.fm</a> という新設のドメインを、最初から UDP のみにすることにした。
+        <p>もしここが塞がれている環境では Wiki を見ることはできないが、H/2 が通ればとりあえず <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> は開く状態だ。
+      </section>
+      <section>
+        <h2 id="no-http1.1"><a href="#no-http1.1">no HTTP/1.1</a></h2>
+        <p>TCP を閉じた wiki.mozaic.fm は、基本的に QUIC しか通らない。すると H/2 と H/1.1 で疎通できる余地はない。
+        <p>そこで HTTPS RR の中で、<code translate=no>alpn=&quot;h3&quot; no-default-alpn</code> とし、H/3 のみを告知し、H/2 は告知せず、Default ALPN である http/1.1 は落とすというアドバタイズが妥当に思える。
+        <p>ところが、<code translate=no>no-default-alpn</code> があると Chrome では接続できなくなる。これは、Chrome が、<code translate=no>no-default-alpn</code> の指定された HTTPS RR 全体を無視するためだ。
+        <blockquote cite="https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2">
+          <p>To ensure consistency of behavior,
+          <p>clients MAY reject the entire SVCB RRset
+          <p>and fall back to basic connection establishment
+          <p>if all of the compatible RRs indicate &quot;no-default-alpn&quot;,
+          <p>even if connection could have succeeded using a non-default ALPN protocol.
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2" target=_blank>https://www.rfc-editor.org/rfc/rfc9460.html#section-7.1.2</a></cite>
+        </blockquote>
+        <p>つまり、Chrome の現在の実装は <code translate=no>no-default-alpn</code> を見ると、全部のアドバタイズを捨てて、安全であろう TCP にフォールバックするという、MAY の保守的な実装になっている。結果、TCP にフォールバックし、TCP を塞いだ wiki.mozaic.fm では接続が確立できなくなったのだ。
+        <p>ここまで来ると、尖りすぎて Chrome も置き去りにしてしまうため、流石にもう接続できる人がいなくなる。そこで、<code translate=no>no-default-alpn</code> はあきらめることにした。
+        <pre><code translate=no>alpn=&quot;h3&quot; ech=&quot;...&quot; ipv6hint=&quot;...&quot;</code></pre>
+        <p>つまり HTTP/1.1 は暗黙的に広告されるが、実際には接続できない状態となる。
+      </section>
+      <section>
+        <h2 id="no-plain-sni"><a href="#no-plain-sni">no plain SNI</a></h2>
+        <p>HTTP のペイロードが暗号化されても、その手前には TLS のハンドシェイクが残っている。
+        <p>特に Client Hello にある SNI を見れば、どのドメインに接続しているのかはわかってしまう。
+        <p>そこで、Encrypted Client Hello (ECH) を導入し、HTTPS RR に対して公開鍵を提供すれば、SNI を盗聴されることはなくなる。
+        <p>例えば、Cloudflare でこの設定を行えば、以下のように Cloudflare を経由しているという Public Name だけが露出し、裏にある何万もの Origin (Anonymity Set) のどれにフォワードされるかはわからないという構成が取れるのだ。
+        <pre><code translate=no>public-name=cloudflare-ech.com</code></pre>
+        <p>ところが、<code translate=no>:80</code> を閉じたり、TCP を閉じたりしている、真っ当ではない mozaic.fm は、もはや Cloudflare Workers などにデプロイしたり、Cloudflare でプロキシすることはできない。
+        <p>そこで、mozaic.fm を Public Name として、自前で ECH をホストすることにした。
+        <pre><code translate=no>public-name=mozaic.fm, config-id=11</code></pre>
+        <p>対応するブラウザは、この鍵を使い、SNI を含めて最初のペイロードから暗号化できるため、パケットを盗聴されても <code translate=no>public-name</code> しか見ることができない。
+        <p>したがって、同じ Public Name の裏にある <code translate=no>wiki.mozaic.fm</code> や <code translate=no>vtt.mozaic.fm</code> などの、どれに接続しているかはわからなくなるのだ。
+        <p>また、政府が <code translate=no>wiki.mozaic.fm</code> を有害 Wiki 指定して SNI をブロックするように ISP に要請しても、ブロックを迂回できることが期待される。
+        <p>(実は IPv4 を落とすために、ホストごとに IPv6 を振ったので、パケットを見れば接続先はわかるが。)
+      </section>
+      <section>
+        <h2 id="outro"><a href="#outro">Outro</a></h2>
+        <p>mozaic.fm は、Web 技術について議論する Podcast であり、最新の技術動向を常に注視している。
+        <p>ただ、注視するだけでなく、それを実践する場として <a href="https://mozaic.fm" target=_blank>https://mozaic.fm</a> を使っている。今回の刷新では、これまで試せていなかった様々な技術を試すことができた。
+        <p>こうした実験場所を持っていると、プロダクションでは決してできないデプロイを試し、「理論上はあり得るが、実践したことがない」構成を実践できる。
+        <p>結果、この mozaic.fm は、おそらく世界でも有数の尖ったデプロイとなり、それゆえに接続が非常に難しくなった。
+        <p>しかし、Podcast は Podcast アプリで聞く人がほとんどなので、Podcast アプリが必要とする feed, mp3, artwork については、従来通り配信しており、視聴には問題ない。
+        <p>次回は、UI の刷新について紹介する。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
