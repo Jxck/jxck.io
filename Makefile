@@ -331,7 +331,7 @@ status:
 kill:
 	sudo systemctl kill h2o
 
-restart:
+restart: test
 	sudo systemctl restart h2o
 
 # h2o.conf の syntax check 後に reload
@@ -341,7 +341,7 @@ reload: test
 
 # h2o.conf の syntax check
 test:
-	sudo .h2o/local/bin/h2o -t -c h2o.conf | cat
+	sudo .h2o/local/bin/h2o -t -c h2o.conf
 
 # journalctl ログ表示
 logf:
