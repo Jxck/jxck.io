@@ -55,7 +55,7 @@ React が DSD を特別なものとして認識してないため、そのまま
 
 このボタンは、 Player の Play ボタンと関連があるｔこを `aria-contorls` で連携したいが、連携先が Shadow DOM の中なので、これを参照するために Reference Target (`shadowrootreferencetarget`) を公開している。
 
-Reference Targe はまだ実験的な機能であり、 host あたりの転送が 1 つしかできなかったり、 Document PiP では別 Window になるため解決できないなど、色々課題はあるが、それも含めて検証している。
+Reference Targe はまだ実験的な機能であり、 host あたりの転送が 1 つしかできなかったり、 Document PiP では別 Window になるため解決できないなど、色々課題はあるが、それも含めて検証
 
 ## 色設計
 
