@@ -1,4 +1,4 @@
-# example.com が刷新された話
+# [web] example.com が刷新された話
 
 ## Intro
 
@@ -37,7 +37,7 @@ http://example.com が刷新されてしまった。
 
 - http://example.com
 
-![IANA - example.com, パブリック・ドメイン, https://commons.wikimedia.org/w/index.php?curid=111042852による](./Exampledotcom.png)
+![example.com before](./example.com.before.png#800x600)
 
 なんということのないサイトだが、このサイトは実は非常に便利だったのだ。
 
@@ -124,6 +124,8 @@ HTTP Header を見たところ、取得先サーバと中間証明書が Cloudfl
 IANA にも相当の負荷があることを考えると、最近の流れでは妥当な移行だろう。
 
 そしてしばらくしてから、今月に入り見た目も刷新された。
+
+![example.com afeter](./example.com.after.png#893x604)
 
 ダークモードに対応し、シンプルなメッセージは多言語翻訳されて JS で切り替わり、ちょっとした SVG が埋め込まれた。
 
