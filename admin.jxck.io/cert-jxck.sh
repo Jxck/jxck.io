@@ -24,4 +24,5 @@ sudo /snap/bin/certbot certonly \
   -d reporting.jxck.io \
   -d http3.jxck.io \
   -d ipv6.jxck.io \
-  -d ipv4.jxck.io
+  -d ipv4.jxck.io \
+  -d example.jxck.io
