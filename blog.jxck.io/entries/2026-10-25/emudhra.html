@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width,initial-scale=1">
+  <meta name="text-scale" content="scale">
+
+  <link rel=author    href=https://jxck.io/humans.txt>
+  <link rel=manifest  href=/manifest.webmanifest>
+  <link rel=alternate href=/feeds/atom.xml type=application/atom+xml title=blog.jxck.io>
+  <link rel=canonical href=https://blog.jxck.io/entries/2026-10-25/emudhra.html>
+
+  <link rel=preload as=script href=https://www.jxck.io/assets/js/main.js?250125_005554>
+
+  <script defer src=https://www.jxck.io/assets/js/main.js?250125_005554></script>
+
+  <link rel=icon type=image/svg+xml sizes=any href=https://blog.jxck.io/assets/img/jxck.svg>
+  <link rel=icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <link rel=apple-touch-icon type=image/png sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.png>
+  <link rel=apple-touch-icon type=image/png sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.png>
+  <link rel=apple-touch-icon type=image/png sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.png>
+  <link rel=apple-touch-icon type=image/png sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.png>
+  <link rel=apple-touch-icon type=image/png sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.png>
+
+  <link rel=apple-touch-icon type=image/webp sizes=120x120 href=https://blog.jxck.io/assets/img/jxck.120x120.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=300x300 href=https://blog.jxck.io/assets/img/jxck.300x300.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=600x600 href=https://blog.jxck.io/assets/img/jxck.600x600.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=1200x1200 href=https://blog.jxck.io/assets/img/jxck.1200x1200.webp>
+  <link rel=apple-touch-icon type=image/webp sizes=3000x3000 href=https://blog.jxck.io/assets/img/jxck.3000x3000.webp>
+
+  <meta name=author              content=Jxck>
+  <meta name=description         content="PHP2Shell は、時の総理大臣も対応を発信するなどの動きがあり、一般のニュースですら大きく報じられていた。しかし、同時期に報じられた eMudhra のインシデントの方が、比較にならないくらいヤバいと、筆者は思っている。Web の信頼を失墜させるほどにだ。">
+  <meta name=keywords            content="ca,https,security">
+  <meta name=theme-color         content=#000000>
+
+  <meta property=og:type         content=article>
+  <meta property=og:url          content=https://blog.jxck.io/entries/2026-10-25/emudhra.html>
+  <meta property=og:title        content="eMudhra の脆弱性は Web にとって何を意味するのか | blog.jxck.io">
+  <meta property=og:site_name    content=blog.jxck.io>
+  <meta property=og:description  content="PHP2Shell は、時の総理大臣も対応を発信するなどの動きがあり、一般のニュースですら大きく報じられていた。しかし、同時期に報じられた eMudhra のインシデントの方が、比較にならないくらいヤバいと、筆者は思っている。Web の信頼を失墜させるほどにだ。">
+  <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
+
+  <meta name="Hatena::Bookmark" content="nocomment">
+  <link rel="author" href="http://www.hatena.ne.jp/Jxck/" />
+
+
+  <script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://blog.jxck.io/entries/2026-10-25/emudhra.html"
+    },
+    "headline": "eMudhra の脆弱性は Web にとって何を意味するのか | blog.jxck.io",
+    "image": [
+      "https://www.jxck.io/assets/img/jxck.png",
+      "https://logo.jxck.io/jxck.1200x1200.png"
+    ],
+    "datePublished": "2026-10-25T00:00:00+09:00",
+    "dateModified": "2026-10-25T00:00:00+09:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jxck",
+      "image": "https://blog.jxck.io/assets/img/jxck.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jxck",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://logo.jxck.io/jxck.120x120.png",
+        "height": 120,
+        "width": 120
+      }
+    },
+    "description": "PHP2Shell は、時の総理大臣も対応を発信するなどの動きがあり、一般のニュースですら大きく報じられていた。しかし、同時期に報じられた eMudhra のインシデントの方が、比較にならないくらいヤバいと、筆者は思っている。Web の信頼を失墜させるほどにだ。"
+  }
+  </script>
+
+  <title>eMudhra の脆弱性は Web にとって何を意味するのか | blog.jxck.io</title>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
+</head>
+<body>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/header.css?250125_013824>
+  <header>
+    <nav>
+      <ul>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_141212   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
+        <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
+        <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
+        <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_140034   title=jxck   alt="jxck logo" class=logo></a>
+      </ul>
+    </nav>
+  </header>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/markdown.css?260211_230947>
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/main.css?250125_022018>
+  <main>
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/info.css?250125_014517>
+    <dl class=info>
+      <div><dt>created_at</dt><dd><time class=created_at datetime=2026-10-25>2026-10-25</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-10-25>2026-10-25</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#ca">ca</a>
+              <li><a href="/tags#https">https</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#ca-のおさらい">CA のおさらい</a>
+              <li><a href="#ca-のインシデント">CA のインシデント</a>
+              <li><a href="#ca-の運用">CA の運用</a>
+              <li><a href="#emudhra-は何をやらかしたのか">eMudhra は何をやらかしたのか?</a>
+              <li><a href="#信頼の破綻">信頼の破綻</a>
+              <li><a href="#取りうる対応">取りうる対応</a>
+              <li><a href="#個別の証明書ストア">個別の証明書ストア</a>
+              <li><a href="#sectigo-と-comodo">Sectigo と Comodo</a>
+              <ol>
+                <li><a href="#暫定策">暫定策</a>
+              </ol>
+              <li><a href="#emudhra-の撤退">eMudhra の撤退</a>
+              <li><a href="#ca-の向かう先">CA の向かう先</a>
+              <li><a href="#まとめ">まとめ</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">eMudhra の脆弱性は Web にとって何を意味するのか</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>PHP2Shell は、時の総理大臣も対応を発信するなどの動きがあり、一般のニュースですら大きく報じられていた。
+        <p>しかし、同時期に報じられた eMudhra のインシデントの方が、比較にならないくらいヤバいと、筆者は思っている。
+        <p>Web の信頼を失墜させるほどにだ。
+      </section>
+      <section>
+        <h2 id="ca-のおさらい"><a href="#ca-のおさらい">CA のおさらい</a></h2>
+        <p>&quot;Mudhra&quot; は「印」のような意味で、カタカナで書くなら「ムドラー」らしい。&quot;e&quot; + &quot;印&quot; でデジタル認証局を意味するインドの Root CA だ。
+        <p>我々は HTTPS をデプロイするとき、サーバ内部で秘密鍵を作り、対になる公開鍵をクライアントに提示する。これがなりすまされていないかを証明するために、既に広く普及した CA に自分たちの証明書への署名を依頼する。
+        <p>これが、我々が Let&apos;s Encrypt などに発行を依頼する、いわゆる HTTPS のサーバ証明書だ。
+        <p>クライアントは、デバイスに入っている証明書リストの中から、対応する CA の証明書を取り出し、署名を検証する。これが成功して初めて、サーバの提示する証明書が、なりすまされていないことが確認できるのだ。
+        <p>これは、証明書リストに入っているような CA は、正しく、健全に、安全に運営され、証明書を適切に発行しているという前提に則っている。ここは信用できるという前提を置き、そこから数珠つなぎで上位の信頼を構築していく基盤だ。
+        <p>「トラストアンカー」と呼ばれるゆえんだ。
+      </section>
+      <section>
+        <h2 id="ca-のインシデント"><a href="#ca-のインシデント">CA のインシデント</a></h2>
+        <p>それでも、CA が侵害され、サービスの意図しない証明書が発行される「誤発行」が、近年ではよく話題になる。バグを突かれたり、内部の操作ミスだったり、理由は様々だ。
+        <p>例えば Google が知らないところで正規の google.com の証明書が発行され、それが中間者攻撃に利用されると、Google がどんなにセキュリティに気を配っても、防げない攻撃が発生してしまう。
+        <p>そこで「自分の知らないところで、自社サービスの証明書を発行されないよう、CA を監視するため」に、CT Log という仕組みが作られた。
+        <p>CT Log に登録して発行される SCT が無ければ、ブラウザはその証明書を無視する。つまり CT に登録していない証明書は Web では意味を持たないので、攻撃者も登録をバイパスできない。でも、登録すれば CT Log をくまなく監視している Google に発行がバレ、失効される。
+        <p>誤発行をやらかした CA は、CA/Browser Forum で「信頼できない」という烙印を押され、ブラウザやデバイスから Distrust される。そうやって消えていった CA もある。
+      </section>
+      <section>
+        <h2 id="ca-の運用"><a href="#ca-の運用">CA の運用</a></h2>
+        <p>このようにトラストアンカーとなる CA は、高い水準で運用されている必要がある。
+        <p>例えば、Root CA の秘密鍵は、それさえあれば全世界のドメインに対して、証明書を発行できる能力を持つことになる。作った鍵は 10 年などのスパンで使われるため、厳重に管理される。
+        <p>鍵の生成自体は OpenSSL コマンドでもできるが、OpenSSL を叩いて出てきた秘密鍵を、<code translate=no>chmod 400</code> して特定のディレクトリに保存する、などという Web サービスの秘密鍵のような運用とは根本から違う。
+        <p>CA の鍵は Hardware Security Module と呼ばれる、特殊なハードウェアの中で作られる。
+        <p>内部で鍵のペアを生成し、その公開鍵だけを外に出す。秘密鍵はハードの中にあり、基本的に取り出すことができない。外から署名を依頼すると、内部の鍵を使って生成された署名が出てくる。
+        <p>データセンターの中にこれがあり、物理的にも厳重に管理される。もし、データセンターに忍び込んだり、フォークリフトで押し入ってハードごと引っ剥がして盗んだとしても、破壊して鍵をサルベージしようとした瞬間に揮発して消え失せる。いわゆる「耐タンパー性」と呼ばれる作りになっている。
+        <p>CA では、この HSM 内で秘密鍵を生成する際、「キーセレモニー」という文字通り「儀式」が行われる。
+        <p>どんな儀式かと言うと、IANA のキーセレモニー(CA ではなく DNSSEC だが)が YouTube で公開されている。関係者が集まり、手順を確認しながら進め、全員で進行を見守る。思ったより「儀式」だということがわかるだろう。
+        <iframe src="https://www.youtube.com/embed/Tis4aV_zwqo" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
+        <ul>
+          <li>
+            Root KSK Ceremony 49
+            <ul>
+              <li><a href="https://www.iana.org/dnssec/ceremonies/49" target=_blank>https://www.iana.org/dnssec/ceremonies/49</a>
+            </ul>
+          </li>
+        </ul>
+        <p>途中で出てくるのが HSM で、それを保管する厳重な金庫っぽいものも見える。言ってしまえばたかが数 Byte のデジタルデータだが、それを作るために 5 時間を超える大掛かりな儀式を行う。それに値するだけのデータなのだ。
+        <p>(筆者は人生で 1 度でいいから、キーセレモニーに参加してみたいとずっと思っているが、そんなチャンスが無い。)
+        <p>このような運用が、きちんと行われているか第三者がチェックするため、CA は WebTrust の監査を受ける。Let&apos;s Encrypt だと、その監査報告書も公開している。
+        <ul>
+          <li>
+            Policy and Legal Repository - Let&apos;s Encrypt
+            <ul>
+              <li><a href="https://letsencrypt.org/repository/" target=_blank>https://letsencrypt.org/repository/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうした資料をもとに、「本当にこの CA はきちんと運用されているか?」「信用に値する CA か?」を CA/Browser Forum などで議論する。信用されれば、この CA の証明書がデバイスに入る。
+        <p>Mac で言えば Keychain、Windows で言えば Certificate Store に収められた CA のリストが「信頼された CA」だ。そのデバイスを選んだユーザは、推移的にその CA を信頼していることになり、その CA が発行した証明書を Valid として検証することができるようになるのだ。
+      </section>
+      <section>
+        <h2 id="emudhra-は何をやらかしたのか"><a href="#emudhra-は何をやらかしたのか">eMudhra は何をやらかしたのか?</a></h2>
+        <p>eMudhra も Root CA として広く信頼されている。
+        <p>つまり、キーセレモニーをして秘密鍵を作り、その運用体制も監査で確認されているはずだ。
+        <p>ところが、このキーセレモニーに不備があった。本来使うべき厳重な鍵とは別に、スクリプトのバグによって非常に弱い鍵が生成され、それが取り違えによって中間 CA の鍵として採用されてしまったのだ。
+        <ul>
+          <li>
+            eMudhra Statement on Recent Certificate Security Incident | eMudhra
+            <ul>
+              <li><a href="https://emudhra.com/en/post/certificate-security-incident" target=_blank>https://emudhra.com/en/post/certificate-security-incident</a>
+            </ul>
+          </li>
+          <li>
+            eMudhra Intermediate CA Compromise
+            <ul>
+              <li><a href="https://emudhra.we-have-a-problem.com/" target=_blank>https://emudhra.we-have-a-problem.com/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>具体的には、楕円曲線暗号 P-384 の鍵を作った。本来の秘密鍵は 1 ~ 2^384 から選んだランダムな 48 byte であるはずが、実際には上位 47 byte が全部 0 で、実質 1 byte の鍵になっていたという。その 8 つの鍵が以下だ。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre><code translate=no>4, 56, 66, 115, 155, 156, 230, 237</code></pre>
+        <ul>
+          <li>
+            Eight Bits of Trust; eMudhra&apos;s CA keys cracked in milliseconds
+            <ul>
+              <li><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" target=_blank>https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>楕円曲線の強みである離散対数問題の困難性なんかそっちのけで、「256 回ほど総当たりすれば逆算できる」ことになる。つまり、eMudhra の秘密鍵がこのように弱いことに気づきさえすれば、簡単にこの鍵を復元できる。
+        <p>つまり、本来 HSM に保管されているはずの CA の鍵が手に入るのだ。
+        <p>この鍵を使って署名した証明書は、もちろん署名を確認しても Valid だ。デバイスにとっては「正規の証明書」でしかない。
+        <p>誰でも、世界中のドメインの、正規の証明書を複製することが可能なのだ。
+        <p>持っている端末のテザリングを「Airport Free WiFi」などにして、空港に置いておく。何も知らずにつながってきたユーザの通信をすべてキャプチャし、HTTPS の接続先をすべて改ざんしても、警告は出ない。
+        <p>あと何をするかは、攻撃者の匙加減だ。
+        <p>PHP を使っていたら、などという限定はない。
+        <p>すべての Web について、この攻撃が成立するポテンシャルがある。
+        <p>このヤバさがわかるだろうか?
+      </section>
+      <section>
+        <h2 id="信頼の破綻"><a href="#信頼の破綻">信頼の破綻</a></h2>
+        <p>Google では、「秘密鍵のセキュリティレベルはプルトニウムと同じ」という逸話がある。実際は知らないが、その能力と影響を考えれば、そのくらい厳重に扱っても妥当だ。とはいえ、Google がやらかしても、困るのは Google だ。
+        <p>広く信頼された CA の秘密鍵が漏洩するなどということは、決してあってはならない。
+        <p>確かに今回も、漏洩自体はしていない。が、攻撃者が秘密鍵を手に入れることができるということは、実質「CA の秘密鍵が漏洩した」と等価だ。
+        <p><strong>Web において、絶対に起こってはいけないことが、実際に起こったのだ。</strong>
+        <p>インターネットの信頼は、トラストアンカーは信用できるという前提の上に積み上げられている。「そこだって信頼できるかわからない」という前提を作り出すと、何かを信頼することは原理的に不可能になるからだ。
+        <p>それを担保するために、トラストアンカーはコストをかけてその健全性を維持する。多くの人間が目を光らせ、信頼に足る運用がされていることを確認する。PKI が長年積み上げてきた資産そのものだ。
+        <p>先程のセレモニーは、確かに規模が大きいかもしれない。でも CA であれば、小規模でもキーセレモニーをするはずだ。「ちょっとスクリプトがバグった」でこんなミスが起こるなら、そのキーセレモニーは本当にマジメにやっていたんだろうか?
+        <p>そんなずさんな運営体制は、監査に全く引っかからなかったんだろうか? そうだとしたら、何のための監査なんだろうか?
+        <p>「ちょっとスクリプトに不備があって、弱い鍵が出来てしまった。でも中間証明書だしそんなに使ってない。すぐ失効したし、大した問題は無いだろう。」で済む話ではない。
+        <p>これは、あるプログラムにちょっとしたバグが見つかったから、修正版にアップデートしないといけない、などという話とは次元の違う問題なのだ。
+      </section>
+      <section>
+        <h2 id="取りうる対応"><a href="#取りうる対応">取りうる対応</a></h2>
+        <p>実は、ブラウザで表示する HTTPS ページについては、ちょっと事情が違う。
+        <p>偽装した証明書は、CT Log に登録しなければ SCT が無い。SCT が無ければブラウザは信用しない。しかし、攻撃者が CT Log に登録して SCT を取得すれば、バレるまでは使えるだろう。世の中、ちゃんと CT Log の監視までできている業者ばかりではないし、発覚しても失効するのにラグはある。
+        <p>そうした攻撃を防ぐには eMudhra 自体をまるっと Distrust しないといけない。
+        <p>ところが、ここで面倒な問題がある。問題の中間 CA は Sectigo の Cross Root なのだ。
+        <p>
+          <img loading=lazy decoding=async src=./emudhra.svg?261025_021018 alt="eMudhra 証明書チェーン" width=768 height=763>
+        </p>
+        <p>新興の CA は、証明書がデバイスに行き渡っていない期間があるため、証明書を発行しても使えない場面が出てしまう。そこで、既にデバイスに証明書が行き渡っている CA にも署名を依頼し、そちらが入っていれば信頼できるようにする。これが Cross Root の仕組みだ。
+        <p>Let&apos;s Encrypt も出始めは IdenTrust との Cross Root だった。これ自体は珍しい仕組みではない。
+        <p>問題は、証明書ストアが基本的に Allow List だという点だ。
+        <p>eMudhra を外しても、Sectigo が入っていれば、そちらの中間証明書を偽装証明書に添えることで、信頼されてしまう経路が残る。かといって Sectigo まで外すと、その Root にぶら下がる Sectigo の証明書も全部 Distrust されてしまう。
+        <p>この場合は、明示的な「失効」が必要になる。
+        <p>一般的に eMudhra が発行した証明書を失効するためには、eMudhra が CRL や OCSP を提供する。しかし、今回は発行したサーバ証明書ではなく、中間 CA 自体の問題だ。
+        <p>ブラウザは CRLSet や OneCRL などの失効ファイルを、ブラウザのアップデートとは別に同期して、いちはやく失効を確認できるようにしている。ここに eMudhra を入れれば、Sectigo を Root から外さなくても、問題の中間 CA を失効により Distrust できる。
+      </section>
+      <section>
+        <h2 id="個別の証明書ストア"><a href="#個別の証明書ストア">個別の証明書ストア</a></h2>
+        <p>ブラウザや OS は失効でなんとかなるとしても、それ以外の細かい CLI や言語だって HTTPS を話す。それらが OS のネットワーク実装を使い、OS の証明書ストアを見ていれば、一緒に更新されるだろう。
+        <p>ところが、自前で HTTPS を実装し、証明書リストを同梱しているものも少なくない。
+        <p>筆頭は Electron アプリだ。
+        <p>Electron は Chromium を元にしている。Chromium は自前の証明書ストアを同梱している。加えて Node もある。つまり、Electron アプリは、Chromium や Node を更新してビルドし直さないと、ストアが更新されないのだ。
+        <p>さて、読者のみなさんの端末には、どのくらい Electron アプリがいるだろう?
+        <p>Slack, Discord, VSCode etc etc etc .......
+        <p>それら全部、すぐに更新しないといけない。
+        <p>ところが世の中には更新の止まっている Electron アプリもある。そうしたアプリは利用をやめ、Web 版があるならそちらを使うべきということになる。
+        <p>さらには、curl などの CLI、プログラミング言語の HTTPS 実装なども、個別にストアを持つものがある。
+        <p>筆頭は <code translate=no>cacert.pem</code> のような実装だ。これはもともと Mozilla がメンテしていたものだが、実態は PEM の並んだ Allow List だ。
+        <p>そして、CLI や言語実装は、失効リストや OCSP、CT の確認などの仕組みが無いことが多いため、先程の Cross Root の問題が残ってしまう。
+        <p>eMudhra と Sectigo を両方リストから外し、巻き添えを食う Valid な証明書を捨てるか。
+        <p>最悪、実装側に問題の中間証明書の Deny を、ハードコードする必要が出てしまう。
+      </section>
+      <section>
+        <h2 id="sectigo-と-comodo"><a href="#sectigo-と-comodo">Sectigo と Comodo</a></h2>
+        <p>ところが、実は Cross Root 側の Sectigo は既に <code translate=no>cacert.pem</code> からは外されていた。
+        <p>Sectigo はもともと Comodo という大手 CA だった。Comodo と聞くとピンと来る人もいるだろう。
+        <p>2011 年に侵害され google.com などの証明書を誤発行し、その後事業売却して、行き着いた先が Sectigo だ。
+        <p>「CA はやらかしばかりで信用できない」と Google が Public Key Pinning などを開始し、後の CT に繋がる CA の監視体制を模索するきっかけになった事件の 1 つだ。
+        <p>Sectigo は、既に Mozilla に Distrust されていたのだ。
+        <p><code translate=no>cacert.pem</code> でない場合も、同じ影響範囲を飲めるのであれば、2 つの CA を Allow List から外せば良い。
+        <p>もしこの Cross Root が Let&apos;s Encrypt だったりしたらと思うと、、不幸中の幸いでしかない。
+        <section>
+          <h3 id="暫定策"><a href="#暫定策">暫定策</a></h3>
+          <p>消すだけと一言で言っても、今回はサーバだけでなく、ローカル PC はもちろん、スマホや IoT 機器まですべてが対象だ。その中で、HTTPS を話すすべての実装をリストアップし、個々の証明書リストをくまなく更新しないといけない。
+          <p>MDM (Mobile Device Management) でアップデートを配れば終わりとはいかない難しさが、ここにある。
+          <p>社員の端末をガチガチに管理し、あらゆるインストールを見張っていれば、ある程度は更新漏れを防げるかもしれない。しかし、そんな不自由な環境を開発者に強いてしまうと、みんな辞めてしまうのでできない、といった事情も、読者には身に覚えがあるだろう。
+          <p>ある程度リテラシーのある開発者なら、「AI でもなんでも使って全部アップデートしろ」という通達が効くかもしれないが、非エンジニアの社員だって同じリスクを抱えている。
+          <p>ところが、この問題の悪用には、中間者攻撃も必要になる。それ自体は Free WiFi などで簡単に成立するが、例えば VPN に接続していれば、通信はすべて暗号化された経路を通るため、その区間における単純な中間者攻撃は成立しにくい。
+          <p>そのため、全社員を守るなら、「全部更新しろ」と並行して「仕事をするときはしばらく VPN を必ず使え」という号令もありかもしれない。対症療法ではあるが、「全部更新」の難しさを高い解像度で理解しているほど、時間がかかることは想定できる。そう考えれば、無いよりはマシだ。
+          <p>VPN の脆弱性を突いた侵入もあり、ゼロトラストで非 VPN へ移行しようという流れもある中だが、こういうときはトンネル環境が便利だったりする。もし社内で VPN を使っていなくても、Cloudflare WARP などを自衛のために入れるのもありかもしれない。
+          <p>じゃあ、一般のユーザは、誰がどうすれば守り切れるんだろうか?
+          <p>OS やアプリの更新ですら、なかなか行き渡らない世の中だ。仮にそれをちゃんとやっているユーザですら、付け入る隙は残りやすい。
+          <p>家族には、「しばらくフリー WiFi は使わない方が良い」とアドバイスするべきかもしれない。
+        </section>
+      </section>
+      <section>
+        <h2 id="emudhra-の撤退"><a href="#emudhra-の撤退">eMudhra の撤退</a></h2>
+        <p>Mozilla の Bugzilla でもこのインシデントが議論されている。所管が Mozilla でも、Chrome の Root Program の関係者なども交えて議論しており、実質 CA/Browser Forum の Issue のような場所だ。
+        <p>ここで、eMudhra から以下の返信があった。
+        <blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=2083449#c39">
+          <p>we have been subject to intense social media scrutiny and analysis by investors/customers over the last few days
+          <p>and it has made doing any meaningful analysis of the event pretty much impossible.
+          <p>
+          </p>
+          <p>ここ数日間、私たちは SNS での厳しい詮索、投資家や顧客による分析の対象となっており、
+          <p>この出来事について有意義な分析を行うことは事実上不可能になっている。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=2083449#c39" target=_blank>https://bugzilla.mozilla.org/show_bug.cgi?id=2083449#c39</a></cite>
+        </blockquote>
+        <p>CA にとって、この件の調査以上に大事なことがあるだろうか?
+        <p>まあ、ビジネスでやっている以上、SNS と投資家と顧客の相手をする方が大事なんだろう。
+        <p>そして、eMudhra はあっさりと TLS 証明書事業からの撤退をアナウンスした。
+        <ul>
+          <li>
+            eMudhra to Exit global SSL/TLS Certificate Business
+            <ul>
+              <li><a href="https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business" target=_blank>https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business</a>
+            </ul>
+          </li>
+        </ul>
+        <p>そのアナウンスは、本当にヒドイものだ。
+        <blockquote>
+          <p>eMudhra handled the recent incident diligently, revoking the affected CAs within 14 hours of discovery and disclosing promptly.
+          <p>There were no end entity certificates issued out of the affected CA&apos;s. Its infrastructure was not compromised and no data was breached.
+          <p>All physical and logical security controls remained intact.
+          <p>
+          </p>
+          <p>eMudhra は発見から 14 時間以内に影響を受けた CA の失効処理を行い、速やかに公表するなど、この事案に真摯に対処した。
+          <p>影響を受けた CA からは、エンドエンティティ証明書は発行されていなかった。
+          <p>同社のインフラは侵害されておらず、データの漏洩も発生していない。
+          <p>すべての物理的および論理的なセキュリティ対策は、引き続き完全に機能していた。
+        </blockquote>
+        <p>問題はそこではない。Root CA として本当に守らないといけない、最後の一線を守れなかったことへの反省が無い。
+        <blockquote>
+          <p>global SSL/TLS is a small part of eMudhra&apos;s business contributing to about 1% of the global revenue.
+          <p>Due to increasing data sovereignty &amp; compliance requirements, complexity and cost associated with this business is increasing over the years.
+          <p>This, paired with the fact that some of the large entities issue the SSL/TLS free of cost,
+          <p>the business potential and RoI of this line of business also has considerably reduced for eMudhra
+          <p>when measured against our cumulative revenue base.
+          <p>
+          </p>
+          <p>グローバル SSL/TLS 事業は eMudhra の事業の一部に過ぎず、全世界の売上高の約 1% でしかない。
+          <p>データ主権やコンプライアンス要件の強化に伴い、この事業に関連する複雑さとコストは年々増加している。
+          <p>加えて、一部の大手企業が SSL/TLS を無償で発行しているという事実もあり、当社の累積売上高ベースで測定した場合、
+          <p>eMudhra にとってこの事業分野のビジネスポテンシャルと投資収益率(RoI)も大幅に低下している。
+        </blockquote>
+        <p>要するに「金にもならないのに、こんな面倒なことやってられない」ということか。
+        <blockquote>
+          <p>However, the level of social media amplification around this incident has brought scrutiny that is out of proportion to SSL/TLS&apos;s place in our business.
+          <p>In view of this, after detailed deliberations our board has concluded that withdrawing from global SSL/TLS is the right decision for eMudhra and its shareholders.
+          <p>For many certifying authorities, SSL/TLS is the whole business.
+          <p>For eMudhra it is one part of a much broader digital solutions portfolio.
+          <p>We will put our energy where we create the most value for customers with Sharpened Focus on Core Enterprise Solutions and trust services other than SSL/TLS.
+          <p>
+          </p>
+          <p>しかし、この件をめぐる SNS 上での反響の大きさは、当社事業における SSL/TLS の占める割合に見合わないほどの厳しい批判を招いた。
+          <p>こうした状況を踏まえ、取締役会は詳細な検討の結果、グローバルな SSL/TLS 事業からの撤退が eMudhra およびその株主にとって正しい決断であると結論づけた。
+          <p>多くの認証局にとって、SSL/TLS は事業のすべてだが、eMudhra にとっては、はるかに広範なデジタルソリューションの一部に過ぎない。
+          <p>当社は、中核となるエンタープライズソリューションと SSL/TLS 以外のトラストサービスに焦点を絞り、顧客にとって最大の価値を創出できる分野に注力していく。
+        </blockquote>
+        <p>「SNS での炎上も、見合わないのでやってられない。他に比べて大した事業じゃないので、損切りするのが妥当なので辞める。」
+        <p>この言い草が、たとえ小さい事業規模であっても、まがりなりにも Web のトラストアンカーを担っていた組織から出るということ自体が、本当に腹立たしい。
+      </section>
+      <section>
+        <h2 id="ca-の向かう先"><a href="#ca-の向かう先">CA の向かう先</a></h2>
+        <p>筆者の Mac の Keychain には、158 ほどの Root 証明書がある。
+        <p>世界には、このようなトラストアンカーを担う Root がそれだけあるという意味だ。
+        <p>そのすべてが、同じような責任感と品質で運用されているかというと、おそらくそんなことは無いんだろう。
+        <p>もちろん、何人が束で見張っても、人間のやることにミスは絶対に起こる。
+        <p>それ自体の問題は以前からあり、署名できる範囲を絞るべきといった指摘もある。
+        <p>HTTPS が一般的になり、それを普及させるために無料で参入した Let&apos;s Encrypt は、ACME, PQC, Short-lived などで他の CA を先導してきた。その Let&apos;s Encrypt のせいで事業が縮小し、小さいチームで運営している CA もあるだろう。
+        <p>HTTPS が普及し、トラストアンカーの重要度が増した今、リスクに見合うリターンが見込めず、eMudhra のようにやる気を無くす CA も出るかもしれない。Google や Amazon に続き Cloudflare も参入表明したので、生態系はより一層変わっていく。
+        <p>ただ、どんなに健全に運営された CA でも、やる気なく雑に運営されている CA でも、世界中のドメインを署名できるという能力が等しくあるのだ。
+        <p>失敗したからといって、事業を放り投げて終わるのではなく、きちんと次の信頼に繋がるだけの責任は果たして欲しい。
+        <p>最近のインシデントニュースの流量で麻痺しているかもしれないが、この問題は、AI のせいとか、誰にでも起こるとか、防戦は不利とか、そういう話とは種類が違う。
+        <p>我々が当たり前のように信頼している相手が、信頼に足るだけの責任を果たしていると思っていた相手が、それを裏切った話なのだ。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>CA 事業者にとっては、決して良い時代じゃないかもしれない。
+        <p>それでも、今 CA をやっている以上は、その責任を全うして欲しい。
+        <p>証明書ストアに Root CA 証明書を入れた状態で、信頼を投げ出さないで欲しい。
+        <p>あなたはトラストアンカーで、我々はあなたを信頼することで、Web の安全を担保しているのだから。
+      </section>
+    </article>
+  </main>
+  <hr>
+
+  <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/footer.css?250125_012543>
+  <footer>
+    <p class=copyright><small>Copyright &copy; 2016 <a href=https://jxck.io>Jxck</a>. All Rights Reserved.</small> See <small><a href=https://jxck.io/policies/site.html>Site Policy</a> and <a href=https://jxck.io/policies/privacy.html>Privacy Policy</a>.</small></p>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5a6d3cda77d54761ba2f5c3f56d17ceb"}'></script><!-- End Cloudflare Web Analytics -->
+  </footer>
+
+</body>
+</html>
