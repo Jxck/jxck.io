@@ -1,4 +1,4 @@
-# [ca][https][security] eMudhra の脆弱性は Web にとって何を意味するのか
+# [ca][https][security] eMudhra のインシデントは Web にとって何を意味するのか
 
 ## Intro
 
