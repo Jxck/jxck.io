@@ -1,34 +1,4 @@
-k:#6A737D">&#x3C;!-- after --></span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">input</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">address</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> maxlength</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">200</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
-          <p>要素一つにつき 2 byte の省略になる。
-        </section>
-      </section>
-      <section>
-        <h2 id="その最適化は現実的か"><a href="#その最適化は現実的か">その最適化は現実的か?</a></h2>
-        <section>
-          <h3 id="好き嫌い"><a href="#好き嫌い">好き嫌い</a></h3>
-          <p>まず、こうした省略によって、例えば「XML として崩れている」みたいなことを言う人もいる。
-          <p>気持ちは分かるが、そもそもこの程度を省略しなかったところで XML などではない。
-          <p>あくまで書いているのは HTML であり、Markdown からの変換過程で最適化しているので、昨今のフロントのビルドタスクを見れば特段特別なことでもない。
-        </section>
-        <section>
-          <h3 id="影響"><a href="#影響">影響</a></h3>
-          <p>生成した結果は <a href="https://validator.w3.org/nu/" target=_blank>HTML Validator</a> で確認しているが問題は無い。
-          <p>HTML として問題が無いのであれば、HTML に対応したツールでは扱えることになる。使えない場合、少し厳しく言うとそのツールは HTML を正しく扱えてない、つまりバグということになる。
-          <p>まあ、そもそも HTML というのは、XML と全く違い「緩い」部分が多いため、パースするのは非常に難しいので、完全に扱いきれないツールがあっても多少は仕方がない。
-          <p>特に片手間な正規表現で HTML を処理している場合(スクレイピング、エディタのシンタックスハイライト etc)は、影響が皆無ともいえないが、現状自分の環境で、特に困った場面はいまのところない。
-          <p>それも、強気に言えば「そのライブラリ etc が正しく HTML を扱えてないだけだ」と言うこともできなくはない。
-          <p>結局 HTML をパースしたければ、正しくパースできるライブラリを使うしかないという話になる。
-        </section>
-        <section>
-          <h3 id="効果"><a href="#効果">効果</a></h3>
-          <p>今回は正直やってみたかったからやっただけで、パフォーマンス的な効果というより、「それによってパースが遅くなったり、他に影響が出たりするのか?」が知りたかったというモチベーションがある。
-          <p>なので、その視点からいくつかの測定を実施する。
-          <p>まず、省略時のサイズであるが、この記事自体を <code translate=no>&lt;html&gt;</code>, <code translate=no>&lt;head&gt;</code>, <code translate=no>&lt;body&gt;</code> 、閉じたタグ、引用符を全て付けた場合と比べると 259 byte の削減になっていた。
-          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="console"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">$ wc html-compression.htmlけない」
-        <p>HTML を全て生成してから順次送るのであれば問題ないが、本来 HTML は先頭から、準備ができた順にコンポーネントを送信することも可能であるにも関わらず、それができなくなる。
-        <p>また、「footer.css のローディングが遅い場合、サイト全体をブロックする」
-        <p>footer.css が必要なのは、HTML 中の <code translate=no>&lt;footer&gt;</code> をレンダリングする時であり、そこまでに出てくる <code translate=no>&lt;header&gt;</code> などは、先にレンダリングすることも可能だ。
+e> などは、先にレンダリングすることも可能だ。
         <p>しかし、実際はそのたった 1 つの CSS のせいで、そこまでに揃っているコンポーネントもレンダリングされず、真っ白のままになる。
       </section>
       <section>
@@ -56,71 +26,72 @@ k:#6A737D">&#x3C;!-- after --></span></span>
         <p>最初の要素が表示され、読んでいる間に新しい要素の出現によりレイアウトが変わり、全部表示されるまで落ち着いて読めない。
         <p>こうした Content-Shifting の問題は、広告が後から次々に表示されるページなどで多く発生し、<a href="https://www.youtube.com/watch?v=uPnEZd6wCtk" target=_blank>フラストレーションがたまった経験</a> は誰にでもあるだろう。
         <iframe src="https://www.youtube.com/embed/uPnEZd6wCtk" width="560" height="315" layout="responsive" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen loading="lazy"></iframe>
-        <p>本来なら、最初に�crossorigin</span></span></code></pre>
-        <p>HTTP Header にすることによって、マークアップと最適化を分離することができる。
-        <p>既存コンテンツをいじらずに最適化を追加したい場合や、コンテンツをスキャンして自動的に最適化を設定するような、外部の <a href="https://www.akamai.com/us/en/resources/front-end-optimization-feo.jsp" target=_blank>最適化エンジン</a> などに委ねる場合などに有用である。
+        <p>本来なら、最初に見える部分=&quot;Above the fold&quot; を最適化したいわけだが、それがどの要素で成り立つかは viewport に依存する。
+        <p>サイズが分かっていれば、コンテンツを埋める枠のサイズを全て最初に指定することもできるが、以下の方法を使えば、どのような viewport でも適切に表示できることができる。
       </section>
       <section>
-        <h2 id="feature-detection"><a href="#feature-detection">Feature Detection</a></h2>
-        <p>Preload をヒントとして使っていれば、サポートされてい無いブラウザにおいては従来通りのタイミングで取得が走るだけになる。
-        <p>しかし、<code translate=no>onload</code> ハックなどを用いたより積極的な活用を行う上では、ブラウザのサポートの有無を知りたい場合もある。
-        <p>そこで、サポートされる <code translate=no>rel</code> の値を DOM から取れるような提案がなされている。
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">createElement</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"link"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).relList.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">supports</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"preload"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">));</span></span></code></pre>
-        <p>これを使えば、Preload が無効な場合に問題があるサイトでは、フォールバックすることも可能になる。
+        <h2 id="http2-時代の最適化"><a href="#http2-時代の最適化">HTTP2 時代の最適化</a></h2>
+        <p>HTTP2 では以下のように書くことが�datetime=2016-03-30>2016-03-30</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-03-07>2026-03-07</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#csp">csp</a>
+              <li><a href="/tags#security">security</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#content-security-policy">Content Security Policy</a>
+              <li><a href="#csp-の設定">CSP の設定</a>
+              <li><a href="#csp-の注意点">CSP の注意点</a>
+              <li><a href="#report-only">Report Only</a>
+              <li><a href="#report-uri.io">report-uri.io</a>
+              <li><a href="#懸念点">懸念点</a>
+              <li><a href="#本サイトへの適用">本サイトへの適用</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">Content Security Policy(CSP) 対応と report-uri.io でのレポート収集</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>本サイトにて Content Security Policy を有効化した。
+        <p>まずは Report Only にて導入し、段階的にポリシーとコンテンツを修正していく方針をとる。
+        <p>CSP Report については、<a href="https://report-uri.io" target=_blank>report-uri.io</a> を用いて収集することにした。
+        <p>導入に必要な設定や、注意点についてまとめる。
       </section>
       <section>
-        <h2 id="http2"><a href="#http2">HTTP2</a></h2>
-        <p>HTTP2 において、HTTP Link preload ヘッダは Push するリソースを指定する目的で使用している。
-        <p>しかし、実際の動作として、サーバが行う HTTP2 の Push と、ブラウザが行う Preload は補完関係にある。
-        <p>HTTP2 の Push ではリクエストより先にリソースを送ることができ、ブラウザはそれをキャッシュとして保存する。
-        <p>レスポンスの HTML を取得した後、サブリソースを発見して Fetch するタイミングで、そのキャッシュがヒットするという仕組みである。
-        <p>一方で、Push はブラウザが発呼する Fetch とは方向が逆であるため、ある程度の制限が出る。
+        <h2 id="content-security-policy"><a href="#content-security-policy">Content Security Policy</a></h2>
+        <p>Content Security Policy(CSP) とは、Web におけるセキュリティを向上させる非常に強力な仕組みである。
         <ul>
-          <li>Preload は任意のタイミングで発行し、完了を <code translate=no>onload</code> で知ることができる。
-          <li>Preload は fetch であるため、コンテントネゴシエーションが実施できる。
-          <li>Client-Hints や Accept Header を使った最適化もできる。
-          <li>Push と違い Preload は 3rb party にも使える。
+          <li><a href="https://www.w3.org/TR/CSP/" target=_blank>Content Security Policy Level 2</a>
+          <li><a href="https://tools.ietf.org/html/draft-gondrom-websec-csp-header-00" target=_blank>draft-gondrom-websec-csp-header-00 - HTTP Header Content Security Policy</a>
         </ul>
-        <p>Push が既にブラウザにキャッシュされているリソースを考慮できないという問題は、別途 <a href="https://tools.ietf.org/html/draft-kazuho-h2-cache-digest" target=_blank>提案</a> があるが、基本的に Push はクライアントの状況を踏まえることが難しい。
-        <p>もともと HTTP を基本とする Web がプルベースを前提としているため、Fetch でリクエストを投げる際にクライアントの情報を載せ、サーバがそれをレスポンスに反映するモデルの方が、細かい肵イトで使用している PNG/JPEG 画像を、対応デバイスと、Device Pixel Ratio に対して最適なサイズで出し分けるために、<code translate=no>&lt;picture&gt;</code> 要素を適用した。
-        <p>画像最適化シリーズ第 2 回目のエントリである。
-        <ol>
-          <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
-          <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">&gt; 画像最適化戦略 Picture 編</a>
-          <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
-          <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
-          <li><a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">画像最適化戦略 Lazy Loading 編</a>
-        </ol>
+        <p>具体的には、コンテンツに対し Content-Security-Policy ヘッダを付加することにより、ブラウザに読み込を許可するコンテンツをセーフリストにより制限することができる。
+        <p>これによって、コンテンツ作成者が意図しない外部スクリプトや、インラインスクリプトを埋め込むことにより攻撃が実現するタイプの XSS を、ことごとく防ぐことが可能になる。
       </section>
       <section>
-        <h2 id="画像の出し分け"><a href="#画像の出し分け">画像の出し分け</a></h2>
-        <p>本サイトでは、それぞれの画像のサイズを、適切にリサイズしている。
-        <p>しかし、例えば Device Pixel Ratio が大きい Retina 対応端末などには、大きいサイズのファイルを提供しなければ、拡大表示による画像の荒れが発生してしまう。
-        <p>そこで、同一画像でいくつかのファイルサイズを用意し、ブラウザの DPR などに応じて出し分けるのが望ましい。
-      </section>
-      <section>
-        <h2 id="最適な画像を決定する変数"><a href="#最適な画像を決定する変数">最適な画像を決定する変数</a></h2>
-        <p>サイズ/フォーマット的に最適なイメージは、主に端末とブラウザの組み合わせで変わる。
-        <p>具体的には、現状以下の分岐を考慮する必要がある。
-        <ul>
-          <li>ViewPort Size はいくつか(端末サイズの分岐)
-          <li>DPI はいくつか(端末 Retina 対応)
-        </ul>
-        <section>
-          <h3 id="サイズ最適化"><a href="#サイズ最適化">サイズ最適化</a></h3>
-          <p>PNG/JPEG などのラスタ形式画像において、サイズとは基本的に縦横に敷き詰められた正方形の数を指す。
-          <p>100x100 個の正方形でなる画像は、100x100 で表示すれば基本的には問題ない。
-          <p>しかし、200x200 で表示すれば、同じ正方形を縦横二つ並べて大きくしないといけないため、鮮明さが落ちる。
-          <p>ところがこれは、CSS などで <code translate=no>width=100</code> <code translate=no>height=100</code> をきっちり指定すれば済むという問題ではない。
-          <p>これは、<em>Device Pixel</em> と <em>CSS Pixel</em> のサイズが必ずしも同じとは限らないからである。
-        </section>
-        <section>
-          <h3 id="devicecss-pixel-size"><a href="#devicecss-pixel-size">Device/CSS Pixel Size</a></h3>
-          <p>Retina ディスプレイは、通常のスクリーンよりも、スクリーン上に並ぶ正方形が小さいサイズになっている。
-          <p>スクリーンが持つ 1x1 を描画するための四角は <em>Device Pixel</em> といい、これが小ほど <em>画面密度(Device Pixel Ratio)</em> が高いと表現する。
-          <p>もし Device Pixel Size が通常の半分の Retina ディスプレイで 100x100 の画像を素直に表示すると、同じスクリーンサイズの非 Retina で表示した時の 50x50 の見た目、つまり小さくなってしまう。
-          <p>よって、Retina 端末は、実際に自分が持っている <em>Device Pixel</em> と、CSS で指定する <em>CSS Pixel</em> を分けることにした。
-          <p>つまり、CSS で 100x100 (CSS Pixel)で表示するように指定された画像は、勝手に 200x200 (Device Pixel)に拡大して表示することで、�:#E1E4E8">,</span></span>
+        <h2 id="csp-の設定"><a href="#csp-の設定">CSP の設定</a></h2>
+        <p>CSP を有効にするには、Content-Security-Policy ヘッダを付与し、その引数にポリシーを指定する。
+        <p>ポリシーは、コンテンツが読み込み可能なコンテンツについての制限であり、以下のような指定が可能である。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="http"><code translate="no"><span class="line"><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">Content-Security-Policy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> default-src 'self'</span></sp:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">    "status-code"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">:         </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
@@ -154,17 +125,7 @@ k:#6A737D">&#x3C;!-- after --></span></span>
         <p>レポートの中には、聞いたことがあるサービスの URL などが入っている場合もあるので、サービス連携によって発生したものもあるようだ。
         <p>その他にも多種のレポートが上がって来るが、大抵のものはレポートだけでは実際に何が原因で発生したのかを知るのは難しい。
         <p>もちろん、Report-Only を外してそれらをブロックしていたら、ユーザがどのような体験をしていたかも、ほとんどわからない。
-        <p>想像通り、<code translate=no>&lt;input&gt;</code> が無い本サイトでもこれだけのレポートが来ていることから、<code translate=no>&lt;input&gt;</code> により、主にブラウザ API の Polyfill に関するドキュメントが公開された。
-        <p><a href="https://w3ctag.github.io/polyfills/" target=_blank>Polyfills and the evolution of the Web</a>
-        <p>Polyfill は便利な一方で、時として標準化の妨げになってしまう場合があるため、それを避けるために、Polyfill 実装者、利用者、仕様策定者などが、どう振る舞うべきかという趣旨である。
-        <p>今回はこの内容を元に、Web の進化と協調する Polyfill のあり方について、主に「実装者」がどうすべきかに着目し記す。
-      </section>
-      <section>
-        <h2 id="web-における-breaking-change"><a href="#web-における-breaking-change">Web における Breaking Change</a></h2>
-        <p>Breaking Change は、簡単に�付けられていたが、こうした使われ方が広まった結果、本来の意図を果たすことができなかった。
-        <p>特に WebKit が先行し、他のブラウザはプレフィックス付き実装すらしていなかった機能については、webkit プレフィックスをつけて実装され、そのまま放置されているものも少なくない。
-        <p>そういったコンテンツを動作させられるよう、<a href="https://groups.google.com/forum/?_escaped_fragment_=topic/mozilla.dev.platform/969k-Iryiyo" target=_blank>Firefox</a> や <a href="https://msdn.microsoft.com/ja-jp/library/mt270097%28v=vs.85%29.aspx" target=_blank>Edge</a> が一部の webkit プレフィックスをサポートするという本末転倒な事態となっている。
-        <p>なお、Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用されている。これについては以下を参照のこと。
+        <p>想像通り、<code translate=no>&lt;input&gt;</code> が無い本サイトでもこれだけのレポートが来ていることから、<code translate=no>&lt;input&gt;</code> により��Extensible Web 以降、低レベルで実装の難易度が高く、問題が起こったときの影響が大きいものについては、ベンダプレフィックスの代わりに Origin Trial が採用されている。これについては以下を参照のこと。
         <p><a href="https://blog.jxck.io/entries/2016-09-29/vendor-prefix-to-origin-trials.html">Web 標準化のフィードバックサイクルを円滑にする Origin Trials について</a>
       </section>
       <section>
@@ -186,7 +147,13 @@ k:#6A737D">&#x3C;!-- after --></span></span>
         <p>ドキュメントでは、例えば仕様で <code translate=no>Foo</code> と定義されているものは、<code translate=no>FooPolyfill</code> や <code translate=no>FutureFoo</code> などに変えて実装することが推奨されている。
         <p>また <code translate=no>$</code>, <code translate=no>root</code>, <code translate=no>web</code> といった一般的で短い名前を利用することも、非推奨とされている。
         <p>そして、もしブラウザが実装を持っていたら、その実装に移譲するようにコードを書くべきである。またブラウザの実装が全てを提供していない場合は、不足分のみを補うようにする。
-        <p>例えば <code translate=no>URL</code> を提供するが、その内部で <code translate=no>URL#searchParams</code> が <code translate=no>URLSearchParams</code> を提供していなかった場合は、<code translate=no>URL</code> 全体を Polyfill で置き換えるのでは無く�sponse を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
+        <p>例えば <code translate=no>URL</code> を提供するが、その内部で <code translate=no>URL#searchParams</code> が <code translate=no>URLSearchParams</code> を提供していなかった場合は、<code translate=no>URL</code> 全体を Polyfill で置き換えるのでは無く、使える部分は <code translate=no>URL</code> を使い、<code translate=no>URL#searchParams</code> だけ <code translate=no>URLSearchParams</code> を追加するように実装するのが望ましい。
+        <p>他細かい点では以下があげられる。
+        <ul>
+          <li>module 機構を使い、global スコープやネイティブオブジェクトのプロトタイプを直接汚染しない
+          <li>ユーザが最新の実装に追従しやすいよう、npm や CDN(<a href="https://cdnjs.com" target=_blank>cdnjs.com</a>, <a href="https://polyfill.io" target=_blank>polyfill.io</a>) などで提供する
+          <li>Web Platform Test があったらパスすること
+          <li>Polyfill の実装経験は貴重なので、気づいた点を仕様策定にフィードバックす�sponse を返す場合は、ネットワーク I/O をせずに画面をレンダリングできる。
         <p>しかし、SW が <code translate=no>onfetch</code> をフックしていてもなお、実際にネットワークにリクエストを投げる場合は少なくない。
         <p>この場合、もしページのコントローラとなっている SW が起動していない場合は、<code translate=no>onfetch</code> ハンドラを実行するために、SW の起動を待つ必要が出てくる。
         <p>SW の起動には、もちろん実行環境によるところが大きいが、<a href="https://developers.google.com/web/updates/2017/02/navigation-preload" target=_blank>50~500ms</a> 程度の時間がかかるとされている。
@@ -210,7 +177,60 @@ k:#6A737D">&#x3C;!-- after --></span></span>
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">self.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'activate'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, (</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">e</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">self.registration.navigationPreload) {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><spref="/tags#web%20font">web font</a>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    console.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">log</span><spワークで当時存在しなかった <code translate=no>.dev</code> を、開発用ドメインとして割り当てられるような環境を作っていたとする。
+        <p>現在、<code translate=no>.dev</code> は正式に gTLD として認定され、<a href="https://www.iana.org/domains/root/db/dev.html" target=_blank>Google</a> がそれを管理している。
+        <p>つまり、これまで社内のみと思われていた <code translate=no>.dev</code> のアドレスと、同じものが Google からリリースされる可能性もある。
+        <p>合わせて、先日 Google は <code translate=no>.dev</code> 全体に対して Chrome に preload HSTS の設定をマージした。
+        <p><a href="https://chromium-review.googlesource.com/c/chromium/src/+/669923" target=_blank>Preload HSTS for the .dev gTLD</a>
+        <p>HTTPS が前提の昨今、こうして先手を打って HSTS を TLD 以下に強制するということだろう。
+        <p>もしくは、<code translate=no>.dev</code> を社内で勝手に運用している環境を認識して、そうした環境にあっても Google の正規サービスであることを明示する目的もあるかもしれない。
+        <p>いずれにせよ、自前で <code translate=no>.dev</code> を運用しているユーザには影響があるだろう。
+        <p>他にも gTLD はどんどん増えているので、<code translate=no>.dev</code> 以外にも注意が必要だ。
+      </section>
+      <section>
+        <h2 id="reserved-top-level-dns-names"><a href="#reserved-top-level-dns-names">Reserved Top Level DNS Names</a></h2>
+        <p>以上のことを踏まえれば、将来に渡って取得されないことが保証され、こうした用途に使えるドメインがあるのが望ましい。
+        <p>そこで RFC 6761 (was RFC 2606) には、<em>予約済みドメイン</em> としていくつかのドメインとその用途が記されている。
+        <ul>
+          <li><a href="https://tools.ietf.org/html/rfc6761" target=_blank>RFC 6761 Special-Use Domain Names</a>
+          <li><a href="https://tools.ietf.org/html/rfc2606" target=_blank>RFC 2606 Reserved Top Level DNS Names</a>
+        </ul>
+        <p>用途を守れば、そのドメインを所有していなくても、安心して使うことができるのだ。
+      </section>
+      <section>
+        <h2 id=".example"><a href="#.example"><code translate=no>.example</code></a></h2>
+        <p>主にドキュメントなどの例示に使われる。
+        <p>TLD としての <code translate=no>*.example</code> 以外に、以下の 3 つの SLD も予約されており、同様に使うことができる。
+        <p>(本サイトでは、ブログの例示には主にこれを使っている)
+        <ul>
+          <li>example.com
+          <li>example.net
+          <li>example.org
+        </ul>
+        <p>また、この 3 つは実際にインターネット上で HTTP をサーブしている。
+        <ul>
+          <li><a href="http://example.com" target=_blank>http://example.com</a>
+          <li><a href="http://example.net" target=_blank>http://example.net</a>
+          <li><a href="http://example.org" target=_blank>http://example.org</a>
+        </ul>
+        <p>ちなみに、これらのアドレスは実は結構便利な作りをしている。
+        <ul>
+          <li>単純な HTML (サブリソースなし)
+          <li>HTTP (HSTS なし)
+          <li>HTTPS (HTTP2)
+          <li>余計なヘッダなし
+          <li>コンテンツがほぼ更新されない
+        </ul>
+        <p>筆者は Wifi の認証など HTTP のアドレスが欲しい時や、余計な邪魔のないページで devtool をいじりたいとき、単なる疎通確認など色々な場面で使っている。
+        <p>管理しているのが ICANN なので、個人が取得したドメインと違い <em>無くなっている可能性などを気にしないで良い</em> ため、覚えておくと地味に便利だった�2-06</time></dd></div>
+      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
+      <div>
+        <dt>tags</dt>
+        <dd>
+          <nav class=tags>
+            <ul>
+              <li><a href="/tags#font-display">font-display</a>
+              <li><a href="/tags#web%20font">web font</a>
               <li><a href="/tags#performance">performance</a>
               <li><a href="/tags#css">css</a>
             </ul>
@@ -275,52 +295,7 @@ k:#6A737D">&#x3C;!-- after --></span></span>
         <h2 id="ブラウザデフォルト挙動"><a href="#ブラウザデフォルト挙動">ブラウザデフォルト挙動</a></h2>
         <p>まず、ブラウザ内部での Web Font の扱いを確認する。
         <p>基本的に、ブラウザは 3 つのチェックポイントを持つ。
-        <p><a href="https://drafts.csswg.org/css-fonts-4/#font-display-timeline" target=_blank>3.2. The Font Display Timeline | CSS Fonts Module Level 4</a>
-        <ul>
-          <li>block period
-          <li>swap period
-          <li>font failure period
-        </ul>
-        <p>まず、ブラウザはフォントの取得を開始した�は、最初から機能が制限されたサブセットの仕様を定義し、それを強制するアプローチをとった。
-          <p>同等のことを、HTTP や HTML などから明示的に設定し、機能を許可/制限する方法は長いこと模索されていた。
-        </section>
-        <section>
-          <h3 id="権限の移譲"><a href="#権限の移譲">権限の移譲</a></h3>
-          <p>geolocation, getUserMedia など、強力な API については、ユーザに対して許可を求めるようになっている。
-          <p>一方で、こうした許可を iframe に読み込んだクロスオリジンのコンテンツに対していかに付与するかという方法についても、長いこと議論されてきた。
-          <p>例えば、<a href="https://jxck.io" target=_blank>https://jxck.io</a> の中で <a href="https://payment.example.com" target=_blank>https://payment.example.com</a> を iframe で埋め込んでいたとする。
-          <p>iframe では強力な API が実行されるため、ユーザに許可を求める必要がある。
-          <ul>
-            <li><em>jxck.io の画面上</em> に <em>「example.com が xxx の許可を求めている」</em> とプロンプトが出ても、その意味がユーザに伝わるか。
-            <li>仮に権限が付与されたとして、別のページが同じように example.com を埋め込んでいた場合、その権限はどうすべきか。
-            <li>iframe が複数埋め込まれていた場合に、複数プロンプトを出すことの UX はどうか。
-            <li>ユーザが権限を削除したいと考えた時、jxck.io を見ていたのに、削除するのは example.com への権限だと、どのように気づかせるか。
-          </ul>
-          <p>こうした問題について、実際に検証した結果は以下に報告されている。
-          <ul>
-            <li><a href="https://docs.google.com/document/d/1x5QejvpyQ71LPWhMLsaM1lWCfSsBsSQ8Dap9kJ6uLv0" target=_blank>Permission Delegation Proposal</a>
-            <li><a href="https://docs.google.com/presentation/d/1suzMhtvMtA11jxPUdH1jL1oPh-82rTymCnslgR3ehEE" target=_blank>Understanding Permission Requests From Iframes</a>
-          </ul>
-          <p>そして、結論としては以下のようなモデルが採用されることとなった。
-          <ul>
-            <li>iframe 内では、強力な機能の権限を <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/mG6vL09JMOQ" target=_blank>デフォルトでオフにする</a>
-            <li>ユーザは基本的に URL バーに表示された <a href="https://jxck.io" target=_blank>https://jxck.io</a> を信頼の対象とする
-            <li>permission ui は、<code translate=no>「このサイトに権限を許可するか」</code> をユーザに問う
-            <li>権限を付与された <a href="https://jxck.io" target=_blank>https://jxck.io</a> は <a href="https://example.com" target=_blank>https://example.com</a> へ、その <em>権限を移譲</em> できる
-          </ul>
-          <p>例えば、Payment のために 3rd Party iframe を埋め込んだサイトがある場合、ユーザが信頼するかどうかを決めるのはあくまでその <em>サイト自体</em> ということだ。
-          <p>埋め込まれた Payment 用の iframe を選定したのはそのサイトであり、そこを含めてユーザはそのサイトを信頼するかどうかを決めるべきという方針である。
-          <p>もし既にサイト自体に権限があれば、サイトはプロンプト無しに iframe に権限を移譲できる。
-          <p>サイトが権限を得る前ならば、iframe が権限を必要とした時点で、<em>サイト自体に権限を与えるか</em> のプロンプトが出る。
-          <p>そして、この <em>機能の制限</em> および <em>権限の移譲</em> は Feature Policy を用いて行うこととなった。
-          <p><em>03056/" target=_blank>Connpass</a>
-          </div>
-          <div>
-            <dt>参加費
-            <dd>無料
-          </div>
-        </dl>
-        <p>(参考) 2015 年実施のログは以下です。
+        <p><a href="https://drafts.csswg.org/css-fonts-グは以下です。
         <dl>
           <div>
             <dt>blog
@@ -382,7 +357,8 @@ k:#6A737D">&#x3C;!-- after --></span></span>
         </ul>
       </section>
       <section>
-        <h2 id="登壇者にお願いしてい�032F62;--shiki-dark:#9ECBFF">"origin-when-cross-origin"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+        <h2 id="登壇者にお願いしていること"><a href="#登壇者にお願いしていること">登壇者にお願いしていること</a></h2>
+        <p>全ての登壇者に以下をお願いしています�032F62;--shiki-dark:#9ECBFF">"origin-when-cross-origin"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
           <p>サーバ指定だと影響範囲が大きい場合に CMS のテンプレートに追加するといった適用が考えられる。
           <p>なお、<code translate=no>never</code> / <code translate=no>default</code> / <code translate=no>always</code> といった古い仕様が存在したため、対応表を元に新しい値を指定することが望ましい。
           <p>仕様: <a href="https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer" target=_blank>https://html.spec.whatwg.org/multipage/semantics.html#meta-referrer</a>
@@ -482,7 +458,7 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
         <p>Cache Digest は、どちらかというと実装待ちのフェーズだった。
         <p>直近の IETF 103 の minutes でも、「実装さえあれば WGLC にできる、無いんだけど」というログのみが残っている。
         <p><a href="https://github.com/httpwg/wg-materials/blob/gh-pages/ietf103/minutes.md#cache-digests-for-http2" target=_blank>HTTP Working Group Minutes - IETF103 Bangkok</a>
-        <p>あるブラウザの開発者から「実装が難しすぎる」という話をちょっと聞いたことがあったが、やはり内部のキャッシュを総ざらいしてハッシュを付与するという実装は:#E1E4E8">})</span></span></code></pre>
+        <p>あるブラウザの開発者から「実装が難しすぎる」という話をちょっと聞いたことがあったが、やはり内部のキャッシュを総ざらいしてハッシュを付与するという実装はk:#E1E4E8">})</span></span></code></pre>
           <p>JS で行えば、収集する情報もタイミングも、柔軟に設定できることは容易に想像できるだろう。
         </section>
         <section>
@@ -508,7 +484,53 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
           <h3 id="挙動の改善"><a href="#挙動の改善">挙動の改善</a></h3>
           <p>もし、サービスが標準の ping 属性を用いていれば、追加の JS を実行することも、同期 XHR でレンダリングをブロックすることもない。
           <p>Beacon や Keep-Alive Fetch を投げるための JS を追加で取得する必要も、複数のリダイレクトを繰り返され、真っ白な画面を待つ必要もない。
-          <p>ユーザは、リンクをクリックしたら画面が遷移する、という普通のことをオーバーヘッドほとんどなしで行うこ�k:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.jpg"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> postpone</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+          <p>ユーザは、リンクをクリックしたら画面が遷移する、という普通のことをオーバーヘッドほとんどなしで行うこす�点での挙動</a>
+                <li><a href="#range--full-request-rtt">Range + Full request RTT</a>
+                <li><a href="#lazy-for-small-img">Lazy for small img</a>
+                <li><a href="#above-the-fold">Above the Fold</a>
+                <li><a href="#2.0kb-request">2.0KB Request</a>
+                <li><a href="#考察">考察</a>
+              </ol>
+              <li><a href="#feature-policy">Feature Policy</a>
+              <li><a href="#priority-hints">Priority Hints</a>
+              <li><a href="#loading-属性の導入">Loading 属性の導入</a>
+              <li><a href="#本サイトへの適用">本サイトへの適用</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">画像最適化戦略 Lazy Loading 編</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>長らく議論されてきた <code translate=no>&lt;img&gt;</code> や <code translate=no>&lt;iframe&gt;</code> における Lazyload について、仕様と実装が動きを見せている。
+        <p>ここでは、特に画像 <code translate=no>&lt;img&gt;</code> に注目し、Lazyloading の議論の変遷を踏まえた上で現状を解説する。
+        <p>画像最適化シリーズ第 5 回目のエントリである。
+        <ol>
+          <li><a href="https://blog.jxck.io/entries/2016-03-24/optimize-image.html">画像最適化戦略 PNG/JPEG 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-25/picture.html">画像最適化戦略 Picture 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-26/webp.html">画像最適化戦略 WebP 編</a>
+          <li><a href="https://blog.jxck.io/entries/2016-03-27/svg-font-base-ui.html">画像最適化戦略 SVG/Font 編</a>
+          <li><a href="https://blog.jxck.io/entries/2019-05-20/lazyloading.html">&gt; 画像最適化戦略 Lazy Loading 編</a>
+        </ol>
+      </section>
+      <section>
+        <h2 id="lazyloading"><a href="#lazyloading">Lazyloading</a></h2>
+        <p>画像や iframe の埋め込みは、読み込むサイズも大きく、処理が同期であるため、レンダリングのボトルネックになりやすく、それらが多いページでは初期表示の遅延の原因となることが多くあった。
+        <p>特に縦に長いページでは、最初にユーザが見えている領域 (Above the Fold) では表示されている必要があるが、スクロールしないと見えない領域 (Below the Fold) では、スクロールするまで読み込みを遅延することで、初期表示の高速化につなげる手法が求められていた。
+        <p>このように、必要になるまで読み込まない方法は <em>Lazy Loading</em> と呼ばれ、従来は onscroll や IntersectionObserver で監視する JS で実装されることが多かった。
+        <p>この機能を、HTML の仕様に取り込み、<code translate=no>&lt;img&gt;</code> や <code translate=no>&lt;iframe&gt;</code> タグに属性を記述するだけで、ブラウザが遅延読み込みを実現してくれるのが LazyLoading の提案である。
+        <p>アイデア自体は古くからあったが、紆余曲折を経て最近実装が進みつつある。
+        <ul>
+          <li><a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/jxiJvQc-gVg" target=_blank>Intent to Ship: Lazily load below-the-fold images and iframes</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="spec-history"><a href="#spec-history">spec history</a></h2>
+        <p>もともと、IE は <code translate=no>lazyload</code> 属性を早い段階で実装しており、値は Integer <code translate=no>0</code>/<code translate=no>1</code> を指定し <code translate=no>1</code> の場合は <em>他よりも優先度を下げる</em> という仕様だった�k:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">img</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> src</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"example.jpg"</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> postpone</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
         <p>Chrome がこの仕様の着手として Intent to Implement をアナウンスしたのは 2013 年だったため、かなり昔から話はあったということがわかるだろう。そしてこの時点でも、「まだ実装できるほど仕様が安定していない」というコメントが付いている。
         <p>まだ、postpone 属性を消すかどうかという時期だったようだ。
         <ul>
@@ -547,7 +569,7 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
         <p>ブラウザもそのような実装に向けて実験を繰り返していたが、壊れる既存コンテンツの存在もあり一筋縄ではいかない状況があるようだ。
         <p>もしここでデフォルトを eager にしてしまうと、実装の改善によって挙動を変える余地が無くなってしまう。
         <p>将来的にブラウザ側に知見が蓄積されれば、既存のコンテンツであっても、その構成などを解析し、壊れるものは eager、可能なものは lazy に読むといった取り分けができる可能性も有る。
-        <p>そこで、そのようなブラウザの裁量を残すた話にはなる。
+        <p>そこで、そのようなブラウザの裁量を残すたにはなる。
           <p>しかし、現在の Web における JS の依存は、この制限を超えることがしばしばあるため、せっかく仕様も実装も手に入った ES Modules へ移行する妨げになっていた。
           <p>結果、<code translate=no>import</code> は単に WebPack に向けたアノテーションとしてしか使われてないという非常に残念な現状があり、今も開発者は全体を bundle.js に固めて配布している。(かつ、問題が解決しているため、それで良いと思っている)
           <p>ここでもし、例えば npm モジュール単位で依存を .wbn にまとめ、1 回の fetch で依存をまるごと取得し、かつ展開した全てのファイルを個別に fetch したかのように保存できたらどうだろうか。
@@ -570,79 +592,7 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
           <h3 id="コンテンツの保存"><a href="#コンテンツの保存">コンテンツの保存</a></h3>
           <p>同じことを視点を変えれば、WebArchive.org や Web 魚拓がやっているような、コンテンツのスナップショットアーカイブには、この仕組みが非常に合う。
           <p>WebBundle することで、コンテンツの再現性も高まり、署名があれば「改ざん、なりすまし、否認」といったコンテンツにつきまとう問題もある程度改善が期待できる。
-          <p>個人で、「このサイトは残しておきたい」といった場合に利用し�datetime=2019-12-28>2019-12-28</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-05>2026-07-05</time></dd></div>
-      <div>
-        <dt>tags</dt>
-        <dd>
-          <nav class=tags>
-            <ul>
-              <li><a href="/tags#blog">blog</a>
-            </ul>
-          </nav>
-        </dd>
-      </div>
-      <div>
-        <dt>toc</dt>
-        <dd>
-          <button popovertarget="toc">open</button>
-          <nav id=toc popover=manual>
-            <h2>ToC</h2>
-            <button popovertarget="toc" popovertargetaction="hide">❌</button>
-            <ol>
-              <li><a href="#intro">Intro</a>
-              <li><a href="#blog">blog</a>
-              <li><a href="#mozaic.fm">mozaic.fm</a>
-              <li><a href="#次世代-web-カンファレンス">次世代 Web カンファレンス</a>
-              <li><a href="#mozaic-bootcamp">mozaic bootcamp</a>
-              <li><a href="#web_study-jp">web_study-jp</a>
-              <li><a href="#登壇">登壇</a>
-              <li><a href="#開発合宿">開発合宿</a>
-              <li><a href="#自宅環境">自宅環境</a>
-              <li><a href="#outro">Outro</a>
-            </ol>
-          </nav>
-        </dd>
-      </div>
-    </dl>
-
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
-    <article>
-      <h1><a href="">2019 年をふりかえる</a></h1>
-      <section>
-        <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>例年通り 2019 年を振り返る
-      </section>
-      <section>
-        <h2 id="blog"><a href="#blog">blog</a></h2>
-        <p>今年は 15 本書いた。
-        <p>毎月書く、というなんとなくの目標があったが、やっぱり書けるときは書けるし、書けないときは書けないので、途中からあまり気にしないようにした。
-        <p>書く習慣自体は付いてるので、逆により自由に、必要なときに必要なものを書けるようになったと思う。
-        <p>また、ブログ自体のコードや機能改善も色々行っており、かつてブログ中で解説した内容をどう更新するのかもそろそろ考える必要がある。
-        <p>今が量と質のバランスが割と取れていると思うので、来年もこのくらいのペースを維持していきたい。
-      </section>
-      <section>
-        <h2 id="mozaic.fm"><a href="#mozaic.fm">mozaic.fm</a></h2>
-        <p>Monthly(11) + Yearly(1) + 通常回(3) = 15 本公開した。
-        <p>Monthly も開始から 2 年以上経ち、全体の流れを追うための起点としてかなり充実してきたと思う。
-        <p>まとめ方もだいぶ落ち着いてきて、取捨選択もうまくできるようになってきた。
-        <p>通常回はもう少しやりたいが、なかなかコストが高くて難しい。
-        <p>来年こそ年 3 回くらいは通常回をやりたい。
-      </section>
-      <section>
-        <h2 id="次世代-web-カンファレンス"><a href="#次世代-web-カンファレンス">次世代 Web カンファレンス</a></h2>
-        <p>次回は無いと思っていたが、開催条件が偶然整ったので 2 回目を実施。
-        <p>1 回目があった分、スピーカーにもやりたいことが伝わりやすかった。
-        <p>今年も、かなり広範囲で熱い議論ができたし、本当に楽しかった。
-        <ul>
-          <li><a href="https://blog.jxck.io/entries/2019-01-15/next-web-conf-2019.html">次世代 Web カンファレンス 2019 開催後記</a>
-        </ul>
-      </section>
-      <section>
-        <h2 id="mozaic-bootcamp"><a href="#mozaic-bootcamp">mozaic bootcamp</a></h2>
-        <p>初の試みとして Web 技術をひたすら叩き込む bootcamp を、一般公募で実施。
-        <p>GW でありながら、参加者にも恵まれ、濃厚な回にできたと思う。
-        <p>一切スケーラビリティが無いやり方�ようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
+          <p>個人で、「このサイトは残しておきたい」といった場合に利用し�ようになり、責任の所在はその時たまたまトラッキングの実装に使われていた 3rd Party Cookie に向かうことになった。
         <section>
           <h3 id="tracking-prevention"><a href="#tracking-prevention">Tracking Prevention</a></h3>
           <p>Cookie の挙動を制限すると言っても、どの Cookie がどういったユースケースを担っているかなど、サービス提供者にしかわからない。
@@ -661,7 +611,7 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
       </section>
       <section>
         <h2 id="3rdpc-block-という対症療法"><a href="#3rdpc-block-という対症療法">3rdPC Block という対症療法</a></h2>
-        <p>特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、<em>3rdPC で実装されている必要があるわけではない</em>方によって、遷移先でうまく Scroll しない箇所がいくつかある。
+        <p>特に広告のためのトラッキングというユースケースは、それが実現できることが重要であり、<em>3rdPC で実装されている必要があるわけではない</em>anslate=no>text=</code> 以降の生成の仕方によって、遷移先でうまく Scroll しない箇所がいくつかある。
         <p>例えば以下のようなケースがあるようだ。
         <ul>
           <li><code translate=no>CSP</code> が <code translate=no>OCSP</code> という単語に部分的にヒットした場合
@@ -696,7 +646,7 @@ o/standards-positions/" target=_blank>https://mozilla.github.io/standards-positi
         <p>今回のように、コンテンツ提供側が Deep Link を提供したいために S2TF を使用するなら、Feature-Policy で Opt-In すれば良いだろう。
         <p>しかし、仕様の策定はどちらかというと、更新されず HTML に ID もふられてないサイトでも、閲覧者側が利用したいというモチベーションの方が強そうだ。
         <p>その場合、Opt-In では使われないだけなので、デフォルトということになる。その場合は少なくとも Opt-Out する手段があった方が良いようにも思う。
-        <p>今後、今回の検証の結果を踏まえ、フィードバックにきないため、策定を進めるにはなんらかの安全措置を講じる必要がある。
+        <p>今後、今回の検証の結果を�きないため、策定を進めるにはなんらかの安全措置を講じる必要がある。
         <p>今回の場合は、ユーザの許可なく PBS が登録され、任意の状態(タイミング)でイベントが発火し、任意のタスクが実行できる場合に発生する問題のため、これらを防ぐための制限が必要だ。
         <p>現状仕様には <a href="https://wicg.github.io/BackgroundSync/spec/#privacy-considerations" target=_blank>Privacy Consideration</a> が追加され、この問題に対する実装上の対応を求めている。
         <p>では、PBS を実装している Chrome は、これらの問題にどう対応しているのだろうか。
@@ -789,7 +739,25 @@ connecting -&gt; failed
 connected -&gt; closed
 connected -&gt; failed</code></pre>
           <p>この議論の結果によっては、EventTarget にならなくなり、developer experience としては今までと少し違う雰囲気の使用感になりそうだ。
-          <p>もし、最近やっと Safari � would have been enough.
+          <p>もし、最近やっと Safari �.png?200901_002432 alt="https://localhost.jxck.io:3000" title="certificate detail view on https://localhost.jxck.io:3000 demo" width=1600 height=1407>
+            </picture>
+          </p>
+          <p>パブリックな DNS に登録しているため、マシンが変わっても hosts を書き換える必要はない。鍵と証明書をコピーすればどのマシンでも同じ環境が再現でき、ローカルの証明書ストアをいじる必要もない。
+          <p>本番と違ってこの秘密鍵と証明書はカジュアルに取り回す前提として用意するため、柔軟性があがり、例えば LocalProxy や WireShark などに鍵をそのまま指定できる。<a href="https://blog.jxck.io/entries/2020-06-09/quic-transport.html">前回のブログ</a> で使った QuicTransport サーバのようなものでも、証明書検証無視オプションを使わずにサーバが立てられたりもする。
+          <p>管理もある程度気をつければ良く、仮に証明書が漏洩したところで、ドメインはループバック固定で、なにかがあっても再発行すればよく、最悪 3 ヶ月で revoke されるので、リスクも少ない。
+          <p>ドメインさえ持っていれば誰にでもでき、ドメインはタダで手に入るものもあるので、この環境を作るコストはそこまで高くない。
+          <p>筆者は、手元でちょっとした挙動を確認したりするときは常に使っている。
+        </section>
+        <section>
+          <h3 id="管理された証明書ストア"><a href="#管理された証明書ストア">管理された証明書ストア</a></h3>
+          <p>一方大きめの企業などでは、組織で管理する CA を持ち、社員に配る PC のキッティング時に、社内 CA の証明書を証明書ストアに入れて配布している場合があるだろう。その場合は組織内でイントラ向けのドメインを管理し、組織の CA で証明書を発行するといった運用になっているはずだ。こうした管理体制と運用がしっかりしており、すでに健全に回っているのであれば、その運用に従えば同じことができる。
+          <p>例えば、example.com という会社ならば、社員やプロジェクトに対して <code translate=no>dev.intra.example.com</code> のようなドメインを付与するか、この目的のために <code translate=no>localhost.intra.example.com</code> といったドメインを付与する。
+          <p>鍵は社員が作り、社内 CA で証明書を発行し、ドメインの A レコードは、組織の DNS でループバックにする。
+          <p>社員は、付与された証明書を使ってローカルサーバを起動し、<code translate=no>https://{localhost|dev}.intra.example.com:3000</code> などにアクセスすれば、それを localhost の代わりに使うことができる。同じ社員同士なら、同じ環境がすぐ再現できるため環境構築の負荷も低い。
+          <p>注意点として、イントラでは任意のドメインを社内 DNS に載せ、証明書を出すこともできてしまうだろう。しかし、この用途で所有もしてない適当なドメインを使うべきではない(MUST)。今は取られてないドメインも将来誰かが所有する可能性があり、今はない TLD も将来登録されるかもしれない(.dev で懲りた人も多いだろう)。使うなら <code translate=no>.test</code> などが自由に使える、詳細は以下を参照してほしい。
+          <p><a href="https://blog.jxck.io/entries/2017-09-27/example-local-test-domains.html">予約済みドメイン (.example, .localhost, .test) について | blog.jxck.io</a>
+          <p>できれば、自社で取得しているドメインのサブドメインなどを使うのが良いだろう。
+          <p>あと、こうした社内での運用は、申請の負荷や許可される would have been enough.
           <p>&mdash; <cite><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=425511" target=_blank>425511 - Avoid loading srcset resources that are marginally larger/smaller than DPR - chromium</a></cite>
         </blockquote>
         <p>もともとのモチベーションは、ズームで DPR が 1 -&gt; 1.1 のようにずれることに起因するらしい。これも考察した理由と根底では同じと言えるだろう。
@@ -871,7 +839,7 @@ connected -&gt; failed</code></pre>
           </ul>
           <p>この ML は、主に Chrome のエンジンである blink の開発に関するアナウンスが行われている。
           <p>大抵の新しい API は Chrome が何かしら作業をしている場合が多いので、まず blink-dev から当たると何かしら取っ掛かりが得られる。
-          <p>ちなみに、筆者はブラウザのカスタム検索エンジンとして blink-dev を登録�は、仕様のリポジトリなどを探すことになる。
+          <p>ちなみに、筆者はブラウザのカスタム検索エンジンとして blink-dev を登録� が見つからなかった場合は、仕様のリポジトリなどを探すことになる。
           <p>中身を順に解説していく。
         </section>
       </section>
@@ -912,7 +880,65 @@ connected -&gt; failed</code></pre>
             <li><a href="https://mozilla.github.io/standards-positions/" target=_blank>https://mozilla.github.io/standards-positions/</a>
           </ul>
           <p>元々は、Chrome が進めている仕様に対して明確な No(Harmful) を示すために作られた印象があるが、今では様々な仕様のポジションがわかって便利だ。
-          <p>ポジションのリクエストは誰にでもできるので、まだリストにないもので、Mozilla がどう考えているかを知りたい場吥らないところで追加されたり、使ってなさそうだから消したくても誰が管理しているかわからないから消せないなどの運用の歪も目立つ。
+          <p>ポジションのリクエストは誰にでもできるので、まだリストにないもので、Mozilla が�壇">登壇</a>
+              <li><a href="#自宅環境">自宅環境</a>
+              <li><a href="#outro">Outro</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">2020 年をふりかえる</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>例年通り 2020 年を振り返る。
+      </section>
+      <section>
+        <h2 id="blog"><a href="#blog">blog</a></h2>
+        <p>今年は 17 本書いた。
+        <p>書くペースも内容もある程度保てているので、理想的な状態なのかもしれない。
+        <p>後半は、書籍の執筆を始めたので、少しアウトプットが落ちている感じはあるが、原稿のストレスをブログで発散するような感じでうまく埋めていければと思う。
+        <p>最近「書きたいけど自分のブログを持ってない」「ブログを作ったら満足した」という話をよく聞くので、早い段階でドメインと基盤を用意しておいたのは良かったと思う。
+        <p>とにかくブログの執筆は 1 度止めると二度と復帰できない気がするので、このまま続けて行きたい。
+      </section>
+      <section>
+        <h2 id="web-技術解体新書"><a href="#web-技術解体新書">Web 技術解体新書</a></h2>
+        <p>書籍にまとめるということは、いつかやろうと思っていたが、色々思うように進まなかった。
+        <p>そんな中、ちょうど zenn が公開されたため、そこで公開していくことにした。
+        <ul>
+          <li><a href="https://zenn.dev/jxck/articles/web-anatomia-concepts" target=_blank>「Web 技術解体新書」執筆について</a>
+        </ul>
+        <p>一度に全部書くと挫折するので、できた章からあげるスタイルにし、今年は 1 章まで公開した。
+        <ul>
+          <li><a href="https://zenn.dev/jxck/books/origin-anatomia" target=_blank>Origin 解体新書 v1.5.2</a>
+        </ul>
+        <p>来年中にはおおよそ書き上げたいが、自宅にいる時間が長いためメリハリがなく、もくもく会などもやりにくいため、なかなか難しい。
+        <p>既に 2 章が結構重くて進まないでいるので、年末の長くて予定が無い休み中になんとか進めたい。
+      </section>
+      <section>
+        <h2 id="mozaic.fm"><a href="#mozaic.fm">mozaic.fm</a></h2>
+        <p>Monthly(11) + Yearly(1) + 通常回(4) + Update(1) = 17 本公開した。
+        <p>去年の振り返りで「来年こそ年 3 回くらいは通常回をやりたい。」と書いてたのを今思い出したが、達成できていたのはよかった。
+        <p>Monthly はもう馴染んで手の抜きどころがわかってきたし、通常回も濃いものができたので満足度が高い。
+        <p>今年の前半に <a href="https://blog.jxck.io/entries/2020-05-06/mozaic-v3-release.html">サイト自体を PWA 対応してリニューアル</a> し、割と新し目の機能をふんだんに入れたが、以降まったくメンテをしてないので少し直さないとなと思う。
+        <p>本当は、通常回でも Monthly でもない、もう 1 つの内容をやってみようか考えていたが、少しアレンジが難しいことと、これ以上負荷を増やすのも難しいことを踏まえやらずにいた。
+        <p>なにより、出てくれたゲストの方々には感謝しか無い。
+      </section>
+      <section>
+        <h2 id="mozaic-bootcamp"><a href="#mozaic-bootcamp">mozaic bootcamp</a></h2>
+        <p>今年、GW の予定がみんな飛んだので、せっかく空いたのだからと内輪で Online の Bootcamp を実施した。
+        <p>去年は Podcast で公開募集し、選考にも時間をかけたが、今回�の 2 つは <code translate=no>must-understand</code> 以前からキャッシュに関して要件を持つステータスコードであり、明示的な扱いが必要だからだ。
+          <p>もし最初から <code translate=no>must-understand</code> があれば、ここに <code translate=no>206</code> / <code translate=no>304</code> の例外は不要だっただろう。
+        </section>
+        <section>
+          <h3 id="ユースケース"><a href="#ユースケース">ユースケース</a></h3>
+          <p>こうした新しい機能が出る�分たちの管理下にあるコードなので、言ってしまえばやるかやらないかの問題だ。特に新規開発なら、気をつけて進めれば、スコアを満たすことなどそこまで難しいことではない。
+        <p>いくら 1st Party が速くても、それを一瞬で台無しにできるのが 3rd Party 、具体的には Tag Manager の中に貼られた広告や SNS パーツや Analytics のタグだ。これらは自分たちで手を入れられないため、改善といっても実装を変えるといったことはできない。できるのは、タグを入れるか入れないかの選択くらいだ。さらに広告などは、表示のたびに落ちてくるものが違うため、結果も一定とはならない。
+        <p>これら 3rd Party Tag は、入れれば入れるだけ遅くなることが多いが、広告収益で成り立つメディアなどにおいては、広告を表示してこそサイトに存在意義がある場合もあり、消すという話にはなりにくい。それを最適化するためのアナリティクスも、なんなら複数ベンダのものが入っている場合も多い。
+        <p>技術的な問題以外に、Tag Manager の中の管理は開発者ではなくマーケティング部門が握っていて、開発者が知らないところで追加されたり、使ってなさそうだから消したくても誰が管理しているかわからないから消せないなどの運用の歪も目立つ。
         <p>したがって CWV の改善の本番は、1st Party の改善が終わったあと、3rd Party Tag の中を改善するために、そこを管理するガバナンスのために組織の連携に手を入れるところまで話が膨らみがちだ。しかもボトルネックがそちらである以上 1st Party をちょっと改善したところで、全体としては何も変わっていないというケースも多い。
         <p>逆に 3rd Party Tag を消した状態で CWV を測ったらグリーンで、そこにマーケとの交渉を終えて折衷案に整理し終えた 3rd Party Tag を差し込んだらレッドになるような場合は、手詰まりとなる。タグを差し込む位置を工夫したり、読み込みをなんとか遅延させたりして、とにかく初期表示に干渉しないように読み込むぐらいしかできることがなかったりする。
         <p>AMP はなんだかんだメジャーなタグはそのまま使うことができていたので、AMP Valid にさえできればそれでよかった。CWV の改善によって 3rd Party タグの問題が浮き彫りになった今後は、CWV への影響を加味して 3rd Party Tag のベンダが選ばれるようになっていくのではと思うこともある。ベンダ側も自社のタグが外されないように、実装の改善を走らせているころなのではないだろうか?
@@ -923,8 +949,7 @@ connected -&gt; failed</code></pre>
         <p>これが筆者の理解している AMP が「トーンダウン」しているという現状のバックグラウンドコンテキストだ。
         <p>では人参を失った AMP にこれ以上価値は無いのだろうか?
         <p>実際、トーンダウンしているのは Google の検索結果の中での話であって、AMP HTML が役目を終えたのかというとそれはまた別の話だと筆者は考える。
-        <p>そもそも CWV を改善し、グリーンスコアを維持し続けるのは、言うほど簡単ではない。新しく作るサイトならまだしも、運用中のサイトを CWV の測定だけで改善していくのは骨の折れる仕事だ。そういう改善を指揮する人なら、誰かが知らないところで無思慮に入れる変更を見つけては直していく過程で、制限をつけて未然に防ぎたいと思うだろう。それが AMP だ。AMP には、Linter や Checker のように使う上で必要なものは揃っている。自分でイチからルールを積み上げて周知徹底するくらいなら、AMP という選択肢は十分にありえるだろう。
-        <p>あと、あまり話題にならないが、AMP は現状「<em>世界でもっとも普及した WebComponents ベースのフレームワーク</em>」ということができるのではないだろうか。<code translate=no>&lt;img&gt;</code> を <code translate=no>&lt;amp-img&gt;</code> にするだけで「画像読み込みのベストプラクティス」が適用されるが、その内部実装を気にする必要はない、というのは WebComponents が目指していた世界そのものであり、AMP はそれを周辺エコシステムと様々な実装知見と合わせて、すでに �ためのものではない。
+ �ためのものではない。
         <p>通常の HTML レスポンスも SXG によって署名することができ、それは CDN から配布されてもブラウザ上では Origin の URL で表示できる。
         <p>Google の検索結果はこの Non AMP な SXG にも対応を開始し、サイトが SXG を配信していればそれを収集し SXG の CDN から代理で配布するようになった。しかも、ただ検索結果のリンクを SXG に置き換えるだけでなく、prefetch を行うことで、リンクをクリックする前に取得が完了するようになった。
         <ul>
@@ -993,7 +1018,69 @@ connected -&gt; failed</code></pre>
       </section>
       <section>
         <h2 id="他のブラウザの反応"><a href="#他のブラウザの反応">他のブラウザの反応</a></h2>
-        <p>実際にロールアウトしたのが Chrome/Edge であったため、いつものように「また Google が勝手にやっている」と思う人もいるようだが、実際には他のブッ�ウザは <code translate=no>&lt;form&gt;</code> からの POST には <code translate=no>Origin</code> ヘッダを付与するし(ちなみに <code translate=no>Origin</code> は出自を示すヘッダであるため、出自が意図しなかったら弾く実装は Push ではなく Pull だと解釈できる)、<code translate=no>SameSite=Lax</code> な Cookie は攻撃サイトからのリクエストに自動で付与されない。これらを用いれば CSRF を One Time Token 無しに Pull で防ぐことも可能だろう。(そうやって Pull で実装できても、セキュリティエンジニアにとっては任意のヘッダが仕込める拡張の脆弱性が脳裏に焼き付いているので、値が予想できるヘッダを信用せずに One Time Token を送り続けるかもしれないが)
+        <p>実際にロールアウトしたのが Chrome/Edge であったため、いつものように「また Google が勝手にやっている」と思う人もいるようだが、実際には他のブ�:#F97583"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> alt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">([</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  sf_item,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  inner_list</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">])</span></span></code></pre>
+          <p>これを書き下していきながら、一番下層の <code translate=no>token()</code> まで実装しきれば、パース自体はできあがる(実際には下から書くが)。
+          <p>あとはパースしながら、例えば数字を <code translate=no>parseInt()</code> したり、Dict を Map や Object に詰めたり、多少の最適化(<code translate=no>CRLF = CR / LF</code> を <code translate=no>token(/\r\n/)</code> にする)などを適宜入れる、などの処理を間にはさみながら組み上げれば良い。
+          <p>組み上げた結果は、以下のようになる。
+          <ul>
+            <li>
+              Jxck/structured-field-values
+              <ul>
+                <li><a href="https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js" target=_blank>https://github.com/Jxck/structured-field-values/blob/master/bnf/bnf.js</a>
+              </ul>
+            </li>
+          </ul>
+          <p>こうした処理を高度に抽象化したものがツールとして提供されていたりもするが、この考え方だけ覚えておけば、どんな言語でも RFC の ABNF 程度であれば実装が可能になるだろう。
+          <p>そして、この実装の過程で処理ができない ABNF が出てくれば、そこで ABNF 側のバグを見つけることができるというわけだ。この実装によって見つかった <a href="https://github.com/httpwg/http-extensions/issues/1273" target=_blank>SFV の Issue</a> もある。
+        </section>
+      </section>
+      <section>
+        <h2 id="ietf-と-whatwg-での違い"><a href="#ietf-と-whatwg-での違い">IETF と WHATWG での違い</a></h2>
+        <p>おそらく、実際のプロトコル実装は、ここで紹介したような実装を採用しているものは少ないと思われる。
+        <p>この実装は、ABNF に忠実な実装ができるかもしれないが、それがパフォーマンスやメモリ効率の視点から最適とは限らないからだ。
+        <p>したがって、各実装者が ABNF のルールに基づいて、それを再現できる実装を起こす。その過程で、見落とされる ABNF 上の曖昧な点があっても、実装同士を通信させてそれが動いていればそれで良いのだ。
+        <p>一方で WHATWG は、主にブラウザの API を対象としているため、ブラウザ同士の厳密な互換性を維持することを考えると ABNF のような定義を採用するのは難しい。
+        <p>代表例としては URL の仕様は、IETF の RFC と WHATWG それぞれに仕様がある。
+        <ul>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc3986" target=_blank>RFC 3986 - IETF</a>
+          <li><a href="https://url.spec.whatwg.org/" target=_blank>URL Standard - WHATWG</a>
+        </ul>
+        <p>RFC の方は URL のフォーマットが ABNF で書かれているが、WHATWG はパースのアルゴリズムが書かれている。前者は、実装方法に制限が無いが、WHATWG は実装のアルゴリズムが基本的にはどの言語でも同じになる。
+        <p>もちろん、WHATWG の方はブラウザ特有の様々な要件が含まれているため、RFC のような汎用的な URL の定義とは担っている範囲が違うとはいえ、それぞれの仕様におけるフォーマットの扱いが垣間見えておもしろい。
+        <p>IETF の方は昔書いて公開せずどこかに行ってしまったが、W�しているように思える。ここまでに紹介してきた歴史的な負債を築いてきた人のメンタルモデルとおそらく同じなのだろう。
+        <p>本来、大域脱出によって改善するユースケースがあるなら、それに適したメンタルモデルを標準化し、それを用いて Pull で実装するのが、「問題」の解決だ。しかし、特に近年のフロントエンドは、標準化プロセスの重さを避けるために、ツールによる変換(e.g. build/compile/transpile) などによって「手元で課題を解決する」文化が強く根付いた。それは良い面もある。しかし、なまじ手元で「課題」が解決できてしまうために、根本にある「問題」への取り組み自体がおろそかになる場面も多い。
+        <p>非同期コードをきれいにするための提案の PoC として例外を上げる実装はあるかもしれないが、それが実際にどこかにデプロイされてしまえば、Web はその互換性を維持する方を選ぶ。デプロイされてからでは遅いのだ。ここで手を抜くのがブラウザ側に非難される「ミクロな開発者」の発想であり、それに合わせてブラウザはまた歪んだワークアラウンドを提供することになる。そのいびつな現状をみた後世のエンジニアが非難するのもまた「マクロなブラウザ」なのかもしれない。
+      </section>
+      <section>
+        <h2 id="セマンティクスをどう理解するか"><a href="#セマンティクスをどう理解するか">「セマンティクス」をどう理解するか</a></h2>
+        <p>よく初心者向けの解説で
+        <blockquote>
+          <p>GET はパラメータが URL に入り、ブラウザの履歴やサーバのアクセスログなどに残ってしまう。だからログインなどはパスワードが body に入る POST を使うべき
+        </blockquote>
+        <p>といった解説を目にすることがあるだろう。
+        <p>この考え方自体は、GET と POST がどういうセマンティクスを持っているかではなく、それがどう消費され挙動をしている実装があるかに着目した見方だ。つまり、「GET だと残ってしまうから POST を使う」という考え方自体も、Push の発想だ。
+        <p>では、この解説をログインにフォーカスして Pull の視点からするならば
+        <blockquote>
+          <p>ログインは何かを取得するのではなく、データをサーバに送信するのが目的なので <code translate=no>&lt;form&gt;</code> の method は POST を使うべき。そこで用途の違う GET を用いると意図しないことが起こる可能性がある
+        </blockquote>
+        <p>という解説になってしまう。これは「GET には GET のセマンティクスが、POST には POST のセマンティクスがあり、正しく使い分けろ」という抽象的な話以外はしてない。それは、初心者に向けた解説としてはあまりにも投げやりすぎるので、前述のように実利/実害ベースで教えるのは、理にかなってはいるだろう。DELETE ではなく GET で削除してはいけないのも、「Bot がクロール時に間違って消してしまうから」が本質ではないが、そう言われた方が理解しやすい。
+        <p>一方で、そういう教育の延長で、その裏にある「GET には GET のセマンティクスが、POST には POST のセマンティクスがあり」の部分に向き合う機会がなく、セマンティクス実装の基本を「実利/実害や挙動に呼応する Push ベース」で考えてしまう、悪く言えば「Push ベースでしか考えられない」開発者がいるのも事実だと思う。このとき Push 型で考えているという事実自体に、気づくきっかけも、教えてくれる人も、実際ただし、現状多くのサイトのコンテンツは、正しく Pull で実装されているわけでも、それによって Accessible なわけでもないのも事実だ。
+          <p>このラベルがないと不利益を被る人がいることは、それだけ Web が力不足だということの裏返しとも言えるかもしれない。
+        </section>
+        <section>
+          <h3 id="performance"><a href="#performance">Performance</a></h3>
+          <p>Web のパフォーマンス改善の文脈も、基本は「ブラウザで速く表示される」というのが中心にある。
+          <p>その施策はやはりブラウザの挙動に Push するものがほとんどだ。そのうえ、現状クライアントの実装としてブラウザは支配的で、どのブラウザもだいたい同じように挙動するために、プラクティスがシェアしやすいという側面もある。
+          <p>つまり、ブラウザにおけるパフォーマンス改善は、その視点で見れば「どれだけブラウザに Push できているか」を追い求めていると捉えることができる。CWV や Lighthouse などは、それがどの程度達成できているのかを、スコアリングで可視化するために作られたものだと言える。
+          <p>それらを用いた改善によって、現に速くなっているのだから問題は無いように思える。しかし、無いとも言い切れない。
+          <p>例えば、HTTP/1.1 はリクエストを多重化できないため、コネクションを 1 host につき 6 本張るという挙動が一般的だった。そこで、「6 つ以上のリソースがあるならドメインを分ければさらに 6 本張って並列取得できる」というプラクティスが、&quot;ドメインシャーディング&quot; として普及した。これが、挙動に対する Push の実装だったのは言うまでも無いだろう。
+          <p>似たようなプラクティスは多々有り、当時パフォーマンス改善と呼ばれていたものの実態は、そうやって HTTP/1.1 の挙動に合わせてコンテンツを Push で実装することそのものでもあった。
+          <p>後に HTTP/1.1 自体を改善した HTTP/2 は、1 本の接続にリクエストを多重化するにとどまらず、RTT を減らし、Window Size も上がったところを維持でき、バイナリ化によってパースのコストを下げ、ヘッダ圧縮によって転送量も減らした。結果、ブラウザは「無駄に多くの接続を張らなくても 1 本を効率良く使いまわせる API」である HTTP/2 を実装し、その接続は 1/6 になった。
+          <p>それがわかっていれば、HTTP/1.1 に最適化されたままのコンテンツを、そのまま HTTP/2 でデプロイしたところで、パフォーマンスが何倍にも速くなるはずがないことは、少し考えればわかるだろう。下手すれば、単純に接続が 1/6 になったせいで、遅くなるコンテンツも多くあるはずだ。逆に HTTP/1.1 に対する特別な Push を行わずに、ごくごくシンプルに作られていたコンテンツの方が、単純な置き換えでパフォーマンスが向上する可能性もある。ちょっと試して雑に h2 と h1 を比較計測した結果「こんなプロトコルは使い物にならない」という批判をするのは自由だが、それは単に「自分にはよく理解出来ずうまく使いこなせなかった」を曲解しているだけかもしれない。
+          <p>「プラクティス」とは、その本質が理解できてない人にも、「こうすれば良い」というタスクを見いだせる点で便利ではあるが、自分が「何に対して Push しているのか」を自覚できていなければ、前提が変わったときに自分が本当に評価すべきものを見失うという危険性もはらんでい�ウザは <code translate=no>&lt;form&gt;</code> からの POST には <code translate=no>Origin</code> ヘッダを付与するし(ちなみに <code translate=no>Origin</code> は出自を示すヘッダであるため、出自が意図しなかったら弾く実装は Push ではなく Pull だと解釈できる)、<code translate=no>SameSite=Lax</code> な Cookie は攻撃サイトからのリクエストに自動で付与されない。これらを用いれば CSRF を One Time Token 無しに Pull で防ぐことも可能だろう。(そうやって Pull で実装できても、セキュリティエンジニアにとっては任意のヘッダが仕込める拡張の脆弱性が脳裏に焼き付いているので、値が予想できるヘッダを信用せずに One Time Token を送り続けるかもしれないが)
           <p>今最も議論の的になる 3rd Party Cookie は事情が複雑だ。Cookie はセッションを維持するという建前がありそうで、実際には「クライアントが保存し、リクエストに付与する」という、挙動の側面しか標準化されていないため、3rd Party Cookie による Tracking は、Push のようで Pull だったと見ることもできるだろう。だから、それを防ぐには法や規制による対策しかなかったが、それが機能しないために、ブロックすることに踏み切ることになった。代わりに、それまで行われていたユースケースをカバーするために、代替の API が提案され、それらは個別のユースケースを Pull で実装できるように策定が進められている。
           <p>Pull で実装できれば、クライアントに選択肢があるため、例えばユーザに関する情報をどの粒度で、どういう頻度で、誰に対して提供するかなどをクライアントが調整できるようになる。これにより 3rd Party Cookie 時代に得られていた情報に比べれば自由度が減るために、他の挙動に対して Push しまくってなんとかしようとする。それが Fingerprint であり、対策として <code translate=no>User-Agent</code> を固定したり、IP を隠したりすることで Push の限界を下げる調整も、「ユーザの安全のため」に行われている。
           <p>今行われている Security / Safety 系 API の歴史的な移行は、Push で行われていた負債を、API の Pull 化によって清算するプロセスと捉えることもできそうだ。
@@ -1005,115 +1092,7 @@ connected -&gt; failed</code></pre>
         <p>全てを完璧にカバーする仕様があるわけでも、それを完璧に実装したブラウザがあるわけでも、それらを完璧に理解した開発者がいるわけでもない。仮に今完璧に見えるものも、来年には不完全なものに変わる可能性もある。
         <p>時代が変わり、ニーズがユースケースを生み、課題を解決するために Push が行われ、問題を解決するために標準化によって Pull に引き戻そうとしたころには、Ossification しているか、開発者の関心が別の何かに移っている。結果 Push でしか実装できないものや、そうしないと使いやすいものにならないケースは、無視できないほどに多い。
         <p>人手が足らないところ、コストが見合わないところ、互換性、理解と周知、様々な問題と折り合いをつけて、今の Web は成り立っており、筆者にしてもそのエコシステムの一部に過ぎない。
-        <p>そのエコシステムの一部として、そして一人の Web 開発者�k>https://www.w3.org/TR/2009/WD-html5-20090212/infrastructure.html#fetching-resources</a>
-            </ul>
-          </li>
-        </ul>
-        <p>ここにあるのは、非常にざっくりとした枠組みだ。Link Click や Form Submit 以外でも、XHR, <code translate=no>&lt;img&gt;</code>, <code translate=no>&lt;script&gt;</code>, <code translate=no>background-image</code>, <code translate=no>@font-face</code> etc etc etc と、様々なところでリソースは取得されるが、それらが実際にどう挙動すべきかは Well-Defined とは言えない状況であり、実装差もあった。
-        <p>リダイレクトはフォローするか? Basic 認証があったらどうするか? ステータスコードが 700 だったら? 指定されたのが <code translate=no>data:</code> や <code translate=no>about:</code> だったら? Referer ヘッダに載せる値は? など、一見簡単そうに見えて実はかなり複雑なのだ。
-        <p>(ということが、Anne のブログに書かれていたのだが、このブログはもう消えてしまった。これに至っては WebArchive にもない。Google 検索のキャッシュがあるので一応リンクを貼っておこう。それがいつまで見られるかはわからないが。)
-        <ul>
-          <li>
-            Fetching URLs - Anne&apos;s Blog
-            <ul>
-              <li><a href="https://annevankesteren.nl/2013/05/fetching-urls" target=_blank>https://annevankesteren.nl/2013/05/fetching-urls</a>
-              <li><a href="http://webcache.googleusercontent.com/search?q=cache:fhWIF6caEOgJ:https://annevankesteren.nl/2013/05/fetching-urls&hl=ja&gl=jp&strip=1&vwsrc=0" target=_blank>http://webcache.googleusercontent.com/search?q=cache:fhWIF6caEOgJ:https://annevankesteren.nl/2013/05/fetching-urls&amp;hl=ja&amp;gl=jp&amp;strip=1&amp;vwsrc=0</a>
-            </ul>
-          </li>
-        </ul>
-        <p>特に Ajax によるマッシュアップの隆盛が、Origin を跨いだ連携を必要としながら、現実解が JSONP しかない状態は問題があったため、明示的に Origin を跨ぐ CORS が策定されていくことになるが、その仕様をそのまま HTML5 の仕様に追加していくのは実際かなり複雑だった。その後には、接続先を制限する CSP のマージも考えないといけない。
-        <p>そこで Anne は、「<em>ブラウザがリソースを取得するとはどういうことか</em>」を整理し、仕様として切り出した。それが Fetch のスペックだ。
-        <ul>
-          <li>
-            Fetch Standard
-            <ul>
-              <li><a href="https://fetch.spec.whatwg.org/" target=_blank>https://fetch.spec.whatwg.org/</a>
-            </ul>
-          </li>
-        </ul>
-        <p>この仕様は、XHR の改善版である <code translate=no>fetch()</code> を目的とした仕様に見えるが、出自から考えると <code translate=no>fetch()</code> 自体はおまけのようなものだ。重要なのは仕様の前半に、前述のような細かい挙動をアルゴリズムとして整理し、レビューし、テストを書き、メジャーブラウザがそれを参照することで「どのブラウザでも同じように Fetching が行われる」ことを目指して作られている。し、そこに最大の価値がある。
-        <p>これにより HTML にある「リソースの取得を伴う API」は全て Fetch を参照すれば良くなった。新しく作られる API も、リソースの取得は Fetch を参照すれば良い。継ぎ足しで作られた仕様が、大きくリファクタリングされたのだ。
-        <p>Fetch の仕様が生まれたことは、他にも多くの副産物を産んでいる。取得するリソースを示すのは常に URL だが、IETF の URL 仕様はあくまで BNF でフォーマットを指定するのみで、パースの仕方は実装に依存する。しかし、ブラウザはそれをパースした結果が�BAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ</a>
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>CORB もそうだったが、ORB でも既に動いていたものが動かなくなる可能性をはらんでいる。
-        <p>レスポンスするリソースに対し、適切な MIME を指定し、適切な方法(HTML タグなど)で読み込む。という基本的なことを実施できていれば、引っかかることは少ないと思われる。
-        <p>逆を言えば、引っかかった場合は <code translate=no>Content-Type</code> の適切な指定がなかったり、なにかしら適切でない読み込みが行われている可能性があるため、配布/読み込みの方法を見直すとよさそうだ。
-        <p>また、CORB/ORB はあくまで「おかしな読み込み」を防ぐことを目的とし、正常な読み込みによって発生する攻撃は防げない。そこを防ぐためには、CORP/COOP/COEP などに Opt-In で対応していく必要があるだろう。
-      </section>
-      <section>
-        <h2 id="demo"><a href="#demo">DEMO</a></h2>
-        <p>以前作成した CORB エラーのデモがそのまま使えると思われる。
-        <ul>
-          <li><a href="https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html" target=_blank>https://labs.jxck.io/site-isolation/cross-origin-read-blocking/index.html</a>
-        </ul>
-        <p>Canary M109 で試した時点では、エラーメッセージは &quot;CORB&quot; のままだった。これが今後変わるのかは不明だが、恐らくこのデモのまま確認できると思われる。
-      </section>
-      <section>
-        <h2 id="resources"><a href="#resources">Resources</a></h2>
-        <ul>
-          <li>
-            Spec
-            <ul>
-              <li><a href="https://github.com/annevk/orb" target=_blank>https://github.com/annevk/orb</a>
-            </ul>
-          </li>
-          <li>Explainer
-          <li>Requirements Doc
-          <li>
-            Mozilla Standard Position
-            <ul>
-              <li><a href="https://mozilla.github.io/standards-positions/#corb" target=_blank>https://mozilla.github.io/standards-positions/#corb</a>
-            </ul>
-          </li>
-          <li>
-            WebKit Position
-            <ul>
-              <li><a href="https://github.com/WebKit/standards-positions/issues/64" target=_blank>https://github.com/WebKit/standards-positions/issues/64</a>
-              <li>執筆時点で回答なし
-            </ul>
-          </li>
-          <li>
-            TAG Design Review
-            <ul>
-              <li><a href="https://github.com/w3ctag/design-reviews/issues/618" target=_blank>https://github.com/w3ctag/design-reviews/issues/618</a>
-            </ul>
-          </li>
-          <li>
-            Intents
-            <ul>
-              <li>
-                Intent to Ship: Opaque Response Blocking (ORB, aka CORB++) v0.1
-                <ul>
-                  <li><a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ" target=_blank>https://groups.google.com/a/chromium.org/g/blink-dev/c/ScjhKz3Z6U4/m/I6KIhSnyBAAJ</a>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            Chrome Platform Status
-            <ul>
-              <li><a href="https://chromestatus.com/feature/4933785622675456" target=_blank>https://chromestatus.com/feature/4933785622675456</a>
-            </ul>
-          </li>
-          <li>
-            WPT (Web Platform Test)
-            <ul>
-              <li><a href="https://github.com/web-platform-tests/wpt/tree/master/fetch/corb" target=_blank>https://github.com/web-platform-tests/wpt/tree/master/fetch/corb</a>
-            </ul>
-          </li>
-          <li>DEMO
-          <li>Blog
-          <li>Presentation
-          <li>Issues
-          <li>Other
-        </が、独自の辞書を作る場合、問題はその辞書をどうやって送信元/送信先で共有するかになる。
-        <p>実は過去にも「サーバとクライアントで辞書を共有し圧縮率を上げる」というこの目的のために作られた SDCH (Shared Dictionary Compression for HTTP) という仕様が存在し、Chrome にも実装されていた。
-        <p>しかし、この仕様は提案時期が 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome からも削除された。
+        <p>そのエコシステムの一部として、そして一人の Web 開発者� 2008 年頃とかなり古く、仕様も複雑だった。当時はまだ CORS なども普及する前であるため、安全性の問題もあり、全くと言ってよいほど普及せず、2016 年には Chrome からも削除された。
         <ul>
           <li>
             Shared_Dictionary_Compression_over_HTTP.pdf
@@ -1149,40 +1128,8 @@ connected -&gt; failed</code></pre>
           <p>そこで、テンプレートエンジンを元に辞書を作成し、事前にブラウザに取得させれば、そのテンプレートを使ったページは圧縮率を上げられるといったものだ。
           <p>Shared Dictionary の場合は、辞書の元にしたいサンプルを指定し、そこから辞書を生成する。
           <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="sh"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./dictionary_generator</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./shared.dict</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> ./</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">*</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">.template.html</span></span></code></pre>
-          <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、HTML に <code translate=no>&lt;link&gt;</code> で指定�アとして採用する実装だった。当時 IE のシェアは 20~30% で、無視できない問題だった。
-        <p>こうして、発行されてすぐの RFC 2109 は改定に向けて議論を始めた。
-      </section>
-      <section>
-        <h2 id="rfc-2965"><a href="#rfc-2965">RFC 2965</a></h2>
-        <p>議論は、いかにして新/旧仕様の互換性を維持するかだった。
-        <p>資料の中では、検討されたいくつかの方式が解説されている。
-        <ul>
-          <li>新/旧 2 つの <code translate=no>Set-Cookie</code> を送る
-          <li>IE の挙動に合わせて Name/Value ペアを最初と最後に重複して送ることを強制する
-          <li>最初のレスポンスだけ旧仕様で送り、次のリクエストの <code translate=no>Cookie</code> に <code translate=no>Version</code> があればそこから新仕様にする
-        </ul>
-        <p>議論の末に策定されたのが、新仕様を独立したヘッダである <code translate=no>Set-Cookie2</code> / <code translate=no>Cookie2</code> に分離したドラフトだった。
-        <p>最初は <code translate=no>Set-Cookie</code> と <code translate=no>Set-Cookie2</code> を返し、クライアントが <code translate=no>Cookie</code> / <code translate=no>Cookie2</code> どちらを返すかで後続の処理を分岐する。クライアントが対応していなければ <code translate=no>Set-Cookie2</code> は無視されるだけだ。
-        <p>こうして本題だった <code translate=no>Set-Cookie2</code> が定義された RFC 2965 が発行された。
-      </section>
-      <section>
-        <h2 id="rfc-6265"><a href="#rfc-6265">RFC 6265</a></h2>
-        <p>結論から言うと <code translate=no>Set-Cookie2</code>/<code translate=no>Cookie2</code> は、その後全くと言ってよいほど使われなかった。
-        <p><code translate=no>Set-Cookie</code> をデプロイしているサービスにとって、<code translate=no>Set-Cookie2</code> に移行する強力なインセンティブがなければ、わざわざ重複する 2 つのヘッダを送る移行期を経てまで、刷新するモチベーションがない。旧仕様をサポートしたクライアントも、サーバが両方送る以上旧仕様のままでも困らないので、サポートを広げるインセンティブがない。新仕様デプロイにおける典型的な鶏/卵問題だ。
-        <p>RFC 2965 の議論の段階から指摘されていた問題は、そもそもこの仕様の策定にブラウザベンダが関わってないこと、そして仕様の策定が「理想の追求」であり「現実世界の反映」ではなかったことだった。
-        <p>IETF の理念として RFC 策定の目的は <em>De-jure</em> ではなく <em>De-facto</em> 、つまり実世界にはどのようなランニングコードがあるのかを調査し、それらが互換性を保てるように仕様を策定することが求められる。RFC 2965 は De-jure 策定側に寄ってしまい、結果「<em>理想的で誰も使わない仕様</em>」ができてしまった。
-        <p>そこから 10 年ほど経った 2009 年頃、Cookie の改定を行うため WG が再始動した。作業を開始するにあたって示される Charter には、以下のように記されている。
-        <ul>
-          <li>
-            http-state charter
-            <ul>
-              <li><a href="https://datatracker.ietf.org/doc/charter-ietf-httpstate/" target=_blank>https://datatracker.ietf.org/doc/charter-ietf-httpstate/</a>
-              <li><a href="https://mailarchive.ietf.org/arch/msg/http-state/PMcWqtvzhiVLna1fiDnxV4KJ-so/" target=_blank>https://mailarchive.ietf.org/arch/msg/http-state/PMcWqtvzhiVLna1fiDnxV4KJ-so/</a>
-            </ul>
-          </li>
-        </ul>
-        <p>ここまでの流れを踏まえると、このような Charter になった意味がよくわかる。(意訳付きで引用)
-        <blockquote cite="https://ればいいのか」という問題になる。ペイロードを送って結果画面を受け取るなら、それは POST とやっていることが変わらない。
+          <p>この <code translate=no>shared.dict</code> をサーバにデプロイし、HTML に <code translate=no>&lt;link&gt;</code> で指定する。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">link</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> rel</span><spればいいのか」という問題になる。ペイロードを送って結果画面を受け取るなら、それは POST とやっていることが変わらない。
         <p>結局、全て POST のユースケースでカバーできているのだ。
       </section>
       <section>
@@ -1260,7 +1207,31 @@ connected -&gt; failed</code></pre>
   <meta property=og:title        content="3PCA 6 日目: トラッキングの問題 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
   <meta property=og:description  content="このエントリは、3rd Party Cookie Advent Calendar の 6 日目である。3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiitahttps://qiita.com/advent-calenda...">
-  <meta e> に埋め込まれた IDP がこれを呼ぶことで、IDP のログイン済み Cookie にアクセスでき、SSO を継続できるといった使い方をする。
+  <meta るブロックの現状</a></h2>
+        <p>先に進む前に、そもそもブラウザによる「3rd Party Cookie のブロック」がどういう状況だったのかをまとめておく。
+        <p>これは、だいたい 2016 年あたりの実態だと思ってもらって良い。
+        <section>
+          <h3 id="chrome-firefox-opera-etc."><a href="#chrome-firefox-opera-etc.">Chrome, Firefox, Opera, etc.</a></h3>
+          <p>昔からプライバシー意識の高いユーザには、トラッキングから明示的にオプトアウトする機能へのニーズも多く、ブラウザは標準でそうした機能を提供してきた。
+          <p>IE が一時期実施して失敗した、いわゆる Do Not Track List 形式のブロッキングは、やはりスケールしなかったため、最も広く普及したのは「Cookie の無効化」だ。
+          <p>設定から「すべての 3rd Party Cookie をブロックする」や、場合によっては「Cookie をブロックする」といったものもあった。トグルボタンで有効無効にするか、禁止レベルを設けて調整できるものもある。もちろん壊れるサイトが多く出るため、リテラシの高いユーザが自己責任で使うものにとどまった。
+          <p>少し視点を変えれば、広告ドメインとの通信自体を止めてしまう「広告ブロッカー」拡張や、ブロックはしないが閉じれば全て消える Private Mode のようなものも、広義には同じ問題への別のアプローチだろう。
+          <p>いずれにせよ、全ユーザに対してブロック機能をデフォルトにすると、やはり多くのサービスが壊れるため、決してそれをデフォルトにはできなかった。
+        </section>
+        <section>
+          <h3 id="ie"><a href="#ie">IE</a></h3>
+          <p>IE はブロックをデフォルトにしていたと言える。しかし、前述のように P3P の CP を何かしら送れば迂回できるため、実質的に形骸化していた。
+          <p>そして IE が引退し、Edge が EdgeHTML から Chromium ベースになってからは、基本的な挙動は Chrome と同じだ。セキュリティについての設定は、レベルに応じて変えられるような UI が別途実装されているが、あくまで任意の機能だ。
+        </section>
+        <section>
+          <h3 id="safari"><a href="#safari">Safari</a></h3>
+          <p>Safari も 2016 年の時点で、デフォルトでブロックしていたとされる。
+          <p>しかし、正確には 3rd Party Context での保存はブロックする。つまり、<code translate=no>&lt;iframe&gt;</code> で受信したレスポンスの <code translate=no>Set-Cookie</code> は無視するというものだ。
+          <p>1 度そのサイトにアクセスして保存した Cookie は、3rd Party Cookie としての「送信はされる」という制限だったのだ。
+          <p>これは要するに、1 度 Facebook や YouTube にログインしていれば、埋め込まれた「いいねボタン」は自分のアカウントでできるし、課金していれば埋め込み YouTube も広告が出ないということだ。
+          <p>「トラッカーのサイトは直接アクセスされることはない」という点で、デフォルトでブロックしつつ、壊れる機能を極力減らすという、かなりバランスが取れた設計ではあったと筆者は感じる。
+          <p>埋め込んだログインフォームからログインし、そのまま認証に繋げるような認証連携などは壊れる場合はあったが、その場合はログインフォーム自体を認証プロバイダで出し、1 度そこに遷移するといった実装によって解決された。
+          <p>また、後述するが、一旦ひっそりとトラッカーにリダイレクトし、Tracking Cookie を 1st Party Cookie として保存してから�e> に埋め込まれた IDP がこれを呼ぶことで、IDP のログイン済み Cookie にアクセスでき、SSO を継続できるといった使い方をする。
           <p>この時 <code translate=no>document.requestStorageAccess()</code> で何が起こるのかは実装次第だが、大きくは 2 つある。
           <p>1 つ目は、Safari が ITP の最初でやっていたように「ユーザインタラクション」があるかを調べる方法だ。
           <p>トラッキングを目的として、隠し <code translate=no>&lt;iframe&gt;</code> などに埋め込まれたリソースには、一般的にユーザは何も操作をしない。しかし、もしそれが埋め込まれたログインページ、動画、SNS ボタンなどであれば、ユーザはクリックやスクロールなど、何らかの操作をするだろう。
@@ -1277,7 +1248,48 @@ connected -&gt; failed</code></pre>
           <p>例えば、サイトの右下に 3rd Party のサポートチャットを埋め込んでいるような場合を考えよう。もし 3rd Party Cookie がブロックされると、毎回新規の会話になってしまう。しかし、過去の会話の履歴はなんとか残したい。この場合は、同じサポートチャットを埋め込んでいる別のサービス間で、同じ履歴を共有したいわけではない。
           <p>この場合は、SAA で 3rd Party Cookie を使うよりも、Top Level ごとに異なる Partitioned Cookie で良いのだ。
           <p>確かに、「デフォルトで全ての 3rd Party Cookie を Partitioning する」は失敗したが、「デフォルトで 3rd Party をブロックするが、Opt-In で Partitioning された Cookie へのアクセスを許可する」っていう方式が、SAA の代替としてあっても良いだろうということになった。
-          <p>ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案し�<p>今日は、Cookie に頼らない Tracking 手段としての、Fingerprinting について解説する。
+          <p>ここで、それぞれが独自かつ暗黙的にやっていたことを、明示的かつオプトインな API として標準化するために Chrome が提案し�ef="/tags#cookie">cookie</a>
+              <li><a href="/tags#3pca">3pca</a>
+            </ul>
+          </nav>
+        </dd>
+      </div>
+      <div>
+        <dt>toc</dt>
+        <dd>
+          <button popovertarget="toc">open</button>
+          <nav id=toc popover=manual>
+            <h2>ToC</h2>
+            <button popovertarget="toc" popovertargetaction="hide">❌</button>
+            <ol>
+              <li><a href="#intro">Intro</a>
+              <li><a href="#fingerprinting">Fingerprinting</a>
+              <ol>
+                <li><a href="#ip-の秘匿">IP の秘匿</a>
+              </ol>
+              <li><a href="#user-agent-string-reduction">User-Agent String Reduction</a>
+              <li><a href="#その他の-api">その他の API</a>
+            </ol>
+          </nav>
+        </dd>
+      </div>
+    </dl>
+
+    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
+    <article>
+      <h1><a href="">3PCA 17 日目: Fingerprinting</a></h1>
+      <section>
+        <h2 id="intro"><a href="#intro">Intro</a></h2>
+        <p>このエントリは、3rd Party Cookie Advent Calendar の 17 日目である。
+        <ul>
+          <li>
+            3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+            <ul>
+              <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
+            </ul>
+          </li>
+        </ul>
+        <p>今日は、Cookie に頼らない Tracking 手段としての、Fingerprinting について解説する。
       </section>
       <section>
         <h2 id="fingerprinting"><a href="#fingerprinting">Fingerprinting</a></h2>
@@ -1298,13 +1310,7 @@ connected -&gt; failed</code></pre>
         <p>こうした Fingerprinting を防ぐ実装も、続々とブラウザに入っている。
         <section>
           <h3 id="ip-の秘匿"><a href="#ip-の秘匿">IP の秘匿</a></h3>
-          <p>まず、Apple が公開した IP への対応が、Private Relay だ。これは Proxy を経由することで、サーバに見えるクライアントの IP を Proxy の IP に変えてしまうというものだ。発想自体は Tor と近い。
-          <p>インフラを利用するため有料ではあるが、IP さえ変わってしまえば、Fingerprinting についてはほとんど解決といってもいいレベルだろう。
-          <p>Mozilla や Brave は VPN を提供することで同等のことを実現している。
-          <p>また、IP の秘匿を標準化するために、IETF では OHTTP という仕様の標準化作業を行っており、Chrome や Firefox が、Fastly などの Proxy との対応を進めていく予定を公開している。
-          <p>注意点として、IP の置き換えもまた、さまざまなユースケースに影響を与える。
-          <p>例えば、ユーザの接続している国や地域は IP ベースで判断されることが多く、これはアクセス管理や、前述した GDPR の EU 判定などに使われる。こうしたケースでも緩やかに国や地域を知ることができるよう、Private Relay は IP のリストを公開し、その情報は変わらないように情報提供がされている。
-          <p>もう 1 つは、犯罪対策だ。何かサイバー犯罪が起こった場合、犯人の特定は IP をプロバイダに問い合わせることで突き止めることが多いが、Proxy が挟まるとそれが困難になる。この問題がどのように対応されていくのかは、筆者もずっと気にしているが、まだ明確な指針は把握し�#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
+          <p>まず、Apple が公開した IP への対応が、Private Relay だ。これは Proxy を経由することで、サーバに見えるクライアントの IP を Proxy の IP に変えてし�#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">    return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
@@ -1323,7 +1329,7 @@ connected -&gt; failed</code></pre>
         <p>このように、Web の API が OS やデバイスの情報にアクセスする API を増やせば増やすほど、Web でできることが増える一方で、Fingerprinting のリスクが高まってしまうというトレードオフがあるのだ。
         <p>基本的に標準化の段階では、Fingerprinting ベクターになるエントロピーの高い情報が取得できないかどうかは、必ずレビューされる。そして、取得がやむを得ない場合でも、例えばユーザに Prompt を表示して権限を取得するとか、情報の一部をマスキングするとか、さまざまな工夫がなされている。
         <p>対応方法は API によってまちまちだが、もし標準化で提案された方法がリスクを下げきれていない場合は、その API を実装しないブラウザもある。
-        <p>デバイスに関わるような低レベル API の実装が普及しないのは、こういった背景�           3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
+        <p>デバイスに関わるような低レベル API の実装が普及しないのは、こういった背景もある�           3rd Party Cookie のカレンダー | Advent Calendar 2023 - Qiita
             <ul>
               <li><a href="https://qiita.com/advent-calendar/2023/3rd-party-cookie" target=_blank>https://qiita.com/advent-calendar/2023/3rd-party-cookie</a>
             </ul>
@@ -1356,9 +1362,7 @@ connected -&gt; failed</code></pre>
           <li>CHIPS
           <li>etc
         </ul>
-        <p>基本的に、どの API もかなり難しい。そして、明確な用途があるため、そのユースケースを持たなければ、一生縁のない API がほとんどだ。特に広告関連の人でもなければ、全部を知っておく忋られるようなコンテンツにとっては絶望的だ。
-        <p>間を繋ぐ事例として、例えば Brave の BAT がある。Brave は Ad Blocker を持っているが、代わりに Brave 自体が出す広告を見れば、BAT というトークンが付与される。これは換金もできるが、代わりに Web サイトに投げ銭できるのだ。このように、広告のマネタイズとそのマイクロペイメントを可能にするプラットフォームが上手く台頭してくれれば、もう少し活路はあるかもしれない。
-        <p>それがなければ、残るのは行き倒れたメディアサイトと、勝ち残った課金サイトだけのインターネットだ。Walled Garden が増えれば、「検索して辿り着けた Web」は過去のものになり、AI の学習ソースにもできないため聞いても出てこなくなる。(逆に「これについて知りたければ、続きはここ」と課金コンテンツの URL を出されるといった「AI への広告」は出てくるかもしれない)
+        <p>基本的に、どの API もかなり難しい。そして、明確な用途があるため、そのユースケースを持たなければ、一生縁のない API がほとんどだ。特に広告関連の人でもなければ、全部を知っておく忂�トだけのインターネットだ。Walled Garden が増えれば、「検索して辿り着けた Web」は過去のものになり、AI の学習ソースにもできないため聞いても出てこなくなる。(逆に「これについて知りたければ、続きはここ」と課金コンテンツの URL を出されるといった「AI への広告」は出てくるかもしれない)
         <p>「無料のインターネット」が終わって、そこにどのくらいのユーザが残るのかは、なってみないとわからない。
       </section>
       <section>
@@ -1386,7 +1390,12 @@ connected -&gt; failed</code></pre>
             </ul>
           </li>
         </ul>
-        <p>問題を認識するところから始めるには、あまりにも�<meta name=theme-color         content=#000000>
+        <p>問題を認識するところから始めるには、あまりにも手遅れではあるが、それでも今これを書かなければ、後悔するだろうという気持ちでなんとか書き切った。
+        <p>まだまだ書けなかった/書かなかったことの方が多い。問題の大きさから見ればあまりにも矮小かもしれないが、Web が壊れるのを少しでも防げるよう、筆者が知っていることはすべてこのサイトで継続して発信していくつもりだ。
+        <p>そして、Web がこれからどうなるのか。この困難をどう乗り越えるのか。はたまた失敗し廃れていくのか。
+        <p>しっかりとこの目に焼き付けていきたいと思う。
+        <p>Jxck
+      </se<meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2023-12-31/end-of-2023.html>
@@ -1441,12 +1450,12 @@ connected -&gt; failed</code></pre>
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_141212   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_142647   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_140034   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_142647   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -1474,31 +1483,93 @@ connected -&gt; failed</code></pre>
           <button popovertarget="toc">open</button>
           <nav id=toc popover=manual>
             <h2>ToC</h2>
-            <button popovertarget="toc" popovertargetaction="hide">❌</buttonウザとして非常に使いやすくなっているとも感じ、筆者はここ数年 Edge をメインブラウザ、Chrome を開発/検証用にしている。
+            <button popovertarget="toc" popovertargetaction="hide">❌</button <p>この試験は、「去年の Web にはどんな変化があったか」「どんな新しい技術が出てきたか」などを、試験形式で振り返るコンテンツを作ってみたことに端を発している。
+        <p>2022 年はこれを狭い範囲で実施したが、思った以上に評判が良かったため、2023 年は受験者を一般募集してみることにした。
+        <p>試験形式であるため点数は出るが、目的は「今年はこんなことがあった」を振り返ることや、「こんなことがあったのは知らなかった」という取りこぼしに気づく機会になることである。
+      </section>
+      <section>
+        <h2 id="解答用紙想定解答"><a href="#解答用紙想定解答">解答用紙/想定解答</a></h2>
+        <ul>
+          <li>
+            [解答用紙]: Web 技術年末試験 2023
+            <ul>
+              <li><a href="https://docs.google.com/document/d/1jdN0NsM-PAnYRlWTioLFGB7-szx4pF-h-Z87_jzcyF8/edit" target=_blank>https://docs.google.com/document/d/1jdN0NsM-PAnYRlWTioLFGB7-szx4pF-h-Z87_jzcyF8/edit</a>
+            </ul>
+          </li>
+          <li>
+            [想定解答]: Web 技術年末試験 2023
+            <ul>
+              <li><a href="https://docs.google.com/document/d/10TcKFuIEuUjs5olFGZO0XGANlSpQfRBztQFuvrdcJx0/edit" target=_blank>https://docs.google.com/document/d/10TcKFuIEuUjs5olFGZO0XGANlSpQfRBztQFuvrdcJx0/edit</a>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="試験形式"><a href="#試験形式">試験形式</a></h2>
+        <p>いわゆる、学校で受けるような定期試験に似た形式で実施した。
+        <ul>
+          <li>範囲: 2023 年の Web 技術の変化、トレンド、重要トピックなど
+          <li>方式: 選択、記述、コーディング
+          <li>時間: 60 分
+          <li>点数: 100 点満点
+          <li>
+            その他
+            <ul>
+              <li>何を調べても良い(検索、AI など)
+              <li>Google Docs で行うため、Google アカウントが必要
+            </ul>
+          </li>
+        </ul>
+        <p>2022 年の過去問は以下にある。
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1AP5ZcM-yr3Yfoe6d-Va4oF6bsx7YKh39e_pGr_QUY5A/edit" target=_blank>Web 技術年末試験 2022</a>
+        </ul>
+      </section>
+      <section>
+        <h2 id="オンライン試験"><a href="#オンライン試験">オンライン試験</a></h2>
+        <p>オンライン試験は、60 分の時間制限で実施し、終了後に問題の解説を行い、後日採点結果を通知した。
+        <ul>
+          <li>
+            Web 技術年末試験 2023 - connpass
+            <ul>
+              <li><a href="https://web-study.connpass.com/event/308040/" target=_blank>https://web-study.connpass.com/event/308040/</a>
+            </ul>
+          </li>
+        </ul>
+        <p>予想よりも多く 66 人の受験者が参加登録し、Meet には 37 人が出席、そのうち提出したのは 33 人だった。
+        <p>事前に N &gt; 10 の場合にのみ平均と中央値を公表するとしていたため、以下の通り公開する。
+        <ul>
+          <li>採点数: <em>33</em> 人
+          <li>平均点: <em>51</em> 点
+          <li>中央値: <em>49</em> 点
+        </ul>
+        <p>作問は、ただただマニアックな問題を出して誰も点が取れないのでは、実施する意味がない。
+        <p>ある程度歯応えがありつつ、全く無理ではない問題として、平均点 50 点を狙って作ったが、その目標自体は達成できたと思う。
+      </section>
+      <section>
+        <h2 id="問題解説"><a href="#問題解説">問題解説</a></h2>
+        <section>
+          <h3 id="大問-1"><a href="#大問-1">大問 1</a></h3>
+          <p>Baseline は、今後の Web 開発の指標の 1 つとして採用されることが期待される概念である�ネガティブな影響ばかりではなかった。MS のチームは Chrome チームがカバーしきれてない OpenUI などにリソースを増やし、HTML 周りの更新を推し進めているのも事実だ。また、リソースを Edge の UI に回せたからか、Collection, Vertical Tab, Split Screen, Bing Chat など、最近の Edge はブラウザとして非常に使いやすくなっているとも感じ、筆者はここ数年 Edge をメインブラウザ、Chrome を開発/検証用にしている。
         <p>問題の根幹は「ブラウザエンジンをゼロから作ることはもうできない」という点だ。多少はサードパーティのライブラリを入れたとしても、今から WPT 90% を達成するブラウザエンジンの開発を目指しても、達成に何年かかるかわからない。その間にも WPT の方が膨らみ、追いつくのは不可能と言っていいだろう。
         <p>結果、Chromium のフォークがベースとなり、ベースに入る機能のイニシアチブは Google が握っていることになる。Linux カーネルのように、それをみんなでメンテするという考え方もあるが、Google が提唱し Mozilla/Apple の standard position で否定されている機能が少なくないことは、無視できない事実だ。
         <p>では、ユーザがわざわざ iPhone に Chromium Chrome や Gecko Firefox を入れるモチベーションはあるだろうか? 一般的に見れば、ユーザ側が機能の有無などで積極的に選択するかというと怪しい。あっても、常用アカウントの連携などといった外的要因の方が多いと思われる。
         <p>むしろ最悪の想定は、Web サービスの開発者側が Chrome でしか見られないページなどを提供する可能性だ。iPhone でサイトを開いても、Store へ誘導しインストールを求めるのは、無料である点で PayWall よりは敷居が低い。その結果、Privacy Sandbox 系の API が動くなら、メディア系のサービスはそちらを強制したいかもしれないし、Fugu 系の API が動けばデバイス機能を活用したいサービスはそちらに誘導したい。そこまで積極的な理由でなくても、サービス開発者にとって iOS Safari の評判は決して良かったとは言えないため、単にサポートブラウザを減らすことは、コストメリットに繋がるのを否定できない。Interop は、こうしたバランスの調整のための活動であり、既に一定の成果が出ているが、それでもやはり複数ブラウザの対応に苦労している開発者がいるのも事実だ。
         <p>近年の Safari のアップデートには、それまで音沙汰なかった機能が続々と追加されたように思うが、これもそうしたギャップをなるべく埋めた上でこの日を迎えたかったのではないかという邪推もできる。しかし、API によっては Standard Position で否定され Safari には絶対に入らないことが決定済みなものもあるため、これを Chromium が提供できるとなると、その格差はスタンスよりも星取表で評価されてしまう可能性もあるだろう。
-        <p>今回の決定は、独占禁止法をベースとしたビジネス上のフェアネスに由来するものだ。それが Web というエコシステムに、長期的にどういう影響を与えるかとはまた別の視点が必要だ。Apple は WebKit を必須にすべきだという気はないが、この後ろ盾が無くなった Apple が WebKit をどれだけ本気で育て、健全なシェア争いを繰り広げてくれるかはかなり重要になると思う。そして、サービス開発者についても、シェアやコストを理由に安易にサポートを狭めるようなことがないよう、Interop などに Web 全体で取り組んでいくことも重要だと思う。
-        <p>この話が「iPhone でのブラウザエンジンの選択が自由になった」という表面上の変化以上の大きな流れとして、今後の Web にどう影響していくか。はたまた全て杞憂で特に何ごともなく進んでいくか。2024 年の重要なトピックとして、注視して�s によるイベントの Promise 化</a></h1>
-      <section>
-        <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p><code translate=no>Promise.withResolvers()</code> は、Stage 4 であり ES2024 の候補となった。
-        <p>すでにブラウザでの実装も進んでいるため、その活用方法を解説する。
-      </section>
-      <section>
-        <h2 id="イベントの-promise-化"><a href="#イベントの-promise-化">イベントの Promise 化</a></h2>
-        <p>JS では、非同期処理 API は長らくイベントリスナベースで定義され、それを組み合わせるフロー制御で処理されてきた。
-        <p>しかし、Promise が定義されて以降は、標準 API も Promise を返すようになり、<code translate=no>async</code>/<code translate=no>await</code> によって処理されるのが一般的になってきた。
-        <p>結果、イベントリスナベースの API を Promise 化するような場面も増えた。
-        <p>例えば以下のようなものだ。
-        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
-        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> request</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
+        <p>今回の決定は、独占禁止法をベースとしたビジネス上のフェアネスに由来するものだ。それが Web というエコシステムに、長期的にどういう影響を与えるかとはまた別の視点が必要だ。Apple は WebKit を必須にすべきだという気はないが、この後ろ盾が無くなった Apple が WebKit をどれだけ本気で育て、健全なシェア争いを繰り広げてくれるかはかなり重要になると思う。そして、サービス開発者についても、シェアやコストを理由に安易にサポートを狭めるようなことがないよう、Interop などに Web 全体で取り組んでいく�:#F97583"> function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> request</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> new</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> Promise</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">((</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">resolve</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70">reject</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    document.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">querySelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"button"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">addEventListener</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"click"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">      try</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">        const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></slt" target=_blank>https://developer.chrome.com/blog/referrer-policy-new-chrome-default</a>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">        const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> res</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">        const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> body</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> res.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">()</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        resolve</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(body)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">catch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (err) {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">        reject</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(err)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">      }</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  })</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+        <p><code translate=no>reslt" target=_blank>https://developer.chrome.com/blog/referrer-policy-new-chrome-default</a>
             </ul>
           </li>
         </ul>
@@ -1524,34 +1595,7 @@ connected -&gt; failed</code></pre>
       </section>
       <section>
         <h2 id="ack"><a href="#ack">Ack</a></h2>
-        <p>この記事は <a href="https://twitter.com/shhnjk" target=_blank>@shhnjk</a> さんにレビューしていただきました。ありがとうございまし�所"><a href="#dialog-の使い所"><code translate=no>&lt;dialog&gt;</code> の使い所</a></h2>
-        <p>さて、一通り確認したところで使い方を確認していこう。
-        <p>例えば、規約を表示してそこへの同意を取得するなどだ。閉じる際にその結果を <code translate=no>returnValue</code> で取得して処理を分岐することになるだろう。
-        <p>使い分けは以下のようになる。
-        <ul>
-          <li>ユーザをブロックして、処理が終わらない限り先には進めない =&gt; Modal Dialog
-          <li>ユーザをブロックはしない、しかし、どこかで処理は求めたい =&gt; non-Modal Dialog
-        </ul>
-        <p>例えば、ログインしないと先に進めないなら、Modal Dialog にログインフォームが入るかもしれない。
-        <p>でも Cookie への同意バナーを画面の右下に出すのであれば、non-Modal になるだろう。
-        <p>このように、インタラクションを求めるのが <code translate=no>role=dialog</code> である <code translate=no>&lt;dialog&gt;</code> の用途だ。「ユーザに対して何かインタラクションを求めている」ことが伝わり、「そのインタラクションが終わったら閉じる」。
-        <p>逆に「ユーザにインタラクションを求める Modal Dialog UI」を <code translate=no>&lt;dialog&gt;</code> を使わずに実装するのも、今後は望ましくないと言えるだろう。フォーカス管理も、<code translate=no>inert</code> も、CloseWatcher も、ユーザランドで完璧に実装するのが難しい機能で、下手に JS を捏ねてそれっぽい挙動をでっちあげても、どこかに歪みが出て、全体では不具合を多く生む。
-        <p>特に、支援技術の利用者を想定するならば以下のようなものだ。
-        <ul>
-          <li>そもそも Dialog が開いていることに気づけない
-          <li>Modal が開いて、他の操作ができなくなったが、何が起こったのかわからない
-          <li>操作できないはずのところにフォーカスが飛んで想定外の操作をしてしまう
-          <li>ESC が奪われて、意図していた操作ができなくなる
-          <li>開いて閉じたらフォーカスが迷子になる
-        </ul>
-        <p>これらは <code translate=no>&lt;dialog&gt;</code> を適切に使えば、支援技術には <code translate=no>role=dialog</code> や <code translate=no>aria-modal=true</code> なものが開いたことが適切に伝わり、プラットフォームの支援を受けた快適な操作が実現できる。
-        <p>多くのサイトがライブラリなどを用いて自前で実装しており、そうしたライブラリを剥がすのには時間がかかることを考えると、移行を視野に入れた計画を立てる良いタイミングだと言えそうだ。
-      </section>
-      <section>
-        <h2 id="dialog-ではないケース"><a href="#dialog-ではないケース"><code translate=no>&lt;dialog&gt;</code> ではないケース</a></h2>
-        <p>もし単に「変更が保存されました」や、「お知らせが来ています」といった通知を目的とするのであれば、それは <code translate=no>&lt;dialog&gt;</code> で実装するべきものではないだろう。Top Layer に表示できるからといって、「浮かび上がる系の UI」全てに <code translate=no>&lt;dialog&gt;</code> を使うのは適切ではない。その点で <code translate=no>&lt;dialog&gt;</code> の用途は限られていると言える。
-        <p>とはいえ、せっかく Top Layer, CloseWatcher, inert, backdrop などのプリミティブを整備したのに、これを狭い用途のみに限定するのは勿体ない。
-        <p>そこで、こうしたインフラを共有し、より汎用的な UI を実現するために並行して策定さめ�れで、要素のスタイルが計算される前の値を、明示的に示すことができるようになった。
+        <p>この記事は <a href="https://twitter.com/shhnjk" target=_blank>@shhnjk</a> さんにレビューしていただきました。ありがとうございましぁ�れで、要素のスタイルが計算される前の値を、明示的に示すことができるようになった。
       </section>
       <section>
         <h2 id="overlay"><a href="#overlay">Overlay</a></h2>
@@ -1569,29 +1613,7 @@ connected -&gt; failed</code></pre>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  opacity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  display</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">none</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  transition</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: opacity </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">s</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
-<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">              overlay</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">s</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> allow-discrete,</span></satetime=2024-10-16>2024-10-16</time></dd></div>
-      <div><dt>updated_at</dt><dd><time class=updated_at datetime=2026-07-04>2026-07-04</time></dd></div>
-      <div>
-        <dt>tags</dt>
-        <dd>
-          <nav class=tags>
-            <ul>
-              <li><a href="/tags#dialog">dialog</a>
-              <li><a href="/tags#popover">popover</a>
-            </ul>
-          </nav>
-        </dd>
-      </div>
-      <div>
-        <dt>toc</dt>
-        <dd>
-          <button popovertarget="toc">open</button>
-          <nav id=toc popover=manual>
-            <h2>ToC</h2>
-            <button popovertarget="toc" popovertargetaction="hide">❌</button>
-            <ol>
-              <li><a href="#intro">Intro</a>
-              <li><a href="#toast">Toast</a>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">              overlay</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">s</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> allow-discrete,</span></sa href="#cookie-バナー">Cookie バナー</a>
               <ol>
                 <li><a href="#html">HTML</a>
                 <li><a href="#css">CSS</a>
@@ -1606,7 +1628,7 @@ connected -&gt; failed</code></pre>
 
     <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
     <article>
-      <h1><a href="">Dialog と Popover #9</a></h1>
+      <h1><a href="">Dialog と Popover #8</a></h1>
       <section>
         <h2 id="intro"><a href="#intro">Intro</a></h2>
         <p>ここまで解説した仕様を踏まえ、いくつかの代表的なユースケースの実装について考えていく。
@@ -1614,24 +1636,23 @@ connected -&gt; failed</code></pre>
         <p><strong>また、ここで紹介する仕様はまだ変更の可能性があり、かつ実装も揃っていないものがある点に注意</strong>
       </section>
       <section>
-        <h2 id="toast"><a href="#toast">Toast</a></h2>
-        <p>次は、Popover の源流にもなった、画面端にメッセージを表示するいわゆる Toast UI について考えてみる。想定するのは以下のようなものだ。
+        <h2 id="cookie-バナー"><a href="#cookie-バナー">Cookie バナー</a></h2>
+        <p>次は、「Cookie 利用への同意」、いわゆる Cookie バナーの UI について考えてみる。想定するのは以下のようなものだ。
         <p>
-          <img loading=lazy decoding=async src=./toast.drawio.svg?241016_102938 alt="画面の右下に表示される Toast UI" width=400 height=400>
+          <img loading=lazy decoding=async src=./cookie-banner-dialog.drawio.svg?241011_155720 alt="画面の右下に表示される Cookie への同意 UI" width=600 height=600>
         </p>
-        <p>メッセージの性質によって、色やアイコンのスタイルを変えられ、同時に複数積み上げて表示できるといった仕様が一般的だ。
+        <p>前回の規約への同意と異なり、このバナーは画面表示時から右下に表示され、同意か拒否を選択するまで表示し続ける。つまり、表示中は他の操作をブロックしたりはしない。
+        <p>つまり Dialog ではあるが Modal ではないため、<code translate=no>show()</code> する前提で実装を考えていく。
         <section>
           <h3 id="html"><a href="#html">HTML</a></h3>
-          <p>基本は <code translate=no>&lt;div popover&gt;</code> となる。また、複数のメッセージがあった場合に、他のが表示されても消えないよう、<code translate=no>manual</code> を指定する。
+          <p>HTML の注意点は、前回の規約と大きくは変わらない。
+          <p>まず、最初から表示しておくために <code translate=no>open</code> 属性を付与しておく。
           <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/pre.css?260310_182656">
-          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> popover</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"manual"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">div</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
-          <p>もし内容のレイアウトで Flex や Grid を使いたい場合、<code translate=no>&lt;div popover&gt;</code> 自体の <code translate=no>display</code> を変えると扱いが少し面倒になるため、もう 1 つ Wrapper の <code translate=no>&lt;div&gt;</code> を用意しておくと良いだ�<p>ここまで散々 Chrome を(事実上)監視していた CMA が、「Chrome が完全に 3PC のブロックを辞める」と言い出したとして、それをすんなり受け入れるかどうかは、ちょっと考えればわかるだろう。
-          <p>TAG の Finding は、まだ確定していない「方針の転換先がなんであるか」を決めつけて批判している点だと筆者は考える。
-          <p>仮に Chrome を批判するのであれば、「批判するにも値しない程度の情報しか、公開されてない」という点かもしれない。
-          <p>しかし、具体的に「方針の転換先」つまり「ユーザの選択 UI」がどんなものであるかも、おそらく本当に決まってないのだろう。
-          <p>中途半端な状態で公開などできない代物になってしまったため、Chrome が慎重にならざるを得ないのもわかる。
-          <p>今我々ができるのは、Chrome が「ユーザ選択の UI」を出してきた時に、それをどのように評価すべきかと言う点を整理しておくことくらいだ。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> open</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;/</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">dialog</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span></code></pre>
+          <p>コントローラとしてはボタンが 2 つあり、ここに value を設定しておく。
+          <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="html"><code translate="no"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">&#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">form</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> method</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"dialog"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">></span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  &#x3C;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> type</span><sp�を出してきた時に、それをどのように評価すべきかと言う点を整理しておくことくらいだ。
         </section>
       </section>
       <section>
@@ -1659,129 +1680,61 @@ connected -&gt; failed</code></pre>
           <li>無効化の設定は、3PC のドメインに対して保存され、一度ブロックした 3PC はどのページに行ってもブロックされるのか?
           <li>ブロックはページ単位(つまりブロックも Isolation される)であり、別ページでは有効になり、全ページでブロックが必要なのか?
         </ul>
-        <p>前者なら、ブロックの広まりはかなり速く進む可能性がある。一方後者だと、ユーザがプロンプトを操作する機会が増えすぎるため、ユーザにとってはかなりマイナスな UX が提供される�sc</a>
-              <li><a href="/tags#cookie">cookie</a>
-              <li><a href="/tags#security">security</a>
-            </ul>
-          </nav>
-        </dd>
-      </div>
-      <div>
-        <dt>toc</dt>
-        <dd>
-          <button popovertarget="toc">open</button>
-          <nav id=toc popover=manual>
-            <h2>ToC</h2>
-            <button popovertarget="toc" popovertargetaction="hide">❌</button>
-            <ol>
-              <li><a href="#intro">Intro</a>
-              <li><a href="#update">Update</a>
-              <li><a href="#背景">背景</a>
-              <li><a href="#cookie-theft-によるインシデント">Cookie Theft によるインシデント</a>
-              <ol>
-                <li><a href="#マルウェア対策">マルウェア対策</a>
-                <li><a href="#フィッシング対策">フィッシング対策</a>
-                <li><a href="#cookie-theft-対策">Cookie Theft 対策</a>
-              </ol>
-              <li><a href="#cookie-をどう守るか">Cookie をどう守るか</a>
-              <ol>
-                <li><a href="#demonstrating-proof-of-possession-in-the-browser-application-bpop">Demonstrating Proof-of-Possession in the Browser Application (BPoP)</a>
-                <li><a href="#tpm-による管理">TPM による管理</a>
-              </ol>
-              <li><a href="#device-bound-session-credentials">Device Bound Session Credentials</a>
-              <ol>
-                <li><a href="#trial">Trial</a>
-                <li><a href="#sec-session-registration">Sec-Session-Registration</a>
-                <li><a href="#sec-session-response">Sec-Session-Response</a>
-                <li><a href="#session-registration-instructions-json">Session Registration Instructions JSON</a>
-                <li><a href="#refresh-request">Refresh Request</a>
-                <li><a href="#session-の終了">Session の終了</a>
-              </ol>
-              <li><a href="#設計の考察">設計の考察</a>
-              <li><a href="#other">Other</a>
-              <ol>
-                <li><a href="#js-api">JS API</a>
-                <li><a href="#device-bound-session-credentials-for-enterprise">Device Bound Session Credentials for Enterprise</a>
-              </ol>
-              <li><a href="#outro">Outro</a>
-              <li><a href="#demo">DEMO</a>
-              <li><a href="#resources">Resources</a>
-            </ol>
-          </nav>
-        </dd>
-      </div>
-    </dl>
-
-    <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/article.css?260211_230947>
-    <article>
-      <h1><a href="">Cookie Theft 対策と Device Bound Session Credentials</a></h1>
-      <section>
-        <h2 id="intro"><a href="#intro">Intro</a></h2>
-        <p>Chrome チームより提案された Device Bound Session Credentials の実装が進み、Flag 付きで試すことができる。
-        <p>この提案の背景と、解決する問題、現時点での挙動について解説する。
+        <p>前者なら、ブロックの広まりはかなり速く進む可能性がある。一方後者だと、ユーザがプロンプトを操作する機会が増えすぎるため、ユーザにとってはかなりマイナスな UX が提供されることになる可能性がある。
+        <p>
+          <img loading=lazy decoding=async src=./user-choice-prompt.svg?241213_034254 alt="User Choice Prompt の実装観点" width=800 height=400>
+        </p>
+        <p>さて、では Chrome はどんなプロンプトを出すのだろうか?
       </section>
       <section>
-        <h2 id="update"><a href="#update">Update</a></h2>
+        <h2 id="cma-の報告"><a href="#cma-の報告">CMA の報告</a></h2>
+        <p>Chrome が夏に方針転換をアナウンスした際に、CMA も小さくコメントを公開していた。
+        <p>今は消えているが、前回のエントリで引用していたものが残っているため、再度引用する。
+        <blockquote cite="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes">
+          <p>On 22 July 2024, Google announced that it is changing its approach to Privacy Sandbox.
+          <p>Instead of removing third-party cookies from Chrome, <strong>it will be introducing a user-choice prompt,</strong>
+          <p><strong>は、自分の中でもずっとどこかで話したいと思っていたテーマであり、これまでとは異なる発表への挑戦でもあった。
         <ul>
-          <li>2025/05/15: OT が始まったため、内容を大幅に更新
+          <li>
+            Web エコシステムの人文社会学的解釈
+            <ul>
+              <li><a href="https://www.docswell.com/s/jxck/KP22L8-building-web-based-upon-ecosystem" target=_blank>https://www.docswell.com/s/jxck/KP22L8-building-web-based-upon-ecosystem</a>
+            </ul>
+          </li>
+        </ul>
+        <p>アーカイブはないが、かなりの反響をもらったため、トライアルとしては成功だったと思う。
+        <p>また、1 人 1 slide 1 min の LT を 50 人連続で行う「1 分 de Web 標準」のフォーマットも確立できた。
+        <p>これはまたやりたいし、楽しいので広まれば良いと思う。
+        <ul>
+          <li>
+            「1 分 de Web 標準」のやり方 at Web Developer Conference 2024 #wdc2024
+            <ul>
+              <li><a href="https://blog.jxck.io/entries/2024-06-26/1min-de-web-standard.html">https://blog.jxck.io/entries/2024-06-26/1min-de-web-standard.html</a>
+            </ul>
+          </li>
         </ul>
       </section>
       <section>
-        <h2 id="背景"><a href="#背景">背景</a></h2>
-        <p>2FA や Passkey の普及により、認証部分はかなりセキュアになってきた。インシデントによりパスワードが漏洩しても、それだけでなりすましを成立させるのも困難になっている。
-        <p>そこで攻撃者の注目を集めているのが、Cookie の窃取(Cookie Theft)だ。
-        <p>認証がいかに堅牢になっても、有効な Session Cookie を盗むことができれば、その値を <code translate=no>Cookie</code> フィールドに付与してリクエストするだけで、なりすましを成立させることができる。
-        <p>いわゆる Session Cookie は、Proof of Authentication として実装されていることがほとんどであり、その有効期限       <p>2024 年の Web 技術を振り返る試験として、「Web 技術年末試験 2024」を実施した。
-        <p>その問題と想定解答、平均点などを公開する。
+        <h2 id="勉強会"><a href="#勉強会">勉強会</a></h2>
+        <p>今年は、いわゆる勉強会は開催しなかった。
+        <p>これは、WDC にフォーカスしたのもあるが、勉強会事情の変化もあるのが正直なところだ。
+        <p>近年は、参加者の質がかなり変わり、個人が手弁当で開催する勉強会の負荷が、非常に上がっている。
+        <p>これをどうしていくか(完全招待制開催も含め)、来年の課題として考えたい。
       </section>
       <section>
         <h2 id="web-技術年末試験"><a href="#web-技術年末試験">Web 技術年末試験</a></h2>
-        <p>この試験は、「去年の Web にはどんな変化があったか」「どんな新しい技術が出てきたか」などを、試験形式で振り返るコンテンツを作ってみたことに端を発している。2022 年に始まり、今年が 3 回目の実施となる。
-        <p>試験形式であるため点数は出るが、目的は「今年はこんなことがあった」を振り返ることや、「こんなことがあったのは知らなかった」という取りこぼしに気づく機会になることである。
-      </section>
-      <section>
-        <h2 id="解答用紙想定解答"><a href="#解答用紙想定解答">解答用紙/想定解答</a></h2>
+        <p>Web に関する 1 年の動向を試験形式で振り返る、年末試験を実施した。
         <ul>
           <li>
-            [解答用紙]: Web 技術年末試験 2024
+            Web 技術年末試験 2023 講評 #web_exam2023 | blog.jxck.io
             <ul>
-              <li><a href="https://docs.google.com/document/d/1Bzo385iu9YlAWSJTKVszqg9bj-m4VBTCYO8LSMoJN1s/edit" target=_blank>https://docs.google.com/document/d/1Bzo385iu9YlAWSJTKVszqg9bj-m4VBTCYO8LSMoJN1s/edit</a>
-            </ul>
-          </li>
-          <li>
-            [想定解答]: Web 技術年末試験 2024
-            <ul>
-              <li><a href="https://docs.google.com/document/d/1_WT3iauehOH1ZnNSgxtZpXo01ljwFVKxMfQjTUDd_ZE/edit" target=_blank>https://docs.google.com/document/d/1_WT3iauehOH1ZnNSgxtZpXo01ljwFVKxMfQjTUDd_ZE/edit</a>
+              <li><a href="https://blog.jxck.io/entries/2024-01-23/web-exam-2023.html">https://blog.jxck.io/entries/2024-01-23/web-exam-2023.html</a>
             </ul>
           </li>
         </ul>
-        <p>今年は Docs のタブ機能で、大問ごとのタブを分ける作りにした。
-        <p>過去問は以下。
-        <ul>
-          <li><a href="https://docs.google.com/document/d/10TcKFuIEuUjs5olFGZO0XGANlSpQfRBztQFuvrdcJx0/edit" target=_blank>Web 技術年末試験 2023</a>
-          <li><a href="https://docs.google.com/document/d/1AP5ZcM-yr3Yfoe6d-Va4oF6bsx7YKh39e_pGr_QUY5A/edit" target=_blank>Web 技術年末試験 2022</a>
-        </ul>
-      </section>
-      <section>
-        <h2 id="試験形式"><a href="#試験形式">試験形式</a></h2>
-        <p>自身で受験する場合は、以下の形式で実施してほしい。
-        <ul>
-          <li>範囲: 2024 年の Web 技術の変化、トレンド、重要トピックなど
-          <li>方式: 選択、記述、コーディング
-          <li>時間: 60 分
-          <li>点数: 100 点満点
-          <li>
-            その他
-            <ul>
-              <li>何を調べても良い(検索、AI など)
-              <li>Google Docs で行うため、Google アカウントが必要
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h2 id="オンライン試験"><a href="#オンライン試験">オンライン試験</a></h2>
-        <p>オンライン試験のイベントを開催し、参加者は 60 分の時間制限で一斉受験した。終了後には問題の解説を行った。参加者のみ、筆者が採点を行い、点数を通知している。
+        <p>オンライン受験は、筆者が採点して返す形でイベントを立てたが、30~40 人くらいの参加があったと思う。
+        <p>点数を競うというよりも、「知らなかったことを知る」という目的で、それなりに好評だったため、来年も実施予定だ。
+        <p>2025 年 1 月開催の試験は、以下で募集している。
         <ul>
           <li>
             Web 技術年末試験 2024 - connpass
@@ -1790,14 +1743,86 @@ connected -&gt; failed</code></pre>
             </ul>
           </li>
         </ul>
-        <p>予想よりも多く 100 人以上の受験者が参加登録し、Meet には 45 人が出席、そのうち提出したのは 36 人だった。
-        <p>事前に N &gt; 10 の場合にのみ平均と中央値を公表するとしていたため、以下の通り公開する。
+      </section>
+      <section>
+        <h2 id="執筆"><a href="#執筆">執筆</a></h2>
+        <p>今年は <a href="https://zenn.dev/jxck/articles/web-anatomia-concepts" target=_blank>Web 技術解体新書</a> の第三章として、Cookie の話を出す予定だった。
+        <p>しかし、RFC6265bis も 3rd Party Cookie Deprecation も進捗がなかったため、内容も確定できず、出しあぐねている。
+        <p>来年、もう少し進捗があれば、すぐにでも出せるように仕上げていきたい。
+      </section>
+      <section>
+        <h2 id="副業"><a href="#副業">副業</a></h2>
+        <p>某社で Web 開発アドバイザーの副業を始めさせてもらった。
+        <p>主に Web 標準周りの実装方針の相談や、仕様関連の調査を依頼に応じて実施している。
+        <p>副業によって、他社の現場がどのような課題/問題を抱えているのかを知ることができるため、フィールドワークとしても非常にに埋め込まれ隔離されたハードウェアで、秘密鍵を生成/管理できる、安価な HSM のようなものと言える。
+          <p>現状は、全てのデバイスが TPM を持っているとは限らないが、Win11 からは TPM を持つことが必須になり、Chrome の調査では Win ユーザの 60% 程度は TPM が利用できる状態にあると報告され、徐々に普及が進んでいると言える。
+          <p>もし TPM を持たないデバイスの場合は、ソフトウェアでエミュレートすることでフォールバックが可能だ。そちらは TPM ほど安全ではないにせよ、全体のセキュリティの底上げにはなる。
+          <p>もちろん、TPM に対して署名を依頼することは他のユーザ(特に、より権限の高いユーザ)でも可能であり、攻撃を完全には防げない。しかし、そのような悪意のあるアプリの動きは、マルウェアとして検知するのがある程度容易であるため、総合的には対策が可能とされている。
+          <p>少なくとも、この仕組みを Cookie に持ち込めれば、従来よりはかなり安全になるだろう。
+        </section>
+      </section>
+      <section>
+        <h2 id="device-bound-session-credentials"><a href="#device-bound-session-credentials">Device Bound Session Credentials</a></h2>
+        <p>以上を踏まえ、Cookie の PoP を TPM に保存した鍵で提供するという方式が、Device Bound Session Credentials (DBSC) の提案の中核だ。
         <ul>
-          <li>提出数: 36 人
-          <li>平均点: 71.8 点
-          <li>中央値: 73.5 点
+          <li>
+            WICG/dbsc
+            <ul>
+              <li><a href="https://github.com/WICG/dbsc" target=_blank>https://github.com/WICG/dbsc</a>
+            </ul>
+          </li>
+          <li>
+            Chromium Blog: Fighting cookie theft using device bound sessions
+            <ul>
+              <li><a href="https://blog.chromium.org/2024/04/fighting-cookie-theft-using-device.html" target=_blank>https://blog.chromium.org/2024/04/fighting-cookie-theft-using-device.html</a>
+            </ul>
+          </li>
         </ul>
-        <p>作問において、ただただマニアックな問題や、時間内に完成できない問題を出して誰も細かいところを変更してまとめられたのが、今回紹介した提案となる。
+        <p>一度鍵の交換を Client-Server 間で行えば、それを用いて確実な Session 維持が可能になる。
+        <p>しかし、毎回公開鍵による認証を行うと負荷が高くなり、パフォーマンスに影響が出る。
+        <p>そこで、セッションの維持自体は従来通り Cookie を用いて行う。しかし、Cookie を短命にしておき、それが切れる前に公開鍵による認証を行うことで、Cookie を再発行するのだ。
+        <p>
+          <picture>
+            <source type=image/avif srcset=flow.avif?260421_002105>
+            <source type=image/webp srcset=flow.webp?260421_002105>
+            <img loading=lazy decoding=async src=flow.png?260309_235641 alt="DBSC の Flow" width=500 height=416>
+          </picture>
+        </p>
+        <p>これにより、Cookie を発行する相手が確実に Session を開始した相手であることが確信できるし、Cookie を短命にすることで窃取された時のリスクも減らすことができる。
+        <p>なにより、完全に Cookie とは別の仕組みにするとデプロイ負荷が高く、広がらないため、Cookie そのものは従来通り用いることで互換性を保っているのだ。
+        <p>デプロイに必要なのは、DBSC を行うためのエンドポイントのみになるため、サービス全体に大きな変更はなくて済む。
+        <section>
+          <h3 id="trial"><a href="#trial">Trial</a></h3>
+          <p>執筆時点では OT が開始され、Chrome には複数のフラグが入っている。しかし、適切に動かすには、以下の Wiki にたどり着かないと無理だった。同じようにこの機能を検証する場合は、必ず一読することを勧める。
+          <ul>
+            <li>
+              Testing early versions of DBSC · w3c/webappsec-dbsc Wiki
+          �、そのようなリクエストは最初からサポート外となっている。ヘッダには触れないし、<code translate=no>fetch()</code> に指定できるオプションも無い。
+        <p>つまり <code translate=no>sendBeacon()</code> は意図して非常に不自由な API となっており、それゆえに拡張性が乏しい。
+        <p>また、これまではページの上で発生したリクエストは、ページが閉じれば終わるものだったが、これをタブが閉じた後にも延命するには、ブラウザのアーキテクチャにも変更が必要となる。Chromium の場合は、従来の Fetch のパスを通さずにレイヤをまたぐ、少し強引な実装がされていた。特に CSP や Mixed Content Check など、ブラウザから発生する Fetch に関する共通処理も、例外的な適用になっていたのだ。
+        <p>このあたりは、以下にまとまっている。
+        <ul>
+          <li>
+            Implementing keepalive on Fetch API #Chromium - Qiita
+            <ul>
+              <li><a href="https://qiita.com/hirano_y_aa/items/ee73bdd74f70f1d36b01" target=_blank>https://qiita.com/hirano_y_aa/items/ee73bdd74f70f1d36b01</a>
+            </ul>
+          </li>
+        </ul>
+        <p>こうした問題を解決するために、<code translate=no>fetch()</code> そのものがページを閉じても止まらないようにする方が、将来への API の拡張性にも良いだろうとして提案されたのが <code translate=no>fetch()</code> の <code translate=no>keepalive</code> だ。
+      </section>
+      <section>
+        <h2 id="fetch-keepalive"><a href="#fetch-keepalive">Fetch KeepAlive</a></h2>
+        <p><code translate=no>fetch()</code> に追加された <code translate=no>keepalive: true</code> オプションは、ページが閉じても送信を止めずに <code translate=no>fetch()</code> を完了できるようにするオプションとして、2017 年頃に提案された。
+        <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">fetch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"https://telemetry.example/beacon"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">, {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  keepalive: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  body: data,</span></span>
+<span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // ...</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">})</span></span></code></pre>
+        <p>これなら <code translate=no>fetch()</code> が持つ全ての API がそのまま利用できるため、POST もできるし <code translate=no>Content-Type</code> も変えられる。<code translate=no>sendBeacon()</code> に比べると格段に柔軟な API となったのだ。仕様的にも <code translate=no>sendBeacon()</code> が、内部的に KeepAlive Fetch で定義されるように更新されている。
+        <p>これにより、「送信を始めたら終わるまで送ってくれる」点は改善した。
+        <p>しかし、問題はそれを呼び出すタイミングの方に移っていく。
+        <p>「ページが終わるときに Beacon を送りたい」というユースケースを実現するための送信タイミングは、<code translate=no>unload</code>、<code translate=no>beforeunload</code> などのイベントが考えられる。しかし、モバイルブラウザなどを考え� <p>この提案を拡張し、構文の変更や function/mixin の分離、その他細かいところを変更してまとめられたのが、今回紹介した提案となる。
           <ul>
             <li>
               Proposal: Custom CSS Functions &amp; Mixins · Issue #9350 · w3c/csswg-drafts
@@ -1820,44 +1845,7 @@ connected -&gt; failed</code></pre>
           <ul>
             <li>Figma がどうやって吐いてくれるのか
             <li>ロジックが入ってくるとデバッグはどうするのか
-            <li>テストを書きたくなるがそれは JS の方がやりやすくないか?
-            <li>CSS  の反応だ。
-        <p>ここまでも解説してきたように、Google はこれらの変更を単独で決定しているわけではなく、CMA とのコミットメントに沿って作業を進めてきた。
-        <p>今回の変更についても、CMA が知らないうちに勝手に発表したというものではないだろう。
-        <p>CMA の立場としては、ざっくり 2 つの観点が重要になるはずだ。
-        <ol>
-          <li>Chrome が 3PCD を終わらせると、1st Party Data でパーソナライズする時代になる。その時、世界で最も 1st Party Data を持つ Google が他社より有利になる。
-          <li>そこで 3PCD の前に、公平に使える代替手段(Privacy Sandbox)を用意させたいが、それが Google に有利なものにならないようにしたい。
-        </ol>
-        <p>今回の決定であれば、少なくともシェアが最も多い Chrome 上では、3PC を用いたトラッキングその他がこれまで通り可能になるため、広告事業へのネガティブインパクトは無いことになる。
-        <p>しかし、本当に CMA はそれで良いのだろうか?
-        <p>前回と異なり、CMA からのアップデートはまだ何も出ていない。
-        <ul>
-          <li>
-            Investigation into Google&apos;s &apos;Privacy Sandbox&apos; browser changes - GOV.UK
-            <ul>
-              <li><a href="https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes" target=_blank>https://www.gov.uk/cma-cases/investigation-into-googles-privacy-sandbox-browser-changes</a>
-            </ul>
-          </li>
-        </ul>
-        <p>予定通り四半期ごとのレポートを出すのであれば、2025Q1 のレポートがもうすぐ来るはずなので、それを待つしかない。
-        <p>仮に「公正な競争」を主目的とする CMA はよくても、他の問題は無いのだろうか?
-      </section>
-      <section>
-        <h2 id="ブラウザのフェアネス"><a href="#ブラウザのフェアネス">ブラウザのフェアネス</a></h2>
-        <p>Safari/Firefox は既に 3PCD を終えた状態だ。
-        <p>3PC が無いと広告収益が落ちるとされている中、Safari / Firefox ではトラッキングができないが、Chrome ではできる。
-        <p>となれば、例えば「この記事は Chrome でしかアクセスできません」といった排他的な実装が、広告収益で運営されているメディアによって実装される可能性は否定できない。
-        <p>また、3PCD に巻き込まれたポジティブなユースケースとしての認証連携についても、3PC を用いるものは他のブラウザで壊れるが、Chrome ではそのまま動き続けるといったことになる。広告を使っていないサイトですら、「Chrome でしか動かない」を加速するモチベーションになり得てしまうだろう。
-        <p>既に 3PCD を終えたブラウザが、「やはり戻す」というわけにもいかないと考えると、5 年近く散々これを「既定路線」として進めてきたうえでの方針転換は、他のブラウザにとって、はしごの外し方としてかなり影響が大きい。
-      </section>
-      <section>
-        <h2 id="privacy-sandbox"><a href="#privacy-sandbox">Privacy Sandbox</a></h2>
-        <p>もちろん、そうしたユースケースをカバーするために、新しい「ユースケース特化の API」を策定してきた。
-        <p>それがまさしく Privacy Sandbox だった。
-        <p>Passkey や FedCM もやんわりそこに含まれるようだが、そちらはまだいい。問題は、広告関連の API だ。
-        <p>3PCD が終わったあとの代替として提案し、策定し、業界を巻き込んで実装とトライアルを進めてきた。
-        <p>かなりのコストを払っているのは、Chrome だけではぁ�ように扱われるが、その根拠はよくわからない。実施すれば確実に安全になるとわかっていることは、OS ベンダがセキュリティアップデートとして配信してくれている。その更新を怠らなければ、メジャーな OS は安全だと言って良いだろう。その対策ソフトの会社が、OS を提供しているベンダ(つまり MS や Apple や Google)が有する世界最高レベルのセキュリティチームよりも、早く動向を把握し対策をリリースしたり、取りこぼしている致命的な欠陥を把握しているのであれば別だが、筆者にはそうは思えない。
+            <li>テストを書きのように扱われるが、その根拠はよくわからない。実施すれば確実に安全になるとわかっていることは、OS ベンダがセキュリティアップデートとして配信してくれている。その更新を怠らなければ、メジャーな OS は安全だと言って良いだろう。その対策ソフトの会社が、OS を提供しているベンダ(つまり MS や Apple や Google)が有する世界最高レベルのセキュリティチームよりも、早く動向を把握し対策をリリースしたり、取りこぼしている致命的な欠陥を把握しているのであれば別だが、筆者にはそうは思えない。
           <p>その安全を脅かすのは、基本的にはユーザだ。怪しいサイトを見て、怪しいバイナリをダウンロードし、OS の警告を全部無視してインストールしてしまった時点で、どんなソフトを入れていても救える保証もない。例えば Winny が流行っていたような時代は救われた人もいるかもしれないが、何かそういうことをしたいなら、PC を分けてやる方がいいだろう。
           <p>そうしたユーザを守る意味では、iPhone を使うというのはあるかもしれない。Android や PC と異なり、iPhone は現状アプリのインストールが App Store に限定されており、全てのアプリは審査を通っている。仮に問題のあるアプリがあれば、Apple 側でも対応が可能なため、この手の攻撃にはかなり強い。もちろん、何も問題がないとは言わないが、一般ユーザが安心して使う Walled Garden なプラットフォームとしては、ウイルス対策ソフトを入れた Windows PC よりは、安全が確保しやすいだろう。
           <p>しかし、それも囲い込みとみなされ、独占禁止の観点から緩和され、今後は Android のようにサイドローディング可能になるため、今だけの話になるかもしれない。iPhone にもウイルス対策ソフトが推奨されるような世界になれば、この話はなかったことになる。
@@ -1869,7 +1857,8 @@ connected -&gt; failed</code></pre>
         <p>最近では、金融機関が「FIDO 認証用アプリ」として、専用のアプリをインストールさせることが多くなった。実装方法は多々あるが、ログイン時にアプリ側に通知が送られタップするものや、表示されたコードを入力するものなど、バリエーションは多い。
         <p>実はバリエーションが多いため、一概にそれを入れていれば安全かどうかは、判断が難しいところもある。例えば表示されるコードを入力する方式は、前述の Proxy 型のフィッシングサイトでは対応できない可能性もある。90 通りの画像のように、エントロピーが低くリトライ制限がなければ意味がない。
         <p>2 要素の理想は、「秘密鍵」を生成し対応する公開鍵をサービスに登録して、公開鍵方式の認証を追加することだ。「記憶」によるパスワードに追加して、秘密鍵の「所有」を要素として追加できる。いわゆる FIDO の方式だ。
-        <p>ただし、それを自前で実装すると、鍵の保管場所が問題になる。そこで FIDO に準拠した API をプラットフォームが提供し、それを用いて OS 内の安全な場所に鍵を管理するのが基本だ。そして、鍵へのアクセ�    <li>etc etc
+        <p>ただし、それを自前で実装すると、鍵の保管場所が問題になる。そこで FIDO に準拠した API をプラットフォームが提供し、それを用いて OS 内の安全な場所に鍵を管理するのが基本だ。そして、鍵へのアクセ� を参照する
+            <li>etc etc
           </ul>
           <p>まずはこのあたりを振り返ってみよう。
         </section>
@@ -1890,26 +1879,7 @@ connected -&gt; failed</code></pre>
         <p>Have I Been Pwned は、漏洩が発覚したサービスと連携し、その事実をユーザに通知する目的を持っている。つまり、ここに載っているのは「漏洩に自分で気づけているサービス」から提供された情報だけなのだ。
         <p>サイバー攻撃関連のニュースは連日あるが、そもそも攻撃されたこと自体に気づくのも、一定の体制が必要だ。そこまでの体制が組めているようなサービスは、とっくの昔から平文でパスワードを保存したりしていないだろう。適切な方式でハッシュ化し、通信やディスクを暗号化し、ログどころかメモリ上にすら残らないように平文を消去していれば、そもそも「パスワードの漏洩」リスクはかなり抑えられる。ハッシュの漏洩でも立派なインシデントではあるが、それが他のサービスにまで迷惑をかける可能性は格段に下がる。
         <p>一方、未だにパスワードを平文で保存しているようなサービスは、古い実装を更新していないか、信じられないほどの素人がノリで作ったサービスだろう。そうしたサービスは、漏洩どころか攻撃されていることにすら、気づいていない可能性が高いのだ。
-        <p>ユーザは、自分のパスワードが「どうせどこかしらで漏洩している。」と思って行動するくらいで良い。これは大げさではな�イトにログインできた状態になる
-          <li>ユーザを本家サイトにリダイレクトしておけば、ログインに失敗したかのように勘違いする
-        </ol>
-        <p>TOTP は時間ベースであるため、乱数表のように、事前に盗んでおいて後で使うことはできない。であれば、両方ともユーザからもらい、その場ですぐ使えばよいのだ。サービスから見れば、正しいパスワードを知り、正しい TOTP を持っている、正規のユーザにしか見えない。
-        <p>サイトは、本物をコピーして作っているため、見た目では判断できない。ユーザにとっての判断材料は URL しかない。
-        <p>手の込んだサイトは、<code translate=no>https://google.co.jp.net.attacker.example</code> のように、それっぽく長いドメインにし、スマホの狭い画面だと後ろが切れて見分けがつかないなどの工夫をしていた。iPhone が URL 全体を表示せず、ドメインの右側(eTLD+1)だけを表示するようになったのは、こうした攻撃に気づけるようにする意図があったと言われている。
-        <p>しかし、最近はかなり雑な URL のものも多い。フィッシングサイトは使い捨てでどんどん場所を変えていくため、雑な URL になるが、雑でも多くのユーザはそれとは気づかずに入力するため、こだわる必要もないのだろう。
-        <p>そんな雑なものに引っかかるものかと思うかもしれないが、実際にはかなりの人が引っかかるという調査は、探せばいくらでも出てくる。昨今のサイバー犯罪の被害規模を見れば、笑って済ませる話でないことは火を見るより明らかだ。
-        <p>今 Web の世界は、このシンプルな攻撃によって、ガタガタに崩されそうになっていると言える。
-        <p>対策として、「SMS は信用するな」「ログインは必ずブックマークから」などと啓蒙されているが、それでは全く追いついていない。現にここ数年で何億もの被害を出しているサイバー犯罪は、フィッシング詐欺を起点にしたものが無視できないほどあるのだ。
-      </section>
-      <section>
-        <h2 id="人間が入力したら負け"><a href="#人間が入力したら負け">人間が入力したら負け</a></h2>
-        <p>フィッシング詐欺の対策は、結局「URL 確認の徹底」に尽きる。しかし、日々多くのサービスを使う中で、すべてのサイトの URL を目視で確認し続けるのは不可能だ。
-        <p>本当の解決策は、「自分で入力しない」ことだ。
-        <p>これが、パスワードマネージャをすべてのユーザが使うべき理由でもある。
-        <p>パスワードマネージャといえば、前述したような「複雑で長いパスワードを生成する」「記憶できなくても大丈夫にする」「サイトごとに保存し使い回さないようにする」などの目的で使うと思っている人も多いだろう。平成の間は確かにそうだった。
-        <p>しかし、今のフィッシング対策で最も有効なのは、パスワードマネージャが持つ Autofill 機能なのだ。パスワードマネージャに登録したパスワードは、その画面のドメインに紐づけて保存される。次にログイン画面を表示したら、パスワード欄に自動で入力する UI を表示するが、これは保存したパスワードとドメインが一致しているからだ。
-        <p>つまり、「常に Autofill で入力する」を徹底していれば、フィッシング詐欺サイトを表示してしまったとしても、Autofill が出ないことでおかしいと気づくことができるのだ。サイトの真正性を機械的にチェックしている状態だ。
-   が勝手に行われてしまっては、ユーザの意図しないところでログインが成立してしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
+        <p>ユーザは、自分のパスワードが「どうせどこかしらで漏洩している。」と思って行動するくらいで良い。これは大げさではな�が勝手に行われてしまっては、ユーザの意図しないところでログインが成立してしまう。iCloud Keychain に保存された Passkey はあくまでユーザのものなので、勝手に取り出して認証するわけにはいかないのだ。また、その端末が誰かに盗まれたものであった場合に、パスワードマネージャを勝手に使われるわけにはいかない。
         <p>本人確認を必要としているのはサービス(GitHub)ではなく、端末(iPhone)なのだ。このプロセスを User Verification という。何回か Touch/Face ID が失敗したら、いつもの iPhone の PIN コードで代替できるのは、それがあくまで iPhone に閉じた話だからだ。
         <p>したがって、iPhone/Android や Windows Hello などの機能は、生体情報が「デバイスの中に保存」されており、外には出ないようになっている。iPhone を買い直しても、指紋や顔の登録は同期されない。買うたびに PIN を設定するように、買うたびに顔と指紋を登録する必要があるのはこのためだ。
         <p>もちろん、生体認証はローカルに閉じ外には出ないというのは、ベンダの説明だ。Apple や Google や MS が、それらの情報をこっそりサーバに収集している可能性を疑うことも可能だ。疑わしいなら登録せずに PIN だけにすれば良い。PIN でも User Verification にはなり、マネージャはアンロックでき、Passkey は問題なく使える。
@@ -1952,44 +1922,60 @@ connected -&gt; failed</code></pre>
       <section>
         <h2 id="outro"><a href="#outro">Outro</a></h2>
         <p>このプロトコルがうまくいっているか、検証する手段は筆者にはない。もし、筆者の死を個人的に知る立場で、同時に、ネット上のどこかに何かしらのシグナルが上がっていることを観測したら、そこで初めてワークしたことがわかるだろう。筆者にはわからないが。
-        <p>また、もしこのエントリのリンクとともに、筆者の遺族から連絡を受けた人がいたess.webp?260421_002105>
-            <img loading=lazy decoding=async src=1password-business.png?260309_235641 alt="1Password Business 運用ガイド素案" width=524 height=392>
-          </picture>
-        </p>
+        <p>また、もしこのエントリのリンクとともに、筆者の遺族から連絡を受けた人がいた のプロセス自体が compromise されていれば、もちろん環境変数は盗める。そこを安全にするには、環境変数を Bearer Token にするのをやめるしかない。つまり、この世界にも Passkey のような考え方が必要になる。パスワードと同じ道を開発用トークンもたどるというのは、自然な発想だと筆者は考えているため、いずれはそうなるかもしれない。
+        </section>
+        <section>
+          <h3 id="コンテナでの開発"><a href="#コンテナでの開発">コンテナでの開発</a></h3>
+          <p>自分の PC でターミナルを開き、そこで <code translate=no>npm i</code> をするような行為は、感染した結果生じる被害がその PC 全体に及ぶ。
+          <p><code translate=no>.env</code> や <code translate=no>~/.ssh/*</code> をパスワードマネージャに隠したとしても、<code translate=no>~/Downloads</code> や <code translate=no>~/Desktop</code> は、日常的に情報が蓄積されやすい、秘情報の宝庫だ。最近の Mac はここへのアプリアクセスに権限がついたが、安易に許可している人も多いだろう。
+          <p>昨今の攻撃では、ここらへんは回収対象になっていない。おそらく、もっと簡単に換金できる情報(仮想通貨ウォレットなど)を集める方が効率が良いからだ。盗めないのではなく、たまたま盗んでいないだけだ。攻撃者のモチベーションやインセンティブが変われば、矛先を変えるのは造作もない。その PC が社内ネットワークにアクセスできることを利用し、踏み台として攻撃を広げていくことも可能だ。
+          <p>つまり、「普段使っている業務用 PC で、そのまま開発作業をする」という事自体が、危険な行為だったと言える。それも、別に今始まったことではない、ずっと危険だったのだ。
+          <p>ここに対して、最も端的に効果が出やすいのがコンテナでの開発だ。VirtualBox、Docker、Dev Container など、選択肢はいくらでもある。
+          <p>これらを入れ、業務用と開発用の環境を分離(Isolation)することで、仮に攻撃を受けても開発用環境しか影響を受けないように封じ込めることができる。
+          <p>開発用環境の中でさらにクレデンシャルが隠せていれば、盗めるものはかなり限られてくる。標的型で「ソースコードを盗む」自体が目的にでもなっていれば別だが、ばらまき型のサプライチェーン攻撃を受けて発生する被害は、最小限に抑えられると考えられるだろう。
+          <p>もちろん、コマンドのインストールや実行自体を細かく Docker でくるんだり、Deno のように権限を指定できるサンドボックス環境で実行したりと、他の選択肢もある。
+          <p>しかし、「一個一個気をつける」という運用は、認知の負荷が上がっていくだけで、人間には向かない。
+          <p>まるっと Dev Container を用意し、最初に細かな設定に気を使ったら、あとは「開発作業はこの中でやる」「余計なファイルを持ち込んだり、ディレクトリをマウントしない」といったルールの方が運用負荷も低いだろう。特に VSCode を使っているなら、立ち上げるワークスペースが変わるだけで、かなり透過的に実現できるはずだ。
+          <p>Mac を使う多くの開発者は、brew ベースで開発環境を整えるような運用をしていると思う。筆者もそうだ。
+          <p>これ自体がリスクのある行為だったことを認め、あらゆる開発を Dev Container に移行するように筆者自身もやっていきたいと思っている。一個一個を Dev Container にするのは面倒なので、何�非常に重要な問題であり、自己責任でそれを行う必要がある。
+        <p>基本的には、「自分が被災して全てを失っても、なんとか取り戻せるようにバックアップを考える」ことになり、これはちゃんと考えると難しい問題だ。
+        <p>それについては、個人的にずっと取り組んでおり、別エントリにまとめているため、そちらに譲る。
         <ul>
           <li>
-            1Password Business 運用ガイド素案 - Google ドキュメント
+            &quot;Less Password&quot; 時代のアカウント防災訓練 | blog.jxck.io
             <ul>
-              <li><a href="https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/" target=_blank>https://docs.google.com/document/d/1CZ5xdOz2IRHXRKVzcUZG-d4wQmlexBet8_Iee_EJlmw/</a>
+              <li><a href="https://blog.jxck.io/entries/2025-01-27/account-recovery.html">https://blog.jxck.io/entries/2025-01-27/account-recovery.html</a>
             </ul>
           </li>
         </ul>
+        <p>なお、Secret Key の値は更新することが可能だ。物理的に保管を考える場合は、逆に Secret Key を更新しないように気をつける必要もある。
+        <p>しかし、ビジネスアカウントを持っていると、ここも少し楽になるため、話は変わる。
       </section>
       <section>
-        <h2 id="1password-の設計思想"><a href="#1password-の設計思想">1Password の設計思想</a></h2>
-        <p>組織に展開するにあたって、特に注目すべき点は、「<em>1Password の設計思想</em>」だ。
-        <p>1Password は Password Manager であるため、そのアカウント管理は、通常の Web サービスに作るアカウントの管理などとは異なる。
-        <p>それをチームで使用する場合、管理者およびチームメンバーはどのように運用すればよいのか、何に気をつけるべきなのか、などは「<em>1Password がどのような設計思想で作られているか</em>」を理解していないと、適切に運用できないだろう。
-        <p>この設計思想を誤って解釈した運用ルールなどを管理者が策定してしまうと、組織の全ユーザが使いにくい運用を強いられ、結果として全体の安全性が毀損される可能性もある。
-        <p>このドキュメントでは、そのあたりを踏まえた上で、例えば以下のようなガイドも含めている。
+        <h2 id="ビジネスアカウントでの-secret-key-管理"><a href="#ビジネスアカウントでの-secret-key-管理">ビジネスアカウントでの Secret Key 管理</a></h2>
+        <p>組織のアカウントにメンバーとして参加している場合は、何かあっても管理者によってリカバリができる。管理者がリカバリを実施すると、そのアカウントのメールに再設定のリンクが送られ、Master Password を再設定すれば、同じメールアドレスのアカウントに再度ログインできる。
+        <p>つまり、Secret Key どころか、Master Password を忘れてしまっても、管理者に問い合わせる方法さえあれば、アカウントはリカバリできるのだ。
+        <p>また、リカバリ時は Secret Key は新しくなるため、リカバリを前提にフローを考えるなら、現在の Secret Key を物理的に保管する運用とは相性が悪くなる。
+        <p>したがって、メンバーは Secret Key を保管せず、リカバリが必要なときだけ管理者に依頼するという運用を取るのが、最も安全性が高いと言えるだろう。Emergency Kit のように雑に管理されるとリスクになるものは、最初から発行しないように設定することもできる。
+        <p>
+          <picture>
+            <source type=image/avif srcset=no-emergency-kit.avif?260421_002105>
+            <source type=image/webp srcset=no-emergency-kit.webp?260421_002105>
+            <img loading=lazy decoding=async src=no-emergency-kit.png?260309_235641 alt="Emergency Kit は発行しない" width=489 height=146>
+          </picture>
+        </p>
+        <p>そこで、ビジネスアカウントでは、メンバーには以下のような運用をさせる。
         <ul>
-          <li>Master Password はどう作るか
-          <li>Secret Key はどう守るか
-          <li>Group/Vault はどう設計するか
-          <li>etc
+          <li>新しくログインする場合は、ログイン済みの 1Password で Secret Key を確認する
+          <li>Secret Key は 1Password で確認し、そこ以外に保管しない
+          <li>Emergency Kit も発行しない
+          <li>ログインできなくなったら、管理者にリカバリを依頼する
         </ul>
-        <p>もちろん、公式のドキュメントがあれば引用しつつ、細かい部分は筆者の解釈も多い。つまり、間違っている可能性もある。
       </section>
       <section>
-        <h2 id="注意"><a href="#注意">注意</a></h2>
-        <p>このドキュメントは公式のものではなく、部外者の個人が自分のプランで検証したものである。記載している内容が間違っていたり、1Password 公式の推奨とズレている箇所もあるだろう。
-        <p>それに留意した範囲であれば、自由に複製し、内部資料などに役立ててもらって構わない。ただし、発生するあらゆる事象は自己責任とし、あくまで参考に留め、重要な部分は各自検証してから展開してほしい。
-        <p>なお、筆者は 1Password と利害関係があるわけではなく、単なる 1Password の利用者だ。昨今のフィッシング詐欺や、サプライチェーン攻撃の対策として、パスワードマネージャの利用を啓蒙する際、必然的に使っている 1Password を紹介することになる。しかし、それを差し引いても 1Password は機能も設計もよくできているため、積極的に勧めていた。
-        <p>ところが、それは個人が契約した Personal プランの中で、個人のクレデンシャルをどう管理するかといった部分が中心だった。今回しっかりと Business プランを検証したところ、このサービスも組織で展開する上で必要なものが十分に揃っており、非常に使いやすいと感じている。
-        <p>他のベンダとの Single Sign-On 連携といった、エンタープライズ用途で検証ができていない部分はあるが、基本的に「どんな組織でも共通する運用」については、ある程度カバーしていると考えている。ここから先は、組織の事情に応じて考えることになるだろう。
-      </section>
-      <section>
-        <h2 id="重要トピックの          <ol>
+        <h2 id="ビジネスアカウントの管理者の-secret-key-管理"><a href="#ビジネスアカウントの管理者の-secret-key-管理">ビジネスアカウントの管理者の Secret Key 管理</a></h2>
+        <p>ところが、管理者はそうはいかない。管理者が Secret Key を失っても、リカバリをしてくれる人がいないからだ。
+        <p>管理者が 1 人で、そのアカウントをロストすると、組織全体の管理ができなくなる。したがって、まずは管理グループに複数の管理者を追加し、誰かがロストしても他の管理者がリカバリできるように多重化しておく必要が�          <ol>
               <li><a href="#intro">Intro</a>
               <li><a href="#ssh-key-item">SSH Key Item</a>
               <li><a href="#ssh-agent">SSH Agent</a>
@@ -2165,43 +2151,4 @@ Sec-GPC: 1</code></pre>
         <p>トラッキングスクリプトなどを無効にする場合は、この判定を利用することができる。
         <pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e" tabindex="0" data-code="js"><code translate="no"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (navigator.globalPrivacyControl </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">===</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">) {</span></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D">  // opt-out していないため実行</span></span>
-<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  a」とか「新しい話をするべきだ」という話になりがちですが、気にする必要はありません。
-        <p>Web も歴史が長くなってきたので、特に最近 Web 開発に参入するような若手は、「過去の経緯がわからないと付いていけない話がある」と、むしろ困っていることが多くなりました。
-        <p>モノの本を開いても、「Tim Berners-Lee が Web を作った」というお決まりの節だけ充実していて、そこから近年までがすっぽり抜け落ちているものがほとんどです。
-        <p>そこからどうやって今の Web に至るのか、人生を通して見てきたみなさんが当たり前に知っていることを、今の若手~中堅のエンジニアは、全く知りません。
-        <p>過去の情報は思った以上に消えていくので、サルベージも難しく、むしろ「当時のことを知っている人に話を聞きたい」という趣旨の勉強会が企画されたりもしています。
-        <p>昔の話をちゃんと聞ける機会は、それだけで貴重なんです。
-        <p>また、最近はどこに行っても、最終的には AI の話になり、登壇者が「自分は AI を使いこなしてる」と主張をはじめるたびに、「あーまたか」とみんなうんざりしています。
-        <p>「今は AI があるからこう」というだいたい想像通りの内容や、「これから AI が進歩していけばこう」というタラレバ合戦を聞かされるのも、みんな飽きています。
-        <p>今回は会自体が W3C Japan の 30 周年を記念する場であり、参加者はこの 30 年の Web について話が聞けると期待しています。
-        <p>つまり、モデレータとしての自分の仕事は、みなさんから「そういう話」を代表して引き出すことだと自負しています。
-        <p>以上を踏まえて、みなさんには当日 4 つの質問を軸に、お話を聞いていけたらと思っています。
-        <ul>
-          <li>「Web がキャズムを超えたな」と思った瞬間
-          <li>「Web があってよかったな」と思った瞬間
-          <li>「このままじゃ Web やばいかもな」と思った瞬間
-          <li>「Web にまだ足りてない」と思うもの
-        </ul>
-        <p>特に 1~3 は、みなさんが Web に携わってきた中での体験を交えてお聞きしたいので、なんとなく思い出しておいて頂けると嬉しいです。話が盛り上がったら時間はあっという間にすぎるため、「話したい順」に話して頂いて結構です。
-        <p>それ以外の準備は一切不要です。
-        <p>当日はよろしくお願いいたします。
-        <p>Jxck
-      </section>
-      <section>
-        <h2 id="outro"><a href="#outro">Outro</a></h2>
-        <p>思ったような方向には行かないだろうことはわかっていたため、その前提で「好きなように話して欲しい」としていた点で、かなり想定した方向には行けたと思う。
-        <ul>
-          <li>
-            Web の 30 年を振り返る パネルディスカッション | ドクセル
-            <ul>
-              <li><a href="https://www.docswell.com/s/jxck/KL384Q-web-together" target=_blank>https://www.docswell.com/s/jxck/KL384Q-web-together</a>
-            </ul>
-          </li>
-        </ul>
-        <p>その中で、いくつか筆者の思っていた話も差し込めたし、何よりも、筆者がずっとテーマとしている「Web とは何か」について、村井先生がほぼ同じ考えを持っていたことを確認できたのが、大きな収穫だった。
-        <ul>
-          <li>
-            Web とは何か | blog.jxck.io
-            <ul>
-              <li><a href="https://blog.jxck.io/entries/2025-11-19/web.html">https://blog.jxck.io/entries/2025-11-19/web.html</a>
- 
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">  a
