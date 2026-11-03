@@ -283,8 +283,7 @@ function version(src: string): string {
  * render template with context
  */
 async function renderFile(template: string, context: any): Promise<string> {
-  context.filename = template
-  return ejs.render(await readFile(template), context)
+  return ejs.render(await readFile(template), context, { filename: template })
 }
 
 interface Param {
@@ -703,9 +702,8 @@ async function blog(file: string): Promise<void> {
     hsc,
     version,
     entry,
-    filename: entry_template_file,
   }
-  const result = ejs.render(entry_template, context)
+  const result = ejs.render(entry_template, context, { filename: entry_template_file })
   await overWriteFile(context.entry.target, result)
 
   const meta: BlogMeta = {
@@ -872,9 +870,8 @@ async function podcast(files: string[]): Promise<void> {
       hsc,
       version,
       episode,
-      filename: podcast_template_file,
     }
-    const result = ejs.render(podcast_template, context)
+    const result = ejs.render(podcast_template, context, { filename: podcast_template_file })
     await overWriteFile(episode.target, result)
   }
 
