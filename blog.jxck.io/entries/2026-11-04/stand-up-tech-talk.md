@@ -1,4 +1,4 @@
-# Stand-Up Tech Talk: エコシステム三部作
+# [talk] Stand-Up Tech Talk: エコシステム三部作
 
 ## Intro
 
