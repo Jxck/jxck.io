@@ -27,9 +27,18 @@ begin
     STDOUT.print "Status: 400 Bad Request\n\n"
     exit(0)
   else
+    begin
+      parsed = JSON.parse(body)
+    rescue JSON::ParserError => err
+      # JSON でない本文はクライアント起因なので 400 を返す
+      STDERR.puts "[reporting.cgi] invalid json: #{err.message.lines.first.to_s.strip[0, 100]}"
+      STDOUT.print "Status: 400 Bad Request\n\n"
+      exit(0)
+    end
+
     date = Time.now.iso8601
     addr = ENV["REMOTE_ADDR"]
-    json = {body: JSON.parse(body), header: header, date: date, addr: addr}
+    json = {body: parsed, header: header, date: date, addr: addr}
     append(FILE, JSON.fast_generate(json))
     STDOUT.print "Status: 201 Created\n\n"
   end
