@@ -69,7 +69,7 @@ GMO の一件で非常に話題になった「能動的サイバー防御」
 
 そして、作られた法律が「**サイバー対処能力強化法**」と呼ばれるものだ。
 
-![みんなで備えよう。新・サイバー防御、はじまる](https://www.cas.go.jp/jp/seisaku/cyber_anzen_hosyo_torikumi/images/leaflet.jpg)
+![みんなで備えよう。新・サイバー防御、はじまる](active-cyber-defence.png#517x731)
 
 - サイバー安全保障に関する取組(能動的サイバー防御の実現に向けた検討など)|内閣官房ホームページ
   - https://www.cas.go.jp/jp/seisaku/cyber_anzen_hosyo_torikumi/index.html
