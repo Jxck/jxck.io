@@ -41,12 +41,12 @@
 
   <meta name=author              content=Jxck>
   <meta name=description         content="">
-  <meta name=keywords            content="">
+  <meta name=keywords            content="security">
   <meta name=theme-color         content=#000000>
 
   <meta property=og:type         content=article>
   <meta property=og:url          content=https://blog.jxck.io/entries/2026-11-19/cyber-security-emergency-package.html>
-  <meta property=og:title        content="まとめ | blog.jxck.io">
+  <meta property=og:title        content="「サイバーセキュリティ緊急対策パッケージ」の中身 | blog.jxck.io">
   <meta property=og:site_name    content=blog.jxck.io>
   <meta property=og:description  content="">
   <meta property=og:image        content=https://blog.jxck.io/assets/img/jxck.600x600.png>
@@ -63,7 +63,7 @@
       "@type":"WebPage",
       "@id":"https://blog.jxck.io/entries/2026-11-19/cyber-security-emergency-package.html"
     },
-    "headline": "まとめ | blog.jxck.io",
+    "headline": "「サイバーセキュリティ緊急対策パッケージ」の中身 | blog.jxck.io",
     "image": [
       "https://www.jxck.io/assets/img/jxck.png",
       "https://logo.jxck.io/jxck.1200x1200.png"
@@ -89,7 +89,7 @@
   }
   </script>
 
-  <title>まとめ | blog.jxck.io</title>
+  <title>「サイバーセキュリティ緊急対策パッケージ」の中身 | blog.jxck.io</title>
   <link rel=stylesheet property=stylesheet type=text/css href=https://www.jxck.io/assets/css/body.css?260310_182656>
 </head>
 <body>
@@ -97,12 +97,12 @@
   <header>
     <nav>
       <ul>
-        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_141212   title=blog   alt="blog logo" class=logo></a>
+        <li><a href=https://blog.jxck.io      ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/blog.svg?260908_142647   title=blog   alt="blog logo" class=logo></a>
         <li><a href=/search                   ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/search.svg?190421_130410 title=search alt=search></a>
         <li><a href=.                         ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/up.svg?160831_002319     title=up     alt="move to parent directory"></a>
         <li><a href=/feeds/atom.xml           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/rss.svg?160227_124312    title=rss    alt="rss feed"></a>
         <li><a href=https://jxck.io/humans.txt><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/humans.svg?160831_002319 title=humans alt=huamns.txt></a>
-        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_140034   title=jxck   alt="jxck logo" class=logo></a>
+        <li><a href=https://jxck.io           ><img width=30 height=30 loading=eager src=https://www.jxck.io/assets/img/jxck.svg?260908_142647   title=jxck   alt="jxck logo" class=logo></a>
       </ul>
     </nav>
   </header>
@@ -119,6 +119,7 @@
         <dd>
           <nav class=tags>
             <ul>
+              <li><a href="/tags#security">security</a>
             </ul>
           </nav>
         </dd>
@@ -130,7 +131,19 @@
           <nav id=toc popover=manual>
             <h2>ToC</h2>
             <button popovertarget="toc" popovertargetaction="hide">❌</button>
-            <li><a href="">まとめ</a>
+            <ol>
+              <li><a href="#サイバーセキュリティに関する関係閣僚会議">サイバーセキュリティに関する関係閣僚会議</a>
+              <li><a href="#サイバー対応特設サイト">サイバー対応特設サイト</a>
+              <li><a href="#パッケージ本体">パッケージ本体</a>
+              <ol>
+                <li><a href="#1.-ai-も活用した基本的な対策の徹底">1. AI も活用した基本的な対策の徹底</a>
+                <li><a href="#2.-情報収集・集約捜査・分析体制の強化">2. 情報収集・集約、捜査・分析体制の強化</a>
+                <li><a href="#3.-サイバー攻撃への対処の戦略的な実施">3. サイバー攻撃への対処の戦略的な実施</a>
+                <li><a href="#4.-被害者支援・被害拡大防止策の強化">4. 被害者支援・被害拡大防止策の強化</a>
+              </ol>
+              <li><a href="#雑感">雑感</a>
+              <li><a href="#まとめ">まとめ</a>
+            </ol>
           </nav>
         </dd>
       </div>
@@ -143,203 +156,203 @@
       <p>昨今の漏洩ラッシュを受け、高市総理が「緊急対策パッケージ」の作成を 10/26 の関係閣僚会議で指示し、それが 11/6 に公開された。
       <p>内容を解説する。
       <p>この記事は、<strong>サイバーセキュリティアドベントカレンダー</strong> 2 日目である。
-    </article>
-    <article>
-      <h1><a href="">サイバーセキュリティに関する関係閣僚会議</a></h1>
-      <p>10/26 に開催された会議で、高市総理がパッケージの取りまとめを指示した。
-      <blockquote cite="https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html">
-        <p>来週中を目途に、政府としての『緊急対策パッケージ』を取りまとめます。
-        <p>各大臣は、必要な対策について、財政措置を含め早急に検討・調整を進めて下さい。
-        <p>とにかく、政府の総力を結集して、取組を加速してまいりましょう。以上です。
-        <p>
-        </p>
-        <p>&mdash; <cite><a href="https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html" target=_blank>https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html</a></cite>
-      </blockquote>
-      <p>そして、11/6 に開催された会議でそれが決定された。
-      <blockquote cite="https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html">
-        <p>本日出席している全ての閣僚が知恵を絞って、…『緊急対策パッケージ』を策定していただきました。
-        <p>『パッケージ』は … ４つの柱からなります。今朝の閣議におきまして、直ちに必要となる「約１００億円」の予備費を措置しました…
-        <p>
-        </p>
-        <p>&mdash; <cite><a href="https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html" target=_blank>https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html</a></cite>
-      </blockquote>
-      <p>指示通り翌週中に出たのだから、この内容をよくまとめきったなと思う。
-      <p>眠れなかった人もたくさんいただろう。
-      <p>そして、ここに 100 億円の予算が予備費から割り当てられた。台風やコロナと同じ立て付けだ。
-      <p>多いのか少ないのかよくわからないが、内訳は財務省から公表されている。
-      <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
-      <figure>
-        <figcaption>予備費予算割り当て</figcaption>
-        <table>
-          <thead>
-            <tr>
-              <th class=align-left>割当</th>
-              <th class=align-left>内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class=align-left>41 億</td>
-              <td class=align-left>警察におけるサイバーセキュリティ対策のための資機材の整備</td>
-            </tr>
-            <tr>
-              <td class=align-left>38 億</td>
-              <td class=align-left>デジタル庁システムのセキュリティ強化</td>
-            </tr>
-            <tr>
-              <td class=align-left>20 億</td>
-              <td class=align-left>政府機関等の重要システムにおける AI を活用した脆弱性の点検</td>
-            </tr>
-          </tbody>
-        </table>
-      </figure>
-      <ul>
-        <li>
-          片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和 8 年 11 月 6 日(金曜日)) : 財務省
-          <ul>
-            <li><a href="https://www.mof.go.jp/public_relations/conference/my20261106.html" target=_blank>https://www.mof.go.jp/public_relations/conference/my20261106.html</a>
-          </ul>
-        </li>
-      </ul>
-      <p>国家安全保障は異議が出にくいと思うので、来年以降膨らんでいくんだろう。
-    </article>
-    <article>
-      <h1><a href="">サイバー対応特設サイト</a></h1>
-      <p>サイバー「対策」特設サイトではなく、サイバー「対応」だ。
-      <ul>
-        <li>
-          サイバー対応特設サイト
-          <ul>
-            <li><a href="https://www.cyber.go.jp/tokusetsu/contactpoint_advisory_hub/index.html" target=_blank>https://www.cyber.go.jp/tokusetsu/contactpoint_advisory_hub/index.html</a>
-          </ul>
-        </li>
-      </ul>
-      <p>つまり、被害を未然に防ぐというより、半分は「被害にあった際の連絡窓口リスト」のような作りになっている。
-      <p>では、パッケージの中身を見ていく。
-    </article>
-    <article>
-      <h1><a href="">パッケージ本体</a></h1>
-      <p>本体はこの 2 つである。
-      <ul>
-        <li>
-          サイバーセキュリティ緊急対策パッケージ(概要)(PDF／664KB)
-          <ul>
-            <li><a href="https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure_summary.pdf" target=_blank>https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure_summary.pdf</a>
-          </ul>
-        </li>
-        <li>
-          サイバーセキュリティ緊急対策パッケージ(PDF／533KB)
-          <ul>
-            <li><a href="https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure.pdf" target=_blank>https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure.pdf</a>
-          </ul>
-        </li>
-      </ul>
-      <p>4 本の柱で構成されている。
-      <p>
-        <picture>
-          <source type=image/avif srcset=emergency-package.avif?261119_171749>
-          <source type=image/webp srcset=emergency-package.webp?261119_171740>
-          <img loading=lazy decoding=async src=emergency-package.png?261119_171740 alt="緊急対策パッケージ 4 本の柱" width=650 height=198>
-        </picture>
-      </p>
       <section>
-        <h2 id="1.-ai-も活用した基本的な対策の徹底"><a href="#1.-ai-も活用した基本的な対策の徹底">1. AI も活用した基本的な対策の徹底</a></h2>
-        <p>「AI を」ではなく「AI も」である。
-        <p>要するに「<strong>当たり前の対策を、みんなちゃんとやろう</strong>」ということだ。
-        <p>これはセキュリティに限らずだが、当たり前に言われていることができていないサービスは多々ある。
-        <p>この中には「<strong>不要な個人情報は消し、被害を最小限にすべき</strong>」という内容が含まれ、個人情報保護委員会が来年 1 月を目指して「安全管理措置ガイドライン」を改正する旨にも触れられている。
-        <p>これが、最近の「個人情報手放し」の流れともつながっている。
-        <ul>
-          <li>
-            個人情報&quot;手放す&quot;企業続々 「持たないことが抜本的な解決に」 漏えいなくても運用変更も
-            <ul>
-              <li><a href="https://news.ntv.co.jp/category/economy/4524fbcdecaf445bac0d956439508aca" target=_blank>https://news.ntv.co.jp/category/economy/4524fbcdecaf445bac0d956439508aca</a>
-            </ul>
-          </li>
-        </ul>
-        <p>券面画像を集める代わりに、JPKI を使った本人確認への移行が、これによって加速するだろう。デジ庁には頑張ってほしい。
-        <p>また、IPA が「<strong>トップガン人材チーム</strong>」を 11 月中に立ち上げるとある。
-        <blockquote>
-          <p>① トップガン人材チームの立上げ
-          <p>独立行政法人情報処理推進機構(IPA)において高性能 AI の活用環境を整備するとともに、
-          <p>模擬的な攻撃テスト(ペネトレーションテスト)を実施し積極的なセキュリティ対策強化を行う
-          <p>トップガン人材などからなるチームについて、人材の信頼性確保にも配慮しつつ 11 月中に立ち上げる。
-          <p>同チームにおいては、自らによる実施とともに、民間企業への支援を担うセキュリティ企業に対し、
-          <p>ペネトレーションテストを行うための人材育成や AI を活用した検証環境の提供に取り組むほか、
-          <p>テストに必要となるツール等の開発・提供も進めていく。【経済産業省】
+        <h2 id="サイバーセキュリティに関する関係閣僚会議"><a href="#サイバーセキュリティに関する関係閣僚会議">サイバーセキュリティに関する関係閣僚会議</a></h2>
+        <p>10/26 に開催された会議で、高市総理がパッケージの取りまとめを指示した。
+        <blockquote cite="https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html">
+          <p>来週中を目途に、政府としての『緊急対策パッケージ』を取りまとめます。
+          <p>各大臣は、必要な対策について、財政措置を含め早急に検討・調整を進めて下さい。
+          <p>とにかく、政府の総力を結集して、取組を加速してまいりましょう。以上です。
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html" target=_blank>https://www.kantei.go.jp/jp/105/actions/202610/26kaigi_cyber.html</a></cite>
         </blockquote>
-        <p>ペンテストツールを開発し、それが使える人材を集めて、民間へのサポートも行うようだ。また、政府システムの脆弱性検証を前倒しで実施することになった。このあたりにも、トップガン人材チームが対応することになるんだろうか。
-        <p>地方公共団体へのサポートは総務省の担当である。このへんが縦割りだが、まあ縦に割れていなかったら手に余っていただろう。
-        <p>そんな AI まかせでいいのか、という突っ込みを予防するために、AISI(AI Safety Institute) を入れているように見える。
-        <p>要するに、AI そのものが安全なのか、信頼できるのかも調査しないと、例えば「政府システムをスキャンしたら AI に乗っ取られました」、ではすまないという突っ込みに対応できない。
-        <p>また、AI を用いた、もしくは AI が自律的に至ってしまう攻撃の実態も、把握が必要だろう。
-      </section>
-      <section>
-        <h2 id="2.-情報収集・集約捜査・分析体制の強化"><a href="#2.-情報収集・集約捜査・分析体制の強化">2. 情報収集・集約、捜査・分析体制の強化</a></h2>
-        <p>脆弱性や攻撃の情報を横展開できる体制が必要だという話である。
-        <p>このあたりは国家サイバー統括室が旗を振ることになる。
-        <p>情報の収集に関しては、セキュリティ・クラウドベンダをサイバー協議会に入れて、そこから吸い上げる。
-        <p>被害事案は、前回話したサイバー対処能力強化法で吸い上げているし、他の民間の情報もサイバー統括室が集約。
-        <p>分析系は、IPA(経産省) と NICT(総務省) あたりが連携。被害の捜査は警察庁。
-      </section>
-      <section>
-        <h2 id="3.-サイバー攻撃への対処の戦略的な実施"><a href="#3.-サイバー攻撃への対処の戦略的な実施">3. サイバー攻撃への対処の戦略的な実施</a></h2>
-        <p>要するに、前回触れた「能動的サイバー防御」を積極的にやっていく、という話である。
-        <p>潜在的な被害の恐れがあれば事前に対応するし、支援が必要な場合は専門チームを派遣する。
-        <p>事業者には「脅威ハンティング」ができるように、ツールやマニュアルを提供するらしい。何だろうか。
-        <p>面白いのは、色々と新設されるチームである。
-        <p>攻撃情勢を分析して、APT などを見つけたら、被害の恐れがある組織に助言する「<strong>アウトリーチ・チーム(仮称)</strong>」を 11 月中に作る。被害を未然に防ぐ取り組みの 1 つだ。
-        <p>そして、政府の支援が必要な場合に派遣する官民混合の専門チーム「<strong>官民サイバー救援隊(仮称)</strong>」を、今年度中に設置するらしい。
-        <p>その中で、国の安全保障に関わるような事案には、サイバー統括室や警察・自衛隊が組んだ「<strong>ジョイント・レスポンス・チーム(仮称)</strong>」が派遣される。
-        <p>警察が事案の捜査をするにあたって、被害時に初動でログなどを保全する「<strong>ファスト・フォレンジック・フォース(仮称)</strong>」を新設する。
-        <p>そして、中小企業の被害には「<strong>サイバーセキュリティお助け隊サービス</strong>」が出て(これはもともとあるらしい)、ここに復旧やバックアップの支援を追加するという。これは経産省の担当である。
-        <p>あと、同盟国・同志国との「<strong>顔の見える関係</strong>」を構築するらしい。国際会議や共同訓練で関係を繋いで、共同捜査などに繋げる。人間に残された最後のプロパティは顔なのだなと思う。
-        <p>色々な名前で似たようなチームができ、各チームの実際の動きなどはまだよくわからない。
-        <p>一般的な Web サービスの事業者にいるなら、お世話になる可能性が高いのはお助け隊だろう。
-      </section>
-      <section>
-        <h2 id="4.-被害者支援・被害拡大防止策の強化"><a href="#4.-被害者支援・被害拡大防止策の強化">4. 被害者支援・被害拡大防止策の強化</a></h2>
-        <p>被害にあった人を「ひとりにしない」という、窓口強化系である。
+        <p>そして、11/6 に開催された会議でそれが決定された。
+        <blockquote cite="https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html">
+          <p>本日出席している全ての閣僚が知恵を絞って、…『緊急対策パッケージ』を策定していただきました。
+          <p>『パッケージ』は … ４つの柱からなります。今朝の閣議におきまして、直ちに必要となる「約１００億円」の予備費を措置しました…
+          <p>
+          </p>
+          <p>&mdash; <cite><a href="https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html" target=_blank>https://www.kantei.go.jp/jp/105/actions/202611/06kaigi_cyber.html</a></cite>
+        </blockquote>
+        <p>指示通り翌週中に出たのだから、この内容をよくまとめきったなと思う。
+        <p>眠れなかった人もたくさんいただろう。
+        <p>そして、ここに 100 億円の予算が予備費から割り当てられた。台風やコロナと同じ立て付けだ。
+        <p>多いのか少ないのかよくわからないが、内訳は財務省から公表されている。
+        <link rel=stylesheet property=stylesheet type=text/css href="https://www.jxck.io/assets/css/table.css?260211_230947">
+        <figure>
+          <figcaption>予備費予算割り当て</figcaption>
+          <table>
+            <thead>
+              <tr>
+                <th class=align-left>割当</th>
+                <th class=align-left>内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=align-left>41 億</td>
+                <td class=align-left>警察におけるサイバーセキュリティ対策のための資機材の整備</td>
+              </tr>
+              <tr>
+                <td class=align-left>38 億</td>
+                <td class=align-left>デジタル庁システムのセキュリティ強化</td>
+              </tr>
+              <tr>
+                <td class=align-left>20 億</td>
+                <td class=align-left>政府機関等の重要システムにおける AI を活用した脆弱性の点検</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <ul>
           <li>
-            事業者向け
+            片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和 8 年 11 月 6 日(金曜日)) : 財務省
             <ul>
-              <li>警察の法人被害窓口
-              <li>IPA・よろず支援拠点の無料相談
-              <li>所管省庁の分野別窓口を設置
-            </ul>
-          </li>
-          <li>
-            個人向け
-            <ul>
-              <li>地方公共団体の消費生活センターが総合的な入口
-              <li>個人情報流出の被害などは、個別に窓口を案内
+              <li><a href="https://www.mof.go.jp/public_relations/conference/my20261106.html" target=_blank>https://www.mof.go.jp/public_relations/conference/my20261106.html</a>
             </ul>
           </li>
         </ul>
-        <p>あとは、国家サイバー統括室が各種情報を発信しつつ、関係各所と連携する。
-        <p>この「サイバー対応特設サイト」も、その一環で 10/30 に開設。
+        <p>国家安全保障は異議が出にくいと思うので、来年以降膨らんでいくんだろう。
       </section>
-    </article>
-    <article>
-      <h1><a href="">雑感</a></h1>
-      <p>AI が云々や Dark Web が云々と言っているが、実際に発生している攻撃自体を冷静に解析すれば、それはそうなるだろうという設計ミスや、アップデートされていない実装なども目立つ。
-      <p>露見している事案は、AI にしかできなかったであろう、Hugging Face のようなウルトラ C ばかりではないのだ。
-      <p>そういう意味で「当たり前のことを、当たり前にやろう」という点を最初に置いたのは、非常に好感が持てる。
-      <p>また、セキュリティ人材を抱えていないサービスに対して、適切に人材を派遣できるように、またそれらの人材が作業上バッティングしないように、チーム構成を明確にしようとしている点もうかがえる。実際に、新設されるチームが、どういう編成で、どういうスキルを持ち、何をどこまでやってくれるのかは、全くわからないが、それが整備されようとしていることにメリットはあるだろう。
-      <p>もっとも大きいのは、おそらく「窓口」の整備なんだろう。
-      <p>「なにか攻撃されてる、どうしたらいいかわからない」となり、右往左往するサービスもたくさんあるだろう。
-      <p>公的機関に相談できる窓口が設置され、自分たちが対応できるリソースや知識を持っていなくても、とりあえず泣きつける場所があるというのは、公益的には重要と思う。
-      <p>これまでは、脆弱性は経産省(IPA)、通信系は総務省(NICT)と管轄が割れていたし、警察と自衛隊もそれぞれでサイバー攻撃対策に取り組んでいた。今は、それらをすべて跨いだ事案が頻発している。
-      <p>国家サイバー統括室の設立は、これらを全てまとめることで、「国家安全保障のサイバー分野」のために機能させる旗振り役をはっきりさせた。
-      <p>縦割りではあるが、縦に割れて分業していなかったら、対策しきれない規模になっているのも事実だ。
-    </article>
-    <article>
-      <h1><a href="">まとめ</a></h1>
-      <p>これが、「緊急対策パッケージ」の名のもとに 1 週間程度で整備されたと思うと、中の人は結構大変だったんだろうなと思う。
-      <p>調整しかしていないが、調整できなければ国家がどれだけ予算をつけても、有効には機能しない。
-      <p>来年度以降は、立ち上がった仮チームも含めて通常の運用に乗り、予算も補正されていくのだろう。
-      <p>そのころ、この攻撃の流れがどうなっているのかは、全く予想できないが、今やる価値のあるパッケージ作成だったように思う。
+      <section>
+        <h2 id="サイバー対応特設サイト"><a href="#サイバー対応特設サイト">サイバー対応特設サイト</a></h2>
+        <p>サイバー「対策」特設サイトではなく、サイバー「対応」だ。
+        <ul>
+          <li>
+            サイバー対応特設サイト
+            <ul>
+              <li><a href="https://www.cyber.go.jp/tokusetsu/contactpoint_advisory_hub/index.html" target=_blank>https://www.cyber.go.jp/tokusetsu/contactpoint_advisory_hub/index.html</a>
+            </ul>
+          </li>
+        </ul>
+        <p>つまり、被害を未然に防ぐというより、半分は「被害にあった際の連絡窓口リスト」のような作りになっている。
+        <p>では、パッケージの中身を見ていく。
+      </section>
+      <section>
+        <h2 id="パッケージ本体"><a href="#パッケージ本体">パッケージ本体</a></h2>
+        <p>本体はこの 2 つである。
+        <ul>
+          <li>
+            サイバーセキュリティ緊急対策パッケージ(概要)(PDF／664KB)
+            <ul>
+              <li><a href="https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure_summary.pdf" target=_blank>https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure_summary.pdf</a>
+            </ul>
+          </li>
+          <li>
+            サイバーセキュリティ緊急対策パッケージ(PDF／533KB)
+            <ul>
+              <li><a href="https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure.pdf" target=_blank>https://www.cas.go.jp/jp/seisaku/cybersecurity_kakuryokaigi/pdf/countermeasure.pdf</a>
+            </ul>
+          </li>
+        </ul>
+        <p>4 本の柱で構成されている。
+        <p>
+          <picture>
+            <source type=image/avif srcset=emergency-package.avif?261119_172054>
+            <source type=image/webp srcset=emergency-package.webp?261119_171940>
+            <img loading=lazy decoding=async src=emergency-package.png?261119_171940 alt="緊急対策パッケージ 4 本の柱" width=650 height=198>
+          </picture>
+        </p>
+        <section>
+          <h3 id="1.-ai-も活用した基本的な対策の徹底"><a href="#1.-ai-も活用した基本的な対策の徹底">1. AI も活用した基本的な対策の徹底</a></h3>
+          <p>「AI を」ではなく「AI も」である。
+          <p>要するに「<strong>当たり前の対策を、みんなちゃんとやろう</strong>」ということだ。
+          <p>これはセキュリティに限らずだが、当たり前に言われていることができていないサービスは多々ある。
+          <p>この中には「<strong>不要な個人情報は消し、被害を最小限にすべき</strong>」という内容が含まれ、個人情報保護委員会が来年 1 月を目指して「安全管理措置ガイドライン」を改正する旨にも触れられている。
+          <p>これが、最近の「個人情報手放し」の流れともつながっている。
+          <ul>
+            <li>
+              個人情報&quot;手放す&quot;企業続々 「持たないことが抜本的な解決に」 漏えいなくても運用変更も
+              <ul>
+                <li><a href="https://news.ntv.co.jp/category/economy/4524fbcdecaf445bac0d956439508aca" target=_blank>https://news.ntv.co.jp/category/economy/4524fbcdecaf445bac0d956439508aca</a>
+              </ul>
+            </li>
+          </ul>
+          <p>券面画像を集める代わりに、JPKI を使った本人確認への移行が、これによって加速するだろう。デジ庁には頑張ってほしい。
+          <p>また、IPA が「<strong>トップガン人材チーム</strong>」を 11 月中に立ち上げるとある。
+          <blockquote>
+            <p>① トップガン人材チームの立上げ
+            <p>独立行政法人情報処理推進機構(IPA)において高性能 AI の活用環境を整備するとともに、
+            <p>模擬的な攻撃テスト(ペネトレーションテスト)を実施し積極的なセキュリティ対策強化を行う
+            <p>トップガン人材などからなるチームについて、人材の信頼性確保にも配慮しつつ 11 月中に立ち上げる。
+            <p>同チームにおいては、自らによる実施とともに、民間企業への支援を担うセキュリティ企業に対し、
+            <p>ペネトレーションテストを行うための人材育成や AI を活用した検証環境の提供に取り組むほか、
+            <p>テストに必要となるツール等の開発・提供も進めていく。【経済産業省】
+          </blockquote>
+          <p>ペンテストツールを開発し、それが使える人材を集めて、民間へのサポートも行うようだ。また、政府システムの脆弱性検証を前倒しで実施することになった。このあたりにも、トップガン人材チームが対応することになるんだろうか。
+          <p>地方公共団体へのサポートは総務省の担当である。このへんが縦割りだが、まあ縦に割れていなかったら手に余っていただろう。
+          <p>そんな AI まかせでいいのか、という突っ込みを予防するために、AISI(AI Safety Institute) を入れているように見える。
+          <p>要するに、AI そのものが安全なのか、信頼できるのかも調査しないと、例えば「政府システムをスキャンしたら AI に乗っ取られました」、ではすまないという突っ込みに対応できない。
+          <p>また、AI を用いた、もしくは AI が自律的に至ってしまう攻撃の実態も、把握が必要だろう。
+        </section>
+        <section>
+          <h3 id="2.-情報収集・集約捜査・分析体制の強化"><a href="#2.-情報収集・集約捜査・分析体制の強化">2. 情報収集・集約、捜査・分析体制の強化</a></h3>
+          <p>脆弱性や攻撃の情報を横展開できる体制が必要だという話である。
+          <p>このあたりは国家サイバー統括室が旗を振ることになる。
+          <p>情報の収集に関しては、セキュリティ・クラウドベンダをサイバー協議会に入れて、そこから吸い上げる。
+          <p>被害事案は、前回話したサイバー対処能力強化法で吸い上げているし、他の民間の情報もサイバー統括室が集約。
+          <p>分析系は、IPA(経産省) と NICT(総務省) あたりが連携。被害の捜査は警察庁。
+        </section>
+        <section>
+          <h3 id="3.-サイバー攻撃への対処の戦略的な実施"><a href="#3.-サイバー攻撃への対処の戦略的な実施">3. サイバー攻撃への対処の戦略的な実施</a></h3>
+          <p>要するに、前回触れた「能動的サイバー防御」を積極的にやっていく、という話である。
+          <p>潜在的な被害の恐れがあれば事前に対応するし、支援が必要な場合は専門チームを派遣する。
+          <p>事業者には「脅威ハンティング」ができるように、ツールやマニュアルを提供するらしい。何だろうか。
+          <p>面白いのは、色々と新設されるチームである。
+          <p>攻撃情勢を分析して、APT などを見つけたら、被害の恐れがある組織に助言する「<strong>アウトリーチ・チーム(仮称)</strong>」を 11 月中に作る。被害を未然に防ぐ取り組みの 1 つだ。
+          <p>そして、政府の支援が必要な場合に派遣する官民混合の専門チーム「<strong>官民サイバー救援隊(仮称)</strong>」を、今年度中に設置するらしい。
+          <p>その中で、国の安全保障に関わるような事案には、サイバー統括室や警察・自衛隊が組んだ「<strong>ジョイント・レスポンス・チーム(仮称)</strong>」が派遣される。
+          <p>警察が事案の捜査をするにあたって、被害時に初動でログなどを保全する「<strong>ファスト・フォレンジック・フォース(仮称)</strong>」を新設する。
+          <p>そして、中小企業の被害には「<strong>サイバーセキュリティお助け隊サービス</strong>」が出て(これはもともとあるらしい)、ここに復旧やバックアップの支援を追加するという。これは経産省の担当である。
+          <p>あと、同盟国・同志国との「<strong>顔の見える関係</strong>」を構築するらしい。国際会議や共同訓練で関係を繋いで、共同捜査などに繋げる。人間に残された最後のプロパティは顔なのだなと思う。
+          <p>色々な名前で似たようなチームができ、各チームの実際の動きなどはまだよくわからない。
+          <p>一般的な Web サービスの事業者にいるなら、お世話になる可能性が高いのはお助け隊だろう。
+        </section>
+        <section>
+          <h3 id="4.-被害者支援・被害拡大防止策の強化"><a href="#4.-被害者支援・被害拡大防止策の強化">4. 被害者支援・被害拡大防止策の強化</a></h3>
+          <p>被害にあった人を「ひとりにしない」という、窓口強化系である。
+          <ul>
+            <li>
+              事業者向け
+              <ul>
+                <li>警察の法人被害窓口
+                <li>IPA・よろず支援拠点の無料相談
+                <li>所管省庁の分野別窓口を設置
+              </ul>
+            </li>
+            <li>
+              個人向け
+              <ul>
+                <li>地方公共団体の消費生活センターが総合的な入口
+                <li>個人情報流出の被害などは、個別に窓口を案内
+              </ul>
+            </li>
+          </ul>
+          <p>あとは、国家サイバー統括室が各種情報を発信しつつ、関係各所と連携する。
+          <p>この「サイバー対応特設サイト」も、その一環で 10/30 に開設。
+        </section>
+      </section>
+      <section>
+        <h2 id="雑感"><a href="#雑感">雑感</a></h2>
+        <p>AI が云々や Dark Web が云々と言っているが、実際に発生している攻撃自体を冷静に解析すれば、それはそうなるだろうという設計ミスや、アップデートされていない実装なども目立つ。
+        <p>露見している事案は、AI にしかできなかったであろう、Hugging Face のようなウルトラ C ばかりではないのだ。
+        <p>そういう意味で「当たり前のことを、当たり前にやろう」という点を最初に置いたのは、非常に好感が持てる。
+        <p>また、セキュリティ人材を抱えていないサービスに対して、適切に人材を派遣できるように、またそれらの人材が作業上バッティングしないように、チーム構成を明確にしようとしている点もうかがえる。実際に、新設されるチームが、どういう編成で、どういうスキルを持ち、何をどこまでやってくれるのかは、全くわからないが、それが整備されようとしていることにメリットはあるだろう。
+        <p>もっとも大きいのは、おそらく「窓口」の整備なんだろう。
+        <p>「なにか攻撃されてる、どうしたらいいかわからない」となり、右往左往するサービスもたくさんあるだろう。
+        <p>公的機関に相談できる窓口が設置され、自分たちが対応できるリソースや知識を持っていなくても、とりあえず泣きつける場所があるというのは、公益的には重要と思う。
+        <p>これまでは、脆弱性は経産省(IPA)、通信系は総務省(NICT)と管轄が割れていたし、警察と自衛隊もそれぞれでサイバー攻撃対策に取り組んでいた。今は、それらをすべて跨いだ事案が頻発している。
+        <p>国家サイバー統括室の設立は、これらを全てまとめることで、「国家安全保障のサイバー分野」のために機能させる旗振り役をはっきりさせた。
+        <p>縦割りではあるが、縦に割れて分業していなかったら、対策しきれない規模になっているのも事実だ。
+      </section>
+      <section>
+        <h2 id="まとめ"><a href="#まとめ">まとめ</a></h2>
+        <p>これが、「緊急対策パッケージ」の名のもとに 1 週間程度で整備されたと思うと、中の人は結構大変だったんだろうなと思う。
+        <p>調整しかしていないが、調整できなければ国家がどれだけ予算をつけても、有効には機能しない。
+        <p>来年度以降は、立ち上がった仮チームも含めて通常の運用に乗り、予算も補正されていくのだろう。
+        <p>そのころ、この攻撃の流れがどうなっているのかは、全く予想できないが、今やる価値のあるパッケージ作成だったように思う。
+      </section>
     </article>
   </main>
   <hr>
