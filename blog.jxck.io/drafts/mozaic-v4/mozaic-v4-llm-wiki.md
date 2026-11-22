@@ -239,12 +239,12 @@ Home
 │   │   └── ACE (Ashley Claymore)
 │   │       └── → Meetings
 │   └── Families
-<<<<<<< HEAD
-└── Episodes
-    ├── ep214
-    │   └── → Topics / Meetings / Intents / Show notes
-    └── ep174
-        └── → Topics / Intents / Show notes
+├── Episodes
+│   ├── ep214
+│   │   └── → Show note / Intents / Topics / Meetings
+│   └── ep174
+│       └── → Show note / Intents / Topics
+└── Docs
 ```
 
 最大の page は Chrome の Ship 一覧で 932,777 bytes / 31,002 DOM node あるが、390 CSS px の dark theme でも axe 0 件、横 overflow 0 で収まっている。
@@ -294,11 +294,3 @@ LLM に知識を蓄積させる、というと要約を溜めることを想像�
 raw を script で固定し、本文の 1 文ごとに raw の行を claims として記録し、relation に evidence を必須にし、lint と SHACL で逸脱を止める。この gate を揃えて初めて、LLM に書かせた page を信頼して積めるようになった。文体が硬くなったのはその代償で、人向けの出口は次の課題である。
 
 番組で扱った話題が、どの回で、どの出典を根拠に、どう動いたかを辿れる場所として、今後も育てていく。
-=======
-├── Episodes
-│   ├── ep214
-│   │   └── → Show note / Intents / Topics / Meetings
-│   └── ep174
-│       └── → Show note / Intents / Topics
-└── Docs
->>>>>>> bdd76c127 ([draft] up)
