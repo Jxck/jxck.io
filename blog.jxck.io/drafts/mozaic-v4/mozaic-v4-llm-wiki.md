@@ -166,8 +166,13 @@ Home
 │   │   │   ├── Ship
 │   │   │   ├── Prototype & Ship
 │   │   │   ├── Prototype
+│   │   │   ├── Ready for Developer Testing
+│   │   │   ├── Experiment
+│   │   │   ├── Extend Experiment
 │   │   │   ├── Deprecate
+│   │   │   ├── Deprecation Trial
 │   │   │   ├── Remove
+│   │   │   ├── Unship
 │   │   │   ├── PSA
 │   │   │   └── Other
 │   │   └── Topics
@@ -176,8 +181,13 @@ Home
 │   │   │   ├── Ship
 │   │   │   ├── Prototype & Ship
 │   │   │   ├── Prototype
+│   │   │   ├── Ready for Developer Testing
+│   │   │   ├── Experiment
+│   │   │   ├── Extend Experiment
 │   │   │   ├── Deprecate
+│   │   │   ├── Deprecation Trial
 │   │   │   ├── Remove
+│   │   │   ├── Unship
 │   │   │   ├── PSA
 │   │   │   └── Other
 │   │   └── Topics
@@ -194,30 +204,42 @@ Home
 │   │   │               └── → ep174 / Sources
 │   │   ├── Specifications & Proposals [section]
 │   │   ├── Meetings & Events [section]
-│   │   │   └── TPAC 2026 / …
+│   │   │   └── TPAC 2026 / W3C Breakouts Day
 │   │   ├── About W3C
 │   │   └── Related Organizations [section]
 │   │       └── → WHATWG
-│   └── WHATWG
+│   ├── ECMAScript
+│   ├── IETF
+│   └── Other
 ├── Ecosystem
 │   ├── Framework
 │   ├── Library
 │   ├── Toolchain
 │   ├── Runtime
-│   └── …
+│   ├── Bundler
+│   ├── AI / LLM
+│   ├── Services
+│   └── Other
 ├── TC39
 │   ├── Meetings
-│   │   └── 2026-07
-│   │       ├── 2026-07-20
-│   │       ├── 2026-07-21
-│   │       │   └── Topics [section]
-│   │       │       └── → Proposals / Related Episodes
-│   │       └── 2026-07-22
+│   │   ├── 2026-07
+│   │   │   ├── 2026-07-20
+│   │   │   ├── 2026-07-21
+│   │   │   │   └── Topics [section]
+│   │   │   │       └── → Proposals / People / Related Episodes
+│   │   │   └── 2026-07-22
+│   │   └── 2026-09
+│   │       ├── 2026-09-29
+│   │       ├── 2026-09-30
+│   │       └── 2026-10-01
 │   ├── Proposals
 │   │   └── Async Iterator helpers
 │   │       └── → Meeting Topics / Related Episodes
 │   ├── People
+│   │   └── ACE (Ashley Claymore)
+│   │       └── → Meetings
 │   └── Families
+<<<<<<< HEAD
 └── Episodes
     ├── ep214
     │   └── → Topics / Meetings / Intents / Show notes
@@ -272,3 +294,11 @@ LLM に知識を蓄積させる、というと要約を溜めることを想像�
 raw を script で固定し、本文の 1 文ごとに raw の行を claims として記録し、relation に evidence を必須にし、lint と SHACL で逸脱を止める。この gate を揃えて初めて、LLM に書かせた page を信頼して積めるようになった。文体が硬くなったのはその代償で、人向けの出口は次の課題である。
 
 番組で扱った話題が、どの回で、どの出典を根拠に、どう動いたかを辿れる場所として、今後も育てていく。
+=======
+├── Episodes
+│   ├── ep214
+│   │   └── → Show note / Intents / Topics / Meetings
+│   └── ep174
+│       └── → Show note / Intents / Topics
+└── Docs
+>>>>>>> bdd76c127 ([draft] up)
