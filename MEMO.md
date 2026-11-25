@@ -86,9 +86,13 @@ image の記法で video に展開される。
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `make blog` で記事の差分ビルド + `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` まで生成する
-  - これで build 結果をコミットしたら終わり
-  - `make all` は廃止 (引数なしの `make` はエラーになる)。辞書を更新したいときだけ別途 `make dict` を実行する
+- `make` (引数なし) で、以下をまとめて行う
+  - `make mtime`: mtime をコミット時刻へ戻す (pull 直後の不要な再ビルドを防ぐ。未コミットの変更は対象外)
+  - `make blog`: 記事の差分ビルド + `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` まで生成する
+  - `make image`: 画像の webp / avif を生成する
+- build 結果をコミットして push し、VPS で `git pull` して `make` する
+  - `.br` は git 管理外なので、VPS 側でも生成が必要
+- 辞書を更新したいときだけ別途 `make dict` を実行する
 - ビルドの中心は `Makefile` と `.src/build.ts`
 
 
@@ -108,12 +112,11 @@ image の記法で video に展開される。
 - Intro: 必ず最初にくる、これが index ページの見出し、 description 要素、 RSS の概要などに使われる
 - 本文: 以降は普通の markdown で記述
 
-文章には以下のルールを適用、別途自分のコマンドが用意してあるが dotfiles に入ってるのでここには含めない。
+文章には以下のルールを適用する。実装は `.src/markdown/formatter.js` にあり、ビルド時に自動でかかる (`make fmt-blog` で全記事にかけることもできる)。
 
-- 全角記号は半角にする: [singler](https://github.com/Jxck/dotfiles/blob/master/bin/singler)
-- 全角と半角の間はスペース: [spacer](https://github.com/Jxck/dotfiles/blob/master/bin/spacer) (ただし除外するファイルもある)
-- 改行とか細かいルール: [format.rb](https://github.com/Jxck/dotfiles/blob/master/bin/format.rb) (ただし除外するファイルもある)
-- いずれも Makefile に入ってる
+- 全角記号は半角にする (singler)
+- 全角と半角の間はスペース (spacer)
+- 改行、表、リストなどの細かい整形
 
 ただし markdown は以下に注意
 
@@ -154,9 +157,9 @@ $ cwebp -q 40 image.png -o image.webp
 
 ### 圧縮
 
-html/css/js/png/jpeg/svg ファイルは全て圧縮する。
+html/css/js/svg/json/xml などのテキスト系ファイルは全て圧縮する。
 
-ただし webp/rb/md/woff2 などは圧縮しない。
+ただし画像 (png/jpeg/gif/webp/avif)、動画 (mp4/webm)、woff2、rb/sh/md/txt などは圧縮しない。
 
 また、圧縮方式は gz/br であるが、モダンなブラウザはほとんどが br に対応しているため、以下のような方針をとる。
 
@@ -174,15 +177,19 @@ html/css/js/png/jpeg/svg ファイルは全て圧縮する。
 - `make comp` で記事の `.html.dcb` を生成 (辞書は再生成せず既存辞書を使用)
 - 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、 mruby 側では `"entries"` のように quote を含めて比較する
-- 辞書生成・圧縮ツールは `.src/dictionary/`、配信用辞書は `blog.jxck.io/dictionary/entries/` に置く
+- 辞書生成・圧縮は別リポジトリの `cdt` CLI (`cargo install cdt-toolkit`) が担う。`.src/dictionary/` は運用ドキュメントと評価ツール、配信用辞書は `blog.jxck.io/dictionary/entries/` に置く
 - `make clean` は `.br` / `.dcb` / `.dict` を削除、 `make distclean` は全生成物を削除
 
 
 ## podcast
 
-https://github.com/Jxck/jxck.io/tree/main/mozaic.fm
+https://github.com/Jxck/mozaic.fm
 
-基本は blog と同じように作っている。
+2026-08 に別リポジトリへ移行済みで、このリポジトリには podcast のサイトや feed は含まれない。ビルドや配信の手順は移行先の README を正とする。
+
+以下は移行前 (このリポジトリでビルドしていた頃) の記録である。
+
+基本は blog と同じように作っていた。
 
 
 ### basic flow

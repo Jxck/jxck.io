@@ -26,15 +26,22 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 ##########################
 # Aggregate
 ##########################
-# 既定ターゲット: blog の一式 (差分ビルド + 画像 + 圧縮)
+# 既定ターゲット: mtime の正規化 + blog の一式 (差分ビルド + 画像 + 圧縮)
+# pull 直後は git の書き出し順で md や png が生成物より新しくなり、不要な再ビルドが
+# 走るため、先に mtime をコミット時刻へ戻す (未コミットの変更は対象外)
 # 辞書の再生成と h2o reload を伴う make dict だけは明示的に実行する
-all: blog image
+all:
+	$(MAKE) mtime
+	$(MAKE) blog image
 
 # blog の md を formatter にかけて整形
 fmt: fmt-blog
 
 # 全ファイルの mtime を最終コミット時刻に戻す
-mtime: mtime-blog mtime-image mtime-comp
+# labs.jxck.io を除く追跡中の全ファイルを 1 回の呼び出しで処理する
+# (種類ごとにパスを渡して mtime-blog / mtime-image / mtime-comp を呼ぶより速い)
+mtime:
+	@git restore-mtime . ':!labs.jxck.io'
 
 
 ##########################
@@ -54,9 +61,17 @@ mtime-blog:
 	@git restore-mtime $(BLOG_MD)
 
 # blog の差分ビルド (1 つの md から .html と .json を同時に生成)
-./blog.jxck.io/entries/%.html ./blog.jxck.io/entries/%.json: ./blog.jxck.io/entries/%.md
+# 鮮度は .html だけで判定する。本文だけの修正では .json の内容が変わらず、
+# コミット時刻が md より古いままになるため、.json をターゲットにすると
+# make mtime のあと毎回再ビルドされてしまう
+./blog.jxck.io/entries/%.html: ./blog.jxck.io/entries/%.md
 	./.src/markdown/formatter.js $<
 	$(NODE) .src/build.ts blog $<
+
+# .json は .html と同じビルドで生成される副産物
+# ここでは順序だけを保証し、.json が欠けているときだけ作り直す
+$(BLOG_JSON): %.json: %.html
+	@test -e $@ || $(NODE) .src/build.ts blog $*.md
 
 # index.html は @touch で mtime を進め blog_index の再実行を防ぐ
 ./blog.jxck.io/index.html: $(BLOG_JSON)
