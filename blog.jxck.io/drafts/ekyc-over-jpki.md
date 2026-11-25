@@ -18,7 +18,7 @@
 - 運転免許証のアップロード手順
   - https://timesbiz.jp/news/pdf/license_upload_kantan.pdf
 
-![運転免許の撮影](timescar-license-upload.png)
+![運転免許の撮影](timescar-license-upload.png#436x219)
 
 このような登録フェーズは、"eKYC" と呼ばれる。
 
@@ -75,7 +75,7 @@ KYC(Know Your Customer) は「顧客の身元を確認する」フェーズで�
 - 表 特 2【犯罪収益移転防止法施行規則の改正による本人確認方法の見直し】
   - https://www.npa.go.jp/sosikihanzai/jafic/nenzihokoku/data/jafic_2025.pdf#page=18
 
-![犯罪収益移転防止法施行規則の改正による本人確認方法の見直し](jafic_2025.png)
+![犯罪収益移転防止法施行規則の改正による本人確認方法の見直し](jafic_2025.png#629x790)
 
 この表は、ホ以降が非対面、つまり eKYC の方式にあたる。
 
@@ -102,7 +102,7 @@ KYC(Know Your Customer) は「顧客の身元を確認する」フェーズで�
 
 タイムズは、退会後の個人情報について「法令上取引記録の保管義務がある」と説明している。
 
-![退会したら個人情報はどうなるのですか？](timescar-faq.png)
+![退会したら個人情報はどうなるのですか？](timescar-faq.png#489x116)
 
 - 退会したら個人情報はどうなるのですか? | カーシェアリングのタイムズカー
   - https://share.timescar.jp/faq/other/09.html
