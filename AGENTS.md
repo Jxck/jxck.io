@@ -8,6 +8,7 @@
 - ビルドの中心は `Makefile` と `.src/build.ts`
 - `.src/build.ts` は起動時に `process.chdir(import.meta.dirname)` するため、相対パスは `.src/` 基準
 - `make` (引数なし) と `make all` は、先に `make mtime` で mtime をコミット時刻へ戻してから、blog の一式 (`make blog` + `make image`) を実行する。`make dict` だけは h2o reload を伴うため明示的に実行する
+- `make mtime` はビルドの依存関係に現れるファイル (entries 配下の md / html / dcb / 画像) だけ、`make full-mtime` は追跡中の全ファイルの mtime をコミット時刻へ戻す
 - `make blog` は記事の差分ビルドと `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` を生成する
 - `make dict` は古い `*.dict` / `*.dict.br` を掃除してから辞書を再生成し、`blog.jxck.io/dictionary/entries/<hash>.dict` と配信用の `<hash>.dict.br` を作り、`active.dict` (`<hash>.dict` への symlink) と `h2o.dict.conf` を更新し、全 `.html.dcb` も生成し直したうえで、最後に `make reload` で h2o に反映する
 - `make comp` は通常の `.br` と `blog.jxck.io/entries/**/*.html.dcb` を生成する

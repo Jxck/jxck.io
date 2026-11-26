@@ -2,7 +2,7 @@
 .PHONY: dict dcb
 .PHONY: blog blog-all
 .PHONY: fmt fmt-blog
-.PHONY: mtime mtime-blog mtime-image mtime-comp
+.PHONY: mtime full-mtime
 .PHONY: image png jpeg gif webp avif image-clean
 .PHONY: comp clean blog-clean distclean
 .PHONY: install update systemd-list systemd-status
@@ -29,19 +29,28 @@ PRETTIER := $(NODE) ./node_modules/prettier/bin/prettier.cjs
 # 既定ターゲット: mtime の正規化 + blog の一式 (差分ビルド + 画像 + 圧縮)
 # pull 直後は git の書き出し順で md や png が生成物より新しくなり、不要な再ビルドが
 # 走るため、先に mtime をコミット時刻へ戻す (未コミットの変更は対象外)
+# image を blog より先に終わらせる。記事のビルドは画像 (webp/avif) の mtime を読むため、
+# 並列に走らせると新しい画像の生成前にビルドが走って失敗する
 # 辞書の再生成と h2o reload を伴う make dict だけは明示的に実行する
 all:
 	$(MAKE) mtime
-	$(MAKE) blog image
+	$(MAKE) image
+	$(MAKE) blog
 
 # blog の md を formatter にかけて整形
 fmt: fmt-blog
 
-# 全ファイルの mtime を最終コミット時刻に戻す
-# labs.jxck.io を除く追跡中の全ファイルを 1 回の呼び出しで処理する
-# (種類ごとにパスを渡して mtime-blog / mtime-image / mtime-comp を呼ぶより速い)
+# ビルドの依存関係に現れるファイルだけ、mtime を最終コミット時刻に戻す
+# (md -> html -> dcb、png/jpeg/gif -> webp/avif)
+# pull 直後は git の書き出し順で md や png が生成物より新しくなるので、その補正が目的
+# json と index.html は、ビルド時の mtime のままで正しく判定できるため対象外
+MTIME_EXT := md html html.dcb png jpeg gif webp avif
 mtime:
-	@git restore-mtime . ':!labs.jxck.io'
+	@git restore-mtime $(foreach ext,$(MTIME_EXT),'blog.jxck.io/entries/*.$(ext)')
+
+# 追跡中の全ファイルの mtime を最終コミット時刻に戻す
+full-mtime:
+	@git restore-mtime
 
 
 ##########################
@@ -56,10 +65,6 @@ BLOG_JSON  := $(BLOG_MD:.md=.json)
 fmt-blog:
 	@printf '%s\n' $(BLOG_MD) | parallel -X -j $(CORES) ./.src/markdown/formatter.js
 
-# blog の mtime を戻す
-mtime-blog:
-	@git restore-mtime $(BLOG_MD)
-
 # blog の差分ビルド (1 つの md から .html と .json を同時に生成)
 # 鮮度は .html だけで判定する。本文だけの修正では .json の内容が変わらず、
 # コミット時刻が md より古いままになるため、.json をターゲットにすると
@@ -69,9 +74,15 @@ mtime-blog:
 	$(NODE) .src/build.ts blog $<
 
 # .json は .html と同じビルドで生成される副産物
-# ここでは順序だけを保証し、.json が欠けているときだけ作り直す
-$(BLOG_JSON): %.json: %.html
-	@test -e $@ || $(NODE) .src/build.ts blog $*.md
+# 空レシピで順序だけを保証する (鮮度の判定は .html が担う)
+# make -n は .json が更新された前提で表示するため、blog_index と .json.br が
+# 実際より多く出る
+$(BLOG_JSON): %.json: %.html ;
+
+# .json が欠けている記事は、.html のルールを強制的に走らせて作り直す
+BLOG_JSON_MISSING := $(filter-out $(wildcard $(BLOG_JSON)),$(BLOG_JSON))
+$(BLOG_JSON_MISSING:.json=.html): FORCE
+FORCE:
 
 # index.html は @touch で mtime を進め blog_index の再実行を防ぐ
 ./blog.jxck.io/index.html: $(BLOG_JSON)
@@ -95,20 +106,13 @@ blog-all:
 BLOG_PNG  := $(filter %.png,  $(BLOG_FILES))
 BLOG_JPEG := $(filter %.jpeg, $(BLOG_FILES))
 BLOG_GIF  := $(filter %.gif,  $(BLOG_FILES))
-BLOG_IMAGE := $(BLOG_PNG) $(BLOG_JPEG) $(BLOG_GIF)
-BLOG_IMAGE += $(BLOG_PNG:.png=.webp) $(BLOG_JPEG:.jpeg=.webp) $(BLOG_GIF:.gif=.webp)
-BLOG_IMAGE += $(BLOG_PNG:.png=.avif) $(BLOG_JPEG:.jpeg=.avif) $(BLOG_GIF:.gif=.avif)
-
-# blog 画像の mtime を戻す
-mtime-image:
-	@git restore-mtime $(BLOG_IMAGE)
 
 # 全画像の最適化
 # 元画像の最適化 (optipng 等) は webp pass でのみ in-place に行い、avif pass は
 # 最適化済みの元画像から変換する。webp -> avif の順に直列化することで、同じ元画像へ
 # 最適化が二重に走るのも、並列実行で衝突して "Can't back up the input file" になるのも
 # 防ぐ。mtime はビルド順で派生物が常に元画像より後になり古くならないため、ここでは
-# 触らない。コミット時刻への正規化は commit 後に make mtime (mtime-image) で行う。
+# 触らない。コミット時刻への正規化は make mtime で行う。
 image:
 	$(MAKE) webp
 	$(MAKE) avif
@@ -212,16 +216,13 @@ COMP_BR := $(addsuffix .br, $(COMP_TARGETS))
 
 # 全 entry HTML に対応する .dcb
 BLOG_DCB := $(BLOG_HTML:.html=.html.dcb)
-DICT_FILES := $(shell find $(DICT_DIR) \( -type f -o -type l \) ! -path '*/.*' 2>/dev/null)
-COMP_FILES := $(COMP_TARGETS) $(COMP_BR) $(BLOG_DCB) $(DICT_FILES) $(DICT_CONF)
-
-# comp の mtime を戻す
-mtime-comp:
-	@git restore-mtime $(COMP_FILES)
 
 # brotli 圧縮コマンド
+# brotli は元ファイルの mtime を秒単位でしか引き継がないことがあるので、touch -r で
+# 秒未満まで揃える (揃えないと、秒未満まで比較する make では毎回再圧縮になる)
 %.br: %
 	brotli -v -q 11 -f $<
+	@touch -r $< $@
 
 # entries html から配信用辞書と active dict metadata を更新する
 $(DICT_ACTIVE): $(BLOG_HTML)

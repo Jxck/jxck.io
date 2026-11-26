@@ -87,7 +87,7 @@ image の記法で video に展開される。
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
 - `make` (引数なし) で、以下をまとめて行う
-  - `make mtime`: mtime をコミット時刻へ戻す (pull 直後の不要な再ビルドを防ぐ。未コミットの変更は対象外)
+  - `make mtime`: ビルドに関係するファイルの mtime をコミット時刻へ戻す (pull 直後の不要な再ビルドを防ぐ。未コミットの変更は対象外。全ファイルを戻すなら `make full-mtime`)
   - `make blog`: 記事の差分ビルド + `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` まで生成する
   - `make image`: 画像の webp / avif を生成する
 - build 結果をコミットして push し、VPS で `git pull` して `make` する
