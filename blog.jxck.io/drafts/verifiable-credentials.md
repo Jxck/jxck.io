@@ -10,7 +10,7 @@
 
 ここで活用が期待されているのが、Verifiable Credentials だ。
 
-この記事は、**サイバーセキュリティアドベントカレンダー** 4 日目である。
+この記事は、[サイバーセキュリティアドベントカレンダー](https://qiita.com/advent-calendar/2026/cyber-security-by-jxck) 4 日目である。
 
 
 ## 情報の「収集」と「確認」
