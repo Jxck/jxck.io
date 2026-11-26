@@ -1,4 +1,4 @@
-# Verifiable Credentials による個人情報収集の最小化
+# [verifiable credentials][security] Verifiable Credentials による個人情報収集の最小化
 
 ## Intro
 
@@ -28,8 +28,6 @@ eKYC でも同様に、生年月日を収集する必要があった。
 同様に、学割のための「学生である」、マチアプのための「未婚である」なども boolean で良く、住民票や学生証自体が必要なわけではないという場面も多々あるだろう。
 
 こうした場合に、その事実の証明だけを取得し、その真正性を確認する方法として活用できるのが Verifiable Credentials だ。
-
-##
 
 
 ## Verifiable Credentials
@@ -81,7 +79,7 @@ mdoc は、発行したデジタル庁によって署名されているため、
 
 ```json
 {
-  sd:[
+  "sd":[
      sha256(salt1 + "name" + "Jxck"),
      sha256(salt2 + "address" + "Mars"),
      sha256(salt3 + "birthday" + "1900-01-01"),
@@ -168,6 +166,7 @@ VC が標準化されたフォーマットであれば、対応する Wallet に
 
 想定される VC には様々な物がある。
 
+- デジ庁が有効な運転免許の保持だけを証明する VC を発行する
 - 試験ベンダーが資格取得を示す VC を発行する
 - イベントサイトがチケットを VC として発行する
 - Google や Apple などが、普段の利用状況からその人が Bot で無いことを証明する VC を発行する
