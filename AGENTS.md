@@ -26,6 +26,9 @@
 
 ## Skill Directory Workflow
 
+- この節は repo 固有の skill (repo tier) の規則である。全 repo 共通の global skill は dotfiles が正本で、ここには置かない
+- global skill と同じ名前の skill をこの repo に置かない
+- global skill が使うこの repo 固有の値は `.agents/bindings/<skill>.md` に置く
 - 共有 skill の正本は `.agents/skills/<skill>/` に置く
 - `.claude/skills/<skill>` と `.codex/skills/<skill>` は、原則としてその正本ディレクトリへの symlink にする
 - skill の内容を更新する場合は、正本だけを編集する
@@ -41,5 +44,6 @@
 
 ## Commit Message Policy
 
-- commit message のルールの正本は `.agents/skills/commit-message/SKILL.md` に置く
+- commit message のルールの正本はグローバル skill (`commit-message`) にある
+- この repo の prefix の一覧と例外は `.agents/bindings/commit-message.md` に置く
 - commit message を書く場合は、必ず `commit-message` skill を使う
