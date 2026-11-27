@@ -188,6 +188,107 @@ $ avifenc --speed 0 -q 40 -o image.avif image.png
 - `make clean` は `.br` / `.dcb` / `.dict` を削除、 `make distclean` は全生成物を削除
 
 
+## クローンからデプロイまで
+
+開発端末 (Mac) で書いてビルドし、 push したものを VPS で pull して配信する。
+
+サーバの設定は、パスを `/home/jxck/develop/jxck.io` 、ユーザを `jxck` に固定している (`h2o.conf` / `.systemd/h2o.service` / `.systemd/slink.sh`)。 VPS では必ず `~/develop/jxck.io` に置く。
+
+
+### 必要なコマンド
+
+`make install` では入らないので、先に入れておく。
+
+- ビルド
+  - mise で入れた node (`Makefile` が `~/.local/share/mise/installs/node/latest/bin/node` を直接呼ぶ)
+  - cargo (`cdt-toolkit` を入れるため)
+  - GNU の `make` / `nproc` / `find` (`find -xtype` を使う)
+  - `parallel`
+  - `git restore-mtime`
+  - `brotli`
+- 画像
+  - `optipng` / `jpegtran` / `gifsicle`
+  - `cwebp` / `gif2webp`
+  - `avifenc`
+  - `ffmpeg`
+- サーバのみ
+  - `zsh` と `apt` (`.h2o/install.sh` が使う)
+  - linuxbrew の `openssl@3` (h2o をこれにリンクする)
+  - `ruby` (検索の CGI)
+  - `rotatelogs` (アクセスログ)
+  - snap の `certbot` と dns-cloudflare plugin (証明書)
+
+
+### クローンとビルド
+
+開発端末でも VPS でも同じ。
+
+```sh
+$ mkdir -p ~/develop && cd ~/develop
+$ git clone git@github.com:Jxck/jxck.io.git
+$ cd jxck.io
+$ make install
+$ make
+```
+
+- `make install` は `npm install` と `cargo install cdt-toolkit` を行う。 Linux では `.h2o/install.sh` で h2o もビルドし、 `.h2o/local/` に入れる
+- 記事の html / json / `.html.dcb` と辞書は git 管理下にある。 `make` は最初に mtime をコミット時刻へ戻すので、クローン直後にビルドし直すのは、 html より後に md をコミットした記事だけになる
+- git 管理外の `.br` は、ここで全て生成する
+- 配信用の辞書の `.dict.br` は `make` では作られない。 `make dict` が作る
+
+
+### サーバの初回セットアップ
+
+`h2o.conf` は、リポジトリの外にある次のものを参照する。先に用意しておく。
+
+- `~/develop/mozaic.fm`
+  - `h2o.conf` が `/home/jxck/develop/mozaic.fm/h2o.conf` を `!file` で読み込む
+  - 中身のビルドは mozaic.fm の README に従う
+- `~/develop/files.jxck.io` と `~/develop/logs.jxck.io`
+  - リポジトリ直下の `files.jxck.io` / `logs.jxck.io` が、ここへの symlink になっている
+- `/etc/letsencrypt/live/jxck.io/` と `/etc/letsencrypt/live/mozaic.fm/` の証明書
+  - jxck.io の分は `admin.jxck.io/cert-jxck.sh` で取得する。 Cloudflare の認証情報を `/etc/letsencrypt/jxck.io.ini` に置いておく
+  - mozaic.fm の分は mozaic.fm 側の手順で取得する
+- `/keys/.htpasswd`
+  - 下書き (`/drafts`) の Basic 認証に使う
+
+揃ったら、 systemd に登録して起動する。
+
+```sh
+$ .systemd/slink.sh
+$ make test
+$ make start
+```
+
+- `.systemd/slink.sh` は unit (`h2o.service` / `ws.service`) と certbot の deploy hook を symlink し、 `daemon-reload` と `enable` まで行う。起動はしない
+- `make test` は `h2o.conf` の syntax check
+- `ws.service` を使う場合は `sudo systemctl start ws` で別に起動する
+- 証明書の更新は snap の `snap.certbot.renew.timer` が行い、更新されたときだけ deploy hook が h2o を reload する
+
+
+### 日常のデプロイ
+
+開発端末で `make` し、記事とビルド結果をまとめて commit して push する。
+
+```sh
+$ make
+$ git commit
+$ git push
+```
+
+VPS で。
+
+```sh
+$ git pull
+$ make
+```
+
+- VPS の `make` は、 git 管理外の `.br` を生成するために必要
+- `h2o.conf` や `.mruby.handler/` を変えたときは、 VPS で `make reload` も実行する
+- 辞書を更新するときは `make dict` を実行する。 Linux では最後に h2o の reload まで行う
+- 記事の書き方とビルドの詳細は、上の「basic flow」を参照
+
+
 ## make
 
 コマンドの一覧。定義は `Makefile` にある。
