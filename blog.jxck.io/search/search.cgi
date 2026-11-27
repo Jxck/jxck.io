@@ -19,12 +19,7 @@ def search(pwd, host, query)
   keywords = query[:keywords].map{|keyword| /(?<prefix>.*)(?<keyword>#{keyword})(?<suffix>.*)/i }
   reg      = Regexp.union(keywords)
 
-  search_path = case host
-                when "blog.jxck.io"
-                  "#{base}/entries/**/*.md"
-                when "mozaic.fm"
-                  "#{base}/episodes/**/*.md"
-                end
+  search_path = "#{base}/entries/**/*.md"
 
   Pathname.glob(search_path).sort_by {|v|
     # Path 中の ep の数値順でソート
@@ -69,12 +64,7 @@ def fragment(prefix, keyword, suffix)
 end
 
 def build(pwd, host, query, results)
-  template_path = case host
-                when "blog.jxck.io"
-                  "#{pwd}/.src/template/blog.search.html.erb"
-                when "mozaic.fm"
-                  "#{pwd}/.src/template/podcast.search.html.erb"
-                end
+  template_path = "#{pwd}/.src/template/blog.search.html.erb"
   template      = File.read(template_path)
   ERB.new(template, trim_mode: '-').result(binding)
 end
@@ -91,7 +81,7 @@ end
 begin
   #log ENV.entries.join("\n")
   host    = ENV["HTTP_HOST"]
-  unless ["blog.jxck.io", "mozaic.fm"].include?(host)
+  unless host == "blog.jxck.io"
     STDOUT.print "Status: 500 Internal Server Error\n\n"
     exit(0)
   end

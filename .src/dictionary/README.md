@@ -154,7 +154,7 @@ Makefile の `DICT_GENERATOR` で指定している本番値です。
 
 ### `make` / `make all`
 
-全体一括ビルドは廃止しました。引数なしの `make` (= `make all`) はエラーを出して停止し、`make blog` か `make podcast` を実行するよう促します。辞書の再生成は `make dict` を明示的に呼んだときだけ行います。
+引数なしの `make` (= `make all`) は、`make mtime` で mtime をコミット時刻へ戻してから、`make image` と `make blog` を順に実行します。辞書の再生成は `make dict` を明示的に呼んだときだけ行います。
 
 ### `make blog`
 
@@ -183,7 +183,7 @@ Makefile の `DICT_GENERATOR` で指定している本番値です。
 
 ### `make distclean`
 
-`clean` + blog/podcast の全生成物 (HTML, JSON, index, RSS, sitemap, tags) を削除します。画像 (webp/avif) は対象外です。`make blog-clean` / `make podcast-clean` で個別にも実行できます。
+`clean` + blog の全生成物 (HTML, JSON, index, RSS, sitemap, tags) を削除します。画像 (webp/avif) は対象外です。blog の生成物だけなら `make blog-clean` で個別に実行できます。
 
 
 ## cdt ツールリファレンス

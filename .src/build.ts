@@ -1,15 +1,12 @@
 // 以降の相対パスは .src 基準なので、どこから起動されても cwd を固定する
 process.chdir(import.meta.dirname)
 
-import { exec } from "child_process"
-import { constants, readFileSync, statSync } from "fs"
-import { access, readFile as _readFile, writeFile, stat, glob, realpath } from "fs/promises"
-import { basename, dirname } from "path"
-import { promisify, styleText } from "util"
+import { readFileSync, statSync } from "fs"
+import { readFile as _readFile, writeFile, stat } from "fs/promises"
+import { styleText } from "util"
 
 import ejs from "ejs"
 import { encode, decode, traverse, Node, hsc, map, create_id_from_text, to_toc } from "markdown"
-import { parse as parseYAML } from "yaml"
 
 /**
  * dump for debug
@@ -126,147 +123,6 @@ function short(str: string, n = 140): string {
   str = str.replaceAll(`\n`, ``)
   if (str.length <= n) return str
   return str.slice(0, n - 3) + `...`
-}
-
-/**
- * files.mozaic.fm/ は git-annex 管理下にあり、locked な mp3 は symlink 経由で
- * read-only な annex object を指す。id3 書き込み前に unlock して書き込み可能にする。
- * annex 未導入 (移行後) の環境では書き込み可能なので何もしない。
- */
-async function unlock_if_needed(audio_file: string): Promise<void> {
-  try {
-    await access(audio_file, constants.W_OK)
-    return
-  } catch {
-    // 書き込み不可 (locked annex file の可能性) -> unlock を試みる
-  }
-
-  try {
-    const dir = await realpath(dirname(audio_file))
-    await promisify(exec)(`git annex unlock ${JSON.stringify(basename(audio_file))}`, {
-      cwd: dir,
-    })
-    logger("yellow", "unlocked (git-annex):", audio_file)
-  } catch (e) {
-    console.error(e)
-    throw new Error(`cannot write to ${audio_file} and failed to unlock via git-annex`)
-  }
-}
-
-/**
- * read mp3 duration and serialize as 00:00:00 fmt
- */
-async function audio_duration(audio: string): Promise<string> {
-  const stdout = await (async () => {
-    if (process.platform === `darwin`) {
-      return (await promisify(exec)(`afinfo ./${audio} | grep duration | cut -d' ' -f 3`)).stdout
-    } else {
-      return (await promisify(exec)(`mp3info -p "%S\n" ./${audio}`)).stdout
-    }
-  })()
-
-  const sec = parseInt(stdout.trim())
-  const formatter = new Intl.DateTimeFormat(`ja-jp`, {
-    hour: `2-digit`,
-    minute: `2-digit`,
-    second: `2-digit`,
-    hour12: false,
-    timeZone: `UTC`,
-  })
-  return formatter.format(new Date(sec * 1000))
-}
-
-interface Guest {
-  name: string
-  url: string
-}
-
-interface Info {
-  published_at: string
-  audio: string
-  guests: Guest[]
-  tags: string[]
-}
-
-/**
- * create info section from yaml
- */
-function info_section({
-  published_at,
-  guests,
-  toc,
-}: {
-  published_at: string
-  guests: Guest[]
-  toc: Node
-}): Node {
-  // console.log({ published_at, guests })
-
-  // validate date format
-  if (/20[1-2]\d-[0-1]\d-[0-3]\d/.test(published_at) === false) {
-    throw new Error(`${published_at} is invalid date format`)
-  }
-
-  const dl = new Node({
-    name: `dl`,
-    type: `block`,
-    attr: map({ class: `info` }),
-  })
-
-  // published_at
-  {
-    const div = new Node({ name: `div`, type: `block` })
-    const dt = new Node({ name: `dt`, type: `inline` })
-    const dd = new Node({ name: `dd`, type: `inline` })
-    dt.addText(`published_at`)
-    dd.addText(published_at)
-    div.appendChildren([dt, dd])
-    dl.appendChild(div)
-  }
-
-  // guests
-  guests.forEach(({ name, url }) => {
-    const div = new Node({ name: `div`, type: `block` })
-    const dt = new Node({ name: `dt`, type: `inline` })
-    const dd = new Node({ name: `dd`, type: `inline` })
-    dt.addText(`guest`)
-    if (url) {
-      const a = new Node({
-        name: `a`,
-        type: `inline`,
-        attr: map({
-          href: url,
-          target: `_blank`,
-        }),
-      })
-      a.addText(name)
-      dd.appendChild(a)
-    } else {
-      dd.addText(name)
-    }
-    div.appendChildren([dt, dd])
-    dl.appendChild(div)
-  })
-
-  // toc
-  {
-    const div = new Node({ name: `div`, type: `block` })
-    const dt = new Node({ name: `dt`, type: `inline` })
-    const dd = new Node({ name: `dd`, type: `block` })
-    const details = new Node({ name: `details`, type: `block` })
-    const summary = new Node({ name: `summary`, type: `inline` })
-    const nav = new Node({ name: `nav`, type: `block` })
-
-    div.appendChildren([dt, dd])
-    dt.addText(`toc`)
-    dd.appendChild(details)
-    details.appendChildren([summary, nav])
-    nav.appendChild(toc)
-    summary.addText(`headings`)
-    dl.appendChild(div)
-  }
-
-  return dl
 }
 
 /**
@@ -607,87 +463,6 @@ async function parse_entry(entry: string): Promise<Blog> {
   }
 }
 
-interface Podcast {
-  ep: number
-  canonical: string
-  url: string
-  path: string
-  file: string
-  title: string
-  next: Podcast | null
-  prev: Podcast | null
-}
-
-/**
- * parse episodes file into context
- */
-async function parse_episode(entry: Podcast, order: number): Promise<any> {
-  process.stdout.write("m")
-  const md = await readFile(entry.path)
-  const target = entry.path.replace(`.md`, `.html`)
-  const canonical = target.replace(`../`, `https://`)
-
-  const groups = md.match(
-    /^---\n(?<frontmatter>([\n\r]|.)*?)\n---\n(?<markdown>([\n\r]|.)*)$/m,
-  )!.groups!
-  const { frontmatter, markdown } = groups
-
-  const yaml = parseYAML(frontmatter, { schema: "core" }) as Info
-  yaml.tags.forEach((tag) => {
-    if (/[A-Z]+/.test(tag)) throw new Error(`tag should be lowercase: ${tag}`)
-  })
-
-  const { tags, published_at, audio, guests = [] } = yaml
-
-  const [up, host, episodes, ep, filename] = entry.path.split(`/`)
-  const base = `${up}/${host}/${episodes}/${ep}/`
-  const ast = decode(markdown)
-
-  const { root, description, toc, title } = customize(ast, { host, base })
-  const ol = toc.children.at(-1) // toc から h1 を除く
-
-  // yaml の情報を info section にして ast に差し込む
-  const info = info_section({ published_at, guests, toc: ol! })
-  ast.children[0].children.splice(1, 0, info)
-
-  const article = encode(root, { indent: 2 })
-
-  // Top ページのために Theme だけ別で encode する
-  const theme_section = ast.children[0].children[2]
-  theme_section.children.shift()
-  const theme = encode(theme_section, { indent: 4 }).trim()
-
-  const audio_file = audio.replace(`https://`, `../`)
-  const audio_stat = await stat(audio_file)
-  const audio_size = audio_stat.size
-  const audio_mtime = Math.floor(audio_stat.mtime.getTime() / 1000)
-  const duration = await audio_duration(audio_file)
-
-  return {
-    target,
-    canonical,
-    url: entry.url,
-    prev: entry.prev,
-    next: entry.next,
-    host: `mozaic.fm`,
-    title,
-    theme,
-    tags,
-    guests,
-    toc,
-    article,
-    icon: `https://mozaic.fm/assets/img/mozaic`,
-    description,
-    published_at,
-    audio,
-    audio_file,
-    audio_size,
-    audio_mtime,
-    duration,
-    order,
-  }
-}
-
 /**
  * build entry
  */
@@ -804,108 +579,6 @@ async function blog_index(meta_files: string[]): Promise<void> {
 }
 
 /**
- * build podcast episodes
- */
-async function podcast(files: string[]): Promise<void> {
-  logger("green", "\ncompile podcast episodes:", files.length.toString())
-
-  const paths: Podcast[] = files
-    .map((path) => {
-      const [dot, mozaic, episodes, ep, file] = path.split(`/`)
-      const title = readFileSync(path, { encoding: `utf-8` }).match(/# (?<h1>.*)/)!.groups!.h1
-      return {
-        ep: parseInt(ep),
-        canonical: `https://${mozaic}/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
-        url: `/${episodes}/${ep}/${file.replace(`.md`, `.html`)}`,
-        path,
-        file,
-        title,
-        next: null,
-        prev: null,
-      } as Podcast
-    })
-    .sort((a, b) => {
-      if (a.ep === b.ep) return a.file.length - b.file.length
-      return a.ep - b.ep
-    })
-    .map((curr, i, arr) => {
-      curr.next = arr[i + 1]
-      curr.prev = arr[i - 1]
-      return curr
-    })
-    .reverse()
-
-  const episodes = await Promise.all(paths.map((path, i) => parse_episode(path, i)))
-  const latest = episodes.at(0)
-
-  // set id3
-  await unlock_if_needed(latest.audio_file)
-  console.log("\n")
-  console.log(
-    await promisify(exec)(`eyeD3 --remove-all --preserve-file-times ${latest.audio_file}`),
-  )
-  console.log(
-    await promisify(exec)(
-      `
-      eyeD3 --title "${latest.title}" \
-      --track ${episodes.length} \
-      --artist 'Jxck' \
-      --album 'mozaic.fm' \
-      --genre 'Podcast' \
-      --add-image ../www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
-      --to-v2.3 \
-      --preserve-file-times \
-      ${latest.audio_file}
-    `.trim(),
-    ),
-  )
-
-  // build episodes
-  const podcast_template_file = `./template/podcast.html.ejs`
-  const podcast_template = await readFile(podcast_template_file)
-  for (const episode of episodes) {
-    const context = {
-      indent,
-      short,
-      hsc,
-      version,
-      episode,
-    }
-    const result = ejs.render(podcast_template, context, { filename: podcast_template_file })
-    await overWriteFile(episode.target, result)
-  }
-
-  // build index
-  const result = await renderFile(`./template/podcast.index.html.ejs`, {
-    indent,
-    short,
-    hsc,
-    version,
-    episodes,
-    first: episodes[0],
-  })
-  await overWriteFile(`../mozaic.fm/index.html`, result)
-
-  // build rss
-  const rss_result = await renderFile(`./template/podcast.rss2.xml.ejs`, {
-    episodes,
-  })
-  await overWriteFile(`../feed.mozaic.fm/index.xml`, rss_result)
-
-  // build rss json
-  const json_result = await renderFile(`./template/podcast.rss2.json.ejs`, {
-    episodes,
-  })
-  await overWriteFile(`../feed.mozaic.fm/index.json`, json_result)
-
-  // build id3all
-  const id3_result = await renderFile(`./template/podcast.id3all.ejs`, {
-    episodes,
-  })
-  await overWriteFile(`../id3all.sh`, id3_result)
-}
-
-/**
  * Makefile などから渡される project-root 基準のパスを
  * .src/ 基準 (../<host>/...) に正規化する
  */
@@ -931,11 +604,6 @@ async function main(arg: string, rest: string[]): Promise<void> {
     }
     const entries = rest.map(normalize_path)
     await Promise.all(entries.map(blog))
-  }
-
-  if (arg === `podcast`) {
-    const episodes = await Array.fromAsync(glob(`../mozaic.fm/episodes/**/*.md`))
-    return await podcast(episodes)
   }
 }
 

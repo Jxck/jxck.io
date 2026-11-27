@@ -8,8 +8,6 @@ global skill `commit-message` がこの repo で使う値である。規約の�
   - `blog.jxck.io/entries/` 配下の記事 (md / 画像)
 - `[draft]`
   - `blog.jxck.io/drafts/` の下書き
-- `[mozaic]`
-  - `mozaic.fm` 配下 (ポッドキャスト)
 - `[src]`
   - `.src/` のビルドスクリプト類
 - `[make]`
@@ -33,7 +31,6 @@ global skill `commit-message` がこの repo で使う値である。規約の�
 
 ## 表記ゆれ
 
-- `[mozaic]` を `[moziac]` と打ち間違えない
 - `[agent]` ではなく `[agents]` に寄せる
 
 ## prefix を付けない例外
