@@ -82,9 +82,9 @@ Usage:
 
 まずは、デフォルトの 80 で比較していく。
 
-[jxck.png](https://jxck.io/assets/img/jxck.png)
+[jxck.png](https://github.com/Jxck/jxck.io/blob/6e595e1b8aea1e2d3e1cb7b3f402eb969fc21370/www.jxck.io/assets/img/jxck.png)
 : 4061 byte
-[jxck.webp](https://jxck.io/assets/img/jxck.webp)
+[jxck.webp](https://github.com/Jxck/jxck.io/blob/6e595e1b8aea1e2d3e1cb7b3f402eb969fc21370/www.jxck.io/assets/img/jxck.webp)
 : 1810 byte
 
 

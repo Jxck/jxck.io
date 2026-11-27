@@ -129,7 +129,7 @@ zopfli と比べて、4 point 圧縮率が向上している。
 
 ### JS
 
-[highlight.min.js](https://jxck.io/assets/js/highlight.min.js)
+[highlight.min.js](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/js/highlight.min.js)
 
 Caption: 圧縮形式ごとのサンプル JS の圧縮率
 | file type | size  | ratio |
@@ -145,7 +145,7 @@ zopfli と比べて、1 point 圧縮率が向上している。
 
 ### CSS
 
-[mozaic.css](https://jxck.io/assets/css/mozaic.css)
+[mozaic.css](https://github.com/Jxck/jxck.io/blob/b4339d678f6816ac782e0e6df1913f1b1f8d30f2/www.jxck.io/assets/css/mozaic.css)
 
 Caption: 圧縮形式ごとのサンプル CSS の圧縮率
 | file type | size | ratio |
@@ -163,7 +163,7 @@ zopfli と比べて、7 point 圧縮率が向上している。
 
 [本サイト用にビルド](https://blog.jxck.io/entries/2016-03-14/web-font-noto-sans.html) したフォントファイルを採用する。
 
-[NotoSansCJKjp-Jxck-Regular.otf](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
+[NotoSansCJKjp-Jxck-Regular.otf](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.otf)
 
 Caption: 圧縮形式ごとのサンプル OTF の圧縮率
 | file type | size   | ratio |
@@ -172,7 +172,7 @@ Caption: 圧縮形式ごとのサンプル OTF の圧縮率
 | .otf.gz   | 382322 |   79% |
 | .otf.br   | 344003 |   71% |
 
-[NotoSansCJKjp-Jxck-Regular.woff](https://jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
+[NotoSansCJKjp-Jxck-Regular.woff](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/font/NotoSansCJKjp-Jxck-Regular.woff)
 
 Caption: 圧縮形式ごとのサンプル WOFF の圧縮率
 | file type | size   | ratio |
@@ -188,7 +188,7 @@ OTF は圧縮効果が高いが、WOFF は逆効果となっている。
 
 ### PNG
 
-[mozaic.png](https://jxck.io/assets/img/mozaic.png)
+[mozaic.png](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/img/mozaic.png)
 
 Caption: 圧縮形式ごとのサンプル PNG の圧縮率
 | file type | size  | ratio |
@@ -202,7 +202,7 @@ Caption: 圧縮形式ごとのサンプル PNG の圧縮率
 
 ### WebP
 
-[mozaic.webp](https://jxck.io/assets/img/mozaic.webp)
+[mozaic.webp](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/img/mozaic.webp)
 
 Caption: 圧縮形式ごとのサンプル WebP の圧縮率
 | file type | size | ratio |
@@ -218,7 +218,7 @@ WebP も圧縮済みのフォーマットであるため、圧縮が逆効果と
 
 ### SVG
 
-[mozaic.svg](https://jxck.io/assets/img/mozaic.svg)
+[mozaic.svg](https://github.com/Jxck/jxck.io/blob/0599a344653e70c305691d86873662e40719d29e/www.jxck.io/assets/img/mozaic.svg)
 
 Caption: 圧縮形式ごとのサンプル SVG の圧縮率
 | file type | size | ratio |

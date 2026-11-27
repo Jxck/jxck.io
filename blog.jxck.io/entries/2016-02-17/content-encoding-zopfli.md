@@ -131,7 +131,7 @@ Caption: ファイルサイズごとの gzip の実行結果
 
 ただ、開発用の Mac では少し違う結果が出たりもしたため、結果 `i=30` くらいに落ち着いた。
 
-また、[WebP](https://jxck.io/assets/img/jxck.webp) と [PNG](https://jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
+また、[WebP](https://github.com/Jxck/jxck.io/blob/4fbdbb84507701701c5b086e8ffd5847b86a3284/www.jxck.io/assets/img/jxck.webp) と [PNG](https://github.com/Jxck/jxck.io/blob/4fbdbb84507701701c5b086e8ffd5847b86a3284/www.jxck.io/assets/img/jxck.png) の画像ファイルでも検証したところ、以下のようになった。
 
 Caption: 画像圧縮フォーマットとサイズの関係
 | file         | size |
