@@ -197,7 +197,7 @@ function customize(ast: Node, { host, base }: Param): CustomizeResult {
         }
         if (node.level === 2) {
           const text = node.children.at(0)!.text
-          if (text === `Intro` || text === `Theme`) {
+          if (text === `Intro`) {
             state.description = serialize_description(node.parent)
           }
         }
