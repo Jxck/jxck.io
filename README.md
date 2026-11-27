@@ -188,104 +188,77 @@ $ avifenc --speed 0 -q 40 -o image.avif image.png
 - `make clean` は `.br` / `.dcb` / `.dict` を削除、 `make distclean` は全生成物を削除
 
 
-## podcast
+## make
 
-https://github.com/Jxck/mozaic.fm
-
-2026-08 に別リポジトリへ移行済みで、このリポジトリには podcast のサイトや feed は含まれない。ビルドや配信の手順は移行先の README を正とする。
-
-ビルドスクリプト、テンプレート、フロントエンドの JS など、 podcast 用のコードもこのリポジトリから削除済みである。
-
-残っている接点は次の 2 つである。
-
-- `h2o.conf` が VPS 上の `mozaic.fm/h2o.conf` を `!file` で読み込む
-- `mozaic.fm/h2o.conf` が、このリポジトリの `.mruby.handler/hsts.rb` を相対パスで参照する
-
-以下は移行前 (このリポジトリでビルドしていた頃) の記録である。
-
-基本は blog と同じように作っていた。
+コマンドの一覧。定義は `Makefile` にある。
 
 
-### basic flow
+### ビルド
 
-- 編集した mp3 を生成
-- 原稿を md で記述
-- episodes 以下にエピソード番号のディレクトリを作りそこに置く
-- `make podcast` で html と RSS (`feed.mozaic.fm/index.{xml,json}`) が同時に生成されていた
-
-
-### md
-
-以下のフォーマットで始める。
-
-```md
----
-type: podcast
-tags: ["tag"]
-audio: https://files.mozaic.fm/mozaic-epXX.mp3
-published_at: 2022-02-22
-guest: [@gest](url)
-guest: [@gest2](url)
----
-
-# epXX XXXX
-
-## Theme
-
-簡単なテーマ
+| コマンド          | 内容                                                                          |
+|:------------------|:------------------------------------------------------------------------------|
+| `make`            | `make all` と同じ。 `mtime` -> `image` -> `blog` の順に実行する               |
+| `make mtime`      | entries 配下の md / html / dcb / 画像の mtime を、最終コミット時刻へ戻す      |
+| `make full-mtime` | 追跡中の全ファイルの mtime を、最終コミット時刻へ戻す                         |
+| `make blog`       | 記事の差分ビルドと index / feed / sitemap / tags の更新。最後に `comp` を呼ぶ |
+| `make blog-all`   | 全記事を整形してフルビルドする。 `comp` は呼ばない                            |
+| `make fmt`        | `fmt-blog` のあと、 `npm run fmt` (oxfmt) を実行する                          |
+| `make fmt-blog`   | 全記事の md を formatter で整形する                                           |
 
 
-## Show Note
-```
+### 画像
 
-- tag: タグのページ、ただし今はタグページを作ってない
-- Theme: これが index ページの見出し、 description 要素、 RSS の概要などに使われる
-
-mp3 のプレイヤーは `<mozaic-player>` という Custom Element を作っていた。
-
-
-### mp3
-
-- 48kbps (mono) 96kbps(stereo)
-- 44.1kHz (joint stereo)
-- mp3
-
-で編集したものを吐く。
-
-移行前は、実体を `mozaic.fm/files.mozaic.fm/` に置き、 `jxck.io/files.mozaic.fm` から symlink して、 Git LFS で履歴管理していた。この symlink は 2026-08-21 に削除済みである。
-
-現在は mozaic.fm repo 側で、 git-annex の locked symlink として管理している (2026-07 に移行)。
+| コマンド     | 内容                                                         |
+|:-------------|:-------------------------------------------------------------|
+| `make image` | `webp` -> `avif` の順に実行する                              |
+| `make webp`  | webp の差分生成。元画像も上書きで最適化する                  |
+| `make avif`  | avif の差分生成                                              |
+| `make png`   | 全 PNG を optipng で最適化する                               |
+| `make jpeg`  | 全 JPEG を jpegtran で最適化する                             |
+| `make gif`   | 全 GIF を gifsicle で最適化する                              |
 
 
-### ID3 Tag
+### 圧縮と辞書
 
-mp3 には ID3 というメタデータを付与できる。
+| コマンド    | 内容                                                                    |
+|:------------|:------------------------------------------------------------------------|
+| `make comp` | `.br` と `.html.dcb` の差分生成。辞書は再生成しない                     |
+| `make dcb`  | `.html.dcb` だけの差分生成                                              |
+| `make dict` | 辞書を再生成し、全 `.html.dcb` を作り直して、 Linux では h2o を reload する |
 
-ID3 には複数のバージョンがありおおよそ以下のようになっているらしい。
 
-変遷は wikipedia にまとまっているものが参考になる。
+### 削除
 
-- [ID3 タグ - Wikipedia](https://ja.wikipedia.org/wiki/ID3%E3%82%BF%E3%82%B0)
+| コマンド           | 内容                                                           |
+|:-------------------|:---------------------------------------------------------------|
+| `make clean`       | `.br` / `.dcb` / `.dict` を削除する                            |
+| `make image-clean` | webp / avif を削除する                                         |
+| `make blog-clean`  | 記事の html / json と index / feed / sitemap / tags を削除する |
+| `make distclean`   | `clean` と `blog-clean` を実行する                             |
 
-これを元に、元も普及しているらしく、画像を付与できる v2.3 を採用。
 
-ツールは、 GUI ではなく、ビルド時にメタデータを付与できるように CLI を探し、 Mac/Linux 両対応で使いやすい eyeD3 を採用した。
+### セットアップ
 
-- [eyeD3](https://eyed3.readthedocs.io/en/latest/)
+| コマンド              | 内容                                                                    |
+|:----------------------|:------------------------------------------------------------------------|
+| `make install`        | `npm install` と `cargo install cdt-toolkit` 。 Linux では h2o も入れる |
+| `make update`         | 依存を更新する (`ncu` -> `npm install` -> `cdt-toolkit` -> h2o)         |
+| `make systemd-list`   | `.systemd` の unit の登録状況を一覧する                                 |
+| `make systemd-status` | `.systemd` の unit の状態を表示する                                     |
 
-HTML/RSS をビルドするときに収集するメタデータを用いて、各ファイルに対するコマンドファイルの shell を精製し、それを必要に応じて(通常は公開時)に実行する。
 
-```shell
-eyeD3 --remove-all ../files.mozaic.fm/mozaic-ep0.mp3
+### h2o
 
-eyeD3 --title "ep0 introduction of mozaic.fm" \
-      --track 1 \
-      --artist 'Jxck' \
-      --album 'mozaic.fm' \
-      --genre 'Podcast' \
-      --add-image ./www.jxck.io/assets/img/mozaic.jpeg:FRONT_COVER \
-      --to-v2.3 \
-      ../files.mozaic.fm/mozaic-ep0.mp3
-```
-
-一度全部消して、最小限のメタデータを付与。 track は sideshow の分ずれるので、エピソード番号と同じではなく、 1 オリジンで最初からのファイル数。
+| コマンド       | 内容                                                         |
+|:---------------|:-------------------------------------------------------------|
+| `make test`    | `h2o.conf` の syntax check                                   |
+| `make reload`  | `test` のあと、 h2o を reload する                           |
+| `make restart` | `test` のあと、 h2o を restart する                          |
+| `make start`   | h2o を起動する                                               |
+| `make stop`    | h2o を停止する                                               |
+| `make status`  | h2o の状態を表示する                                         |
+| `make kill`    | h2o に signal を送って止める (`systemctl kill`)              |
+| `make logf`    | h2o のログを追う (`journalctl -f`)                           |
+| `make _start`  | systemd を使わず、 h2o を daemon として直接起動する          |
+| `make _stop`   | `_start` で起動した h2o を止める                             |
+| `make _restart` | `_stop` -> `_start`                                          |
