@@ -4,11 +4,11 @@
 
 - https://github.com/Jxck/jxck.io/tree/main/blog.jxck.io
   - ビルド済み静的サイト
-  - CSP/FeaturePolicy
-  - Reporting
+  - CSP (Report-Only、 `.mruby.handler/csp.rb` で付与)
+  - Reporting (Report-To と ReportingObserver で `reporting.jxck.io` に送る)
   - 鉄下駄として
     - analytics
-    - youtbe embed
+    - YouTube embed
     - etc を導入
 
 
@@ -22,14 +22,16 @@
 
 ### CSS
 
-- 基本は single colmun layout
+- 基本は single column layout
 - dark mode 対応していたが、あまり気に入らなかったので一旦取り下げ
 
 
 ### JS
 
 - 基本使わない
-- reporting のみ
+- 読み込むのは `main.js` と Cloudflare Web Analytics の beacon のみ
+  - `main.js` は ReportingObserver の report を `reporting.jxck.io/beacon` に送る
+  - PerformanceObserver の計測値は console に出すだけで、送信しない
 - 将来的には消したい
 
 
@@ -71,13 +73,15 @@ image の記法で video に展開される。
 
 ### iframe
 
-- 鉄下駄として Youtube の iframe を embed
-- Feature Policy などを調整
+- 鉄下駄として YouTube の iframe を embed
+- iframe には `sandbox` 属性を付ける
+- CSP の `frame-src` に埋め込み先 (YouTube / Docswell) を列挙する
 
 
 ### Analytics
 
 - 鉄下駄としてアナリティクスを導入
+  - 現在は Cloudflare Web Analytics (`.src/template/blog.footer.html.ejs` で beacon を読み込む)
 - これを入れても早い状態を維持したい
 - CSP なども調整
 
@@ -86,10 +90,10 @@ image の記法で video に展開される。
 
 - 原稿を md で記述
 - entries 以下に日付フォルダを作りそこに置く
-- `make` (引数なし) で、以下をまとめて行う
+- `make` (引数なし) で、以下をこの順に行う
   - `make mtime`: ビルドに関係するファイルの mtime をコミット時刻へ戻す (pull 直後の不要な再ビルドを防ぐ。未コミットの変更は対象外。全ファイルを戻すなら `make full-mtime`)
+  - `make image`: 画像の webp / avif を生成する (記事のビルドが画像の mtime を読むため、 blog より先に終わらせる)
   - `make blog`: 記事の差分ビルド + `index.html` 更新を行い、最後に `make comp` を呼んで変更分の `.br` / `.html.dcb` まで生成する
-  - `make image`: 画像の webp / avif を生成する
 - build 結果をコミットして push し、VPS で `git pull` して `make` する
   - `.br` は git 管理外なので、VPS 側でも生成が必要
 - 辞書を更新したいときだけ別途 `make dict` を実行する
@@ -146,20 +150,23 @@ alt, title, 画像のサイズがないといけない。
 
 なので、 image.avif / image.webp を作って置いておく必要がある。
 
-これは `make avif` / `make webp` でできる。
+これは `make image` (`make webp` -> `make avif` の順) でできるが、 `make` に含まれるため、通常は個別実行しなくてよい。
 
-だいたい q=40 でやっている。
+webp の生成時に、元画像も optipng / jpegtran / gifsicle で上書き最適化される。
+
+webp / avif ともに q=40 でやっている。
 
 ```sh
-$ cwebp -q 40 image.png -o image.webp
+$ cwebp -q 40 -quiet -m 6 image.png -o image.webp
+$ avifenc --speed 0 -q 40 -o image.avif image.png
 ```
 
 
 ### 圧縮
 
-html/css/js/svg/json/xml などのテキスト系ファイルは全て圧縮する。
+`www.jxck.io` と `blog.jxck.io` 配下 (drafts / dictionary を除く) の html/css/js/svg/json/xml などのテキスト系ファイルは全て圧縮する。
 
-ただし画像 (png/jpeg/gif/webp/avif)、動画 (mp4/webm)、woff2、rb/sh/md/txt などは圧縮しない。
+ただし画像 (png/jpeg/gif/webp/avif)、動画 (mp4/webm)、woff2、rb/sh/cgi/md/txt などは圧縮しない。
 
 また、圧縮方式は gz/br であるが、モダンなブラウザはほとんどが br に対応しているため、以下のような方針をとる。
 
@@ -173,8 +180,8 @@ html/css/js/svg/json/xml などのテキスト系ファイルは全て圧縮す�
 
 加えて、 entries 配下の HTML は CDT で `.dcb` も生成して配信している。
 
-- `make dict` で古い `*.dict` / `*.dict.br` を掃除しつつ `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、 `active.dict` と `h2o.dict.conf` を更新し、全 `.html.dcb` を作り直したうえで `make reload` まで行う
-- `make comp` で記事の `.html.dcb` を生成 (辞書は再生成せず既存辞書を使用)
+- `make dict` で古い `*.dict` / `*.dict.br` を掃除しつつ `blog.jxck.io/dictionary/entries/<hash>.dict` を 1 本生成し、 `active.dict` と `h2o.dict.conf` を更新し、全 `.html.dcb` を作り直したうえで `make reload` まで行う (reload は Linux のみで、 Mac ではスキップする)
+- `make comp` で記事の `.html.dcb` を生成 (辞書は再生成せず既存辞書を使用。 `.dcb` だけなら `make dcb`)
 - 配信ロジックは `h2o.conf` ではなく `.mruby.handler/dcb.rb` にある
 - `Dictionary-ID` は Structured Fields String なので、 mruby 側では `"entries"` のように quote を含めて比較する
 - 辞書生成・圧縮は別リポジトリの `cdt` CLI (`cargo install cdt-toolkit`) が担う。`.src/dictionary/` は運用ドキュメントと評価ツール、配信用辞書は `blog.jxck.io/dictionary/entries/` に置く
@@ -187,6 +194,13 @@ https://github.com/Jxck/mozaic.fm
 
 2026-08 に別リポジトリへ移行済みで、このリポジトリには podcast のサイトや feed は含まれない。ビルドや配信の手順は移行先の README を正とする。
 
+ビルドスクリプト、テンプレート、フロントエンドの JS など、 podcast 用のコードもこのリポジトリから削除済みである。
+
+残っている接点は次の 2 つである。
+
+- `h2o.conf` が VPS 上の `mozaic.fm/h2o.conf` を `!file` で読み込む
+- `mozaic.fm/h2o.conf` が、このリポジトリの `.mruby.handler/hsts.rb` を相対パスで参照する
+
 以下は移行前 (このリポジトリでビルドしていた頃) の記録である。
 
 基本は blog と同じように作っていた。
@@ -197,7 +211,7 @@ https://github.com/Jxck/mozaic.fm
 - 編集した mp3 を生成
 - 原稿を md で記述
 - episodes 以下にエピソード番号のディレクトリを作りそこに置く
-- `make podcast` で html と RSS (`feed.mozaic.fm/index.{xml,json}`) が同時に生成される
+- `make podcast` で html と RSS (`feed.mozaic.fm/index.{xml,json}`) が同時に生成されていた
 
 
 ### md
@@ -227,7 +241,7 @@ guest: [@gest2](url)
 - tag: タグのページ、ただし今はタグページを作ってない
 - Theme: これが index ページの見出し、 description 要素、 RSS の概要などに使われる
 
-mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic-player.mjs) を作っている。
+mp3 のプレイヤーは `<mozaic-player>` という Custom Element を作っていた。
 
 
 ### mp3
@@ -238,7 +252,9 @@ mp3 のプレイヤーは [mozaic-player](https://github.com/Jxck/jxck.io/blob/m
 
 で編集したものを吐く。
 
-実体は `mozaic.fm/files.mozaic.fm/` に置き、 `jxck.io/files.mozaic.fm` から symlink している (mozaic.fm は別 repo)。 mp3 は Git LFS で履歴管理する。
+移行前は、実体を `mozaic.fm/files.mozaic.fm/` に置き、 `jxck.io/files.mozaic.fm` から symlink して、 Git LFS で履歴管理していた。この symlink は 2026-08-21 に削除済みである。
+
+現在は mozaic.fm repo 側で、 git-annex の locked symlink として管理している (2026-07 に移行)。
 
 
 ### ID3 Tag
