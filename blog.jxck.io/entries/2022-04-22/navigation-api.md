@@ -491,7 +491,7 @@ window?.navigation?.on("navigate", async (e) => {
 
 例として、筆者の Podcast は MPA というか事前ビルドの HTML だけで作ってあるが、SPA であれば再生しながら他の Episode の Show Note を見たりできるだろう。これを Navigation API で実装したら 35 行程度で済んだ。
 
-- https://github.com/Jxck/jxck.io/blob/main/www.jxck.io/assets/js/mozaic.js#L261-L296
+- https://github.com/Jxck/jxck.io/blob/98fa0f11acf0793d270155f67c42cb2b17f2ff39/www.jxck.io/assets/js/mozaic.js#L261-L296
 
 ![mozaic.fm で音声再生しながらエピソード間を遷移する](mozaic-spa-by-navigation.mp4#3584x2240 "mozaic spa by navigation api")
 
